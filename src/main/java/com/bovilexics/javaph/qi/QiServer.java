@@ -173,25 +173,14 @@ public class QiServer
 
 	public static void loadAllServers()
 	{
-		loadAllServers(null);
-	}
-
-	private static void loadAllServers(@Nullable URL useURL)
-	{
 		servers.removeAllElements();
 
 		try
 		{
-			final Reader in;
-			
-			if (useURL != null) {
-				in = new InputStreamReader((new URL(useURL.toString() + SERVER_FILE)).openStream());
-			} else {
-				in = new FileReader(SERVER_FILE);
-			}
-			
+			final Reader in = new FileReader(SERVER_FILE);
+
 			@NotNull final LineNumberReader lr = new LineNumberReader(in);
-			
+
 			String line;
 
 			while ((line = lr.readLine()) != null)
