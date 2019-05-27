@@ -52,13 +52,13 @@ public class TableSorter implements TableModel, TableModelListener
 	
 	private int compare(int i, int j, int col)
 	{
-		Object io = realModel.getValueAt(i, col);
-		Object jo = realModel.getValueAt(j, col);
+		@Nullable final Object io = realModel.getValueAt(i, col);
+		@Nullable final Object jo = realModel.getValueAt(j, col);
+
+		@NotNull final String left = (io == null) ? "" : io.toString();
+		@NotNull final String right  = (jo == null) ? "" : jo.toString();
 		
-		io = (io == null) ? "" : io;
-		jo = (jo == null) ? "" : jo;
-		
-		final int c = jo.toString().compareTo(io.toString());
+		final int c = left.compareTo(right);
 		
 		return Integer.compare(c, 0);
 	}
