@@ -83,6 +83,7 @@ public final class QiCommand
 	private boolean listEditable = false;
 	private boolean textEditable = false;
 
+	@NotNull
 	private final String description;
 	@NotNull
 	private final String name;
@@ -98,7 +99,7 @@ public final class QiCommand
 		return false;
 	}
 	
-	private QiCommand(@NotNull String aName, String aDescription, boolean isTextEditable, boolean isListEditable)
+	private QiCommand(@NotNull String aName, @NotNull String aDescription, boolean isTextEditable, boolean isListEditable)
 	{
 		name = aName;
 		description = aDescription;
@@ -112,10 +113,10 @@ public final class QiCommand
 		return name + " ";
 	}
 	
-	@Nullable
+	@NotNull
 	public String getDescription()
 	{
-		return (description == null) ? name : description;
+		return description;
 	}
 
 	@NotNull
