@@ -38,10 +38,10 @@ abstract class SuffixAwareFilter extends FileFilter
 
 	@NotNull String getSuffix(@NotNull File f)
 	{
-		@NotNull String s = f.getPath();
+		@NotNull final String s = f.getPath();
 		@NotNull String suffix = "";
 		
-		int i = s.lastIndexOf('.');
+		final int i = s.lastIndexOf('.');
 
 		if (i > 0 && i < s.length() - 1) {
             suffix = s.substring(i + 1).toLowerCase();

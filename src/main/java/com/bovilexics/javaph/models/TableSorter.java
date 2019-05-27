@@ -58,7 +58,7 @@ public class TableSorter implements TableModel, TableModelListener
 		io = (io == null) ? "" : io;
 		jo = (jo == null) ? "" : jo;
 		
-		int c = jo.toString().compareTo(io.toString());
+		final int c = jo.toString().compareTo(io.toString());
 		
 		return (c < 0) ? -1 : ((c > 0) ? 1 : 0);
 	}
@@ -83,7 +83,7 @@ public class TableSorter implements TableModel, TableModelListener
 
 	public void sort(int column)
 	{
-		int rowCount = getRowCount();
+		final int rowCount = getRowCount();
 		
 		for (int i = 0; i < rowCount; i++)
 		{
@@ -98,7 +98,7 @@ public class TableSorter implements TableModel, TableModelListener
 	
 	private void swap(int i, int j)
 	{
-		int temp = indexes[i];
+		final int temp = indexes[i];
 		indexes[i] = indexes[j];
 		indexes[j] = temp;
 	}

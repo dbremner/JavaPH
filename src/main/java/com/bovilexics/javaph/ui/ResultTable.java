@@ -57,22 +57,22 @@ public final class ResultTable extends JTable
             renderer = getDefaultRenderer(column.getClass());
         }
 		
-		Component component = renderer.getTableCellRendererComponent(this, column.getHeaderValue(), false, false, 0, 0);
+		final Component component = renderer.getTableCellRendererComponent(this, column.getHeaderValue(), false, false, 0, 0);
 		
 		return component.getPreferredSize().width + WIDTH_BUFFER;
 	}
 	
 	private int getPreferredWidthForColumn(@NotNull TableColumn column)
 	{
-		int headerWidth = getColumnHeaderWidth(column);
-		int cellWidth = getWidestCellWidth(column);
+		final int headerWidth = getColumnHeaderWidth(column);
+		final int cellWidth = getWidestCellWidth(column);
 		
 		return (headerWidth > cellWidth) ? headerWidth : cellWidth;  
 	}
 
 	private int getWidestCellWidth(@NotNull TableColumn column)
 	{
-		int colIndex = column.getModelIndex();
+		final int colIndex = column.getModelIndex();
 
 		int maxWidth = 0;
 
@@ -84,7 +84,7 @@ public final class ResultTable extends JTable
 			renderer = getCellRenderer(rowIndex, colIndex);
 			component = renderer.getTableCellRendererComponent(this, getValueAt(rowIndex, colIndex), false, false, rowIndex, colIndex);
 
-			int width = component.getPreferredSize().width;
+			final int width = component.getPreferredSize().width;
 
 			if (width > maxWidth) {
                 maxWidth = width;
@@ -101,7 +101,7 @@ public final class ResultTable extends JTable
 		for (int i = 0; i < getColumnCount(); i++)
 		{
 			column = getColumn(getModel().getColumnName(i));
-			int width = getPreferredWidthForColumn(column);
+			final int width = getPreferredWidthForColumn(column);
 
 			column.setMinWidth(0);
 			column.setPreferredWidth(width);

@@ -52,7 +52,7 @@ public class QueryThread extends Thread
 	@Override
 	public void run()
 	{
-		int runtime = parent.getQueryRuntime();
+		final int runtime = parent.getQueryRuntime();
 		
 		startup();
 
@@ -109,7 +109,7 @@ public class QueryThread extends Thread
 				parent.getQueryProgressMonitor().close();
 				parent.getResultText().setText(resultThread.getRawResult());
 				
-				@NotNull ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
+				@NotNull final ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
 				resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
 				parent.getResultTable().resetColumnWidths();
 			}

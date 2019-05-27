@@ -97,7 +97,7 @@ public class QiConnection
 			throw new IOException("No host specified, cannot connect");
 		}
 			
-		@NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
+		@NotNull final SocketAddress sockaddr = new InetSocketAddress(host, port);
 		socket = new Socket();
 		
 		// Timeout after 10 seconds
@@ -313,7 +313,7 @@ public class QiConnection
 			@NotNull String blurb = "";
 			while (true)
 			{
-				@NotNull String buffer = readQI();
+				@NotNull final String buffer = readQI();
 				qiQiLine = new QiLine(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
@@ -357,7 +357,7 @@ public class QiConnection
 	@NotNull
 	public String toString()
 	{
-		@NotNull StringBuffer out = new StringBuffer();
+		@NotNull final StringBuffer out = new StringBuffer();
 		
 		out.append(host);
 		out.append(":");

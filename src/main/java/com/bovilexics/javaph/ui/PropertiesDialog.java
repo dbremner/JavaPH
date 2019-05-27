@@ -81,10 +81,10 @@ public final class PropertiesDialog extends JavaPHDialog
 		setModal(true);
 		setTitle(JavaPH.INFO_NAME + " Properties");
 		
-		Container contentPane = getContentPane();
+		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		@NotNull JPanel contentPanel = new JPanel();
+		@NotNull final JPanel contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createEtchedBorder());
 
@@ -103,7 +103,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	@NotNull
     private JPanel getButtonPanel()
 	{
-		@NotNull JPanel buttonPanel = new JPanel();
+		@NotNull final JPanel buttonPanel = new JPanel();
 		
 		okButton = new JButton("OK");
 		okButton.setMnemonic(KeyEvent.VK_O);
@@ -141,11 +141,11 @@ public final class PropertiesDialog extends JavaPHDialog
 	@NotNull
     private JPanel getQueryPanel()
 	{
-		@NotNull JPanel queryPanel = new JPanel();
+		@NotNull final JPanel queryPanel = new JPanel();
 		queryPanel.setBorder(BorderFactory.createTitledBorder(" Query Runtime (Seconds) "));
 		queryPanel.setLayout(new BorderLayout());
 		
-		@NotNull JPanel runtimePanel = new JPanel();
+		@NotNull final JPanel runtimePanel = new JPanel();
 		runtimePanel.setLayout(new FlowLayout());
 		
 		runtimeSlider = new JSlider(JavaPH.QUERY_RUNTIME_MIN, JavaPH.QUERY_RUNTIME_MAX);
@@ -182,14 +182,14 @@ public final class PropertiesDialog extends JavaPHDialog
 	@NotNull
     private JPanel getServerPanel()
 	{
-		@NotNull JPanel serverPanel = new JPanel();
+		@NotNull final JPanel serverPanel = new JPanel();
 		serverPanel.setBorder(BorderFactory.createTitledBorder(" Server Options "));
 		serverPanel.setLayout(new BorderLayout());
 
-		@NotNull JPanel defaultServerPanel = new JPanel();
+		@NotNull final JPanel defaultServerPanel = new JPanel();
 		defaultServerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		@NotNull JLabel defaultServerLabel = new JLabel("Default Server : ");
+		@NotNull final JLabel defaultServerLabel = new JLabel("Default Server : ");
 		defaultServerLabel.setAlignmentY(JLabel.CENTER_ALIGNMENT);
 		
 		defaultServerComboBox = new JComboBox<>(QiServer.getServers());
@@ -207,20 +207,20 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsStartup = new JRadioButton("Load Fields on Startup  ( Slow! )");
 		loadFieldsStartup.setToolTipText("Load fields for all servers when starting the application");
 
-		@NotNull ButtonGroup loadFieldsGroup = new ButtonGroup();
+		@NotNull final ButtonGroup loadFieldsGroup = new ButtonGroup();
 		loadFieldsGroup.add(loadFieldsManual);
 		loadFieldsGroup.add(loadFieldsSelected);
 		loadFieldsGroup.add(loadFieldsStartup);
 
-		@NotNull JPanel loadFieldsPanel = new JPanel();
+		@NotNull final JPanel loadFieldsPanel = new JPanel();
 		
-		@NotNull GridBagLayout gbl = new GridBagLayout();
-		@NotNull GridBagConstraints gbc = new GridBagConstraints();
+		@NotNull final GridBagLayout gbl = new GridBagLayout();
+		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
 		
 		loadFieldsPanel.setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-		int horizStrut = 6;
+		final int horizStrut = 6;
 		loadFieldsPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		loadFieldsPanel.add(loadFieldsManual, gbc);
 
@@ -229,7 +229,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsPanel.add(new JLabel(" "), gbc);
 		
 		gbc.weightx = 0;
-		int vertStrut = 2;
+		final int vertStrut = 2;
 		loadFieldsPanel.add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;
@@ -262,11 +262,11 @@ public final class PropertiesDialog extends JavaPHDialog
 	{	
 		//int horizStrut = 6;
 
-		@NotNull JPanel startupPanel = new JPanel();
+		@NotNull final JPanel startupPanel = new JPanel();
 		startupPanel.setBorder(BorderFactory.createTitledBorder(" Startup Options "));
 
-		@NotNull GridBagLayout gbl = new GridBagLayout();
-		@NotNull GridBagConstraints gbc = new GridBagConstraints();
+		@NotNull final GridBagLayout gbl = new GridBagLayout();
+		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
 		
 		startupPanel.setLayout(gbl);
 
@@ -284,7 +284,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.add(rollToolbarCheckBox, gbc);
 
 		gbc.weightx = 0;
-		int vertStrut = 2;
+		final int vertStrut = 2;
 		startupPanel.add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;

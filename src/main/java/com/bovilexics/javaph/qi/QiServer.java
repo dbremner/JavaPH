@@ -74,7 +74,7 @@ public class QiServer
 
 	private QiServer(String aName, String aServer, @NotNull String aPort)
 	{
-		@Nullable Integer aPortInteger;
+		@Nullable final Integer aPortInteger;
 		
 		try
 		{
@@ -109,11 +109,11 @@ public class QiServer
 		}
 		else
 		{
-			String newElement = server.toString();
+			final String newElement = server.toString();
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				String oldElement = servers.elementAt(i).toString();
+				final String oldElement = servers.elementAt(i).toString();
 
 				if (newElement.compareTo(oldElement) == 0)
 				{
@@ -142,7 +142,7 @@ public class QiServer
 	@NotNull
     public static String getFileHeader()
 	{
-		@NotNull StringBuffer out = new StringBuffer();
+		@NotNull final StringBuffer out = new StringBuffer();
 		
 		out.append("# JavaPH Server File\n");
 		out.append("# \n");
@@ -163,7 +163,7 @@ public class QiServer
 
 		for (int i = 0; i < servers.size(); i++)
 		{
-			QiServer server = servers.elementAt(i);
+			final QiServer server = servers.elementAt(i);
 
 			if (server.getFieldState() != FIELD_LOAD_ERROR) {
 				server.loadFields();
@@ -182,7 +182,7 @@ public class QiServer
 
 		try
 		{
-			Reader in;
+			final Reader in;
 			
 			if (useURL != null) {
 				in = new InputStreamReader((new URL(useURL.toString() + SERVER_FILE)).openStream());
@@ -190,7 +190,7 @@ public class QiServer
 				in = new FileReader(SERVER_FILE);
 			}
 			
-			@NotNull LineNumberReader lr = new LineNumberReader(in);
+			@NotNull final LineNumberReader lr = new LineNumberReader(in);
 			
 			String line;
 
@@ -201,7 +201,7 @@ public class QiServer
 					continue;
 				}
 
-				String[] items = line.split(SEPARATOR);
+				final String[] items = line.split(SEPARATOR);
 
 				if (items.length != 3)
 				{
@@ -209,7 +209,7 @@ public class QiServer
 				}
 				else
 				{
-					QiServer server = new QiServer(items[0], items[1], items[2]);
+					final QiServer server = new QiServer(items[0], items[1], items[2]);
 					addServer(server);
 				}
 			}
@@ -239,14 +239,14 @@ public class QiServer
 		
 		try
 		{
-			@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
+			@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
 
 			writer.write(getFileHeader());
 			writer.flush();
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				QiServer server = servers.elementAt(i);
+				final QiServer server = servers.elementAt(i);
 
 				toWrite = new StringBuffer();
 				toWrite.append(server.getName());
@@ -293,18 +293,18 @@ public class QiServer
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			Vector record = (Vector) records.elementAt(i);
+			final Vector record = (Vector) records.elementAt(i);
 
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
-				QiLine propsLine = (QiLine) record.elementAt(j);
-				QiLine descLine = (QiLine) record.elementAt(j + 1);
+				final QiLine propsLine = (QiLine) record.elementAt(j);
+				final QiLine descLine = (QiLine) record.elementAt(j + 1);
 
-				String propsField = propsLine.getTrimmedField();
-				String propsValue = propsLine.getTrimmedValue();
-				String descField = descLine.getTrimmedField();
-				String descValue = descLine.getTrimmedValue();
+				final String propsField = propsLine.getTrimmedField();
+				final String propsValue = propsLine.getTrimmedValue();
+				final String descField = descLine.getTrimmedField();
+				final String descValue = descLine.getTrimmedValue();
 
 				if (propsField.equals(descField))
 				{
@@ -340,7 +340,7 @@ public class QiServer
 	@NotNull
     public String getExpandedName()
 	{
-		@NotNull StringBuffer out = new StringBuffer();
+		@NotNull final StringBuffer out = new StringBuffer();
 		
 		out.append(name);
 		out.append(" (");

@@ -123,7 +123,7 @@ public final class MainMenu extends JMenuBar
 	{
 		JMenuItem menuItem;
 
-		@NotNull JMenu editMenu = new JMenu("Edit");
+		@NotNull final JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
 		menuItem = getNewMenuItem();
@@ -170,7 +170,7 @@ public final class MainMenu extends JMenuBar
 	{
 		JMenuItem menuItem;
 
-		@NotNull JMenu fileMenu = new JMenu("File");
+		@NotNull final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		
 		menuItem = getNewMenuItem();
@@ -204,7 +204,7 @@ public final class MainMenu extends JMenuBar
 	{
 		JMenuItem menuItem;
 
-		@NotNull JMenu helpMenu = new JMenu("Help");
+		@NotNull final JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
 		menuItem = getNewMenuItem();
@@ -227,7 +227,7 @@ public final class MainMenu extends JMenuBar
 	@NotNull
     private JMenuItem getNewMenuItem()
 	{
-		@NotNull JMenuItem menuItem = new JMenuItem();
+		@NotNull final JMenuItem menuItem = new JMenuItem();
 		menuItem.addMouseListener(mouseListener);
 		
 		return menuItem;
@@ -238,7 +238,7 @@ public final class MainMenu extends JMenuBar
 	{
 		JMenuItem menuItem;
 
-		@NotNull JMenu windowMenu = new JMenu("Window");
+		@NotNull final JMenu windowMenu = new JMenu("Window");
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
 		showLogItem = new JCheckBoxMenuItem("View System Log");

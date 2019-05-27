@@ -54,9 +54,9 @@ public final class SaveAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
-		int selectedTab = parent.getResultPanel().getSelectedIndex();
+		final int selectedTab = parent.getResultPanel().getSelectedIndex();
 
-		JFileChooser chooser;
+		final JFileChooser chooser;
 		
 		if (selectedTab == JavaPH.RESULT_TABLE_TAB) {
             chooser = new CsvFileChooser(parent);
@@ -67,8 +67,8 @@ public final class SaveAction extends AbstractAction
 		chooser.setDialogTitle("Save " + JavaPH.TAB_LABELS[selectedTab]);
 		chooser.setSelectedFile(new File(JavaPH.TAB_FILENAMES[selectedTab]));
 
-		int state = chooser.showSaveDialog(parent.getDefaultPane());
-		File file = chooser.getSelectedFile();
+		final int state = chooser.showSaveDialog(parent.getDefaultPane());
+		final File file = chooser.getSelectedFile();
 
 		if (state == JFileChooser.APPROVE_OPTION && file != null)
 		{
@@ -87,13 +87,13 @@ public final class SaveAction extends AbstractAction
 		String message;
 		StringBuffer toWrite;
 
-		boolean quoted = parent.isFieldQuoted();
+		final boolean quoted = parent.isFieldQuoted();
 	
-		@Nullable String separator = parent.getFieldSeparator();
-		TableModel model = parent.getResultTable().getModel();
+		@Nullable final String separator = parent.getFieldSeparator();
+		final TableModel model = parent.getResultTable().getModel();
 
-		int cols = model.getColumnCount();
-		int rows = model.getRowCount();
+		final int cols = model.getColumnCount();
+		final int rows = model.getRowCount();
 
 		if (rows <= 0)
 		{
@@ -105,7 +105,7 @@ public final class SaveAction extends AbstractAction
 		{
 			try
 			{
-				@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
 				// start at row -1 to grab headers first
 				for (int r = -1; r < rows; r++)
@@ -179,7 +179,7 @@ public final class SaveAction extends AbstractAction
 		{
 			try
 			{
-				@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 				writer.write(toWrite);
 				writer.flush();
 				writer.close();

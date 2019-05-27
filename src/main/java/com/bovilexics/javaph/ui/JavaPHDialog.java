@@ -41,7 +41,7 @@ abstract class JavaPHDialog extends JDialog
 	
 	private void setIcon(@NotNull ImageIcon icon)
 	{
-		Frame frame = JOptionPane.getFrameForComponent(this);
+		final Frame frame = JOptionPane.getFrameForComponent(this);
 		frame.setIconImage(icon.getImage());
 	}
 }

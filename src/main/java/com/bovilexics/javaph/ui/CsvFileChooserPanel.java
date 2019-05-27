@@ -79,20 +79,20 @@ final class CsvFileChooserPanel extends JPanel
 	{
 		parent = javaph;
 
-		@NotNull RadioButtonListener listener = new RadioButtonListener();
+		@NotNull final RadioButtonListener listener = new RadioButtonListener();
 		
 		setBorder(BorderFactory.createEtchedBorder());
 		setPreferredSize(new Dimension(120, 0));
 
-		@NotNull JLabel label = new JLabel("Field Separator");
+		@NotNull final JLabel label = new JLabel("Field Separator");
 		
-		@NotNull ButtonGroup group = new ButtonGroup();
+		@NotNull final ButtonGroup group = new ButtonGroup();
 		
 		commaRadioButton = new JRadioButton("Comma");
 		tabRadioButton = new JRadioButton("Tab");
 		customRadioButton = new JRadioButton("Custom");
 
-		@Nullable String separator = parent.getFieldSeparator();
+		@Nullable final String separator = parent.getFieldSeparator();
 
 		if (separator.equals(JavaPH.COMMA_SEPARATOR)) {
 			commaRadioButton.setSelected(true);
@@ -142,13 +142,13 @@ final class CsvFileChooserPanel extends JPanel
 		quotesCheckBox.setSelected(parent.isFieldQuoted());
 		quotesCheckBox.setToolTipText("Add leading and trailing quotes to all table values");
 
-		@NotNull GridBagLayout gbl = new GridBagLayout();
-		@NotNull GridBagConstraints gbc = new GridBagConstraints();
+		@NotNull final GridBagLayout gbl = new GridBagLayout();
+		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
 		
 		setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-		int horizStrut = 6;
+		final int horizStrut = 6;
 		add(Box.createHorizontalStrut(horizStrut), gbc);
 		add(label, gbc);
 
@@ -157,7 +157,7 @@ final class CsvFileChooserPanel extends JPanel
 		add(new JLabel(" "), gbc);
 
 		gbc.weightx = 0;
-		int vertStrut = 2;
+		final int vertStrut = 2;
 		add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;

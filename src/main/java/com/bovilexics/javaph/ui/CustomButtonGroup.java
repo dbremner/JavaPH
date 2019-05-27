@@ -36,7 +36,7 @@ public class CustomButtonGroup extends ButtonGroup
 		int currentIndex = -1;
 		int selectedIndex = -1;
 		
-		Enumeration enum_ = getElements();
+		final Enumeration enum_ = getElements();
 		
 		while (enum_.hasMoreElements() && !foundSelected)
 		{
@@ -59,7 +59,7 @@ public class CustomButtonGroup extends ButtonGroup
 
 	public void setEnabled(boolean enable)
 	{
-		Enumeration enum_ = getElements();
+		final Enumeration enum_ = getElements();
 		
 		while (enum_.hasMoreElements())
 		{

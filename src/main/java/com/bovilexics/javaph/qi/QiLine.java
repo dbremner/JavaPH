@@ -203,7 +203,7 @@ public final class QiLine
     @NotNull
     public String toString()
 	{
-		@NotNull StringBuffer out = new StringBuffer();
+		@NotNull final StringBuffer out = new StringBuffer();
 		
 		out.append(verbatim);
 		out.append(" --> ");

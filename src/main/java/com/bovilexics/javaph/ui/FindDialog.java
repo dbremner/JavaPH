@@ -64,7 +64,7 @@ public final class FindDialog extends JavaPHDialog
 		setModal(true);
 		setTitle("Find Text");
 		
-		Container contentPane = getContentPane();
+		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
 		final JPanel findPanel = getFindPanel();
@@ -78,7 +78,7 @@ public final class FindDialog extends JavaPHDialog
 	@NotNull
     private JPanel getButtonPanel()
 	{
-		@NotNull JPanel buttonPanel = new JPanel();
+		@NotNull final JPanel buttonPanel = new JPanel();
 		
 		findButton = new JButton("Find Next");
 		findButton.setMnemonic(KeyEvent.VK_F);
@@ -89,8 +89,8 @@ public final class FindDialog extends JavaPHDialog
 			{
 				if (findComboBox.isEnabled())
 				{
-					Object selectedItem = findComboBox.getEditor().getItem();
-					@NotNull DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
+					final Object selectedItem = findComboBox.getEditor().getItem();
+					@NotNull final DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
 					// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
 		
 					if (selectedItem != null && !selectedItem.toString().equals(""))
@@ -120,14 +120,14 @@ public final class FindDialog extends JavaPHDialog
 	@NotNull
     private JPanel getFindPanel()
 	{
-		@NotNull JPanel findPanel = new JPanel();
+		@NotNull final JPanel findPanel = new JPanel();
 		findPanel.setBorder(BorderFactory.createEtchedBorder());
 		findPanel.setLayout(new BoxLayout(findPanel, BoxLayout.Y_AXIS));
 		
-		@NotNull JPanel findTextPanel = new JPanel();
+		@NotNull final JPanel findTextPanel = new JPanel();
 		findTextPanel.setLayout(new BoxLayout(findTextPanel, BoxLayout.X_AXIS));
 
-		@NotNull JPanel findControlPanel = new JPanel(new FlowLayout());
+		@NotNull final JPanel findControlPanel = new JPanel(new FlowLayout());
 		
 		findComboBoxEditor = new TextFieldComboBoxEditor((ae) -> findButton.doClick());
 /*
@@ -165,7 +165,7 @@ public final class FindDialog extends JavaPHDialog
 		findComboBox.setEditor(findComboBoxEditor);
 		findComboBox.setPreferredSize(new Dimension(200, 0));
 		
-		@NotNull JLabel findLabel = new JLabel(" Find Text : ");
+		@NotNull final JLabel findLabel = new JLabel(" Find Text : ");
 		
 		findTextPanel.add(findLabel);
 		findTextPanel.add(findComboBox);

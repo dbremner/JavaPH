@@ -56,16 +56,16 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 
 		setTitle("About " + INFO_NAME);
 		
-		Container contentPane = getContentPane();
+		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		
-		@NotNull JPanel contentPanel = new JPanel(new BorderLayout());
+		@NotNull final JPanel contentPanel = new JPanel(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createEtchedBorder());
 		contentPane.add(contentPanel, BorderLayout.CENTER);
 
-		@NotNull JPanel imagePanel = new JPanel(new BorderLayout());
+		@NotNull final JPanel imagePanel = new JPanel(new BorderLayout());
 		
-		@NotNull JLabel phImageLabel = new JLabel();
+		@NotNull final JLabel phImageLabel = new JLabel();
 		phImageLabel.setIcon(new ImageIcon(parent.getURL("img/ph-smaller.gif")));
 		
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
@@ -73,7 +73,7 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		contentPanel.add(imagePanel, BorderLayout.CENTER);
 		contentPanel.add(getInfoPanel(), BorderLayout.EAST);
 
-		@NotNull JPanel buttonPanel = new JPanel();
+		@NotNull final JPanel buttonPanel = new JPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 		
 		okButton = new JButton("OK");
@@ -88,15 +88,15 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
     private JPanel getInfoPanel()
 	{
 
-		@NotNull JPanel infoPanel = new JPanel();
+		@NotNull final JPanel infoPanel = new JPanel();
 		
-		@NotNull GridBagLayout gbl = new GridBagLayout();
-		@NotNull GridBagConstraints gbc = new GridBagConstraints();
+		@NotNull final GridBagLayout gbl = new GridBagLayout();
+		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
 		
 		infoPanel.setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-		int horizStrut = 6;
+		final int horizStrut = 6;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		infoPanel.add(new JLabel("Name :"), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
@@ -106,7 +106,7 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		infoPanel.add(new JLabel(INFO_NAME), gbc);
 		
 		gbc.weightx = 0;
-		int vertStrut = 2;
+		final int vertStrut = 2;
 		infoPanel.add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;

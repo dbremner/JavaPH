@@ -33,10 +33,10 @@ class BrowserCommandLexer
     {
         try
         {
-            Object obj;
+            final Object obj;
             if(args.length > 0)
             {
-                @NotNull File file = new File(args[0]);
+                @NotNull final File file = new File(args[0]);
                 if(file.exists())
                 {
                     if(file.canRead()) {
@@ -52,7 +52,7 @@ class BrowserCommandLexer
             {
                 obj = System.in;
             }
-            @NotNull BrowserCommandLexer browsercommandlexer = new BrowserCommandLexer(((InputStream) (obj)));
+            @NotNull final BrowserCommandLexer browsercommandlexer = new BrowserCommandLexer(((InputStream) (obj)));
             @Nullable String s;
             while((s = browsercommandlexer.getNextToken()) != null) {
                 System.out.println(s);
@@ -67,7 +67,7 @@ class BrowserCommandLexer
     @NotNull
     private static String unescape(@NotNull String s)
     {
-        @NotNull StringBuffer stringbuffer = new StringBuffer(s.length());
+        @NotNull final StringBuffer stringbuffer = new StringBuffer(s.length());
         for(int i = 0; i < s.length(); i++)
         {
             if(s.charAt(i) == '\\' && i < s.length()) {
@@ -95,7 +95,7 @@ class BrowserCommandLexer
     @NotNull
     private static int[] yy_unpack()
     {
-        @NotNull int ai[] = new int[36];
+        @NotNull final int[] ai = new int[36];
         int i = 0;
         i = yy_unpack("\001\002\001\003\001\004\001\005\001\002\001\006\001\000\005\002\004\000\001\005\001\007\001\b\001\t\001\005\001\n\001\005\001\013\001\b\001\f\001\b\001\r\001\005\001\007\001\b\001\013\001\b\001\f\001\b\001\016", i, ai);
         return ai;

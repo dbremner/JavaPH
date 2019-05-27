@@ -111,11 +111,11 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 		}
 		else
 		{
-			String newElement = anObject.toString();
+			final String newElement = anObject.toString();
 
             for (int i = 0; i < getSize(); i++)
 			{
-                String oldElement = getElementAt(i).toString();
+                final String oldElement = getElementAt(i).toString();
 
                 if (newElement.compareTo(oldElement) == 0)
 				{
@@ -148,13 +148,13 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 			
 			for (int i = 0; i < allObjects.size(); i++)
 			{
-                Object anObject = allObjects.elementAt(i);
+                final Object anObject = allObjects.elementAt(i);
 
                 if (anObject == null) {
                     continue;
                 }
 				
-				String element = anObject.toString(); 
+				final String element = anObject.toString();
 				
 				if (element.equals(filter) || element.startsWith(filter)) {
                     addElement(anObject);
@@ -225,10 +225,10 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	{
 		if (!objects.isEmpty())
 		{
-            int lastIndex = objects.size() - 1;
+            final int lastIndex = objects.size() - 1;
 			objects.removeAllElements();
 			selectedObject = null;
-            int firstIndex = 0;
+            final int firstIndex = 0;
             fireIntervalRemoved(this, firstIndex, lastIndex);
 		}
 	}
@@ -237,7 +237,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	@Override
     public void removeElement(Object anObject)
 	{
-		int index = objects.indexOf(anObject);
+		final int index = objects.indexOf(anObject);
 
 		if (index != -1) {
             removeElementAt(index);

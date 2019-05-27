@@ -30,7 +30,7 @@ public class TextFilter extends SuffixAwareFilter
 	@Override
     public boolean accept(@NotNull File f)
 	{
-		@NotNull String suffix = (getSuffix(f) == null) ? "" : getSuffix(f);
+		@NotNull final String suffix = (getSuffix(f) == null) ? "" : getSuffix(f);
 		
 		return super.accept(f)
 			|| suffix.equals("txt")

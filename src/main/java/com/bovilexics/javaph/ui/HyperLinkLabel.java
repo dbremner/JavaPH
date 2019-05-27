@@ -59,7 +59,7 @@ final class HyperLinkLabel extends JLabel
 				}
 				catch (IOException e)
 				{
-					@NotNull String message = "Error: IOException received when trying to open " + url;
+					@NotNull final String message = "Error: IOException received when trying to open " + url;
 					parent.log(message);
 					JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 				}
