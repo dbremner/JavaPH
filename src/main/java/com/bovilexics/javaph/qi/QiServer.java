@@ -198,11 +198,11 @@ public class QiServer
 				}
 				else
 				{
-					final QiServer server = new QiServer(items[0], items[1], items[2]);
-					addServer(server);
+					final QiServer server1 = new QiServer(items[0], items[1], items[2]);
+					QiServer.addServer(server1);
 				}
 			}
-			
+
 			defaultServer = servers.elementAt(0);
 		}
 		catch (FileNotFoundException e)
@@ -230,7 +230,7 @@ public class QiServer
 		{
 			@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
 
-			writer.write(getFileHeader());
+			writer.write(QiServer.getFileHeader());
 			writer.flush();
 
 			for (int i = 0; i < servers.size(); i++)
