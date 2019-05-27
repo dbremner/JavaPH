@@ -17,10 +17,8 @@
 package com.bovilexics.javaph.qi;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.StringTokenizer;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Represents a Qi field (as described in the output of the "fields" command.
@@ -42,16 +40,16 @@ public class QiField
 {
 	private int length;
 
-	private String description;
-	private String name;
+	private final String description;
+	private final String name;
 
 	@NotNull
-    private final Vector properties = new Vector();
+    private final List<String> properties;
 
 	/**
 	 * Construct a QiField with a given property list and description.
 	 *
-	 * @param properties a list of field properties.
+	 * @param someProperties a list of field properties.
 	 * @param description a field description.
 	 *
 	 * @exception QiProtocolException in the event of an error parsing the data.
@@ -59,9 +57,9 @@ public class QiField
 	 */
 	public QiField(String name, @NotNull String someProperties, String description) throws QiProtocolException
 	{
-		setName(name);
-		setProperties(someProperties);
-		setDescription(description);
+		this.name = name;
+		properties = setProperties(someProperties);
+		this.description = description;
 	}
 
 	public String getDescription()
@@ -80,9 +78,9 @@ public class QiField
 	}
 
 	@NotNull
-    public Vector getProperties()
+    public List<String> getProperties()
 	{
-		return properties;
+		return Collections.unmodifiableList(properties);
 	}
 
 	public boolean hasProperty(String property)
@@ -96,39 +94,30 @@ public class QiField
 		return name.hashCode();
 	}
 
-	private void setDescription(String aDescription)
-	{
-		description = aDescription;
-	}
-
-	private void setName(String aName)
-	{
-		name = aName;
-	}
-
 	/**
 	 * Parse a QI field property.
 	 *
-	 * @param The properties string which Qi returns in response to a
+	 * @param someProperties The properties string which Qi returns in response to a
 	 *         "fields" command. The protocol stuff should be stripped
 	 *         leaving just the field description
 	 *  	   (e.g. "max 64 Indexed Lookup Public Default Any")
 	 *
 	 * @exception QiProtocolException in the event of an error parsing the data.
 	 *
+	 * @return properties collection
 	 */
-	private void setProperties(@NotNull String someProperties) throws QiProtocolException
+	private List<String> setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
-
-		@Nullable StringTokenizer tokenizer = new StringTokenizer(someProperties);
-		@Nullable String token = (String) tokenizer.nextElement();
+		@NotNull final StringTokenizer tokenizer = new StringTokenizer(someProperties);
+		@NotNull final String token = (String) tokenizer.nextElement();
 
 		if (token.startsWith("max"))
 		{
-			@Nullable String lengthString = (String) tokenizer.nextElement();
+			@NotNull final String lengthString = (String) tokenizer.nextElement();
 			try
 			{
-				length = Integer.valueOf(lengthString).intValue();
+				final Integer boxed = Integer.valueOf(lengthString);
+				length = boxed;
 			}
 			catch (NumberFormatException e)
 			{
@@ -140,11 +129,13 @@ public class QiField
 			length = -1;
 		}
 
+		final List<String> props = new ArrayList<>();
 		// Okay, here come the properties...
 		while (tokenizer.hasMoreElements())
 		{
-			this.properties.addElement((String) tokenizer.nextElement());
+			props.add((String) tokenizer.nextElement());
 		}
+		return props;
 	}
 
 	@Override
