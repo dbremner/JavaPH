@@ -36,15 +36,12 @@ import org.jetbrains.annotations.Nullable;
  */
 public class HyperLinkLabel extends JLabel
 {
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 
-	public HyperLinkLabel(@Nullable JavaPH javaph, final String text, final String url)
+	public HyperLinkLabel(@NotNull JavaPH javaph, final String text, final String url)
 	{
 		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
-
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into HyperLinkLabel");
 
 		parent = javaph;
 		

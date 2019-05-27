@@ -54,6 +54,7 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 				 ((ActionListener) listeners[i + 1]).actionPerformed(e);
 	}
 
+	@NotNull
 	public abstract Component getEditorComponent();
 
 	public abstract Object getItem();

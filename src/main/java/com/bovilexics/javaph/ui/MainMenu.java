@@ -80,17 +80,14 @@ public class MainMenu extends JMenuBar
 	
 	private MouseListener mouseListener;
 	
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 	private JCheckBoxMenuItem rollToolBarItem;
 	private JCheckBoxMenuItem showLogItem;
 	private JCheckBoxMenuItem showToolBarItem;
 	
-	public MainMenu(@Nullable JavaPH javaph)
+	public MainMenu(@NotNull JavaPH javaph)
 	{
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into MainMenu");	
-		
 		parent = javaph;
 
 		addMouseListener(getMouseListener());

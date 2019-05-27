@@ -33,21 +33,14 @@ import org.jetbrains.annotations.Nullable;
 public class QueryThread extends Thread
 {
 	private int seconds = 0;
-	
-	@Nullable
-    private JavaPH parent = null;
+
+	@NotNull
+    private JavaPH parent;
 	@Nullable
     private ResultThread resultThread = null;
 
-	private QueryThread()
+	public QueryThread(@NotNull JavaPH javaph)
 	{
-	}
-
-	public QueryThread(@Nullable JavaPH javaph)
-	{
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into QueryThread");	
-
 		parent = javaph;
 	}
 

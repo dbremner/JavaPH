@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -26,11 +27,8 @@ import org.jetbrains.annotations.Nullable;
  */
 public class CsvFileChooser extends TextFileChooser
 {
-	public CsvFileChooser(@Nullable JavaPH javaph)
+	public CsvFileChooser(@NotNull JavaPH javaph)
 	{
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into CsvFileChooser");
-			
 		setAccessory(new CsvFileChooserPanel(javaph));
 	}
 }

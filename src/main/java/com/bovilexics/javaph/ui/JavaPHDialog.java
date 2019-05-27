@@ -33,11 +33,8 @@ import org.jetbrains.annotations.Nullable;
  */
 public abstract class JavaPHDialog extends JDialog
 {
-	public JavaPHDialog(@Nullable JavaPH javaph)
+	public JavaPHDialog(@NotNull JavaPH javaph)
 	{
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into JavaPHDialog");
-
 		setModal(true);
 		setIcon(new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));		
 	}

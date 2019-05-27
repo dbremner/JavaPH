@@ -69,8 +69,8 @@ public class LookAndFeelMenu extends JMenu
 	@Nullable
     private JRadioButtonMenuItem windowsItem = null;
 
-	@Nullable
-    private JavaPH parent = null;
+	@NotNull
+    private JavaPH parent;
 	
 	@Nullable
     private MouseListener mouseListener = null;
@@ -144,13 +144,10 @@ public class LookAndFeelMenu extends JMenu
 		}
 	}
 
-	public LookAndFeelMenu(@Nullable JavaPH javaph)
+	public LookAndFeelMenu(@NotNull JavaPH javaph)
 	{
 		super("Look and Feel");
 		
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into LookAndFeelMenu");	
-
 		parent = javaph;
 
 		addMouseListener(getMouseListener());

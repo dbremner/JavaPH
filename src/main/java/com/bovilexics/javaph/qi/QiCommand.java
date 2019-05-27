@@ -83,8 +83,8 @@ public class QiCommand
 	private boolean listEditable = false;
 	private boolean textEditable = false;
 
-	private String description;	
-	@Nullable
+	private String description;
+	@NotNull
 	private String name;
 
 	public static boolean isValidCommand(String command)
@@ -97,15 +97,8 @@ public class QiCommand
 		return false;
 	}
 	
-	private QiCommand()
+	private QiCommand(@NotNull String aName, String aDescription, boolean isTextEditable, boolean isListEditable)
 	{
-	}
-	
-	private QiCommand(@Nullable String aName, String aDescription, boolean isTextEditable, boolean isListEditable)
-	{
-		if (aName == null)
-			throw new IllegalArgumentException("Error: null Name value passed into QiCommand");
-
 		name = aName;
 		description = aDescription;
 		textEditable = isTextEditable;

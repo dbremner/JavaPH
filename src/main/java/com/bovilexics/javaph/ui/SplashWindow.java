@@ -41,14 +41,11 @@ import org.jetbrains.annotations.Nullable;
  */
 public class SplashWindow extends JWindow implements JavaPHConstants
 {
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 
-	public SplashWindow(@Nullable JavaPH javaph)
+	public SplashWindow(@NotNull JavaPH javaph)
 	{	
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into SplashWindow");
-			
 		parent = javaph;
 
 		Container contentPane = getContentPane();

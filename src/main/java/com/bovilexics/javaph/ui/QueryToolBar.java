@@ -32,6 +32,7 @@ import com.bovilexics.javaph.actions.FindAction;
 import com.bovilexics.javaph.actions.HelpAction;
 import com.bovilexics.javaph.actions.NewAction;
 import com.bovilexics.javaph.actions.SaveAction;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -44,11 +45,8 @@ public class QueryToolBar extends JToolBar
 	@Nullable
     private final JavaPH parent;
 	
-	public QueryToolBar(@Nullable JavaPH javaph)
+	public QueryToolBar(@NotNull JavaPH javaph)
 	{
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into QueryToolBar");
-			
 		parent = javaph;
 	
 		int sepWidth = 13;

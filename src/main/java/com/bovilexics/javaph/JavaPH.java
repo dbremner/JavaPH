@@ -243,7 +243,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class ContentPanel extends JPanel
 	{	
-		public ContentPanel(final JavaPH javaph)
+		public ContentPanel(@NotNull final JavaPH javaph)
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
@@ -258,9 +258,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class QueryPanel extends JPanel
 	{
+		@NotNull
 		private final JavaPH parent;
 		
-		public QueryPanel(final JavaPH javaph)
+		public QueryPanel(@NotNull final JavaPH javaph)
 		{
 			parent = javaph;
 
@@ -274,7 +275,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		}
 
 		@NotNull
-		private JPanel getQueryButtonPanel(final JavaPH javaph)
+		private JPanel getQueryButtonPanel(@NotNull final JavaPH javaph)
 		{
 			@NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
 			
@@ -1787,7 +1788,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		fieldQuoted = quoted;
 	}
 
-	public void setFieldSeparator(@Nullable String separator)
+	public void setFieldSeparator(@NotNull String separator)
 	{
 		if (separator == null || separator.equals(""))
 			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");

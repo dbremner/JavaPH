@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.models;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.event.TableModelEvent;
@@ -29,15 +30,12 @@ import javax.swing.table.TableModel;
  */
 public class TableSorter implements TableModel, TableModelListener
 {
-	@Nullable
+	@NotNull
     private final TableModel realModel;
 	private int indexes[];
 	
-	public TableSorter(@Nullable TableModel model)
+	public TableSorter(@NotNull TableModel model)
 	{
-		if (model == null)
-			throw new IllegalArgumentException("Error: null TableModel value passed into TableSorter");
-			
 		realModel = model;
 		realModel.addTableModelListener(this);
 		allocate();

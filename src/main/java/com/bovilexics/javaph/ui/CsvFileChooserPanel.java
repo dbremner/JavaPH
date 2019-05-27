@@ -65,7 +65,7 @@ public class CsvFileChooserPanel extends JPanel
 		}
 	}
 
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 
 	@NotNull
@@ -81,11 +81,8 @@ public class CsvFileChooserPanel extends JPanel
 	@Nullable
     private final JTextField customTextField;
 	
-	public CsvFileChooserPanel(@Nullable JavaPH javaph)
+	public CsvFileChooserPanel(@NotNull JavaPH javaph)
 	{
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into CsvFileChooserPanel");
-			
 		parent = javaph;
 		
 		int horizStrut = 6;
