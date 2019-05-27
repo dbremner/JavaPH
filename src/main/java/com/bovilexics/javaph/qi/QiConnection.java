@@ -72,8 +72,8 @@ public class QiConnection
 	 * once the <b>connect</b> method is called.
 	 * <i>connect(host, port)</i>
 	 *
-	 * @param host to connect to
-	 * @param port to connect to.
+	 * @param aHost to connect to
+	 * @param aPort to connect to.
 	 */
 	public QiConnection(String aHost, int aPort)
 	{
@@ -211,7 +211,6 @@ public class QiConnection
 	 * @param anAlias
 	 * @param aPassword
 	 *
-	 * @exception QiException upon an error response from Qi
 	 * @exception QiProtocolException upon an unexpected response from Qi
 	 * @exception IOException upon a socket error.
 	 */
@@ -287,7 +286,6 @@ public class QiConnection
 	/**
 	 * Logout from QI.
 	 *
-	 * @exception QiException upon an error response from Qi
 	 * @exception QiProtocolException upon an unexpected response from Qi
 	 * @exception IOException upon a socket error.
 	 */
