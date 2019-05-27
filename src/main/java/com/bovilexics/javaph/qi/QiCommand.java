@@ -91,8 +91,9 @@ public class QiCommand
 	{
 		for (int i = 0; i < commands.length; i++)
 		{
-			if (commands[i].getName().equals(command))
+			if (commands[i].getName().equals(command)) {
 				return true;
+			}
 		}
 		return false;
 	}

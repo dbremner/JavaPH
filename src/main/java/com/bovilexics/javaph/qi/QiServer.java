@@ -65,8 +65,9 @@ public class QiServer
 	
 	public QiServer(String aName, String aServer, @NotNull Integer aPortInteger)
 	{
-		if (!isValidPort(aPortInteger))
+		if (!isValidPort(aPortInteger)) {
 			throw new IllegalArgumentException(PORT_ERROR);
+		}
 		
 		name = aName;
 		server = aServer;
@@ -81,8 +82,9 @@ public class QiServer
 		{
 			aPortInteger = new Integer(aPort);
 			
-			if (!isValidPort(aPortInteger))
+			if (!isValidPort(aPortInteger)) {
 				throw new IllegalArgumentException(PORT_ERROR);
+			}
 		}
 		catch (NumberFormatException e)
 		{
@@ -98,8 +100,9 @@ public class QiServer
 	public static void addServer(@Nullable QiServer server)
 	{
 
-		if (server == null)
+		if (server == null) {
 			return;
+		}
 
 		int whereToAdd = -1;
 		if (servers.size() == 0)
@@ -125,8 +128,9 @@ public class QiServer
 				}
 			}
 
-			if (whereToAdd == -1)
+			if (whereToAdd == -1) {
 				whereToAdd = servers.size();
+			}
 		}
 		servers.insertElementAt(server, whereToAdd);
 	}
@@ -165,8 +169,9 @@ public class QiServer
 		{
 			server = (QiServer)servers.elementAt(i);
 			
-			if (server.getFieldState() != FIELD_LOAD_ERROR)
+			if (server.getFieldState() != FIELD_LOAD_ERROR) {
 				server.loadFields();
+			}
 		}
 	}
 
@@ -185,10 +190,11 @@ public class QiServer
 		{
 			Reader in;
 			
-			if (useURL != null)
+			if (useURL != null) {
 				in = new InputStreamReader((new URL(useURL.toString() + SERVER_FILE)).openStream());
-			else
+			} else {
 				in = new FileReader(SERVER_FILE);
+			}
 			
 			@NotNull LineNumberReader lr = new LineNumberReader(in);
 			
@@ -197,8 +203,9 @@ public class QiServer
 			while ((line = lr.readLine()) != null)
 			{
 				// Ignore comment lines
-				if (line.startsWith("#"))
+				if (line.startsWith("#")) {
 					continue;
+				}
 
 				String[] items = line.split(SEPARATOR);
 
@@ -255,8 +262,9 @@ public class QiServer
 				toWrite.append(SEPARATOR);
 				toWrite.append(server.getPort());
 				
-				if (i < servers.size() - 1)
+				if (i < servers.size() - 1) {
 					toWrite.append("\n");
+				}
 				
 				writer.write(toWrite.toString());
 				writer.flush();
@@ -272,8 +280,9 @@ public class QiServer
 
 	public static void setDefaultServer(@Nullable String server)
 	{
-		if (server == null)
+		if (server == null) {
 			return;
+		}
 			
 		for (int i = 0; i < servers.size(); i++)
 		{
@@ -307,8 +316,9 @@ public class QiServer
 				if (propsField.equals(descField))
 				{
 					// Do not add this field if it is one of the special fields already handled elsewhere
-					if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all"))
+					if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all")) {
 						continue;
+					}
 
 					try
 					{
@@ -362,8 +372,9 @@ public class QiServer
 
 	public String getFieldStateMessage()
 	{
-		if (fieldStateMessage == null)
+		if (fieldStateMessage == null) {
 			fieldStateMessage = "Fields not yet loaded for " + getExpandedName();
+		}
 			
 		return fieldStateMessage;
 	}

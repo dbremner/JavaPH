@@ -137,8 +137,9 @@ public class QueryThread extends Thread
 			{
 				parent.showStatus(status);
 				
-				if (logAlso)
+				if (logAlso) {
 					parent.log(status);
+				}
 			}
 		});
 	}

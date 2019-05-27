@@ -58,10 +58,11 @@ public final class SaveAction extends AbstractAction
 
 		JFileChooser chooser;
 		
-		if (selectedTab == JavaPH.RESULT_TABLE_TAB)
-			chooser = new CsvFileChooser(parent);
-		else
-			chooser = new TextFileChooser();
+		if (selectedTab == JavaPH.RESULT_TABLE_TAB) {
+            chooser = new CsvFileChooser(parent);
+        } else {
+            chooser = new TextFileChooser();
+        }
 
 		chooser.setDialogTitle("Save " + JavaPH.TAB_LABELS[selectedTab]);
 		chooser.setSelectedFile(new File(JavaPH.TAB_FILENAMES[selectedTab]));
@@ -73,10 +74,11 @@ public final class SaveAction extends AbstractAction
 		{
 			parent.log("Saving file " + file.getPath());
 			
-			if (selectedTab == JavaPH.RESULT_TABLE_TAB)
-				saveCsvFile(selectedTab, file);
-			else
-				saveTextFile(selectedTab, file);
+			if (selectedTab == JavaPH.RESULT_TABLE_TAB) {
+                saveCsvFile(selectedTab, file);
+            } else {
+                saveTextFile(selectedTab, file);
+            }
 		}
 	}
 	
@@ -112,19 +114,25 @@ public final class SaveAction extends AbstractAction
 
 					for (int c = 0; c < cols; c++)
 					{
-						if (c > 0)
-							toWrite.append(separator);
+						if (c > 0) {
+                            toWrite.append(separator);
+                        }
 
-						if (quoted)
-							toWrite.append(JavaPH.FIELD_QUOTE);
+						if (quoted) {
+                            toWrite.append(JavaPH.FIELD_QUOTE);
+                        }
 						
 						if (r == -1) // write the header
-							toWrite.append((model.getColumnName(c)) == null ? "" : model.getColumnName(c));
-						else // write the value	
-							toWrite.append((model.getValueAt(r, c)) == null ? "" : model.getValueAt(r, c).toString());
+                        {
+                            toWrite.append((model.getColumnName(c)) == null ? "" : model.getColumnName(c));
+                        } else // write the value
+                        {
+                            toWrite.append((model.getValueAt(r, c)) == null ? "" : model.getValueAt(r, c).toString());
+                        }
 
-						if (quoted)
-							toWrite.append(JavaPH.FIELD_QUOTE);
+						if (quoted) {
+                            toWrite.append(JavaPH.FIELD_QUOTE);
+                        }
 
 					}
 					toWrite.append("\n");

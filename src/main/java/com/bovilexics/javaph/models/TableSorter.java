@@ -45,8 +45,9 @@ public class TableSorter implements TableModel, TableModelListener
 	{
 		indexes = new int[getRowCount()];
 		
-		for (int i = 0; i < indexes.length; ++i)
-			indexes[i] = i;
+		for (int i = 0; i < indexes.length; ++i) {
+            indexes[i] = i;
+        }
 	}
 	
 	private int compare(int i, int j, int col)
@@ -88,8 +89,9 @@ public class TableSorter implements TableModel, TableModelListener
 		{
 			for (int j = i + 1; j < rowCount; j++)
 			{
-				if (compare(indexes[i], indexes[j], column) < 0)
-					swap(i, j);
+				if (compare(indexes[i], indexes[j], column) < 0) {
+                    swap(i, j);
+                }
 			}
 		}
 	}

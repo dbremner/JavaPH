@@ -43,8 +43,9 @@ abstract class SuffixAwareFilter extends FileFilter
 		
 		int i = s.lastIndexOf('.');
 
-		if (i > 0 && i < s.length() - 1)
-			suffix = s.substring(i + 1).toLowerCase();
+		if (i > 0 && i < s.length() - 1) {
+            suffix = s.substring(i + 1).toLowerCase();
+        }
 
 		return suffix;
 	}

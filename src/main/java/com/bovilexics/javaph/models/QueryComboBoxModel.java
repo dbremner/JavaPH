@@ -62,11 +62,13 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 		int i;
         int c;
 
-        for (i = 0, c = items.length; i < c ; i++)
-			objects.addElement(items[i]);
+        for (i = 0, c = items.length; i < c ; i++) {
+            objects.addElement(items[i]);
+        }
 
-		if (getSize() > 0)
-			selectedObject = getElementAt(0);
+		if (getSize() > 0) {
+            selectedObject = getElementAt(0);
+        }
 			
 		allObjects = (Vector)objects.clone();
 	}
@@ -81,8 +83,9 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	{
 		objects = v;
 
-		if (getSize() > 0)
-			selectedObject = getElementAt(0);
+		if (getSize() > 0) {
+            selectedObject = getElementAt(0);
+        }
 			
 		allObjects = (Vector)objects.clone();
 	}
@@ -97,8 +100,9 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
     public void addElement(@Nullable Object anObject)
 	{
 
-        if (anObject == null)
-			return;
+        if (anObject == null) {
+            return;
+        }
 
         int whereToAdd = -1;
         if (getSize() == 0)
@@ -124,8 +128,9 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 				}
 			}
 
-			if (whereToAdd == -1)
-				whereToAdd = getSize();
+			if (whereToAdd == -1) {
+                whereToAdd = getSize();
+            }
 		}
 		insertElementAt(anObject, whereToAdd);
 	}
@@ -145,18 +150,21 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 			{
                 Object anObject = allObjects.elementAt(i);
 
-                if (anObject == null)
-					continue;
+                if (anObject == null) {
+                    continue;
+                }
 				
 				String element = anObject.toString(); 
 				
-				if (element.equals(filter) || element.startsWith(filter))
-					addElement(anObject);
+				if (element.equals(filter) || element.startsWith(filter)) {
+                    addElement(anObject);
+                }
 			}
 		}
 		
-		if (objects.size() > 0)
-			selectedObject = objects.elementAt(0);
+		if (objects.size() > 0) {
+            selectedObject = objects.elementAt(0);
+        }
 	}
 
 	// implements javax.swing.ListModel
@@ -164,10 +172,11 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
     @Nullable
     public Object getElementAt(int index)
 	{
-		if (index >= 0 && index < objects.size())
-			return objects.elementAt(index);
-		else
-			return null;
+		if (index >= 0 && index < objects.size()) {
+            return objects.elementAt(index);
+        } else {
+            return null;
+        }
 	}
 
 	// implements javax.swing.ComboBoxModel
@@ -204,8 +213,9 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 		objects.insertElementAt(anObject, index);
 		fireIntervalAdded(this, index, index);
 		
-		if (!allObjects.contains(anObject))
-			allObjects.insertElementAt(anObject, index);
+		if (!allObjects.contains(anObject)) {
+            allObjects.insertElementAt(anObject, index);
+        }
 	}
 
 	/**
@@ -229,8 +239,9 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	{
 		int index = objects.indexOf(anObject);
 
-		if (index != -1)
-			removeElementAt(index);
+		if (index != -1) {
+            removeElementAt(index);
+        }
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -239,10 +250,11 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	{
 		if (getElementAt(index) == selectedObject)
 		{
-			if (index == 0)
-				setSelectedItem(getSize() == 1 ? null : getElementAt(index + 1));
-			else
-				setSelectedItem(getElementAt(index - 1));
+			if (index == 0) {
+                setSelectedItem(getSize() == 1 ? null : getElementAt(index + 1));
+            } else {
+                setSelectedItem(getElementAt(index - 1));
+            }
 		}
 		objects.removeElementAt(index);
 		fireIntervalRemoved(this, index, index);
@@ -252,8 +264,9 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	{
 		removeAllElements();
 		
-		for (int i = 0; i < allObjects.size(); i++)
-			addElement(allObjects.elementAt(i));
+		for (int i = 0; i < allObjects.size(); i++) {
+            addElement(allObjects.elementAt(i));
+        }
 	}
 
 	// implements javax.swing.ComboBoxModel

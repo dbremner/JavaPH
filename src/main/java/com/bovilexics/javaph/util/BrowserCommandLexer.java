@@ -39,10 +39,11 @@ class BrowserCommandLexer
                 @NotNull File file = new File(args[0]);
                 if(file.exists())
                 {
-                    if(file.canRead())
+                    if(file.canRead()) {
                         obj = new FileInputStream(file);
-                    else
+                    } else {
                         throw new IOException("Could not open " + args[0]);
+                    }
                 } else
                 {
                     throw new IOException("Could not find " + args[0]);
@@ -53,8 +54,9 @@ class BrowserCommandLexer
             }
             @NotNull BrowserCommandLexer browsercommandlexer = new BrowserCommandLexer(((InputStream) (obj)));
             @Nullable String s;
-            while((s = browsercommandlexer.getNextToken()) != null) 
+            while((s = browsercommandlexer.getNextToken()) != null) {
                 System.out.println(s);
+            }
         }
         catch(IOException ioexception)
         {
@@ -68,8 +70,9 @@ class BrowserCommandLexer
         @NotNull StringBuffer stringbuffer = new StringBuffer(s.length());
         for(int i = 0; i < s.length(); i++)
         {
-            if(s.charAt(i) == '\\' && i < s.length())
+            if(s.charAt(i) == '\\' && i < s.length()) {
                 i++;
+            }
             stringbuffer.append(s.charAt(i));
         }
 
@@ -107,8 +110,9 @@ class BrowserCommandLexer
             int i1 = s.charAt(j++);
             int j1 = s.charAt(j++);
             j1--;
-            do
+            do {
                 ai[k++] = j1;
+            }
             while(--i1 > 0);
         }
 
@@ -125,8 +129,9 @@ class BrowserCommandLexer
         {
             int k = s.charAt(i++);
             char c = s.charAt(i++);
-            do
+            do {
                 ac[j++] = c;
+            }
             while(--k > 0);
         }
         return ac;
@@ -166,8 +171,9 @@ class BrowserCommandLexer
     {
         yy_atEOF = true;
         yy_endRead = yy_startRead;
-        if(yy_reader != null)
+        if(yy_reader != null) {
             yy_reader.close();
+        }
     }
 
     public final void yyreset(Reader reader)
@@ -225,8 +231,9 @@ class BrowserCommandLexer
 
     private void yypushback(int i)
     {
-        if(i > yylength())
+        if(i > yylength()) {
             yy_ScanError(3);
+        }
         yy_markedPos -= i;
     }
 
@@ -280,8 +287,9 @@ label0:
                         c = ac[j++];
                     }
                     int j1 = ai[ai1[yy_state] + ac1[c]];
-                    if(j1 == -1)
+                    if(j1 == -1) {
                         break label0;
+                    }
                     yy_state = j1;
                     byte0 = abyte0[yy_state];
                 } while((byte0 & 1) != 1);

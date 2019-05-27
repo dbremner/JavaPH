@@ -69,7 +69,8 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 	@Override
 	public void setItem(@Nullable Object obj)
 	{
-		if (obj != null)
-			textField.setText(obj.toString());
+		if (obj != null) {
+            textField.setText(obj.toString());
+        }
 	}
 }

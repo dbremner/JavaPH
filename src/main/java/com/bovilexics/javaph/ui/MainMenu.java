@@ -61,8 +61,9 @@ public final class MainMenu extends JMenuBar
 		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
-			if (e.getSource() instanceof JMenuItem)
+			if (e.getSource() instanceof JMenuItem) {
 				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
+			}
 		}
 
 		@Override

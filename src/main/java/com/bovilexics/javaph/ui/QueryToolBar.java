@@ -83,8 +83,9 @@ public class QueryToolBar extends JToolBar
 	{
 		JButton myJButton = add(action);
 
-		if (icon != null)
-			myJButton.setIcon(icon);
+		if (icon != null) {
+            myJButton.setIcon(icon);
+        }
 
 		myJButton.setBorder(BorderFactory.createRaisedBevelBorder());
 		myJButton.setText(null);

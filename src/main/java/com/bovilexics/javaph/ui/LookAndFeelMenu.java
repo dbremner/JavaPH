@@ -130,8 +130,9 @@ final class LookAndFeelMenu extends JMenu
 		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
-			if (e.getSource() instanceof JMenuItem)
+			if (e.getSource() instanceof JMenuItem) {
 				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
+			}
 		}
 
 		@Override
@@ -231,13 +232,17 @@ final class LookAndFeelMenu extends JMenu
 
 	private void resetSelectedLookAndFeel()
 	{
-		if (macSupported)
-			macItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(MAC_LOOK_AND_FEEL));	
-		if (metalSupported)
+		if (macSupported) {
+			macItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(MAC_LOOK_AND_FEEL));
+		}
+		if (metalSupported) {
 			metalItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(METAL_LOOK_AND_FEEL));
-		if (motifSupported)	
+		}
+		if (motifSupported) {
 			motifItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(MOTIF_LOOK_AND_FEEL));
-		if (windowsSupported)
+		}
+		if (windowsSupported) {
 			windowsItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(WINDOWS_LOOK_AND_FEEL));
+		}
 	}
 }

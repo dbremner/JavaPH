@@ -93,8 +93,9 @@ public class QiConnection
 	 */
 	public synchronized void connect() throws IOException
 	{
-		if (host == null || host.equals(""))
+		if (host == null || host.equals("")) {
 			throw new IOException("No host specified, cannot connect");
+		}
 			
 		@NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
 		socket = new Socket();
@@ -134,8 +135,9 @@ public class QiConnection
 	*/
 	public synchronized void disconnect() throws IOException
 	{
-		if (!connected)
+		if (!connected) {
 			return;
+		}
 
 		try
 		{
@@ -187,8 +189,9 @@ public class QiConnection
 	{
 		// Safeguard against deadlock.
 		// (whereby a thread calls lock() more than once).
-		if (locker == Thread.currentThread())
+		if (locker == Thread.currentThread()) {
 			return;
+		}
 
 		while (locked)
 		{
@@ -232,17 +235,20 @@ public class QiConnection
 				buffer = readQI();
 				qiQiLine = new QiLine(buffer);
 				
-				if (qiQiLine.getCode() == QiAPI.LR_LOGIN)
+				if (qiQiLine.getCode() == QiAPI.LR_LOGIN) {
 					break;
-				else if (qiQiLine.getCode() < QiAPI.LR_OK)
+				} else if (qiQiLine.getCode() < QiAPI.LR_OK) {
 					blurb += qiQiLine.getResponse() + " ";
-				else
+				} else {
 					throw new QiProtocolException(qiQiLine.getResponse());
+				}
 			}
 
 			// "No Hostname found for IP address" maybe.
-			if (!blurb.equals(""))
-			System.out.println("Error on Qi login: " + blurb);;
+			if (!blurb.equals("")) {
+				System.out.println("Error on Qi login: " + blurb);
+			}
+			;
 				
 			blurb = "";
 			
@@ -258,18 +264,21 @@ public class QiConnection
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb.equals(""))
+					if (!blurb.equals("")) {
 						System.out.println("Error on Qi login: " + blurb);
+					}
 						
 					authenticated = true;
 					break;
 				}
-				else if (qiQiLine.getCode() < QiAPI.LR_OK)
+				else if (qiQiLine.getCode() < QiAPI.LR_OK) {
 					blurb += qiQiLine.getResponse() + " ";
-				else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
+				} else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
+				{
 					throw new QiProtocolException(qiQiLine.getResponse());
-				else
+				} else {
 					throw new QiProtocolException(qiQiLine.getResponse());
+				}
 			}
 		}
 		finally
@@ -288,8 +297,9 @@ public class QiConnection
 	public synchronized void logout() throws QiProtocolException, IOException
 	{
 
-		if (!authenticated)
+		if (!authenticated) {
 			return;
+		}
 			
 		lock();
 
@@ -308,18 +318,21 @@ public class QiConnection
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb.equals(""))
+					if (!blurb.equals("")) {
 						System.out.println("Error on Qi logout: " + blurb);
+					}
 						
 					authenticated = false;
 					break;
 				}
-				else if (qiQiLine.getCode() < QiAPI.LR_OK)
+				else if (qiQiLine.getCode() < QiAPI.LR_OK) {
 					blurb += qiQiLine.getResponse() + " ";
-				else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
+				} else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
+				{
 					throw new QiProtocolException(qiQiLine.getResponse());
-				else
+				} else {
 					throw new QiProtocolException(qiQiLine.getResponse());
+				}
 			}
 		}
 		finally

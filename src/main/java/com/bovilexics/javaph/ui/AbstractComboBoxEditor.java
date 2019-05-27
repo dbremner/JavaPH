@@ -50,9 +50,11 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 	{
 		Object listeners[] = listenerList.getListenerList();
 
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
-			if (listeners[i] == (java.awt.event.ActionListener.class))
-				 ((ActionListener) listeners[i + 1]).actionPerformed(e);
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
+			if (listeners[i] == (ActionListener.class)) {
+				((ActionListener) listeners[i + 1]).actionPerformed(e);
+			}
+		}
 	}
 
 	@Override

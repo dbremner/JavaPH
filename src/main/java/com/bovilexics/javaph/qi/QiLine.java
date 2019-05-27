@@ -151,8 +151,9 @@ public final class QiLine
 	private void parse() throws QiProtocolException
 	{
 		// Get the result code.
-		if ((colon1Index = verbatim.indexOf(':')) == -1)
-			throw new QiProtocolException(verbatim);
+		if ((colon1Index = verbatim.indexOf(':')) == -1) {
+            throw new QiProtocolException(verbatim);
+        }
 
 		try
 		{
@@ -188,8 +189,9 @@ public final class QiLine
 		
 		// This should be a field:value response.
 		// Get field, value and return.
-		if ((colon3Index = verbatim.indexOf(':', colon2Index + 1)) == -1)
-			throw new QiProtocolException(verbatim);
+		if ((colon3Index = verbatim.indexOf(':', colon2Index + 1)) == -1) {
+            throw new QiProtocolException(verbatim);
+        }
 			
 		field = verbatim.substring(colon2Index + 1, colon3Index);
 		value = verbatim.substring(colon3Index + 1);

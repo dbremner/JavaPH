@@ -102,8 +102,9 @@ public final class FindDialog extends JavaPHDialog
 		
 					if (selectedItem != null && !selectedItem.toString().equals(""))
 					{
-						if ( model.getIndexOf(selectedItem) < 0)
+						if ( model.getIndexOf(selectedItem) < 0) {
 							model.insertElementAt(selectedItem, 0);
+						}
 						
 						model.setSelectedItem(selectedItem);
 					}

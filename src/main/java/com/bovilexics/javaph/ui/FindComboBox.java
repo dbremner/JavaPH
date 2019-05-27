@@ -37,9 +37,10 @@ final class FindComboBox extends JComboBox
 	{
 		super();
 		
-		if (useDefaultModel)
+		if (useDefaultModel) {
 			setModel(new DefaultComboBoxModel());
-		else
+		} else {
 			setModel(new FindComboBoxModel());
+		}
 	}
 }

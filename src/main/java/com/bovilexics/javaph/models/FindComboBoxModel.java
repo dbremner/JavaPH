@@ -62,11 +62,13 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		int i;
 		int c;
 
-		for (i = 0, c = items.length; i < c ; i++)
+		for (i = 0, c = items.length; i < c ; i++) {
 			objects.addElement(items[i]);
+		}
 
-		if (getSize() > 0)
+		if (getSize() > 0) {
 			selectedObject = getElementAt(0);
+		}
 			
 		allObjects = (Vector)objects.clone();
 	}
@@ -81,8 +83,9 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	{
 		objects = v;
 
-		if (getSize() > 0)
+		if (getSize() > 0) {
 			selectedObject = getElementAt(0);
+		}
 			
 		allObjects = (Vector)objects.clone();
 	}
@@ -96,8 +99,9 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	@Override
 	public void addElement(Object anObject)
 	{
-		if (getIndexOf(anObject) < 0)
+		if (getIndexOf(anObject) < 0) {
 			insertElementAt(anObject, 0);
+		}
 	}
 
 	public void filterElements(@Nullable String filter)
@@ -115,19 +119,23 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			{
 				Object anObject = allObjects.elementAt(i);
 
-				if (anObject == null)
+				if (anObject == null) {
 					continue;
+				}
 				
 				String element = anObject.toString(); 
 				
-				if (element.equals(filter) || element.startsWith(filter))
-					if (!objects.contains(allObjects.elementAt(i)))
+				if (element.equals(filter) || element.startsWith(filter)) {
+					if (!objects.contains(allObjects.elementAt(i))) {
 						insertElementAt(anObject, objects.size());
+					}
+				}
 			}
 		}
 		
-		if (objects.size() > 0)
+		if (objects.size() > 0) {
 			selectedObject = objects.elementAt(0);
+		}
 	}
 
 	// implements javax.swing.ListModel
@@ -135,10 +143,11 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	@Nullable
     public Object getElementAt(int index)
 	{
-		if (index >= 0 && index < objects.size())
+		if (index >= 0 && index < objects.size()) {
 			return objects.elementAt(index);
-		else
+		} else {
 			return null;
+		}
 	}
 
 	// implements javax.swing.ComboBoxModel
@@ -175,8 +184,9 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		objects.insertElementAt(anObject, index);
 		fireIntervalAdded(this, index, index);
 
-		if (!allObjects.contains(anObject))
-			allObjects.insertElementAt(anObject, index);		
+		if (!allObjects.contains(anObject)) {
+			allObjects.insertElementAt(anObject, index);
+		}
 	}
 
 	/**
@@ -200,8 +210,9 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	{
 		int index = objects.indexOf(anObject);
 
-		if (index != -1)
+		if (index != -1) {
 			removeElementAt(index);
+		}
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -210,10 +221,11 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	{
 		if (getElementAt(index) == selectedObject)
 		{
-			if (index == 0)
+			if (index == 0) {
 				setSelectedItem(getSize() == 1 ? null : getElementAt(index + 1));
-			else
+			} else {
 				setSelectedItem(getElementAt(index - 1));
+			}
 		}
 		objects.removeElementAt(index);
 		fireIntervalRemoved(this, index, index);
@@ -224,8 +236,9 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		objects = (Vector)allObjects.clone();
 		selectedObject = null;
 
-		if (getSize() > 0)
+		if (getSize() > 0) {
 			fireIntervalAdded(this, 0, getSize() - 1);
+		}
 	}
 
 	// implements javax.swing.ComboBoxModel

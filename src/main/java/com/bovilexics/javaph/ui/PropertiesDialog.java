@@ -374,12 +374,13 @@ public final class PropertiesDialog extends JavaPHDialog
 	{
 		int loadFields = JavaPH.LOAD_FIELDS_DEF;
 
-		if (loadFieldsManual.isSelected())
+		if (loadFieldsManual.isSelected()) {
 			loadFields = JavaPH.LOAD_FIELDS_MANUAL;
-		else if (loadFieldsSelected.isSelected())
+		} else if (loadFieldsSelected.isSelected()) {
 			loadFields = JavaPH.LOAD_FIELDS_SELECTED;
-		else if (loadFieldsStartup.isSelected())
+		} else if (loadFieldsStartup.isSelected()) {
 			loadFields = JavaPH.LOAD_FIELDS_STARTUP;
+		}
 
 		parent.setProperty(JavaPH.PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
 		parent.setProperty(JavaPH.PROP_DISPLAY_LOG, Boolean.valueOf(displayLogCheckBox.isSelected()).toString());

@@ -147,8 +147,9 @@ public class ResultThread extends Thread
 
 		@Nullable Vector records = null;
 
-		if ((records = (Vector) records.elementAt(record)) == null)
+		if ((records = (Vector) records.elementAt(record)) == null) {
 			return null;
+		}
 
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
@@ -156,14 +157,16 @@ public class ResultThread extends Thread
 			@Nullable QiLine qiLine = (QiLine) records.elementAt(i);
 
 			// Skip empty and encrypted fields.
-			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().equals(""))
+			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().equals("")) {
 				continue;
+			}
 				
 			gotField = true;
 
 			// We're done.
-			if (!qiLine.getTrimmedField().equals(field) && !qiLine.getTrimmedField().equals(""))
+			if (!qiLine.getTrimmedField().equals(field) && !qiLine.getTrimmedField().equals("")) {
 				break;
+			}
 
 			out.append(qiLine.getTrimmedValue());
 			out.append(replaceNewlines ? "\n" : " ");
@@ -274,8 +277,9 @@ public class ResultThread extends Thread
 		{
 			buildResult();
 			
-			if (!qiConnection.authenticated())
+			if (!qiConnection.authenticated()) {
 				qiConnection.disconnect();
+			}
 		}
 		catch (QiProtocolException e)
 		{
@@ -420,8 +424,9 @@ public class ResultThread extends Thread
 
 	private synchronized void buildHeaders()
 	{
-		if (headersDone)
+		if (headersDone) {
 			return;
+		}
 
 		String lastField = "unknown";
 		@NotNull Vector uniqueHeaders = new Vector();
@@ -441,10 +446,11 @@ public class ResultThread extends Thread
 				
 				if (!uniqueHeaders.contains(field))
 				{
-					if (field.endsWith(".1"))
+					if (field.endsWith(".1")) {
 						uniqueHeaders.insertElementAt(field, uniqueHeaders.indexOf(field.substring(0, field.lastIndexOf(".1"))) + 1);
-					else
+					} else {
 						uniqueHeaders.add(field);
+					}
 				}
 				
 				lastField = field;
@@ -458,8 +464,9 @@ public class ResultThread extends Thread
 
 	private synchronized void buildHeadersForFields()
 	{
-		if (headersDone)
+		if (headersDone) {
 			return;
+		}
 		
 		headers = new String[] { "name", "description", "properties" };
 	
@@ -505,8 +512,9 @@ public class ResultThread extends Thread
 
 			add();
 
-			if (qiLine.getIndex() != index)
+			if (qiLine.getIndex() != index) {
 				rawResult.append(recordSeperator);
+			}
 
 			index = qiLine.getIndex();
 			rawResult.append(qiLine.getResponse().equals("") ? qiLine.getField() + " : " + qiLine.getValue() : qiLine.getResponse());
@@ -522,12 +530,14 @@ public class ResultThread extends Thread
 				break;
 			}
 			
-			if (qiLine != null)
+			if (qiLine != null) {
 				lastCode = qiLine.getCode();
+			}
 		}
 		
-		if (qiLine != null)
+		if (qiLine != null) {
 			lastCode = qiLine.getCode();
+		}
 
 		if (lastCode >= QiAPI.LR_TEMP)
 		{
@@ -536,10 +546,11 @@ public class ResultThread extends Thread
 			
 			@NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
 			
-			if (parent == null)
+			if (parent == null) {
 				System.err.println(message);
-			else
+			} else {
 				parent.log(message);
+			}
 		}
 		else
 		{
@@ -560,11 +571,13 @@ public class ResultThread extends Thread
 
 	private synchronized void buildValues()
 	{
-		if (valuesDone)
+		if (valuesDone) {
 			return;
+		}
 
-		if (!headersDone)
+		if (!headersDone) {
 			buildHeaders();
+		}
 			
 		values = new Object[records.size()][headers.length];
 
@@ -604,10 +617,11 @@ public class ResultThread extends Thread
 				{
 					@NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
 					
-					if (parent == null)
+					if (parent == null) {
 						System.err.println(message);
-					else 
+					} else {
 						parent.log(message);
+					}
 				}
 				
 				lastField = field;
@@ -619,11 +633,13 @@ public class ResultThread extends Thread
 
 	private synchronized void buildValuesForFields()
 	{
-		if (valuesDone)
+		if (valuesDone) {
 			return;
+		}
 
-		if (!headersDone)
+		if (!headersDone) {
 			buildHeadersForFields();
+		}
 			
 		values = new Object[records.size()][headers.length];
 
@@ -663,13 +679,15 @@ public class ResultThread extends Thread
 				while ((buffer = readQi()) != null)
 				{
 					qiLine = new QiLine(buffer);
-					if (qiLine.getCode() >= QiAPI.LR_OK)
+					if (qiLine.getCode() >= QiAPI.LR_OK) {
 						break;
+					}
 				}
 			}
 
-			if (!qiConnection.authenticated())
+			if (!qiConnection.authenticated()) {
 				qiConnection.disconnect();
+			}
 		}
 		catch (IOException e)
 		{
@@ -737,8 +755,9 @@ public class ResultThread extends Thread
 				{
 					parent.showStatus(status);
 					
-					if (logAlso)
+					if (logAlso) {
 						parent.log(status);
+					}
 				}
 			});
 		}

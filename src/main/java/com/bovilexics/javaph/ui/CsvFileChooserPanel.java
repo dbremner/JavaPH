@@ -58,12 +58,13 @@ final class CsvFileChooserPanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent ae)
 		{
-			if (commaRadioButton.isSelected())
+			if (commaRadioButton.isSelected()) {
 				parent.setFieldSeparator(JavaPH.COMMA_SEPARATOR);
-			else if (tabRadioButton.isSelected())
+			} else if (tabRadioButton.isSelected()) {
 				parent.setFieldSeparator(JavaPH.TAB_SEPARATOR);
-			else if (customRadioButton.isSelected())
+			} else if (customRadioButton.isSelected()) {
 				parent.setFieldSeparator(customTextField.getText());
+			}
 		}
 	}
 
@@ -102,12 +103,13 @@ final class CsvFileChooserPanel extends JPanel
 
 		@Nullable String separator = parent.getFieldSeparator();
 
-		if (separator.equals(JavaPH.COMMA_SEPARATOR))
+		if (separator.equals(JavaPH.COMMA_SEPARATOR)) {
 			commaRadioButton.setSelected(true);
-		else if (separator.equals(JavaPH.TAB_SEPARATOR))
+		} else if (separator.equals(JavaPH.TAB_SEPARATOR)) {
 			tabRadioButton.setSelected(true);
-		else
+		} else {
 			customRadioButton.setSelected(true);
+		}
 		
 		commaRadioButton.addActionListener(listener);
 		tabRadioButton.addActionListener(listener);

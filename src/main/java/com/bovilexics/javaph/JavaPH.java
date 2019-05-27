@@ -217,17 +217,19 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			
 					if (ke.isShiftDown())
 					{
-						if (selected <= 0)
+						if (selected <= 0) {
 							selected = last;
-						else
+						} else {
 							selected--;
+						}
 					}
 					else
 					{
-						if (selected < last)
+						if (selected < last) {
 							selected++;
-						else
+						} else {
 							selected = 0;
+						}
 					}
 				
 					getResultPanel().setSelectedIndex(selected);
@@ -295,8 +297,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		
 						if (selectedItem != null && !selectedItem.toString().equals(""))
 						{
-							if ( model.getIndexOf(selectedItem) < 0)
+							if ( model.getIndexOf(selectedItem) < 0) {
 								model.addElement(selectedItem);
+							}
 						
 							model.setSelectedItem(selectedItem);
 						}
@@ -362,8 +365,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 						queryComboBox.hidePopup();
 						((QueryComboBoxModel)queryComboBox.getModel()).filterElements(filter);
 						
-						if (queryComboBox.getModel().getSize() > 0)
+						if (queryComboBox.getModel().getSize() > 0) {
 							queryComboBox.showPopup();
+						}
 					}
 					else if (queryComboBox.getModel().getSize() == 1 && (ke.getKeyCode() == KeyEvent.VK_UP || ke.getKeyCode() == KeyEvent.VK_DOWN))
 					{
@@ -732,8 +736,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			initColumnListPanel();
 			initLogTextPanel();
 	
-			if (propertyEquals(PROP_DISPLAY_LOG, "true", "true"))
+			if (propertyEquals(PROP_DISPLAY_LOG, "true", "true")) {
 				add(logTextPanel, SYSTEM_LOG_LABEL);
+			}
 		}
 
 		@NotNull
@@ -1047,10 +1052,12 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		int frameX = applet.getIntProperty(PROP_APP_X_POSITION, -1);
 		int frameY = applet.getIntProperty(PROP_APP_Y_POSITION, -1);
 
-		if (frameHeight < APP_MIN_HEIGHT)
+		if (frameHeight < APP_MIN_HEIGHT) {
 			frameHeight = APP_DEFAULT_HEIGHT;
-		if (frameWidth < APP_MIN_WIDTH)
+		}
+		if (frameWidth < APP_MIN_WIDTH) {
 			frameWidth = APP_DEFAULT_WIDTH;
+		}
 
 		applet.defaultPane = frame.getRootPane();
 		applet.init();
@@ -1111,8 +1118,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 					}
 				}
 				
-				if (needToStore)	
+				if (needToStore) {
 					applet.storeProperties();
+				}
 
 				System.exit(0);
 			}
@@ -1167,10 +1175,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			{
 				log("Info: Cannot search past the last cell of a table");
 				
-				if (wrap)
+				if (wrap) {
 					inLastCell = true;
-				else
+				} else {
 					return;
+				}
 			}
 		}
 
@@ -1246,19 +1255,21 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		
 		// if nothing or everything is selected then start search from the
 		// beginning otherwise start search from the end of the selection
-		if (textArea.getSelectedText() == null)
+		if (textArea.getSelectedText() == null) {
 			startIndex = 0;
-		else if (textArea.getSelectionStart() == 0 && textArea.getSelectionEnd() == textArea.getText().length() - 1)
+		} else if (textArea.getSelectionStart() == 0 && textArea.getSelectionEnd() == textArea.getText().length() - 1) {
 			startIndex = 0;
-		else
+		} else {
 			startIndex = textArea.getSelectionEnd();
+		}
 
 		int location;
 		
-		if (caseSensitive)
-		 	location = textArea.getText().indexOf(text, startIndex);
-		else
+		if (caseSensitive) {
+			location = textArea.getText().indexOf(text, startIndex);
+		} else {
 			location = textArea.getText().toLowerCase().indexOf(text.toLowerCase(), startIndex);
+		}
 		
 		if (location > 0)
 		{
@@ -1269,10 +1280,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			startIndex = 0;
 			
-			if (caseSensitive)
+			if (caseSensitive) {
 				location = textArea.getText().indexOf(text, startIndex);
-			else
+			} else {
 				location = textArea.getText().toLowerCase().indexOf(text.toLowerCase(), startIndex);
+			}
 
 			if (location > 0)
 			{
@@ -1358,8 +1370,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			@Nullable String stringValue = getProperty(key);
 
-			if (stringValue == null)
+			if (stringValue == null) {
 				throw new NumberFormatException();
+			}
 			
 			intValue = Integer.parseInt(stringValue);
 		}
@@ -1379,8 +1392,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			@Nullable String stringValue = getPropertyDefault(key);
 
-			if (stringValue == null)
+			if (stringValue == null) {
 				throw new NumberFormatException();
+			}
 			
 			intValue = Integer.parseInt(stringValue);
 		}
@@ -1497,18 +1511,21 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	
 		initStuff();
 
-		if (defaultPane == null)
+		if (defaultPane == null) {
 			defaultPane = getRootPane();
+		}
 
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
 
 		restoreLookAndFeel();
 
-		if(propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"))
+		if(propertyEquals(PROP_DISPLAY_SPLASH, "true", "true")) {
 			showSplashWindow();
+		}
 
-		if (getLoadFields() == LOAD_FIELDS_STARTUP)
+		if (getLoadFields() == LOAD_FIELDS_STARTUP) {
 			loadFieldsForAllServers();
+		}
 		
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -1626,8 +1643,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				server.loadFields();
 				fieldProgressMonitor.setProgress(i + 1);
 				
-				if (fieldProgressMonitor.isCanceled())
+				if (fieldProgressMonitor.isCanceled()) {
 					break;
+				}
 			}
 			
 			fieldProgressMonitor.close();
@@ -1690,8 +1708,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			listModel.addElement(tableModel.getColumnName(i));
 		}
 		
-		if (listModel.getSize() > 0)
+		if (listModel.getSize() > 0) {
 			colList.setSelectionInterval(0, listModel.getSize() - 1);
+		}
 	}
 
 	private void populateFieldList(@NotNull QiServer server)
@@ -1703,17 +1722,20 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			@NotNull Vector fields = server.getFields();
 						
-			for (int i = 0; i < fields.size(); i++)
+			for (int i = 0; i < fields.size(); i++) {
 				model.addElement(fields.elementAt(i));
+			}
 		}
 					
-		if (model.getSize() > 0)
+		if (model.getSize() > 0) {
 			fieldList.setSelectionInterval(0, model.getSize() - 1);
+		}
 						
-		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE)
+		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE) {
 			fieldLoadButton.setToolTipText("Reload fields for the selected server");
-		else
+		} else {
 			fieldLoadButton.setToolTipText("Load fields for the selected server");
+		}
 	}
 
 	public boolean propertyDefaultEquals(@NotNull String key, String equalsValue)
@@ -1725,10 +1747,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	{
 		@Nullable String value = (defaultValue == null) ? getPropertyDefault(key) : getPropertyDefault(key, defaultValue);
 		
-		if (value == null)
+		if (value == null) {
 			return false;
-		else
+		} else {
 			return value.equals(equalsValue);
+		}
 	}
 
 	public boolean propertyEquals(@NotNull String key, String equalsValue)
@@ -1740,10 +1763,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	{
 		@Nullable String value = (defaultValue == null) ? getProperty(key) : getProperty(key, defaultValue);
 		
-		if (value == null)
+		if (value == null) {
 			return false;
-		else
+		} else {
 			return value.equals(equalsValue);
+		}
 	}
 
 	public void restoreLookAndFeel()
@@ -1784,9 +1808,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			// Must also include the dialogs and toolbars
 			// due to the weirdness of potentially running
 			// as either an application or an applet
-			for (i = 0; i < otherComponents.length; i++)
-				if (otherComponents[i] != null)
+			for (i = 0; i < otherComponents.length; i++) {
+				if (otherComponents[i] != null) {
 					SwingUtilities.updateComponentTreeUI(otherComponents[i]);
+				}
+			}
 			
 			return;
 		}
@@ -1808,9 +1834,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			// Must also include the dialogs and toolbars
 			// due to the weirdness of potentially running
 			// as either an application or an applet
-			for (i = 0; i < otherComponents.length; i++)
-				if (otherComponents[i] != null)
+			for (i = 0; i < otherComponents.length; i++) {
+				if (otherComponents[i] != null) {
 					SwingUtilities.updateComponentTreeUI(otherComponents[i]);
+				}
+			}
 
 			return;
 		}
@@ -1832,15 +1860,17 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public void setFieldSeparator(@NotNull String separator)
 	{
-		if (separator == null || separator.equals(""))
+		if (separator == null || separator.equals("")) {
 			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");
+		}
 			
 		// log("Changing field separator string from " + fieldSeparator + " to " + separator);
 		fieldSeparator = separator;
 		
 		// if not a standard separator (comma or tab) then set the custom separator as well
-		if (!separator.equals(COMMA_SEPARATOR) && !separator.equals(TAB_SEPARATOR))
+		if (!separator.equals(COMMA_SEPARATOR) && !separator.equals(TAB_SEPARATOR)) {
 			customFieldSeparator = separator;
+		}
 	}
 
 	public void setLoadFields(int load)
@@ -1958,17 +1988,20 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	private void showStatus(String status, boolean logAlso)
 	{
-		if (statusLabel != null)
+		if (statusLabel != null) {
 			statusLabel.setText(" " + status);
+		}
 			
-		if (logAlso)
+		if (logAlso) {
 			log(status);
+		}
 	}
 
 	public void showToolBar(boolean show)
 	{
-		if (queryToolBar != null)
+		if (queryToolBar != null) {
 			queryToolBar.setVisible(show);
+		}
 	}
 	
 	public void storeLookAndFeel()

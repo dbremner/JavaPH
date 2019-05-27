@@ -53,8 +53,9 @@ public final class ResultTable extends JTable
 	{
 		TableCellRenderer renderer = column.getHeaderRenderer();
 		
-		if (renderer == null)
-			renderer = getDefaultRenderer(column.getClass());
+		if (renderer == null) {
+            renderer = getDefaultRenderer(column.getClass());
+        }
 		
 		Component component = renderer.getTableCellRendererComponent(this, column.getHeaderValue(), false, false, 0, 0);
 		
@@ -85,8 +86,9 @@ public final class ResultTable extends JTable
 
 			int width = component.getPreferredSize().width;
 
-			if (width > maxWidth)
-				maxWidth = width;
+			if (width > maxWidth) {
+                maxWidth = width;
+            }
 		}
 		
 		return maxWidth + WIDTH_BUFFER;
