@@ -39,10 +39,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
@@ -1581,8 +1578,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		try
 		{
-			defaultProperties.load((new File(PROP_FILE_DEF)).toURI().toURL().openStream());
-			properties.load((new File(PROP_FILE_DEF)).toURI().toURL().openStream());
+			defaultProperties.load(new FileInputStream(PROP_FILE_DEF));
+			properties.load(new FileInputStream(PROP_FILE_DEF));
 		}
 		catch (FileNotFoundException e)
 		{
@@ -1645,7 +1642,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		try
 		{
-			properties.load((new File(PROP_FILE)).toURI().toURL().openStream());
+			properties.load(new FileInputStream(PROP_FILE));
 		}
 		catch (FileNotFoundException e)
 		{
