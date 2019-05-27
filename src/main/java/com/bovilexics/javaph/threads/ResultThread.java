@@ -34,12 +34,12 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * 
- * A <B>ResultThread</B> builds an entire reponse from a Qi query.
+ * A <B>ResultThread</B> builds an entire response from a Qi query.
  * 
  * A response from Qi as defined by this class is composed of three
  * distinct parts; prologue, multiline response and epilogue. There are
  * accessor methods to retrieve each of these 3 parts. For any given QI
- * reponse, any or all of the parts may be empty/null and this should be
+ * response, any or all of the parts may be empty/null and this should be
  * tested for. These methods will also return null if used before a QI
  * response has been returned in it's entirety.
  *
@@ -57,7 +57,7 @@ import org.jetbrains.annotations.Nullable;
 public class ResultThread extends Thread
 {
 	// States
-	private final static int RS_START		= 0; // Gettin' goin'.
+	private final static int RS_START		= 0; // Starting
 	private final static int RS_INPROGRESS	= 1; // Multiline response.
 	private final static int RS_OK			= 2; // We're done.
 	private final static int RS_UNKNOWN		= 3; // Oops!
@@ -92,16 +92,16 @@ public class ResultThread extends Thread
 	private String prologue = "";
 	private String readFromServer;
 
-	// Seperator used in the display of queries which matched multiple records.
+	// Separator used in the display of queries which matched multiple records.
 	@NotNull
-	private final String recordSeperator = "------------------------------------------------------------\n";
+	private static final String recordSeparator = "------------------------------------------------------------\n";
 
 	private StringBuffer rawResult;
 
 	@NotNull
 	private final Vector records = new Vector();
 	@NotNull
-	private Vector record = new Vector();
+	private Vector<QiLine> record = new Vector<>();
 
 	public ResultThread(String command, QiConnection connection)
 	{
@@ -143,28 +143,27 @@ public class ResultThread extends Thread
 	public synchronized String fieldValue(int record, String field, boolean replaceNewlines)
 	{
 
-		@NotNull StringBuffer out = new StringBuffer();
+		@NotNull final StringBuffer out = new StringBuffer();
 
-		@Nullable Vector records = null;
-
-		if ((records = (Vector) records.elementAt(record)) == null) {
+		@Nullable final Vector records = (Vector) this.records.elementAt(record);
+		if (records == null) {
 			return null;
 		}
 
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			@Nullable QiLine qiLine = (QiLine) records.elementAt(i);
+			@Nullable final QiLine qiLine = (QiLine) records.elementAt(i);
 
 			// Skip empty and encrypted fields.
-			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().equals("")) {
+			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().isEmpty()) {
 				continue;
 			}
 				
 			gotField = true;
 
 			// We're done.
-			if (!qiLine.getTrimmedField().equals(field) && !qiLine.getTrimmedField().equals("")) {
+			if (!qiLine.getTrimmedField().equals(field) && !qiLine.getTrimmedField().isEmpty()) {
 				break;
 			}
 
@@ -281,17 +280,11 @@ public class ResultThread extends Thread
 				qiConnection.disconnect();
 			}
 		}
-		catch (QiProtocolException e)
+		catch (QiProtocolException | IOException e)
 		{
 			error = true;
 			showStatus("Error: " + e);
-		}
-		catch (IOException e)
-		{
-			error = true;
-			showStatus("Error: " + e);
-		}
-		finally
+		} finally
 		{
 			qiConnection.unlock();
 		}
@@ -429,17 +422,17 @@ public class ResultThread extends Thread
 		}
 
 		String lastField = "unknown";
-		@NotNull Vector uniqueHeaders = new Vector();
+		@NotNull final Vector<String> uniqueHeaders = new Vector<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			Vector currentQiLine = (Vector) records.elementAt(i);
+			final Vector currentQiLine = (Vector) records.elementAt(i);
 
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
 				String field = ((QiLine) currentQiLine.elementAt(j)).getTrimmedField();
 
-				if (field.equals(""))
+				if (field.isEmpty())
 				{
 					field = lastField + ".1";
 				}
@@ -513,11 +506,11 @@ public class ResultThread extends Thread
 			add();
 
 			if (qiLine.getIndex() != index) {
-				rawResult.append(recordSeperator);
+				rawResult.append(recordSeparator);
 			}
 
 			index = qiLine.getIndex();
-			rawResult.append(qiLine.getResponse().equals("") ? qiLine.getField() + " : " + qiLine.getValue() : qiLine.getResponse());
+			rawResult.append(qiLine.getResponse().isEmpty() ? qiLine.getField() + " : " + qiLine.getValue() : qiLine.getResponse());
 			rawResult.append("\n");
 			
 			// If code >= LR_OK, Qi has said all it's going to say.
@@ -544,7 +537,7 @@ public class ResultThread extends Thread
 			state = RS_ERROR;
 			prologue = qiLine.getResponse();
 			
-			@NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
+			@NotNull final String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
 			
 			if (parent == null) {
 				System.err.println(message);
@@ -581,20 +574,20 @@ public class ResultThread extends Thread
 			
 		values = new Object[records.size()][headers.length];
 
-		int xCoord = -1;
+		int xCoordinate = -1;
 		String lastField = "unknown";
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			int yCoord = i;
-			Vector thisVector = (Vector) records.elementAt(i);
+			final int yCoordinate = i;
+			final Vector thisVector = (Vector) records.elementAt(i);
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				QiLine thisQiLine = (QiLine) thisVector.elementAt(j);
+				final QiLine thisQiLine = (QiLine) thisVector.elementAt(j);
 				String field = thisQiLine.getTrimmedField();
 
-				if (field.equals(""))
+				if (field.isEmpty())
 				{
 					field = lastField + ".1";
 				}
@@ -604,18 +597,18 @@ public class ResultThread extends Thread
 				{
 					if ( ((String)headers[k]).equals(field) )
 					{
-						xCoord = k;
+						xCoordinate = k;
 						found = true;
 					}
 				}
 				
 				if (found)
 				{
-					values[yCoord][xCoord] = thisQiLine.getTrimmedValue();
+					values[yCoordinate][xCoordinate] = thisQiLine.getTrimmedValue();
 				}
 				else
 				{
-					@NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
+					@NotNull final String message = "Couldn't find header for this column: " + thisQiLine.toString();
 					
 					if (parent == null) {
 						System.err.println(message);
@@ -645,16 +638,16 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			Vector thisVector = (Vector) records.elementAt(i);
+			final Vector thisVector = (Vector) records.elementAt(i);
 
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
-				QiLine propsQiLine = (QiLine) thisVector.elementAt(j);
-				QiLine descQiLine = (QiLine) thisVector.elementAt(j + 1);
+				final QiLine propsQiLine = (QiLine) thisVector.elementAt(j);
+				final QiLine descQiLine = (QiLine) thisVector.elementAt(j + 1);
 
-				String field = propsQiLine.getTrimmedField();
-				String props = propsQiLine.getTrimmedValue();
-				String desc = descQiLine.getTrimmedValue();
+				final String field = propsQiLine.getTrimmedField();
+				final String props = propsQiLine.getTrimmedValue();
+				final String desc = descQiLine.getTrimmedValue();
 
 				values[i][0] = field;
 				values[i][1] = desc;
@@ -689,12 +682,7 @@ public class ResultThread extends Thread
 				qiConnection.disconnect();
 			}
 		}
-		catch (IOException e)
-		{
-			error = true;
-			showStatus("Error: " + e);
-		}
-		catch (QiProtocolException e)
+		catch (IOException | QiProtocolException e)
 		{
 			error = true;
 			showStatus("Error: " + e);
@@ -736,26 +724,13 @@ public class ResultThread extends Thread
 		return qiConnection.readQI();
 	}
 
-	private void showStatus(String status)
-	{
-		showStatus(status, true);
-	}
-
-	private void showStatus(final String status, final boolean logAlso)
+	private void showStatus(final String status)
 	{
 		if (parent != null)
 		{
-			SwingUtilities.invokeLater(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					parent.showStatus(status);
-					
-					if (logAlso) {
-						parent.log(status);
-					}
-				}
+			SwingUtilities.invokeLater(() -> {
+				parent.showStatus(status);
+				parent.log(status);
 			});
 		}
 		else
