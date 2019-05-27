@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -29,9 +30,10 @@ import com.bovilexics.javaph.JavaPH;
  */
 public class PrefsAction extends AbstractAction
 {
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 		
-	public PrefsAction(JavaPH javaph)
+	public PrefsAction(@Nullable JavaPH javaph)
 	{
 		super("Preferences");
 		

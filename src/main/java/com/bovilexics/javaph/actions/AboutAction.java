@@ -22,6 +22,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *
@@ -32,7 +33,7 @@ public class AboutAction extends AbstractAction
 {
 	private JavaPH parent;
 	
-	public AboutAction(JavaPH javaph)
+	public AboutAction(@NotNull JavaPH javaph)
 	{
 		super("About JavaPH", new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));
 			

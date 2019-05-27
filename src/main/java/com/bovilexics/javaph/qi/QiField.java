@@ -16,6 +16,9 @@
  */
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -42,7 +45,8 @@ public class QiField
 	private String description;
 	private String name;
 
-	private Vector properties = new Vector();
+	@NotNull
+    private Vector properties = new Vector();
 
 	/**
 	 * Construct an empty QiField.
@@ -60,7 +64,7 @@ public class QiField
 	 * @exception QiProtocolException in the event of an error parsing the data.
 	 *
 	 */
-	public QiField(String name, String someProperties, String description) throws QiProtocolException
+	public QiField(String name, @NotNull String someProperties, String description) throws QiProtocolException
 	{
 		setName(name);
 		setProperties(someProperties);
@@ -82,7 +86,8 @@ public class QiField
 		return name;
 	}
 
-	public Vector getProperties()
+	@NotNull
+    public Vector getProperties()
 	{
 		return properties;
 	}
@@ -118,11 +123,11 @@ public class QiField
 	 * @exception QiProtocolException in the event of an error parsing the data.
 	 *
 	 */
-	public void setProperties(String someProperties) throws QiProtocolException
+	public void setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
-		String lengthString = null;
-		String token = null;
-		StringTokenizer tokenizer = null;
+		@Nullable String lengthString = null;
+		@Nullable String token = null;
+		@Nullable StringTokenizer tokenizer = null;
 
 		tokenizer = new StringTokenizer(someProperties);
 		token = (String) tokenizer.nextElement();
@@ -151,7 +156,8 @@ public class QiField
 		}
 	}
 
-	public String toString()
+	@NotNull
+    public String toString()
 	{
 		return getName() + " - " + getDescription();
 	}

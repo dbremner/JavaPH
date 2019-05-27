@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -29,9 +30,10 @@ import com.bovilexics.javaph.JavaPH;
  */
 public class BrowserAction extends AbstractAction
 {
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 	
-	public BrowserAction(JavaPH javaph)
+	public BrowserAction(@Nullable JavaPH javaph)
 	{
 		super("Broswer Options");
 		

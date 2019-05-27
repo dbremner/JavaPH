@@ -16,6 +16,9 @@
  */
 package com.bovilexics.javaph.util;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -68,7 +71,7 @@ public class Browser {
 	 *
 	 * @param locale Locale used to for i18n.
 	 */
-	public static void setLocale(Locale locale){
+	public static void setLocale(@NotNull Locale locale){
 		labels = ResourceBundle.getBundle("com.bovilexics.javaph.util.Browser",  locale);
 	}
 
@@ -82,7 +85,8 @@ public class Browser {
 	 * These commands are passed in order to exec until something works
 	 * when displayURL is used.
 	 */
-	public static String[] exec = null;
+	@Nullable
+    public static String[] exec = null;
 
 	/**
 	 * Determine appropriate commands to start a browser on the current
@@ -99,15 +103,16 @@ public class Browser {
 	/**
 	 * Retrieve the default commands to open a browser for this system.
 	 */
-	public static String[] defaultCommands(){
-		String[] exec = null;
+	@Nullable
+    public static String[] defaultCommands(){
+		@Nullable String[] exec = null;
 		if ( System.getProperty("os.name").startsWith("Windows")){
 			exec = new String[1];
 			exec[0] = "rundll32 url.dll,FileProtocolHandler {0}";
 		} else if (System.getProperty("os.name").startsWith("Mac")){
 			 exec = null;
 		} else {
-			Vector browsers = new Vector();
+			@NotNull Vector browsers = new Vector();
 			try {
 				Process p = Runtime.getRuntime().exec("which mozilla");
 				if (p.waitFor() == 0){
@@ -158,10 +163,10 @@ public class Browser {
 	 *
 	 * @param props properties file to which configuration is saved.
 	 */
-	public static void save(Properties props){
+	public static void save(@NotNull Properties props){
 		boolean saveBrowser = false;
 		if (Browser.exec != null && Browser.exec.length > 0){
-			String[] exec = Browser.defaultCommands();
+			@Nullable String[] exec = Browser.defaultCommands();
 			if (exec != null && exec.length == Browser.exec.length){
 				for (int i=0; i<exec.length; i++){
 					if (!exec[i].equals(Browser.exec[i])){
@@ -173,7 +178,7 @@ public class Browser {
 			}
 		}
 		if (saveBrowser){
-			StringBuffer sb = new StringBuffer();
+			@NotNull StringBuffer sb = new StringBuffer();
 			for (int i=0; Browser.exec != null && i < Browser.exec.length; i++){
 				sb.append(Browser.exec[i]).append('\n');
 			}
@@ -192,11 +197,11 @@ public class Browser {
 	 *
 	 * @param props properties file from which configuration is loaded.
 	 */
-	public static void load(Properties props){
+	public static void load(@NotNull Properties props){
 		if (props.containsKey("com.bovilexics.javaph.util.Browser.open")){
-			java.util.StringTokenizer tok = new java.util.StringTokenizer(props.getProperty("com.bovilexics.javaph.util.Browser.open"), "\r\n", false);
+			@NotNull java.util.StringTokenizer tok = new java.util.StringTokenizer(props.getProperty("com.bovilexics.javaph.util.Browser.open"), "\r\n", false);
 			int count = tok.countTokens();
-			String[] exec = new String[count];
+			@NotNull String[] exec = new String[count];
 			for (int i=0; i < count; i++){
 				exec[i] = tok.nextToken();
 			}
@@ -219,7 +224,7 @@ public class Browser {
 	 * @param url the url to display
 	 * @throws IOException if the url is not valid or the browser fails to star
 	 */
-	public static void displayURL(String url) throws IOException {
+	public static void displayURL(@NotNull String url) throws IOException {
 		if (exec == null || exec.length == 0){
 			if (System.getProperty("os.name").startsWith("Mac")){
 				boolean success = false;
@@ -227,7 +232,7 @@ public class Browser {
 				Class nSWorkspace;
 					if (new File("/System/Library/Java/com/apple/cocoa/application/NSWorkspace.class").exists()){
 						 // Mac OS X has NSWorkspace, but it is not in the classpath, add it.
-						 ClassLoader classLoader = new URLClassLoader(new URL[]{new File("/System/Library/Java").toURL()});
+						 @NotNull ClassLoader classLoader = new URLClassLoader(new URL[]{new File("/System/Library/Java").toURL()});
 						 nSWorkspace = Class.forName("com.apple.cocoa.application.NSWorkspace", true, classLoader);
 					} else {
 						 nSWorkspace = Class.forName("com.apple.cocoa.application.NSWorkspace");
@@ -264,7 +269,7 @@ public class Browser {
 			// to prevent an attacker from putting in spaces
 			// that might fool exec into allowing
 			// the attacker to execute arbitrary code.
-			StringBuffer sb = new StringBuffer(url.length());
+			@NotNull StringBuffer sb = new StringBuffer(url.length());
 			for (int i=0; i<url.length(); i++){
 				char c = url.charAt(i);
 				if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')
@@ -285,9 +290,9 @@ public class Browser {
 					}
 				}
 			}
-			String[] messageArray = new String[1];
+			@NotNull String[] messageArray = new String[1];
 			messageArray[0] = sb.toString();
-			String command = null;
+			@Nullable String command = null;
 			boolean found = false;
 			// try each of the exec commands until something works
 			try {
@@ -296,13 +301,13 @@ public class Browser {
 						// stick the url into the command
 						command = MessageFormat.format(exec[i], messageArray);
 						// parse the command line.
-						Vector argsVector = new Vector();
-						BrowserCommandLexer lex = new BrowserCommandLexer(new StringReader(command));
+						@NotNull Vector argsVector = new Vector();
+						@Nullable BrowserCommandLexer lex = new BrowserCommandLexer(new StringReader(command));
 						String t;
 						while ((t = lex.getNextToken()) != null) {
 							argsVector.add(t);
 						}
-						String[] args = new String[argsVector.size()];
+						@NotNull String[] args = new String[argsVector.size()];
 						args = (String[])argsVector.toArray(args);
 						// the windows url protocol handler doesn't work well with file URLs.
 						// Correct those problems here before continuing
@@ -326,10 +331,10 @@ public class Browser {
 							}
 						}
 						if (useShortCut){
-							File shortcut = File.createTempFile("OpenInBrowser", ".url");
+							@NotNull File shortcut = File.createTempFile("OpenInBrowser", ".url");
 							shortcut = shortcut.getCanonicalFile();
 							shortcut.deleteOnExit();
-							PrintWriter out = new PrintWriter(new FileWriter(shortcut));
+							@NotNull PrintWriter out = new PrintWriter(new FileWriter(shortcut));
 							out.println("[InternetShortcut]");
 							out.println("URL=" + args[2]);
 							out.close();
@@ -385,7 +390,7 @@ public class Browser {
 	 * @param urls the list of urls to display
 	 * @throws IOException if the url is not valid or the browser fails to star
 	 */
-	public static void displayURLs(String[] urls) throws IOException {
+	public static void displayURLs(@Nullable String[] urls) throws IOException {
 		if (urls == null || urls.length == 0){
 			return;
 		}
@@ -393,10 +398,10 @@ public class Browser {
 			displayURL(urls[0]);
 			return;
 		}
-		File shortcut = File.createTempFile("DisplayURLs", ".html");
+		@NotNull File shortcut = File.createTempFile("DisplayURLs", ".html");
 		shortcut = shortcut.getCanonicalFile();
 		shortcut.deleteOnExit();
-		PrintWriter out = new PrintWriter(new FileWriter(shortcut));
+		@NotNull PrintWriter out = new PrintWriter(new FileWriter(shortcut));
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>" + labels.getString("html.openurls") + "</title>");
@@ -458,14 +463,14 @@ public class Browser {
 	 * @param urls the list of urls to display
 	 * @throws IOException if the url is not valid or the browser fails to star
 	 */
-	public static void displayURLsinNew(String[] urls) throws IOException {
+	public static void displayURLsinNew(@Nullable String[] urls) throws IOException {
 		if (urls == null || urls.length == 0){
 			return;
 		}
-		File shortcut = File.createTempFile("DisplayURLs", ".html");
+		@NotNull File shortcut = File.createTempFile("DisplayURLs", ".html");
 		shortcut.deleteOnExit();
 		shortcut = shortcut.getCanonicalFile();
-		PrintWriter out = new PrintWriter(new FileWriter(shortcut));
+		@NotNull PrintWriter out = new PrintWriter(new FileWriter(shortcut));
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>" + labels.getString("html.openurls") + "</title>");
@@ -534,14 +539,14 @@ public class Browser {
 	 * @param namedWindows the list of names for the windows.
 	 * @throws IOException if the url is not valid or the browser fails to star
 	 */
-	public static void displayURLs(String[] urls, String[] namedWindows) throws IOException {
+	public static void displayURLs(@Nullable String[] urls, @Nullable String[] namedWindows) throws IOException {
 		if (urls == null || urls.length == 0){
 			return;
 		}
-		File shortcut = File.createTempFile("DisplayURLs", ".html");
+		@NotNull File shortcut = File.createTempFile("DisplayURLs", ".html");
 		shortcut.deleteOnExit();
 		shortcut = shortcut.getCanonicalFile();
-		PrintWriter out = new PrintWriter(new FileWriter(shortcut));
+		@NotNull PrintWriter out = new PrintWriter(new FileWriter(shortcut));
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>" + labels.getString("html.openurls") + "</title>");
@@ -587,7 +592,7 @@ public class Browser {
 	 *
 	 * @param args Command line arguments (URLs)
 	 */
-	public static void main(String[] args){
+	public static void main(@NotNull String[] args){
 		try {
 			Browser.init();
 			if (Browser.dialogConfiguration(null)){
@@ -644,7 +649,7 @@ public class Browser {
 	 * @param props contains the strings used in the dialog.
 	 * @deprecated  Use the com.bovilexics.javaph.util.Browser resource bundle to set strings for the given locale.
 	 */
-	public static boolean dialogConfiguration(Component owner, Properties props){
+	public static boolean dialogConfiguration(Component owner, @Nullable Properties props){
 		if (Browser.dialog == null){
 			Browser.dialog = new BrowserDialog(owner);
 		}
@@ -672,7 +677,7 @@ public class Browser {
 		 *
 		 * @deprecated  Use the com.bovilexics.javaph.util.Browser resource bundle to set strings for the given locale.
 		 */
-		private void setProps(Properties props){
+		private void setProps(@NotNull Properties props){
 			if (props.containsKey("com.bovilexics.javaph.util.BrowserDialog.title")){
 				setTitle(props.getProperty("com.bovilexics.javaph.util.BrowserDialog.title"));
 			}
@@ -773,7 +778,7 @@ public class Browser {
 		 */
 		protected void dialogInit(){
 			commandLinesArea = new JTextArea("", 8, 40);
-			JScrollPane scrollpane = new JScrollPane(commandLinesArea);
+			@NotNull JScrollPane scrollpane = new JScrollPane(commandLinesArea);
 			okButton = new JButton(labels.getString("dialog.ok"));
 			cancelButton = new JButton(labels.getString("dialog.cancel"));
 			resetButton = new JButton(labels.getString("dialog.reset"));
@@ -786,8 +791,8 @@ public class Browser {
 
 			super.dialogInit();
 
-			ActionListener actionListener = new ActionListener() {
-				public void actionPerformed(ActionEvent e){
+			@NotNull ActionListener actionListener = new ActionListener() {
+				public void actionPerformed(@NotNull ActionEvent e){
 					Object source = e.getSource();
 					if (source == resetButton){
 						setCommands(Browser.defaultCommands());
@@ -796,8 +801,8 @@ public class Browser {
 							fileChooser = new JFileChooser();
 						}
 						if (fileChooser.showOpenDialog(BrowserDialog.this) == JFileChooser.APPROVE_OPTION){
-							String app = fileChooser.getSelectedFile().getPath();
-							StringBuffer sb = new StringBuffer(2 * app.length());
+							@NotNull String app = fileChooser.getSelectedFile().getPath();
+							@NotNull StringBuffer sb = new StringBuffer(2 * app.length());
 							for (int i=0; i<app.length(); i++){
 								char c = app.charAt(i);
 								// escape these two characters so that we can later parse the stuff
@@ -823,11 +828,11 @@ public class Browser {
 				}
 			};
 
-			GridBagLayout gridbag = new GridBagLayout();
-			GridBagConstraints c = new GridBagConstraints();
+			@NotNull GridBagLayout gridbag = new GridBagLayout();
+			@NotNull GridBagConstraints c = new GridBagConstraints();
 			c.insets.top = 5;
 			c.insets.bottom = 5;
-			JPanel pane = new JPanel(gridbag);
+			@NotNull JPanel pane = new JPanel(gridbag);
 			pane.setBorder(BorderFactory.createEmptyBorder(10, 20, 5, 20));
 			// JLabel label;
 
@@ -841,7 +846,7 @@ public class Browser {
 			c.gridwidth = GridBagConstraints.RELATIVE;
 			gridbag.setConstraints(commandLinesLabel, c);
 			pane.add(commandLinesLabel);
-			JPanel buttonPanel = new JPanel();
+			@NotNull JPanel buttonPanel = new JPanel();
 			c.anchor = GridBagConstraints.EAST;
 			browseButton.addActionListener(actionListener);
 			buttonPanel.add(browseButton);
@@ -858,7 +863,7 @@ public class Browser {
 
 			c.gridy = 3;
 			c.anchor = GridBagConstraints.CENTER;
-			JPanel panel = new JPanel();
+			@NotNull JPanel panel = new JPanel();
 			okButton.addActionListener(actionListener);
 			panel.add(okButton);
 			cancelButton.addActionListener(actionListener);
@@ -879,9 +884,9 @@ public class Browser {
 			setCommands(Browser.exec);
 			super.show();
 			if (pressed_OK){
-				java.util.StringTokenizer tok = new java.util.StringTokenizer(commandLinesArea.getText(), "\r\n", false);
+				@NotNull java.util.StringTokenizer tok = new java.util.StringTokenizer(commandLinesArea.getText(), "\r\n", false);
 				int count = tok.countTokens();
-				String[] exec = new String[count];
+				@NotNull String[] exec = new String[count];
 				for (int i=0; i < count; i++){
 					exec[i] = tok.nextToken();
 				}
@@ -889,8 +894,8 @@ public class Browser {
 			}
 		}
 
-		private void setCommands(String[] exec){
-			StringBuffer sb = new StringBuffer();
+		private void setCommands(@Nullable String[] exec){
+			@NotNull StringBuffer sb = new StringBuffer();
 			for (int i=0; exec != null && i < exec.length; i++){
 				sb.append(exec[i]).append('\n');
 			}

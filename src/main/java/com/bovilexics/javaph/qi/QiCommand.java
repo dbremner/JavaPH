@@ -39,6 +39,9 @@ package com.bovilexics.javaph.qi;
 	stop
 */
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 
  * Commands supported by Qi
@@ -67,7 +70,8 @@ public class QiCommand
 	public static final String STATUS	= "status";
 	public static final String STOP		= "stop";
 
-	public static QiCommand[] commands = 
+	@NotNull
+	public static QiCommand[] commands =
 	{
 		new QiCommand(QUERY, "Query", true, true),
 		new QiCommand(FIELDS, "Fields", false, false),
@@ -80,6 +84,7 @@ public class QiCommand
 	private boolean textEditable = false;
 
 	private String description;	
+	@Nullable
 	private String name;
 
 	public static boolean isValidCommand(String command)
@@ -96,7 +101,7 @@ public class QiCommand
 	{
 	}
 	
-	private QiCommand(String aName, String aDescription, boolean isTextEditable, boolean isListEditable)
+	private QiCommand(@Nullable String aName, String aDescription, boolean isTextEditable, boolean isListEditable)
 	{
 		if (aName == null)
 			throw new IllegalArgumentException("Error: null Name value passed into QiCommand");
@@ -107,16 +112,19 @@ public class QiCommand
 		listEditable = isListEditable;
 	}
 
+	@NotNull
 	public String getCommand()
 	{
 		return name + " ";
 	}
 	
+	@Nullable
 	public String getDescription()
 	{
 		return (description == null) ? name : description;
 	}
 
+	@Nullable
 	public String getName()
 	{
 		return name;

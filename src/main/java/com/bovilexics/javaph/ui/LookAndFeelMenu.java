@@ -35,6 +35,8 @@ import com.bovilexics.javaph.JavaPH;
 import com.sun.java.swing.plaf.mac.MacLookAndFeel;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -53,23 +55,31 @@ public class LookAndFeelMenu extends JMenu
 	private boolean motifSupported = new MotifLookAndFeel().isSupportedLookAndFeel();
 	private boolean windowsSupported = new WindowsLookAndFeel().isSupportedLookAndFeel();
 
-	private JMenuItem restoreDefaultItem = null;
-	private JMenuItem storeDefaultItem = null;
+	@Nullable
+    private JMenuItem restoreDefaultItem = null;
+	@Nullable
+    private JMenuItem storeDefaultItem = null;
 
-	private JRadioButtonMenuItem macItem = null;
-	private JRadioButtonMenuItem metalItem = null;
-	private JRadioButtonMenuItem motifItem = null;
-	private JRadioButtonMenuItem windowsItem = null;
+	@Nullable
+    private JRadioButtonMenuItem macItem = null;
+	@Nullable
+    private JRadioButtonMenuItem metalItem = null;
+	@Nullable
+    private JRadioButtonMenuItem motifItem = null;
+	@Nullable
+    private JRadioButtonMenuItem windowsItem = null;
 
-	private JavaPH parent = null;
+	@Nullable
+    private JavaPH parent = null;
 	
-	private MouseListener mouseListener = null;
+	@Nullable
+    private MouseListener mouseListener = null;
 
 	class LookAndFeelItemListener implements ActionListener
 	{
-		public void actionPerformed(ActionEvent ae)
+		public void actionPerformed(@NotNull ActionEvent ae)
 		{
-			JMenuItem src = (JMenuItem) ae.getSource();
+			@NotNull JMenuItem src = (JMenuItem) ae.getSource();
 		
 			if (src == restoreDefaultItem)
 			{
@@ -85,9 +95,9 @@ public class LookAndFeelMenu extends JMenu
 	
 	class LookAndFeelRadioListener implements ActionListener
 	{
-		public void actionPerformed(ActionEvent ae)
+		public void actionPerformed(@NotNull ActionEvent ae)
 		{
-			JRadioButtonMenuItem src = (JRadioButtonMenuItem) ae.getSource();
+			@NotNull JRadioButtonMenuItem src = (JRadioButtonMenuItem) ae.getSource();
 		
 			if (macSupported && src == macItem)
 			{
@@ -114,7 +124,7 @@ public class LookAndFeelMenu extends JMenu
 		{
 		}
 
-		public void mouseEntered(MouseEvent e)
+		public void mouseEntered(@NotNull MouseEvent e)
 		{
 			if (e.getSource() instanceof JMenuItem)
 				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
@@ -134,7 +144,7 @@ public class LookAndFeelMenu extends JMenu
 		}
 	}
 
-	public LookAndFeelMenu(JavaPH javaph)
+	public LookAndFeelMenu(@Nullable JavaPH javaph)
 	{
 		super("Look and Feel");
 		
@@ -145,10 +155,10 @@ public class LookAndFeelMenu extends JMenu
 
 		addMouseListener(getMouseListener());
 
-		ButtonGroup group = new ButtonGroup();
+		@NotNull ButtonGroup group = new ButtonGroup();
 
-		ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
-		ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
+		@NotNull ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
+		@NotNull ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
 
 		setActionCommand("Change look and feel");
 		setMnemonic(KeyEvent.VK_L);
@@ -217,7 +227,8 @@ public class LookAndFeelMenu extends JMenu
 		resetSelectedLookAndFeel();	
 	}
 
-	private MouseListener getMouseListener()
+	@Nullable
+    private MouseListener getMouseListener()
 	{
 		if (mouseListener == null)
 			mouseListener = new StatusMouseListener();

@@ -104,6 +104,8 @@ import com.bovilexics.javaph.ui.ServerRenderer;
 import com.bovilexics.javaph.ui.SplashWindow;
 import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
 import com.bovilexics.javaph.util.Browser;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 // TODO : Future : ability to add and remove servers
 // TODO : Future : ability to update server list from the web
@@ -130,13 +132,20 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	private AboutDialog aboutDialog;
 	private CustomButtonGroup fieldRadioGroup;
 	private FindDialog findDialog;
+	@NotNull
 	private Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
+	@Nullable
 	private ImageIcon fieldCustomOff;
+	@Nullable
 	private ImageIcon fieldCustomOn;
+	@Nullable
 	private ImageIcon fieldLoadOff;
+	@Nullable
 	private ImageIcon fieldLoadOn;
+	@NotNull
 	private Properties defaultProperties = new Properties();
-	private Properties properties = new Properties();	
+	@NotNull
+	private Properties properties = new Properties();
 	private PropertiesDialog propertiesDialog;
 	private ProgressMonitor fieldProgressMonitor; 
 	private ProgressMonitor queryProgressMonitor;
@@ -146,7 +155,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	private QueryToolBar queryToolBar;
 	private ResultTable resultTable;
 	private SplashWindow splashWindow;
+	@Nullable
 	private String customFieldSeparator = CUSTOM_SEPARATOR;
+	@Nullable
 	private String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
 	private Vector servers;
@@ -155,11 +166,13 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	
 	private JButton colListSelectAllButton;
 	private JButton colListSelectNoneButton;
+	@Nullable
 	private JButton fieldCustomButton;
 	private JButton fieldListMoveDnButton;
 	private JButton fieldListMoveUpButton;
 	private JButton fieldListSelectAllButton;
 	private JButton fieldListSelectNoneButton;
+	@Nullable
 	private JButton fieldLoadButton;
 	private JButton logClearButton;
 	private JButton queryButton;
@@ -191,7 +204,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class ControlTabDispatcher	implements KeyEventDispatcher
 	{
-		public boolean dispatchKeyEvent(KeyEvent ke)
+		public boolean dispatchKeyEvent(@NotNull KeyEvent ke)
 		{
 			if (ke.isControlDown() && ke.getKeyCode() == KeyEvent.VK_TAB)
 			{
@@ -261,9 +274,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			add(getQueryButtonPanel(javaph), BorderLayout.EAST);
 		}
 
+		@NotNull
 		private JPanel getQueryButtonPanel(final JavaPH javaph)
 		{
-			JPanel queryButtonPanel = new JPanel(new FlowLayout());
+			@NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
 			
 			queryButton = new JButton("Execute Query");
 			queryButton.setMnemonic(KeyEvent.VK_Q);
@@ -275,7 +289,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 					if (queryComboBox.isEnabled())
 					{
 						Object selectedItem = queryComboBox.getEditor().getItem();
-						QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
+						@NotNull QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
 		
 						if (selectedItem != null && !selectedItem.toString().equals(""))
 						{
@@ -287,7 +301,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 					}
 					
 					queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
-					QueryThread qt = new QueryThread(javaph);
+					@NotNull QueryThread qt = new QueryThread(javaph);
 					qt.start();
 				}
 			});
@@ -297,9 +311,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return queryButtonPanel;
 		}
 
+		@NotNull
 		private JPanel getQueryCommandPanel()
 		{
-			JPanel queryCommandPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel queryCommandPanel = new JPanel(new BorderLayout());
 
 			commandComboBox = new JComboBox(commands);
 			commandComboBox.addActionListener(new ActionListener()
@@ -328,7 +343,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				{
 				}
 				
-				public void keyReleased(KeyEvent ke)
+				public void keyReleased(@NotNull KeyEvent ke)
 				{
 					if (ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_ESCAPE)
 					{
@@ -368,9 +383,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return queryCommandPanel;
 		}
 
+		@NotNull
 		private JPanel getQueryContentPanel()
 		{
-			JPanel queryContentPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel queryContentPanel = new JPanel(new BorderLayout());
 
 			queryContentPanel.add(getQueryServerPanel(), BorderLayout.NORTH);
 			queryContentPanel.add(getQueryCommandPanel(), BorderLayout.CENTER);
@@ -379,9 +395,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return queryContentPanel;
 		}
 
+		@NotNull
 		private JPanel getQueryFieldPanel()
 		{
-			JPanel queryFieldPanel = new JPanel();
+			@NotNull JPanel queryFieldPanel = new JPanel();
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
 
 			fieldRadioGroup = new CustomButtonGroup();
@@ -473,7 +490,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			{
 				public void actionPerformed(ActionEvent ae)
 				{
-					QiServer server = (QiServer)serverComboBox.getSelectedItem();
+					@Nullable QiServer server = (QiServer)serverComboBox.getSelectedItem();
 				
 					if (server != null)
 					{
@@ -495,9 +512,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return queryFieldPanel;
 		}
 
+		@NotNull
 		private JPanel getQueryLabelPanel()
 		{
-			JPanel queryLabelPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel queryLabelPanel = new JPanel(new BorderLayout());
 
 			queryLabelPanel.add(new JLabel(SERVER_LABEL_PREFIX), BorderLayout.NORTH);
 			queryLabelPanel.add(new JLabel(QUERY_LABEL_PREFIX), BorderLayout.CENTER);
@@ -506,9 +524,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return queryLabelPanel;
 		}
 
+		@NotNull
 		private JPanel getQueryServerPanel()
 		{
-			JPanel queryServerPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel queryServerPanel = new JPanel(new BorderLayout());
 
 			serverComboBox = new JComboBox(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
@@ -516,11 +535,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			{
 				public void actionPerformed(ActionEvent ae)
 				{
-					QiServer server = (QiServer)serverComboBox.getSelectedItem();
+					@NotNull QiServer server = (QiServer)serverComboBox.getSelectedItem();
 					String serverText = server.getServer();
 					
-					Integer portInt = server.getPort();
-					String portText = portInt.toString();
+					@Nullable Integer portInt = server.getPort();
+					@NotNull String portText = portInt.toString();
 					
 					serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
 					portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
@@ -550,10 +569,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			// when the custom field button is activated
 			fieldListPanel = new JPanel(new BorderLayout());
 			
-			JPanel fieldListControlPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel fieldListControlPanel = new JPanel(new BorderLayout());
 			fieldListControlPanel.setBorder(BorderFactory.createEtchedBorder());
 			
-			JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
+			@NotNull JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
 
 			fieldListSelectAllButton = new JButton("Select All");
 			fieldListSelectAllButton.addActionListener(new ActionListener()
@@ -689,9 +708,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				add(logTextPanel, SYSTEM_LOG_LABEL);
 		}
 
+		@NotNull
 		private JPanel getResultTablePanel()
 		{
-			JPanel resultTablePanel = new JPanel(new BorderLayout());
+			@NotNull JPanel resultTablePanel = new JPanel(new BorderLayout());
 
 			resultTable = new ResultTable();
 			resultTable.setColumnSelectionAllowed(false);
@@ -708,10 +728,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				}
 			});
 				
-			JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();	
+			@NotNull JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
-				public void mouseClicked(MouseEvent me)
+				public void mouseClicked(@NotNull MouseEvent me)
 				{
 					TableColumnModel tcm = resultTable.getColumnModel();
 					int vc = tcm.getColumnIndexAtX(me.getX());
@@ -721,7 +741,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				}
 			});
 
-			JPanel resultControlPanel = new JPanel();
+			@NotNull JPanel resultControlPanel = new JPanel();
 			resultTableColButton = new JButton("Show/Hide Columns");
 			resultTableColButton.setEnabled(false);
 			resultTableColButton.addActionListener(new ActionListener()
@@ -780,16 +800,17 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return resultTablePanel;
 		}
 		
+		@NotNull
 		private JPanel getResultTextPanel()
 		{
-			JPanel resultTextPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel resultTextPanel = new JPanel(new BorderLayout());
 
 			resultText = new JTextArea();
 			resultText.setEditable(false);
 			resultText.setFont(fixedWidthFont);
 			resultTextScroll = new JScrollPane(resultText);
 
-			JButton selectAllButton = new JButton("Select All");
+			@NotNull JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(new ActionListener()
 			{
@@ -810,7 +831,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				}
 			});
 	
-			JPanel resultControlPanel = new JPanel();
+			@NotNull JPanel resultControlPanel = new JPanel();
 			resultControlPanel.add(selectAllButton);
 			resultControlPanel.add(resultWrapCheckBox);
 	
@@ -827,10 +848,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			// when the custom field button is activated
 			colListPanel = new JPanel(new BorderLayout());
 			
-			JPanel colListControlPanel = new JPanel(new BorderLayout());
+			@NotNull JPanel colListControlPanel = new JPanel(new BorderLayout());
 			colListControlPanel.setBorder(BorderFactory.createEtchedBorder());
 
-			JPanel colListButtonPanel = new JPanel(new FlowLayout());
+			@NotNull JPanel colListButtonPanel = new JPanel(new FlowLayout());
 
 			colListSelectAllButton = new JButton("Select All");
 			colListSelectAllButton.addActionListener(new ActionListener()
@@ -897,7 +918,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			logText.setFont(fixedWidthFont);
 			logTextScroll = new JScrollPane(logText);
 
-			JButton selectAllButton = new JButton("Select All");
+			@NotNull JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(new ActionListener()
 			{
@@ -929,7 +950,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				}
 			});
 	
-			JPanel logControlPanel = new JPanel();
+			@NotNull JPanel logControlPanel = new JPanel();
 			logControlPanel.add(logClearButton);
 			logControlPanel.add(selectAllButton);
 			logControlPanel.add(logWrapCheckBox);
@@ -946,11 +967,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			setLayout(new BorderLayout());
 
-			JPanel leftPanel = new JPanel();
+			@NotNull JPanel leftPanel = new JPanel();
 			leftPanel.setBorder(BorderFactory.createEtchedBorder());
 			leftPanel.setLayout(new BorderLayout());
 
-			JPanel rightPanel = new JPanel();
+			@NotNull JPanel rightPanel = new JPanel();
 			rightPanel.setLayout(new BorderLayout());
 
 			add(leftPanel, BorderLayout.CENTER);
@@ -976,8 +997,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public static void main(String[] args)
 	{
-		final JavaPH applet = new JavaPH(false);
-		final JFrame frame = new JFrame();
+		@NotNull final JavaPH applet = new JavaPH(false);
+		@NotNull final JFrame frame = new JFrame();
 
 		int frameHeight = applet.getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = applet.getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
@@ -1067,7 +1088,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		isApplet = runningAsApplet;		
 	}
 
-	public void findText(String text, boolean caseSensitive, boolean wrap)
+	public void findText(@NotNull String text, boolean caseSensitive, boolean wrap)
 	{
 		if (resultPanel.getSelectedIndex() == RESULT_TEXT_TAB)
 		{
@@ -1083,7 +1104,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		}
 	}
 
-	private void findTextInTable(JTable table, String text, boolean caseSensitive, boolean wrap)
+	private void findTextInTable(@NotNull JTable table, @NotNull String text, boolean caseSensitive, boolean wrap)
 	{
 		boolean inLastCell = false;
 		
@@ -1182,7 +1203,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		}
 	}
 
-	private void findTextInTextArea(JTextArea textArea, String text, boolean caseSensitive, boolean wrap)
+	private void findTextInTextArea(@NotNull JTextArea textArea, @NotNull String text, boolean caseSensitive, boolean wrap)
 	{
 		int startIndex;
 		
@@ -1224,9 +1245,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		}
 	}
 
+	@NotNull
 	public String getCommand()
 	{
-		StringBuffer out = new StringBuffer();
+		@NotNull StringBuffer out = new StringBuffer();
 		
 		out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
 		
@@ -1285,15 +1307,16 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return connection;
 	}
 
+	@Nullable
 	public String getFieldSeparator()
 	{
 		return fieldSeparator;
 	}
 
-	public int getIntProperty(String key, int defaultValue)
+	public int getIntProperty(@NotNull String key, int defaultValue)
 	{
 		int intValue;
-		String stringValue;
+		@Nullable String stringValue;
 		
 		try
 		{
@@ -1312,10 +1335,10 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return intValue;
 	}
 
-	public int getIntPropertyDefault(String key, int defaultValue)
+	public int getIntPropertyDefault(@NotNull String key, int defaultValue)
 	{
 		int intValue;
-		String stringValue;
+		@Nullable String stringValue;
 		
 		try
 		{
@@ -1334,6 +1357,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return intValue;
 	}
 
+	@Nullable
 	public String getLastCustomSeparator()
 	{
 		return customFieldSeparator;
@@ -1349,7 +1373,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return logText;
 	}
 
-	public String getProperty(String key)
+	@Nullable
+	public String getProperty(@NotNull String key)
 	{
 		return (properties == null) ? null : properties.getProperty(key);
 	}
@@ -1359,7 +1384,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return (properties == null) ? defaultValue : properties.getProperty(key, defaultValue);
 	}
 
-	public String getPropertyDefault(String key)
+	@Nullable
+	public String getPropertyDefault(@NotNull String key)
 	{
 		return (defaultProperties == null) ? null : defaultProperties.getProperty(key);
 	}
@@ -1409,12 +1435,14 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return resultText;
 	}
 
+	@Nullable
 	public QiServer getServer()
 	{
 		return (QiServer)serverComboBox.getSelectedItem();
 	}
 
-	public URL getURL(String location)
+	@Nullable
+	public URL getURL(@NotNull String location)
 	{
 		try
 		{
@@ -1597,7 +1625,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		}
 	}
 
-	private void loadFieldsForServer(QiServer server)
+	private void loadFieldsForServer(@NotNull QiServer server)
 	{
 		showStatus("Loading fields for " + server.getExpandedName(), true);
 
@@ -1649,8 +1677,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	private void populateColumnList()
 	{
-		TableSorter tableModel = (TableSorter)resultTable.getModel();
-		DefaultListModel listModel = (DefaultListModel)colList.getModel();
+		@NotNull TableSorter tableModel = (TableSorter)resultTable.getModel();
+		@NotNull DefaultListModel listModel = (DefaultListModel)colList.getModel();
 		listModel.removeAllElements();
 		
 		for (int i = 0; i < tableModel.getColumnCount(); i++)
@@ -1662,14 +1690,14 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			colList.setSelectionInterval(0, listModel.getSize() - 1);
 	}
 
-	private void populateFieldList(QiServer server)
+	private void populateFieldList(@NotNull QiServer server)
 	{
-		DefaultListModel model = (DefaultListModel)fieldList.getModel();
+		@NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
 		model.removeAllElements();
 					
 		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE)
 		{
-			Vector fields = server.getFields();
+			@NotNull Vector fields = server.getFields();
 						
 			for (int i = 0; i < fields.size(); i++)
 				model.addElement(fields.elementAt(i));
@@ -1684,14 +1712,14 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldLoadButton.setToolTipText("Load fields for the selected server");
 	}
 
-	public boolean propertyDefaultEquals(String key, String equalsValue)
+	public boolean propertyDefaultEquals(@NotNull String key, String equalsValue)
 	{
 		return propertyDefaultEquals(key, null, equalsValue);
 	}
 
-	public boolean propertyDefaultEquals(String key, String defaultValue, String equalsValue)
+	public boolean propertyDefaultEquals(@NotNull String key, @Nullable String defaultValue, String equalsValue)
 	{
-		String value = (defaultValue == null) ? getPropertyDefault(key) : getPropertyDefault(key, defaultValue); 
+		@Nullable String value = (defaultValue == null) ? getPropertyDefault(key) : getPropertyDefault(key, defaultValue);
 		
 		if (value == null)
 			return false;
@@ -1699,14 +1727,14 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			return value.equals(equalsValue);
 	}
 
-	public boolean propertyEquals(String key, String equalsValue)
+	public boolean propertyEquals(@NotNull String key, String equalsValue)
 	{
 		return propertyEquals(key, null, equalsValue);
 	}
 
-	public boolean propertyEquals(String key, String defaultValue, String equalsValue)
+	public boolean propertyEquals(@NotNull String key, @Nullable String defaultValue, String equalsValue)
 	{
-		String value = (defaultValue == null) ? getProperty(key) : getProperty(key, defaultValue); 
+		@Nullable String value = (defaultValue == null) ? getProperty(key) : getProperty(key, defaultValue);
 		
 		if (value == null)
 			return false;
@@ -1719,7 +1747,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), defaultPane);
 	}
 
-	public void restoreLookAndFeel(Component component)
+	public void restoreLookAndFeel(@NotNull Component component)
 	{
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), component);
 	}
@@ -1729,11 +1757,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		restoreLookAndFeel(lookAndFeel, defaultPane);
 	}
 
-	public void restoreLookAndFeel(String lookAndFeel, Component component)
+	public void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
 	{
 		int i;
 		
-		Component[] otherComponents = new Component[]
+		@NotNull Component[] otherComponents = new Component[]
 		{
 			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
 		};
@@ -1798,7 +1826,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		fieldQuoted = quoted;
 	}
 
-	public void setFieldSeparator(String separator)
+	public void setFieldSeparator(@Nullable String separator)
 	{
 		if (separator == null || separator.equals(""))
 			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");

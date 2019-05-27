@@ -34,6 +34,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -63,7 +65,8 @@ public class CsvFileChooserPanel extends JPanel
 		}
 	}
 
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 
 	private JCheckBox quotesCheckBox;
 
@@ -73,7 +76,7 @@ public class CsvFileChooserPanel extends JPanel
 	
 	private JTextField customTextField;
 	
-	public CsvFileChooserPanel(JavaPH javaph)
+	public CsvFileChooserPanel(@Nullable JavaPH javaph)
 	{
 		if (javaph == null)
 			throw new IllegalArgumentException("Error: null JavaPH value passed into CsvFileChooserPanel");
@@ -83,14 +86,14 @@ public class CsvFileChooserPanel extends JPanel
 		int horizStrut = 6;
 		int vertStrut = 2;
 		
-		RadioButtonListener listener = new RadioButtonListener();
+		@NotNull RadioButtonListener listener = new RadioButtonListener();
 		
 		setBorder(BorderFactory.createEtchedBorder());
 		setPreferredSize(new Dimension(120, 0));
 
-		JLabel label = new JLabel("Field Separator");
+		@NotNull JLabel label = new JLabel("Field Separator");
 		
-		ButtonGroup group = new ButtonGroup();
+		@NotNull ButtonGroup group = new ButtonGroup();
 		
 		commaRadioButton = new JRadioButton("Comma");
 		tabRadioButton = new JRadioButton("Tab");
@@ -123,7 +126,7 @@ public class CsvFileChooserPanel extends JPanel
 			{
 			}
 				
-			public void keyReleased(KeyEvent ke)
+			public void keyReleased(@NotNull KeyEvent ke)
 			{
 				if (!ke.isActionKey() && ke.getKeyCode() != KeyEvent.VK_BACK_SPACE)
 				{
@@ -142,8 +145,8 @@ public class CsvFileChooserPanel extends JPanel
 		quotesCheckBox.setSelected(parent.isFieldQuoted());
 		quotesCheckBox.setToolTipText("Add leading and trailing quotes to all table values");
 
-		GridBagLayout gbl = new GridBagLayout();
-		GridBagConstraints gbc = new GridBagConstraints();
+		@NotNull GridBagLayout gbl = new GridBagLayout();
+		@NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		setLayout(gbl);
 		

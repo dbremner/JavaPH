@@ -22,6 +22,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *
@@ -32,7 +33,7 @@ public class FindAction extends AbstractAction
 {
 	private JavaPH parent;
 
-	public FindAction(JavaPH javaph)
+	public FindAction(@NotNull JavaPH javaph)
 	{
 		super("Find", new ImageIcon(javaph.getURL("img/find.gif")));
 

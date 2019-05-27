@@ -29,6 +29,8 @@ import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiLine;
 import com.bovilexics.javaph.qi.QiProtocolException;
 import com.bovilexics.javaph.qi.QiServer;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 
@@ -73,24 +75,32 @@ public class ResultThread extends Thread
 
 	private JavaPH parent;
 
+	@Nullable
 	private Object[] headers = null;
+	@Nullable
 	private Object[][] values = null;
 
 	private QiConnection qiConnection;
 	private QiLine qiLine;
 
+	@Nullable
 	private String command;
 	private String commandLine;
+	@NotNull
 	private String epilogue = "";
+	@NotNull
 	private String prologue = "";
 	private String readFromServer;
 
 	// Seperator used in the display of queries which matched multiple records.
+	@NotNull
 	private String recordSeperator = "------------------------------------------------------------\n";
 
 	private StringBuffer rawResult;
 
+	@NotNull
 	private Vector records = new Vector();
+	@NotNull
 	private Vector record = new Vector();
 
 	public ResultThread(String command, QiConnection connection)
@@ -98,7 +108,7 @@ public class ResultThread extends Thread
 		this(null, command, connection);
 	}
 
-	public ResultThread(String command, QiServer server)
+	public ResultThread(String command, @NotNull QiServer server)
 	{
 		this(null, command, new QiConnection(server));
 	}
@@ -129,14 +139,15 @@ public class ResultThread extends Thread
 	 * e.g. fieldValue(0, email, false) will return the contents of the "email"
 	 *      field of the first record in our result with all newlines intact.
 	 */
+	@Nullable
 	public synchronized String fieldValue(int record, String field, boolean replaceNewlines)
 	{
 		boolean gotField = false;
 		
-		StringBuffer out = new StringBuffer();
+		@NotNull StringBuffer out = new StringBuffer();
 		
-		QiLine qiLine = null;
-		Vector records = null;
+		@Nullable QiLine qiLine = null;
+		@Nullable Vector records = null;
 
 		if ((records = (Vector) records.elementAt(record)) == null)
 			return null;
@@ -161,16 +172,19 @@ public class ResultThread extends Thread
 		return out.toString();
 	}
 
+	@Nullable
 	public synchronized String getCommand()
 	{
 		return command;
 	}
 
+	@Nullable
 	public synchronized String getEpilogue()
 	{
 		return state == RS_OK ? epilogue : null;
 	}
 
+	@Nullable
 	public String getErrorString()
 	{
 		return state == RS_ERROR || state == RS_UNKNOWN ? prologue : null;
@@ -181,6 +195,7 @@ public class ResultThread extends Thread
 		return state == RS_OK ? headers.length : 0;
 	}
 
+	@Nullable
 	public synchronized Object[] getHeaders()
 	{
 		return state == RS_OK ? headers : null;
@@ -191,6 +206,7 @@ public class ResultThread extends Thread
 		return lastCode;
 	}
 
+	@Nullable
 	public synchronized String getPrologue()
 	{
 		return state == RS_OK ? prologue : null;
@@ -201,16 +217,19 @@ public class ResultThread extends Thread
 		return state == RS_OK ? records.size() : -1;
 	}
 
+	@NotNull
 	public synchronized Vector getRecords()
 	{
 		return state == RS_OK ? (Vector)records.clone() : new Vector();
 	}
 
+	@Nullable
 	public synchronized String getRawResult()
 	{
 		return state == RS_OK && rawResult.length() > 0 ? rawResult.toString() : null;
 	}
 
+	@Nullable
 	public synchronized Object[][] getValues()
 	{
 		return state == RS_OK ? values : null;
@@ -404,7 +423,7 @@ public class ResultThread extends Thread
 			return;
 		
 		String field, lastField = "unknown";
-		Vector uniqueHeaders = new Vector();
+		@NotNull Vector uniqueHeaders = new Vector();
 		Vector currentQiLine;
 		
 		for (int i = 0; i < records.size(); i++)
@@ -515,7 +534,7 @@ public class ResultThread extends Thread
 			state = RS_ERROR;
 			prologue = qiLine.getResponse();
 			
-			String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer; 
+			@NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
 			
 			if (parent == null)
 				System.err.println(message);
@@ -586,7 +605,7 @@ public class ResultThread extends Thread
 				}
 				else
 				{
-					String message = "Couldn't find header for this column: " + thisQiLine.toString();
+					@NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
 					
 					if (parent == null)
 						System.err.println(message);
@@ -735,7 +754,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private void writeQi(String aString) throws IOException
+	private void writeQi(@NotNull String aString) throws IOException
 	{
 		try
 		{

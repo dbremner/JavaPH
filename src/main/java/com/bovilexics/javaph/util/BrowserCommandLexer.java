@@ -16,6 +16,9 @@
  */
 package com.bovilexics.javaph.util;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,14 +29,14 @@ import java.io.Reader;
 class BrowserCommandLexer
 {
 
-    private static void main(String args[])
+    private static void main(@NotNull String args[])
     {
         try
         {
             Object obj;
             if(args.length > 0)
             {
-                File file = new File(args[0]);
+                @NotNull File file = new File(args[0]);
                 if(file.exists())
                 {
                     if(file.canRead())
@@ -48,8 +51,8 @@ class BrowserCommandLexer
             {
                 obj = System.in;
             }
-            BrowserCommandLexer browsercommandlexer = new BrowserCommandLexer(((InputStream) (obj)));
-            String s;
+            @NotNull BrowserCommandLexer browsercommandlexer = new BrowserCommandLexer(((InputStream) (obj)));
+            @Nullable String s;
             while((s = browsercommandlexer.getNextToken()) != null) 
                 System.out.println(s);
         }
@@ -59,9 +62,10 @@ class BrowserCommandLexer
         }
     }
 
-    private static String unescape(String s)
+    @NotNull
+    private static String unescape(@NotNull String s)
     {
-        StringBuffer stringbuffer = new StringBuffer(s.length());
+        @NotNull StringBuffer stringbuffer = new StringBuffer(s.length());
         for(int i = 0; i < s.length(); i++)
         {
             if(s.charAt(i) == '\\' && i < s.length())
@@ -80,20 +84,21 @@ class BrowserCommandLexer
         yy_reader = reader;
     }
 
-    BrowserCommandLexer(InputStream inputstream)
+    BrowserCommandLexer(@NotNull InputStream inputstream)
     {
         this(((Reader) (new InputStreamReader(inputstream))));
     }
 
+    @NotNull
     private static int[] yy_unpack()
     {
-        int ai[] = new int[36];
+        @NotNull int ai[] = new int[36];
         int i = 0;
         i = yy_unpack("\001\002\001\003\001\004\001\005\001\002\001\006\001\000\005\002\004\000\001\005\001\007\001\b\001\t\001\005\001\n\001\005\001\013\001\b\001\f\001\b\001\r\001\005\001\007\001\b\001\013\001\b\001\f\001\b\001\016", i, ai);
         return ai;
     }
 
-    private static int yy_unpack(String s, int i, int ai[])
+    private static int yy_unpack(@NotNull String s, int i, int ai[])
     {
         int j = 0;
         int k = i;
@@ -110,9 +115,10 @@ class BrowserCommandLexer
         return k;
     }
 
-    private static char[] yy_unpack_cmap(String s)
+    @NotNull
+    private static char[] yy_unpack_cmap(@NotNull String s)
     {
-        char ac[] = new char[0x10000];
+        @NotNull char ac[] = new char[0x10000];
         int i = 0;
         int j = 0;
         while(i < 26) 
@@ -140,7 +146,7 @@ class BrowserCommandLexer
         }
         if(yy_currentPos >= yy_buffer.length)
         {
-            char ac[] = new char[yy_currentPos * 2];
+            @NotNull char ac[] = new char[yy_currentPos * 2];
             System.arraycopy(yy_buffer, 0, ac, 0, yy_buffer.length);
             yy_buffer = ac;
         }
@@ -187,6 +193,7 @@ class BrowserCommandLexer
         yy_lexical_state = i;
     }
 
+    @NotNull
     public final String yytext()
     {
         return new String(yy_buffer, yy_startRead, yy_markedPos - yy_startRead);
@@ -223,15 +230,16 @@ class BrowserCommandLexer
         yy_markedPos -= i;
     }
 
+    @Nullable
     public String getNextToken()
         throws IOException
     {
         int i1 = yy_endRead;
         char ac[] = yy_buffer;
-        char ac1[] = yycmap;
-        int ai[] = yytrans;
-        int ai1[] = yy_rowMap;
-        byte abyte0[] = YY_ATTRIBUTE;
+        @NotNull char ac1[] = yycmap;
+        @NotNull int ai[] = yytrans;
+        @NotNull int ai1[] = yy_rowMap;
+        @NotNull byte abyte0[] = YY_ATTRIBUTE;
         do
         {
             int l = yy_markedPos;

@@ -31,6 +31,8 @@ import javax.swing.table.TableModel;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.ui.CsvFileChooser;
 import com.bovilexics.javaph.ui.TextFileChooser;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -41,7 +43,7 @@ public class SaveAction extends AbstractAction
 {
 	private JavaPH parent;
 		
-	public SaveAction(JavaPH javaph)
+	public SaveAction(@NotNull JavaPH javaph)
 	{
 		super("Save Results", new ImageIcon(javaph.getURL("img/save.gif")));
 
@@ -78,7 +80,7 @@ public class SaveAction extends AbstractAction
 		}
 	}
 	
-	private void saveCsvFile(int tab, File file)
+	private void saveCsvFile(int tab, @NotNull File file)
 	{
 		String message;
 		StringBuffer toWrite;
@@ -103,7 +105,7 @@ public class SaveAction extends AbstractAction
 		{
 			try
 			{
-				BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
 				// start at row -1 to grab headers first
 				for (r = -1; r < rows; r++)
@@ -147,10 +149,10 @@ public class SaveAction extends AbstractAction
 		}	
 	}
 	
-	private void saveTextFile(int tab, File file)
+	private void saveTextFile(int tab, @NotNull File file)
 	{
 		String message;
-		String toWrite = null; 
+		@Nullable String toWrite = null;
 		
 		if (tab == JavaPH.RESULT_TEXT_TAB)
 		{
@@ -171,7 +173,7 @@ public class SaveAction extends AbstractAction
 		{
 			try
 			{
-				BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 				writer.write(toWrite);
 				writer.flush();
 				writer.close();

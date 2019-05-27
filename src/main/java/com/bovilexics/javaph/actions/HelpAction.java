@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.util.Browser;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *
@@ -35,7 +36,7 @@ public class HelpAction extends AbstractAction
 {
 	private JavaPH parent;
 	
-	public HelpAction(JavaPH javaph)
+	public HelpAction(@NotNull JavaPH javaph)
 	{
 		super("Help Contents", new ImageIcon(javaph.getURL("img/help.gif")));
 		
@@ -52,7 +53,7 @@ public class HelpAction extends AbstractAction
 		}
 		catch (IOException e)
 		{
-			String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
+			@NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 		}

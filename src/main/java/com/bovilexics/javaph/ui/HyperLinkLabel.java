@@ -26,6 +26,8 @@ import javax.swing.JOptionPane;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.util.Browser;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -34,9 +36,10 @@ import com.bovilexics.javaph.util.Browser;
  */
 public class HyperLinkLabel extends JLabel
 {
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 
-	public HyperLinkLabel(JavaPH javaph, final String text, final String url)
+	public HyperLinkLabel(@Nullable JavaPH javaph, final String text, final String url)
 	{
 		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
 
@@ -58,7 +61,7 @@ public class HyperLinkLabel extends JLabel
 				}
 				catch (IOException e)
 				{
-					String message = "Error: IOException received when trying to open " + url;
+					@NotNull String message = "Error: IOException received when trying to open " + url;
 					parent.log(message);
 					JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 				}

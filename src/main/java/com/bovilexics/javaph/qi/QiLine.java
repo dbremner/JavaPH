@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  *
  * Break a Qi response down into its constituent parts.
@@ -40,21 +42,26 @@ public final class QiLine
 	private int index = 0;
 
 	// Set for those lines which are not field value responses (e.g. '200:Ok.')
-	private String response = "";
+	@NotNull
+    private String response = "";
 	
 	//  The field, if defined, (e.g. '    email') in this line
-	private String field = "";
+	@NotNull
+    private String field = "";
 	
 	// The value, if defined, (e.g. '  myemail') in this line
-	private String value = "";
+	@NotNull
+    private String value = "";
 	
 	// The field, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'email').
-	private String trimmedField = "";
+	@NotNull
+    private String trimmedField = "";
 
 	// The value, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'myemail').
-	private String trimmedValue = "";
+	@NotNull
+    private String trimmedValue = "";
 	
 	// Index of first colon --> -200:
 	private int colon1Index = -1;
@@ -82,7 +89,8 @@ public final class QiLine
 		return code;
 	}
 
-	public String getField()
+	@NotNull
+    public String getField()
 	{
 		return field;
 	}
@@ -92,22 +100,26 @@ public final class QiLine
 		return index;
 	}
 	
-	public String getResponse()
+	@NotNull
+    public String getResponse()
 	{
 		return response;
 	}
 
-	public String getTrimmedField()
+	@NotNull
+    public String getTrimmedField()
 	{
 		return trimmedField;
 	}
 
-	public String getTrimmedValue()
+	@NotNull
+    public String getTrimmedValue()
 	{
 		return trimmedValue;
 	}
 	
-	public String getValue()
+	@NotNull
+    public String getValue()
 	{
 		return value;
 	}
@@ -185,9 +197,10 @@ public final class QiLine
 		trimmedValue = value == null ? "" : value.trim();
 	}
 	
-	public String toString()
+	@NotNull
+    public String toString()
 	{
-		StringBuffer out = new StringBuffer();
+		@NotNull StringBuffer out = new StringBuffer();
 		
 		out.append(verbatim);
 		out.append(" --> ");

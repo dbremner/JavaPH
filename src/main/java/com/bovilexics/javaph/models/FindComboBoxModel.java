@@ -16,6 +16,9 @@
  */
 package com.bovilexics.javaph.models;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -29,7 +32,7 @@ import javax.swing.MutableComboBoxModel;
  */
 public class FindComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
 {
-	Object selectedObject;
+	@Nullable Object selectedObject;
 
 	Vector allObjects;
 	Vector objects;
@@ -49,7 +52,7 @@ public class FindComboBoxModel extends AbstractListModel implements MutableCombo
 	 *
 	 * @param items  an array of Object objects
 	 */
-	public FindComboBoxModel(final Object items[])
+	public FindComboBoxModel(@NotNull final Object items[])
 	{
 		objects = new Vector();
 		objects.ensureCapacity( items.length );
@@ -93,7 +96,7 @@ public class FindComboBoxModel extends AbstractListModel implements MutableCombo
 			insertElementAt(anObject, 0);
 	}
 
-	public void filterElements(String filter)
+	public void filterElements(@Nullable String filter)
 	{
 		Object anObject;
 		
@@ -125,7 +128,8 @@ public class FindComboBoxModel extends AbstractListModel implements MutableCombo
 	}
 
 	// implements javax.swing.ListModel
-	public Object getElementAt(int index)
+	@Nullable
+    public Object getElementAt(int index)
 	{
 		if (index >= 0 && index < objects.size())
 			return objects.elementAt(index);
@@ -134,7 +138,8 @@ public class FindComboBoxModel extends AbstractListModel implements MutableCombo
 	}
 
 	// implements javax.swing.ComboBoxModel
-	public Object getSelectedItem()
+	@Nullable
+    public Object getSelectedItem()
 	{
 		return selectedObject;
 	}
@@ -220,7 +225,7 @@ public class FindComboBoxModel extends AbstractListModel implements MutableCombo
 	 * <p>
 	 * @param anObject The combo box value or null for no selection.
 	 */
-	public void setSelectedItem(Object anObject)
+	public void setSelectedItem(@Nullable Object anObject)
 	{
 		if ((selectedObject != null && !selectedObject.equals(anObject))
 			|| selectedObject == null

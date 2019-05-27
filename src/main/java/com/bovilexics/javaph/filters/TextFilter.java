@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.filters;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 
 /**
@@ -25,16 +27,17 @@ import java.io.File;
  */
 public class TextFilter extends SuffixAwareFilter
 {
-	public boolean accept(File f)
+	public boolean accept(@NotNull File f)
 	{
-		String suffix = (getSuffix(f) == null) ? "" : getSuffix(f);
+		@NotNull String suffix = (getSuffix(f) == null) ? "" : getSuffix(f);
 		
 		return super.accept(f)
 			|| suffix.equals("txt")
 			|| suffix.equals("csv");
 	}
 
-	public String getDescription()
+	@NotNull
+    public String getDescription()
 	{
 		return "Text Files(*.txt, *.csv)";
 	}

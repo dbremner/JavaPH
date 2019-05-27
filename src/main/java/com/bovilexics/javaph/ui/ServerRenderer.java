@@ -15,6 +15,7 @@ import javax.swing.ListCellRenderer;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Robert Fernandes
@@ -23,7 +24,7 @@ public class ServerRenderer extends DefaultListCellRenderer implements ListCellR
 {
 	private ImageIcon[] icons;
 	
-	public ServerRenderer(JavaPH javaph)
+	public ServerRenderer(@NotNull JavaPH javaph)
 	{
 		icons = new ImageIcon[]
 	   {
@@ -34,7 +35,8 @@ public class ServerRenderer extends DefaultListCellRenderer implements ListCellR
 	   };
 	}
 	
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus)
+	@NotNull
+	public Component getListCellRendererComponent(@NotNull JList list, @NotNull Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 

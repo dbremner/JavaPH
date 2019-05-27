@@ -16,6 +16,9 @@
  */
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -47,6 +50,7 @@ public class QiConnection
 	private QiLine qiQiLine;
 	private QiServer qiServer;
 	private Socket socket;
+	@Nullable
 	private Thread locker;
 		
 	protected BufferedReader fromServer;
@@ -64,7 +68,7 @@ public class QiConnection
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
 	 * <b>connect(host, port)</b>
 	 */
-	public QiConnection(QiServer server)
+	public QiConnection(@NotNull QiServer server)
 	{
 		host = server.getServer();
 		port = server.getPort().intValue();
@@ -100,7 +104,7 @@ public class QiConnection
 		if (host == null || host.equals(""))
 			throw new IOException("No host specified, cannot connect");
 			
-		SocketAddress sockaddr = new InetSocketAddress(host, port);
+		@NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
 		socket = new Socket();
 		
 		// Timeout after 10 seconds
@@ -221,7 +225,7 @@ public class QiConnection
 	public synchronized void login(String anAlias, String aPassword) throws IOException, QiProtocolException
 	{
 		alias = anAlias;
-		String buffer, blurb = "";
+		@NotNull String buffer, blurb = "";
 		lock();
 
 		try
@@ -290,7 +294,7 @@ public class QiConnection
 	 */
 	public synchronized void logout() throws QiProtocolException, IOException
 	{
-		String buffer, blurb = "";
+		@NotNull String buffer, blurb = "";
 		
 		if (!authenticated)
 			return;
@@ -343,9 +347,10 @@ public class QiConnection
 		}
 	}
 
+	@NotNull
 	public String toString()
 	{
-		StringBuffer out = new StringBuffer();
+		@NotNull StringBuffer out = new StringBuffer();
 		
 		out.append(host);
 		out.append(":");
@@ -384,7 +389,7 @@ public class QiConnection
 		notify();
 	}
 
-	public void writeQI(String string) throws IOException
+	public void writeQI(@NotNull String string) throws IOException
 	{
 		if (toServer != null)
 		{

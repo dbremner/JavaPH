@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.models;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,14 +38,16 @@ public class ResultTableModel extends DefaultTableModel
 		resetModel();
 	}
 
-	public Object[] getDefaultHeaderArray()
+	@NotNull
+    public Object[] getDefaultHeaderArray()
 	{
 		return getDefaultHeaderArray(DEFAULT_COLS);
 	}
 	
-	public Object[] getDefaultHeaderArray(int cols)
+	@NotNull
+    public Object[] getDefaultHeaderArray(int cols)
 	{
-		Object[] headers = new Object[DEFAULT_COLS];
+		@NotNull Object[] headers = new Object[DEFAULT_COLS];
 		
 		for (int i = 0; i < DEFAULT_COLS; i++)
 			headers[i] = DEFAULT_HEADER;
@@ -51,14 +55,16 @@ public class ResultTableModel extends DefaultTableModel
 		return headers;	
 	}
 	
-	public Vector getDefaultHeaderVector()
+	@NotNull
+    public Vector getDefaultHeaderVector()
 	{
 		return getDefaultHeaderVector(DEFAULT_COLS);
 	}
 	
-	public Vector getDefaultHeaderVector(int cols)
+	@NotNull
+    public Vector getDefaultHeaderVector(int cols)
 	{
-		Vector headers = new Vector();
+		@NotNull Vector headers = new Vector();
 		
 		for (int i = 0; i < cols; i++)
 			headers.addElement(DEFAULT_HEADER);

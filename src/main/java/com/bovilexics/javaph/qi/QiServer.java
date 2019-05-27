@@ -28,6 +28,8 @@ import java.net.URL;
 import java.util.Vector;
 
 import com.bovilexics.javaph.threads.ResultThread;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 
@@ -49,16 +51,19 @@ public class QiServer
 	private static final String PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535";
 
 	private static QiServer defaultServer;
-	private static Vector servers = new Vector();
+	@NotNull
+    private static Vector servers = new Vector();
 
 	private String name;
 	private String server;
-	private Integer port;
-	private Vector fields = new Vector();
+	@Nullable
+    private Integer port;
+	@NotNull
+    private Vector fields = new Vector();
 	private int fieldState = FIELD_LOAD_FALSE;
 	private String fieldStateMessage;
 	
-	public QiServer(String aName, String aServer, Integer aPortInteger)
+	public QiServer(String aName, String aServer, @NotNull Integer aPortInteger)
 	{
 		if (!isValidPort(aPortInteger))
 			throw new IllegalArgumentException(PORT_ERROR);
@@ -68,9 +73,9 @@ public class QiServer
 		port = aPortInteger;
 	}
 
-	public QiServer(String aName, String aServer, String aPort)
+	public QiServer(String aName, String aServer, @NotNull String aPort)
 	{
-		Integer aPortInteger = null;
+		@Nullable Integer aPortInteger = null;
 		
 		try
 		{
@@ -90,7 +95,7 @@ public class QiServer
 	}
 
 
-	public static void addServer(QiServer server)
+	public static void addServer(@Nullable QiServer server)
 	{
 		int whereToAdd = -1;
 		
@@ -127,14 +132,16 @@ public class QiServer
 		servers.insertElementAt(server, whereToAdd);
 	}
 
-	public static QiServer getDefaultServer()
+	@NotNull
+    public static QiServer getDefaultServer()
 	{
 		return (defaultServer == null) ? new QiServer("undefined", "undefined", "0") : defaultServer;
 	}
 
-	public static String getFileHeader()
+	@NotNull
+    public static String getFileHeader()
 	{
-		StringBuffer out = new StringBuffer();
+		@NotNull StringBuffer out = new StringBuffer();
 		
 		out.append("# JavaPH Server File\n");
 		out.append("# \n");
@@ -145,7 +152,8 @@ public class QiServer
 		return out.toString();
 	}
 
-	public static Vector getServers()
+	@NotNull
+    public static Vector getServers()
 	{
 		return servers;
 	}
@@ -168,7 +176,7 @@ public class QiServer
 		loadAllServers(null);
 	}
 
-	public static void loadAllServers(URL useURL)
+	public static void loadAllServers(@Nullable URL useURL)
 	{
 		servers.removeAllElements();
 		
@@ -183,7 +191,7 @@ public class QiServer
 			else
 				in = new FileReader(SERVER_FILE);
 			
-			LineNumberReader lr = new LineNumberReader(in);
+			@NotNull LineNumberReader lr = new LineNumberReader(in);
 			
 			String line;
 			String[] items;
@@ -233,7 +241,7 @@ public class QiServer
 		
 		try
 		{
-			BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
+			@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
 
 			writer.write(getFileHeader());
 			writer.flush();
@@ -264,7 +272,7 @@ public class QiServer
 		}
 	}
 
-	public static void setDefaultServer(String server)
+	public static void setDefaultServer(@Nullable String server)
 	{
 		if (server == null)
 			return;
@@ -279,7 +287,7 @@ public class QiServer
 		}
 	}
 	
-	private void convertRecordsToFields(Vector records)
+	private void convertRecordsToFields(@NotNull Vector records)
 	{
 		fields = new Vector();
 		
@@ -332,9 +340,10 @@ public class QiServer
 		}
 	}
 	
-	public String getExpandedName()
+	@NotNull
+    public String getExpandedName()
 	{
-		StringBuffer out = new StringBuffer();
+		@NotNull StringBuffer out = new StringBuffer();
 		
 		out.append(name);
 		out.append(" (");
@@ -346,7 +355,8 @@ public class QiServer
 		return out.toString();
 	}
 
-	public Vector getFields()
+	@NotNull
+    public Vector getFields()
 	{
 		return (Vector)fields.clone();
 	}
@@ -369,7 +379,8 @@ public class QiServer
 		return name;
 	}
 	
-	public Integer getPort()
+	@Nullable
+    public Integer getPort()
 	{
 		return port;
 	}
@@ -379,7 +390,7 @@ public class QiServer
 		return server;
 	}
 
-	private boolean isValidPort(Integer port)
+	private boolean isValidPort(@NotNull Integer port)
 	{
 		return (port.intValue() >= 0 && port.intValue() <= 65535);
 	}
@@ -388,7 +399,7 @@ public class QiServer
 	{
 		int seconds = 0;
 
-		ResultThread resultThread = new ResultThread(QiCommand.FIELDS, this);
+		@Nullable ResultThread resultThread = new ResultThread(QiCommand.FIELDS, this);
 		resultThread.start();
 
 		while (seconds < QUERY_RUNTIME && !resultThread.isFinished())

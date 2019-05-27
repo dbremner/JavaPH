@@ -42,6 +42,8 @@ import com.bovilexics.javaph.actions.HelpAction;
 import com.bovilexics.javaph.actions.NewAction;
 import com.bovilexics.javaph.actions.PrefsAction;
 import com.bovilexics.javaph.actions.SaveAction;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -56,7 +58,7 @@ public class MainMenu extends JMenuBar
 		{
 		}
 
-		public void mouseEntered(MouseEvent e)
+		public void mouseEntered(@NotNull MouseEvent e)
 		{
 			if (e.getSource() instanceof JMenuItem)
 				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
@@ -78,12 +80,13 @@ public class MainMenu extends JMenuBar
 	
 	private MouseListener mouseListener;
 	
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 	private JCheckBoxMenuItem rollToolBarItem;
 	private JCheckBoxMenuItem showLogItem;
 	private JCheckBoxMenuItem showToolBarItem;
 	
-	public MainMenu(JavaPH javaph)
+	public MainMenu(@Nullable JavaPH javaph)
 	{
 		if (javaph == null)
 			throw new IllegalArgumentException("Error: null JavaPH value passed into MainMenu");	
@@ -111,11 +114,12 @@ public class MainMenu extends JMenuBar
 		add(menu);
 	}
 
-	private JMenu getEditComponent()
+	@NotNull
+    private JMenu getEditComponent()
 	{
 		JMenuItem menuItem;
 
-		JMenu editMenu = new JMenu("Edit");
+		@NotNull JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
 		menuItem = getNewMenuItem();
@@ -157,11 +161,12 @@ public class MainMenu extends JMenuBar
 		return editMenu;
 	}
 	
-	private JMenu getFileComponent()
+	@NotNull
+    private JMenu getFileComponent()
 	{
 		JMenuItem menuItem;
 
-		JMenu fileMenu = new JMenu("File");
+		@NotNull JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		
 		menuItem = getNewMenuItem();
@@ -193,11 +198,12 @@ public class MainMenu extends JMenuBar
 		return fileMenu;
 	}
 
-	private JMenu getHelpComponent()
+	@NotNull
+    private JMenu getHelpComponent()
 	{
 		JMenuItem menuItem;
 
-		JMenu helpMenu = new JMenu("Help");
+		@NotNull JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
 		menuItem = getNewMenuItem();
@@ -225,19 +231,21 @@ public class MainMenu extends JMenuBar
 		return mouseListener;
 	}
 
-	private JMenuItem getNewMenuItem()
+	@NotNull
+    private JMenuItem getNewMenuItem()
 	{
-		JMenuItem menuItem = new JMenuItem();
+		@NotNull JMenuItem menuItem = new JMenuItem();
 		menuItem.addMouseListener(getMouseListener());
 		
 		return menuItem;
 	}
 
-	private JMenu getWindowComponent()
+	@NotNull
+    private JMenu getWindowComponent()
 	{
 		JMenuItem menuItem;
 
-		JMenu windowMenu = new JMenu("Window");
+		@NotNull JMenu windowMenu = new JMenu("Window");
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
 		showLogItem = new JCheckBoxMenuItem("View System Log");
@@ -249,7 +257,7 @@ public class MainMenu extends JMenuBar
 		
 		showLogItem.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(ActionEvent ae)
+			public void actionPerformed(@NotNull ActionEvent ae)
 			{
 				// If the menu item was selected then just update
 				// the toolbar display to reflect the change,
@@ -274,7 +282,7 @@ public class MainMenu extends JMenuBar
 		
 		showToolBarItem.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(ActionEvent ae)
+			public void actionPerformed(@NotNull ActionEvent ae)
 			{
 				// If the menu item was selected then just update
 				// the toolbar display to reflect the change,
@@ -299,7 +307,7 @@ public class MainMenu extends JMenuBar
 		
 		rollToolBarItem.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(ActionEvent ae)
+			public void actionPerformed(@NotNull ActionEvent ae)
 			{
 				// If the menu item was selected then just update
 				// the toolbar display to reflect the change,

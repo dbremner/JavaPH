@@ -23,6 +23,8 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -31,7 +33,7 @@ import com.bovilexics.javaph.JavaPH;
  */
 public abstract class JavaPHDialog extends JDialog
 {
-	public JavaPHDialog(JavaPH javaph)
+	public JavaPHDialog(@Nullable JavaPH javaph)
 	{
 		if (javaph == null)
 			throw new IllegalArgumentException("Error: null JavaPH value passed into JavaPHDialog");
@@ -40,7 +42,7 @@ public abstract class JavaPHDialog extends JDialog
 		setIcon(new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));		
 	}
 	
-	protected void setIcon(ImageIcon icon)
+	protected void setIcon(@NotNull ImageIcon icon)
 	{
 		Frame frame = JOptionPane.getFrameForComponent(this);
 		frame.setIconImage(icon.getImage());

@@ -32,6 +32,8 @@ import javax.swing.JPanel;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -40,11 +42,12 @@ import com.bovilexics.javaph.JavaPHConstants;
  */
 public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 {
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 
 	private JButton okButton;
 
-	public AboutDialog(JavaPH javaph)
+	public AboutDialog(@Nullable JavaPH javaph)
 	{
 		super(javaph);
 
@@ -58,13 +61,13 @@ public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		
-		JPanel contentPanel = new JPanel(new BorderLayout());
+		@NotNull JPanel contentPanel = new JPanel(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createEtchedBorder());
 		contentPane.add(contentPanel, BorderLayout.CENTER);
 
-		JPanel imagePanel = new JPanel(new BorderLayout());
+		@NotNull JPanel imagePanel = new JPanel(new BorderLayout());
 		
-		JLabel phImageLabel = new JLabel();
+		@NotNull JLabel phImageLabel = new JLabel();
 		phImageLabel.setIcon(new ImageIcon(parent.getURL("img/ph-smaller.gif")));
 		
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
@@ -72,7 +75,7 @@ public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		contentPanel.add(imagePanel, BorderLayout.CENTER);
 		contentPanel.add(getInfoPanel(), BorderLayout.EAST);
 
-		JPanel buttonPanel = new JPanel();
+		@NotNull JPanel buttonPanel = new JPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 		
 		okButton = new JButton("OK");
@@ -89,15 +92,16 @@ public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		pack();
 	}
 	
-	private JPanel getInfoPanel()
+	@NotNull
+    private JPanel getInfoPanel()
 	{
 		int horizStrut = 6;
 		int vertStrut = 2;
 		
-		JPanel infoPanel = new JPanel();
+		@NotNull JPanel infoPanel = new JPanel();
 		
-		GridBagLayout gbl = new GridBagLayout();
-		GridBagConstraints gbc = new GridBagConstraints();
+		@NotNull GridBagLayout gbl = new GridBagLayout();
+		@NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		infoPanel.setLayout(gbl);
 		

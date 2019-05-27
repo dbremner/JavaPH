@@ -22,6 +22,8 @@ import javax.swing.SwingUtilities;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -32,14 +34,16 @@ public class QueryThread extends Thread
 {
 	private int seconds = 0;
 	
-	private JavaPH parent = null;
-	private ResultThread resultThread = null;
+	@Nullable
+    private JavaPH parent = null;
+	@Nullable
+    private ResultThread resultThread = null;
 
 	private QueryThread()
 	{
 	}
 
-	public QueryThread(JavaPH javaph)
+	public QueryThread(@Nullable JavaPH javaph)
 	{
 		if (javaph == null)
 			throw new IllegalArgumentException("Error: null JavaPH value passed into QueryThread");	
@@ -116,7 +120,7 @@ public class QueryThread extends Thread
 				parent.getQueryProgressMonitor().close();
 				parent.getResultText().setText(resultThread.getRawResult());
 				
-				ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel(); 
+				@NotNull ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
 				resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
 				parent.getResultTable().resetColumnWidths();
 			}

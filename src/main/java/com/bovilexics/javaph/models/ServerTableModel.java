@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.models;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,7 +29,7 @@ public class ServerTableModel extends DefaultTableModel
 {
 	public ServerTableModel()
 	{
-		Object[] headers = {"Name", "Server", "Port", "Description"};
+		@NotNull Object[] headers = {"Name", "Server", "Port", "Description"};
 		
 		setColumnIdentifiers(headers);
 		setRowCount(1);

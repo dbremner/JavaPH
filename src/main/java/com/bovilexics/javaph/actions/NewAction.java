@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *
@@ -34,7 +35,7 @@ public class NewAction extends AbstractAction
 {
 	private JavaPH parent;
 		
-	public NewAction(JavaPH javaph)
+	public NewAction(@NotNull JavaPH javaph)
 	{
 		super("New Query", new ImageIcon(javaph.getURL("img/new.gif")));
 			

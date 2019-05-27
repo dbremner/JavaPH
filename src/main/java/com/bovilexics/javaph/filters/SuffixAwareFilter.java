@@ -16,6 +16,9 @@
  */
 package com.bovilexics.javaph.filters;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
@@ -27,15 +30,16 @@ import javax.swing.filechooser.FileFilter;
  */
 public abstract class SuffixAwareFilter extends FileFilter
 {
-	public boolean accept(File f)
+	public boolean accept(@NotNull File f)
 	{
 		return f.isDirectory();
 	}
 
-	public String getSuffix(File f)
+	@Nullable
+    public String getSuffix(@NotNull File f)
 	{
-		String s = f.getPath();
-		String suffix = null;
+		@NotNull String s = f.getPath();
+		@Nullable String suffix = null;
 		
 		int i = s.lastIndexOf('.');
 

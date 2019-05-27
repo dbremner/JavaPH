@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *
@@ -33,7 +34,7 @@ public class ExitAction extends AbstractAction
 {	
 	private JavaPH parent;
 	
-	public ExitAction(JavaPH javaph)
+	public ExitAction(@NotNull JavaPH javaph)
 	{
 		super("Exit", new ImageIcon(javaph.getURL("img/cancel.gif")));
 			

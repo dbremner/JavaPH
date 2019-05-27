@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.awt.Component;
 import java.awt.event.ActionListener;
 
@@ -58,7 +60,7 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 		textField.selectAll();
 	}
 
-	public void setItem(Object obj)
+	public void setItem(@Nullable Object obj)
 	{
 		if (obj != null)
 			textField.setText(obj.toString());

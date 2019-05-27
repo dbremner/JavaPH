@@ -32,6 +32,7 @@ import com.bovilexics.javaph.actions.FindAction;
 import com.bovilexics.javaph.actions.HelpAction;
 import com.bovilexics.javaph.actions.NewAction;
 import com.bovilexics.javaph.actions.SaveAction;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -40,9 +41,10 @@ import com.bovilexics.javaph.actions.SaveAction;
  */
 public class QueryToolBar extends JToolBar
 {
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 	
-	public QueryToolBar(JavaPH javaph)
+	public QueryToolBar(@Nullable JavaPH javaph)
 	{
 		if (javaph == null)
 			throw new IllegalArgumentException("Error: null JavaPH value passed into QueryToolBar");
@@ -80,7 +82,7 @@ public class QueryToolBar extends JToolBar
 		return addToolBarButton(action, null);
 	}
 		
-	private JButton addToolBarButton(Action action, ImageIcon icon)
+	private JButton addToolBarButton(Action action, @Nullable ImageIcon icon)
 	{
 		JButton myJButton = add(action);
 

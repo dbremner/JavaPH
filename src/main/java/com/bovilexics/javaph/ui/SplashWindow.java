@@ -31,6 +31,8 @@ import javax.swing.JWindow;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -39,9 +41,10 @@ import com.bovilexics.javaph.JavaPHConstants;
  */
 public class SplashWindow extends JWindow implements JavaPHConstants
 {
-	private JavaPH parent;
+	@Nullable
+    private JavaPH parent;
 
-	public SplashWindow(JavaPH javaph)
+	public SplashWindow(@Nullable JavaPH javaph)
 	{	
 		if (javaph == null)
 			throw new IllegalArgumentException("Error: null JavaPH value passed into SplashWindow");
@@ -51,25 +54,25 @@ public class SplashWindow extends JWindow implements JavaPHConstants
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		JLabel phImageLabel = new JLabel(new ImageIcon(parent.getURL("img/ph-bigger.gif")));
+		@NotNull JLabel phImageLabel = new JLabel(new ImageIcon(parent.getURL("img/ph-bigger.gif")));
 		
-		JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
+		@NotNull JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
 		upperInfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		upperInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
+		@NotNull JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
 		lowerInfoLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lowerInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		JPanel contentPanel = new JPanel(new BorderLayout());
+		@NotNull JPanel contentPanel = new JPanel(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 		// contentPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 
-		JPanel imagePanel = new JPanel(new BorderLayout());
+		@NotNull JPanel imagePanel = new JPanel(new BorderLayout());
 		imagePanel.setBorder(BorderFactory.createEtchedBorder());
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 
-		JPanel infoPanel = new JPanel();
+		@NotNull JPanel infoPanel = new JPanel();
 		infoPanel.setBorder(BorderFactory.createEtchedBorder());
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		infoPanel.add(new JLabel(" "));

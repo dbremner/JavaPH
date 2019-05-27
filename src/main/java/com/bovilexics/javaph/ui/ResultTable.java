@@ -25,6 +25,7 @@ import javax.swing.table.TableModel;
 
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *
@@ -48,7 +49,7 @@ public class ResultTable extends JTable
 		setModel(new TableSorter(getModel()));
 	}
 
-	private int getColumnHeaderWidth(TableColumn column)
+	private int getColumnHeaderWidth(@NotNull TableColumn column)
 	{
 		TableCellRenderer renderer = column.getHeaderRenderer();
 		
@@ -60,7 +61,7 @@ public class ResultTable extends JTable
 		return component.getPreferredSize().width + WIDTH_BUFFER;
 	}
 	
-	private int getPreferredWidthForColumn(TableColumn column)
+	private int getPreferredWidthForColumn(@NotNull TableColumn column)
 	{
 		int headerWidth = getColumnHeaderWidth(column);
 		int cellWidth = getWidestCellWidth(column);
@@ -68,7 +69,7 @@ public class ResultTable extends JTable
 		return (headerWidth > cellWidth) ? headerWidth : cellWidth;  
 	}
 
-	private int getWidestCellWidth(TableColumn column)
+	private int getWidestCellWidth(@NotNull TableColumn column)
 	{
 		int colIndex = column.getModelIndex();
 		int rowIndex;
