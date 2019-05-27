@@ -59,10 +59,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 		objects = new Vector();
 		objects.ensureCapacity( items.length );
 
-		int i;
-        int c;
-
-        for (i = 0, c = items.length; i < c ; i++) {
+		for (int i = 0; i < items.length ; i++) {
             objects.addElement(items[i]);
         }
 
