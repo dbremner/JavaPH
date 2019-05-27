@@ -159,7 +159,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	@Nullable
 	private String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
-	private Vector servers;
+	private Vector<QiServer> servers;
 	
 	// Swing widgets and stuff
 	
@@ -179,8 +179,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	private JButton resultTableColWidthButton;
 	private JCheckBox logWrapCheckBox;
 	private JCheckBox resultWrapCheckBox;
-	private JComboBox commandComboBox;
-	private JComboBox serverComboBox;
+	private JComboBox<QiCommand> commandComboBox;
+	private JComboBox<QiServer> serverComboBox;
 	private JLabel portStatusLabel;
 	private JLabel serverStatusLabel;
 	private JLabel statusLabel;
@@ -321,7 +321,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			@NotNull JPanel queryCommandPanel = new JPanel(new BorderLayout());
 
-			commandComboBox = new JComboBox(commands);
+			commandComboBox = new JComboBox<>(commands);
 			commandComboBox.addActionListener(new ActionListener()
 			{
 				@Override
@@ -545,7 +545,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		{
 			@NotNull JPanel queryServerPanel = new JPanel(new BorderLayout());
 
-			serverComboBox = new JComboBox(servers);
+			serverComboBox = new JComboBox<>(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(new ActionListener()
 			{
@@ -1320,7 +1320,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return out.toString();
 	}
 
-	public JComboBox getCommandComboBox()
+	public JComboBox<QiCommand> getCommandComboBox()
 	{
 		return commandComboBox;
 	}
@@ -1616,7 +1616,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
-				QiServer server = (QiServer) servers.elementAt(i);
+				QiServer server = servers.elementAt(i);
 				fieldProgressMonitor.setNote(server.getExpandedName());
 				server.loadFields();
 				fieldProgressMonitor.setProgress(i + 1);

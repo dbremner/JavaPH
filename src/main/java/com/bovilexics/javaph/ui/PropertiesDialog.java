@@ -36,13 +36,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -65,7 +62,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	private JCheckBox rollToolbarCheckBox;
 	private JCheckBox savePositionCheckBox;
 
-	private JComboBox defaultServerComboBox;
+	private JComboBox<QiServer> defaultServerComboBox;
 
 	private JRadioButton loadFieldsManual;
 	private JRadioButton loadFieldsSelected;
@@ -195,7 +192,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		@NotNull JLabel defaultServerLabel = new JLabel("Default Server : ");
 		defaultServerLabel.setAlignmentY(JLabel.CENTER_ALIGNMENT);
 		
-		defaultServerComboBox = new JComboBox(QiServer.getServers());
+		defaultServerComboBox = new JComboBox<>(QiServer.getServers());
 		defaultServerComboBox.setRenderer(new ServerRenderer(parent));
 
 		defaultServerPanel.add(defaultServerLabel);

@@ -51,15 +51,13 @@ public class QiServer
 	private static final String PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535";
 
 	private static QiServer defaultServer;
-	@NotNull
-    private static final Vector servers = new Vector();
+	private static final Vector<QiServer> servers = new Vector<>();
 
 	private final String name;
 	private final String server;
 	@Nullable
     private final Integer port;
-	@NotNull
-    private Vector fields = new Vector();
+	private Vector<QiField> fields = new Vector<>();
 	private int fieldState = FIELD_LOAD_FALSE;
 	private String fieldStateMessage;
 	
@@ -155,8 +153,7 @@ public class QiServer
 		return out.toString();
 	}
 
-	@NotNull
-    public static Vector getServers()
+	public static Vector<QiServer> getServers()
 	{
 		return servers;
 	}
@@ -166,7 +163,7 @@ public class QiServer
 
 		for (int i = 0; i < servers.size(); i++)
 		{
-			QiServer server = (QiServer) servers.elementAt(i);
+			QiServer server = servers.elementAt(i);
 
 			if (server.getFieldState() != FIELD_LOAD_ERROR) {
 				server.loadFields();
@@ -217,7 +214,7 @@ public class QiServer
 				}
 			}
 			
-			defaultServer = (QiServer)servers.elementAt(0);
+			defaultServer = servers.elementAt(0);
 		}
 		catch (FileNotFoundException e)
 		{
@@ -249,7 +246,7 @@ public class QiServer
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				QiServer server = (QiServer) servers.elementAt(i);
+				QiServer server = servers.elementAt(i);
 
 				toWrite = new StringBuffer();
 				toWrite.append(server.getName());
@@ -282,9 +279,9 @@ public class QiServer
 			
 		for (int i = 0; i < servers.size(); i++)
 		{
-			if (((QiServer)servers.elementAt(i)).toString().equals(server))
+			if ((servers.elementAt(i)).toString().equals(server))
 			{
-				defaultServer = (QiServer)servers.elementAt(i);
+				defaultServer = servers.elementAt(i);
 				return;
 			}
 		}
@@ -292,7 +289,7 @@ public class QiServer
 	
 	private void convertRecordsToFields(@NotNull Vector records)
 	{
-		fields = new Vector();
+		fields = new Vector<QiField>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
