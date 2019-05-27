@@ -42,6 +42,7 @@ public final class ExitAction extends AbstractAction
 		parent = javaph;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
 		((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose();

@@ -43,6 +43,7 @@ public final class NewAction extends AbstractAction
 		parent = javaph;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
 		// Clear the results

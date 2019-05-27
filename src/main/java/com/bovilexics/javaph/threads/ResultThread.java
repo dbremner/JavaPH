@@ -235,6 +235,7 @@ public class ResultThread extends Thread
 		return state == RS_OK ? values : null;
 	}
 
+	@Override
 	public synchronized void interrupt()
 	{
 		if (!finished)
@@ -255,6 +256,7 @@ public class ResultThread extends Thread
 		return !error && !halted && (state == RS_OK || state == RS_ERROR);
 	}
 
+	@Override
 	public void run()
 	{
 		finished = false;
@@ -739,6 +741,7 @@ public class ResultThread extends Thread
 		{
 			SwingUtilities.invokeLater(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					parent.showStatus(status);

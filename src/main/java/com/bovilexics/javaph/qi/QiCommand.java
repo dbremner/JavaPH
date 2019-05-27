@@ -133,6 +133,7 @@ public class QiCommand
 		return textEditable;
 	}
 	
+	@Override
 	public String toString()
 	{
 		return description;

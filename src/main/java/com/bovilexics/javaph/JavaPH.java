@@ -203,6 +203,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class ControlTabDispatcher	implements KeyEventDispatcher
 	{
+		@Override
 		public boolean dispatchKeyEvent(@NotNull KeyEvent ke)
 		{
 			if (ke.isControlDown() && ke.getKeyCode() == KeyEvent.VK_TAB)
@@ -284,6 +285,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			queryButton.setToolTipText("Click this to start running the query.");
 			queryButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					if (queryComboBox.isEnabled())
@@ -319,6 +321,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			commandComboBox = new JComboBox(commands);
 			commandComboBox.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{	
 					queryComboBox.setSelectedIndex(-1);
@@ -331,6 +334,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 			queryComboBoxEditor = new TextFieldComboBoxEditor(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					queryButton.doClick();
@@ -339,10 +343,12 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyListener()
 			{
+				@Override
 				public void keyPressed(KeyEvent ke)
 				{
 				}
 				
+				@Override
 				public void keyReleased(@NotNull KeyEvent ke)
 				{
 					if (ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -368,6 +374,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 					}
 				}
 				
+				@Override
 				public void keyTyped(KeyEvent ke)
 				{
 				}
@@ -419,30 +426,36 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldCustomButton.setToolTipText("Choose the fields that queries will return");
 			fieldCustomButton.addMouseListener(new MouseListener()
 			{
+				@Override
 				public void mouseClicked(MouseEvent e)
 				{
 				}
 
+				@Override
 				public void mouseEntered(MouseEvent e)
 				{
 					fieldCustomButton.setIcon(fieldCustomOn);
 				}
 
+				@Override
 				public void mouseExited(MouseEvent e)
 				{
 					fieldCustomButton.setIcon(fieldCustomOff);
 				}
 
+				@Override
 				public void mousePressed(MouseEvent e)
 				{
 				}
 
+				@Override
 				public void mouseReleased(MouseEvent e)
 				{
 				}
 			});
 			fieldCustomButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{	
 					int[] prevSelections = fieldList.getSelectedIndices();
@@ -464,30 +477,36 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldLoadButton.setFocusable(false);
 			fieldLoadButton.addMouseListener(new MouseListener()
 			{
+				@Override
 				public void mouseClicked(MouseEvent e)
 				{
 				}
 
+				@Override
 				public void mouseEntered(MouseEvent e)
 				{
 					fieldLoadButton.setIcon(fieldLoadOn);
 				}
 
+				@Override
 				public void mouseExited(MouseEvent e)
 				{
 					fieldLoadButton.setIcon(fieldLoadOff);
 				}
 
+				@Override
 				public void mousePressed(MouseEvent e)
 				{
 				}
 
+				@Override
 				public void mouseReleased(MouseEvent e)
 				{
 				}
 			});
 			fieldLoadButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					@Nullable QiServer server = (QiServer)serverComboBox.getSelectedItem();
@@ -533,6 +552,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					@NotNull QiServer server = (QiServer)serverComboBox.getSelectedItem();
@@ -577,6 +597,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldListSelectAllButton = new JButton("Select All");
 			fieldListSelectAllButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					fieldList.setSelectionInterval(0, fieldList.getModel().getSize() - 1);
@@ -586,6 +607,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldListSelectNoneButton = new JButton("Delselect All");
 			fieldListSelectNoneButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					fieldList.clearSelection();					
@@ -596,6 +618,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldListMoveUpButton = new JButton("Move Up");
 			fieldListMoveUpButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					int[] selections = fieldList.getSelectedIndices();
@@ -615,6 +638,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldListMoveDnButton = new JButton("Move Down");
 			fieldListMoveDnButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					int[] selections = fieldList.getSelectedIndices();
@@ -646,6 +670,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			fieldList = new JList(new DefaultListModel());
 			fieldList.addListSelectionListener(new ListSelectionListener()
 			{
+				@Override
 				public void valueChanged(ListSelectionEvent lse)
 				{
 					if (fieldList.getSelectedIndex() >= 0)
@@ -662,16 +687,19 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			});
 			fieldList.getModel().addListDataListener(new ListDataListener()
 			{
+				@Override
 				public void contentsChanged(ListDataEvent lde)
 				{
 					updateSelectButtons();
 				}
 
+				@Override
 				public void intervalAdded(ListDataEvent lde)
 				{
 					updateSelectButtons();
 				}
 
+				@Override
 				public void intervalRemoved(ListDataEvent lde)
 				{
 					updateSelectButtons();
@@ -720,6 +748,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			resultTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 			resultTable.getModel().addTableModelListener(new TableModelListener()
 			{
+				@Override
 				public void tableChanged(TableModelEvent tme)
 				{
 					resultTableColButton.setEnabled(resultTable.getRowCount() > 0);
@@ -731,6 +760,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			@NotNull JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
+				@Override
 				public void mouseClicked(@NotNull MouseEvent me)
 				{
 					TableColumnModel tcm = resultTable.getColumnModel();
@@ -746,6 +776,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			resultTableColButton.setEnabled(false);
 			resultTableColButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{	
 					int[] prevSelections = colList.getSelectedIndices();
@@ -776,6 +807,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			resultTableColWidthButton.setEnabled(false);
 			resultTableColWidthButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{	
 					for (int i = 0; i < colList.getModel().getSize(); i++)
@@ -814,6 +846,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					resultText.selectAll();
@@ -824,6 +857,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			resultWrapCheckBox = new JCheckBox("Line Wrap");		
 			resultWrapCheckBox.addItemListener(new ItemListener()
 			{
+				@Override
 				public void itemStateChanged(ItemEvent ie)
 				{
 					resultText.setLineWrap(resultWrapCheckBox.isSelected());
@@ -856,6 +890,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			colListSelectAllButton = new JButton("Select All");
 			colListSelectAllButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					colList.setSelectionInterval(0, colList.getModel().getSize() - 1);
@@ -865,6 +900,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			colListSelectNoneButton = new JButton("Delselect All");
 			colListSelectNoneButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					colList.clearSelection();
@@ -880,16 +916,19 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			colList = new JList(new DefaultListModel());
 			colList.getModel().addListDataListener(new ListDataListener()
 			{
+				@Override
 				public void contentsChanged(ListDataEvent lde)
 				{
 					updateSelectButtons();
 				}
 
+				@Override
 				public void intervalAdded(ListDataEvent lde)
 				{
 					updateSelectButtons();
 				}
 
+				@Override
 				public void intervalRemoved(ListDataEvent lde)
 				{
 					updateSelectButtons();
@@ -922,6 +961,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					logText.selectAll();
@@ -932,6 +972,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			logWrapCheckBox = new JCheckBox("Line Wrap");
 			logWrapCheckBox.addItemListener(new ItemListener()
 			{
+				@Override
 				public void itemStateChanged(ItemEvent ie)
 				{
 					logText.setLineWrap(logWrapCheckBox.isSelected());
@@ -943,6 +984,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			logClearButton.setMnemonic(KeyEvent.VK_C);
 			logClearButton.addActionListener(new ActionListener()
 			{
+				@Override
 				public void actionPerformed(ActionEvent ae)
 				{
 					logText.setText("");
@@ -1032,6 +1074,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		frame.addWindowListener(new WindowAdapter()
 		{
+			@Override
 			public void windowClosed(WindowEvent we)
 			{
 				boolean needToStore = false;
@@ -1449,6 +1492,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		}
 	}
 
+	@Override
 	public void init()
 	{
 		Browser.init();
@@ -1908,6 +1952,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		splashWindow.dispose();
 	}
 
+	@Override
 	public void showStatus(String status)
 	{
 		showStatus(status, false);

@@ -776,6 +776,7 @@ public class Browser {
 		/**
 		 * Called by constructors to initialize the dialog.
 		 */
+		@Override
 		protected void dialogInit(){
 			commandLinesArea = new JTextArea("", 8, 40);
 			@NotNull JScrollPane scrollpane = new JScrollPane(commandLinesArea);
@@ -792,6 +793,7 @@ public class Browser {
 			super.dialogInit();
 
 			@NotNull ActionListener actionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(@NotNull ActionEvent e){
 					Object source = e.getSource();
 					if (source == resetButton){
@@ -879,6 +881,7 @@ public class Browser {
 		/**
 		 * Shows the dialog.
 		 */
+		@Override
 		public void show(){
 			SwingUtilities.updateComponentTreeUI(this);
 			setCommands(Browser.exec);

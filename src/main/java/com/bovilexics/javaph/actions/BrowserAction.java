@@ -41,6 +41,7 @@ public final class BrowserAction extends AbstractAction
 		parent = javaph;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
 		parent.showBrowserDialog();

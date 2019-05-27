@@ -40,7 +40,8 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 		listenerList = new EventListenerList();
 	}
 
-	public void addActionListener(ActionListener listener)
+	@Override
+    public void addActionListener(ActionListener listener)
 	{
 		listenerList.add(java.awt.event.ActionListener.class, listener);
 	}
@@ -54,17 +55,22 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 				 ((ActionListener) listeners[i + 1]).actionPerformed(e);
 	}
 
-	@NotNull
+	@Override
+    @NotNull
 	public abstract Component getEditorComponent();
 
-	public abstract Object getItem();
+	@Override
+    public abstract Object getItem();
 
-	public void removeActionListener(ActionListener listener)
+	@Override
+    public void removeActionListener(ActionListener listener)
 	{
 		listenerList.remove(java.awt.event.ActionListener.class, listener);
 	}
 
-	public abstract void selectAll();
+	@Override
+    public abstract void selectAll();
 
-	public abstract void setItem(Object obj);	
+	@Override
+    public abstract void setItem(Object obj);
 }

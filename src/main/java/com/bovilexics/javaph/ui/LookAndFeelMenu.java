@@ -77,6 +77,7 @@ final class LookAndFeelMenu extends JMenu
 
 	class LookAndFeelItemListener implements ActionListener
 	{
+		@Override
 		public void actionPerformed(@NotNull ActionEvent ae)
 		{
 			@NotNull JMenuItem src = (JMenuItem) ae.getSource();
@@ -95,6 +96,7 @@ final class LookAndFeelMenu extends JMenu
 	
 	class LookAndFeelRadioListener implements ActionListener
 	{
+		@Override
 		public void actionPerformed(@NotNull ActionEvent ae)
 		{
 			@NotNull JRadioButtonMenuItem src = (JRadioButtonMenuItem) ae.getSource();
@@ -120,25 +122,30 @@ final class LookAndFeelMenu extends JMenu
 
 	class StatusMouseListener implements MouseListener
 	{
+		@Override
 		public void mouseClicked(MouseEvent e)
 		{
 		}
 
+		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
 			if (e.getSource() instanceof JMenuItem)
 				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
 		}
 
+		@Override
 		public void mouseExited(MouseEvent e)
 		{
 			parent.showDefaultStatus();
 		}
 
+		@Override
 		public void mousePressed(MouseEvent e)
 		{
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e)
 		{
 		}

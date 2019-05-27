@@ -48,6 +48,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				parent.getQueryProgressMonitor().close();
@@ -55,6 +56,7 @@ public class QueryThread extends Thread
 		});
 	}
 
+	@Override
 	public void run()
 	{
 		int runtime = parent.getQueryRuntime();
@@ -108,6 +110,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				parent.getQueryProgressMonitor().close();
@@ -129,6 +132,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				parent.showStatus(status);
@@ -143,6 +147,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				parent.getQueryButton().setEnabled(true);
@@ -154,6 +159,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				parent.getQueryButton().setEnabled(false);
@@ -167,6 +173,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				parent.getQueryProgressMonitor().setProgress(progress);

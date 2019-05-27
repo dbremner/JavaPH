@@ -197,7 +197,8 @@ public final class QiLine
 		trimmedValue = value.trim();
 	}
 	
-	@NotNull
+	@Override
+    @NotNull
     public String toString()
 	{
 		@NotNull StringBuffer out = new StringBuffer();

@@ -53,25 +53,30 @@ public final class MainMenu extends JMenuBar
 {
 	class StatusMouseListener implements MouseListener
 	{
+		@Override
 		public void mouseClicked(MouseEvent e)
 		{
 		}
 
+		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
 			if (e.getSource() instanceof JMenuItem)
 				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
 		}
 
+		@Override
 		public void mouseExited(MouseEvent e)
 		{
 			parent.showDefaultStatus();
 		}
 
+		@Override
 		public void mousePressed(MouseEvent e)
 		{
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e)
 		{
 		}
@@ -244,6 +249,7 @@ public final class MainMenu extends JMenuBar
 		
 		showLogItem.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(@NotNull ActionEvent ae)
 			{
 				// If the menu item was selected then just update
@@ -269,6 +275,7 @@ public final class MainMenu extends JMenuBar
 		
 		showToolBarItem.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(@NotNull ActionEvent ae)
 			{
 				// If the menu item was selected then just update
@@ -294,6 +301,7 @@ public final class MainMenu extends JMenuBar
 		
 		rollToolBarItem.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(@NotNull ActionEvent ae)
 			{
 				// If the menu item was selected then just update

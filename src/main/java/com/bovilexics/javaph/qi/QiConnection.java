@@ -339,6 +339,7 @@ public class QiConnection
 		}
 	}
 
+	@Override
 	@NotNull
 	public String toString()
 	{

@@ -41,6 +41,7 @@ public final class AboutAction extends AbstractAction
 		parent = javaph;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
 		parent.showAboutDialog();

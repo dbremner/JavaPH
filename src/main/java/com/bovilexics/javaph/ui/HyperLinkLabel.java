@@ -50,6 +50,7 @@ final class HyperLinkLabel extends JLabel
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addMouseListener(new MouseAdapter()
 		{
+			@Override
 			public void mouseClicked(MouseEvent me)
 			{
 				try

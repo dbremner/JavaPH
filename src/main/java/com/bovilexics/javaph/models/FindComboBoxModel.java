@@ -92,6 +92,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 *
 	 * @param anObject
 	 */
+	@Override
 	public void addElement(Object anObject)
 	{
 		if (getIndexOf(anObject) < 0)
@@ -130,6 +131,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	}
 
 	// implements javax.swing.ListModel
+	@Override
 	@Nullable
     public Object getElementAt(int index)
 	{
@@ -140,6 +142,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	}
 
 	// implements javax.swing.ComboBoxModel
+	@Override
 	@Nullable
     public Object getSelectedItem()
 	{
@@ -147,6 +150,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	}
 
 	// implements javax.swing.ListModel
+	@Override
 	public int getSize()
 	{
 		return objects.size();
@@ -165,6 +169,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	}
 
 	// implements javax.swing.MutableComboBoxModel
+	@Override
 	public void insertElementAt(Object anObject, int index)
 	{
 		objects.insertElementAt(anObject, index);
@@ -190,6 +195,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	}
 
 	// implements javax.swing.MutableComboBoxModel
+	@Override
 	public void removeElement(Object anObject)
 	{
 		int index = objects.indexOf(anObject);
@@ -199,6 +205,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	}
 
 	// implements javax.swing.MutableComboBoxModel
+	@Override
 	public void removeElementAt(int index)
 	{
 		if (getElementAt(index) == selectedObject)
@@ -227,6 +234,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 * <p>
 	 * @param anObject The combo box value or null for no selection.
 	 */
+	@Override
 	public void setSelectedItem(@Nullable Object anObject)
 	{
 		if ((selectedObject != null && !selectedObject.equals(anObject))

@@ -37,6 +37,7 @@ public class ServerRenderer extends DefaultListCellRenderer implements ListCellR
 	   };
 	}
 	
+	@Override
 	@NotNull
 	public Component getListCellRendererComponent(@NotNull JList list, @NotNull Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{

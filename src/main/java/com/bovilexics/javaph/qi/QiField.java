@@ -90,6 +90,7 @@ public class QiField
 		return properties.indexOf(property) != -1;
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return name.hashCode();
@@ -149,6 +150,7 @@ public class QiField
 		}
 	}
 
+	@Override
 	@NotNull
     public String toString()
 	{

@@ -57,6 +57,7 @@ public final class FindDialog extends JavaPHDialog
 
 	class FindComboBoxEditorListener implements ActionListener
 	{	
+		@Override
 		public void actionPerformed(ActionEvent ae)
 		{
 			findButton.doClick();
@@ -90,6 +91,7 @@ public final class FindDialog extends JavaPHDialog
 		findButton.setMnemonic(KeyEvent.VK_F);
 		findButton.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(ActionEvent ae)
 			{
 				if (findComboBox.isEnabled())
@@ -115,6 +117,7 @@ public final class FindDialog extends JavaPHDialog
 		closeButton.setMnemonic(KeyEvent.VK_C);
 		closeButton.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(ActionEvent ae)
 			{
 				dispose();

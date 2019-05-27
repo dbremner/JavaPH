@@ -72,6 +72,7 @@ public final class ResultTableModel extends DefaultTableModel
 		return headers;
 	}
 	
+	@Override
 	public boolean isCellEditable(int row, int col)
 	{
 		return false;

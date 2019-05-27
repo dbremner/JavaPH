@@ -92,7 +92,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	 *
 	 * @param anObject
 	 */
-	public void addElement(@Nullable Object anObject)
+	@Override
+    public void addElement(@Nullable Object anObject)
 	{
 		int whereToAdd = -1;
 		
@@ -160,7 +161,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	}
 
 	// implements javax.swing.ListModel
-	@Nullable
+	@Override
+    @Nullable
     public Object getElementAt(int index)
 	{
 		if (index >= 0 && index < objects.size())
@@ -170,14 +172,16 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	}
 
 	// implements javax.swing.ComboBoxModel
-	@Nullable
+	@Override
+    @Nullable
     public Object getSelectedItem()
 	{
 		return selectedObject;
 	}
 
 	// implements javax.swing.ListModel
-	public int getSize()
+	@Override
+    public int getSize()
 	{
 		return objects.size();
 	}
@@ -195,7 +199,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	}
 
 	// implements javax.swing.MutableComboBoxModel
-	public void insertElementAt(Object anObject, int index)
+	@Override
+    public void insertElementAt(Object anObject, int index)
 	{
 		objects.insertElementAt(anObject, index);
 		fireIntervalAdded(this, index, index);
@@ -220,7 +225,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	}
 
 	// implements javax.swing.MutableComboBoxModel
-	public void removeElement(Object anObject)
+	@Override
+    public void removeElement(Object anObject)
 	{
 		int index = objects.indexOf(anObject);
 
@@ -229,7 +235,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	}
 
 	// implements javax.swing.MutableComboBoxModel
-	public void removeElementAt(int index)
+	@Override
+    public void removeElementAt(int index)
 	{
 		if (getElementAt(index) == selectedObject)
 		{
@@ -256,7 +263,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	 * <p>
 	 * @param anObject The combo box value or null for no selection.
 	 */
-	public void setSelectedItem(@Nullable Object anObject)
+	@Override
+    public void setSelectedItem(@Nullable Object anObject)
 	{
 		if ((selectedObject != null && !selectedObject.equals(anObject))
 			|| selectedObject == null

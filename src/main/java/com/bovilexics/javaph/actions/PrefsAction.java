@@ -41,6 +41,7 @@ public final class PrefsAction extends AbstractAction
 		parent = javaph;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
 		parent.showPropertiesDialog();

@@ -30,7 +30,8 @@ import javax.swing.filechooser.FileFilter;
  */
 abstract class SuffixAwareFilter extends FileFilter
 {
-	public boolean accept(@NotNull File f)
+	@Override
+    public boolean accept(@NotNull File f)
 	{
 		return f.isDirectory();
 	}

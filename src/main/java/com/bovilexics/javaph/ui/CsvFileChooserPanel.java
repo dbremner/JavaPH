@@ -46,6 +46,7 @@ final class CsvFileChooserPanel extends JPanel
 {
 	class CheckBoxListener implements ActionListener
 	{
+		@Override
 		public void actionPerformed(ActionEvent ae)
 		{
 			parent.setFieldQuoted(quotesCheckBox.isSelected());
@@ -54,6 +55,7 @@ final class CsvFileChooserPanel extends JPanel
 
 	class RadioButtonListener implements ActionListener
 	{	
+		@Override
 		public void actionPerformed(ActionEvent ae)
 		{
 			if (commaRadioButton.isSelected())
@@ -124,10 +126,12 @@ final class CsvFileChooserPanel extends JPanel
 		customTextField.setPreferredSize(new Dimension(20, customTextField.getPreferredSize().height));
 		customTextField.addKeyListener(new KeyListener()
 		{
+			@Override
 			public void keyPressed(KeyEvent ke)
 			{
 			}
 				
+			@Override
 			public void keyReleased(@NotNull KeyEvent ke)
 			{
 				if (!ke.isActionKey() && ke.getKeyCode() != KeyEvent.VK_BACK_SPACE)
@@ -137,6 +141,7 @@ final class CsvFileChooserPanel extends JPanel
 				}
 			}
 				
+			@Override
 			public void keyTyped(KeyEvent ke)
 			{
 			}

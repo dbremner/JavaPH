@@ -442,6 +442,7 @@ public class QiServer
 		resultThread = null;
 	}
 
+	@Override
 	public String toString()
 	{
 		return name;

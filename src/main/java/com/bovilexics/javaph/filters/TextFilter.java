@@ -27,7 +27,8 @@ import java.io.File;
  */
 public class TextFilter extends SuffixAwareFilter
 {
-	public boolean accept(@NotNull File f)
+	@Override
+    public boolean accept(@NotNull File f)
 	{
 		@NotNull String suffix = (getSuffix(f) == null) ? "" : getSuffix(f);
 		
@@ -36,7 +37,8 @@ public class TextFilter extends SuffixAwareFilter
 			|| suffix.equals("csv");
 	}
 
-	@NotNull
+	@Override
+    @NotNull
     public String getDescription()
 	{
 		return "Text Files(*.txt, *.csv)";

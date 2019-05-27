@@ -68,12 +68,14 @@ public class TableSorter implements TableModel, TableModelListener
 		return realModel;
 	}
 	
-	public Object getValueAt(int row, int col)
+	@Override
+    public Object getValueAt(int row, int col)
 	{
 		return realModel.getValueAt(indexes[row], col);
 	}
 	
-	public void setValueAt(Object aValue, int row, int col)
+	@Override
+    public void setValueAt(Object aValue, int row, int col)
 	{
 		realModel.setValueAt(aValue, indexes[row], col);
 	}
@@ -99,44 +101,52 @@ public class TableSorter implements TableModel, TableModelListener
 		indexes[j] = temp;
 	}
 	
-	public void tableChanged(TableModelEvent e)
+	@Override
+    public void tableChanged(TableModelEvent e)
 	{
 		allocate();
 	}
 	
 	// TableModel pass-through methods follow
 	
-	public void addTableModelListener(TableModelListener listener)
+	@Override
+    public void addTableModelListener(TableModelListener listener)
 	{
 		realModel.addTableModelListener(listener);
 	}
 
-	public Class getColumnClass(int columnIndex)
+	@Override
+    public Class getColumnClass(int columnIndex)
 	{
 		return realModel.getColumnClass(columnIndex);
 	}
 
-	public int getColumnCount()
+	@Override
+    public int getColumnCount()
 	{
 		return realModel.getColumnCount();
 	}
 	
-	public String getColumnName(int columnIndex)
+	@Override
+    public String getColumnName(int columnIndex)
 	{
 		return realModel.getColumnName(columnIndex);
 	}
 	
-	public int getRowCount()
+	@Override
+    public int getRowCount()
 	{
 		return realModel.getRowCount();
 	}
 
-	public boolean isCellEditable(int rowIndex, int columnIndex)
+	@Override
+    public boolean isCellEditable(int rowIndex, int columnIndex)
 	{
 		return realModel.isCellEditable(rowIndex, columnIndex);
 	}
 	
-	public void removeTableModelListener(TableModelListener listener)
+	@Override
+    public void removeTableModelListener(TableModelListener listener)
 	{
 		realModel.removeTableModelListener(listener);
 	}

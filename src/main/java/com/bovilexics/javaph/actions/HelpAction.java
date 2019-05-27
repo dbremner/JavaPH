@@ -46,6 +46,7 @@ public final class HelpAction extends AbstractAction
 		Browser.init();
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
 		try

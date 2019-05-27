@@ -112,6 +112,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		okButton.setMnemonic(KeyEvent.VK_O);
 		okButton.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(ActionEvent ae)
 			{
 				saveProperties();
@@ -123,6 +124,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		applyButton.setMnemonic(KeyEvent.VK_A);
 		applyButton.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(ActionEvent ae)
 			{
 				saveProperties();
@@ -133,6 +135,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		cancelButton.setMnemonic(KeyEvent.VK_C);
 		cancelButton.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(ActionEvent ae)
 			{
 				dispose();
@@ -143,6 +146,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		defaultsButton.setMnemonic(KeyEvent.VK_D);
 		defaultsButton.addActionListener(new ActionListener()
 		{
+			@Override
 			public void actionPerformed(ActionEvent ae)
 			{
 				refreshDefaultProperties();
@@ -177,6 +181,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		runtimeSlider.setValue(parent.getQueryRuntime());
 		runtimeSlider.addChangeListener(new ChangeListener()
 		{
+			@Override
 			public void stateChanged(ChangeEvent ce)
 			{
 				runtimeText.setText("" + runtimeSlider.getValue());
@@ -395,6 +400,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		parent.setQueryRuntime(runtimeSlider.getValue());
 	}
 
+	@Override
 	public void show()
 	{
 		refreshProperties();

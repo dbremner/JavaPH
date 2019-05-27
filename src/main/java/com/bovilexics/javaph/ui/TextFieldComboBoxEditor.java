@@ -47,22 +47,26 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 		textField.addActionListener(listener);
 	}
 
+	@Override
 	@NotNull
 	public Component getEditorComponent()
 	{
 		return textField;
 	}
 
+	@Override
 	public Object getItem()
 	{
 		return textField.getText();
 	}
 
+	@Override
 	public void selectAll()
 	{
 		textField.selectAll();
 	}
 
+	@Override
 	public void setItem(@Nullable Object obj)
 	{
 		if (obj != null)
