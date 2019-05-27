@@ -75,7 +75,7 @@ public class QiServer
 
 	private QiServer(String aName, String aServer, @NotNull String aPort)
 	{
-		@Nullable Integer aPortInteger = null;
+		@Nullable Integer aPortInteger;
 		
 		try
 		{
@@ -291,8 +291,12 @@ public class QiServer
 	{
 		fields = new Vector();
 		
-		QiLine descLine, propsLine;
-		String descField, descValue, propsField, propsValue;
+		QiLine descLine;
+		QiLine propsLine;
+		String descField;
+		String descValue;
+		String propsField;
+		String propsValue;
 		Vector record;
 		
 		for (int i = 0; i < records.size(); i++)

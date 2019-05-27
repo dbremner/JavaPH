@@ -119,9 +119,9 @@ public class QiField
 	 */
 	private void setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
-		@Nullable String lengthString = null;
-		@Nullable String token = null;
-		@Nullable StringTokenizer tokenizer = null;
+		@Nullable String lengthString;
+		@Nullable String token;
+		@Nullable StringTokenizer tokenizer;
 
 		tokenizer = new StringTokenizer(someProperties);
 		token = (String) tokenizer.nextElement();

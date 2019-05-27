@@ -75,7 +75,7 @@ public final class ResultTable extends JTable
 		int rowIndex;
 		
 		int maxWidth = 0;
-		int width = 0;
+		int width;
 		
 		Component component;
 		TableCellRenderer renderer;

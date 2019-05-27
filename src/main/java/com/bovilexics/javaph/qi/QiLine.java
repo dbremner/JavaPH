@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 public final class QiLine
 {
 	// The line as read from Qi, unmodified
-	private String verbatim = "";
+	private String verbatim;
 
 	// The code which Qi prepended to this line (e.g. -200)
 	private int code = 0;

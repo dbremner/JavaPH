@@ -146,7 +146,7 @@ public class ResultThread extends Thread
 		
 		@NotNull StringBuffer out = new StringBuffer();
 		
-		@Nullable QiLine qiLine = null;
+		@Nullable QiLine qiLine;
 		@Nullable Vector records = null;
 
 		if ((records = (Vector) records.elementAt(record)) == null)
@@ -424,7 +424,8 @@ public class ResultThread extends Thread
 		if (headersDone)
 			return;
 		
-		String field, lastField = "unknown";
+		String field;
+		String lastField = "unknown";
 		@NotNull Vector uniqueHeaders = new Vector();
 		Vector currentQiLine;
 		
@@ -571,9 +572,11 @@ public class ResultThread extends Thread
 		values = new Object[records.size()][headers.length];
 
 		boolean found;
-		int xCoord = -1, yCoord = -1;
+		int xCoord = -1;
+		int yCoord;
 		QiLine thisQiLine;
-		String field, lastField = "unknown";
+		String field;
+		String lastField = "unknown";
 		Vector thisVector;
 		
 		for (int i = 0; i < records.size(); i++)
@@ -632,8 +635,11 @@ public class ResultThread extends Thread
 			
 		values = new Object[records.size()][headers.length];
 
-		QiLine descQiLine, propsQiLine;
-		String desc, field, props;
+		QiLine descQiLine;
+		QiLine propsQiLine;
+		String desc;
+		String field;
+		String props;
 		Vector thisVector;
 		
 		for (int i = 0; i < records.size(); i++)

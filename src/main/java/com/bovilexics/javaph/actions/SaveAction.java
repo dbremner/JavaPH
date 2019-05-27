@@ -55,7 +55,7 @@ public final class SaveAction extends AbstractAction
 	public void actionPerformed(ActionEvent ae)
 	{
 		int selectedTab = parent.getResultPanel().getSelectedIndex();
-		int state = JFileChooser.CANCEL_OPTION;
+		int state;
 		
 		File file;
 		JFileChooser chooser;
@@ -95,8 +95,9 @@ public final class SaveAction extends AbstractAction
 		int cols = model.getColumnCount();
 		int rows = model.getRowCount();
 		
-		int c, r;
-		
+		int c;
+		int r;
+
 		if (rows <= 0)
 		{
 			message = "Nothing to save in " + JavaPH.TAB_LABELS[tab] + " tab";

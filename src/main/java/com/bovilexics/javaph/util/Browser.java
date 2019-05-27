@@ -105,7 +105,7 @@ public class Browser {
 	 */
 	@Nullable
     public static String[] defaultCommands(){
-		@Nullable String[] exec = null;
+		@Nullable String[] exec;
 		if ( System.getProperty("os.name").startsWith("Windows")){
 			exec = new String[1];
 			exec[0] = "rundll32 url.dll,FileProtocolHandler {0}";
@@ -292,7 +292,7 @@ public class Browser {
 			}
 			@NotNull String[] messageArray = new String[1];
 			messageArray[0] = sb.toString();
-			@Nullable String command = null;
+			@Nullable String command;
 			boolean found = false;
 			// try each of the exec commands until something works
 			try {

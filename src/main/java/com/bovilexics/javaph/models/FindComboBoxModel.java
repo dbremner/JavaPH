@@ -59,7 +59,8 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		objects = new Vector();
 		objects.ensureCapacity( items.length );
 
-		int i,c;
+		int i;
+		int c;
 
 		for (i = 0, c = items.length; i < c ; i++)
 			objects.addElement(items[i]);

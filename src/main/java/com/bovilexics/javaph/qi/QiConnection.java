@@ -217,7 +217,8 @@ public class QiConnection
 	public synchronized void login(String anAlias, String aPassword) throws IOException, QiProtocolException
 	{
 		alias = anAlias;
-		@NotNull String buffer, blurb = "";
+		@NotNull String buffer;
+		@NotNull String blurb = "";
 		lock();
 
 		try
@@ -286,8 +287,9 @@ public class QiConnection
 	 */
 	public synchronized void logout() throws QiProtocolException, IOException
 	{
-		@NotNull String buffer, blurb = "";
-		
+		@NotNull String buffer;
+		@NotNull String blurb = "";
+
 		if (!authenticated)
 			return;
 			
