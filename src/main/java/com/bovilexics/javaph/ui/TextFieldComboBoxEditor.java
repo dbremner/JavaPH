@@ -35,15 +35,10 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 	@NotNull
 	private final JTextField textField;
 
-	private TextFieldComboBoxEditor()
+	public TextFieldComboBoxEditor(ActionListener listener)
 	{
 		textField = new JTextField();
 		textField.setBorder(BorderFactory.createEmptyBorder());
-	}
-
-	public TextFieldComboBoxEditor(ActionListener listener)
-	{
-		this();
 		textField.addActionListener(listener);
 	}
 
