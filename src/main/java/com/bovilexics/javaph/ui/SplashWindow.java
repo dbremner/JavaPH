@@ -41,17 +41,14 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class SplashWindow extends JWindow implements JavaPHConstants
 {
-	@NotNull
-    private final JavaPH parent;
 
 	public SplashWindow(@NotNull JavaPH javaph)
-	{	
-		parent = javaph;
+	{
 
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		@NotNull final JLabel phImageLabel = new JLabel(new ImageIcon(parent.getURL("img/ph-bigger.gif")));
+		@NotNull final JLabel phImageLabel = new JLabel(new ImageIcon(javaph.getURL("img/ph-bigger.gif")));
 		
 		@NotNull final JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
 		upperInfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));

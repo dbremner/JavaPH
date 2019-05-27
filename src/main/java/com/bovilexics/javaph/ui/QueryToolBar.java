@@ -42,36 +42,33 @@ import org.jetbrains.annotations.Nullable;
  */
 public class QueryToolBar extends JToolBar
 {
-	@NotNull
-    private final JavaPH parent;
-	
+
 	public QueryToolBar(@NotNull JavaPH javaph)
 	{
-		parent = javaph;
 
-        setFloatable(false);
+		setFloatable(false);
 		setFocusable(false);
 		setOrientation(JToolBar.HORIZONTAL);
-		setRollover(parent.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
+		setRollover(javaph.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
 
-		addToolBarButton(new NewAction(parent));
-		addToolBarButton(new SaveAction(parent));
+		addToolBarButton(new NewAction(javaph));
+		addToolBarButton(new SaveAction(javaph));
 
         final int sepHeight = 26;
         final int sepWidth = 13;
         addSeparator(new Dimension(sepWidth, sepHeight));
 			
-		addToolBarButton(new CutAction(), new ImageIcon(parent.getURL("img/cut.gif")));
-		addToolBarButton(new CopyAction(), new ImageIcon(parent.getURL("img/copy.gif")));
-		addToolBarButton(new PasteAction(), new ImageIcon(parent.getURL("img/paste.gif")));
+		addToolBarButton(new CutAction(), new ImageIcon(javaph.getURL("img/cut.gif")));
+		addToolBarButton(new CopyAction(), new ImageIcon(javaph.getURL("img/copy.gif")));
+		addToolBarButton(new PasteAction(), new ImageIcon(javaph.getURL("img/paste.gif")));
 			
 		addSeparator(new Dimension(sepWidth, sepHeight));
 			
-		addToolBarButton(new FindAction(parent));
+		addToolBarButton(new FindAction(javaph));
 			
 		addSeparator(new Dimension(sepWidth, sepHeight));
 			
-		addToolBarButton(new HelpAction(parent));
+		addToolBarButton(new HelpAction(javaph));
 	}
 
 	private JButton addToolBarButton(Action action)

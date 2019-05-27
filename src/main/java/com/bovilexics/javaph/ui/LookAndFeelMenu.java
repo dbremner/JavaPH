@@ -71,9 +71,6 @@ final class LookAndFeelMenu extends JMenu
 
 	@NotNull
     private final JavaPH parent;
-	
-	@NotNull
-    private final MouseListener mouseListener;
 
 	class LookAndFeelItemListener implements ActionListener
 	{
@@ -158,7 +155,7 @@ final class LookAndFeelMenu extends JMenu
 		
 		parent = javaph;
 
-		mouseListener = new StatusMouseListener();
+		@NotNull MouseListener mouseListener = new StatusMouseListener();
 		addMouseListener(mouseListener);
 
 		@NotNull final ButtonGroup group = new ButtonGroup();
