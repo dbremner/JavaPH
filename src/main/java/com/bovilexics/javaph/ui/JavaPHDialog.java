@@ -39,7 +39,7 @@ abstract class JavaPHDialog extends JDialog
 		setIcon(new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));		
 	}
 	
-	protected void setIcon(@NotNull ImageIcon icon)
+	private void setIcon(@NotNull ImageIcon icon)
 	{
 		Frame frame = JOptionPane.getFrameForComponent(this);
 		frame.setIconImage(icon.getImage());
