@@ -37,14 +37,14 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	@NotNull
 	private final Vector allObjects;
-	private Vector objects;
+	private Vector<Object> objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.
 	 */
 	public FindComboBoxModel()
 	{
-		objects = new Vector();
+		objects = new Vector<>();
 		allObjects = (Vector)objects.clone();
 	}
 
@@ -56,7 +56,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 */
 	public FindComboBoxModel(@NotNull final Object[] items)
 	{
-		objects = new Vector();
+		objects = new Vector<>();
 		objects.ensureCapacity( items.length );
 
 		for (int i = 0; i < items.length ; i++) {
@@ -76,7 +76,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 *
 	 * @param v  a Vector object ...
 	 */
-	public FindComboBoxModel(Vector v)
+	public FindComboBoxModel(Vector<Object> v)
 	{
 		objects = v;
 
@@ -230,7 +230,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	public void restoreAllElements()
 	{
-		objects = (Vector)allObjects.clone();
+		objects = (Vector<Object>)allObjects.clone();
 		selectedObject = null;
 
 		if (getSize() > 0) {
