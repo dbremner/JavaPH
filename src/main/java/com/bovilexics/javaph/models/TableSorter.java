@@ -60,7 +60,7 @@ public class TableSorter implements TableModel, TableModelListener
 		
 		final int c = jo.toString().compareTo(io.toString());
 		
-		return (c < 0) ? -1 : ((c > 0) ? 1 : 0);
+		return Integer.compare(c, 0);
 	}
 	
 	@Nullable
