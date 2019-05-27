@@ -80,8 +80,8 @@ public final class QiCommand
 		new QiCommand(HELP, "Help", true, false)
 	};
 
-	private boolean listEditable = false;
-	private boolean textEditable = false;
+	private final boolean listEditable;
+	private final boolean textEditable;
 
 	@NotNull
 	private final String description;
