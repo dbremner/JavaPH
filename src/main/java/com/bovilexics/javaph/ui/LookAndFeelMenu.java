@@ -80,7 +80,7 @@ final class LookAndFeelMenu extends JMenu
 		@Override
 		public void actionPerformed(@NotNull ActionEvent ae)
 		{
-			@NotNull JMenuItem src = (JMenuItem) ae.getSource();
+			@NotNull final JMenuItem src = (JMenuItem) ae.getSource();
 		
 			if (src == restoreDefaultItem)
 			{
@@ -161,10 +161,10 @@ final class LookAndFeelMenu extends JMenu
 		mouseListener = new StatusMouseListener();
 		addMouseListener(mouseListener);
 
-		@NotNull ButtonGroup group = new ButtonGroup();
+		@NotNull final ButtonGroup group = new ButtonGroup();
 
-		@NotNull ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
-		@NotNull ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
+		@NotNull final ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
+		@NotNull final ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
 
 		setActionCommand("Change look and feel");
 		setMnemonic(KeyEvent.VK_L);

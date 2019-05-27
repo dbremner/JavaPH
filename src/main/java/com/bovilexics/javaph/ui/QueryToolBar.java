@@ -57,8 +57,8 @@ public class QueryToolBar extends JToolBar
 		addToolBarButton(new NewAction(parent));
 		addToolBarButton(new SaveAction(parent));
 
-        int sepHeight = 26;
-        int sepWidth = 13;
+        final int sepHeight = 26;
+        final int sepWidth = 13;
         addSeparator(new Dimension(sepWidth, sepHeight));
 			
 		addToolBarButton(new CutAction(), new ImageIcon(parent.getURL("img/cut.gif")));
@@ -81,7 +81,7 @@ public class QueryToolBar extends JToolBar
 		
 	private JButton addToolBarButton(Action action, @Nullable ImageIcon icon)
 	{
-		JButton myJButton = add(action);
+		final JButton myJButton = add(action);
 
 		if (icon != null) {
             myJButton.setIcon(icon);

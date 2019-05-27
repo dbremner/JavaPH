@@ -48,28 +48,28 @@ public final class SplashWindow extends JWindow implements JavaPHConstants
 	{	
 		parent = javaph;
 
-		Container contentPane = getContentPane();
+		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		@NotNull JLabel phImageLabel = new JLabel(new ImageIcon(parent.getURL("img/ph-bigger.gif")));
+		@NotNull final JLabel phImageLabel = new JLabel(new ImageIcon(parent.getURL("img/ph-bigger.gif")));
 		
-		@NotNull JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
+		@NotNull final JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
 		upperInfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		upperInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		@NotNull JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
+		@NotNull final JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
 		lowerInfoLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lowerInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		@NotNull JPanel contentPanel = new JPanel(new BorderLayout());
+		@NotNull final JPanel contentPanel = new JPanel(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 		// contentPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 
-		@NotNull JPanel imagePanel = new JPanel(new BorderLayout());
+		@NotNull final JPanel imagePanel = new JPanel(new BorderLayout());
 		imagePanel.setBorder(BorderFactory.createEtchedBorder());
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 
-		@NotNull JPanel infoPanel = new JPanel();
+		@NotNull final JPanel infoPanel = new JPanel();
 		infoPanel.setBorder(BorderFactory.createEtchedBorder());
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		infoPanel.add(new JLabel(" "));
@@ -82,8 +82,8 @@ public final class SplashWindow extends JWindow implements JavaPHConstants
 
 		contentPane.add(contentPanel, BorderLayout.CENTER);
 
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension panelSize = contentPanel.getPreferredSize();
+		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		final Dimension panelSize = contentPanel.getPreferredSize();
 		
 		setLocation(screenSize.width/2 - (panelSize.width/2), screenSize.height/2 - (panelSize.height/2));
 		pack(); 
