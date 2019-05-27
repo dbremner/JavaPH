@@ -1463,18 +1463,15 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return (QiServer)serverComboBox.getSelectedItem();
 	}
 
-	@Nullable
-	public URL getURL(@NotNull String location)
+	@NotNull
+	public String getURL(@NotNull String location)
 	{
-		try
-		{
-			return (new File(location)).toURI().toURL();
-		}
-		catch (MalformedURLException e)
-		{
-			e.printStackTrace();
-			return null;
-		}
+		return location;
+		/*
+		TODO fix this
+		@NotNull final URL url = (new File(location)).toURI().toURL();
+		return url;
+		*/
 	}
 
 	@Override
