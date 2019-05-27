@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
  */
 abstract class JavaPHDialog extends JDialog
 {
-	public JavaPHDialog(@NotNull JavaPH javaph)
+	JavaPHDialog(@NotNull JavaPH javaph)
 	{
 		setModal(true);
 		setIcon(new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));		
