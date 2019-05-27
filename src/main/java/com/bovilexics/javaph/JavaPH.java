@@ -1845,7 +1845,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	public void showAboutDialog()
 	{
 		aboutDialog.setLocationRelativeTo(defaultPane);
-		aboutDialog.show();
+		aboutDialog.setVisible(true);
 	}
 
 	public void showBrowserDialog()
@@ -1862,7 +1862,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	{
 		findDialog.setLocationRelativeTo(defaultPane);
 		findDialog.setTitle("Find Text in " + JavaPH.TAB_LABELS[getResultPanel().getSelectedIndex()]);
-		findDialog.show();
+		findDialog.setVisible(true);
 	}
 
 	public void showLog(boolean show)
