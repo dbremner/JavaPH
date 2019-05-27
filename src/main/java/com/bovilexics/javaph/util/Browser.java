@@ -58,12 +58,12 @@ public class Browser {
 	/**
 	 * The dialog that allows user configuration of the options for this class.
 	 */
-	protected static BrowserDialog dialog;
+	private static BrowserDialog dialog;
 
 	/**
 	 * Locale specific strings displayed to the user.
 	 */
-	protected static ResourceBundle labels = ResourceBundle.getBundle("com.bovilexics.javaph.util.Browser",  Locale.getDefault());
+	private static ResourceBundle labels = ResourceBundle.getBundle("com.bovilexics.javaph.util.Browser",  Locale.getDefault());
 
 	/**
 	 * Set the locale used for getting localized

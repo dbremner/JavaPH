@@ -32,11 +32,12 @@ import javax.swing.MutableComboBoxModel;
  */
 public class QueryComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
 {
-	@Nullable Object selectedObject;
+	@Nullable
+	private Object selectedObject;
 
 	@NotNull
-	final Vector allObjects;
-	final Vector objects;
+	private final Vector allObjects;
+	private final Vector objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.

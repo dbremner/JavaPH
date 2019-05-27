@@ -102,12 +102,12 @@ public class QiField
 		return name.hashCode();
 	}
 
-	public void setDescription(String aDescription)
+	private void setDescription(String aDescription)
 	{
 		description = aDescription;
 	}
 
-	public void setName(String aName)
+	private void setName(String aName)
 	{
 		name = aName;
 	}
@@ -123,7 +123,7 @@ public class QiField
 	 * @exception QiProtocolException in the event of an error parsing the data.
 	 *
 	 */
-	public void setProperties(@NotNull String someProperties) throws QiProtocolException
+	private void setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
 		@Nullable String lengthString = null;
 		@Nullable String token = null;

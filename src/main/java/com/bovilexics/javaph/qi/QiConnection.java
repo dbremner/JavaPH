@@ -53,8 +53,8 @@ public class QiConnection
 	@Nullable
 	private Thread locker;
 		
-	protected BufferedReader fromServer;
-	protected BufferedWriter toServer;
+	private BufferedReader fromServer;
+	private BufferedWriter toServer;
 
 	/**
 	 * Creates a QiConnection which must then be initialized using
