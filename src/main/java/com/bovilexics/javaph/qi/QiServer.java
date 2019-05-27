@@ -163,12 +163,11 @@ public class QiServer
 
 	public static void loadAllFields()
 	{
-		QiServer server;
-		
+
 		for (int i = 0; i < servers.size(); i++)
 		{
-			server = (QiServer)servers.elementAt(i);
-			
+			QiServer server = (QiServer) servers.elementAt(i);
+
 			if (server.getFieldState() != FIELD_LOAD_ERROR) {
 				server.loadFields();
 			}
@@ -183,9 +182,7 @@ public class QiServer
 	private static void loadAllServers(@Nullable URL useURL)
 	{
 		servers.removeAllElements();
-		
-		QiServer server;
-		
+
 		try
 		{
 			Reader in;
@@ -215,7 +212,7 @@ public class QiServer
 				}
 				else
 				{
-					server = new QiServer(items[0], items[1], items[2]);
+					QiServer server = new QiServer(items[0], items[1], items[2]);
 					addServer(server);
 				}
 			}
@@ -241,7 +238,6 @@ public class QiServer
 
 	public static void saveServers()
 	{
-		QiServer server;
 		StringBuffer toWrite;
 		
 		try
@@ -253,8 +249,8 @@ public class QiServer
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				server = (QiServer)servers.elementAt(i);
-								
+				QiServer server = (QiServer) servers.elementAt(i);
+
 				toWrite = new StringBuffer();
 				toWrite.append(server.getName());
 				toWrite.append(SEPARATOR);

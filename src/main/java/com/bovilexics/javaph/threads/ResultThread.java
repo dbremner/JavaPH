@@ -591,7 +591,6 @@ public class ResultThread extends Thread
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				boolean found = false;
 				QiLine thisQiLine = (QiLine) thisVector.elementAt(j);
 				String field = thisQiLine.getTrimmedField();
 
@@ -599,7 +598,8 @@ public class ResultThread extends Thread
 				{
 					field = lastField + ".1";
 				}
-				
+
+				boolean found = false;
 				for (int k = 0; k < headers.length && !found; k++)
 				{
 					if ( ((String)headers[k]).equals(field) )

@@ -1611,13 +1611,12 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	{
 		if (servers != null && !servers.isEmpty())
 		{
-			QiServer server;
-			
+
 			fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
-				server = (QiServer)servers.elementAt(i);
+				QiServer server = (QiServer) servers.elementAt(i);
 				fieldProgressMonitor.setNote(server.getExpandedName());
 				server.loadFields();
 				fieldProgressMonitor.setProgress(i + 1);
