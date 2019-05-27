@@ -183,17 +183,14 @@ public class MainMenu extends JMenuBar
 		menuItem.setMnemonic(KeyEvent.VK_S);
 		fileMenu.add(menuItem);
 
-		if (!parent.isApplet())
-		{		
-			fileMenu.addSeparator();
-			
-			menuItem = getNewMenuItem();
-			menuItem.setAction(new ExitAction(parent));
-			menuItem.setActionCommand("Exit JavaPH");
-			menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.ALT_MASK));
-			menuItem.setMnemonic(KeyEvent.VK_X);
-			fileMenu.add(menuItem);
-		}
+		fileMenu.addSeparator();
+
+		menuItem = getNewMenuItem();
+		menuItem.setAction(new ExitAction(parent));
+		menuItem.setActionCommand("Exit JavaPH");
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.ALT_MASK));
+		menuItem.setMnemonic(KeyEvent.VK_X);
+		fileMenu.add(menuItem);
 
 		return fileMenu;
 	}

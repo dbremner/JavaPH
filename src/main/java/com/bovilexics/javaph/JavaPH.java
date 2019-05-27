@@ -123,7 +123,6 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	// Custom widgets and other private stuff
 
 	private boolean fieldQuoted = false;
-	private boolean isApplet = true;
 	private boolean savePosition = false;
 
 	private int loadFields = LOAD_FIELDS_SELECTED;
@@ -997,7 +996,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public static void main(String[] args)
 	{
-		@NotNull final JavaPH applet = new JavaPH(false);
+		@NotNull final JavaPH applet = new JavaPH();
 		@NotNull final JFrame frame = new JFrame();
 
 		int frameHeight = applet.getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
@@ -1079,13 +1078,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	}
 
 	public JavaPH()
-	{	
-		this(true);
-	}
-
-	public JavaPH(boolean runningAsApplet)
 	{
-		isApplet = runningAsApplet;		
 	}
 
 	public void findText(@NotNull String text, boolean caseSensitive, boolean wrap)
@@ -1446,10 +1439,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	{
 		try
 		{
-			if (isApplet)
-				return new URL(getCodeBase(), location);
-			else
-				return (new File(location)).toURI().toURL();
+			return (new File(location)).toURI().toURL();
 		}
 		catch (MalformedURLException e)
 		{
@@ -1488,14 +1478,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
 
-		if (isApplet)
-		{
-			queryComboBox.getEditor().getEditorComponent().requestFocus();
-		}
-		
 		defaultPane.setJMenuBar(new MainMenu(this));
 		
-		log("JavaPH initialized (" + ((isApplet) ? "Applet" : "Application") + " Mode)");
+		log("JavaPH initialized (" + ("Application") + " Mode)");
 		log("Initializing default server");
 
 		serverComboBox.setSelectedItem(QiServer.getDefaultServer());
@@ -1528,20 +1513,16 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		loadDefaultProperties();
 		
 		// Next load custom properties, overrides defaults - ignores if not found
-		if (!isApplet)
-			loadProperties();
+		loadProperties();
 
 		setLoadFields(getIntProperty(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF));
 		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
-		setSavePosition((isApplet) ? false : propertyEquals(PROP_SAVE_POSITION, "true", "true"));
+		setSavePosition(propertyEquals(PROP_SAVE_POSITION, "true", "true"));
 	}
 
 	private void initServers()
 	{
-		if (isApplet)
-			QiServer.loadAllServers(getCodeBase());
-		else
-			QiServer.loadAllServers();
+		QiServer.loadAllServers();
 
 		commands = QiCommand.commands;
 		servers  = QiServer.getServers();
@@ -1553,11 +1534,6 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		initServers();
 		initIcons();
 		initDialogs();
-	}
-
-	public boolean isApplet()
-	{
-		return isApplet;
 	}
 
 	public boolean isFieldQuoted()
@@ -1577,16 +1553,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		try
 		{
-			if (isApplet)
-			{
-				defaultProperties.load((new URL(getCodeBase(), PROP_FILE_DEF)).openStream());
-				properties.load((new URL(getCodeBase(), PROP_FILE_DEF)).openStream());
-			}
-			else
-			{
-				defaultProperties.load((new File(PROP_FILE_DEF)).toURI().toURL().openStream());
-				properties.load((new File(PROP_FILE_DEF)).toURI().toURL().openStream());
-			}
+			defaultProperties.load((new File(PROP_FILE_DEF)).toURI().toURL().openStream());
+			properties.load((new File(PROP_FILE_DEF)).toURI().toURL().openStream());
 		}
 		catch (FileNotFoundException e)
 		{
@@ -1651,10 +1619,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		try
 		{
-			if (isApplet)
-				properties.load((new URL(getCodeBase(), PROP_FILE)).openStream());
-			else
-				properties.load((new File(PROP_FILE)).toURI().toURL().openStream());
+			properties.load((new File(PROP_FILE)).toURI().toURL().openStream());
 		}
 		catch (FileNotFoundException e)
 		{
@@ -1880,7 +1845,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public void setSavePosition(boolean save)
 	{
-		savePosition = (isApplet) ? false : save;
+		savePosition = save;
 	}
 
 	public void showAboutDialog()

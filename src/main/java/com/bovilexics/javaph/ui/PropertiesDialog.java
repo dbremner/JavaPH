@@ -94,13 +94,11 @@ public class PropertiesDialog extends JavaPHDialog
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createEtchedBorder());
 
-		if (!parent.isApplet())		
-			contentPanel.add(getStartupPanel(), BorderLayout.NORTH);
+		contentPanel.add(getStartupPanel(), BorderLayout.NORTH);
 
 		contentPanel.add(getQueryPanel(), BorderLayout.CENTER);
 
-		if (!parent.isApplet())
-			contentPanel.add(getServerPanel(), BorderLayout.SOUTH);
+		contentPanel.add(getServerPanel(), BorderLayout.SOUTH);
 		
 		contentPane.add(contentPanel, BorderLayout.CENTER);
 		contentPane.add(getButtonPanel(), BorderLayout.SOUTH);
@@ -341,70 +339,61 @@ public class PropertiesDialog extends JavaPHDialog
 
 	private void refreshDefaultProperties()
 	{
-		if (!parent.isApplet())
-		{		
-			defaultServerComboBox.setSelectedItem(parent.getPropertyDefault(JavaPH.PROP_DEFAULT_SERVER));
-			displayLogCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
-			displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_SPLASH, "true", "true"));
-			displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
-			rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
-			savePositionCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_SAVE_POSITION, "true", "true"));
+		defaultServerComboBox.setSelectedItem(parent.getPropertyDefault(JavaPH.PROP_DEFAULT_SERVER));
+		displayLogCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
+		displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_SPLASH, "true", "true"));
+		displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
+		rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
+		savePositionCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_SAVE_POSITION, "true", "true"));
 
-			loadFieldsManual.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_MANUAL);
-			loadFieldsSelected.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_SELECTED);
-			loadFieldsStartup.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_STARTUP);
-		}
-		
+		loadFieldsManual.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_MANUAL);
+		loadFieldsSelected.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_SELECTED);
+		loadFieldsStartup.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_STARTUP);
+
 		runtimeSlider.setValue(Integer.parseInt(parent.getPropertyDefault(JavaPH.PROP_QUERY_RUNTIME)));
 	}
 
 	private void refreshProperties()
 	{
-		if (!parent.isApplet())
-		{		
-			defaultServerComboBox.setSelectedItem(QiServer.getDefaultServer());
-			displayLogCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
-			displaySplashCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_SPLASH, "true", "true"));
-			displayToolbarCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
-			rollToolbarCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
-			savePositionCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_SAVE_POSITION, "true", "true"));
-			
-			loadFieldsManual.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_MANUAL);
-			loadFieldsSelected.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_SELECTED);
-			loadFieldsStartup.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_STARTUP);
-		}
-		
+		defaultServerComboBox.setSelectedItem(QiServer.getDefaultServer());
+		displayLogCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
+		displaySplashCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_SPLASH, "true", "true"));
+		displayToolbarCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
+		rollToolbarCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
+		savePositionCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_SAVE_POSITION, "true", "true"));
+
+		loadFieldsManual.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_MANUAL);
+		loadFieldsSelected.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_SELECTED);
+		loadFieldsStartup.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_STARTUP);
+
 		runtimeSlider.setValue(parent.getQueryRuntime());
 	}
 
 	private void saveProperties()
 	{
-		if (!parent.isApplet())
-		{
-			int loadFields = JavaPH.LOAD_FIELDS_DEF;
-			
-			if (loadFieldsManual.isSelected())
-				loadFields = JavaPH.LOAD_FIELDS_MANUAL;
-			else if (loadFieldsSelected.isSelected())
-				loadFields = JavaPH.LOAD_FIELDS_SELECTED;
-			else if (loadFieldsStartup.isSelected())
-				loadFields = JavaPH.LOAD_FIELDS_STARTUP;
-			
-			parent.setProperty(JavaPH.PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
-			parent.setProperty(JavaPH.PROP_DISPLAY_LOG, new Boolean(displayLogCheckBox.isSelected()).toString());
-			parent.setProperty(JavaPH.PROP_DISPLAY_SPLASH, new Boolean(displaySplashCheckBox.isSelected()).toString());
-			parent.setProperty(JavaPH.PROP_DISPLAY_TOOLBAR, new Boolean(displayToolbarCheckBox.isSelected()).toString());
-			parent.setProperty(JavaPH.PROP_ROLL_TOOLBAR, new Boolean(rollToolbarCheckBox.isSelected()).toString());
-			parent.setProperty(JavaPH.PROP_LOAD_FIELDS, "" + loadFields);
-			parent.setProperty(JavaPH.PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
-			parent.setProperty(JavaPH.PROP_SAVE_POSITION, new Boolean(savePositionCheckBox.isSelected()).toString());
+		int loadFields = JavaPH.LOAD_FIELDS_DEF;
 
-			QiServer.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
-			parent.setLoadFields(loadFields);			
-			parent.setSavePosition(savePositionCheckBox.isSelected());
-		
-			parent.storeProperties();
-		}
+		if (loadFieldsManual.isSelected())
+			loadFields = JavaPH.LOAD_FIELDS_MANUAL;
+		else if (loadFieldsSelected.isSelected())
+			loadFields = JavaPH.LOAD_FIELDS_SELECTED;
+		else if (loadFieldsStartup.isSelected())
+			loadFields = JavaPH.LOAD_FIELDS_STARTUP;
+
+		parent.setProperty(JavaPH.PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
+		parent.setProperty(JavaPH.PROP_DISPLAY_LOG, new Boolean(displayLogCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_DISPLAY_SPLASH, new Boolean(displaySplashCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_DISPLAY_TOOLBAR, new Boolean(displayToolbarCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_ROLL_TOOLBAR, new Boolean(rollToolbarCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_LOAD_FIELDS, "" + loadFields);
+		parent.setProperty(JavaPH.PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
+		parent.setProperty(JavaPH.PROP_SAVE_POSITION, new Boolean(savePositionCheckBox.isSelected()).toString());
+
+		QiServer.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
+		parent.setLoadFields(loadFields);
+		parent.setSavePosition(savePositionCheckBox.isSelected());
+
+		parent.storeProperties();
 
 		parent.setQueryRuntime(runtimeSlider.getValue());
 	}

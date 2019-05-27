@@ -213,17 +213,14 @@ public class LookAndFeelMenu extends JMenu
 		restoreDefaultItem.setMnemonic(KeyEvent.VK_R);
 		add(restoreDefaultItem);
 
-		if (!parent.isApplet())
-		{
-			storeDefaultItem = new JMenuItem("Save Default");
-			storeDefaultItem.addActionListener(lookAndFeelItemListener);
-			storeDefaultItem.addMouseListener(getMouseListener());
-			storeDefaultItem.setActionCommand("Save look and feel as Default");
-			storeDefaultItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK));
-			storeDefaultItem.setMnemonic(KeyEvent.VK_S);
-			add(storeDefaultItem);		
-		}
-		
+		storeDefaultItem = new JMenuItem("Save Default");
+		storeDefaultItem.addActionListener(lookAndFeelItemListener);
+		storeDefaultItem.addMouseListener(getMouseListener());
+		storeDefaultItem.setActionCommand("Save look and feel as Default");
+		storeDefaultItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK));
+		storeDefaultItem.setMnemonic(KeyEvent.VK_S);
+		add(storeDefaultItem);
+
 		resetSelectedLookAndFeel();	
 	}
 
