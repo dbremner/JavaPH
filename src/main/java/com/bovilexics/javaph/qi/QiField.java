@@ -49,13 +49,6 @@ public class QiField
     private final Vector properties = new Vector();
 
 	/**
-	 * Construct an empty QiField.
-	 */
-	public QiField()
-	{
-	}
-	
-	/**
 	 * Construct a QiField with a given property list and description.
 	 *
 	 * @param properties a list of field properties.

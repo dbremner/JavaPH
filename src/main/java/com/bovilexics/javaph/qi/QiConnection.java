@@ -57,14 +57,6 @@ public class QiConnection
 	private BufferedWriter toServer;
 
 	/**
-	 * Creates a QiConnection which must then be initialized using
-	 * <b>connect(host, port)</b>
-	 */
-	public QiConnection()
-	{
-	}
-
-	/**
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
 	 * <b>connect(host, port)</b>
 	 */
