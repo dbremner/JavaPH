@@ -41,7 +41,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class FindDialog extends JavaPHDialog
+public final class FindDialog extends JavaPHDialog
 {
 	@NotNull
     private final JavaPH parent;

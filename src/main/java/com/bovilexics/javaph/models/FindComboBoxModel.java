@@ -30,7 +30,7 @@ import javax.swing.MutableComboBoxModel;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class FindComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
+public final class FindComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
 {
 	@Nullable
 	private Object selectedObject;

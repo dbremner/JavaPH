@@ -40,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class AboutDialog extends JavaPHDialog implements JavaPHConstants
+public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 {
 	@NotNull
     private final JavaPH parent;

@@ -25,7 +25,7 @@ import com.bovilexics.javaph.models.QueryComboBoxModel;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QueryComboBox extends JComboBox
+public final class QueryComboBox extends JComboBox
 {
 	public QueryComboBox()
 	{

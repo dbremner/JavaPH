@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class ResultTable extends JTable
+public final class ResultTable extends JTable
 {
 	private static final int WIDTH_BUFFER = 10;
 	

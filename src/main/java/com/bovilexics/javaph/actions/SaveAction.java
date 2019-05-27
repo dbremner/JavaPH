@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class SaveAction extends AbstractAction
+public final class SaveAction extends AbstractAction
 {
 	@NotNull
 	private final JavaPH parent;

@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class AboutAction extends AbstractAction
+public final class AboutAction extends AbstractAction
 {
 	@NotNull
 	private final JavaPH parent;

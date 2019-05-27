@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class ResultTableModel extends DefaultTableModel
+public final class ResultTableModel extends DefaultTableModel
 {
 	public static final int DEFAULT_COLS = 1;
 	public static final int DEFAULT_ROWS = 0;

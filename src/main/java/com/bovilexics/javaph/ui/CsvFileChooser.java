@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class CsvFileChooser extends TextFileChooser
+public final class CsvFileChooser extends TextFileChooser
 {
 	public CsvFileChooser(@NotNull JavaPH javaph)
 	{

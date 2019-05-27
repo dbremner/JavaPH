@@ -26,7 +26,7 @@ import com.bovilexics.javaph.models.FindComboBoxModel;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-class FindComboBox extends JComboBox
+final class FindComboBox extends JComboBox
 {
 	public FindComboBox()
 	{

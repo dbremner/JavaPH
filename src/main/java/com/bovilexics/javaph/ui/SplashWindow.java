@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class SplashWindow extends JWindow implements JavaPHConstants
+public final class SplashWindow extends JWindow implements JavaPHConstants
 {
 	@NotNull
     private final JavaPH parent;

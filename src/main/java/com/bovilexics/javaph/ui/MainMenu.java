@@ -49,7 +49,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class MainMenu extends JMenuBar
+public final class MainMenu extends JMenuBar
 {
 	class StatusMouseListener implements MouseListener
 	{

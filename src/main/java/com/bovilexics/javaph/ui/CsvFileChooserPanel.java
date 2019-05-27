@@ -42,7 +42,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-class CsvFileChooserPanel extends JPanel
+final class CsvFileChooserPanel extends JPanel
 {
 	class CheckBoxListener implements ActionListener
 	{

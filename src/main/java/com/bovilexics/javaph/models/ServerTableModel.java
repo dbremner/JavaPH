@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-class ServerTableModel extends DefaultTableModel
+final class ServerTableModel extends DefaultTableModel
 {
 	public ServerTableModel()
 	{

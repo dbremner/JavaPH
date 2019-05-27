@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class HelpAction extends AbstractAction
+public final class HelpAction extends AbstractAction
 {
 	@NotNull
 	private final JavaPH parent;

@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class PrefsAction extends AbstractAction
+public final class PrefsAction extends AbstractAction
 {
 	@NotNull
     private final JavaPH parent;

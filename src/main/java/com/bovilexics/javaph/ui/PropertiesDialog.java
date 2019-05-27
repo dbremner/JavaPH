@@ -49,7 +49,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class PropertiesDialog extends JavaPHDialog
+public final class PropertiesDialog extends JavaPHDialog
 {
 	@NotNull
     private final JavaPH parent;
