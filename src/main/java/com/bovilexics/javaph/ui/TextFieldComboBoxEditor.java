@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
@@ -31,6 +32,7 @@ import javax.swing.JTextField;
  */
 public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 {
+	@NotNull
 	private final JTextField textField;
 
 	public TextFieldComboBoxEditor()
@@ -45,6 +47,7 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 		textField.addActionListener(listener);
 	}
 
+	@NotNull
 	public Component getEditorComponent()
 	{
 		return textField;

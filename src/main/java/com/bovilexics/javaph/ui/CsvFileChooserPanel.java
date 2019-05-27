@@ -68,10 +68,14 @@ public class CsvFileChooserPanel extends JPanel
 	@Nullable
     private final JavaPH parent;
 
+	@NotNull
 	private final JCheckBox quotesCheckBox;
 
+	@NotNull
 	private final JRadioButton commaRadioButton;
+	@NotNull
 	private final JRadioButton tabRadioButton;
+	@NotNull
 	private final JRadioButton customRadioButton;
 	
 	@Nullable

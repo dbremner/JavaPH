@@ -45,6 +45,7 @@ public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 	@Nullable
     private final JavaPH parent;
 
+	@NotNull
 	private final JButton okButton;
 
 	public AboutDialog(@Nullable JavaPH javaph)
