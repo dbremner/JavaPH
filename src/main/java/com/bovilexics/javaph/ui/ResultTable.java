@@ -41,7 +41,7 @@ public class ResultTable extends JTable
 		this(new ResultTableModel());
 	}
 	
-	public ResultTable(TableModel model)
+	private ResultTable(TableModel model)
 	{
 		super(model);
 		

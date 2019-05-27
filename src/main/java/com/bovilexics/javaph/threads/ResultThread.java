@@ -120,7 +120,7 @@ public class ResultThread extends Thread
 		connect(parent.getCommand(), parent.getConnection());
 	}
 
-	public ResultThread(JavaPH javaph, String command, QiConnection connection)
+	private ResultThread(JavaPH javaph, String command, QiConnection connection)
 	{
 		parent = javaph;
 		connect(command, connection);

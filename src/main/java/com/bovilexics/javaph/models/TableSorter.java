@@ -49,7 +49,7 @@ public class TableSorter implements TableModel, TableModelListener
 			indexes[i] = i;
 	}
 	
-	public int compare(int i, int j, int col)
+	private int compare(int i, int j, int col)
 	{
 		Object io = realModel.getValueAt(i, col);
 		Object jo = realModel.getValueAt(j, col);
@@ -92,7 +92,7 @@ public class TableSorter implements TableModel, TableModelListener
 		}
 	}
 	
-	public void swap(int i, int j)
+	private void swap(int i, int j)
 	{
 		int temp = indexes[i];
 		indexes[i] = indexes[j];

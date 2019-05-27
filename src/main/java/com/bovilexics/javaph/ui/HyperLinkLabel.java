@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class HyperLinkLabel extends JLabel
+class HyperLinkLabel extends JLabel
 {
 	@NotNull
     private final JavaPH parent;

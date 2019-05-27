@@ -74,7 +74,7 @@ package com.bovilexics.javaph.qi;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QiFieldProperties
+class QiFieldProperties
 {
 	public final static String INDEXED	= "Indexed";
 	public final static String LOOKUP	= "Lookup";

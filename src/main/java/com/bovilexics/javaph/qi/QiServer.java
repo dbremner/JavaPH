@@ -73,7 +73,7 @@ public class QiServer
 		port = aPortInteger;
 	}
 
-	public QiServer(String aName, String aServer, @NotNull String aPort)
+	private QiServer(String aName, String aServer, @NotNull String aPort)
 	{
 		@Nullable Integer aPortInteger = null;
 		
@@ -176,7 +176,7 @@ public class QiServer
 		loadAllServers(null);
 	}
 
-	public static void loadAllServers(@Nullable URL useURL)
+	private static void loadAllServers(@Nullable URL useURL)
 	{
 		servers.removeAllElements();
 		

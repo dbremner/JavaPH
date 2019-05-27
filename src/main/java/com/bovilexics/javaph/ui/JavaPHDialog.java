@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public abstract class JavaPHDialog extends JDialog
+abstract class JavaPHDialog extends JDialog
 {
 	public JavaPHDialog(@NotNull JavaPH javaph)
 	{

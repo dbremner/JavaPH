@@ -243,7 +243,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class ContentPanel extends JPanel
 	{	
-		public ContentPanel(@NotNull final JavaPH javaph)
+		ContentPanel(@NotNull final JavaPH javaph)
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
@@ -261,7 +261,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		@NotNull
 		private final JavaPH parent;
 		
-		public QueryPanel(@NotNull final JavaPH javaph)
+		QueryPanel(@NotNull final JavaPH javaph)
 		{
 			parent = javaph;
 
@@ -694,7 +694,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class ResultPanel extends JTabbedPane
 	{
-		public ResultPanel(final JavaPH javaph)
+		ResultPanel(final JavaPH javaph)
 		{
 			super(SwingConstants.TOP);
 	
@@ -963,7 +963,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class StatusPanel extends JPanel
 	{	
-		public StatusPanel()
+		StatusPanel()
 		{
 			setLayout(new BorderLayout());
 
@@ -1307,7 +1307,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return fieldSeparator;
 	}
 
-	public int getIntProperty(@NotNull String key, int defaultValue)
+	private int getIntProperty(@NotNull String key, int defaultValue)
 	{
 		int intValue;
 		@Nullable String stringValue;
@@ -1368,12 +1368,12 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	}
 
 	@Nullable
-	public String getProperty(@NotNull String key)
+	private String getProperty(@NotNull String key)
 	{
 		return properties.getProperty(key);
 	}
 
-	public String getProperty(String key, String defaultValue)
+	private String getProperty(String key, String defaultValue)
 	{
 		return properties.getProperty(key, defaultValue);
 	}
@@ -1384,7 +1384,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return defaultProperties.getProperty(key);
 	}
 
-	public String getPropertyDefault(String key, String defaultValue)
+	private String getPropertyDefault(String key, String defaultValue)
 	{
 		return defaultProperties.getProperty(key, defaultValue);
 	}
@@ -1547,7 +1547,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		return savePosition;
 	}
 
-	public void loadDefaultProperties()
+	private void loadDefaultProperties()
 	{
 
 		try
@@ -1611,7 +1611,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		showStatus(server.getFieldStateMessage(), true);
 	}
 
-	public void loadProperties()
+	private void loadProperties()
 	{
 
 		try
@@ -1709,7 +1709,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), defaultPane);
 	}
 
-	public void restoreLookAndFeel(@NotNull Component component)
+	private void restoreLookAndFeel(@NotNull Component component)
 	{
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), component);
 	}
@@ -1719,7 +1719,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		restoreLookAndFeel(lookAndFeel, defaultPane);
 	}
 
-	public void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
+	private void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
 	{
 		int i;
 		
@@ -1893,7 +1893,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		propertiesDialog.show();
 	}
 
-	public void showSplashWindow()
+	private void showSplashWindow()
 	{
 		splashWindow.show();
 			
@@ -1913,7 +1913,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 		showStatus(status, false);
 	}
 
-	public void showStatus(String status, boolean logAlso)
+	private void showStatus(String status, boolean logAlso)
 	{
 		if (statusLabel != null)
 			statusLabel.setText(" " + status);

@@ -35,7 +35,7 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 	@NotNull
 	private final JTextField textField;
 
-	public TextFieldComboBoxEditor()
+	private TextFieldComboBoxEditor()
 	{
 		textField = new JTextField();
 		textField.setBorder(BorderFactory.createEmptyBorder());

@@ -86,7 +86,7 @@ public class Browser {
 	 * when displayURL is used.
 	 */
 	@Nullable
-    public static String[] exec = null;
+	private static String[] exec = null;
 
 	/**
 	 * Determine appropriate commands to start a browser on the current

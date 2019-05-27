@@ -28,15 +28,14 @@ import javax.swing.filechooser.FileFilter;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public abstract class SuffixAwareFilter extends FileFilter
+abstract class SuffixAwareFilter extends FileFilter
 {
 	public boolean accept(@NotNull File f)
 	{
 		return f.isDirectory();
 	}
 
-	@Nullable
-    public String getSuffix(@NotNull File f)
+	@Nullable String getSuffix(@NotNull File f)
 	{
 		@NotNull String s = f.getPath();
 		@Nullable String suffix = null;

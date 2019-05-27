@@ -35,7 +35,7 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 	@NotNull
 	private final EventListenerList listenerList;
 	
-	public AbstractComboBoxEditor()
+	AbstractComboBoxEditor()
 	{
 		listenerList = new EventListenerList();
 	}
