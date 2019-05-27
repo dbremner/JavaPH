@@ -1,0 +1,38 @@
+#!/bin/sh
+
+rm -rf ph native
+tar -xf help.tar
+mv help/* .
+rmdir help
+
+index=idx
+
+for dir in ph native
+do
+		cat > $index<<EOF1
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="txt2html v1.21">
+</HEAD>
+<BODY>
+<UL>
+
+EOF1
+	for file in `find $dir -type f -print`
+	do
+		echo $file
+		base=`basename $file`
+		cat >> $index<<EOF2
+<LI><A HREF="http://miro/Jph/help/${file}.html">$base</A></LI>
+EOF2
+		./txt2html.pl $file > ${file}.html
+		rm -f $file
+	done
+	cat >> $index<<EOF3
+</UL>
+</BODY>
+</HTML>
+EOF3
+mv $index $dir/index.html
+done

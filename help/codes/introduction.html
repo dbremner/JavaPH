@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="txt2html v1.21">
+</HEAD>
+<BODY>
+<P>
+              The CCSO Nameserver - An Introduction
+
+<PRE>
+                               by
+                Steven Dorner   s-dorner@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                         March 29, 1990
+
+                           updated by
+                Paul Pomes   paul-pomes@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                         August 2, 1992
+</PRE>
+
+<P>
+% ph steven dorner
+<HR>
+<PRE>
+      name: dorner steven c
+     phone: 244-1765
+   address: 181 dcl
+          : CAMPUS MC 256
+department: computing services office
+     title: res programmer
+     hours: 7-5, four days per week.
+</PRE>
+<P>
+  email to: s-dorner@uiuc.edu (dorner@ux1.cso.uiuc.edu)
+<HR>
+
+<P>
+What is the CCSO Nameserver?
+
+<P>
+The CCSO Nameserver could be considered a database containing
+information about people and things at the University of Illinois.  
+It is designed to be extremely flexible in terms of the
+information it keeps and also to provide fast access to that
+information.  Currently, most of the information in the
+Nameserver database comes from the University Student/Staff
+Directory (the printed phone book).  The database also holds
+several additional categories of information such as the complete
+university course timetable for the fall, spring, and summer
+semesters; a guide to local restaurants; area codes for major
+cities and regions in the U.S.; up-to-the-hour weather condition
+and forecast information for many Illinois cities and larger
+metropolitan areas throughout the country; and special entries
+created on request such as organizations within departments and
+student clubs and groups.
+<HR>
+<P>
+   Converted to portable n/troff format using the -me macros from
+funky Next WriteNow format (icch).
+
+
+<P>
+The CCSO Nameserver could also be regarded as a pair of programs:
+one that manages the actual data (this program is called qi, for
+query interpreter), and another program (or rather a group of
+programs - one for each computing platform on the campus network)
+that handles end-user requests.  The programs that handle user
+requests are usually called ph (or ph clients), which stands for
+phone book.  Because ph is the name of the software familiar to
+most end-users, many people refer to the Nameserver itself as ph
+or use the terms Nameserver and ph interchangeably.
+
+<P>
+Where is it?
+
+<P>
+The database for the Nameserver is installed on a VAXServer 3500
+that runs the UNIX operating system (Ultrix 3.0); the name of
+this CCSO computer is garcon.cso.uiuc.edu with the alias
+ns.uiuc.edu.  The program that manages the database (qi) also
+runs on this machine.  Qi allows programs running on other computers 
+to access the database by serving as an intermediary
+between them and the actual database.
+
+<P>
+The Nameserver functions on a "server-client" basis.  This means
+that the database and query interpreter reside on a single computer 
+(the VAXserver described above), which functions as the
+"server".  Mainframes and desktop computers can transparently
+access server data over UIUCnet, the campus network, using special 
+software designed to communicate with the server.  Machines
+running such software (and the end-user software itself) are typically 
+referred to as ph "clients".  Ph client programs have been
+developed for almost all of the mainframe and desktop computing
+platforms and operating systems found on the UIUC campus including 
+UNIX, VM/CMS, VMS, PC (DOS), Macintosh, Next, and X Windows.
+Some of these clients were developed locally, while others have
+been developed by programmers at other institutions.
+
+<P>
+A full-featured ph client is available on all CCSO-administered
+UNIX computers.  A slightly less robust client can be found on
+the CCSO IBM mainframe VMD.  Ph client software is also installed
+on hundreds of desktop computers and workstations on the campus
+network.  Client software for desktop computers such as IBM PCs
+and Macs provides convenient access to server data without
+requiring a mainframe account or special knowledge of an unfamiliar 
+operating system or text editor.  For a list of ph clients
+and information on where to get them, see ph's on-line help for
+"clients".
+
+<P>
+What Services Does the Nameserver Offer?
+
+<P>
+The Nameserver can be used to find the phone numbers and
+addresses of University faculty, students, and staff members,
+just like the printed version of the Student/Staff Directory; but
+the Nameserver is not a mere electronic copy of the campus phone
+book.  For one thing, it contains the electronic mail addresses
+for thousands of faculty, students, and staff.  It also includes
+additional information about some individuals such as office
+hours, birthdays, vacation plans, facsimile numbers, etc.  Information 
+of the latter sort is usually entered manually by the
+owner of the entry and is, thus, available for some people in the
+database and not others.
+
+<P>
+The Nameserver also contains entire categories of information not
+found in the Student/Staff Directory; e.g., weather conditions,
+local restaurants, national area codes, the university course
+timetable, etc.  For information on how to extract such information 
+from the Nameserver, see ph's on-line help for "people",
+"campus_units", "weather", "areacodes", "restaurants", and
+"timetable".
+
+<P>
+A key thing to know about the Nameserver is that, if you use a
+computer that has a full-featured ph client installed on it, you
+can change the information the Nameserver keeps about you.  For
+example, if your office address or phone number changes in the
+middle of the year, you can put your correct address and phone
+number in the Nameserver immediately so that people can use ph to
+find up-to-date information about you.
+
+<P>
+Another very important function of the Nameserver is electronic
+mail forwarding.  If you tell the Nameserver where you read your
+electronic mail by recording this information in your "email"
+field, then anyone wishing to send mail to you can send the mail
+to alias@uiuc.edu, where alias is your Nameserver alias (a unique
+name by which the Nameserver knows you, generally formed by your
+first initial, a hyphen, and your full last name).  If someone
+doesn't know your Nameserver alias, s/he can send mail to
+your-name@uiuc.edu, and the Nameserver will try to find you.  In
+either case, the Nameserver will send your mail to the address
+listed in the "email" field of your nameserver entry.  For example, 
+you can send mail to Steven Dorner (author of the UNIX ph
+program) using the address: s-dorner@uiuc.edu ("s-dorner" is
+Steve's Nameserver alias), or steven-dorner@uiuc.edu (Steve's
+real-life name).  Either way, the mail will be forwarded by the
+Nameserver to "dorner@ux1.cso.uiuc.edu", which is where Steve
+currently reads his mail.  For more information on e-mail forwarding, 
+see the ph on-line help for "e-mail".
+
+<P>
+Nameserver Restrictions and Limitations
+
+<P>
+There are some things the Nameserver is not meant to do.  One
+thing that should be mentioned right away is that the Nameserver
+can't be used to generate mailing lists for junk mail.  The
+server is designed so that queries that generate more than 25
+responses are refused.  So, you don't have to worry about getting
+junk mail because you appear in the Nameserver's database.
+
+<P>
+Also, the Namserver cannot be used to notify the University about
+changes of address, phone number, and/or other personal or official 
+information about yourself.  Although you can change this
+kind of information in your Nameserver entry, such changes are
+not automatically sent to your department, the Office of Admissions 
+and Records,  Payroll, or anywhere else.  You must notify
+these offices individually by filling out the appropriate paperwork.
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="txt2html v1.21">
+</HEAD>
+<BODY>
+<P>
+<STRONG>SUMMARY</STRONG><BR>
+The "alias" field contains information that uniquely identifies a person
+to the Nameserver.  Usually, the contents of the "alias" field consists
+of a person's first initial, a hyphen, and complete last name.  For
+example, "Paul B. Pomes" has an alias of "p-pomes".
+
+<P>
+Some people share the same first initial and last name; these people
+typically have a number added to the ends of their aliases, so that
+their aliases remain unique.  For example, "John Doe" might have an
+alias of "j-doe1", and "Jane Doe" might have an alias of "j-doe2".
+
+<P>
+It is possible for the owner of a ph entry to change his or her alias
+by logging into ph and using the "edit" or "make" command; thus, some
+people have aliases that do not follow the conventions just described,
+such as the alias "SueG".
+
+<P>
+<STRONG>RESTRICTIONS ON ALIASES</STRONG><BR>
+If you decide to edit your alias field, you should be aware of certain
+restrictions placed on the field:
+
+<OL>
+  <LI> The alias field is limited to the characters a-z (uppercase is
+permitted, but ignored during ph lookups), 0-9, and the hyphen (-).
+
+  <LI> The alias field must not contain a space.
+
+  <LI> An alias must not be someone else's real name or nickname.
+
+  <LI> The contents of the alias field must be unique; if you try to change
+your alias to one already in use, ph will reject it.
+
+</OL>
+<P>
+<STRONG>CHANGING YOUR ALIAS</STRONG><BR>
+To change your alias, you must first login to ph.  Then use the "make"
+or "edit" command to effect the desired changes:
+
+<P>
+<STRONG>EXAMPLES:</STRONG>
+
+<P>
+  make alias="PaulP"
+
+<P>
+  edit alias   (You will be placed in the default text editor, usually vi.
+<P>
+                Make the desired changes and save the file.)
+
+<P>
+If your change was successful, you should see the message:  "200:1 entry
+changed".  If you violated one of the restrictions listed above, an
+error message will appear.
+
+<P>
+For more information on the "alias" field and how it is used by the
+Nameserver, see the ph help for "aliases" and "e-mail".
+
+<P>
+SEE ALSO: aliases, e-mail, email, edit, make, fields, login, introduction,
+vi
+
+</BODY>
+</HTML>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="txt2html v1.21">
+</HEAD>
+<BODY>
+<P>
+SYNTAX: add name-of-field=value-of-field...
+
+<P>
+<STRONG>SUMMARY</STRONG><BR>
+This command is used to add new entries to the Nameserver database.
+Most users are not allowed to use the "add" command. You must be logged
+into ph and have special privileges to use "add".
+
+<P>
+Note that the "add" command adds entire ph ENTRIES; to add one or more
+FIELDS to an entry, use the "edit", "change", or "make" command.
+
+<P>
+"Add" creates a new entry and gives its fields the values specified in
+the command.
+
+<P>
+<STRONG>EXAMPLE</STRONG><BR>
+ph&gt; add name="doe john" id="123456789" alias="j-doe"
+200:Ok.<BR>
+ph&gt;
+
+<P>
+<STRONG>WORD TO THE WISE</STRONG><BR>
+Make sure you give your new entry at least one indexed field, or it
+will be impossible to query the Nameserver for information contained
+in the entry.
+
+<P>
+SEE ALSO: edit, change, make, delete, login, fields
+
+</BODY>
+</HTML>

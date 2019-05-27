@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="txt2html v1.21">
+</HEAD>
+<BODY>
+<P>
+SYNTAX: login [your-alias]
+
+<P>
+<STRONG>SUMMARY</STRONG><BR>
+The "login" command allows you to identify yourself to the Nameserver.
+More specifically, it identifies you with a particular entry in the
+Nameserver and allows you to change the fields in that entry and in any
+other entry for which you have proxy rights (see help on "proxy").  It
+is also necessary to be logged in to the Nameserver to view certain
+sensitive fields in your own entry.
+
+<P>
+In order to use the "login" command, you must know both your ph alias
+and your ph password.  Your can find out your alias by doing a ph lookup
+on your own entry.  For example, if Paul Pomes wanted to learn his alias,
+he could type "ph paul pomes" at the command prompt or in ph's interactive
+mode.  Paul's ph entry would be displayed as follows:
+
+<HR>
+<PRE>
+           name: pomes paul
+          phone: (217) 333-6262
+        address: 1429 dcl, MC 256
+               : 1304 w springfield
+               : urbana, il 61801
+     department: computing services office
+          title: sr res programmer
+       email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+</PRE>
+<HR>
+
+<P>
+The "alias" is the first item in the "email to:" line, before the
+"@uiuc.edu"; thus, Paul Pomes' alias is "p-pomes".
+
+<P>
+To obtain your ph password, bring a valid University ID to the CCSO
+Accounting and Distribution Office, 1420 DCL, 1304 W.  Springfield,
+Urbana.
+
+<P>
+<STRONG>EXAMPLE</STRONG><BR>
+Once you know your ph alias and password, you can login to the
+Nameserver.  In order to login, you must first enter ph's interactive
+mode by typing "ph" at the command prompt. Then type "login your-alias",
+after which you will be prompted for your password.  Paul Pomes' "login"
+session would look something like this:
+
+<P>
+  % ph<BR>
+  [ph status message appears here]<BR>
+  ph&gt; login p-pomes<BR>
+  Enter nameserver password: [paul's-secret-password]
+  200:p-pomes:Hi how are you?<BR>
+  ph&gt;
+
+<P>
+Paul enters his Nameserver password when asked for it; his password is
+not echoed to the screen.
+
+<P>
+<STRONG>NOTES</STRONG><BR>
+If you are using ph from the account listed in your "email to:" line,
+you will not have to give a password when logging into ph.  This feature
+will only work if your system administrator has installed ph 5.0 or
+later and has made it a privileged program.
+
+<P>
+If you do not give your alias on the command line, ph will ask you for it.
+
+<P>
+Some ph clients display the user "alias" as a separate field during a
+lookup, rather than combining it with contents of the "email" field in
+the "email to:" line.
+
+<P>
+SEE ALSO: proxy, passwd, alias, aliases
+
+</BODY>
+</HTML>

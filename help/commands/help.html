@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="txt2html v1.21">
+</HEAD>
+<BODY>
+<P>
+SYNTAX: help [native] name-of-topic...
+
+<P>
+<STRONG>SUMMARY</STRONG><BR>
+The "help" command gives help on Nameserver commands and concepts.  You
+can obtain a list of help topics by simply typing the word "help".
+
+<P>
+You will notice that the list of topics is divided into two parts, "ph"
+help topics and "native" help topics.  The "ph" help topics pertain to
+commands and concepts related to the Unix ph client and other clients
+similar to it.  The "native" topics may of interest to anyone using the
+Nameserver database and are not specific to a particular client.
+
+<P>
+If you ask for help on a topic, "help" will first look for that topic
+in the "ph" topics.  If there is no help specific to "ph" for the topic,
+it will look for a "native" help topic with that name.
+
+<P>
+In the rare event that there you are interested in reading the "native"
+help text for a topic that also has a "ph" help text, you can type:
+"help native name-of-topic-you-want".
+
+<P>
+If you find the concept of "ph" versus "native" help to be confusing,
+the following categorization of the ph help topics may be of use to you.
+The list below assigns each topic to one of five main subject areas:
+commands, concepts, fields, services, codes, and miscellaneous:
+
+<P>
+COMMANDS - commands that can be typed at the ph&gt; prompt: 
+
+<PRE>
+   add                 help             me             quit
+   change              login            passwd         register
+   delete              logout           ph             status
+   edit                make             query          switch
+</PRE>
+<P>
+   fields
+
+<P>
+CONCEPTS - introductory information and basic ph concepts:
+
+<PRE>
+   aliases             commands         interactive_mode
+   command-line_mode   e-mail           introduction
+</PRE>
+
+<P>
+FIELDS - ph fields of special interest:
+
+<PRE>
+   alias               nickname         paper          type
+   email               no_update        proxy
+</PRE>
+
+<P>
+SERVICES - services or categories of information that the ph
+database offers:
+
+<PRE>
+   areacodes           people           timetable
+   campus_units        restaurants      weather
+</PRE>
+
+<P>
+CODES - explanations of the three digit result codes returned by ph:
+
+<PRE>
+   100     300     403     503     508     513     518     523
+   101     301     475     504     509     514     519     598
+   102     400     500     505     510     515     520     599
+   200     401     501     506     511     516     521
+   201     402     502     507     512     517     522
+</PRE>
+
+
+<P>
+MISCELLANEOUS - help topics that do not fall into any of the areas above:
+
+<PRE>
+   clients            manpage           policy         sites
+   forwarding         ph_news           protocol       vi
+</PRE>
+
+</BODY>
+</HTML>

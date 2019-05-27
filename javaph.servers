@@ -1,0 +1,337 @@
+# JavaPH Server File
+#
+# Manually add servers to this list using the following format
+#   <name / description> :: <host / ip address> :: <port (0-65535)>
+#
+Albert Einstein College of Medicine::ns.aecom.yu.edu::105
+Algonquin C. of App. Arts and Tech., Ontario, Canada::algnet.algonquinc.on.ca::105
+American University, Washington DC::ph.american.edu::105
+Aston University, United Kingdom::gopher.aston.ac.uk::105
+Australian Defence Force Academy::ns.adfa.oz.au::105
+Australian National University::cis.anu.edu.au::105
+Bar-Ilan University, Israel (Experimental, Hebrew)::vm.biu.ac.il::105
+Bates College::whois.bates.edu::105
+Baylor College of Medicine::ns.bcm.tmc.edu::105
+Beth Israel Hospital (Harvard Univ.)::ns.bih.harvard.edu::105
+Bilkent University::ns.bilkent.edu.tr::105
+Board of Governors Universities, IL USA::ns.bgu.edu::105
+Boston University::ns.bu.edu::105
+Bowling Green State University::ph.bgsu.edu::105
+Bradley University::ns.bradley.edu::105
+Brookhaven National Laboratory::ns.bnl.gov::105
+Brown University::ns.brown.edu::105
+Bucknell University::ns.bucknell.edu::105
+CHUUG/EUnet, Switzerland::chsun.eunet.ch::105
+CRS4 - Ctr for Adv Studies, Rsrch, and Dev, Italy::ns.crs4.it::105
+Cal Poly, San Luis Obispo::ns.calpoly.edu::105
+Camosun College, Victoria, B.C. Canada::cso.camosun.bc.ca::105
+Carleton University, Ontario, Canada::ernest.carleton.ca::105
+Carnegie Inst. of Washington Geophysical Lab::granite.ciw.edu::105
+Carnegie Inst. of Washington, Dept. of Ter. Mag.::dtm.ciw.edu::105
+Centre de Ressources Informatiques de Haute-Normandie::ns.crihan.fr::105
+Cerritos College::ns.cerritos.edu::105
+Chicago State University, IL USA::ns.csu.bgu.edu::105
+Chinese University of Hong Kong::ns.cuhk.hk::105
+Claude Bernard University, Lyon, France::ns.univ-lyon1.fr::105
+Clemson University::ph.clemson.edu::105
+Cleveland State University::ns.csuohio.edu::105
+Cliometric Society::clionet.cas.muohio.edu::105
+Colby College::gopher.colby.edu::105
+Columbia University::ns.columbia.edu::105
+Concordia University, Montreal, Quebec, Canada::phone.concordia.ca::105
+Cornell College, Iowa::ns.cornell-iowa.edu::105
+Cornell Directory of Legal Academia::ns.law.cornell.edu::105
+Cornell University Medical College::qi.med.cornell.edu::105
+Cornell University::qi.cornell.edu::105
+Cracow University of Technology, Poland::pk-siec.oeto.pk.edu.pl::105
+Curtin Univ. of Technology, Perth, Australia::ph.curtin.edu.au::105
+Dalhousie University, Halifax, Nova Scotia, Canada::snoopy.ucis.dal.ca::105
+Dana-Farber Cancer Institute::ns.dfci.harvard.edu::105
+Danville Area Community College, Danville, Illinois::ns.dacc.cc.il.us::105
+Dartmouth College::dnd.dartmouth.edu::105
+Deakin University::deakin.edu.au::105
+Delft University of Technology, Netherlands::gopher.tudelft.nl::105
+Drake University::ns.drake.edu::105
+Duke University::phonebk.duke.edu::105
+ENSSIB, Lyon, France::ns.univ-lyon1.fr::105
+Eastern Illinois University::ns.eiu.edu::105
+Eastern Kentucky University::acs.eku.edu::105
+Ecole Centrale Paris, France::ph.ecp.fr::105
+Ecole Polytechnique Federale de Lausanne, Switzerland::gopher.epfl.ch::105
+Ecole Superieure de Mecanique de Marseille, France::ns.imt-mrs.fr::105
+Ecole des Hautes Etudes Commerciales, Montreal, Canada::ph.hec.ca::105
+Educational Computing Network, IL USA::ns.ecn.bgu.edu::105
+Eidg. Technische Hochschule, Zurich::ural.ethz.ch::105
+Embry-Riddle Aeronautical University, WEST::cso.pr.erau.edu::105
+Emory University::dooley.cc.emory.edu::105
+Environmental Protection Agency (EPA)::earth1.epa.gov::105
+Eurecom Institute, Sophia-Antipolis, France::eurecom.cica.fr::105
+Fairfield University::funrsc.fairfield.edu::105
+Fanshawe College, London, Ontario, Canada::admin.fanshawec.on.ca::105
+Federation des cegeps - RENARD, Quebec, Canada::renard.fedecegeps.qc.ca::105
+Florida Institute of Technology Faculty/Staff::sci-ed.fit.edu::105
+Florida State University::mailer.fsu.edu::105
+Geodetic Survey of Canada::ns.geod.emr.ca::105
+Georgetown University Faculty/Staff::cso.georgetown.edu::105
+Georgia Institute of Technology::lu-serve.gatech.edu::105
+Georgia Southern University::ns.gasou.edu::105
+Georgia State University::ph.gsu.edu::105
+Glassboro State University::gboro.glassboro.edu::105
+Global Cycling Network::cycling.org::105
+Government of New Brunswick, Canada::picture.gov.nb.ca::105
+Governors State University, IL USA::ns.gsu.bgu.edu::105
+Grand Valley State University::gopher.gvsu.edu::105
+Groningen University, Arts/Theol/Phil, Netherlands::ns.let.rug.nl::105
+Gustavus Adolphus College::ns.gac.edu::105
+Hamline University::piper.hamline.edu::105
+Harvard University::fas-ph.harvard.edu::105
+Helsinki University of Technology::ns.cs.hut.fi::105
+Humber College of Applied Arts and Technology, Canada::admin.humberc.on.ca::105
+INHA University, Inchon, South Korea::nms.inha.ac.kr::105
+INSA-Lyon, France::ns.univ-lyon1.fr::105
+Illinois State University, Normal, IL USA::ns.ilstu.edu::105
+Imperial College, UK::dir.ic.ac.uk::105
+Indiana State University::ph.indstate.edu::105
+Indiana University of Pennsylvania::ns.iup.edu::105
+Indiana University-Purdue Univ. at Indianapolis::hyrax.iupui.edu::105
+Indiana University::whois.indiana.edu::105
+Intl. Ctr. for Genetic Eng. & Biotech., Italy::genes.icgeb.trieste.it::105
+Iowa State University of Science and Technology::ph.iastate.edu::105
+Israel-wide Univ/Corp Email Searches (Experimental)::vm.tau.ac.il::105
+Johns Hopkins University::rad.hcf.jhu.edu::105
+Katholieke Universiteit Leuven, Belgium::ns.kuleuven.ac.be::105
+Keio University, Sci. & Tech. Campus, Japan::bash.cc.keio.ac.jp::105
+Kennesaw State College::gopher.kennesaw.edu::105
+Kent State University::ph.kent.edu::105
+Kutztown University::kutztown.edu::105
+LIRMM, France::ns.lirmm.fr::105
+Lakehead University::flash.lakeheadu.ca::105
+Lambton College, Canada::ns.lambton.on.ca::105
+Lawrence Livermore National Laboratory::ns.llnl.gov::105
+Lehigh University::ns.lehigh.edu::105
+Lewis University::cs.lewisu.edu::105
+Library of Congress::marvel.loc.gov::105
+Linkoping University, Sweden::ns.liu.se::105
+Los Alamos National Laboratory::lanl.gov::105
+Loughborough University of Technology, United Kingdom::dir.lut.ac.uk::105
+Loyola University, Chicago::ns.luc.edu::105
+Magnavox Electronic Systems Company::gw1.magec.com::105
+Mahidol University, Thailand, Staff::ns.mahidol.ac.th::105
+Massachusetts Institute of Technology::mitdir.mit.edu::105
+Massey University, New Zealand::ns.massey.ac.nz::105
+McGill Univ. Research Centre for Intelligent Machines::lightning.mcrcim.mcgill.edu::105
+McMaster University, Canada, Faculty/Staff/Student::cso.mcmaster.ca::105
+Medical University of South Carolina, Faculty/Staff::qi.musc.edu::105
+Memorial Sloan-Kettering Cancer Center::bigmac.mskcc.org::105
+Miami University (Ohio, USA)::ph.muohio.edu::105
+Michigan State University Faculty/Staff::cso.msu.edu::105
+Michigan State University Students::pilot0.cl.msu.edu::105
+Michigan Technological University::mtu-ns.mtu.edu::105
+Middle East Technical University (METU), Turkey::mogan.cc.metu.edu.tr::105
+Middlebury College::ns.middlebury.edu::105
+Mount Saint Mary's College::msmary.edu::105
+Muhlenberg College::rocky.muhlberg.edu::105
+NASA Lewis Research Center::aruba.lerc.nasa.gov::105
+NASA Marshall Space Flight Center::ph.msfc.nasa.gov::105
+National Autonomous University of Mexico (UNAM)::condor.dgsca.unam.mx::105
+National Institute of Standards and Technology::cso.nist.gov::105
+National Institutes of Health::ph.nih.gov::105
+National Oceanic and Atmospheric Admin., Boulder::cso.erl.noaa.gov::105
+National Renewable Energy Laboratory::ns.nrel.gov::105
+National Science Foundation::phsrvr.nsf.gov::105
+National University of Singapore::nuscc.nus.sg::105
+New York University Medical Center::popmail.med.nyu.edu::105
+New York University::ph.nyu.edu::105
+Nijenrode University, Netherlands::gopher.nijenrode.nl::105
+North Carolina Cooperative Extension Service, NCSU::twosocks.ces.ncsu.edu::105
+North Dakota State University::plains.nodak.edu::105
+Northeastern Illinois University, IL USA::orion.neiu.edu::105
+Northern Illinois University::qi.niu.edu::105
+Northwest Regional Educational Laboratory::ns.nwrel.org::105
+Northwestern University::ns.northwestern.edu::105
+ODTU Cevrimici Telefon Rehberi, Turkey::knidos.cc.metu.edu.tr::105
+Oak Ridge National Laboratory::wp.ornl.gov::105
+Occidental College::chesire.oxy.edu::105
+Ohio Northern University::ns.onu.edu::105
+Oklahoma State University::bubba.ucc.okstate.edu::105
+Old Dominion University Faculty/Staff::gopher.odu.edu::105
+OpenConnect Systems::ph.oc.com::105
+Oregon Research Institute::aragorn.ori.org::105
+Oregon State University::ph.orst.edu::105
+Penn State University::ph.psu.edu::105
+Plymouth State College, New Hampshire::eeyore.plymouth.edu::105
+Portland State Univ., Schl of Eng and Applied Sciences::ph.ee.pdx.edu::105
+Portland State University::skade.cc.pdx.edu::105
+Princeton University::princeton.edu::105
+Public Health Research Institute::ph.phri.nyu.edu::105
+Purdue University::directory.purdue.edu::105
+Quebec.Net (public phonebook for Quebec)::ph.quebec.net::105
+Quebecor Inc.::ph.quebecor.com::105
+Queen Mary and Westfield College, London, UK::beta.qmw.ac.uk::105
+Queen's University, Kingston, Canada::info.queensu.ca::105
+Queen's University, Ontario, Canada::info.queensu.ca::105
+Queensland Institute of Medical Research, Australia::panther.qimr.edu.au::105
+Rice University::cwis.rice.edu::105
+Rider University::genius.rider.edu::105
+Rijksuniversiteit Gent, Belgium::infoserv.rug.ac.be::105
+Rose-Hulman Institute of Technology::ns.rose-hulman.edu::105
+Roskilde Universitetscenter, Denmark::ns.ruc.dk::105
+Rsch. Inst. for Sym. Comp. (RISC-Linz), Austria::info.risc.uni-linz.ac.at::105
+Ryerson Polytechnic University::ph.acs.ryerson.ca::105
+SUNY Computer Officers Association::gram.cc.geneseo.edu::105
+SUNY System (Central) Administration::cso.sunycentral.edu::105
+Saint Mary's College::ns.saintmarys.edu::105
+Saint Michael's College, Colchester VT::smcvax.smcvt.edu::105
+Saint Norbert College::ph.snc.edu::105
+Sam Houston State University::niord.shsu.edu::105
+San Diego State University::ns.sdsu.edu::105
+Sir Sandford Fleming College, Canada::gopher.flemingc.on.ca::105
+Southwest Missouri State University::cso.smsu.edu::105
+St. Francis Xavier University, Canada, Fac/Staff::gopher.stfx.ca::105
+St. John's College, Annapolis MD USA::ns.sjca.edu::105
+State University of New York at Buffalo::cso.acsu.buffalo.edu::105
+State University of New York at Geneseo::newt.cc.geneseo.edu::105
+State University of New York at Oswego::cso.oswego.edu::105
+State University of New York, Potsdam College::gopher.dc.potsdam.edu::105
+Stonehill College::ns.stonehill.edu::105
+Susquehanna University::stoll.susqu.edu::105
+Swarthmore College::ph.cc.swarthmore.edu::105
+Syracuse University::dataserver.syr.edu::105
+Technical Research Centre, Finland::ns.vtt.fi::105
+Technical University of Eindhoven, Netherlands::mailhost.tue.nl::105
+Technical University of Nova Scotia, Canada::newton.ccs.tuns.ca::105
+Tecnologico de Monterrey Campus Chihuahua, Mexico::campus.chi.itesm.mx::105
+Texas A&M University::ns.tamu.edu::105
+Texas Tech University::unicorn.acs.ttu.edu::105
+Tilburg University, Netherlands::cso.kub.nl::105
+Trent University, Peterborough, Ont., Canada::ph.trentu.ca::105
+Trinity University, San Antonio, Texas::cso.trinity.edu::105
+Truman State University, Missouri::noc.nemostate.edu::105
+US Army Corps of Engineers, C.E.R. Lab::ns.cecer.army.mil::105
+US Department of Education::gopher.ed.gov::105
+US Department of Health and Human Services::dhhs-dir.nih.gov::105
+US Geological Survey::ph.usgs.gov::105
+United Medical & Dental Schools, London, UK::ph.umds.ac.uk::105
+Universidad La Salle, Mexico::ns.ulsa.mx::105
+Universidad Veracruzana::mail.usbi.uv.mx::105
+Universidad de Los Andes, Bogota, Colombia::ph.uniandes.edu.co::105
+Universidad del Valle, Cali, Colombia::mafalda.univalle.edu.co::105
+Universite Catholique de Louvain::annuaire.sia.ucl.ac.be::105
+Universite Laval, Genie Electrique::cso.gel.ulaval.ca::105
+Universite Laval, Quebec, Canada::ns.ulaval.ca::105
+Universite de Bourgogne, France::ns.u-bourgogne.fr::105
+Universite de Valenciennes, France::ns.univ-valenciennes.fr::105
+Universite du Quebec a Montreal, Quebec, Canada::cso.uqam.ca::105
+University College London, UK::ph-server.ucl.ac.uk::105
+University of Alabama at Birmingham::ns.uab.edu::105
+University of Alberta, Canada::chinchaga.ucs.ualberta.ca::105
+University of Amsterdam::cso.uva.nl::105
+University of Antwerp - UA::cso.ua.ac.be::105
+University of Arizona::ns.arizona.edu::105
+University of Brescia, Italy::master.cci.unibs.it::105
+University of British Columbia, Canada::phserver.ubc.ca::105
+University of California Systemwide Administration::directory.ucop.edu::105
+University of California at Berkeley::phonebook.berkeley.edu::105
+University of California at Davis::geology.ucdavis.edu::105
+University of California at Irvine::qi.service.uci.edu::105
+University of California at Los Angeles::directory.ucla.edu::105
+University of California at San Diego::ucsd.edu::105
+University of California at San Francisco::itsa.ucsf.edu::105
+University of California at Santa Barbara::ucsbuxa.ucsb.edu::105
+University of Cape Town, South Africa::gopher.cs.uct.ac.za::105
+University of Central Florida::pegasus.cc.ucf.edu::105
+University of Chicago::prism.uchicago.edu::105
+University of Cincinnati::ucunix.san.uc.edu::105
+University of Colorado, Boulder::directory.colorado.edu::105
+University of Colorado, Colorado Springs, Faculty/Staff::ns.uccs.edu::105
+University of Connecticut Health Center::ph.uchc.edu::105
+University of Connecticut::phonebk.uconn.edu::105
+University of Durham, UK::ph0.dur.ac.uk::105
+University of Florida::ns.ufl.edu::105
+University of Guelph, Canada::info.uoguelph.ca::105
+University of Hamburg, Dept. Econ & Bus. Admin.::ns.econ.uni-hamburg.de::105
+University of Hamburg, Germany::playmate.uni-hamburg.de::105
+University of Hawaii::ns.hawaii.edu::105
+University of Idaho Faculty/Staff::owl.csrv.uidaho.edu::105
+University of Illinois at Chicago::ns.uic.edu::105
+University of Illinois at Springfield::eagle.uis.edu::105
+University of Illinois at Urbana-Champaign::ns.uiuc.edu::105
+University of Iowa::ns.uiowa.edu::105
+University of Kansas::qi.cc.ukans.edu::105
+University of Kentucky::ukcc.uky.edu::105
+University of Leuven, Belgium::ph.kuleuven.ac.be::105
+University of Liege, Belgium::ph.ulg.ac.be::105
+University of Maine Faculty/Staff::goofy.umecit.maine.edu::105
+University of Manchester and UMIST, UK::info.mcc.ac.uk::105
+University of Mannheim, Germany::ns.uni-mannheim.de::105
+University of Maryland at Baltimore::umabnet.ab.umd.edu::105
+University of Maryland, Baltimore County::cso.umbc.edu::105
+University of Massachusetts at Amherst::ns.umass.edu::105
+University of Medicine & Dentistry of New Jersey::ns.umdnj.edu::105
+University of Memphis::ns.memst.edu::105
+University of Minnesota::ns.umn.edu::105
+University of Missouri - Rolla Faculty/Staff::cso-employee-phonebook.cc.umr.edu::105
+University of Montana::phonebook.umt.edu::105
+University of Munich, Germany::ns.informatik.uni-muenchen.de::105
+University of Nebraska at Omaha::ns.unomaha.edu::105
+University of New Brunswick, Canada::ns.unb.ca::105
+University of New England, Northern Rivers, Australia::elli.une.edu.au::105
+University of North Texas::gopher.unt.edu::105
+University of Northern Iowa::access.uni.edu::105
+University of Notre Dame::ns.nd.edu::105
+University of Nottingham, UK::info.ccc.nottingham.ac.uk::105
+University of Oklahoma::ph.ou.edu::105
+University of Oregon::whois.uoregon.edu::105
+University of Oslo, Norway::ph.uio.no::105
+University of Otago, Dunedin, New Zealand::ns.otago.ac.nz::105
+University of Pennsylvania::ph-server.upenn.edu::105
+University of Pretoria, South Africa::qi.up.ac.za::105
+University of Rhode Island::phonebk.uri.edu::105
+University of Salzburg, Austria::dsb835.edvz.sbg.ac.at::105
+University of Sheffield (UK) (backup server)::pp2.shef.ac.uk::105
+University of Sheffield (UK)::dir.shef.ac.uk::105
+University of South Africa (Unisa)::gopher.unisa.ac.za::105
+University of South Carolina::web.csd.sc.edu::105
+University of South Florida::cfrvm.cfr.usf.edu::105
+University of Southern Maine Faculty/Staff::csir1.usmacs.maine.edu::105
+University of Southern Mississippi::cso.usm.edu::105
+University of Southhampton, UK, Dept of Mathematics::mir.maths.soton.ac.uk::105
+University of Surrey::directory.surrey.ac.uk::105
+University of Sydney, Australia::phone.su.edu.au::105
+University of Sydney, Faculty of Law, Australia::sulaw.law.su.oz.au::105
+University of Tasmania, Australia::info.utas.edu.au::105
+University of Tennessee at Chattanooga::cecasun.utc.edu::105
+University of Texas CHPC::hermes.chpc.utexas.edu::105
+University of Texas Medical Branch::bluefin.utmb.edu::105
+University of Toledo::ph.utoledo.edu::105
+University of Trento, Italy::mambo.cs.unitn.it::105
+University of Tulsa::ns.utulsa.edu::105
+University of Utah::ph.utah.edu::105
+University of Utrecht, Netherlands::nic.cc.ruu.nl::105
+University of Vermont::ns.uvm.edu::105
+University of Victoria, Canada::ph.uvic.ca::105
+University of Waterloo, Ontario, Canada::uwdir.uwaterloo.ca::105
+University of West Bohemia, Czech Republic::ph.zcu.cz::105
+University of Winnipeg, Canada::uwpg02.uwinnipeg.ca::105
+University of Wisconsin - Eau Claire::ph.uwec.edu::105
+University of Wisconsin - La Crosse::ns.uwlax.edu::105
+University of Wisconsin - Platteville::ph.uwplatt.edu::105
+University of Wisconsin at Madison::wisc.edu::105
+University of Wisconsin at Milwaukee::wp.uwm.edu::105
+University of Wolverhampton, U.K.::ccug.wlv.ac.uk::105
+Uppsala University, Sweden::ns.uu.se::105
+Utah State University Extension Service::extsparc.agsci.usu.edu::105
+Vanderbilt University::ph.vanderbilt.edu::105
+Virginia Polytechnic Institute and State Univ.::ns.vt.edu::105
+Vrije Universiteit Amsterdam::csohost.cca.vu.nl::105
+WSMC Migrant Head Start::mail.wsmcol.org::105
+Wake Forest University::cso.wfu.edu::105
+Washington State University::phonebook.wsu.edu::105
+Washington University, St. Louis::ns.wustl.edu::105
+Weizmann Institute of Science, Israel::wisslc1.weizmann.ac.il::105
+Western Illinois University, IL USA::ns.wiu.edu::105
+Wheaton College::david.wheaton.edu::105
+Williams College::ns.williams.edu::105
+Wilmington College::ns.wilmington.edu::105
+Yale University::directory.yale.edu::105
+York University, Canada::ph.yorku.ca::105
