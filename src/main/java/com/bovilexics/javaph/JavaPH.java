@@ -592,14 +592,8 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			@NotNull JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
 
 			fieldListSelectAllButton = new JButton("Select All");
-			fieldListSelectAllButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					fieldList.setSelectionInterval(0, fieldList.getModel().getSize() - 1);
-				}
-			});
+			fieldListSelectAllButton.addActionListener(
+					ae -> fieldList.setSelectionInterval(0, fieldList.getModel().getSize() - 1));
 			
 			fieldListSelectNoneButton = new JButton("Delselect All");
 			fieldListSelectNoneButton.addActionListener(ae -> fieldList.clearSelection());

@@ -54,15 +54,6 @@ public final class FindDialog extends JavaPHDialog
 
 	private FindComboBox findComboBox;
 	private TextFieldComboBoxEditor findComboBoxEditor;
-
-	class FindComboBoxEditorListener implements ActionListener
-	{	
-		@Override
-		public void actionPerformed(ActionEvent ae)
-		{
-			findButton.doClick();
-		}
-	}
 	
 	public FindDialog(@NotNull JavaPH javaph)
 	{
@@ -136,7 +127,7 @@ public final class FindDialog extends JavaPHDialog
 
 		@NotNull JPanel findControlPanel = new JPanel(new FlowLayout());
 		
-		findComboBoxEditor = new TextFieldComboBoxEditor(new FindComboBoxEditorListener());
+		findComboBoxEditor = new TextFieldComboBoxEditor((ae) -> findButton.doClick());
 /*
 		findComboBoxEditor.getEditorComponent().addKeyListener(new KeyListener()
 		{

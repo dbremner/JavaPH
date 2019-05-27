@@ -44,15 +44,6 @@ import org.jetbrains.annotations.Nullable;
  */
 final class CsvFileChooserPanel extends JPanel
 {
-	class CheckBoxListener implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent ae)
-		{
-			parent.setFieldQuoted(quotesCheckBox.isSelected());
-		}
-	}
-
 	class RadioButtonListener implements ActionListener
 	{	
 		@Override
@@ -147,7 +138,7 @@ final class CsvFileChooserPanel extends JPanel
 		});
 
 		quotesCheckBox = new JCheckBox("Add Quotes");
-		quotesCheckBox.addActionListener(new CheckBoxListener());
+		quotesCheckBox.addActionListener(ae -> parent.setFieldQuoted(quotesCheckBox.isSelected()));
 		quotesCheckBox.setSelected(parent.isFieldQuoted());
 		quotesCheckBox.setToolTipText("Add leading and trailing quotes to all table values");
 
