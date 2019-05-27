@@ -705,11 +705,8 @@ public class ResultThread extends Thread
 	 * 
 	 * It's here that the connection is established with the Qi server.
 	 *
-	 * @param commandQiLine the command to send to the server.
-	 * @param qiConnection a QiConnection. Connection does not need to be open.
-	 *
-	 * @exception IOException in the event of an error with (establishing)
-	 *             the connection to the Qi server.
+	 * @param aCommandLine the command to send to the server.
+	 * @param aQiConnection a QiConnection. Connection does not need to be open.
 	 *
 	 */
 	private synchronized void connect(String aCommandLine, QiConnection aQiConnection)

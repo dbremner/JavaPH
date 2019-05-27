@@ -89,7 +89,7 @@ public class QiConnection
 
 	/** Establish a connection to Qi.
 	  *
-	  * @exception IOException.
+	  * @exception IOException
 	 */
 	public synchronized void connect() throws IOException
 	{
@@ -114,7 +114,7 @@ public class QiConnection
 	 * @param The host to connect to.
 	 * @param The port to connect to.
 	 *
-	 * @exception IOException.
+	 * @exception IOException
 	 */
 	public synchronized void connect(String aHost, int aPort) throws IOException
 	{
@@ -131,7 +131,7 @@ public class QiConnection
 	/**
 	 * Drop the connection to Qi.
 	 *
-	 * @exception IOException.
+	 * @exception IOException
 	*/
 	public synchronized void disconnect() throws IOException
 	{
