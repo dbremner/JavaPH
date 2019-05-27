@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -30,16 +31,13 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PrefsAction extends AbstractAction
 {
-	@Nullable
+	@NotNull
     private JavaPH parent;
 		
-	public PrefsAction(@Nullable JavaPH javaph)
+	public PrefsAction(@NotNull JavaPH javaph)
 	{
 		super("Preferences");
-		
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into PrefsAction");
-			
+
 		parent = javaph;
 	}
 	

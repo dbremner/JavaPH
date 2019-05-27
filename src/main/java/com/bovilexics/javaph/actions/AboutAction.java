@@ -31,12 +31,13 @@ import org.jetbrains.annotations.NotNull;
  */
 public class AboutAction extends AbstractAction
 {
+	@NotNull
 	private JavaPH parent;
 	
 	public AboutAction(@NotNull JavaPH javaph)
 	{
 		super("About JavaPH", new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));
-			
+
 		parent = javaph;
 	}
 	

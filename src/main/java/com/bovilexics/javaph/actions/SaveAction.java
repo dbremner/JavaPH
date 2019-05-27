@@ -41,6 +41,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class SaveAction extends AbstractAction
 {
+	@NotNull
 	private JavaPH parent;
 		
 	public SaveAction(@NotNull JavaPH javaph)

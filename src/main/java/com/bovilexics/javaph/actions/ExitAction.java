@@ -31,13 +31,14 @@ import org.jetbrains.annotations.NotNull;
  * 
  */
 public class ExitAction extends AbstractAction
-{	
+{
+	@NotNull
 	private JavaPH parent;
 	
 	public ExitAction(@NotNull JavaPH javaph)
 	{
 		super("Exit", new ImageIcon(javaph.getURL("img/cancel.gif")));
-			
+
 		parent = javaph;
 	}
 	

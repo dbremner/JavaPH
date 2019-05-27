@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -30,16 +31,13 @@ import org.jetbrains.annotations.Nullable;
  */
 public class BrowserAction extends AbstractAction
 {
-	@Nullable
+	@NotNull
     private JavaPH parent;
 	
-	public BrowserAction(@Nullable JavaPH javaph)
+	public BrowserAction(@NotNull JavaPH javaph)
 	{
 		super("Broswer Options");
-		
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into BrowserAction");
-			
+
 		parent = javaph;
 	}
 	

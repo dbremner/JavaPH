@@ -34,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class HelpAction extends AbstractAction
 {
+	@NotNull
 	private JavaPH parent;
 	
 	public HelpAction(@NotNull JavaPH javaph)
