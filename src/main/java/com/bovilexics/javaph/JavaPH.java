@@ -335,14 +335,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 				}
 			});
 
-			queryComboBoxEditor = new TextFieldComboBoxEditor(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					queryButton.doClick();
-				}
-			});
+			queryComboBoxEditor = new TextFieldComboBoxEditor(ae -> queryButton.doClick());
 
 			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyListener()
 			{
@@ -609,14 +602,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			});
 			
 			fieldListSelectNoneButton = new JButton("Delselect All");
-			fieldListSelectNoneButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					fieldList.clearSelection();					
-				}
-			});
+			fieldListSelectNoneButton.addActionListener(ae -> fieldList.clearSelection());
 
 		
 			fieldListMoveUpButton = new JButton("Move Up");
@@ -903,14 +889,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			});
 			
 			colListSelectNoneButton = new JButton("Delselect All");
-			colListSelectNoneButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					colList.clearSelection();
-				}
-			});
+			colListSelectNoneButton.addActionListener(ae -> colList.clearSelection());
 
 			colListSelectAllButton.setEnabled(false);
 			colListSelectNoneButton.setEnabled(false);

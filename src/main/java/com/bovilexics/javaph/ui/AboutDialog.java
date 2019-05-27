@@ -77,14 +77,7 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 		
 		okButton = new JButton("OK");
-		okButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
-			{
-				dispose();
-			}
-		});
+		okButton.addActionListener(ae -> dispose());
 		
 		buttonPanel.add(okButton);
 		

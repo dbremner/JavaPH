@@ -46,14 +46,7 @@ public class QueryThread extends Thread
 
 	private void closeProgress()
 	{
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				parent.getQueryProgressMonitor().close();
-			}
-		});
+		SwingUtilities.invokeLater(() -> parent.getQueryProgressMonitor().close());
 	}
 
 	@Override
@@ -146,39 +139,18 @@ public class QueryThread extends Thread
 
 	private void shutdown()
 	{
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				parent.getQueryButton().setEnabled(true);
-			}
-		});
+		SwingUtilities.invokeLater(() -> parent.getQueryButton().setEnabled(true));
 	}
 
 	private void startup()
 	{
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				parent.getQueryButton().setEnabled(false);
-			}
-		});
+		SwingUtilities.invokeLater(() -> parent.getQueryButton().setEnabled(false));
 		
 		showStatus("Query Running... Please Wait");
 	}
 
 	private void updateProgress(final int progress)
 	{
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				parent.getQueryProgressMonitor().setProgress(progress);
-			}
-		});
+		SwingUtilities.invokeLater(() -> parent.getQueryProgressMonitor().setProgress(progress));
 	}
 }

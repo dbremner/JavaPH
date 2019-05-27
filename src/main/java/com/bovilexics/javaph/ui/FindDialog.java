@@ -116,14 +116,7 @@ public final class FindDialog extends JavaPHDialog
 
 		closeButton = new JButton("Close");
 		closeButton.setMnemonic(KeyEvent.VK_C);
-		closeButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
-			{
-				dispose();
-			}
-		});
+		closeButton.addActionListener(ae -> dispose());
 
 		buttonPanel.add(findButton);
 		buttonPanel.add(closeButton);

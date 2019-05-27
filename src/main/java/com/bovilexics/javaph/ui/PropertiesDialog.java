@@ -122,36 +122,15 @@ public final class PropertiesDialog extends JavaPHDialog
 
 		applyButton = new JButton("Apply");
 		applyButton.setMnemonic(KeyEvent.VK_A);
-		applyButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
-			{
-				saveProperties();
-			}
-		});
+		applyButton.addActionListener(ae -> saveProperties());
 
 		cancelButton = new JButton("Cancel");
 		cancelButton.setMnemonic(KeyEvent.VK_C);
-		cancelButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
-			{
-				dispose();
-			}
-		});
+		cancelButton.addActionListener(ae -> dispose());
 
 		defaultsButton = new JButton("Defaults");
 		defaultsButton.setMnemonic(KeyEvent.VK_D);
-		defaultsButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
-			{
-				refreshDefaultProperties();
-			}
-		});
+		defaultsButton.addActionListener(ae -> refreshDefaultProperties());
 	
 		buttonPanel.add(okButton);
 		buttonPanel.add(applyButton);
@@ -179,14 +158,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		runtimeSlider.setPaintLabels(true);
 		runtimeSlider.setSnapToTicks(true);
 		runtimeSlider.setValue(parent.getQueryRuntime());
-		runtimeSlider.addChangeListener(new ChangeListener()
-		{
-			@Override
-			public void stateChanged(ChangeEvent ce)
-			{
-				runtimeText.setText("" + runtimeSlider.getValue());
-			}
-		});
+		runtimeSlider.addChangeListener(ce -> runtimeText.setText("" + runtimeSlider.getValue()));
 
 		runtimeText = new JTextField();
 		runtimeText.setColumns(3);
