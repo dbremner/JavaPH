@@ -16,14 +16,15 @@
  */
 package com.bovilexics.javaph.qi;
 
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QiAPI
+public final class QiAPI
 {
 /*
 	Reply codes
@@ -102,7 +103,7 @@ public class QiAPI
 	
 	public final static int LQ_ALL		= (LQ_FWTK | LQ_KRB4 | LQ_KRB5 | LQ_GSS | LQ_EMAIL | LQ_PASSWORD | LQ_CLEAR);
 	
-	static Hashtable QiCodes = new Hashtable();
+	private final static Map<Integer, String> QiCodes = new HashMap<>();
 	
 	static
 	{
@@ -156,8 +157,9 @@ public class QiAPI
 		QiCodes.put(new Integer(LR_AMBIGUOUS),	"Multiple matches found for nameserver query");
 	}
 
-	public String toString(int code)
+	public static String toString(int code)
 	{
-		return (String) QiCodes.get(new Integer(code));
+		final Integer boxedCode = code;
+		return QiAPI.QiCodes.get(boxedCode);
 	}
 }
