@@ -90,9 +90,8 @@ public final class QiCommand
 
 	public static boolean isValidCommand(String command)
 	{
-		for (int i = 0; i < commands.length; i++)
-		{
-			if (commands[i].getName().equals(command)) {
+		for (QiCommand qiCommand : commands) {
+			if (qiCommand.getName().equals(command)) {
 				return true;
 			}
 		}

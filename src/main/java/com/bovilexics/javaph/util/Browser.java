@@ -415,8 +415,8 @@ public class Browser {
 		out.println("</head>");
 		out.println("<body onload=\"javascript:displayURLs()\">");
 		out.println("<noscript>");
-		for (int i=0; i<urls.length; i++){
-			out.println("<a target=\"_blank\" href=\"" + urls[i] + "\">" + urls[i] + "</a><br>");
+		for (String url : urls) {
+			out.println("<a target=\"_blank\" href=\"" + url + "\">" + url + "</a><br>");
 		}
 		out.println("</noscript>");
 		out.println("</body>");
@@ -495,8 +495,8 @@ public class Browser {
 		out.println("</head>");
 		out.println("<body onload=\"javascript:displayURLs()\">");
 		out.println("<noscript>");
-		for (int i=0; i<urls.length; i++){
-			out.println("<a target=\"_blank\" href=\"" + urls[i] + "\">" + urls[i] + "</a><br>");
+		for (String url : urls) {
+			out.println("<a target=\"_blank\" href=\"" + url + "\">" + url + "</a><br>");
 		}
 		out.println("</noscript>");
 		out.println("</body>");
@@ -559,8 +559,8 @@ public class Browser {
 		out.println("</head>");
 		out.println("<body onload=\"javascript:displayURLs()\">");
 		out.println("<noscript>");
-		for (int i=0; i<urls.length; i++){
-			out.println("<a target=\"" + ((namedWindows==null||namedWindows.length==0||namedWindows[0]==null)?"_blank":namedWindows[0]) + "\" href=\"" + urls[i] + "\">" + urls[i] + "</a><br>");
+		for (String url : urls) {
+			out.println("<a target=\"" + ((namedWindows == null || namedWindows.length == 0 || namedWindows[0] == null) ? "_blank" : namedWindows[0]) + "\" href=\"" + url + "\">" + url + "</a><br>");
 		}
 		out.println("</noscript>");
 		out.println("</body>");

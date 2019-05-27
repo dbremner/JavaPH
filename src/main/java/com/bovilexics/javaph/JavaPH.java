@@ -1342,11 +1342,10 @@ public class JavaPH extends JApplet {
 				if (selectedFields != null &&  selectedFields.length > 0)
 				{
 					out.append(" return");
-					
-					for (int i = 0; i < selectedFields.length; i++)
-					{
+
+					for (int selectedField : selectedFields) {
 						out.append(" ");
-						out.append(((QiField)fieldList.getModel().getElementAt(selectedFields[i])).getName());
+						out.append(((QiField) fieldList.getModel().getElementAt(selectedField)).getName());
 					}
 				}
 				else

@@ -160,11 +160,7 @@ public class QiServer
 
 	public static void loadAllFields()
 	{
-
-		for (int i = 0; i < servers.size(); i++)
-		{
-			final QiServer server = servers.elementAt(i);
-
+		for (final QiServer server : servers) {
 			if (server.getFieldState() != FIELD_LOAD_ERROR) {
 				server.loadFields();
 			}
@@ -265,12 +261,10 @@ public class QiServer
 		if (server == null) {
 			return;
 		}
-			
-		for (int i = 0; i < servers.size(); i++)
-		{
-			if ((servers.elementAt(i)).toString().equals(server))
-			{
-				defaultServer = servers.elementAt(i);
+
+		for (final QiServer item : servers) {
+			if (item.toString().equals(server)) {
+				defaultServer = item;
 				return;
 			}
 		}
