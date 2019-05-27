@@ -1832,7 +1832,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public void setFieldSeparator(@NotNull String separator)
 	{
-		if (separator == null || separator.equals("")) {
+		if (separator.equals("")) {
 			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");
 		}
 			
