@@ -102,8 +102,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	public void filterElements(@Nullable String filter)
 	{
-		Object anObject;
-		
+
 		if (filter == null || filter.equals(""))
 		{
 			restoreAllElements();
@@ -114,8 +113,8 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			
 			for (int i = 0; i < allObjects.size(); i++)
 			{
-				anObject = allObjects.elementAt(i);
-				 
+				Object anObject = allObjects.elementAt(i);
+
 				if (anObject == null)
 					continue;
 				
@@ -187,10 +186,10 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	{
 		if (objects.size() > 0)
 		{
-			int firstIndex = 0;
 			int lastIndex = objects.size() - 1;
 			objects.removeAllElements();
 			selectedObject = null;
+			int firstIndex = 0;
 			fireIntervalRemoved(this, firstIndex, lastIndex);
 		}
 	}

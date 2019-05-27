@@ -97,11 +97,11 @@ public class QiServer
 
 	public static void addServer(@Nullable QiServer server)
 	{
-		int whereToAdd = -1;
-		
+
 		if (server == null)
 			return;
 
+		int whereToAdd = -1;
 		if (servers.size() == 0)
 		{
 			whereToAdd = 0;
@@ -109,11 +109,10 @@ public class QiServer
 		else
 		{
 			String newElement = server.toString();
-			String oldElement;
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				oldElement = servers.elementAt(i).toString();
+				String oldElement = servers.elementAt(i).toString();
 
 				if (newElement.compareTo(oldElement) == 0)
 				{
@@ -194,16 +193,15 @@ public class QiServer
 			@NotNull LineNumberReader lr = new LineNumberReader(in);
 			
 			String line;
-			String[] items;
 
 			while ((line = lr.readLine()) != null)
 			{
 				// Ignore comment lines
 				if (line.startsWith("#"))
 					continue;
-					
-				items = line.split(SEPARATOR);
-				
+
+				String[] items = line.split(SEPARATOR);
+
 				if (items.length != 3)
 				{
 					System.err.println("Error: Invalid server entry in " + SERVER_FILE + " on line " + lr.getLineNumber() + " --> " + line);
@@ -290,30 +288,22 @@ public class QiServer
 	private void convertRecordsToFields(@NotNull Vector records)
 	{
 		fields = new Vector();
-		
-		QiLine descLine;
-		QiLine propsLine;
-		String descField;
-		String descValue;
-		String propsField;
-		String propsValue;
-		Vector record;
-		
+
 		for (int i = 0; i < records.size(); i++)
 		{
-			record = (Vector)records.elementAt(i);
-			
+			Vector record = (Vector) records.elementAt(i);
+
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
-				propsLine = (QiLine)record.elementAt(j);
-				descLine = (QiLine)record.elementAt(j + 1);
-				
-				propsField = propsLine.getTrimmedField();
-				propsValue = propsLine.getTrimmedValue();
-				descField = descLine.getTrimmedField();
-				descValue = descLine.getTrimmedValue();
-				
+				QiLine propsLine = (QiLine) record.elementAt(j);
+				QiLine descLine = (QiLine) record.elementAt(j + 1);
+
+				String propsField = propsLine.getTrimmedField();
+				String propsValue = propsLine.getTrimmedValue();
+				String descField = descLine.getTrimmedField();
+				String descValue = descLine.getTrimmedValue();
+
 				if (propsField.equals(descField))
 				{
 					// Do not add this field if it is one of the special fields already handled elsewhere
@@ -401,11 +391,11 @@ public class QiServer
 
 	public void loadFields()
 	{
-		int seconds = 0;
 
 		@Nullable ResultThread resultThread = new ResultThread(QiCommand.FIELDS, this);
 		resultThread.start();
 
+		int seconds = 0;
 		while (seconds < QUERY_RUNTIME && !resultThread.isFinished())
 		{
 			try

@@ -142,19 +142,18 @@ public class ResultThread extends Thread
 	@Nullable
 	public synchronized String fieldValue(int record, String field, boolean replaceNewlines)
 	{
-		boolean gotField = false;
-		
+
 		@NotNull StringBuffer out = new StringBuffer();
-		
-		@Nullable QiLine qiLine;
+
 		@Nullable Vector records = null;
 
 		if ((records = (Vector) records.elementAt(record)) == null)
 			return null;
-			
+
+		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			qiLine = (QiLine) records.elementAt(i);
+			@Nullable QiLine qiLine = (QiLine) records.elementAt(i);
 
 			// Skip empty and encrypted fields.
 			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().equals(""))
@@ -423,19 +422,17 @@ public class ResultThread extends Thread
 	{
 		if (headersDone)
 			return;
-		
-		String field;
+
 		String lastField = "unknown";
 		@NotNull Vector uniqueHeaders = new Vector();
-		Vector currentQiLine;
-		
+
 		for (int i = 0; i < records.size(); i++)
 		{
-			currentQiLine = (Vector)records.elementAt(i);
-			
+			Vector currentQiLine = (Vector) records.elementAt(i);
+
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
-				field = ((QiLine)currentQiLine.elementAt(j)).getTrimmedField();
+				String field = ((QiLine) currentQiLine.elementAt(j)).getTrimmedField();
 
 				if (field.equals(""))
 				{
@@ -483,7 +480,6 @@ public class ResultThread extends Thread
 	 */
 	private synchronized void buildResult() throws IOException, QiProtocolException
 	{
-		int index = 0;
 
 		if (halted)
 		{
@@ -496,6 +492,7 @@ public class ResultThread extends Thread
 
 		// Read the server's response, line by line.
 		rawResult = new StringBuffer();
+		int index = 0;
 		while ((readFromServer = readQi()) != null)
 		{
 			qiLine = new QiLine(readFromServer);
@@ -571,25 +568,20 @@ public class ResultThread extends Thread
 			
 		values = new Object[records.size()][headers.length];
 
-		boolean found;
 		int xCoord = -1;
-		int yCoord;
-		QiLine thisQiLine;
-		String field;
 		String lastField = "unknown";
-		Vector thisVector;
-		
+
 		for (int i = 0; i < records.size(); i++)
 		{
-			yCoord = i;
-			thisVector = (Vector)records.elementAt(i);
-			
+			int yCoord = i;
+			Vector thisVector = (Vector) records.elementAt(i);
+
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				found = false;
-				thisQiLine = (QiLine)thisVector.elementAt(j);
-				field = thisQiLine.getTrimmedField();
-				
+				boolean found = false;
+				QiLine thisQiLine = (QiLine) thisVector.elementAt(j);
+				String field = thisQiLine.getTrimmedField();
+
 				if (field.equals(""))
 				{
 					field = lastField + ".1";
@@ -635,25 +627,18 @@ public class ResultThread extends Thread
 			
 		values = new Object[records.size()][headers.length];
 
-		QiLine descQiLine;
-		QiLine propsQiLine;
-		String desc;
-		String field;
-		String props;
-		Vector thisVector;
-		
 		for (int i = 0; i < records.size(); i++)
 		{
-			thisVector = (Vector)records.elementAt(i);
-			
+			Vector thisVector = (Vector) records.elementAt(i);
+
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
-				propsQiLine = (QiLine)thisVector.elementAt(j);
-				descQiLine = (QiLine)thisVector.elementAt(j + 1);
+				QiLine propsQiLine = (QiLine) thisVector.elementAt(j);
+				QiLine descQiLine = (QiLine) thisVector.elementAt(j + 1);
 
-				field = propsQiLine.getTrimmedField();
-				props = propsQiLine.getTrimmedValue();
-				desc = descQiLine.getTrimmedValue();
+				String field = propsQiLine.getTrimmedField();
+				String props = propsQiLine.getTrimmedValue();
+				String desc = descQiLine.getTrimmedValue();
 
 				values[i][0] = field;
 				values[i][1] = desc;
@@ -666,7 +651,6 @@ public class ResultThread extends Thread
 
 	private synchronized void cleanup()
 	{
-		String buffer;
 		state = RS_UNKNOWN;
 		prologue = "Stopped!";
 
@@ -675,6 +659,7 @@ public class ResultThread extends Thread
 		{
 			if (qiLine != null && qiLine.getCode() < QiAPI.LR_OK)
 			{
+				String buffer;
 				while ((buffer = readQi()) != null)
 				{
 					qiLine = new QiLine(buffer);

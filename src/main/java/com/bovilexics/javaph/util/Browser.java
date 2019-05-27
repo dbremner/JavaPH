@@ -292,14 +292,13 @@ public class Browser {
 			}
 			@NotNull String[] messageArray = new String[1];
 			messageArray[0] = sb.toString();
-			@Nullable String command;
-			boolean found = false;
 			// try each of the exec commands until something works
 			try {
-				for (int i=0; i<exec.length && !found; i++){
+				boolean found = false;
+				for (int i = 0; i<exec.length && !found; i++){
 					try {
 						// stick the url into the command
-						command = MessageFormat.format(exec[i], messageArray);
+						@Nullable String command = MessageFormat.format(exec[i], messageArray);
 						// parse the command line.
 						@NotNull Vector argsVector = new Vector();
 						@Nullable BrowserCommandLexer lex = new BrowserCommandLexer(new StringReader(command));

@@ -86,10 +86,7 @@ final class CsvFileChooserPanel extends JPanel
 	public CsvFileChooserPanel(@NotNull JavaPH javaph)
 	{
 		parent = javaph;
-		
-		int horizStrut = 6;
-		int vertStrut = 2;
-		
+
 		@NotNull RadioButtonListener listener = new RadioButtonListener();
 		
 		setBorder(BorderFactory.createEtchedBorder());
@@ -158,6 +155,7 @@ final class CsvFileChooserPanel extends JPanel
 		setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		int horizStrut = 6;
 		add(Box.createHorizontalStrut(horizStrut), gbc);
 		add(label, gbc);
 
@@ -166,6 +164,7 @@ final class CsvFileChooserPanel extends JPanel
 		add(new JLabel(" "), gbc);
 
 		gbc.weightx = 0;
+		int vertStrut = 2;
 		add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;

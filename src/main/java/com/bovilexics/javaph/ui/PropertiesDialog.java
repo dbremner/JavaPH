@@ -243,9 +243,6 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsGroup.add(loadFieldsSelected);
 		loadFieldsGroup.add(loadFieldsStartup);
 
-		int horizStrut = 6;
-		int vertStrut = 2;
-		
 		@NotNull JPanel loadFieldsPanel = new JPanel();
 		
 		@NotNull GridBagLayout gbl = new GridBagLayout();
@@ -254,6 +251,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsPanel.setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		int horizStrut = 6;
 		loadFieldsPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		loadFieldsPanel.add(loadFieldsManual, gbc);
 
@@ -262,6 +260,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsPanel.add(new JLabel(" "), gbc);
 		
 		gbc.weightx = 0;
+		int vertStrut = 2;
 		loadFieldsPanel.add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;
@@ -293,7 +292,6 @@ public final class PropertiesDialog extends JavaPHDialog
     private JPanel getStartupPanel()
 	{	
 		//int horizStrut = 6;
-		int vertStrut = 2;
 
 		@NotNull JPanel startupPanel = new JPanel();
 		startupPanel.setBorder(BorderFactory.createTitledBorder(" Startup Options "));
@@ -317,6 +315,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.add(rollToolbarCheckBox, gbc);
 
 		gbc.weightx = 0;
+		int vertStrut = 2;
 		startupPanel.add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;

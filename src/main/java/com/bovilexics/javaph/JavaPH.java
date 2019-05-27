@@ -1143,8 +1143,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	private void findTextInTable(@NotNull JTable table, @NotNull String text, boolean caseSensitive, boolean wrap)
 	{
-		boolean inLastCell = false;
-		
+
 		// if there aren't any rows or columns then we aren't going to find anything
 		if (table.getColumnCount() <= 0 || table.getRowCount() <= 0)
 		{
@@ -1158,6 +1157,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 		// if we were in the last column (and have now been bumped out by the +1 above)
 		// then see if we can go to the next row, if not then the last cell must be selected
+		boolean inLastCell = false;
 		if (startCol > table.getColumnCount() - 1)
 		{
 			startCol = 0;
@@ -1353,12 +1353,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	private int getIntProperty(@NotNull String key, int defaultValue)
 	{
 		int intValue;
-		@Nullable String stringValue;
-		
+
 		try
 		{
-			stringValue = getProperty(key);
-			
+			@Nullable String stringValue = getProperty(key);
+
 			if (stringValue == null)
 				throw new NumberFormatException();
 			
@@ -1375,12 +1374,11 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	public int getIntPropertyDefault(@NotNull String key, int defaultValue)
 	{
 		int intValue;
-		@Nullable String stringValue;
-		
+
 		try
 		{
-			stringValue = getPropertyDefault(key);
-			
+			@Nullable String stringValue = getPropertyDefault(key);
+
 			if (stringValue == null)
 				throw new NumberFormatException();
 			
@@ -1765,8 +1763,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	private void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
 	{
-		int i;
-		
+
 		@NotNull Component[] otherComponents = new Component[]
 		{
 			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
@@ -1778,6 +1775,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 			System.out.println("No look and feel specified, using system default (" + lookAndFeel + ")");	
 		}
 
+		int i;
 		try
 		{
 			UIManager.setLookAndFeel(lookAndFeel);

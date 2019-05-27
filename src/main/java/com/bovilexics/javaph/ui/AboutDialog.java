@@ -94,9 +94,7 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 	@NotNull
     private JPanel getInfoPanel()
 	{
-		int horizStrut = 6;
-		int vertStrut = 2;
-		
+
 		@NotNull JPanel infoPanel = new JPanel();
 		
 		@NotNull GridBagLayout gbl = new GridBagLayout();
@@ -105,6 +103,7 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		infoPanel.setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		int horizStrut = 6;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		infoPanel.add(new JLabel("Name :"), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
@@ -114,6 +113,7 @@ public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
 		infoPanel.add(new JLabel(INFO_NAME), gbc);
 		
 		gbc.weightx = 0;
+		int vertStrut = 2;
 		infoPanel.add(Box.createVerticalStrut(vertStrut), gbc);
 		
 		gbc.gridwidth = 1;

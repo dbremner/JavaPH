@@ -48,19 +48,18 @@ public class QueryToolBar extends JToolBar
 	public QueryToolBar(@NotNull JavaPH javaph)
 	{
 		parent = javaph;
-	
-		int sepWidth = 13;
-		int sepHeight = 26;
-			
-		setFloatable(false);
+
+        setFloatable(false);
 		setFocusable(false);
 		setOrientation(JToolBar.HORIZONTAL);
 		setRollover(parent.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
 
 		addToolBarButton(new NewAction(parent));
 		addToolBarButton(new SaveAction(parent));
-			
-		addSeparator(new Dimension(sepWidth, sepHeight));
+
+        int sepHeight = 26;
+        int sepWidth = 13;
+        addSeparator(new Dimension(sepWidth, sepHeight));
 			
 		addToolBarButton(new CutAction(), new ImageIcon(parent.getURL("img/cut.gif")));
 		addToolBarButton(new CopyAction(), new ImageIcon(parent.getURL("img/copy.gif")));

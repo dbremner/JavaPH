@@ -119,16 +119,13 @@ public class QiField
 	 */
 	private void setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
-		@Nullable String lengthString;
-		@Nullable String token;
-		@Nullable StringTokenizer tokenizer;
 
-		tokenizer = new StringTokenizer(someProperties);
-		token = (String) tokenizer.nextElement();
-		
+		@Nullable StringTokenizer tokenizer = new StringTokenizer(someProperties);
+		@Nullable String token = (String) tokenizer.nextElement();
+
 		if (token.startsWith("max"))
-		{	
-			lengthString = (String) tokenizer.nextElement();
+		{
+			@Nullable String lengthString = (String) tokenizer.nextElement();
 			try
 			{
 				length = Integer.valueOf(lengthString).intValue();

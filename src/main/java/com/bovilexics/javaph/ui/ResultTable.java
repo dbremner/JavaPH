@@ -72,21 +72,19 @@ public final class ResultTable extends JTable
 	private int getWidestCellWidth(@NotNull TableColumn column)
 	{
 		int colIndex = column.getModelIndex();
-		int rowIndex;
-		
+
 		int maxWidth = 0;
-		int width;
-		
+
 		Component component;
 		TableCellRenderer renderer;
 		
-		for (rowIndex = 0; rowIndex < getRowCount(); rowIndex++)
+		for (int rowIndex = 0; rowIndex < getRowCount(); rowIndex++)
 		{
 			renderer = getCellRenderer(rowIndex, colIndex);
 			component = renderer.getTableCellRendererComponent(this, getValueAt(rowIndex, colIndex), false, false, rowIndex, colIndex);
-			
-			width = component.getPreferredSize().width;
-			
+
+			int width = component.getPreferredSize().width;
+
 			if (width > maxWidth)
 				maxWidth = width;
 		}
@@ -96,14 +94,13 @@ public final class ResultTable extends JTable
 
 	public void resetColumnWidths()
 	{
-		int width;
 		TableColumn column;
 		
 		for (int i = 0; i < getColumnCount(); i++)
 		{
 			column = getColumn(getModel().getColumnName(i));
-			width = getPreferredWidthForColumn(column);
-			
+			int width = getPreferredWidthForColumn(column);
+
 			column.setMinWidth(0);
 			column.setPreferredWidth(width);
 			column.setMaxWidth(width);

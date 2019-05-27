@@ -55,9 +55,7 @@ public final class SaveAction extends AbstractAction
 	public void actionPerformed(ActionEvent ae)
 	{
 		int selectedTab = parent.getResultPanel().getSelectedIndex();
-		int state;
-		
-		File file;
+
 		JFileChooser chooser;
 		
 		if (selectedTab == JavaPH.RESULT_TABLE_TAB)
@@ -67,10 +65,10 @@ public final class SaveAction extends AbstractAction
 
 		chooser.setDialogTitle("Save " + JavaPH.TAB_LABELS[selectedTab]);
 		chooser.setSelectedFile(new File(JavaPH.TAB_FILENAMES[selectedTab]));
-			
-		state = chooser.showSaveDialog(parent.getDefaultPane());
-		file = chooser.getSelectedFile();
-			
+
+		int state = chooser.showSaveDialog(parent.getDefaultPane());
+		File file = chooser.getSelectedFile();
+
 		if (state == JFileChooser.APPROVE_OPTION && file != null)
 		{
 			parent.log("Saving file " + file.getPath());
@@ -94,9 +92,6 @@ public final class SaveAction extends AbstractAction
 
 		int cols = model.getColumnCount();
 		int rows = model.getRowCount();
-		
-		int c;
-		int r;
 
 		if (rows <= 0)
 		{
@@ -111,11 +106,11 @@ public final class SaveAction extends AbstractAction
 				@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
 				// start at row -1 to grab headers first
-				for (r = -1; r < rows; r++)
+				for (int r = -1; r < rows; r++)
 				{
 					toWrite = new StringBuffer();
 
-					for (c = 0; c < cols; c++)
+					for (int c = 0; c < cols; c++)
 					{
 						if (c > 0)
 							toWrite.append(separator);
@@ -154,7 +149,6 @@ public final class SaveAction extends AbstractAction
 	
 	private void saveTextFile(int tab, @NotNull File file)
 	{
-		String message;
 		@Nullable String toWrite = null;
 		
 		if (tab == JavaPH.RESULT_TEXT_TAB)
@@ -165,7 +159,8 @@ public final class SaveAction extends AbstractAction
 		{
 			toWrite = parent.getLogText().getText();
 		}
-		
+
+		String message;
 		if (toWrite == null || toWrite.equals(""))
 		{
 			message = "Nothing to save in " + JavaPH.TAB_LABELS[tab] + " tab";

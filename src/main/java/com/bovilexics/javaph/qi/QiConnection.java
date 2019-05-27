@@ -217,8 +217,6 @@ public class QiConnection
 	public synchronized void login(String anAlias, String aPassword) throws IOException, QiProtocolException
 	{
 		alias = anAlias;
-		@NotNull String buffer;
-		@NotNull String blurb = "";
 		lock();
 
 		try
@@ -227,6 +225,8 @@ public class QiConnection
 
 			// Read server's response.
 			// Expecting: "301:"B`":X8Z;9)!CH0/"H\^GQWD-P7TEAD3".G['%W20:"
+			@NotNull String blurb = "";
+			@NotNull String buffer;
 			while (true)
 			{
 				buffer = readQI();
@@ -287,8 +287,6 @@ public class QiConnection
 	 */
 	public synchronized void logout() throws QiProtocolException, IOException
 	{
-		@NotNull String buffer;
-		@NotNull String blurb = "";
 
 		if (!authenticated)
 			return;
@@ -302,9 +300,10 @@ public class QiConnection
 
 			// Read server's response.
 			// Expecting: "200:Ok."
+			@NotNull String blurb = "";
 			while (true)
 			{
-				buffer = readQI();
+				@NotNull String buffer = readQI();
 				qiQiLine = new QiLine(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
