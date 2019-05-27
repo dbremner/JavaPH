@@ -112,7 +112,7 @@ public class Browser {
 		} else if (System.getProperty("os.name").startsWith("Mac")){
 			 exec = null;
 		} else {
-			@NotNull Vector browsers = new Vector();
+			@NotNull Vector<String> browsers = new Vector<>();
 			try {
 				Process p = Runtime.getRuntime().exec("which mozilla");
 				if (p.waitFor() == 0){
@@ -300,7 +300,7 @@ public class Browser {
 						// stick the url into the command
 						@Nullable String command = MessageFormat.format(exec[i], messageArray);
 						// parse the command line.
-						@NotNull Vector argsVector = new Vector();
+						@NotNull Vector<String> argsVector = new Vector<>();
 						@Nullable BrowserCommandLexer lex = new BrowserCommandLexer(new StringReader(command));
 						@Nullable String t;
 						while ((t = lex.getNextToken()) != null) {
