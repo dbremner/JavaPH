@@ -87,7 +87,7 @@ public class QiField
 
 	public boolean hasProperty(String property)
 	{
-		return properties.indexOf(property) != -1;
+		return properties.contains(property);
 	}
 
 	@Override

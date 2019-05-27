@@ -1190,12 +1190,12 @@ public class JavaPH extends JApplet implements JavaPHConstants
 					{
 						continue;
 					}
-					else if (caseSensitive && anObject.toString().indexOf(text) >= 0)
+					else if (caseSensitive && anObject.toString().contains(text))
 					{
 						table.changeSelection(r, c, false, false);
 						return;
 					}
-					else if (!caseSensitive && anObject.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0)
+					else if (!caseSensitive && anObject.toString().toLowerCase().contains(text.toLowerCase()))
 					{
 						table.changeSelection(r, c, false, false);
 						return;
@@ -1225,12 +1225,12 @@ public class JavaPH extends JApplet implements JavaPHConstants
 					{
 						continue;
 					}
-					else if (caseSensitive && anObject.toString().indexOf(text) >= 0)
+					else if (caseSensitive && anObject.toString().contains(text))
 					{
 						table.changeSelection(r, c, false, false);
 						return;
 					}
-					else if (!caseSensitive && anObject.toString().toLowerCase().indexOf(text.toLowerCase()) >= 0)
+					else if (!caseSensitive && anObject.toString().toLowerCase().contains(text.toLowerCase()))
 					{
 						table.changeSelection(r, c, false, false);
 						return;

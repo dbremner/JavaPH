@@ -813,7 +813,7 @@ public class Browser {
 								sb.append(c);
 							}
 							app = sb.toString();
-							if (app.indexOf(" ") != -1){
+							if (app.contains(" ")){
 								app = '"' + app + '"';
 							}
 							String commands = commandLinesArea.getText();
