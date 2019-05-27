@@ -383,13 +383,13 @@ public final class PropertiesDialog extends JavaPHDialog
 			loadFields = JavaPH.LOAD_FIELDS_STARTUP;
 
 		parent.setProperty(JavaPH.PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
-		parent.setProperty(JavaPH.PROP_DISPLAY_LOG, new Boolean(displayLogCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_DISPLAY_SPLASH, new Boolean(displaySplashCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_DISPLAY_TOOLBAR, new Boolean(displayToolbarCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_ROLL_TOOLBAR, new Boolean(rollToolbarCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_DISPLAY_LOG, Boolean.valueOf(displayLogCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_DISPLAY_SPLASH, Boolean.valueOf(displaySplashCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_DISPLAY_TOOLBAR, Boolean.valueOf(displayToolbarCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_ROLL_TOOLBAR, Boolean.valueOf(rollToolbarCheckBox.isSelected()).toString());
 		parent.setProperty(JavaPH.PROP_LOAD_FIELDS, "" + loadFields);
 		parent.setProperty(JavaPH.PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
-		parent.setProperty(JavaPH.PROP_SAVE_POSITION, new Boolean(savePositionCheckBox.isSelected()).toString());
+		parent.setProperty(JavaPH.PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
 
 		QiServer.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
 		parent.setLoadFields(loadFields);
