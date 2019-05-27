@@ -36,10 +36,10 @@ abstract class SuffixAwareFilter extends FileFilter
 		return f.isDirectory();
 	}
 
-	@Nullable String getSuffix(@NotNull File f)
+	@NotNull String getSuffix(@NotNull File f)
 	{
 		@NotNull String s = f.getPath();
-		@Nullable String suffix = null;
+		@NotNull String suffix = "";
 		
 		int i = s.lastIndexOf('.');
 
