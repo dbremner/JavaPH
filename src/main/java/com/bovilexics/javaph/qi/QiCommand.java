@@ -49,7 +49,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QiCommand
+public final class QiCommand
 {
 	// public static final String ADD		= "add";
 	// public static final String ANSWER	= "answer";
