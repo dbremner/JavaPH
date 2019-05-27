@@ -43,7 +43,6 @@ import com.bovilexics.javaph.actions.NewAction;
 import com.bovilexics.javaph.actions.PrefsAction;
 import com.bovilexics.javaph.actions.SaveAction;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -77,8 +76,9 @@ public class MainMenu extends JMenuBar
 		{
 		}
 	}
-	
-	private MouseListener mouseListener;
+
+	@NotNull
+	private final MouseListener mouseListener;
 	
 	@NotNull
     private final JavaPH parent;
@@ -90,24 +90,25 @@ public class MainMenu extends JMenuBar
 	{
 		parent = javaph;
 
-		addMouseListener(getMouseListener());
+		mouseListener = new StatusMouseListener();
+		addMouseListener(mouseListener);
 
 		JMenu menu;
 		
 		menu = getFileComponent();
-		menu.addMouseListener(getMouseListener());
+		menu.addMouseListener(mouseListener);
 		add(menu);
 		
 		menu = getEditComponent();
-		menu.addMouseListener(getMouseListener());
+		menu.addMouseListener(mouseListener);
 		add(menu);
 		
 		menu = getWindowComponent();
-		menu.addMouseListener(getMouseListener());
+		menu.addMouseListener(mouseListener);
 		add(menu);
 
 		menu = getHelpComponent();
-		menu.addMouseListener(getMouseListener());
+		menu.addMouseListener(mouseListener);
 		add(menu);
 	}
 
@@ -217,19 +218,11 @@ public class MainMenu extends JMenuBar
 		return helpMenu;
 	}
 
-	private MouseListener getMouseListener()
-	{
-		if (mouseListener == null)
-			mouseListener = new StatusMouseListener();
-			
-		return mouseListener;
-	}
-
 	@NotNull
     private JMenuItem getNewMenuItem()
 	{
 		@NotNull JMenuItem menuItem = new JMenuItem();
-		menuItem.addMouseListener(getMouseListener());
+		menuItem.addMouseListener(mouseListener);
 		
 		return menuItem;
 	}
@@ -243,7 +236,7 @@ public class MainMenu extends JMenuBar
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
 		showLogItem = new JCheckBoxMenuItem("View System Log");
-		showLogItem.addMouseListener(getMouseListener());
+		showLogItem.addMouseListener(mouseListener);
 		showLogItem.setActionCommand("Set visibility of system log");
 		showLogItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, Event.CTRL_MASK));
 		showLogItem.setMnemonic(KeyEvent.VK_L);
@@ -268,7 +261,7 @@ public class MainMenu extends JMenuBar
 		windowMenu.add(showLogItem);
 
 		showToolBarItem = new JCheckBoxMenuItem("View Toolbar");
-		showToolBarItem.addMouseListener(getMouseListener());
+		showToolBarItem.addMouseListener(mouseListener);
 		showToolBarItem.setActionCommand("Set visibility of toolbar");
 		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, Event.CTRL_MASK));
 		showToolBarItem.setMnemonic(KeyEvent.VK_T);
@@ -293,7 +286,7 @@ public class MainMenu extends JMenuBar
 		windowMenu.add(showToolBarItem);
 
 		rollToolBarItem = new JCheckBoxMenuItem("Rollover Toolbar");
-		rollToolBarItem.addMouseListener(getMouseListener());
+		rollToolBarItem.addMouseListener(mouseListener);
 		rollToolBarItem.setActionCommand("Set rollover property of toolbar");
 		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK));
 		rollToolBarItem.setMnemonic(KeyEvent.VK_R);

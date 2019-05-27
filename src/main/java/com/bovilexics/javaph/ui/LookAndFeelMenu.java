@@ -72,8 +72,8 @@ class LookAndFeelMenu extends JMenu
 	@NotNull
     private final JavaPH parent;
 	
-	@Nullable
-    private MouseListener mouseListener = null;
+	@NotNull
+    private final MouseListener mouseListener;
 
 	class LookAndFeelItemListener implements ActionListener
 	{
@@ -150,7 +150,8 @@ class LookAndFeelMenu extends JMenu
 		
 		parent = javaph;
 
-		addMouseListener(getMouseListener());
+		mouseListener = new StatusMouseListener();
+		addMouseListener(mouseListener);
 
 		@NotNull ButtonGroup group = new ButtonGroup();
 
@@ -165,7 +166,7 @@ class LookAndFeelMenu extends JMenu
 			macItem = new JRadioButtonMenuItem("Mac");
 			group.add(macItem);
 			macItem.addActionListener(lookAndFeelRadioListener);
-			macItem.addMouseListener(getMouseListener());
+			macItem.addMouseListener(mouseListener);
 			macItem.setActionCommand("Change to Mac look and feel");
 			add(macItem);
 		}
@@ -175,7 +176,7 @@ class LookAndFeelMenu extends JMenu
 			metalItem = new JRadioButtonMenuItem("Metal");
 			group.add(metalItem);
 			metalItem.addActionListener(lookAndFeelRadioListener);
-			metalItem.addMouseListener(getMouseListener());
+			metalItem.addMouseListener(mouseListener);
 			metalItem.setActionCommand("Change to Metal look and feel");
 			add(metalItem);
 		}
@@ -185,7 +186,7 @@ class LookAndFeelMenu extends JMenu
 			motifItem = new JRadioButtonMenuItem("Motif");
 			group.add(motifItem);
 			motifItem.addActionListener(lookAndFeelRadioListener);
-			motifItem.addMouseListener(getMouseListener());
+			motifItem.addMouseListener(mouseListener);
 			motifItem.setActionCommand("Change to Motif look and feel");
 			add(motifItem);
 		}
@@ -195,7 +196,7 @@ class LookAndFeelMenu extends JMenu
 			windowsItem = new JRadioButtonMenuItem("Windows");		
 			group.add(windowsItem);
 			windowsItem.addActionListener(lookAndFeelRadioListener);
-			windowsItem.addMouseListener(getMouseListener());
+			windowsItem.addMouseListener(mouseListener);
 			windowsItem.setActionCommand("Change to Windows look and feel");
 			add(windowsItem);
 		}
@@ -204,7 +205,7 @@ class LookAndFeelMenu extends JMenu
 		
 		restoreDefaultItem = new JMenuItem("Restore Default");
 		restoreDefaultItem.addActionListener(lookAndFeelItemListener);
-		restoreDefaultItem.addMouseListener(getMouseListener());
+		restoreDefaultItem.addMouseListener(mouseListener);
 		restoreDefaultItem.setActionCommand("Change to Default look and feel");
 		restoreDefaultItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK));
 		restoreDefaultItem.setMnemonic(KeyEvent.VK_R);
@@ -212,22 +213,13 @@ class LookAndFeelMenu extends JMenu
 
 		storeDefaultItem = new JMenuItem("Save Default");
 		storeDefaultItem.addActionListener(lookAndFeelItemListener);
-		storeDefaultItem.addMouseListener(getMouseListener());
+		storeDefaultItem.addMouseListener(mouseListener);
 		storeDefaultItem.setActionCommand("Save look and feel as Default");
 		storeDefaultItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK));
 		storeDefaultItem.setMnemonic(KeyEvent.VK_S);
 		add(storeDefaultItem);
 
 		resetSelectedLookAndFeel();	
-	}
-
-	@Nullable
-    private MouseListener getMouseListener()
-	{
-		if (mouseListener == null)
-			mouseListener = new StatusMouseListener();
-			
-		return mouseListener;
 	}
 
 	private void resetSelectedLookAndFeel()
