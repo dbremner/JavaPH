@@ -1369,23 +1369,23 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	@Nullable
 	public String getProperty(@NotNull String key)
 	{
-		return (properties == null) ? null : properties.getProperty(key);
+		return properties.getProperty(key);
 	}
 
 	public String getProperty(String key, String defaultValue)
 	{
-		return (properties == null) ? defaultValue : properties.getProperty(key, defaultValue);
+		return properties.getProperty(key, defaultValue);
 	}
 
 	@Nullable
 	public String getPropertyDefault(@NotNull String key)
 	{
-		return (defaultProperties == null) ? null : defaultProperties.getProperty(key);
+		return defaultProperties.getProperty(key);
 	}
 
 	public String getPropertyDefault(String key, String defaultValue)
 	{
-		return (defaultProperties == null) ? defaultValue : defaultProperties.getProperty(key, defaultValue);
+		return defaultProperties.getProperty(key, defaultValue);
 	}
 
 	public int getQueryRuntime()
@@ -1548,8 +1548,6 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public void loadDefaultProperties()
 	{
-		if (defaultProperties == null)
-			defaultProperties = new Properties();
 
 		try
 		{
@@ -1614,8 +1612,6 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public void loadProperties()
 	{
-		if (properties == null)
-			properties = new Properties();
 
 		try
 		{
@@ -1819,10 +1815,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	public void setProperty(String key, String value)
 	{
-		if (properties != null)
-		{
-			properties.setProperty(key, value);
-		}
+		properties.setProperty(key, value);
 	}
 
 	public void setQueryRuntime(int runtime)

@@ -51,9 +51,6 @@ public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 	{
 		super(javaph);
 
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into AboutDialog");
-			
 		parent = javaph;
 
 		setTitle("About " + INFO_NAME);

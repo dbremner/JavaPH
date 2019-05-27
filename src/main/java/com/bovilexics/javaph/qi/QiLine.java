@@ -193,8 +193,8 @@ public final class QiLine
 			
 		field = verbatim.substring(colon2Index + 1, colon3Index);
 		value = verbatim.substring(colon3Index + 1);
-		trimmedField = field == null ? "" : field.trim();
-		trimmedValue = value == null ? "" : value.trim();
+		trimmedField = field.trim();
+		trimmedValue = value.trim();
 	}
 	
 	@NotNull

@@ -79,9 +79,6 @@ public class PropertiesDialog extends JavaPHDialog
 	{
 		super(javaph);
 
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into PropertiesDialog");
-			
 		parent = javaph;
 
 		setModal(true);

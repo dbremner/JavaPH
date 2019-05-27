@@ -67,9 +67,6 @@ public class FindDialog extends JavaPHDialog
 	{
 		super(javaph);
 
-		if (javaph == null)
-			throw new IllegalArgumentException("Error: null JavaPH value passed into FindDialog");
-			
 		parent = javaph;
 
 		setModal(true);
