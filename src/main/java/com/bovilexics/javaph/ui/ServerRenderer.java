@@ -20,8 +20,9 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Robert Fernandes
+ * TODO fix interface type, this implements ListCellRenderer of Object
  */
-public class ServerRenderer extends DefaultListCellRenderer implements ListCellRenderer
+public class ServerRenderer extends DefaultListCellRenderer
 {
 	@Nullable
 	private final ImageIcon[] icons;
