@@ -41,6 +41,22 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
 import org.jetbrains.annotations.NotNull;
 
+import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_DEF;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_MANUAL;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_SELECTED;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_STARTUP;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_SERVER;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_SPLASH;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_TOOLBAR;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_LOAD_FIELDS;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_QUERY_RUNTIME;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MAX;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -79,7 +95,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		parent = javaph;
 
 		setModal(true);
-		setTitle(JavaPH.INFO_NAME + " Properties");
+		setTitle(INFO_NAME + " Properties");
 		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -148,7 +164,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		@NotNull final JPanel runtimePanel = new JPanel();
 		runtimePanel.setLayout(new FlowLayout());
 		
-		runtimeSlider = new JSlider(JavaPH.QUERY_RUNTIME_MIN, JavaPH.QUERY_RUNTIME_MAX);
+		runtimeSlider = new JSlider(QUERY_RUNTIME_MIN, QUERY_RUNTIME_MAX);
 		runtimeSlider.setMinorTickSpacing(10);
 		runtimeSlider.setMajorTickSpacing(30);
 		runtimeSlider.setPaintTicks(true);
@@ -309,56 +325,56 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	private void refreshDefaultProperties()
 	{
-		defaultServerComboBox.setSelectedItem(parent.getPropertyDefault(JavaPH.PROP_DEFAULT_SERVER));
-		displayLogCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
-		displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_SPLASH, "true", "true"));
-		displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
-		rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
-		savePositionCheckBox.setSelected(parent.propertyDefaultEquals(JavaPH.PROP_SAVE_POSITION, "true", "true"));
+		defaultServerComboBox.setSelectedItem(parent.getPropertyDefault(PROP_DEFAULT_SERVER));
+		displayLogCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_LOG, "true", "true"));
+		displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_SPLASH, "true", "true"));
+		displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
+		rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_ROLL_TOOLBAR, "true", "true"));
+		savePositionCheckBox.setSelected(parent.propertyDefaultEquals(PROP_SAVE_POSITION, "true", "true"));
 
-		loadFieldsManual.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_MANUAL);
-		loadFieldsSelected.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_SELECTED);
-		loadFieldsStartup.setSelected(parent.getIntPropertyDefault(JavaPH.PROP_LOAD_FIELDS, JavaPH.LOAD_FIELDS_DEF) == JavaPH.LOAD_FIELDS_STARTUP);
+		loadFieldsManual.setSelected(parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF) == LOAD_FIELDS_MANUAL);
+		loadFieldsSelected.setSelected(parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF) == LOAD_FIELDS_SELECTED);
+		loadFieldsStartup.setSelected(parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF) == LOAD_FIELDS_STARTUP);
 
-		runtimeSlider.setValue(Integer.parseInt(parent.getPropertyDefault(JavaPH.PROP_QUERY_RUNTIME)));
+		runtimeSlider.setValue(Integer.parseInt(parent.getPropertyDefault(PROP_QUERY_RUNTIME)));
 	}
 
 	private void refreshProperties()
 	{
 		defaultServerComboBox.setSelectedItem(QiServer.getDefaultServer());
-		displayLogCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
-		displaySplashCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_SPLASH, "true", "true"));
-		displayToolbarCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
-		rollToolbarCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
-		savePositionCheckBox.setSelected(parent.propertyEquals(JavaPH.PROP_SAVE_POSITION, "true", "true"));
+		displayLogCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
+		displaySplashCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"));
+		displayToolbarCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
+		rollToolbarCheckBox.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
+		savePositionCheckBox.setSelected(parent.propertyEquals(PROP_SAVE_POSITION, "true", "true"));
 
-		loadFieldsManual.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_MANUAL);
-		loadFieldsSelected.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_SELECTED);
-		loadFieldsStartup.setSelected(parent.getLoadFields() == JavaPH.LOAD_FIELDS_STARTUP);
+		loadFieldsManual.setSelected(parent.getLoadFields() == LOAD_FIELDS_MANUAL);
+		loadFieldsSelected.setSelected(parent.getLoadFields() == LOAD_FIELDS_SELECTED);
+		loadFieldsStartup.setSelected(parent.getLoadFields() == LOAD_FIELDS_STARTUP);
 
 		runtimeSlider.setValue(parent.getQueryRuntime());
 	}
 
 	private void saveProperties()
 	{
-		int loadFields = JavaPH.LOAD_FIELDS_DEF;
+		int loadFields = LOAD_FIELDS_DEF;
 
 		if (loadFieldsManual.isSelected()) {
-			loadFields = JavaPH.LOAD_FIELDS_MANUAL;
+			loadFields = LOAD_FIELDS_MANUAL;
 		} else if (loadFieldsSelected.isSelected()) {
-			loadFields = JavaPH.LOAD_FIELDS_SELECTED;
+			loadFields = LOAD_FIELDS_SELECTED;
 		} else if (loadFieldsStartup.isSelected()) {
-			loadFields = JavaPH.LOAD_FIELDS_STARTUP;
+			loadFields = LOAD_FIELDS_STARTUP;
 		}
 
-		parent.setProperty(JavaPH.PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
-		parent.setProperty(JavaPH.PROP_DISPLAY_LOG, Boolean.valueOf(displayLogCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_DISPLAY_SPLASH, Boolean.valueOf(displaySplashCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_DISPLAY_TOOLBAR, Boolean.valueOf(displayToolbarCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_ROLL_TOOLBAR, Boolean.valueOf(rollToolbarCheckBox.isSelected()).toString());
-		parent.setProperty(JavaPH.PROP_LOAD_FIELDS, "" + loadFields);
-		parent.setProperty(JavaPH.PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
-		parent.setProperty(JavaPH.PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
+		parent.setProperty(PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
+		parent.setProperty(PROP_DISPLAY_LOG, Boolean.valueOf(displayLogCheckBox.isSelected()).toString());
+		parent.setProperty(PROP_DISPLAY_SPLASH, Boolean.valueOf(displaySplashCheckBox.isSelected()).toString());
+		parent.setProperty(PROP_DISPLAY_TOOLBAR, Boolean.valueOf(displayToolbarCheckBox.isSelected()).toString());
+		parent.setProperty(PROP_ROLL_TOOLBAR, Boolean.valueOf(rollToolbarCheckBox.isSelected()).toString());
+		parent.setProperty(PROP_LOAD_FIELDS, "" + loadFields);
+		parent.setProperty(PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
+		parent.setProperty(PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
 
 		QiServer.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
 		parent.setLoadFields(loadFields);

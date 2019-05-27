@@ -35,13 +35,20 @@ import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.bovilexics.javaph.JavaPHConstants.INFO_AUTHOR;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_CONTACT;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_COPYRIGHT;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_DATE;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_HOME;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class AboutDialog extends JavaPHDialog implements JavaPHConstants
-{
+public final class AboutDialog extends JavaPHDialog {
 	@NotNull
     private final JavaPH parent;
 

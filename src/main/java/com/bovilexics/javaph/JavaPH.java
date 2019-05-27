@@ -104,6 +104,55 @@ import com.bovilexics.javaph.util.Browser;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.bovilexics.javaph.JavaPHConstants.APP_DEFAULT_HEIGHT;
+import static com.bovilexics.javaph.JavaPHConstants.APP_DEFAULT_STATUS;
+import static com.bovilexics.javaph.JavaPHConstants.APP_DEFAULT_WIDTH;
+import static com.bovilexics.javaph.JavaPHConstants.APP_MIN_HEIGHT;
+import static com.bovilexics.javaph.JavaPHConstants.APP_MIN_WIDTH;
+import static com.bovilexics.javaph.JavaPHConstants.COMMA_SEPARATOR;
+import static com.bovilexics.javaph.JavaPHConstants.CUSTOM_SEPARATOR;
+import static com.bovilexics.javaph.JavaPHConstants.FIELD_ALL;
+import static com.bovilexics.javaph.JavaPHConstants.FIELD_CUSTOM;
+import static com.bovilexics.javaph.JavaPHConstants.FIELD_DEFAULT;
+import static com.bovilexics.javaph.JavaPHConstants.FIELD_LABEL_PREFIX;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_DEF;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_MANUAL;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_SELECTED;
+import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_STARTUP;
+import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_PREFIX;
+import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_SUFFIX;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_HEIGHT;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_WIDTH;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_X_POSITION;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_Y_POSITION;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_LNF;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_SERVER;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_SPLASH;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_TOOLBAR;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_FILE;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_FILE_DEF;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_HEADER;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_LOAD_FIELDS;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_QUERY_RUNTIME;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_LABEL_PREFIX;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_DEF;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MAX;
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
+import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_LABEL;
+import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_TAB;
+import static com.bovilexics.javaph.JavaPHConstants.RESULT_TEXT_LABEL;
+import static com.bovilexics.javaph.JavaPHConstants.RESULT_TEXT_TAB;
+import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_PREFIX;
+import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_SUFFIX;
+import static com.bovilexics.javaph.JavaPHConstants.SPLASH_DISPLAY;
+import static com.bovilexics.javaph.JavaPHConstants.SYSTEM_LOG_LABEL;
+import static com.bovilexics.javaph.JavaPHConstants.SYSTEM_LOG_TAB;
+import static com.bovilexics.javaph.JavaPHConstants.TAB_LABELS;
+import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
+
 // TODO : Future : ability to add and remove servers
 // TODO : Future : ability to update server list from the web
 // TODO : Future : add XML export/save capability
@@ -115,8 +164,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class JavaPH extends JApplet implements JavaPHConstants
-{
+public class JavaPH extends JApplet {
 	// Custom widgets and other private stuff
 
 	private boolean fieldQuoted = false;
@@ -1899,7 +1947,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	public void showFindDialog()
 	{
 		findDialog.setLocationRelativeTo(defaultPane);
-		findDialog.setTitle("Find Text in " + JavaPH.TAB_LABELS[getResultPanel().getSelectedIndex()]);
+		findDialog.setTitle("Find Text in " + TAB_LABELS[getResultPanel().getSelectedIndex()]);
 		findDialog.setVisible(true);
 	}
 

@@ -34,6 +34,13 @@ import com.bovilexics.javaph.ui.TextFileChooser;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.bovilexics.javaph.JavaPHConstants.FIELD_QUOTE;
+import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_TAB;
+import static com.bovilexics.javaph.JavaPHConstants.RESULT_TEXT_TAB;
+import static com.bovilexics.javaph.JavaPHConstants.SYSTEM_LOG_TAB;
+import static com.bovilexics.javaph.JavaPHConstants.TAB_FILENAMES;
+import static com.bovilexics.javaph.JavaPHConstants.TAB_LABELS;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -58,14 +65,14 @@ public final class SaveAction extends AbstractAction
 
 		final JFileChooser chooser;
 		
-		if (selectedTab == JavaPH.RESULT_TABLE_TAB) {
+		if (selectedTab == RESULT_TABLE_TAB) {
             chooser = new CsvFileChooser(parent);
         } else {
             chooser = new TextFileChooser();
         }
 
-		chooser.setDialogTitle("Save " + JavaPH.TAB_LABELS[selectedTab]);
-		chooser.setSelectedFile(new File(JavaPH.TAB_FILENAMES[selectedTab]));
+		chooser.setDialogTitle("Save " + TAB_LABELS[selectedTab]);
+		chooser.setSelectedFile(new File(TAB_FILENAMES[selectedTab]));
 
 		final int state = chooser.showSaveDialog(parent.getDefaultPane());
 		final File file = chooser.getSelectedFile();
@@ -74,7 +81,7 @@ public final class SaveAction extends AbstractAction
 		{
 			parent.log("Saving file " + file.getPath());
 			
-			if (selectedTab == JavaPH.RESULT_TABLE_TAB) {
+			if (selectedTab == RESULT_TABLE_TAB) {
                 saveCsvFile(selectedTab, file);
             } else {
                 saveTextFile(selectedTab, file);
@@ -97,7 +104,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			message = "Nothing to save in " + JavaPH.TAB_LABELS[tab] + " tab";
+			message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
 		}
@@ -119,7 +126,7 @@ public final class SaveAction extends AbstractAction
                         }
 
 						if (quoted) {
-                            toWrite.append(JavaPH.FIELD_QUOTE);
+                            toWrite.append(FIELD_QUOTE);
                         }
 						
 						if (r == -1) // write the header
@@ -131,7 +138,7 @@ public final class SaveAction extends AbstractAction
                         }
 
 						if (quoted) {
-                            toWrite.append(JavaPH.FIELD_QUOTE);
+                            toWrite.append(FIELD_QUOTE);
                         }
 
 					}
@@ -157,43 +164,41 @@ public final class SaveAction extends AbstractAction
 	
 	private void saveTextFile(int tab, @NotNull File file)
 	{
-		@Nullable String toWrite = null;
+		@NotNull String toWrite = "";
 		
-		if (tab == JavaPH.RESULT_TEXT_TAB)
+		if (tab == RESULT_TEXT_TAB)
 		{
 			toWrite = parent.getResultText().getText();
 		}
-		else if (tab == JavaPH.SYSTEM_LOG_TAB)
+		else if (tab == SYSTEM_LOG_TAB)
 		{
 			toWrite = parent.getLogText().getText();
 		}
 
-		String message;
-		if (toWrite == null || toWrite.equals(""))
+		if (toWrite.isEmpty())
 		{
-			message = "Nothing to save in " + JavaPH.TAB_LABELS[tab] + " tab";
+			final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
+			return;
 		}
-		else
+
+		try
 		{
-			try
-			{
-				@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-				writer.write(toWrite);
-				writer.flush();
-				writer.close();
-				
-				message = "File save finished";
-				parent.log(message);
-				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
-			}
-			catch (IOException e)
-			{
-				message = "Error: IOException received when trying to save file " + file.getPath();
-				parent.log(message);
-				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
-			}
+			@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(toWrite);
+			writer.flush();
+			writer.close();
+
+			final String message = "File save finished";
+			parent.log(message);
+			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
+		}
+		catch (IOException e)
+		{
+			final String message = "Error: IOException received when trying to save file " + file.getPath();
+			parent.log(message);
+			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

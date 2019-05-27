@@ -26,6 +26,8 @@ import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
 
+import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -51,7 +53,7 @@ public final class NewAction extends AbstractAction
 		((ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel()).resetModel();
 		
 		// Clear the previous query
-		parent.getCommandComboBox().setSelectedIndex(JavaPH.QUERY_COMMAND);
+		parent.getCommandComboBox().setSelectedIndex(QUERY_COMMAND);
 		parent.getQueryComboBox().setSelectedItem("");
 		
 		// Log the action

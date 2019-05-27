@@ -37,6 +37,9 @@ import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.bovilexics.javaph.JavaPHConstants.COMMA_SEPARATOR;
+import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -50,9 +53,9 @@ final class CsvFileChooserPanel extends JPanel
 		public void actionPerformed(ActionEvent ae)
 		{
 			if (commaRadioButton.isSelected()) {
-				parent.setFieldSeparator(JavaPH.COMMA_SEPARATOR);
+				parent.setFieldSeparator(COMMA_SEPARATOR);
 			} else if (tabRadioButton.isSelected()) {
-				parent.setFieldSeparator(JavaPH.TAB_SEPARATOR);
+				parent.setFieldSeparator(TAB_SEPARATOR);
 			} else if (customRadioButton.isSelected()) {
 				parent.setFieldSeparator(customTextField.getText());
 			}
@@ -94,9 +97,9 @@ final class CsvFileChooserPanel extends JPanel
 
 		@Nullable final String separator = parent.getFieldSeparator();
 
-		if (separator.equals(JavaPH.COMMA_SEPARATOR)) {
+		if (separator.equals(COMMA_SEPARATOR)) {
 			commaRadioButton.setSelected(true);
-		} else if (separator.equals(JavaPH.TAB_SEPARATOR)) {
+		} else if (separator.equals(TAB_SEPARATOR)) {
 			tabRadioButton.setSelected(true);
 		} else {
 			customRadioButton.setSelected(true);

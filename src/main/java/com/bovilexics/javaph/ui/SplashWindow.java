@@ -34,13 +34,16 @@ import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.bovilexics.javaph.JavaPHConstants.INFO_COPYRIGHT;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
+import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class SplashWindow extends JWindow implements JavaPHConstants
-{
+public final class SplashWindow extends JWindow {
 
 	public SplashWindow(@NotNull JavaPH javaph)
 	{

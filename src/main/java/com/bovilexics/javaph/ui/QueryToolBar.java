@@ -35,6 +35,8 @@ import com.bovilexics.javaph.actions.SaveAction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -49,7 +51,7 @@ public class QueryToolBar extends JToolBar
 		setFloatable(false);
 		setFocusable(false);
 		setOrientation(JToolBar.HORIZONTAL);
-		setRollover(javaph.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
+		setRollover(javaph.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
 
 		addToolBarButton(new NewAction(javaph));
 		addToolBarButton(new SaveAction(javaph));

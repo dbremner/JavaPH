@@ -44,6 +44,10 @@ import com.bovilexics.javaph.actions.PrefsAction;
 import com.bovilexics.javaph.actions.SaveAction;
 import org.jetbrains.annotations.NotNull;
 
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_TOOLBAR;
+import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -246,7 +250,7 @@ public final class MainMenu extends JMenuBar
 		showLogItem.setActionCommand("Set visibility of system log");
 		showLogItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, Event.CTRL_MASK));
 		showLogItem.setMnemonic(KeyEvent.VK_L);
-		showLogItem.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_LOG, "true", "true"));
+		showLogItem.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
 		
 		showLogItem.addActionListener(new ActionListener()
 		{
@@ -272,7 +276,7 @@ public final class MainMenu extends JMenuBar
 		showToolBarItem.setActionCommand("Set visibility of toolbar");
 		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, Event.CTRL_MASK));
 		showToolBarItem.setMnemonic(KeyEvent.VK_T);
-		showToolBarItem.setSelected(parent.propertyEquals(JavaPH.PROP_DISPLAY_TOOLBAR, "true", "true"));
+		showToolBarItem.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
 		
 		showToolBarItem.addActionListener(new ActionListener()
 		{
@@ -298,7 +302,7 @@ public final class MainMenu extends JMenuBar
 		rollToolBarItem.setActionCommand("Set rollover property of toolbar");
 		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK));
 		rollToolBarItem.setMnemonic(KeyEvent.VK_R);
-		rollToolBarItem.setSelected(parent.propertyEquals(JavaPH.PROP_ROLL_TOOLBAR, "true", "true"));
+		rollToolBarItem.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
 		
 		rollToolBarItem.addActionListener(new ActionListener()
 		{
