@@ -111,10 +111,9 @@ public class QiConnection
 	/**
 	 * Establish a connection to Qi.
 	 *
-	 * @param The host to connect to.
-	 * @param The port to connect to.
+	 * @param aHost host to connect to.
+	 * @param aPort port to connect to.
 	 *
-	 * @exception IOException
 	 */
 	public synchronized void connect(String aHost, int aPort) throws IOException
 	{
@@ -131,7 +130,6 @@ public class QiConnection
 	/**
 	 * Drop the connection to Qi.
 	 *
-	 * @exception IOException
 	*/
 	public synchronized void disconnect() throws IOException
 	{
@@ -210,8 +208,8 @@ public class QiConnection
 	/**
 	 * Login to  QI.
 	 *
-	 * @param alias
-	 * @param password
+	 * @param anAlias
+	 * @param aPassword
 	 *
 	 * @exception QiException upon an error response from Qi
 	 * @exception QiProtocolException upon an unexpected response from Qi

@@ -708,7 +708,7 @@ public class Browser {
 		 * If called before the dialog is displayed and closed, the results
 		 * are not defined.
 		 *
-		 * @returns if the user made changes to the browser configuration.
+		 * @return if the user made changes to the browser configuration.
 		 */
 		public boolean changed() {
 			return pressed_OK;
