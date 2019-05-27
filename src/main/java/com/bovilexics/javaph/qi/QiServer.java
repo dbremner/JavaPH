@@ -386,7 +386,13 @@ public class QiServer
 
 	private boolean isValidPort(@NotNull Integer port)
 	{
-		return (port.intValue() >= 0 && port.intValue() <= 65535);
+		final int unboxed = port.intValue();
+		return isValidPort(unboxed);
+	}
+
+	private boolean isValidPort(final int port)
+	{
+		return (port >= 0 && port <= 65535);
 	}
 
 	public void loadFields()
