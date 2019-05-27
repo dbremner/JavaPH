@@ -50,7 +50,7 @@ final class LookAndFeelMenu extends JMenu
 	private static final String MOTIF_LOOK_AND_FEEL = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
 	private static final String WINDOWS_LOOK_AND_FEEL = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 
-	private boolean macSupported //= new MacLookAndFeel().isSupportedLookAndFeel();
+	private boolean macSupported; //= new MacLookAndFeel().isSupportedLookAndFeel();
 	private final boolean metalSupported = new MetalLookAndFeel().isSupportedLookAndFeel();
 	private final boolean motifSupported = new MotifLookAndFeel().isSupportedLookAndFeel();
 	private final boolean windowsSupported = new WindowsLookAndFeel().isSupportedLookAndFeel();

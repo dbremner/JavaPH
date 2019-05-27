@@ -59,11 +59,11 @@ public class CustomButtonGroup extends ButtonGroup
 
 	public void setEnabled(boolean enable)
 	{
-		Enumeration enum = getElements();
+		Enumeration enum_ = getElements();
 		
-		while (enum.hasMoreElements())
+		while (enum_.hasMoreElements())
 		{
-			((AbstractButton)enum.nextElement()).setEnabled(enable);
+			((AbstractButton)enum_.nextElement()).setEnabled(enable);
 		}
 		
 		enabled = enable;
