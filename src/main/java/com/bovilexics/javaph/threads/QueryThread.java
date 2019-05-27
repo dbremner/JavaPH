@@ -35,7 +35,7 @@ public class QueryThread extends Thread
 	private int seconds = 0;
 
 	@NotNull
-    private JavaPH parent;
+    private final JavaPH parent;
 	@Nullable
     private ResultThread resultThread = null;
 

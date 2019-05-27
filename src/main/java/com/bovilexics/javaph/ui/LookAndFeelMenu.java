@@ -56,9 +56,9 @@ public class LookAndFeelMenu extends JMenu
 	private boolean windowsSupported = new WindowsLookAndFeel().isSupportedLookAndFeel();
 
 	@Nullable
-    private JMenuItem restoreDefaultItem = null;
+    private final JMenuItem restoreDefaultItem;
 	@Nullable
-    private JMenuItem storeDefaultItem = null;
+    private final JMenuItem storeDefaultItem;
 
 	@Nullable
     private JRadioButtonMenuItem macItem = null;
@@ -70,7 +70,7 @@ public class LookAndFeelMenu extends JMenu
     private JRadioButtonMenuItem windowsItem = null;
 
 	@NotNull
-    private JavaPH parent;
+    private final JavaPH parent;
 	
 	@Nullable
     private MouseListener mouseListener = null;

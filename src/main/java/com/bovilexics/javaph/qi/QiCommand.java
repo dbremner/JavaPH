@@ -83,9 +83,9 @@ public class QiCommand
 	private boolean listEditable = false;
 	private boolean textEditable = false;
 
-	private String description;
+	private final String description;
 	@NotNull
-	private String name;
+	private final String name;
 
 	public static boolean isValidCommand(String command)
 	{
