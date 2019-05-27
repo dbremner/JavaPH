@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class ServerRenderer extends DefaultListCellRenderer implements ListCellRenderer
 {
 	@Nullable
-	private ImageIcon[] icons;
+	private final ImageIcon[] icons;
 	
 	public ServerRenderer(@NotNull JavaPH javaph)
 	{

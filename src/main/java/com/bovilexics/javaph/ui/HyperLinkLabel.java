@@ -37,7 +37,7 @@ import org.jetbrains.annotations.Nullable;
 public class HyperLinkLabel extends JLabel
 {
 	@Nullable
-    private JavaPH parent;
+    private final JavaPH parent;
 
 	public HyperLinkLabel(@Nullable JavaPH javaph, final String text, final String url)
 	{

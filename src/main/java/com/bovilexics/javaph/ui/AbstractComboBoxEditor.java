@@ -30,7 +30,7 @@ import javax.swing.event.EventListenerList;
  */
 abstract class AbstractComboBoxEditor implements ComboBoxEditor
 {
-	EventListenerList listenerList;
+	final EventListenerList listenerList;
 	
 	public AbstractComboBoxEditor()
 	{

@@ -73,7 +73,7 @@ public class ResultThread extends Thread
 	private int lastCode = QiAPI.LR_OK;
 	private int state = RS_START;
 
-	private JavaPH parent;
+	private final JavaPH parent;
 
 	@Nullable
 	private Object[] headers = null;
@@ -94,12 +94,12 @@ public class ResultThread extends Thread
 
 	// Seperator used in the display of queries which matched multiple records.
 	@NotNull
-	private String recordSeperator = "------------------------------------------------------------\n";
+	private final String recordSeperator = "------------------------------------------------------------\n";
 
 	private StringBuffer rawResult;
 
 	@NotNull
-	private Vector records = new Vector();
+	private final Vector records = new Vector();
 	@NotNull
 	private Vector record = new Vector();
 

@@ -46,7 +46,7 @@ public class QiField
 	private String name;
 
 	@NotNull
-    private Vector properties = new Vector();
+    private final Vector properties = new Vector();
 
 	/**
 	 * Construct an empty QiField.

@@ -81,7 +81,7 @@ public class MainMenu extends JMenuBar
 	private MouseListener mouseListener;
 	
 	@Nullable
-    private JavaPH parent;
+    private final JavaPH parent;
 	private JCheckBoxMenuItem rollToolBarItem;
 	private JCheckBoxMenuItem showLogItem;
 	private JCheckBoxMenuItem showToolBarItem;

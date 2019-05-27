@@ -66,16 +66,16 @@ public class CsvFileChooserPanel extends JPanel
 	}
 
 	@Nullable
-    private JavaPH parent;
+    private final JavaPH parent;
 
-	private JCheckBox quotesCheckBox;
+	private final JCheckBox quotesCheckBox;
 
-	private JRadioButton commaRadioButton;
-	private JRadioButton tabRadioButton;
-	private JRadioButton customRadioButton;
+	private final JRadioButton commaRadioButton;
+	private final JRadioButton tabRadioButton;
+	private final JRadioButton customRadioButton;
 	
 	@Nullable
-    private JTextField customTextField;
+    private final JTextField customTextField;
 	
 	public CsvFileChooserPanel(@Nullable JavaPH javaph)
 	{

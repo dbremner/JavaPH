@@ -52,7 +52,7 @@ import org.jetbrains.annotations.Nullable;
 public class PropertiesDialog extends JavaPHDialog
 {
 	@Nullable
-    private JavaPH parent;
+    private final JavaPH parent;
 	
 	private JButton applyButton;
 	private JButton cancelButton;

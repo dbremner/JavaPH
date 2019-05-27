@@ -52,12 +52,12 @@ public class QiServer
 
 	private static QiServer defaultServer;
 	@NotNull
-    private static Vector servers = new Vector();
+    private static final Vector servers = new Vector();
 
-	private String name;
-	private String server;
+	private final String name;
+	private final String server;
 	@Nullable
-    private Integer port;
+    private final Integer port;
 	@NotNull
     private Vector fields = new Vector();
 	private int fieldState = FIELD_LOAD_FALSE;

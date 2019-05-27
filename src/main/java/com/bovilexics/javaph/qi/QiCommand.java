@@ -71,7 +71,7 @@ public class QiCommand
 	public static final String STOP		= "stop";
 
 	@NotNull
-	public static QiCommand[] commands =
+	public static final QiCommand[] commands =
 	{
 		new QiCommand(QUERY, "Query", true, true),
 		new QiCommand(FIELDS, "Fields", false, false),

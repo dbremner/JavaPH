@@ -44,7 +44,7 @@ import org.jetbrains.annotations.Nullable;
 public class FindDialog extends JavaPHDialog
 {
 	@Nullable
-    private JavaPH parent;
+    private final JavaPH parent;
 	
 	private JButton closeButton;
 	private JButton findButton;

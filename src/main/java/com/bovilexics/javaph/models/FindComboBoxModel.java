@@ -34,7 +34,7 @@ public class FindComboBoxModel extends AbstractListModel implements MutableCombo
 {
 	@Nullable Object selectedObject;
 
-	Vector allObjects;
+	final Vector allObjects;
 	Vector objects;
 
 	/**

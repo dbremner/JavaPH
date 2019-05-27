@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 public class BrowserAction extends AbstractAction
 {
 	@NotNull
-    private JavaPH parent;
+    private final JavaPH parent;
 	
 	public BrowserAction(@NotNull JavaPH javaph)
 	{

@@ -34,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 public class NewAction extends AbstractAction
 {
 	@NotNull
-	private JavaPH parent;
+	private final JavaPH parent;
 		
 	public NewAction(@NotNull JavaPH javaph)
 	{

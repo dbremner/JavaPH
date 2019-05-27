@@ -132,7 +132,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	private CustomButtonGroup fieldRadioGroup;
 	private FindDialog findDialog;
 	@NotNull
-	private Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
+	private final Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
 	@Nullable
 	private ImageIcon fieldCustomOff;
 	@Nullable
@@ -142,9 +142,9 @@ public class JavaPH extends JApplet implements JavaPHConstants
 	@Nullable
 	private ImageIcon fieldLoadOn;
 	@NotNull
-	private Properties defaultProperties = new Properties();
+	private final Properties defaultProperties = new Properties();
 	@NotNull
-	private Properties properties = new Properties();
+	private final Properties properties = new Properties();
 	private PropertiesDialog propertiesDialog;
 	private ProgressMonitor fieldProgressMonitor; 
 	private ProgressMonitor queryProgressMonitor;
@@ -258,7 +258,7 @@ public class JavaPH extends JApplet implements JavaPHConstants
 
 	class QueryPanel extends JPanel
 	{
-		private JavaPH parent;
+		private final JavaPH parent;
 		
 		public QueryPanel(final JavaPH javaph)
 		{

@@ -31,7 +31,7 @@ import javax.swing.JTextField;
  */
 public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 {
-	private JTextField textField;
+	private final JTextField textField;
 
 	public TextFieldComboBoxEditor()
 	{

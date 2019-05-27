@@ -42,7 +42,7 @@ import org.jetbrains.annotations.Nullable;
 public class QueryToolBar extends JToolBar
 {
 	@Nullable
-    private JavaPH parent;
+    private final JavaPH parent;
 	
 	public QueryToolBar(@Nullable JavaPH javaph)
 	{

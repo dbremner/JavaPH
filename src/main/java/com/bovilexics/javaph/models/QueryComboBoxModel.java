@@ -34,8 +34,8 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 {
 	@Nullable Object selectedObject;
 
-	Vector allObjects;
-	Vector objects;
+	final Vector allObjects;
+	final Vector objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.

@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 public class PrefsAction extends AbstractAction
 {
 	@NotNull
-    private JavaPH parent;
+    private final JavaPH parent;
 		
 	public PrefsAction(@NotNull JavaPH javaph)
 	{

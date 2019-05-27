@@ -30,7 +30,7 @@ import javax.swing.table.TableModel;
 public class TableSorter implements TableModel, TableModelListener
 {
 	@Nullable
-    private TableModel realModel;
+    private final TableModel realModel;
 	private int indexes[];
 	
 	public TableSorter(@Nullable TableModel model)
