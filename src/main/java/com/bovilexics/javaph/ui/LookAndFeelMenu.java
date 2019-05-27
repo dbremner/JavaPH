@@ -32,7 +32,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import com.bovilexics.javaph.JavaPH;
-import com.sun.java.swing.plaf.mac.MacLookAndFeel;
+//import com.sun.java.swing.plaf.mac.MacLookAndFeel;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import org.jetbrains.annotations.NotNull;
