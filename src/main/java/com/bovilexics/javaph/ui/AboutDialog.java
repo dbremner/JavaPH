@@ -42,13 +42,13 @@ import org.jetbrains.annotations.Nullable;
  */
 public class AboutDialog extends JavaPHDialog implements JavaPHConstants
 {
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 
 	@NotNull
 	private final JButton okButton;
 
-	public AboutDialog(@Nullable JavaPH javaph)
+	public AboutDialog(@NotNull JavaPH javaph)
 	{
 		super(javaph);
 

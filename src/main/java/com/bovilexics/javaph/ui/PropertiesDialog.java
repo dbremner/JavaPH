@@ -51,7 +51,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PropertiesDialog extends JavaPHDialog
 {
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 	
 	private JButton applyButton;
@@ -75,7 +75,7 @@ public class PropertiesDialog extends JavaPHDialog
 	
 	private JTextField runtimeText;
 
-	public PropertiesDialog(@Nullable JavaPH javaph)
+	public PropertiesDialog(@NotNull JavaPH javaph)
 	{
 		super(javaph);
 

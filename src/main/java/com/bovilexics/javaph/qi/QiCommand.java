@@ -117,7 +117,7 @@ public class QiCommand
 		return (description == null) ? name : description;
 	}
 
-	@Nullable
+	@NotNull
 	public String getName()
 	{
 		return name;

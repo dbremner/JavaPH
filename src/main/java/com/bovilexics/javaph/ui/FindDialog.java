@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class FindDialog extends JavaPHDialog
 {
-	@Nullable
+	@NotNull
     private final JavaPH parent;
 	
 	private JButton closeButton;
@@ -63,7 +63,7 @@ public class FindDialog extends JavaPHDialog
 		}
 	}
 	
-	public FindDialog(@Nullable JavaPH javaph)
+	public FindDialog(@NotNull JavaPH javaph)
 	{
 		super(javaph);
 
