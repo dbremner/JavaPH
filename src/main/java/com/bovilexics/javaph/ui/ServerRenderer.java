@@ -16,12 +16,14 @@ import javax.swing.ListCellRenderer;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Robert Fernandes
  */
 public class ServerRenderer extends DefaultListCellRenderer implements ListCellRenderer
 {
+	@Nullable
 	private ImageIcon[] icons;
 	
 	public ServerRenderer(@NotNull JavaPH javaph)

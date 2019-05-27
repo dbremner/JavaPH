@@ -88,7 +88,7 @@ public class SaveAction extends AbstractAction
 
 		boolean quoted = parent.isFieldQuoted();
 	
-		String separator = parent.getFieldSeparator();
+		@Nullable String separator = parent.getFieldSeparator();
 		TableModel model = parent.getResultTable().getModel();
 
 		int cols = model.getColumnCount();

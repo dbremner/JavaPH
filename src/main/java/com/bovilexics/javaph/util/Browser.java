@@ -303,7 +303,7 @@ public class Browser {
 						// parse the command line.
 						@NotNull Vector argsVector = new Vector();
 						@Nullable BrowserCommandLexer lex = new BrowserCommandLexer(new StringReader(command));
-						String t;
+						@Nullable String t;
 						while ((t = lex.getNextToken()) != null) {
 							argsVector.add(t);
 						}
