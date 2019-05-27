@@ -71,8 +71,9 @@ public class QueryThread extends Thread
 			{
 				ie.printStackTrace();
 			}
-				
-			showStatus("Query running for " + ++seconds + " seconds");
+
+			++seconds;
+			showStatus("Query running for " + seconds + " seconds");
 			updateProgress(seconds);
 		}
 			

@@ -246,8 +246,7 @@ public class QiConnection
 			if (!blurb.equals("")) {
 				System.out.println("Error on Qi login: " + blurb);
 			}
-			;
-				
+
 			blurb = "";
 			
 			// Send password.

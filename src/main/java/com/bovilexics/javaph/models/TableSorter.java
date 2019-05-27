@@ -32,7 +32,7 @@ public class TableSorter implements TableModel, TableModelListener
 {
 	@NotNull
     private final TableModel realModel;
-	private int indexes[];
+	private int[] indexes;
 	
 	public TableSorter(@NotNull TableModel model)
 	{

@@ -54,7 +54,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 *
 	 * @param items  an array of Object objects
 	 */
-	public FindComboBoxModel(@NotNull final Object items[])
+	public FindComboBoxModel(@NotNull final Object[] items)
 	{
 		objects = new Vector();
 		objects.ensureCapacity( items.length );

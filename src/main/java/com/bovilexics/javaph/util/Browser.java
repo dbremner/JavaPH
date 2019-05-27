@@ -349,7 +349,7 @@ public class Browser {
 						// time for the browsers I'm using.
 						for (int j=0; j<2; j++){
 							 try{
-									Thread.currentThread().sleep(1000);
+									Thread.sleep(1000);
 							 } catch (InterruptedException inte){
 							 }
 						}

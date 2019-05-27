@@ -54,7 +54,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	 *
 	 * @param items  an array of Object objects
 	 */
-	public QueryComboBoxModel(@NotNull final Object items[])
+	public QueryComboBoxModel(@NotNull final Object[] items)
 	{
 		objects = new Vector();
 		objects.ensureCapacity( items.length );
