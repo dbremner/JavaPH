@@ -130,7 +130,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			}
 		}
 		
-		if (objects.size() > 0) {
+		if (!objects.isEmpty()) {
 			selectedObject = objects.elementAt(0);
 		}
 	}
@@ -191,7 +191,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 */
 	public void removeAllElements()
 	{
-		if (objects.size() > 0)
+		if (!objects.isEmpty())
 		{
 			int lastIndex = objects.size() - 1;
 			objects.removeAllElements();

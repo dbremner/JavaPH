@@ -142,7 +142,7 @@ public class Browser {
 			} catch (IOException e){
 			} catch (InterruptedException e){
 			}
-			if (browsers.size() == 0){
+			if (browsers.isEmpty()){
 				exec = null;
 			} else {
 				exec = new String[browsers.size()];
@@ -817,7 +817,7 @@ public class Browser {
 								app = '"' + app + '"';
 							}
 							String commands = commandLinesArea.getText();
-							if (commands.length() != 0 && !commands.endsWith("\n") && !commands.endsWith("\r")){
+							if (!commands.isEmpty() && !commands.endsWith("\n") && !commands.endsWith("\r")){
 								commands += "\n";
 							}
 							commandLinesArea.setText(commands + app + " {0}");

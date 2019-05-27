@@ -162,7 +162,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 			}
 		}
 		
-		if (objects.size() > 0) {
+		if (!objects.isEmpty()) {
             selectedObject = objects.elementAt(0);
         }
 	}
@@ -223,7 +223,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	 */
 	public void removeAllElements()
 	{
-		if (objects.size() > 0)
+		if (!objects.isEmpty())
 		{
             int lastIndex = objects.size() - 1;
 			objects.removeAllElements();

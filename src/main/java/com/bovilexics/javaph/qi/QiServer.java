@@ -105,7 +105,7 @@ public class QiServer
 		}
 
 		int whereToAdd = -1;
-		if (servers.size() == 0)
+		if (servers.isEmpty())
 		{
 			whereToAdd = 0;
 		}
