@@ -48,7 +48,7 @@ public class QiConnection
 	private String host;
 	
 	private QiLine qiQiLine;
-	private QiServer qiServer;
+	private final QiServer qiServer;
 	private Socket socket;
 	@Nullable
 	private Thread locker;
