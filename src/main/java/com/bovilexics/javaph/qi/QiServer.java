@@ -270,19 +270,19 @@ public class QiServer
 		}
 	}
 	
-	private void convertRecordsToFields(@NotNull Vector records)
+	private void convertRecordsToFields(@NotNull Vector<Vector<QiLine>> records)
 	{
 		fields = new Vector<QiField>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final Vector record = (Vector) records.elementAt(i);
+			final Vector<QiLine> record = records.elementAt(i);
 
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
-				final QiLine propsLine = (QiLine) record.elementAt(j);
-				final QiLine descLine = (QiLine) record.elementAt(j + 1);
+				final QiLine propsLine = record.elementAt(j);
+				final QiLine descLine = record.elementAt(j + 1);
 
 				final String propsField = propsLine.getTrimmedField();
 				final String propsValue = propsLine.getTrimmedValue();
@@ -336,9 +336,14 @@ public class QiServer
 	}
 
 	@NotNull
-    public Vector getFields()
+    public Vector<QiField> getFields()
 	{
-		return (Vector)fields.clone();
+		Vector<QiField> results = new Vector<>(fields.size());
+		for (QiField field : fields)
+		{
+			results.add(field);
+		}
+		return results;
 	}
 
 	public int getFieldState()

@@ -36,13 +36,13 @@ public class CustomButtonGroup extends ButtonGroup
 		int currentIndex = -1;
 		int selectedIndex = -1;
 		
-		final Enumeration enum_ = getElements();
+		final Enumeration<AbstractButton> enum_ = getElements();
 		
 		while (enum_.hasMoreElements() && !foundSelected)
 		{
 			currentIndex++;
 			
-			if (((AbstractButton)enum_.nextElement()).isSelected())
+			if (enum_.nextElement().isSelected())
 			{
 				selectedIndex = currentIndex;
 				foundSelected = true;

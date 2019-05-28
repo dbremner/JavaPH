@@ -230,7 +230,7 @@ public class JavaPH extends JApplet {
 	private JLabel serverStatusLabel;
 	private JLabel statusLabel;
 	private JList colList;
-	private JList fieldList;
+	private JList<QiField> fieldList;
 	private JPanel colListPanel;
 	private JPanel fieldListPanel;
 	private JPanel logTextPanel;
@@ -696,7 +696,7 @@ public class JavaPH extends JApplet {
 			fieldListButtonPanel.add(fieldListMoveUpButton);
 			fieldListButtonPanel.add(fieldListMoveDnButton);
 
-			fieldList = new JList(new DefaultListModel());
+			fieldList = new JList<>(new DefaultListModel<>());
 			fieldList.addListSelectionListener(new ListSelectionListener()
 			{
 				@Override
@@ -1733,10 +1733,10 @@ public class JavaPH extends JApplet {
 					
 		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE)
 		{
-			@NotNull final Vector fields = server.getFields();
-						
-			for (int i = 0; i < fields.size(); i++) {
-				model.addElement(fields.elementAt(i));
+			@NotNull final Vector<QiField> fields = server.getFields();
+
+			for (QiField field : fields) {
+				model.addElement(field);
 			}
 		}
 					

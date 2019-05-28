@@ -99,7 +99,7 @@ public class ResultThread extends Thread
 	private StringBuffer rawResult;
 
 	@NotNull
-	private final Vector records = new Vector();
+	private final Vector<Vector<QiLine>> records = new Vector<>();
 	@NotNull
 	private Vector<QiLine> record = new Vector<>();
 
@@ -355,7 +355,7 @@ public class ResultThread extends Thread
 						if (entryIndex != 0)
 						{
 							addRecord(record);
-							record = new Vector();
+							record = new Vector<>();
 						}
 						entryIndex = qiLine.getIndex();
 					}
