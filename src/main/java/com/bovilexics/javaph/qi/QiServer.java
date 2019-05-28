@@ -113,7 +113,7 @@ public class QiServer
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				final String oldElement = servers.elementAt(i).toString();
+				final String oldElement = servers.get(i).toString();
 
 				if (newElement.compareTo(oldElement) == 0)
 				{
@@ -199,7 +199,7 @@ public class QiServer
 				}
 			}
 
-			defaultServer = servers.elementAt(0);
+			defaultServer = servers.get(0);
 		}
 		catch (FileNotFoundException e)
 		{
@@ -231,7 +231,7 @@ public class QiServer
 
 			for (int i = 0; i < servers.size(); i++)
 			{
-				final QiServer server = servers.elementAt(i);
+				final QiServer server = servers.get(i);
 
 				toWrite = new StringBuffer();
 				toWrite.append(server.getName());
@@ -276,13 +276,13 @@ public class QiServer
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final Vector<QiLine> record = records.elementAt(i);
+			final Vector<QiLine> record = records.get(i);
 
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
-				final QiLine propsLine = record.elementAt(j);
-				final QiLine descLine = record.elementAt(j + 1);
+				final QiLine propsLine = record.get(j);
+				final QiLine descLine = record.get(j + 1);
 
 				final String propsField = propsLine.getTrimmedField();
 				final String propsValue = propsLine.getTrimmedValue();
@@ -298,7 +298,7 @@ public class QiServer
 
 					try
 					{
-						fields.addElement(new QiField(propsField, propsValue, descValue));
+						fields.add(new QiField(propsField, propsValue, descValue));
 					}
 					catch (QiProtocolException e)
 					{

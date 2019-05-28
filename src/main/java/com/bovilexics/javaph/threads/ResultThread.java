@@ -359,7 +359,7 @@ public class ResultThread extends Thread
 						}
 						entryIndex = qiLine.getIndex();
 					}
-					record.addElement(qiLine);
+					record.add(qiLine);
 				}
 				else if (qiLine.getCode() >= QiAPI.LR_OK)
 				{
@@ -410,9 +410,9 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void addRecord(Vector aRecord)
+	private synchronized void addRecord(Vector<QiLine> aRecord)
 	{
-		records.addElement(aRecord);
+		records.add(aRecord);
 	}
 
 	private synchronized void buildHeaders()
