@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
@@ -59,7 +61,7 @@ public class CustomButtonGroup extends ButtonGroup
 
 	public void setEnabled(boolean enable)
 	{
-		for(AbstractButton button : buttons)
+		for(@NotNull AbstractButton button : buttons)
 		{
 			button.setEnabled(enable);
 		}

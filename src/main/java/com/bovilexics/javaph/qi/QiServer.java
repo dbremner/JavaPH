@@ -57,6 +57,7 @@ public class QiServer
 	private final String server;
 	@Nullable
     private final Integer port;
+	@NotNull
 	private Vector<QiField> fields = new Vector<>();
 	private int fieldState = FIELD_LOAD_FALSE;
 	private String fieldStateMessage;
@@ -153,6 +154,7 @@ public class QiServer
 		return out.toString();
 	}
 
+	@NotNull
 	public static Vector<QiServer> getServers()
 	{
 		return servers;
@@ -160,7 +162,7 @@ public class QiServer
 
 	public static void loadAllFields()
 	{
-		for (final QiServer server : servers) {
+		for (@NotNull final QiServer server : servers) {
 			if (server.getFieldState() != FIELD_LOAD_ERROR) {
 				server.loadFields();
 			}
@@ -173,7 +175,7 @@ public class QiServer
 
 		try
 		{
-			final Reader in = new FileReader(SERVER_FILE);
+			@NotNull final Reader in = new FileReader(SERVER_FILE);
 
 			@NotNull final LineNumberReader lr = new LineNumberReader(in);
 
@@ -186,7 +188,7 @@ public class QiServer
 					continue;
 				}
 
-				final String[] items = line.split(SEPARATOR);
+				@NotNull final String[] items = line.split(SEPARATOR);
 
 				if (items.length != 3)
 				{
@@ -194,7 +196,7 @@ public class QiServer
 				}
 				else
 				{
-					final QiServer server1 = new QiServer(items[0], items[1], items[2]);
+					@NotNull final QiServer server1 = new QiServer(items[0], items[1], items[2]);
 					QiServer.addServer(server1);
 				}
 			}
@@ -262,7 +264,7 @@ public class QiServer
 			return;
 		}
 
-		for (final QiServer item : servers) {
+		for (@NotNull final QiServer item : servers) {
 			if (item.toString().equals(server)) {
 				defaultServer = item;
 				return;
@@ -284,10 +286,10 @@ public class QiServer
 				final QiLine propsLine = record.get(j);
 				final QiLine descLine = record.get(j + 1);
 
-				final String propsField = propsLine.getTrimmedField();
-				final String propsValue = propsLine.getTrimmedValue();
-				final String descField = descLine.getTrimmedField();
-				final String descValue = descLine.getTrimmedValue();
+				@NotNull final String propsField = propsLine.getTrimmedField();
+				@NotNull final String propsValue = propsLine.getTrimmedValue();
+				@NotNull final String descField = descLine.getTrimmedField();
+				@NotNull final String descValue = descLine.getTrimmedValue();
 
 				if (propsField.equals(descField))
 				{
@@ -338,7 +340,7 @@ public class QiServer
 	@NotNull
     public Vector<QiField> getFields()
 	{
-		Vector<QiField> results = new Vector<>(fields.size());
+		@NotNull Vector<QiField> results = new Vector<>(fields.size());
 		for (QiField field : fields)
 		{
 			results.add(field);

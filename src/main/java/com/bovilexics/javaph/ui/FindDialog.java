@@ -67,9 +67,9 @@ public final class FindDialog extends JavaPHDialog
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		final JPanel findPanel = getFindPanel();
+		@NotNull final JPanel findPanel = getFindPanel();
 		contentPane.add(findPanel, BorderLayout.CENTER);
-		final JPanel buttonPanel = getButtonPanel();
+		@NotNull final JPanel buttonPanel = getButtonPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
 		pack();

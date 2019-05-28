@@ -63,7 +63,7 @@ public final class SaveAction extends AbstractAction
 	{
 		final int selectedTab = parent.getResultPanel().getSelectedIndex();
 
-		final JFileChooser chooser;
+		@NotNull final JFileChooser chooser;
 		
 		if (selectedTab == RESULT_TABLE_TAB) {
             chooser = new CsvFileChooser(parent);
@@ -177,7 +177,7 @@ public final class SaveAction extends AbstractAction
 
 		if (toWrite.isEmpty())
 		{
-			final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			@NotNull final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
 			return;
@@ -190,13 +190,13 @@ public final class SaveAction extends AbstractAction
 			writer.flush();
 			writer.close();
 
-			final String message = "File save finished";
+			@NotNull final String message = "File save finished";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 		}
 		catch (IOException e)
 		{
-			final String message = "Error: IOException received when trying to save file " + file.getPath();
+			@NotNull final String message = "Error: IOException received when trying to save file " + file.getPath();
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 		}

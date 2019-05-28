@@ -106,6 +106,7 @@ public class QiField
 	 *
 	 * @return properties collection
 	 */
+	@NotNull
 	private List<String> setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
 		@NotNull final StringTokenizer tokenizer = new StringTokenizer(someProperties);
@@ -116,7 +117,7 @@ public class QiField
 			@NotNull final String lengthString = (String) tokenizer.nextElement();
 			try
 			{
-				final Integer boxed = Integer.valueOf(lengthString);
+				@NotNull final Integer boxed = Integer.valueOf(lengthString);
 				length = boxed;
 			}
 			catch (NumberFormatException e)
@@ -129,7 +130,7 @@ public class QiField
 			length = -1;
 		}
 
-		final List<String> props = new ArrayList<>();
+		@NotNull final List<String> props = new ArrayList<>();
 		// Okay, here come the properties...
 		while (tokenizer.hasMoreElements())
 		{

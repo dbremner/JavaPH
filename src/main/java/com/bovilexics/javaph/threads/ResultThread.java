@@ -280,7 +280,7 @@ public class ResultThread extends Thread
 				qiConnection.disconnect();
 			}
 		}
-		catch (QiProtocolException | IOException e)
+		catch (@NotNull QiProtocolException | IOException e)
 		{
 			error = true;
 			showStatus("Error: " + e);
@@ -421,16 +421,16 @@ public class ResultThread extends Thread
 			return;
 		}
 
-		String lastField = "unknown";
+		@NotNull String lastField = "unknown";
 		@NotNull final Vector<String> uniqueHeaders = new Vector<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final Vector currentQiLine = (Vector) records.elementAt(i);
+			@NotNull final Vector currentQiLine = (Vector) records.elementAt(i);
 
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
-				String field = ((QiLine) currentQiLine.elementAt(j)).getTrimmedField();
+				@NotNull String field = ((QiLine) currentQiLine.elementAt(j)).getTrimmedField();
 
 				if (field.isEmpty())
 				{
@@ -575,17 +575,17 @@ public class ResultThread extends Thread
 		values = new Object[records.size()][headers.length];
 
 		int xCoordinate = -1;
-		String lastField = "unknown";
+		@NotNull String lastField = "unknown";
 
 		for (int i = 0; i < records.size(); i++)
 		{
 			final int yCoordinate = i;
-			final Vector thisVector = (Vector) records.elementAt(i);
+			@NotNull final Vector thisVector = (Vector) records.elementAt(i);
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				final QiLine thisQiLine = (QiLine) thisVector.elementAt(j);
-				String field = thisQiLine.getTrimmedField();
+				@NotNull final QiLine thisQiLine = (QiLine) thisVector.elementAt(j);
+				@NotNull String field = thisQiLine.getTrimmedField();
 
 				if (field.isEmpty())
 				{
@@ -638,16 +638,16 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final Vector thisVector = (Vector) records.elementAt(i);
+			@NotNull final Vector thisVector = (Vector) records.elementAt(i);
 
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
-				final QiLine propsQiLine = (QiLine) thisVector.elementAt(j);
-				final QiLine descQiLine = (QiLine) thisVector.elementAt(j + 1);
+				@NotNull final QiLine propsQiLine = (QiLine) thisVector.elementAt(j);
+				@NotNull final QiLine descQiLine = (QiLine) thisVector.elementAt(j + 1);
 
-				final String field = propsQiLine.getTrimmedField();
-				final String props = propsQiLine.getTrimmedValue();
-				final String desc = descQiLine.getTrimmedValue();
+				@NotNull final String field = propsQiLine.getTrimmedField();
+				@NotNull final String props = propsQiLine.getTrimmedValue();
+				@NotNull final String desc = descQiLine.getTrimmedValue();
 
 				values[i][0] = field;
 				values[i][1] = desc;
@@ -682,7 +682,7 @@ public class ResultThread extends Thread
 				qiConnection.disconnect();
 			}
 		}
-		catch (IOException | QiProtocolException e)
+		catch (@NotNull IOException | QiProtocolException e)
 		{
 			error = true;
 			showStatus("Error: " + e);

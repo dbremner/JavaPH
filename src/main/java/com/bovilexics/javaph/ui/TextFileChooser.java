@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -28,7 +30,7 @@ public class TextFileChooser extends JFileChooser
 {
 	public TextFileChooser()
 	{
-		final FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		@NotNull final FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"Text Files(*.txt, *.csv)",
 				"csv", "txt") ;
 		setFileFilter(filter);

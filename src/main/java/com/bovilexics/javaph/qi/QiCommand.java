@@ -90,7 +90,7 @@ public final class QiCommand
 
 	public static boolean isValidCommand(String command)
 	{
-		for (QiCommand qiCommand : commands) {
+		for (@NotNull QiCommand qiCommand : commands) {
 			if (qiCommand.getName().equals(command)) {
 				return true;
 			}
@@ -134,6 +134,7 @@ public final class QiCommand
 		return textEditable;
 	}
 	
+	@NotNull
 	@Override
 	public String toString()
 	{

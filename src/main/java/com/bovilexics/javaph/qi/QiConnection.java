@@ -48,7 +48,8 @@ public class QiConnection
 	private String host;
 	
 	private QiLine qiQiLine;
-	private final QiServer qiServer;
+	@NotNull
+    private final QiServer qiServer;
 	private Socket socket;
 	@Nullable
 	private Thread locker;
@@ -173,7 +174,8 @@ public class QiConnection
 		return port;
 	}
 
-	public QiServer getServer()
+	@NotNull
+    public QiServer getServer()
 	{
 		return qiServer;
 	}
