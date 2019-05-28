@@ -28,11 +28,6 @@ import com.bovilexics.javaph.models.FindComboBoxModel;
  */
 final class FindComboBox extends JComboBox
 {
-	public FindComboBox()
-	{
-		this(false);
-	}
-	
 	public FindComboBox(boolean useDefaultModel)
 	{
 		super();
