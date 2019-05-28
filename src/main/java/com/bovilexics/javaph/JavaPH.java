@@ -1943,23 +1943,25 @@ public class JavaPH extends JApplet {
 
 	public void showLog(boolean show)
 	{
-		if (logTextPanel != null)
+		if (logTextPanel == null)
 		{
-			final int location = resultPanel.indexOfTab(SYSTEM_LOG_LABEL);
+			return;
+		}
 
-			// If requested to show the log and it's not already
-			// there then add the tab and select it
-			if (show && location < 0)
-			{
-				resultPanel.add(SYSTEM_LOG_LABEL, logTextPanel);
-				resultPanel.setSelectedIndex(resultPanel.getTabCount() - 1);
-			}
-			// If requested to hide the log and it's
-			// there then remove the tab
-			else if (!show && location >= 0)
-			{
-				resultPanel.removeTabAt(location);
-			}
+		final int location = resultPanel.indexOfTab(SYSTEM_LOG_LABEL);
+
+		// If requested to show the log and it's not already
+		// there then add the tab and select it
+		if (show && location < 0)
+		{
+			resultPanel.add(SYSTEM_LOG_LABEL, logTextPanel);
+			resultPanel.setSelectedIndex(resultPanel.getTabCount() - 1);
+		}
+		// If requested to hide the log and it's
+		// there then remove the tab
+		else if (!show && location >= 0)
+		{
+			resultPanel.removeTabAt(location);
 		}
 	}
 
