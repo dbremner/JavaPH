@@ -3,6 +3,7 @@
 # Manually add servers to this list using the following format
 #   <name / description> :: <host / ip address> :: <port (0-65535)>
 #
+Michael Lazar::mozz.us::105
 Albert Einstein College of Medicine::ns.aecom.yu.edu::105
 Algonquin C. of App. Arts and Tech., Ontario, Canada::algnet.algonquinc.on.ca::105
 American University, Washington DC::ph.american.edu::105
