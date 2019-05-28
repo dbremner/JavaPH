@@ -23,8 +23,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.util.Browser;
 import org.jetbrains.annotations.NotNull;
 
 /**

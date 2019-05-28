@@ -16,6 +16,12 @@
             <version>15.0</version>
             <scope>compile</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.ostermiller/utils -->
+        <dependency>
+            <groupId>org.ostermiller</groupId>
+            <artifactId>utils</artifactId>
+            <version>1.07.00</version>
+        </dependency>
     </dependencies>
     <packaging>jar</packaging>
     <properties>

@@ -24,8 +24,8 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.util.Browser;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
