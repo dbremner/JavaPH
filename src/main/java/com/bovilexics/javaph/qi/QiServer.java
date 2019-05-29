@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.net.URL;
+import java.util.List;
 import java.util.Vector;
 
 import com.bovilexics.javaph.threads.ResultThread;
@@ -278,7 +279,7 @@ public class QiServer
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final Vector<QiLine> record = records.get(i);
+			final List<QiLine> record = records.get(i);
 
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)

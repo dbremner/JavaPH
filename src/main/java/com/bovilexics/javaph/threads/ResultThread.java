@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -145,7 +146,7 @@ public class ResultThread extends Thread
 
 		@NotNull final StringBuffer out = new StringBuffer();
 
-		@Nullable final Vector<QiLine> records = this.records.get(record);
+		@Nullable final List<QiLine> records = this.records.get(record);
 		if (records == null) {
 			return null;
 		}
@@ -422,11 +423,11 @@ public class ResultThread extends Thread
 		}
 
 		@NotNull String lastField = "unknown";
-		@NotNull final Vector<String> uniqueHeaders = new Vector<>();
+		@NotNull final List<String> uniqueHeaders = new Vector<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			@NotNull final Vector<QiLine> currentQiLine = records.get(i);
+			@NotNull final List<QiLine> currentQiLine = records.get(i);
 
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
@@ -581,7 +582,7 @@ public class ResultThread extends Thread
 		for (int i = 0; i < records.size(); i++)
 		{
 			final int yCoordinate = i;
-			@NotNull final Vector<QiLine> thisVector = records.get(i);
+			@NotNull final List<QiLine> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
@@ -639,7 +640,7 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			@NotNull final Vector<QiLine> thisVector = records.get(i);
+			@NotNull final List<QiLine> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
