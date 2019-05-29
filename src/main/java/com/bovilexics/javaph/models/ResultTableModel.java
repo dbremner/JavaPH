@@ -68,7 +68,7 @@ public final class ResultTableModel extends DefaultTableModel
 		@NotNull final Vector<String> headers = new Vector<>();
 		
 		for (int i = 0; i < cols; i++) {
-			headers.addElement(DEFAULT_HEADER);
+			headers.add(DEFAULT_HEADER);
 		}
 			
 		return headers;

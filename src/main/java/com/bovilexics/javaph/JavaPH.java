@@ -1641,7 +1641,7 @@ public class JavaPH extends JApplet {
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
-				final QiServer server = servers.elementAt(i);
+				final QiServer server = servers.get(i);
 				fieldProgressMonitor.setNote(server.getExpandedName());
 				server.loadFields();
 				fieldProgressMonitor.setProgress(i + 1);
@@ -1704,7 +1704,7 @@ public class JavaPH extends JApplet {
 	{
 		@NotNull final TableSorter tableModel = (TableSorter)resultTable.getModel();
 		@NotNull final DefaultListModel listModel = (DefaultListModel)colList.getModel();
-		listModel.removeAllElements();
+		listModel.clear();
 		
 		for (int i = 0; i < tableModel.getColumnCount(); i++)
 		{
@@ -1719,7 +1719,7 @@ public class JavaPH extends JApplet {
 	private void populateFieldList(@NotNull QiServer server)
 	{
 		@NotNull final DefaultListModel model = (DefaultListModel)fieldList.getModel();
-		model.removeAllElements();
+		model.clear();
 					
 		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE)
 		{

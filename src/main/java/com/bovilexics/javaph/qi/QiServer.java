@@ -172,7 +172,7 @@ public class QiServer
 
 	public static void loadAllServers()
 	{
-		servers.removeAllElements();
+		servers.clear();
 
 		try
 		{
