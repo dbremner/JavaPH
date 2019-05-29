@@ -341,11 +341,7 @@ public class QiServer
 	@NotNull
     public Vector<QiField> getFields()
 	{
-		@NotNull final Vector<QiField> results = new Vector<>(fields.size());
-		for (QiField field : fields)
-		{
-			results.add(field);
-		}
+		@NotNull final Vector<QiField> results = new Vector<>(fields);
 		return results;
 	}
 
