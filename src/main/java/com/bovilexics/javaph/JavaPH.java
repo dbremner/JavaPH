@@ -1973,7 +1973,7 @@ public class JavaPH extends JApplet {
 
 	private void showSplashWindow()
 	{
-		splashWindow.show();
+		splashWindow.setVisible(true);
 			
 		try
 		{
