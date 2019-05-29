@@ -145,7 +145,7 @@ public class ResultThread extends Thread
 
 		@NotNull final StringBuffer out = new StringBuffer();
 
-		@Nullable final Vector records = (Vector) this.records.get(record);
+		@Nullable final Vector<QiLine> records = this.records.get(record);
 		if (records == null) {
 			return null;
 		}
@@ -153,7 +153,7 @@ public class ResultThread extends Thread
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			@Nullable final QiLine qiLine = (QiLine) records.get(i);
+			@Nullable final QiLine qiLine = records.get(i);
 
 			// Skip empty and encrypted fields.
 			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().isEmpty()) {
@@ -219,9 +219,9 @@ public class ResultThread extends Thread
 	}
 
 	@NotNull
-	public synchronized Vector getRecords()
+	public synchronized Vector<Vector<QiLine>> getRecords()
 	{
-		return state == RS_OK ? (Vector)records.clone() : new Vector();
+		return state == RS_OK ? (Vector<Vector<QiLine>>)records.clone() : new Vector<>();
 	}
 
 	@Nullable
@@ -426,11 +426,11 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			@NotNull final Vector currentQiLine = (Vector) records.get(i);
+			@NotNull final Vector<QiLine> currentQiLine = records.get(i);
 
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
-				@NotNull String field = ((QiLine) currentQiLine.get(j)).getTrimmedField();
+				@NotNull String field = currentQiLine.get(j).getTrimmedField();
 
 				if (field.isEmpty())
 				{
@@ -580,11 +580,11 @@ public class ResultThread extends Thread
 		for (int i = 0; i < records.size(); i++)
 		{
 			final int yCoordinate = i;
-			@NotNull final Vector thisVector = (Vector) records.get(i);
+			@NotNull final Vector<QiLine> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				@NotNull final QiLine thisQiLine = (QiLine) thisVector.get(j);
+				@NotNull final QiLine thisQiLine = thisVector.get(j);
 				@NotNull String field = thisQiLine.getTrimmedField();
 
 				if (field.isEmpty())
@@ -595,7 +595,7 @@ public class ResultThread extends Thread
 				boolean found = false;
 				for (int k = 0; k < headers.length && !found; k++)
 				{
-					if ( ((String)headers[k]).equals(field) )
+					if ( headers[k].equals(field) )
 					{
 						xCoordinate = k;
 						found = true;
@@ -638,12 +638,12 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			@NotNull final Vector thisVector = (Vector) records.get(i);
+			@NotNull final Vector<QiLine> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
-				@NotNull final QiLine propsQiLine = (QiLine) thisVector.get(j);
-				@NotNull final QiLine descQiLine = (QiLine) thisVector.get(j + 1);
+				@NotNull final QiLine propsQiLine = thisVector.get(j);
+				@NotNull final QiLine descQiLine = thisVector.get(j + 1);
 
 				@NotNull final String field = propsQiLine.getTrimmedField();
 				@NotNull final String props = propsQiLine.getTrimmedValue();
