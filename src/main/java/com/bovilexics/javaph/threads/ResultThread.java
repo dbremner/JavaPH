@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -423,7 +424,7 @@ public class ResultThread extends Thread
 		}
 
 		@NotNull String lastField = "unknown";
-		@NotNull final List<String> uniqueHeaders = new Vector<>();
+		@NotNull final List<String> uniqueHeaders = new ArrayList<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
