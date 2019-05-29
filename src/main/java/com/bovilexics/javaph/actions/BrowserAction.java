@@ -36,7 +36,7 @@ public final class BrowserAction extends AbstractAction
 	
 	public BrowserAction(@NotNull JavaPH javaph)
 	{
-		super("Broswer Options");
+		super("Browser Options");
 
 		parent = javaph;
 	}
