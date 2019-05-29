@@ -441,7 +441,7 @@ public class ResultThread extends Thread
 				{
 					if (field.endsWith(".1")) {
 						final int index = uniqueHeaders.indexOf(field.substring(0, field.lastIndexOf(".1"))) + 1;
-						uniqueHeaders.insertElementAt(field, index);
+						uniqueHeaders.add(index, field);
 					} else {
 						uniqueHeaders.add(field);
 					}
