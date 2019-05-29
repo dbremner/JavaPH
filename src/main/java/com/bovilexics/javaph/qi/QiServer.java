@@ -275,7 +275,7 @@ public class QiServer
 	
 	private void convertRecordsToFields(@NotNull Vector<Vector<QiLine>> records)
 	{
-		fields = new Vector<QiField>();
+		fields = new Vector<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
