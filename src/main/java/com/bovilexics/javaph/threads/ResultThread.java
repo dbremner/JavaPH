@@ -223,7 +223,15 @@ public class ResultThread extends Thread
 	@NotNull
 	public synchronized Vector<Vector<QiLine>> getRecords()
 	{
-		return state == RS_OK ? (Vector<Vector<QiLine>>)records.clone() : new Vector<>();
+		if (state != RS_OK)
+		{
+			return new Vector<>();
+		}
+		else
+		{
+			@NotNull final Vector<Vector<QiLine>> results = new Vector<>(records);
+			return results;
+		}
 	}
 
 	@Nullable
