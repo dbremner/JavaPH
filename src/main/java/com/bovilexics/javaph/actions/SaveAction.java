@@ -164,7 +164,7 @@ public final class SaveAction extends AbstractAction
 	
 	private void saveTextFile(int tab, @NotNull File file)
 	{
-		@NotNull String toWrite = "";
+		@NotNull final String toWrite;
 		
 		if (tab == RESULT_TEXT_TAB)
 		{
@@ -173,6 +173,10 @@ public final class SaveAction extends AbstractAction
 		else if (tab == SYSTEM_LOG_TAB)
 		{
 			toWrite = parent.getLogText().getText();
+		}
+		else
+		{
+			toWrite = "";
 		}
 
 		if (toWrite.isEmpty())
