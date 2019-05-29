@@ -155,7 +155,7 @@ final class LookAndFeelMenu extends JMenu
 		
 		parent = javaph;
 
-		@NotNull MouseListener mouseListener = new StatusMouseListener();
+		@NotNull final MouseListener mouseListener = new StatusMouseListener();
 		addMouseListener(mouseListener);
 
 		@NotNull final ButtonGroup group = new ButtonGroup();
