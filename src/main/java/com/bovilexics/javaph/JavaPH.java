@@ -196,6 +196,7 @@ public class JavaPH extends JApplet {
 	private PropertiesDialog propertiesDialog;
 	private ProgressMonitor fieldProgressMonitor; 
 	private ProgressMonitor queryProgressMonitor;
+	@NotNull
 	private final QiCommand[] commands;
 	private QiConnection connection;
 	private QueryComboBox queryComboBox;

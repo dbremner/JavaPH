@@ -60,7 +60,7 @@ public class QiServerManager {
         return servers;
     }
 
-    public static void loadAllServers(String filename) {
+    public static void loadAllServers(@NotNull String filename) {
         servers.clear();
 
         try {
@@ -104,8 +104,9 @@ public class QiServerManager {
         }
     }
 
-    public static List<QiServer> loadServers(String filename) {
-        final List<QiServer> serverResults = new ArrayList<QiServer>();
+    @NotNull
+    public static List<QiServer> loadServers(@NotNull String filename) {
+        @NotNull final List<QiServer> serverResults = new ArrayList<QiServer>();
         serverResults.clear();
 
         try {

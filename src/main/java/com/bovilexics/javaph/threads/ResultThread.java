@@ -16,14 +16,6 @@
  */
 package com.bovilexics.javaph.threads;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-import java.util.Vector;
-
-import javax.swing.SwingUtilities;
-
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
@@ -33,6 +25,13 @@ import com.bovilexics.javaph.qi.QiProtocolException;
 import com.bovilexics.javaph.qi.QiServer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.SwingUtilities;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.Vector;
 
 /**
  * 
@@ -75,6 +74,7 @@ public class ResultThread extends Thread
 	private int lastCode = QiAPI.LR_OK;
 	private int state = RS_START;
 
+	@Nullable
 	private final JavaPH parent;
 
 	@Nullable
@@ -87,6 +87,7 @@ public class ResultThread extends Thread
 
 	@Nullable
 	private String command;
+	@Nullable
 	private String commandLine;
 	@NotNull
 	private String epilogue = "";
@@ -105,7 +106,7 @@ public class ResultThread extends Thread
 	@NotNull
 	private Vector<QiLine> record = new Vector<>();
 
-	public ResultThread(String command, QiConnection connection)
+	public ResultThread(String command, @NotNull QiConnection connection)
 	{
 		this(null, command, connection);
 	}
@@ -116,13 +117,13 @@ public class ResultThread extends Thread
 	}
 
 
-	public ResultThread(JavaPH javaph)
+	public ResultThread(@NotNull JavaPH javaph)
 	{
 		parent = javaph;
 		connect(parent.getCommand(), parent.getConnection());
 	}
 
-	private ResultThread(JavaPH javaph, String command, QiConnection connection)
+	private ResultThread(@Nullable JavaPH javaph, String command, @NotNull QiConnection connection)
 	{
 		parent = javaph;
 		connect(command, connection);
@@ -708,7 +709,7 @@ public class ResultThread extends Thread
 	 * @param aQiConnection a QiConnection. Connection does not need to be open.
 	 *
 	 */
-	private synchronized void connect(String aCommandLine, QiConnection aQiConnection)
+	private synchronized void connect(@Nullable String aCommandLine, @NotNull QiConnection aQiConnection)
 	{
 		commandLine = aCommandLine;
 		qiConnection = aQiConnection;
