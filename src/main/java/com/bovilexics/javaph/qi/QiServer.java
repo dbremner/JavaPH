@@ -48,7 +48,18 @@ public class QiServer
 	private QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	@NotNull
 	private String fieldStateMessage = "";
-	
+
+	public QiServer(@NotNull String name, @NotNull String server, int port)
+	{
+		if (!isValidPort(port)) {
+			throw new IllegalArgumentException(PORT_ERROR);
+		}
+
+		this.name = name;
+		this.server = server;
+		this.port = port;
+	}
+
 	public QiServer(@NotNull String aName, @NotNull String aServer, @NotNull Integer aPortInteger)
 	{
 		if (!isValidPort(aPortInteger)) {

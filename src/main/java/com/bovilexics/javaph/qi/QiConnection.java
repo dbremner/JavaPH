@@ -80,7 +80,7 @@ public class QiConnection
 	{
 		host = aHost;
 		port = aPort;
-		qiServer = new QiServer("unspecified", aHost, new Integer(aPort));
+		qiServer = new QiServer("unspecified", aHost, aPort);
 	}
 
 	public boolean authenticated()
