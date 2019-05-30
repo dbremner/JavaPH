@@ -171,13 +171,14 @@ public class QiServer
 		}
 	}
 
-	public static void loadAllServers()
+
+	public static void loadAllServers(String filename)
 	{
 		servers.clear();
 
 		try
 		{
-			@NotNull final Reader in = new FileReader(SERVER_FILE);
+			@NotNull final Reader in = new FileReader(filename);
 
 			@NotNull final LineNumberReader lr = new LineNumberReader(in);
 
@@ -194,7 +195,7 @@ public class QiServer
 
 				if (items.length != 3)
 				{
-					System.err.println("Error: Invalid server entry in " + SERVER_FILE + " on line " + lr.getLineNumber() + " --> " + line);
+					System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
 				}
 				else
 				{
@@ -207,14 +208,19 @@ public class QiServer
 		}
 		catch (FileNotFoundException e)
 		{
-			System.err.println("Error: FileNotFoundException received when trying to read file " + SERVER_FILE);
+			System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
 			e.printStackTrace();
 		}
 		catch (IOException e)
 		{
-			System.err.println("Error: IOException received when trying to read file " + SERVER_FILE);
+			System.err.println("Error: IOException received when trying to read file " + filename);
 			e.printStackTrace();
 		}
+	}
+
+	public static void loadAllServers()
+	{
+		loadAllServers(SERVER_FILE);
 	}
 
 	public static void removeServer(QiServer server)
