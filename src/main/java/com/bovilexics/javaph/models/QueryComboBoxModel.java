@@ -44,7 +44,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	public QueryComboBoxModel()
 	{
 		objects = new Vector<>();
-		allObjects = (Vector<Object>)objects.clone();
+		allObjects = new Vector<>();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
             selectedObject = getElementAt(0);
         }
 			
-		allObjects = (Vector<Object>)objects.clone();
+		allObjects = new Vector<>(objects);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
             selectedObject = getElementAt(0);
         }
 			
-		allObjects = (Vector<Object>)objects.clone();
+		allObjects = new Vector<>(objects);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
