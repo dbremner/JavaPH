@@ -1383,8 +1383,6 @@ public class JavaPH extends JApplet {
 
 	private int getIntProperty(@NotNull String key, int defaultValue)
 	{
-		int intValue;
-
 		try
 		{
 			@Nullable final String stringValue = getProperty(key);
@@ -1392,15 +1390,14 @@ public class JavaPH extends JApplet {
 			if (stringValue == null) {
 				throw new NumberFormatException();
 			}
-			
-			intValue = Integer.parseInt(stringValue);
+
+			final int intValue = Integer.parseInt(stringValue);
+			return intValue;
 		}
 		catch (NumberFormatException e)
 		{
-			intValue = defaultValue;
+			return defaultValue;
 		}
-		
-		return intValue;
 	}
 
 	public int getIntPropertyDefault(@NotNull String key, int defaultValue)
