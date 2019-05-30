@@ -45,6 +45,7 @@ public class QiConnection
 	private int port;
 	
 	private String alias;
+	@NotNull
 	private String host;
 	
 	private QiLine qiQiLine;
@@ -94,7 +95,7 @@ public class QiConnection
 	 */
 	public synchronized void connect() throws IOException
 	{
-		if (host == null || host.equals("")) {
+		if (host.equals("")) {
 			throw new IOException("No host specified, cannot connect");
 		}
 			
@@ -116,7 +117,7 @@ public class QiConnection
 	 * @param aPort port to connect to.
 	 *
 	 */
-	public synchronized void connect(String aHost, int aPort) throws IOException
+	public synchronized void connect(@NotNull String aHost, int aPort) throws IOException
 	{
 		host = aHost;
 		port = aPort;
@@ -164,6 +165,7 @@ public class QiConnection
 		}
 	}
 
+	@NotNull
 	public String getHost()
 	{
 		return host;
@@ -216,7 +218,7 @@ public class QiConnection
 	 * @exception QiProtocolException upon an unexpected response from Qi
 	 * @exception IOException upon a socket error.
 	 */
-	public synchronized void login(String anAlias, String aPassword) throws IOException, QiProtocolException
+	public synchronized void login(@NotNull String anAlias, @NotNull String aPassword) throws IOException, QiProtocolException
 	{
 		alias = anAlias;
 		lock();
