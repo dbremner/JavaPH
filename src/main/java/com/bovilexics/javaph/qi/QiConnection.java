@@ -354,7 +354,7 @@ public class QiConnection
 	@NotNull
 	public String toString()
 	{
-		@NotNull final StringBuffer out = new StringBuffer();
+		final StringBuilder out = new StringBuilder();
 		
 		out.append(host);
 		out.append(":");

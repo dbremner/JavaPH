@@ -202,7 +202,7 @@ public final class QiServerManager {
     @NotNull
     public static String getFileHeader()
     {
-        @NotNull final StringBuffer out = new StringBuffer();
+        final StringBuilder out = new StringBuilder();
 
         out.append("# JavaPH Server File\n");
         out.append("# \n");

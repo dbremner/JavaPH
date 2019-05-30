@@ -147,7 +147,7 @@ public class QiServer
 	@NotNull
     public String getExpandedName()
 	{
-		@NotNull final StringBuffer out = new StringBuffer();
+		final StringBuilder out = new StringBuilder();
 		
 		out.append(name);
 		out.append(" (");

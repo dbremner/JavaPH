@@ -146,7 +146,7 @@ public class ResultThread extends Thread
 	public synchronized String fieldValue(int record, String field, boolean replaceNewlines)
 	{
 
-		@NotNull final StringBuffer out = new StringBuffer();
+		final StringBuilder out = new StringBuilder();
 
 		@Nullable final List<QiLine> records = this.records.get(record);
 		if (records == null) {

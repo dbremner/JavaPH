@@ -1321,7 +1321,7 @@ public class JavaPH extends JApplet {
 	@NotNull
 	public String getCommand()
 	{
-		@NotNull final StringBuffer out = new StringBuffer();
+		final StringBuilder out = new StringBuilder();
 		
 		out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
 		
