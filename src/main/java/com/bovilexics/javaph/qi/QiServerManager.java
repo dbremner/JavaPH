@@ -46,8 +46,22 @@ public final class QiServerManager {
     }
 
     @NotNull
-    public static QiServer getDefaultServer() {
-        return (defaultServer == null) ? new QiServer("undefined", "undefined", "0") : defaultServer;
+    public static QiServer getDefaultServer()
+    {
+        if (defaultServer == null)
+        {
+            return QiServerManager.getUndefinedServer();
+        }
+
+        return defaultServer;
+    }
+
+    @NotNull
+    private static QiServer getUndefinedServer()
+    {
+        @NotNull final String UNDEFINED = "undefined";
+        @NotNull final QiServer undefined = new QiServer(UNDEFINED, UNDEFINED, "0");
+        return undefined;
     }
 
     @NotNull
