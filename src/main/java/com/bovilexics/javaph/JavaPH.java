@@ -16,37 +16,28 @@
  */
 package com.bovilexics.javaph;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
-import java.util.Vector;
+import com.Ostermiller.util.Browser;
+import com.bovilexics.javaph.models.QueryComboBoxModel;
+import com.bovilexics.javaph.models.TableSorter;
+import com.bovilexics.javaph.qi.QiCommand;
+import com.bovilexics.javaph.qi.QiConnection;
+import com.bovilexics.javaph.qi.QiField;
+import com.bovilexics.javaph.qi.QiServer;
+import com.bovilexics.javaph.qi.QiServerManager;
+import com.bovilexics.javaph.threads.QueryThread;
+import com.bovilexics.javaph.ui.AboutDialog;
+import com.bovilexics.javaph.ui.CustomButtonGroup;
+import com.bovilexics.javaph.ui.FindDialog;
+import com.bovilexics.javaph.ui.MainMenu;
+import com.bovilexics.javaph.ui.PropertiesDialog;
+import com.bovilexics.javaph.ui.QueryComboBox;
+import com.bovilexics.javaph.ui.QueryToolBar;
+import com.bovilexics.javaph.ui.ResultTable;
+import com.bovilexics.javaph.ui.ServerRenderer;
+import com.bovilexics.javaph.ui.SplashWindow;
+import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -83,28 +74,38 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
-
-import com.Ostermiller.util.Browser;
-import com.bovilexics.javaph.models.QueryComboBoxModel;
-import com.bovilexics.javaph.models.TableSorter;
-import com.bovilexics.javaph.qi.QiCommand;
-import com.bovilexics.javaph.qi.QiConnection;
-import com.bovilexics.javaph.qi.QiField;
-import com.bovilexics.javaph.qi.QiServer;
-import com.bovilexics.javaph.threads.QueryThread;
-import com.bovilexics.javaph.ui.AboutDialog;
-import com.bovilexics.javaph.ui.CustomButtonGroup;
-import com.bovilexics.javaph.ui.FindDialog;
-import com.bovilexics.javaph.ui.MainMenu;
-import com.bovilexics.javaph.ui.PropertiesDialog;
-import com.bovilexics.javaph.ui.QueryComboBox;
-import com.bovilexics.javaph.ui.QueryToolBar;
-import com.bovilexics.javaph.ui.ResultTable;
-import com.bovilexics.javaph.ui.ServerRenderer;
-import com.bovilexics.javaph.ui.SplashWindow;
-import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Event;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+import java.util.Vector;
 
 import static com.bovilexics.javaph.JavaPHConstants.APP_DEFAULT_HEIGHT;
 import static com.bovilexics.javaph.JavaPHConstants.APP_DEFAULT_STATUS;
@@ -619,7 +620,7 @@ public class JavaPH extends JApplet {
 					populateFieldList(server);
 				}
 			});
-			QiServer.setDefaultServer(getProperty(PROP_DEFAULT_SERVER));
+			QiServerManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER));
 
 			queryServerPanel.add(serverComboBox, BorderLayout.CENTER);
 
@@ -1557,7 +1558,7 @@ public class JavaPH extends JApplet {
 		log("JavaPH initialized (" + ("Application") + " Mode)");
 		log("Initializing default server");
 
-		serverComboBox.setSelectedItem(QiServer.getDefaultServer());
+		serverComboBox.setSelectedItem(QiServerManager.getDefaultServer());
 		
 		log("Default server initialized");
 		
@@ -1596,8 +1597,8 @@ public class JavaPH extends JApplet {
 
 	private void initServers()
 	{
-		QiServer.loadAllServers();
-		servers  = QiServer.getServers();
+		QiServerManager.loadAllServers();
+		servers  = QiServerManager.getServers();
 	}
 
 	private void initStuff()

@@ -39,6 +39,7 @@ import javax.swing.JTextField;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
+import com.bovilexics.javaph.qi.QiServerManager;
 import org.jetbrains.annotations.NotNull;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
@@ -208,7 +209,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		@NotNull final JLabel defaultServerLabel = new JLabel("Default Server : ");
 		defaultServerLabel.setAlignmentY(JLabel.CENTER_ALIGNMENT);
 		
-		defaultServerComboBox = new JComboBox<>(QiServer.getServers());
+		defaultServerComboBox = new JComboBox<>(QiServerManager.getServers());
 		defaultServerComboBox.setRenderer(new ServerRenderer(parent));
 
 		defaultServerPanel.add(defaultServerLabel);
@@ -341,7 +342,7 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	private void refreshProperties()
 	{
-		defaultServerComboBox.setSelectedItem(QiServer.getDefaultServer());
+		defaultServerComboBox.setSelectedItem(QiServerManager.getDefaultServer());
 		displayLogCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
 		displaySplashCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"));
 		displayToolbarCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
@@ -376,7 +377,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		parent.setProperty(PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
 		parent.setProperty(PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
 
-		QiServer.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
+        QiServerManager.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
 		parent.setLoadFields(loadFields);
 		parent.setSavePosition(savePositionCheckBox.isSelected());
 
