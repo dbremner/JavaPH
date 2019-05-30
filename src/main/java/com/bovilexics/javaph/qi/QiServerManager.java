@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class QiServerManager {
+public final class QiServerManager {
     private static final String SEPARATOR = "::";
     private static final String SERVER_FILE = "javaph.servers";
     private static QiServer defaultServer;
