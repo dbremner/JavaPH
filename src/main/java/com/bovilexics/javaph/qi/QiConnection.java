@@ -76,7 +76,7 @@ public class QiConnection
 	 * @param aHost to connect to
 	 * @param aPort to connect to.
 	 */
-	public QiConnection(String aHost, int aPort)
+	public QiConnection(@NotNull String aHost, int aPort)
 	{
 		host = aHost;
 		port = aPort;
@@ -354,7 +354,7 @@ public class QiConnection
 	@NotNull
 	public String toString()
 	{
-		final StringBuilder out = new StringBuilder();
+		@NotNull final StringBuilder out = new StringBuilder();
 		
 		out.append(host);
 		out.append(":");

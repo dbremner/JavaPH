@@ -147,7 +147,7 @@ public class QiServer
 	@NotNull
     public String getExpandedName()
 	{
-		final StringBuilder out = new StringBuilder();
+		@NotNull final StringBuilder out = new StringBuilder();
 		
 		out.append(name);
 		out.append(" (");
@@ -172,6 +172,7 @@ public class QiServer
 		return fieldState;
 	}
 
+	@NotNull
 	public String getFieldStateMessage()
 	{
 		if (fieldStateMessage.isEmpty()) {
@@ -257,6 +258,7 @@ public class QiServer
 		resultThread = null;
 	}
 
+	@NotNull
 	@Override
 	public String toString()
 	{

@@ -603,7 +603,7 @@ public class JavaPH extends JApplet {
 				public void actionPerformed(ActionEvent ae)
 				{
 					@NotNull final QiServer server = (QiServer)serverComboBox.getSelectedItem();
-					final String serverText = server.getServer();
+					@NotNull final String serverText = server.getServer();
 					
 					@Nullable final Integer portInt = server.getPort();
 					@NotNull final String portText = portInt.toString();
@@ -1149,7 +1149,7 @@ public class JavaPH extends JApplet {
 			}
 		});
 
-		((JavaPH)applet).queryComboBox.getEditor().getEditorComponent().requestFocus();
+		applet.queryComboBox.getEditor().getEditorComponent().requestFocus();
 	}
 
 	public JavaPH()
@@ -1321,7 +1321,7 @@ public class JavaPH extends JApplet {
 	@NotNull
 	public String getCommand()
 	{
-		final StringBuilder out = new StringBuilder();
+		@NotNull final StringBuilder out = new StringBuilder();
 		
 		out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
 		
@@ -1351,7 +1351,7 @@ public class JavaPH extends JApplet {
 
 					for (int selectedField : selectedFields) {
 						out.append(" ");
-						out.append(((QiField) fieldList.getModel().getElementAt(selectedField)).getName());
+						out.append(fieldList.getModel().getElementAt(selectedField).getName());
 					}
 				}
 				else

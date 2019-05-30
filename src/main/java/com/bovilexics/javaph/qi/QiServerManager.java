@@ -28,10 +28,10 @@ public final class QiServerManager {
         }
 
         int whereToAdd = -1;
-        final String newElement = server.toString();
+        @NotNull final String newElement = server.toString();
 
         for (int i = 0; i < servers.size(); i++) {
-            final String oldElement = servers.get(i).toString();
+            @NotNull final String oldElement = servers.get(i).toString();
 
             if (newElement.compareTo(oldElement) == 0) {
                 return;
@@ -202,7 +202,7 @@ public final class QiServerManager {
     @NotNull
     public static String getFileHeader()
     {
-        final StringBuilder out = new StringBuilder();
+        @NotNull final StringBuilder out = new StringBuilder();
 
         out.append("# JavaPH Server File\n");
         out.append("# \n");

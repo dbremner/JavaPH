@@ -40,7 +40,10 @@ public class QiField
 {
 	private int length;
 
+	@NotNull
 	private final String description;
+
+	@NotNull
 	private final String name;
 
 	@NotNull
@@ -55,13 +58,14 @@ public class QiField
 	 * @exception QiProtocolException in the event of an error parsing the data.
 	 *
 	 */
-	public QiField(String name, @NotNull String someProperties, String description) throws QiProtocolException
+	public QiField(@NotNull String name, @NotNull String someProperties, @NotNull String description) throws QiProtocolException
 	{
 		this.name = name;
 		properties = setProperties(someProperties);
 		this.description = description;
 	}
 
+	@NotNull
 	public String getDescription()
 	{
 		return description;
@@ -72,6 +76,7 @@ public class QiField
 		return length;
 	}
 
+	@NotNull
 	public String getName()
 	{
 		return name;
@@ -83,7 +88,7 @@ public class QiField
 		return Collections.unmodifiableList(properties);
 	}
 
-	public boolean hasProperty(String property)
+	public boolean hasProperty(@NotNull String property)
 	{
 		return properties.contains(property);
 	}
