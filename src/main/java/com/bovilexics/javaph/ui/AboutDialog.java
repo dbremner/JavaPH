@@ -16,12 +16,8 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -29,11 +25,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.JavaPHConstants;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_AUTHOR;
 import static com.bovilexics.javaph.JavaPHConstants.INFO_CONTACT;
@@ -48,10 +43,8 @@ import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class AboutDialog extends JavaPHDialog {
-	@NotNull
-    private final JavaPH parent;
-
+public final class AboutDialog extends JavaPHDialog
+{
 	@NotNull
 	private final JButton okButton;
 
@@ -59,7 +52,7 @@ public final class AboutDialog extends JavaPHDialog {
 	{
 		super(javaph);
 
-		parent = javaph;
+		@NotNull final JavaPH parent = javaph;
 
 		setTitle("About " + INFO_NAME);
 		
@@ -78,7 +71,8 @@ public final class AboutDialog extends JavaPHDialog {
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 		
 		contentPanel.add(imagePanel, BorderLayout.CENTER);
-		contentPanel.add(getInfoPanel(), BorderLayout.EAST);
+		@NotNull final JPanel infoPanel = getInfoPanel(parent);
+		contentPanel.add(infoPanel, BorderLayout.EAST);
 
 		@NotNull final JPanel buttonPanel = new JPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
@@ -92,7 +86,7 @@ public final class AboutDialog extends JavaPHDialog {
 	}
 	
 	@NotNull
-    private JPanel getInfoPanel()
+    private JPanel getInfoPanel(JavaPH parent)
 	{
 
 		@NotNull final JPanel infoPanel = new JPanel();
