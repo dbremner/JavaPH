@@ -16,14 +16,14 @@
  */
 package com.bovilexics.javaph.threads;
 
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -102,18 +102,14 @@ public class QueryThread extends Thread
 
 	private void showResult()
 	{
-		SwingUtilities.invokeLater(new Runnable()
+		SwingUtilities.invokeLater(() ->
 		{
-			@Override
-			public void run()
-			{
-				parent.getQueryProgressMonitor().close();
-				parent.getResultText().setText(resultThread.getRawResult());
-				
-				@NotNull final ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
-				resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
-				parent.getResultTable().resetColumnWidths();
-			}
+			parent.getQueryProgressMonitor().close();
+			parent.getResultText().setText(resultThread.getRawResult());
+
+			@NotNull final ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
+			resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
+			parent.getResultTable().resetColumnWidths();
 		});
 	}
 
@@ -124,16 +120,12 @@ public class QueryThread extends Thread
 
 	private void showStatus(final String status, final boolean logAlso)
 	{
-		SwingUtilities.invokeLater(new Runnable()
+		SwingUtilities.invokeLater(() ->
 		{
-			@Override
-			public void run()
-			{
-				parent.showStatus(status);
-				
-				if (logAlso) {
-					parent.log(status);
-				}
+			parent.showStatus(status);
+
+			if (logAlso) {
+				parent.log(status);
 			}
 		});
 	}
