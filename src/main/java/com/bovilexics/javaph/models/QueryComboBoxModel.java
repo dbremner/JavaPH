@@ -196,7 +196,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	 * @return an int representing the index position, where 0 is 
 	 *         the first position
 	 */
-	public int getIndexOf(Object anObject)
+	public int getIndexOf(@Nullable Object anObject)
 	{
 		return objects.indexOf(anObject);
 	}
