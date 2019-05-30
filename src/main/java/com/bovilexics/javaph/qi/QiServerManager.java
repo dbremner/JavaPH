@@ -1,7 +1,6 @@
 package com.bovilexics.javaph.qi;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -20,11 +19,7 @@ public class QiServerManager {
     private static QiServer defaultServer;
     private static final Vector<QiServer> servers = new Vector<>();
 
-    public static void addServer(@Nullable QiServer server) {
-
-        if (server == null) {
-            return;
-        }
+    public static void addServer(@NotNull QiServer server) {
 
         int whereToAdd = -1;
         if (servers.isEmpty()) {
@@ -178,11 +173,8 @@ public class QiServerManager {
         }
     }
 
-    public static void setDefaultServer(@Nullable String server) {
-        if (server == null) {
-            return;
-        }
-
+    public static void setDefaultServer(@NotNull String server)
+    {
         for (@NotNull final QiServer item : servers) {
             if (item.toString().equals(server)) {
                 defaultServer = item;
