@@ -395,14 +395,12 @@ public class QiConnection
 
 	public void writeQI(@NotNull String string) throws IOException
 	{
-		if (toServer != null)
-		{
-			toServer.write(string);
-			toServer.flush();
-		}
-		else
+		if (toServer == null)
 		{
 			throw new IOException("Qi socket uninitialized");
 		}
+
+		toServer.write(string);
+		toServer.flush();
 	}
 }
