@@ -43,7 +43,7 @@ public class QiServer
 	@Nullable
     private final Integer port;
 	@NotNull
-	private Vector<QiField> fields = new Vector<>();
+	private List<QiField> fields = new ArrayList<>();
 	@NotNull
 	private QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	@NotNull
@@ -96,7 +96,7 @@ public class QiServer
 
 	private void convertRecordsToFields(@NotNull Vector<Vector<QiLine>> records)
 	{
-		fields = new Vector<>();
+		fields = new ArrayList<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
