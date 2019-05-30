@@ -19,11 +19,10 @@ package com.bovilexics.javaph.models;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.Serializable;
-import java.util.Vector;
-
 import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
+import java.io.Serializable;
+import java.util.Vector;
 
 /**
  *
@@ -36,7 +35,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	private Object selectedObject;
 
 	@NotNull
-	private final Vector allObjects;
+	private final Vector<Object> allObjects;
 	private Vector<Object> objects;
 
 	/**
@@ -45,7 +44,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	public FindComboBoxModel()
 	{
 		objects = new Vector<>();
-		allObjects = (Vector)objects.clone();
+		allObjects = (Vector<Object>)objects.clone();
 	}
 
 	/**
@@ -67,7 +66,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			selectedObject = getElementAt(0);
 		}
 			
-		allObjects = (Vector)objects.clone();
+		allObjects = (Vector<Object>)objects.clone();
 	}
 
 	/**
@@ -84,7 +83,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			selectedObject = getElementAt(0);
 		}
 			
-		allObjects = (Vector)objects.clone();
+		allObjects = (Vector<Object>)objects.clone();
 	}
 
 	// implements javax.swing.MutableComboBoxModel
