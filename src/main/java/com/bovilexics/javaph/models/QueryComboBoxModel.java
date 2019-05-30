@@ -166,11 +166,12 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
     @Nullable
     public Object getElementAt(int index)
 	{
-		if (index >= 0 && index < objects.size()) {
-            return objects.elementAt(index);
-        } else {
-            return null;
-        }
+		if (index < 0 || index >= objects.size())
+		{
+			return null;
+		}
+
+		return objects.elementAt(index);
 	}
 
 	// implements javax.swing.ComboBoxModel
