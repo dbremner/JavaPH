@@ -75,7 +75,7 @@ public class QiServer
 		port = aPortInteger;
 	}
 
-	private QiServer(String aName, String aServer, @NotNull String aPort)
+	public QiServer(String aName, String aServer, @NotNull String aPort)
 	{
 		@Nullable final Integer aPortInteger;
 		
