@@ -16,13 +16,8 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -31,10 +26,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -43,9 +41,6 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class FindDialog extends JavaPHDialog
 {
-	@NotNull
-    private final JavaPH parent;
-	
 	private JButton closeButton;
 	private JButton findButton;
 	
@@ -59,8 +54,6 @@ public final class FindDialog extends JavaPHDialog
 	{
 		super(javaph);
 
-		parent = javaph;
-
 		setModal(true);
 		setTitle("Find Text");
 		
@@ -69,14 +62,14 @@ public final class FindDialog extends JavaPHDialog
 
 		@NotNull final JPanel findPanel = getFindPanel();
 		contentPane.add(findPanel, BorderLayout.CENTER);
-		@NotNull final JPanel buttonPanel = getButtonPanel();
+		@NotNull final JPanel buttonPanel = getButtonPanel(javaph);
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
 		pack();
 	}
 	
 	@NotNull
-    private JPanel getButtonPanel()
+    private JPanel getButtonPanel(JavaPH parent)
 	{
 		@NotNull final JPanel buttonPanel = new JPanel();
 		
@@ -92,13 +85,13 @@ public final class FindDialog extends JavaPHDialog
 					final Object selectedItem = findComboBox.getEditor().getItem();
 					@NotNull final DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
 					// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
-		
+
 					if (selectedItem != null && !selectedItem.toString().equals(""))
 					{
 						if ( model.getIndexOf(selectedItem) < 0) {
 							model.insertElementAt(selectedItem, 0);
 						}
-						
+
 						model.setSelectedItem(selectedItem);
 					}
 				}
