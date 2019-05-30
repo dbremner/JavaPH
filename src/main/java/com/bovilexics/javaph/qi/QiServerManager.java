@@ -21,26 +21,28 @@ public final class QiServerManager {
 
     public static void addServer(@NotNull QiServer server) {
 
+        if (servers.isEmpty())
+        {
+            servers.add(server);
+            return;
+        }
+
         int whereToAdd = -1;
-        if (servers.isEmpty()) {
-            whereToAdd = 0;
-        } else {
-            final String newElement = server.toString();
+        final String newElement = server.toString();
 
-            for (int i = 0; i < servers.size(); i++) {
-                final String oldElement = servers.get(i).toString();
+        for (int i = 0; i < servers.size(); i++) {
+            final String oldElement = servers.get(i).toString();
 
-                if (newElement.compareTo(oldElement) == 0) {
-                    return;
-                } else if (newElement.compareTo(oldElement) < 0) {
-                    whereToAdd = i;
-                    break;
-                }
+            if (newElement.compareTo(oldElement) == 0) {
+                return;
+            } else if (newElement.compareTo(oldElement) < 0) {
+                whereToAdd = i;
+                break;
             }
+        }
 
-            if (whereToAdd == -1) {
-                whereToAdd = servers.size();
-            }
+        if (whereToAdd == -1) {
+            whereToAdd = servers.size();
         }
         servers.insertElementAt(server, whereToAdd);
     }
