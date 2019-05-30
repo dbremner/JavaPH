@@ -19,11 +19,10 @@ package com.bovilexics.javaph.models;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.Serializable;
-import java.util.Vector;
-
 import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
+import java.io.Serializable;
+import java.util.Vector;
 
 /**
  *
@@ -96,38 +95,36 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	@Override
     public void addElement(@Nullable Object anObject)
 	{
-
         if (anObject == null) {
             return;
         }
 
-        int whereToAdd = -1;
         if (getSize() == 0)
 		{
-			whereToAdd = 0;
+			insertElementAt(anObject, 0);
+			return;
 		}
-		else
+
+		int whereToAdd = -1;
+		final String newElement = anObject.toString();
+
+		for (int i = 0; i < getSize(); i++)
 		{
-			final String newElement = anObject.toString();
+			final String oldElement = getElementAt(i).toString();
 
-            for (int i = 0; i < getSize(); i++)
+			if (newElement.compareTo(oldElement) == 0)
 			{
-                final String oldElement = getElementAt(i).toString();
-
-                if (newElement.compareTo(oldElement) == 0)
-				{
-					return;
-				}
-				else if (newElement.compareTo(oldElement) < 0)
-				{
-					whereToAdd = i;
-					break;
-				}
+				return;
 			}
+			else if (newElement.compareTo(oldElement) < 0)
+			{
+				whereToAdd = i;
+				break;
+			}
+		}
 
-			if (whereToAdd == -1) {
-                whereToAdd = getSize();
-            }
+		if (whereToAdd == -1) {
+			whereToAdd = getSize();
 		}
 		insertElementAt(anObject, whereToAdd);
 	}
