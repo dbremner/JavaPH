@@ -200,7 +200,7 @@ public class QiServerManager {
     public static void loadAllFields()
     {
         for (@NotNull final QiServer server : servers) {
-            if (server.getFieldState() != QiServer.FIELD_LOAD_ERROR) {
+            if (server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR) {
                 server.loadFields();
             }
         }

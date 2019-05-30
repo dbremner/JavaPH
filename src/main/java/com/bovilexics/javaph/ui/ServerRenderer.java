@@ -6,17 +6,15 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Component;
-
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.ImageIcon;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
-
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
+import java.awt.Component;
 
 /**
  * @author Robert Fernandes
@@ -44,7 +42,7 @@ public class ServerRenderer extends DefaultListCellRenderer
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-		setIcon(icons[((QiServer)value).getFieldState()]);
+		setIcon(icons[((QiServer)value).getFieldState().getValue()]);
 		setText(value.toString());
 		
 		return this;

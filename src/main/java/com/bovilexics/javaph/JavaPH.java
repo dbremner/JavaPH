@@ -22,6 +22,7 @@ import com.bovilexics.javaph.models.TableSorter;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiField;
+import com.bovilexics.javaph.qi.QiFieldState;
 import com.bovilexics.javaph.qi.QiServer;
 import com.bovilexics.javaph.qi.QiServerManager;
 import com.bovilexics.javaph.threads.QueryThread;
@@ -612,7 +613,7 @@ public class JavaPH extends JApplet {
 					
 					connection = new QiConnection(serverText, portInt.intValue());
 
-					if (getLoadFields() == LOAD_FIELDS_SELECTED && !(server.getFieldState() == QiServer.FIELD_LOAD_ERROR) && !(server.getFieldState() == QiServer.FIELD_LOAD_TRUE))
+					if (getLoadFields() == LOAD_FIELDS_SELECTED && !(server.getFieldState() == QiFieldState.FIELD_LOAD_ERROR) && !(server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE))
 					{
 						serverComboBox.hidePopup();
 						loadFieldsForServer(server);
@@ -1731,7 +1732,7 @@ public class JavaPH extends JApplet {
 		@NotNull final DefaultListModel model = (DefaultListModel)fieldList.getModel();
 		model.clear();
 					
-		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE)
+		if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
 		{
 			@NotNull final List<QiField> fields = server.getFields();
 
@@ -1744,7 +1745,7 @@ public class JavaPH extends JApplet {
 			fieldList.setSelectionInterval(0, model.getSize() - 1);
 		}
 						
-		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE) {
+		if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE) {
 			fieldLoadButton.setToolTipText("Reload fields for the selected server");
 		} else {
 			fieldLoadButton.setToolTipText("Load fields for the selected server");
