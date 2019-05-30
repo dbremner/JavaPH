@@ -16,7 +16,18 @@
  */
 package com.bovilexics.javaph;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Event;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -33,6 +44,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -1723,7 +1735,7 @@ public class JavaPH extends JApplet {
 					
 		if (server.getFieldState() == QiServer.FIELD_LOAD_TRUE)
 		{
-			@NotNull final Vector<QiField> fields = server.getFields();
+			@NotNull final List<QiField> fields = server.getFields();
 
 			for (QiField field : fields) {
 				model.addElement(field);

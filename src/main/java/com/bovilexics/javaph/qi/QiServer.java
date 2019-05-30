@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -339,9 +340,9 @@ public class QiServer
 	}
 
 	@NotNull
-    public Vector<QiField> getFields()
+    public List<QiField> getFields()
 	{
-		@NotNull final Vector<QiField> results = new Vector<>(fields);
+		@NotNull final List<QiField> results = new ArrayList<>(fields);
 		return results;
 	}
 
