@@ -16,13 +16,11 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-
 import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -32,18 +30,18 @@ import org.jetbrains.annotations.Nullable;
 public final class PrefsAction extends AbstractAction
 {
 	@NotNull
-    private final JavaPH parent;
+	private final Runnable runnable;
 		
 	public PrefsAction(@NotNull JavaPH javaph)
 	{
 		super("Preferences");
 
-		parent = javaph;
+		runnable = javaph::showPropertiesDialog;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
-		parent.showPropertiesDialog();
+		runnable.run();
 	}
 }

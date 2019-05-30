@@ -16,13 +16,12 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
+import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -32,18 +31,18 @@ import org.jetbrains.annotations.NotNull;
 public final class AboutAction extends AbstractAction
 {
 	@NotNull
-	private final JavaPH parent;
+	private final Runnable runnable;
 	
 	public AboutAction(@NotNull JavaPH javaph)
 	{
 		super("About JavaPH", new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));
 
-		parent = javaph;
+		runnable = javaph::showAboutDialog;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
-		parent.showAboutDialog();
+		runnable.run();
 	}
 }

@@ -16,13 +16,12 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
+import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -32,18 +31,18 @@ import org.jetbrains.annotations.NotNull;
 public final class FindAction extends AbstractAction
 {
 	@NotNull
-	private final JavaPH parent;
+	private final Runnable runnable;
 
 	public FindAction(@NotNull JavaPH javaph)
 	{
 		super("Find", new ImageIcon(javaph.getURL("img/find.gif")));
 
-		parent = javaph;
+		runnable = javaph::showFindDialog;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
-		parent.showFindDialog();
+		runnable.run();
 	}
 }
