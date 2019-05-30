@@ -195,7 +195,7 @@ public class JavaPH extends JApplet {
 	private PropertiesDialog propertiesDialog;
 	private ProgressMonitor fieldProgressMonitor; 
 	private ProgressMonitor queryProgressMonitor;
-	private QiCommand[] commands;
+	private final QiCommand[] commands;
 	private QiConnection connection;
 	private QueryComboBox queryComboBox;
 	private QueryToolBar queryToolBar;
@@ -1151,6 +1151,7 @@ public class JavaPH extends JApplet {
 
 	public JavaPH()
 	{
+		commands = QiCommand.commands;
 	}
 
 	public void findText(@NotNull String text, boolean caseSensitive, boolean wrap)
@@ -1596,8 +1597,6 @@ public class JavaPH extends JApplet {
 	private void initServers()
 	{
 		QiServer.loadAllServers();
-
-		commands = QiCommand.commands;
 		servers  = QiServer.getServers();
 	}
 
