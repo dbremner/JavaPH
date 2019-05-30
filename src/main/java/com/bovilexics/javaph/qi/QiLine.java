@@ -62,16 +62,7 @@ public final class QiLine
 	// trailing white space trimmed (e.g. 'myemail').
 	@NotNull
     private String trimmedValue = "";
-	
-	// Index of first colon --> -200:
-	private int colon1Index = -1;
-	
-	// Index of second colon --> -200:1:
-	private int colon2Index = -1;
-	
-	// Index of third colon --> -200:1:    email:
-	private int colon3Index = -1;
-	
+
 	/** Given a line as read from Qi, construct a Line.
 	  *
 	  * @param line as read from Qi, unaltered.
@@ -151,7 +142,9 @@ public final class QiLine
 	private void parse() throws QiProtocolException
 	{
 		// Get the result code.
-		if ((colon1Index = verbatim.indexOf(':')) == -1) {
+		// Index of first colon --> -200:
+		final int colon1Index = verbatim.indexOf(':');
+		if (colon1Index == -1) {
             throw new QiProtocolException(verbatim);
         }
 
@@ -165,7 +158,9 @@ public final class QiLine
 		}
 
 		// Get the index count, if there is one.
-		if ((colon2Index = verbatim.indexOf(':', colon1Index + 1)) == -1)
+		// Index of second colon --> -200:1:
+		final int colon2Index = verbatim.indexOf(':', colon1Index + 1);
+		if (colon2Index == -1)
 		{
 			// This isn't a field:value response but rather a one line description.
 			// Just record it and return.
@@ -189,7 +184,9 @@ public final class QiLine
 		
 		// This should be a field:value response.
 		// Get field, value and return.
-		if ((colon3Index = verbatim.indexOf(':', colon2Index + 1)) == -1) {
+		// Index of third colon --> -200:1:    email:
+		final int colon3Index = verbatim.indexOf(':', colon2Index + 1);
+		if (colon3Index == -1) {
             throw new QiProtocolException(verbatim);
         }
 			
