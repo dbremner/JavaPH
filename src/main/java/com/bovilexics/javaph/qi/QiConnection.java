@@ -38,9 +38,10 @@ import java.net.SocketAddress;
  */
 public class QiConnection
 {
-	private boolean authenticated;
-	private boolean connected;
-	private boolean locked;
+	// TODO does this support authentication?
+	private boolean authenticated = false;
+	private boolean connected = false;
+	private boolean locked = false;
 
 	private int port;
 	
