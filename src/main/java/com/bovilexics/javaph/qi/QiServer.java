@@ -36,16 +36,20 @@ public class QiServer
 
 	private static final String PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535";
 
+	@NotNull
 	private final String name;
+	@NotNull
 	private final String server;
 	@Nullable
     private final Integer port;
 	@NotNull
 	private Vector<QiField> fields = new Vector<>();
+	@NotNull
 	private QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
-	private String fieldStateMessage;
+	@NotNull
+	private String fieldStateMessage = "";
 	
-	public QiServer(String aName, String aServer, @NotNull Integer aPortInteger)
+	public QiServer(@NotNull String aName, @NotNull String aServer, @NotNull Integer aPortInteger)
 	{
 		if (!isValidPort(aPortInteger)) {
 			throw new IllegalArgumentException(PORT_ERROR);
@@ -56,7 +60,7 @@ public class QiServer
 		port = aPortInteger;
 	}
 
-	public QiServer(String aName, String aServer, @NotNull String aPort)
+	public QiServer(@NotNull String aName, @NotNull String aServer, @NotNull String aPort)
 	{
 		@Nullable final Integer aPortInteger;
 		
@@ -151,6 +155,7 @@ public class QiServer
 		return results;
 	}
 
+	@NotNull
 	public QiFieldState getFieldState()
 	{
 		return fieldState;
@@ -158,13 +163,14 @@ public class QiServer
 
 	public String getFieldStateMessage()
 	{
-		if (fieldStateMessage == null) {
+		if (fieldStateMessage.isEmpty()) {
 			fieldStateMessage = "Fields not yet loaded for " + getExpandedName();
 		}
 			
 		return fieldStateMessage;
 	}
 
+	@NotNull
 	public String getName()
 	{
 		return name;
@@ -176,6 +182,7 @@ public class QiServer
 		return port;
 	}
 	
+	@NotNull
 	public String getServer()
 	{
 		return server;
