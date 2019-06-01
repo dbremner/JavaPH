@@ -15,22 +15,21 @@ public final class QiServerFileReader
 {
     private static final String SEPARATOR = "::";
 
-    @NotNull
-    public List<QiServer> readServers(@NotNull String fileName) throws FileNotFoundException, IOException
+    public @NotNull List<QiServer> readServers(@NotNull String fileName) throws FileNotFoundException, IOException
     {
-        @NotNull final Path path = Paths.get(fileName);
-        @NotNull final List<String> lines = Files.readAllLines(path);
-        @NotNull final List<QiServer> results = new ArrayList<>(lines.size());
+        final @NotNull Path path = Paths.get(fileName);
+        final @NotNull List<String> lines = Files.readAllLines(path);
+        final @NotNull List<QiServer> results = new ArrayList<>(lines.size());
 
         for (int i = 0; i < lines.size(); i++)
         {
-            @NotNull final String line = lines.get(i);
+            final @NotNull String line = lines.get(i);
             // Ignore comment lines
             if (line.startsWith("#")) {
                 continue;
             }
 
-            @NotNull final String[] items = line.split(SEPARATOR);
+            final @NotNull String[] items = line.split(SEPARATOR);
 
             if (items.length != 3)
             {
@@ -38,7 +37,7 @@ public final class QiServerFileReader
             }
             else
                 {
-                @NotNull final QiServer server = new QiServer(items[0], items[1], items[2]);
+                final @NotNull QiServer server = new QiServer(items[0], items[1], items[2]);
                 results.add(server);
             }
         }

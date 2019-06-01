@@ -61,40 +61,34 @@ final class CsvFileChooserPanel extends JPanel
 		}
 	}
 
-	@NotNull
-    private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 
-	@NotNull
-	private final JCheckBox quotesCheckBox;
+	private final @NotNull JCheckBox quotesCheckBox;
 
-	@NotNull
-	private final JRadioButton commaRadioButton;
-	@NotNull
-	private final JRadioButton tabRadioButton;
-	@NotNull
-	private final JRadioButton customRadioButton;
+	private final @NotNull JRadioButton commaRadioButton;
+	private final @NotNull JRadioButton tabRadioButton;
+	private final @NotNull JRadioButton customRadioButton;
 	
-	@Nullable
-    private final JTextField customTextField;
+	private final @Nullable JTextField customTextField;
 	
 	public CsvFileChooserPanel(@NotNull JavaPH javaph)
 	{
 		parent = javaph;
 
-		@NotNull final ActionListener listener = new RadioButtonListener();
+		final @NotNull ActionListener listener = new RadioButtonListener();
 		
 		setBorder(BorderFactory.createEtchedBorder());
 		setPreferredSize(new Dimension(120, 0));
 
-		@NotNull final JLabel label = new JLabel("Field Separator");
+		final @NotNull JLabel label = new JLabel("Field Separator");
 		
-		@NotNull final ButtonGroup group = new ButtonGroup();
+		final @NotNull ButtonGroup group = new ButtonGroup();
 		
 		commaRadioButton = new JRadioButton("Comma");
 		tabRadioButton = new JRadioButton("Tab");
 		customRadioButton = new JRadioButton("Custom");
 
-		@Nullable final String separator = parent.getFieldSeparator();
+		final @Nullable String separator = parent.getFieldSeparator();
 
 		if (separator.equals(COMMA_SEPARATOR)) {
 			commaRadioButton.setSelected(true);
@@ -144,8 +138,8 @@ final class CsvFileChooserPanel extends JPanel
 		quotesCheckBox.setSelected(parent.isFieldQuoted());
 		quotesCheckBox.setToolTipText("Add leading and trailing quotes to all table values");
 
-		@NotNull final GridBagLayout gbl = new GridBagLayout();
-		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
+		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		setLayout(gbl);
 		

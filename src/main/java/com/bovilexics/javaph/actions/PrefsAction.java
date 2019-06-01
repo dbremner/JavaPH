@@ -28,8 +28,7 @@ import java.awt.event.ActionEvent;
  */
 public final class PrefsAction extends AbstractAction
 {
-	@NotNull
-	private final Runnable runnable;
+	private final @NotNull Runnable runnable;
 		
 	public PrefsAction(@NotNull Runnable runnable)
 	{

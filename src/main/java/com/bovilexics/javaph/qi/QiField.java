@@ -40,14 +40,11 @@ public class QiField
 {
 	private int length;
 
-	@NotNull
-	private final String description;
+	private final @NotNull String description;
 
-	@NotNull
-	private final String name;
+	private final @NotNull String name;
 
-	@NotNull
-    private final List<String> properties;
+	private final @NotNull List<String> properties;
 
 	/**
 	 * Construct a QiField with a given property list and description.
@@ -65,8 +62,7 @@ public class QiField
 		this.description = description;
 	}
 
-	@NotNull
-	public String getDescription()
+	public @NotNull String getDescription()
 	{
 		return description;
 	}
@@ -76,14 +72,12 @@ public class QiField
 		return length;
 	}
 
-	@NotNull
-	public String getName()
+	public @NotNull String getName()
 	{
 		return name;
 	}
 
-	@NotNull
-    public List<String> getProperties()
+	public @NotNull List<String> getProperties()
 	{
 		return Collections.unmodifiableList(properties);
 	}
@@ -111,18 +105,17 @@ public class QiField
 	 *
 	 * @return properties collection
 	 */
-	@NotNull
-	private List<String> setProperties(@NotNull String someProperties) throws QiProtocolException
+	private @NotNull List<String> setProperties(@NotNull String someProperties) throws QiProtocolException
 	{
-		@NotNull final StringTokenizer tokenizer = new StringTokenizer(someProperties);
-		@NotNull final String token = (String) tokenizer.nextElement();
+		final @NotNull StringTokenizer tokenizer = new StringTokenizer(someProperties);
+		final @NotNull String token = (String) tokenizer.nextElement();
 
 		if (token.startsWith("max"))
 		{
-			@NotNull final String lengthString = (String) tokenizer.nextElement();
+			final @NotNull String lengthString = (String) tokenizer.nextElement();
 			try
 			{
-				@NotNull final Integer boxed = Integer.valueOf(lengthString);
+				final @NotNull Integer boxed = Integer.valueOf(lengthString);
 				length = boxed;
 			}
 			catch (NumberFormatException e)
@@ -135,7 +128,7 @@ public class QiField
 			length = -1;
 		}
 
-		@NotNull final List<String> props = new ArrayList<>();
+		final @NotNull List<String> props = new ArrayList<>();
 		// Okay, here come the properties...
 		while (tokenizer.hasMoreElements())
 		{
@@ -145,8 +138,7 @@ public class QiField
 	}
 
 	@Override
-	@NotNull
-    public String toString()
+	public @NotNull String toString()
 	{
 		return getName() + " - " + getDescription();
 	}

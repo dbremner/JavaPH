@@ -30,8 +30,7 @@ import java.awt.event.ActionEvent;
  */
 public final class FindAction extends AbstractAction
 {
-	@NotNull
-	private final Runnable runnable;
+	private final @NotNull Runnable runnable;
 
 	public FindAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{

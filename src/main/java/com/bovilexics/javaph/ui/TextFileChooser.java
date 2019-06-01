@@ -30,7 +30,7 @@ public class TextFileChooser extends JFileChooser
 {
 	public TextFileChooser()
 	{
-		@NotNull final FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		final @NotNull FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"Text Files(*.txt, *.csv)",
 				"csv", "txt") ;
 		setFileFilter(filter);

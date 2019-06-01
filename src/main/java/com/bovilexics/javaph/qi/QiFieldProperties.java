@@ -78,13 +78,13 @@ enum QiFieldProperties
 {
     ;
 
-    public final static String INDEXED	= "Indexed";
-	public final static String LOOKUP	= "Lookup";
-	public final static String PUBLIC	= "Public";
-	public final static String DEFAULT	= "Default";
-	public final static String CHANGE	= "Change";
-	public final static String FORCEPUB	= "ForcePub";
-	public final static String NOPEOPLE	= "NoPeople";
-	public final static String ENCRYPT	= "Encrypt";
-	public final static String ANY		= "Any";
+    public static final String INDEXED	= "Indexed";
+	public static final String LOOKUP	= "Lookup";
+	public static final String PUBLIC	= "Public";
+	public static final String DEFAULT	= "Default";
+	public static final String CHANGE	= "Change";
+	public static final String FORCEPUB	= "ForcePub";
+	public static final String NOPEOPLE	= "NoPeople";
+	public static final String ENCRYPT	= "Encrypt";
+	public static final String ANY		= "Any";
 }

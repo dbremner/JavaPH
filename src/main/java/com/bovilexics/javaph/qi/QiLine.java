@@ -42,26 +42,21 @@ public final class QiLine
 	private int index = 0;
 
 	// Set for those lines which are not field value responses (e.g. '200:Ok.')
-	@NotNull
-    private String response = "";
+    private @NotNull String response = "";
 	
 	//  The field, if defined, (e.g. '    email') in this line
-	@NotNull
-    private String field = "";
+    private @NotNull String field = "";
 	
 	// The value, if defined, (e.g. '  myemail') in this line
-	@NotNull
-    private String value = "";
+    private @NotNull String value = "";
 	
 	// The field, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'email').
-	@NotNull
-    private String trimmedField = "";
+    private @NotNull String trimmedField = "";
 
 	// The value, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'myemail').
-	@NotNull
-    private String trimmedValue = "";
+    private @NotNull String trimmedValue = "";
 
 	/** Given a line as read from Qi, construct a Line.
 	  *
@@ -80,8 +75,7 @@ public final class QiLine
 		return code;
 	}
 
-	@NotNull
-    public String getField()
+	public @NotNull String getField()
 	{
 		return field;
 	}
@@ -91,26 +85,22 @@ public final class QiLine
 		return index;
 	}
 	
-	@NotNull
-    public String getResponse()
+	public @NotNull String getResponse()
 	{
 		return response;
 	}
 
-	@NotNull
-    public String getTrimmedField()
+	public @NotNull String getTrimmedField()
 	{
 		return trimmedField;
 	}
 
-	@NotNull
-    public String getTrimmedValue()
+	public @NotNull String getTrimmedValue()
 	{
 		return trimmedValue;
 	}
 	
-	@NotNull
-    public String getValue()
+	public @NotNull String getValue()
 	{
 		return value;
 	}
@@ -197,10 +187,9 @@ public final class QiLine
 	}
 	
 	@Override
-    @NotNull
-    public String toString()
+    public @NotNull String toString()
 	{
-		@NotNull final StringBuilder out = new StringBuilder();
+		final @NotNull StringBuilder out = new StringBuilder();
 		
 		out.append(verbatim);
 		out.append(" --> ");

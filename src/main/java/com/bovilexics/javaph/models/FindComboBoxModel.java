@@ -31,11 +31,9 @@ import java.util.Vector;
  */
 public final class FindComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
 {
-	@Nullable
-	private Object selectedObject;
+	private @Nullable Object selectedObject;
 
-	@NotNull
-	private final Vector<Object> allObjects;
+	private final @NotNull Vector<Object> allObjects;
 	private Vector<Object> objects;
 
 	/**
@@ -53,7 +51,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 *
 	 * @param items  an array of Object objects
 	 */
-	public FindComboBoxModel(@NotNull final Object[] items)
+	public FindComboBoxModel(final @NotNull Object[] items)
 	{
 		objects = new Vector<>();
 		objects.ensureCapacity( items.length );
@@ -136,8 +134,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	// implements javax.swing.ListModel
 	@Override
-	@Nullable
-    public Object getElementAt(int index)
+	public @Nullable Object getElementAt(int index)
 	{
 		if (index >= 0 && index < objects.size()) {
 			return objects.elementAt(index);
@@ -148,8 +145,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	// implements javax.swing.ComboBoxModel
 	@Override
-	@Nullable
-    public Object getSelectedItem()
+	public @Nullable Object getSelectedItem()
 	{
 		return selectedObject;
 	}

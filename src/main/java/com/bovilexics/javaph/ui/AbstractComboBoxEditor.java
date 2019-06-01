@@ -32,8 +32,7 @@ import javax.swing.event.EventListenerList;
  */
 abstract class AbstractComboBoxEditor implements ComboBoxEditor
 {
-	@NotNull
-	private final EventListenerList listenerList;
+	private final @NotNull EventListenerList listenerList;
 	
 	AbstractComboBoxEditor()
 	{
@@ -58,8 +57,7 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-    @NotNull
-	public abstract Component getEditorComponent();
+    public abstract @NotNull Component getEditorComponent();
 
 	@Override
     public abstract Object getItem();

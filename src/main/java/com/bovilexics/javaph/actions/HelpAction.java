@@ -34,8 +34,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class HelpAction extends AbstractAction
 {
-	@NotNull
-	private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 	
 	public HelpAction(@NotNull JavaPH javaph)
 	{
@@ -55,7 +54,7 @@ public final class HelpAction extends AbstractAction
 		}
 		catch (IOException e)
 		{
-			@NotNull final String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
+			final @NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 		}

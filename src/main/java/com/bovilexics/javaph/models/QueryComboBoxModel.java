@@ -32,11 +32,9 @@ import java.util.Vector;
  */
 public class QueryComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
 {
-	@Nullable
-	private Object selectedObject;
+	private @Nullable Object selectedObject;
 
-	@NotNull
-	private final Vector<Object> allObjects;
+	private final @NotNull Vector<Object> allObjects;
 	private final Vector<Object> objects;
 
 	/**
@@ -54,7 +52,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	 *
 	 * @param items  an array of Object objects
 	 */
-	public QueryComboBoxModel(@NotNull final Object[] items)
+	public QueryComboBoxModel(final @NotNull Object[] items)
 	{
 		objects = new Vector<>();
 		objects.ensureCapacity( items.length );
@@ -161,8 +159,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 
 	// implements javax.swing.ListModel
 	@Override
-    @Nullable
-    public Object getElementAt(int index)
+	public @Nullable Object getElementAt(int index)
 	{
 		if (index < 0 || index >= objects.size())
 		{
@@ -174,8 +171,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 
 	// implements javax.swing.ComboBoxModel
 	@Override
-    @Nullable
-    public Object getSelectedItem()
+	public @Nullable Object getSelectedItem()
 	{
 		return selectedObject;
 	}

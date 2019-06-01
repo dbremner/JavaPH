@@ -29,7 +29,7 @@ final class ServerTableModel extends DefaultTableModel
 {
 	public ServerTableModel()
 	{
-		@NotNull final Object[] headers = {"Name", "Server", "Port", "Description"};
+		final @NotNull Object[] headers = {"Name", "Server", "Port", "Description"};
 		
 		setColumnIdentifiers(headers);
 		setRowCount(1);

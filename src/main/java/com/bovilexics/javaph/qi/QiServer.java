@@ -35,18 +35,12 @@ public class QiServer
 
 	private static final String PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535";
 
-	@NotNull
-	private final String name;
-	@NotNull
-	private final String server;
-	@Nullable
-    private final Integer port;
-	@NotNull
-	private List<QiField> fields = new ArrayList<>();
-	@NotNull
-	private QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
-	@NotNull
-	private String fieldStateMessage = "";
+	private final @NotNull String name;
+	private final @NotNull String server;
+	private final @Nullable Integer port;
+	private @NotNull List<QiField> fields = new ArrayList<>();
+	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
+	private @NotNull String fieldStateMessage = "";
 
 	public QiServer(@NotNull String name, @NotNull String server, int port)
 	{
@@ -72,7 +66,7 @@ public class QiServer
 
 	public QiServer(@NotNull String aName, @NotNull String aServer, @NotNull String aPort)
 	{
-		@Nullable final Integer aPortInteger;
+		final @Nullable Integer aPortInteger;
 		
 		try
 		{
@@ -107,10 +101,10 @@ public class QiServer
 				final QiLine propsLine = record.get(j);
 				final QiLine descLine = record.get(j + 1);
 
-				@NotNull final String propsField = propsLine.getTrimmedField();
-				@NotNull final String propsValue = propsLine.getTrimmedValue();
-				@NotNull final String descField = descLine.getTrimmedField();
-				@NotNull final String descValue = descLine.getTrimmedValue();
+				final @NotNull String propsField = propsLine.getTrimmedField();
+				final @NotNull String propsValue = propsLine.getTrimmedValue();
+				final @NotNull String descField = descLine.getTrimmedField();
+				final @NotNull String descValue = descLine.getTrimmedValue();
 
 				if (propsField.equals(descField))
 				{
@@ -143,10 +137,9 @@ public class QiServer
 		}
 	}
 	
-	@NotNull
-    public String getExpandedName()
+	public @NotNull String getExpandedName()
 	{
-		@NotNull final StringBuilder out = new StringBuilder();
+		final @NotNull StringBuilder out = new StringBuilder();
 		
 		out.append(name);
 		out.append(" (");
@@ -158,21 +151,18 @@ public class QiServer
 		return out.toString();
 	}
 
-	@NotNull
-    public List<QiField> getFields()
+	public @NotNull List<QiField> getFields()
 	{
-		@NotNull final List<QiField> results = new ArrayList<>(fields);
+		final @NotNull List<QiField> results = new ArrayList<>(fields);
 		return results;
 	}
 
-	@NotNull
-	public QiFieldState getFieldState()
+	public @NotNull QiFieldState getFieldState()
 	{
 		return fieldState;
 	}
 
-	@NotNull
-	public String getFieldStateMessage()
+	public @NotNull String getFieldStateMessage()
 	{
 		if (fieldStateMessage.isEmpty()) {
 			fieldStateMessage = "Fields not yet loaded for " + getExpandedName();
@@ -181,20 +171,17 @@ public class QiServer
 		return fieldStateMessage;
 	}
 
-	@NotNull
-	public String getName()
+	public @NotNull String getName()
 	{
 		return name;
 	}
 	
-	@Nullable
-    public Integer getPort()
+	public @Nullable Integer getPort()
 	{
 		return port;
 	}
 	
-	@NotNull
-	public String getServer()
+	public @NotNull String getServer()
 	{
 		return server;
 	}
@@ -257,9 +244,8 @@ public class QiServer
 		resultThread = null;
 	}
 
-	@NotNull
 	@Override
-	public String toString()
+	public @NotNull String toString()
 	{
 		return name;
 	}

@@ -64,40 +64,29 @@ public class ResultThread extends Thread
 	
 	private int entryIndex;	
 	private int lastCode = QiAPI.LR_OK;
-	@NotNull
-	private ResultThreadState state = ResultThreadState.RS_START;
+	private @NotNull ResultThreadState state = ResultThreadState.RS_START;
 
-	@Nullable
-	private final JavaPH parent;
+	private final @Nullable JavaPH parent;
 
-	@Nullable
-	private Object[] headers = null;
-	@Nullable
-	private Object[][] values = null;
+	private @Nullable Object[] headers = null;
+	private @Nullable Object[][] values = null;
 
 	private QiConnection qiConnection;
 	private QiLine qiLine;
 
-	@Nullable
-	private String command;
-	@Nullable
-	private String commandLine;
-	@NotNull
-	private String epilogue = "";
-	@NotNull
-	private String prologue = "";
+	private @Nullable String command;
+	private @Nullable String commandLine;
+	private @NotNull String epilogue = "";
+	private @NotNull String prologue = "";
 	private String readFromServer;
 
 	// Separator used in the display of queries which matched multiple records.
-	@NotNull
-	private static final String recordSeparator = "------------------------------------------------------------\n";
+	private static final @NotNull String recordSeparator = "------------------------------------------------------------\n";
 
 	private StringBuffer rawResult;
 
-	@NotNull
-	private final List<List<QiLine>> records = new ArrayList<>();
-	@NotNull
-	private List<QiLine> record = new ArrayList<>();
+	private final @NotNull List<List<QiLine>> records = new ArrayList<>();
+	private @NotNull List<QiLine> record = new ArrayList<>();
 
 	public ResultThread(String command, @NotNull QiConnection connection)
 	{
@@ -135,13 +124,12 @@ public class ResultThread extends Thread
 	 * e.g. fieldValue(0, email, false) will return the contents of the "email"
 	 *      field of the first record in our result with all newlines intact.
 	 */
-	@Nullable
-	public synchronized String fieldValue(int record, String field, boolean replaceNewlines)
+	public synchronized @Nullable String fieldValue(int record, String field, boolean replaceNewlines)
 	{
 
-		@NotNull final StringBuilder out = new StringBuilder();
+		final @NotNull StringBuilder out = new StringBuilder();
 
-		@Nullable final List<QiLine> records = this.records.get(record);
+		final @Nullable List<QiLine> records = this.records.get(record);
 		if (records == null) {
 			return null;
 		}
@@ -149,7 +137,7 @@ public class ResultThread extends Thread
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			@Nullable final QiLine qiLine = records.get(i);
+			final @Nullable QiLine qiLine = records.get(i);
 
 			// Skip empty and encrypted fields.
 			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().isEmpty()) {
@@ -169,14 +157,12 @@ public class ResultThread extends Thread
 		return out.toString();
 	}
 
-	@Nullable
-	public synchronized String getCommand()
+	public synchronized @Nullable String getCommand()
 	{
 		return command;
 	}
 
-	@Nullable
-	public synchronized String getEpilogue()
+	public synchronized @Nullable String getEpilogue()
 	{
 		return isOk() ? epilogue : null;
 	}
@@ -185,8 +171,7 @@ public class ResultThread extends Thread
 		return state == ResultThreadState.RS_OK;
 	}
 
-	@Nullable
-	public String getErrorString()
+	public @Nullable String getErrorString()
 	{
 		return state == ResultThreadState.RS_ERROR || state == ResultThreadState.RS_UNKNOWN ? prologue : null;
 	}
@@ -196,8 +181,7 @@ public class ResultThread extends Thread
 		return isOk() ? headers.length : 0;
 	}
 
-	@Nullable
-	public synchronized Object[] getHeaders()
+	public synchronized @Nullable Object[] getHeaders()
 	{
 		return isOk() ? headers : null;
 	}
@@ -207,8 +191,7 @@ public class ResultThread extends Thread
 		return lastCode;
 	}
 
-	@Nullable
-	public synchronized String getPrologue()
+	public synchronized @Nullable String getPrologue()
 	{
 		return isOk() ? prologue : null;
 	}
@@ -218,26 +201,23 @@ public class ResultThread extends Thread
 		return isOk() ? records.size() : -1;
 	}
 
-	@NotNull
-	public synchronized List<List<QiLine>> getRecords()
+	public synchronized @NotNull List<List<QiLine>> getRecords()
 	{
 		if (!isOk())
 		{
 			return new ArrayList<>();
 		}
 
-		@NotNull final List<List<QiLine>> results = new ArrayList<>(records);
+		final @NotNull List<List<QiLine>> results = new ArrayList<>(records);
 		return results;
 	}
 
-	@Nullable
-	public synchronized String getRawResult()
+	public synchronized @Nullable String getRawResult()
 	{
 		return isOk() && rawResult.length() > 0 ? rawResult.toString() : null;
 	}
 
-	@Nullable
-	public synchronized Object[][] getValues()
+	public synchronized @Nullable Object[][] getValues()
 	{
 		return isOk() ? values : null;
 	}
@@ -430,11 +410,11 @@ public class ResultThread extends Thread
 		}
 
 		@NotNull String lastField = "unknown";
-		@NotNull final List<String> uniqueHeaders = new ArrayList<>();
+		final @NotNull List<String> uniqueHeaders = new ArrayList<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			@NotNull final List<QiLine> currentQiLine = records.get(i);
+			final @NotNull List<QiLine> currentQiLine = records.get(i);
 
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
@@ -546,7 +526,7 @@ public class ResultThread extends Thread
 			state = ResultThreadState.RS_ERROR;
 			prologue = qiLine.getResponse();
 			
-			@NotNull final String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
+			final @NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
 			
 			if (parent == null) {
 				System.err.println(message);
@@ -589,11 +569,11 @@ public class ResultThread extends Thread
 		for (int i = 0; i < records.size(); i++)
 		{
 			final int yCoordinate = i;
-			@NotNull final List<QiLine> thisVector = records.get(i);
+			final @NotNull List<QiLine> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				@NotNull final QiLine thisQiLine = thisVector.get(j);
+				final @NotNull QiLine thisQiLine = thisVector.get(j);
 				@NotNull String field = thisQiLine.getTrimmedField();
 
 				if (field.isEmpty())
@@ -617,7 +597,7 @@ public class ResultThread extends Thread
 				}
 				else
 				{
-					@NotNull final String message = "Couldn't find header for this column: " + thisQiLine.toString();
+					final @NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
 					
 					if (parent == null) {
 						System.err.println(message);
@@ -647,16 +627,16 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			@NotNull final List<QiLine> thisVector = records.get(i);
+			final @NotNull List<QiLine> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
-				@NotNull final QiLine propsQiLine = thisVector.get(j);
-				@NotNull final QiLine descQiLine = thisVector.get(j + 1);
+				final @NotNull QiLine propsQiLine = thisVector.get(j);
+				final @NotNull QiLine descQiLine = thisVector.get(j + 1);
 
-				@NotNull final String field = propsQiLine.getTrimmedField();
-				@NotNull final String props = propsQiLine.getTrimmedValue();
-				@NotNull final String desc = descQiLine.getTrimmedValue();
+				final @NotNull String field = propsQiLine.getTrimmedField();
+				final @NotNull String props = propsQiLine.getTrimmedValue();
+				final @NotNull String desc = descQiLine.getTrimmedValue();
 
 				values[i][0] = field;
 				values[i][1] = desc;

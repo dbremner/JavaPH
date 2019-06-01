@@ -70,8 +70,7 @@ public final class QiCommand
 	public static final String STATUS	= "status";
 	public static final String STOP		= "stop";
 
-	@NotNull
-	public static final QiCommand[] commands =
+	public static final @NotNull QiCommand[] commands =
 	{
 		new QiCommand(QUERY, "Query", true, true),
 		new QiCommand(FIELDS, "Fields", false, false),
@@ -83,10 +82,8 @@ public final class QiCommand
 	private final boolean listEditable;
 	private final boolean textEditable;
 
-	@NotNull
-	private final String description;
-	@NotNull
-	private final String name;
+	private final @NotNull String description;
+	private final @NotNull String name;
 
 	public static boolean isValidCommand(String command)
 	{
@@ -106,20 +103,17 @@ public final class QiCommand
 		listEditable = isListEditable;
 	}
 
-	@NotNull
-	public String getCommand()
+	public @NotNull String getCommand()
 	{
 		return name + " ";
 	}
 	
-	@NotNull
-	public String getDescription()
+	public @NotNull String getDescription()
 	{
 		return description;
 	}
 
-	@NotNull
-	public String getName()
+	public @NotNull String getName()
 	{
 		return name;
 	}
@@ -134,9 +128,8 @@ public final class QiCommand
 		return textEditable;
 	}
 	
-	@NotNull
 	@Override
-	public String toString()
+    public @NotNull String toString()
 	{
 		return description;
 	}

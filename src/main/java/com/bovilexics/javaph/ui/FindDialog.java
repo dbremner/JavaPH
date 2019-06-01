@@ -58,18 +58,17 @@ public final class FindDialog extends JavaPHDialog
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		@NotNull final JPanel findPanel = getFindPanel();
+		final @NotNull JPanel findPanel = getFindPanel();
 		contentPane.add(findPanel, BorderLayout.CENTER);
-		@NotNull final JPanel buttonPanel = getButtonPanel(javaph);
+		final @NotNull JPanel buttonPanel = getButtonPanel(javaph);
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
 		pack();
 	}
 	
-	@NotNull
-    private JPanel getButtonPanel(@NotNull JavaPH parent)
+	private @NotNull JPanel getButtonPanel(@NotNull JavaPH parent)
 	{
-		@NotNull final JPanel buttonPanel = new JPanel();
+		final @NotNull JPanel buttonPanel = new JPanel();
 		
 		findButton = new JButton("Find Next");
 		findButton.setMnemonic(KeyEvent.VK_F);
@@ -77,7 +76,7 @@ public final class FindDialog extends JavaPHDialog
 			if (findComboBox.isEnabled())
 			{
 				final Object selectedItem = findComboBox.getEditor().getItem();
-				@NotNull final DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
+				final @NotNull DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
 				// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
 
 				if (selectedItem != null && !selectedItem.toString().isEmpty())
@@ -103,17 +102,16 @@ public final class FindDialog extends JavaPHDialog
 		return buttonPanel;	
 	}
 
-	@NotNull
-    private JPanel getFindPanel()
+	private @NotNull JPanel getFindPanel()
 	{
-		@NotNull final JPanel findPanel = new JPanel();
+		final @NotNull JPanel findPanel = new JPanel();
 		findPanel.setBorder(BorderFactory.createEtchedBorder());
 		findPanel.setLayout(new BoxLayout(findPanel, BoxLayout.Y_AXIS));
 		
-		@NotNull final JPanel findTextPanel = new JPanel();
+		final @NotNull JPanel findTextPanel = new JPanel();
 		findTextPanel.setLayout(new BoxLayout(findTextPanel, BoxLayout.X_AXIS));
 
-		@NotNull final JPanel findControlPanel = new JPanel(new FlowLayout());
+		final @NotNull JPanel findControlPanel = new JPanel(new FlowLayout());
 		
 		findComboBoxEditor = new TextFieldComboBoxEditor((ae) -> findButton.doClick());
 /*
@@ -151,7 +149,7 @@ public final class FindDialog extends JavaPHDialog
 		findComboBox.setEditor(findComboBoxEditor);
 		findComboBox.setPreferredSize(new Dimension(200, 0));
 		
-		@NotNull final JLabel findLabel = new JLabel(" Find Text : ");
+		final @NotNull JLabel findLabel = new JLabel(" Find Text : ");
 		
 		findTextPanel.add(findLabel);
 		findTextPanel.add(findComboBox);

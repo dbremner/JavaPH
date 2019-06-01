@@ -47,8 +47,7 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_LABELS;
  */
 public final class SaveAction extends AbstractAction
 {
-	@NotNull
-	private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 		
 	public SaveAction(@NotNull JavaPH javaph)
 	{
@@ -62,7 +61,7 @@ public final class SaveAction extends AbstractAction
 	{
 		final int selectedTab = parent.getResultPanel().getSelectedIndex();
 
-		@NotNull final JFileChooser chooser;
+		final @NotNull JFileChooser chooser;
 		
 		if (selectedTab == RESULT_TABLE_TAB) {
             chooser = new CsvFileChooser(parent);
@@ -92,7 +91,7 @@ public final class SaveAction extends AbstractAction
 	{
 		final boolean quoted = parent.isFieldQuoted();
 	
-		@Nullable final String separator = parent.getFieldSeparator();
+		final @Nullable String separator = parent.getFieldSeparator();
 		final TableModel model = parent.getResultTable().getModel();
 
 		final int cols = model.getColumnCount();
@@ -100,7 +99,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			@NotNull final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			final @NotNull String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
 		}
@@ -108,7 +107,7 @@ public final class SaveAction extends AbstractAction
 		{
 			try
 			{
-				@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
 				// start at row -1 to grab headers first
 				for (int r = -1; r < rows; r++)
@@ -145,13 +144,13 @@ public final class SaveAction extends AbstractAction
 				}
 				writer.close();
 
-				@NotNull final String message = "File save finished";
+				final @NotNull String message = "File save finished";
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 			}
 			catch (IOException e)
 			{
-				@NotNull final String message = "Error: IOException received when trying to save file " + file.getPath();
+				final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 			}
@@ -160,7 +159,7 @@ public final class SaveAction extends AbstractAction
 	
 	private void saveTextFile(int tab, @NotNull File file)
 	{
-		@NotNull final String toWrite;
+		final @NotNull String toWrite;
 		
 		if (tab == RESULT_TEXT_TAB)
 		{
@@ -177,7 +176,7 @@ public final class SaveAction extends AbstractAction
 
 		if (toWrite.isEmpty())
 		{
-			@NotNull final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			final @NotNull String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
 			return;
@@ -185,18 +184,18 @@ public final class SaveAction extends AbstractAction
 
 		try
 		{
-			@NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(toWrite);
 			writer.flush();
 			writer.close();
 
-			@NotNull final String message = "File save finished";
+			final @NotNull String message = "File save finished";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 		}
 		catch (IOException e)
 		{
-			@NotNull final String message = "Error: IOException received when trying to save file " + file.getPath();
+			final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 		}

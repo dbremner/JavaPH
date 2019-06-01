@@ -45,36 +45,35 @@ import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
  */
 public final class AboutDialog extends JavaPHDialog
 {
-	@NotNull
-	private final JButton okButton;
+	private final @NotNull JButton okButton;
 
 	public AboutDialog(@NotNull JavaPH javaph)
 	{
 		super(javaph);
 
-		@NotNull final JavaPH parent = javaph;
+		final @NotNull JavaPH parent = javaph;
 
 		setTitle("About " + INFO_NAME);
 		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		
-		@NotNull final JPanel contentPanel = new JPanel(new BorderLayout());
+		final @NotNull JPanel contentPanel = new JPanel(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createEtchedBorder());
 		contentPane.add(contentPanel, BorderLayout.CENTER);
 
-		@NotNull final JPanel imagePanel = new JPanel(new BorderLayout());
+		final @NotNull JPanel imagePanel = new JPanel(new BorderLayout());
 		
-		@NotNull final JLabel phImageLabel = new JLabel();
+		final @NotNull JLabel phImageLabel = new JLabel();
 		phImageLabel.setIcon(new ImageIcon(parent.getURL("img/ph-smaller.gif")));
 		
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 		
 		contentPanel.add(imagePanel, BorderLayout.CENTER);
-		@NotNull final JPanel infoPanel = getInfoPanel(parent);
+		final @NotNull JPanel infoPanel = getInfoPanel(parent);
 		contentPanel.add(infoPanel, BorderLayout.EAST);
 
-		@NotNull final JPanel buttonPanel = new JPanel();
+		final @NotNull JPanel buttonPanel = new JPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 		
 		okButton = new JButton("OK");
@@ -85,14 +84,13 @@ public final class AboutDialog extends JavaPHDialog
 		pack();
 	}
 	
-	@NotNull
-    private JPanel getInfoPanel(@NotNull JavaPH parent)
+	private @NotNull JPanel getInfoPanel(@NotNull JavaPH parent)
 	{
 
-		@NotNull final JPanel infoPanel = new JPanel();
+		final @NotNull JPanel infoPanel = new JPanel();
 		
-		@NotNull final GridBagLayout gbl = new GridBagLayout();
-		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
+		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		infoPanel.setLayout(gbl);
 		

@@ -55,8 +55,7 @@ public final class MainMenu extends JMenuBar
 {
 	static final class StatusMouseListener extends MouseAdapter
 	{
-		@NotNull
-		private final JavaPH parent;
+		private final @NotNull JavaPH parent;
 
 		StatusMouseListener(@NotNull JavaPH parent)
 		{
@@ -78,11 +77,9 @@ public final class MainMenu extends JMenuBar
 		}
 	}
 
-	@NotNull
-	private final MouseListener mouseListener;
+	private final @NotNull MouseListener mouseListener;
 	
-	@NotNull
-    private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 	private JCheckBoxMenuItem rollToolBarItem;
 	private JCheckBoxMenuItem showLogItem;
 	private JCheckBoxMenuItem showToolBarItem;
@@ -111,11 +108,10 @@ public final class MainMenu extends JMenuBar
 		add(menu);
 	}
 
-	@NotNull
-    private JMenu getEditComponent()
+	private @NotNull JMenu getEditComponent()
 	{
 
-		@NotNull final JMenu editMenu = new JMenu("Edit");
+		final @NotNull JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
 		@NotNull JMenuItem menuItem = getNewMenuItem();
@@ -157,11 +153,10 @@ public final class MainMenu extends JMenuBar
 		return editMenu;
 	}
 	
-	@NotNull
-    private JMenu getFileComponent()
+	private @NotNull JMenu getFileComponent()
 	{
 
-		@NotNull final JMenu fileMenu = new JMenu("File");
+		final @NotNull JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 
 		@NotNull JMenuItem menuItem = getNewMenuItem();
@@ -190,11 +185,10 @@ public final class MainMenu extends JMenuBar
 		return fileMenu;
 	}
 
-	@NotNull
-    private JMenu getHelpComponent()
+	private @NotNull JMenu getHelpComponent()
 	{
 
-		@NotNull final JMenu helpMenu = new JMenu("Help");
+		final @NotNull JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
 		@NotNull JMenuItem menuItem = getNewMenuItem();
@@ -214,19 +208,17 @@ public final class MainMenu extends JMenuBar
 		return helpMenu;
 	}
 
-	@NotNull
-    private JMenuItem getNewMenuItem()
+	private @NotNull JMenuItem getNewMenuItem()
 	{
-		@NotNull final JMenuItem menuItem = new JMenuItem();
+		final @NotNull JMenuItem menuItem = new JMenuItem();
 		menuItem.addMouseListener(mouseListener);
 		
 		return menuItem;
 	}
 
-	@NotNull
-    private JMenu getWindowComponent()
+	private @NotNull JMenu getWindowComponent()
 	{
-		@NotNull final JMenu windowMenu = new JMenu("Window");
+		final @NotNull JMenu windowMenu = new JMenu("Window");
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
 		showLogItem = new JCheckBoxMenuItem("View System Log");

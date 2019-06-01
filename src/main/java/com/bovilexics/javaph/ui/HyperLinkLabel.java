@@ -36,8 +36,7 @@ import org.jetbrains.annotations.Nullable;
  */
 final class HyperLinkLabel extends JLabel
 {
-	@NotNull
-    private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 
 	public HyperLinkLabel(@NotNull JavaPH javaph, final String text, final String url)
 	{
@@ -59,7 +58,7 @@ final class HyperLinkLabel extends JLabel
 				}
 				catch (IOException e)
 				{
-					@NotNull final String message = "Error: IOException received when trying to open " + url;
+					final @NotNull String message = "Error: IOException received when trying to open " + url;
 					parent.log(message);
 					JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 				}

@@ -56,29 +56,22 @@ final class LookAndFeelMenu extends JMenu
 	private final boolean motifSupported = new MotifLookAndFeel().isSupportedLookAndFeel();
 	private final boolean windowsSupported = new WindowsLookAndFeel().isSupportedLookAndFeel();
 
-	@Nullable
-    private final JMenuItem restoreDefaultItem;
-	@Nullable
-    private final JMenuItem storeDefaultItem;
+	private final @Nullable JMenuItem restoreDefaultItem;
+	private final @Nullable JMenuItem storeDefaultItem;
 
-	@Nullable
-    private JRadioButtonMenuItem macItem = null;
-	@Nullable
-    private JRadioButtonMenuItem metalItem = null;
-	@Nullable
-    private JRadioButtonMenuItem motifItem = null;
-	@Nullable
-    private JRadioButtonMenuItem windowsItem = null;
+	private @Nullable JRadioButtonMenuItem macItem = null;
+	private @Nullable JRadioButtonMenuItem metalItem = null;
+	private @Nullable JRadioButtonMenuItem motifItem = null;
+	private @Nullable JRadioButtonMenuItem windowsItem = null;
 
-	@NotNull
-    private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 
 	class LookAndFeelItemListener implements ActionListener
 	{
 		@Override
 		public void actionPerformed(@NotNull ActionEvent ae)
 		{
-			@NotNull final JMenuItem src = (JMenuItem) ae.getSource();
+			final @NotNull JMenuItem src = (JMenuItem) ae.getSource();
 		
 			if (src == restoreDefaultItem)
 			{
@@ -97,7 +90,7 @@ final class LookAndFeelMenu extends JMenu
 		@Override
 		public void actionPerformed(@NotNull ActionEvent ae)
 		{
-			@NotNull final JRadioButtonMenuItem src = (JRadioButtonMenuItem) ae.getSource();
+			final @NotNull JRadioButtonMenuItem src = (JRadioButtonMenuItem) ae.getSource();
 		
 			if (macSupported && src == macItem)
 			{
@@ -141,13 +134,13 @@ final class LookAndFeelMenu extends JMenu
 		
 		parent = javaph;
 
-		@NotNull final MouseListener mouseListener = new StatusMouseListener();
+		final @NotNull MouseListener mouseListener = new StatusMouseListener();
 		addMouseListener(mouseListener);
 
-		@NotNull final ButtonGroup group = new ButtonGroup();
+		final @NotNull ButtonGroup group = new ButtonGroup();
 
-		@NotNull final ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
-		@NotNull final ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
+		final @NotNull ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
+		final @NotNull ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
 
 		setActionCommand("Change look and feel");
 		setMnemonic(KeyEvent.VK_L);

@@ -32,8 +32,7 @@ import javax.swing.JTextField;
  */
 public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 {
-	@NotNull
-	private final JTextField textField;
+	private final @NotNull JTextField textField;
 
 	public TextFieldComboBoxEditor(ActionListener listener)
 	{
@@ -43,8 +42,7 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 	}
 
 	@Override
-	@NotNull
-	public Component getEditorComponent()
+    public @NotNull Component getEditorComponent()
 	{
 		return textField;
 	}

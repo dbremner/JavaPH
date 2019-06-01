@@ -22,8 +22,7 @@ import java.awt.Component;
  */
 public class ServerRenderer extends DefaultListCellRenderer
 {
-	@Nullable
-	private final ImageIcon[] icons;
+	private final @Nullable ImageIcon[] icons;
 	
 	public ServerRenderer(@NotNull IconProvider javaph)
 	{
@@ -37,8 +36,7 @@ public class ServerRenderer extends DefaultListCellRenderer
 	}
 	
 	@Override
-	@NotNull
-	public Component getListCellRendererComponent(@NotNull JList list, @NotNull Object value, int index, boolean isSelected, boolean cellHasFocus)
+    public @NotNull Component getListCellRendererComponent(@NotNull JList list, @NotNull Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 

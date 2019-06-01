@@ -38,16 +38,14 @@ public final class ResultTableModel extends DefaultTableModel
 		resetModel();
 	}
 
-	@NotNull
-    public Object[] getDefaultHeaderArray()
+	public @NotNull Object[] getDefaultHeaderArray()
 	{
 		return getDefaultHeaderArray(DEFAULT_COLS);
 	}
 	
-	@NotNull
-    public Object[] getDefaultHeaderArray(int cols)
+	public @NotNull Object[] getDefaultHeaderArray(int cols)
 	{
-		@NotNull final Object[] headers = new Object[DEFAULT_COLS];
+		final @NotNull Object[] headers = new Object[DEFAULT_COLS];
 		
 		for (int i = 0; i < DEFAULT_COLS; i++) {
 			headers[i] = DEFAULT_HEADER;
@@ -56,16 +54,14 @@ public final class ResultTableModel extends DefaultTableModel
 		return headers;	
 	}
 	
-	@NotNull
-    public Vector<String> getDefaultHeaderVector()
+	public @NotNull Vector<String> getDefaultHeaderVector()
 	{
 		return getDefaultHeaderVector(DEFAULT_COLS);
 	}
 	
-	@NotNull
-    public Vector<String> getDefaultHeaderVector(int cols)
+	public @NotNull Vector<String> getDefaultHeaderVector(int cols)
 	{
-		@NotNull final Vector<String> headers = new Vector<>();
+		final @NotNull Vector<String> headers = new Vector<>();
 		
 		for (int i = 0; i < cols; i++) {
 			headers.add(DEFAULT_HEADER);

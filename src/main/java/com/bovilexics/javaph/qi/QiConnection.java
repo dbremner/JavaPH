@@ -46,15 +46,12 @@ public class QiConnection
 	private int port;
 	
 	private String alias;
-	@NotNull
-	private String host;
+	private @NotNull String host;
 	
 	private QiLine qiQiLine;
-	@NotNull
-    private final QiServer qiServer;
+	private final @NotNull QiServer qiServer;
 	private Socket socket;
-	@Nullable
-	private Thread locker;
+	private @Nullable Thread locker;
 		
 	private BufferedReader fromServer;
 	private BufferedWriter toServer;
@@ -100,7 +97,7 @@ public class QiConnection
 			throw new IOException("No host specified, cannot connect");
 		}
 			
-		@NotNull final SocketAddress sockaddr = new InetSocketAddress(host, port);
+		final @NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
 		socket = new Socket();
 		
 		// Timeout after 10 seconds
@@ -156,8 +153,7 @@ public class QiConnection
 		}
 	}
 
-	@NotNull
-	public String getHost()
+	public @NotNull String getHost()
 	{
 		return host;
 	}
@@ -167,8 +163,7 @@ public class QiConnection
 		return port;
 	}
 
-	@NotNull
-    public QiServer getServer()
+	public @NotNull QiServer getServer()
 	{
 		return qiServer;
 	}
@@ -303,7 +298,7 @@ public class QiConnection
 			@NotNull String blurb = "";
 			while (true)
 			{
-				@NotNull final String buffer = readQI();
+				final @NotNull String buffer = readQI();
 				qiQiLine = new QiLine(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
@@ -344,10 +339,9 @@ public class QiConnection
 	}
 
 	@Override
-	@NotNull
-	public String toString()
+	public @NotNull String toString()
 	{
-		@NotNull final StringBuilder out = new StringBuilder();
+		final @NotNull StringBuilder out = new StringBuilder();
 		
 		out.append(host);
 		out.append(":");

@@ -62,8 +62,7 @@ import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
  */
 public final class PropertiesDialog extends JavaPHDialog
 {
-	@NotNull
-    private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 	
 	private JButton applyButton;
 	private JButton cancelButton;
@@ -98,7 +97,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		@NotNull final JPanel contentPanel = new JPanel();
+		final @NotNull JPanel contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createEtchedBorder());
 
@@ -114,10 +113,9 @@ public final class PropertiesDialog extends JavaPHDialog
 		pack();
 	}
 	
-	@NotNull
-    private JPanel getButtonPanel()
+	private @NotNull JPanel getButtonPanel()
 	{
-		@NotNull final JPanel buttonPanel = new JPanel();
+		final @NotNull JPanel buttonPanel = new JPanel();
 		
 		okButton = new JButton("OK");
 		okButton.setMnemonic(KeyEvent.VK_O);
@@ -147,14 +145,13 @@ public final class PropertiesDialog extends JavaPHDialog
 		return buttonPanel;	
 	}
 
-	@NotNull
-    private JPanel getQueryPanel()
+	private @NotNull JPanel getQueryPanel()
 	{
-		@NotNull final JPanel queryPanel = new JPanel();
+		final @NotNull JPanel queryPanel = new JPanel();
 		queryPanel.setBorder(BorderFactory.createTitledBorder(" Query Runtime (Seconds) "));
 		queryPanel.setLayout(new BorderLayout());
 		
-		@NotNull final JPanel runtimePanel = new JPanel();
+		final @NotNull JPanel runtimePanel = new JPanel();
 		runtimePanel.setLayout(new FlowLayout());
 		
 		runtimeSlider = new JSlider(QUERY_RUNTIME_MIN, QUERY_RUNTIME_MAX);
@@ -188,17 +185,16 @@ public final class PropertiesDialog extends JavaPHDialog
 		return queryPanel;
 	}
 
-	@NotNull
-    private JPanel getServerPanel()
+	private @NotNull JPanel getServerPanel()
 	{
-		@NotNull final JPanel serverPanel = new JPanel();
+		final @NotNull JPanel serverPanel = new JPanel();
 		serverPanel.setBorder(BorderFactory.createTitledBorder(" Server Options "));
 		serverPanel.setLayout(new BorderLayout());
 
-		@NotNull final JPanel defaultServerPanel = new JPanel();
+		final @NotNull JPanel defaultServerPanel = new JPanel();
 		defaultServerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		@NotNull final JLabel defaultServerLabel = new JLabel("Default Server : ");
+		final @NotNull JLabel defaultServerLabel = new JLabel("Default Server : ");
 		defaultServerLabel.setAlignmentY(JLabel.CENTER_ALIGNMENT);
 		
 		defaultServerComboBox = new JComboBox<>(QiServerManager.getServers());
@@ -216,15 +212,15 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsStartup = new JRadioButton("Load Fields on Startup  ( Slow! )");
 		loadFieldsStartup.setToolTipText("Load fields for all servers when starting the application");
 
-		@NotNull final ButtonGroup loadFieldsGroup = new ButtonGroup();
+		final @NotNull ButtonGroup loadFieldsGroup = new ButtonGroup();
 		loadFieldsGroup.add(loadFieldsManual);
 		loadFieldsGroup.add(loadFieldsSelected);
 		loadFieldsGroup.add(loadFieldsStartup);
 
-		@NotNull final JPanel loadFieldsPanel = new JPanel();
+		final @NotNull JPanel loadFieldsPanel = new JPanel();
 		
-		@NotNull final GridBagLayout gbl = new GridBagLayout();
-		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
+		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		loadFieldsPanel.setLayout(gbl);
 		
@@ -266,16 +262,15 @@ public final class PropertiesDialog extends JavaPHDialog
 		return serverPanel;
 	}
 
-	@NotNull
-    private JPanel getStartupPanel()
+	private @NotNull JPanel getStartupPanel()
 	{	
 		//int horizStrut = 6;
 
-		@NotNull final JPanel startupPanel = new JPanel();
+		final @NotNull JPanel startupPanel = new JPanel();
 		startupPanel.setBorder(BorderFactory.createTitledBorder(" Startup Options "));
 
-		@NotNull final GridBagLayout gbl = new GridBagLayout();
-		@NotNull final GridBagConstraints gbc = new GridBagConstraints();
+		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		startupPanel.setLayout(gbl);
 

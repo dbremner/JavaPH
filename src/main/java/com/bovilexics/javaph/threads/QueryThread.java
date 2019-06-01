@@ -34,10 +34,8 @@ public class QueryThread extends Thread
 {
 	private int seconds = 0;
 
-	@NotNull
-    private final JavaPH parent;
-	@Nullable
-    private ResultThread resultThread = null;
+	private final @NotNull JavaPH parent;
+	private @Nullable ResultThread resultThread = null;
 
 	public QueryThread(@NotNull JavaPH javaph)
 	{
@@ -107,7 +105,7 @@ public class QueryThread extends Thread
 			parent.getQueryProgressMonitor().close();
 			parent.getResultText().setText(resultThread.getRawResult());
 
-			@NotNull final ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
+			final @NotNull ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
 			resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
 			parent.getResultTable().resetColumnWidths();
 		});

@@ -35,8 +35,7 @@ import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
  */
 public final class NewAction extends AbstractAction
 {
-	@NotNull
-	private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 		
 	public NewAction(@NotNull JavaPH javaph)
 	{

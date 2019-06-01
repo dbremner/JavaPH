@@ -47,25 +47,25 @@ public final class SplashWindow extends JWindow {
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		@NotNull final JLabel phImageLabel = new JLabel(new ImageIcon(javaph.getURL("img/ph-bigger.gif")));
+		final @NotNull JLabel phImageLabel = new JLabel(new ImageIcon(javaph.getURL("img/ph-bigger.gif")));
 		
-		@NotNull final JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
+		final @NotNull JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
 		upperInfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		upperInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		@NotNull final JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
+		final @NotNull JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
 		lowerInfoLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lowerInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
-		@NotNull final JPanel contentPanel = new JPanel(new BorderLayout());
+		final @NotNull JPanel contentPanel = new JPanel(new BorderLayout());
 		contentPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 		// contentPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 
-		@NotNull final JPanel imagePanel = new JPanel(new BorderLayout());
+		final @NotNull JPanel imagePanel = new JPanel(new BorderLayout());
 		imagePanel.setBorder(BorderFactory.createEtchedBorder());
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 
-		@NotNull final JPanel infoPanel = new JPanel();
+		final @NotNull JPanel infoPanel = new JPanel();
 		infoPanel.setBorder(BorderFactory.createEtchedBorder());
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		infoPanel.add(new JLabel(" "));

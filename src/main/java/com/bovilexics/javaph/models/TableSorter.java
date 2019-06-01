@@ -30,8 +30,7 @@ import javax.swing.table.TableModel;
  */
 public class TableSorter implements TableModel, TableModelListener
 {
-	@NotNull
-    private final TableModel realModel;
+	private final @NotNull TableModel realModel;
 	private int[] indexes;
 	
 	public TableSorter(@NotNull TableModel model)
@@ -52,19 +51,18 @@ public class TableSorter implements TableModel, TableModelListener
 	
 	private int compare(int i, int j, int col)
 	{
-		@Nullable final Object io = realModel.getValueAt(i, col);
-		@Nullable final Object jo = realModel.getValueAt(j, col);
+		final @Nullable Object io = realModel.getValueAt(i, col);
+		final @Nullable Object jo = realModel.getValueAt(j, col);
 
-		@NotNull final String left = (io == null) ? "" : io.toString();
-		@NotNull final String right  = (jo == null) ? "" : jo.toString();
+		final @NotNull String left = (io == null) ? "" : io.toString();
+		final @NotNull String right  = (jo == null) ? "" : jo.toString();
 		
 		final int c = left.compareTo(right);
 		
 		return Integer.compare(c, 0);
 	}
 	
-	@Nullable
-    public TableModel getModel()
+	public @Nullable TableModel getModel()
 	{
 		return realModel;
 	}

@@ -172,34 +172,23 @@ public class JavaPH extends JApplet implements IconProvider {
 	private AboutDialog aboutDialog;
 	private CustomButtonGroup fieldRadioGroup;
 	private FindDialog findDialog;
-	@NotNull
-	private final Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
-	@Nullable
-	private ImageIcon fieldCustomOff;
-	@Nullable
-	private ImageIcon fieldCustomOn;
-	@Nullable
-	private ImageIcon fieldLoadOff;
-	@Nullable
-	private ImageIcon fieldLoadOn;
-	@NotNull
-	private final Properties defaultProperties = new Properties();
-	@NotNull
-	private final Properties properties = new Properties();
+	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
+	private @Nullable ImageIcon fieldCustomOff;
+	private @Nullable ImageIcon fieldCustomOn;
+	private @Nullable ImageIcon fieldLoadOff;
+	private @Nullable ImageIcon fieldLoadOn;
+	private final @NotNull Properties defaultProperties = new Properties();
+	private final @NotNull Properties properties = new Properties();
 	private PropertiesDialog propertiesDialog;
 	private ProgressMonitor queryProgressMonitor;
-	@NotNull
-	private final QiCommand[] commands;
-	@Nullable
-	private QiConnection connection;
+	private final @NotNull QiCommand[] commands;
+	private @Nullable QiConnection connection;
 	private QueryComboBox queryComboBox;
 	private QueryToolBar queryToolBar;
 	private ResultTable resultTable;
 	private SplashWindow splashWindow;
-	@Nullable
-	private String customFieldSeparator = CUSTOM_SEPARATOR;
-	@Nullable
-	private String fieldSeparator = COMMA_SEPARATOR;
+	private @Nullable String customFieldSeparator = CUSTOM_SEPARATOR;
+	private @Nullable String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
 	private Vector<QiServer> servers;
 	
@@ -207,14 +196,12 @@ public class JavaPH extends JApplet implements IconProvider {
 	
 	private JButton colListSelectAllButton;
 	private JButton colListSelectNoneButton;
-	@Nullable
-	private JButton fieldCustomButton;
+	private @Nullable JButton fieldCustomButton;
 	private JButton fieldListMoveDnButton;
 	private JButton fieldListMoveUpButton;
 	private JButton fieldListSelectAllButton;
 	private JButton fieldListSelectNoneButton;
-	@Nullable
-	private JButton fieldLoadButton;
+	private @Nullable JButton fieldLoadButton;
 	private JButton queryButton;
 	private JButton resultTableColButton;
 	private JButton resultTableColWidthButton;
@@ -281,12 +268,12 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	final class ContentPanel extends JPanel
 	{	
-		ContentPanel(@NotNull final JavaPH javaph)
+		ContentPanel(final @NotNull JavaPH javaph)
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
 
-			@NotNull final JPanel queryPanel = new QueryPanel(javaph);
+			final @NotNull JPanel queryPanel = new QueryPanel(javaph);
 			add(queryPanel, BorderLayout.NORTH);
 			
 			resultPanel = new ResultPanel(javaph);		
@@ -296,10 +283,9 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	final class QueryPanel extends JPanel
 	{
-		@NotNull
-		private final JavaPH parent;
+		private final @NotNull JavaPH parent;
 		
-		QueryPanel(@NotNull final JavaPH javaph)
+		QueryPanel(final @NotNull JavaPH javaph)
 		{
 			parent = javaph;
 
@@ -312,10 +298,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			add(getQueryButtonPanel(javaph), BorderLayout.EAST);
 		}
 
-		@NotNull
-		private JPanel getQueryButtonPanel(@NotNull final JavaPH javaph)
+		private @NotNull JPanel getQueryButtonPanel(final @NotNull JavaPH javaph)
 		{
-			@NotNull final JPanel queryButtonPanel = new JPanel(new FlowLayout());
+			final @NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
 			
 			queryButton = new JButton("Execute Query");
 			queryButton.setMnemonic(KeyEvent.VK_Q);
@@ -324,7 +309,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				if (queryComboBox.isEnabled())
 				{
 					final Object selectedItem = queryComboBox.getEditor().getItem();
-					@NotNull final QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
+					final @NotNull QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
 
 					if (selectedItem != null && !selectedItem.toString().isEmpty())
 					{
@@ -337,7 +322,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				}
 
 				queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
-				@NotNull final QueryThread qt = new QueryThread(javaph);
+				final @NotNull QueryThread qt = new QueryThread(javaph);
 				qt.start();
 			});
 
@@ -346,10 +331,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			return queryButtonPanel;
 		}
 
-		@NotNull
-		private JPanel getQueryCommandPanel()
+		private @NotNull JPanel getQueryCommandPanel()
 		{
-			@NotNull final JPanel queryCommandPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel queryCommandPanel = new JPanel(new BorderLayout());
 
 			commandComboBox = new JComboBox<>(commands);
 			commandComboBox.addActionListener(ae -> {
@@ -402,10 +386,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			return queryCommandPanel;
 		}
 
-		@NotNull
-		private JPanel getQueryContentPanel()
+		private @NotNull JPanel getQueryContentPanel()
 		{
-			@NotNull final JPanel queryContentPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel queryContentPanel = new JPanel(new BorderLayout());
 
 			queryContentPanel.add(getQueryServerPanel(), BorderLayout.NORTH);
 			queryContentPanel.add(getQueryCommandPanel(), BorderLayout.CENTER);
@@ -414,16 +397,15 @@ public class JavaPH extends JApplet implements IconProvider {
 			return queryContentPanel;
 		}
 
-		@NotNull
-		private JPanel getQueryFieldPanel()
+		private @NotNull JPanel getQueryFieldPanel()
 		{
-			@NotNull final JPanel queryFieldPanel = new JPanel();
+			final @NotNull JPanel queryFieldPanel = new JPanel();
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
 
 			fieldRadioGroup = new CustomButtonGroup();
 
-			@NotNull final JRadioButton fieldDefaultRadioButton = new JRadioButton("Default Fields");
-			@NotNull final JRadioButton fieldAllRadioButton = new JRadioButton("All Fields");
+			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton("Default Fields");
+			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton("All Fields");
 			fieldCustomRadioButton = new JRadioButton("Custom Fields");
 			
 			fieldRadioGroup.add(fieldDefaultRadioButton);
@@ -482,7 +464,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				}
 			});
 			fieldLoadButton.addActionListener(ae -> {
-				@Nullable final QiServer server = (QiServer)serverComboBox.getSelectedItem();
+				final @Nullable QiServer server = (QiServer)serverComboBox.getSelectedItem();
 
 				if (server != null)
 				{
@@ -503,10 +485,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			return queryFieldPanel;
 		}
 
-		@NotNull
-		private JPanel getQueryLabelPanel()
+		private @NotNull JPanel getQueryLabelPanel()
 		{
-			@NotNull final JPanel queryLabelPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel queryLabelPanel = new JPanel(new BorderLayout());
 
 			queryLabelPanel.add(new JLabel(SERVER_LABEL_PREFIX), BorderLayout.NORTH);
 			queryLabelPanel.add(new JLabel(QUERY_LABEL_PREFIX), BorderLayout.CENTER);
@@ -515,21 +496,20 @@ public class JavaPH extends JApplet implements IconProvider {
 			return queryLabelPanel;
 		}
 
-		@NotNull
-		private JPanel getQueryServerPanel()
+		private @NotNull JPanel getQueryServerPanel()
 		{
-			@NotNull final JPanel queryServerPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel queryServerPanel = new JPanel(new BorderLayout());
 
 			serverComboBox = new JComboBox<>(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(ae -> {
-				@NotNull final QiServer server = (QiServer)serverComboBox.getSelectedItem();
-				@NotNull final String serverText = server.getServer();
+				final @NotNull QiServer server = (QiServer)serverComboBox.getSelectedItem();
+				final @NotNull String serverText = server.getServer();
 
-				@Nullable final Integer portInt = server.getPort();
+				final @Nullable Integer portInt = server.getPort();
 
 				serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
-				@NotNull final String portText = portInt.toString();
+				final @NotNull String portText = portInt.toString();
 				portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
 
 				connection = new QiConnection(serverText, portInt);
@@ -556,10 +536,10 @@ public class JavaPH extends JApplet implements IconProvider {
 			// when the custom field button is activated
 			fieldListPanel = new JPanel(new BorderLayout());
 			
-			@NotNull final JPanel fieldListControlPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel fieldListControlPanel = new JPanel(new BorderLayout());
 			fieldListControlPanel.setBorder(BorderFactory.createEtchedBorder());
 			
-			@NotNull final JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
+			final @NotNull JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
 
 			fieldListSelectAllButton = new JButton("Select All");
 			fieldListSelectAllButton.addActionListener(
@@ -659,10 +639,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			}
 		}
 
-		@NotNull
-		private JPanel getResultTablePanel()
+		private @NotNull JPanel getResultTablePanel()
 		{
-			@NotNull final JPanel resultTablePanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel resultTablePanel = new JPanel(new BorderLayout());
 
 			resultTable = new ResultTable();
 			resultTable.setColumnSelectionAllowed(false);
@@ -675,7 +654,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				populateColumnList();
 			});
 				
-			@NotNull final JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();
+			final @NotNull JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -689,7 +668,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				}
 			});
 
-			@NotNull final JPanel resultControlPanel = new JPanel();
+			final @NotNull JPanel resultControlPanel = new JPanel();
 			resultTableColButton = new JButton("Show/Hide Columns");
 			resultTableColButton.setEnabled(false);
 			resultTableColButton.addActionListener(ae -> {
@@ -730,7 +709,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				}
 			});
 
-			@NotNull final JScrollPane resultTableScroll = new JScrollPane(resultTable);
+			final @NotNull JScrollPane resultTableScroll = new JScrollPane(resultTable);
 			resultControlPanel.add(resultTableColButton);
 			resultControlPanel.add(resultTableColWidthButton);
 
@@ -740,17 +719,16 @@ public class JavaPH extends JApplet implements IconProvider {
 			return resultTablePanel;
 		}
 		
-		@NotNull
-		private JPanel getResultTextPanel()
+		private @NotNull JPanel getResultTextPanel()
 		{
-			@NotNull final JPanel resultTextPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel resultTextPanel = new JPanel(new BorderLayout());
 
 			resultText = new JTextArea();
 			resultText.setEditable(false);
 			resultText.setFont(fixedWidthFont);
-			@NotNull final JScrollPane resultTextScroll = new JScrollPane(resultText);
+			final @NotNull JScrollPane resultTextScroll = new JScrollPane(resultText);
 
-			@NotNull final JButton selectAllButton = new JButton("Select All");
+			final @NotNull JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(ae -> {
 				resultText.selectAll();
@@ -763,7 +741,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				resultText.setWrapStyleWord(resultWrapCheckBox.isSelected());
 			});
 	
-			@NotNull final JPanel resultControlPanel = new JPanel();
+			final @NotNull JPanel resultControlPanel = new JPanel();
 			resultControlPanel.add(selectAllButton);
 			resultControlPanel.add(resultWrapCheckBox);
 	
@@ -780,10 +758,10 @@ public class JavaPH extends JApplet implements IconProvider {
 			// when the custom field button is activated
 			colListPanel = new JPanel(new BorderLayout());
 			
-			@NotNull final JPanel colListControlPanel = new JPanel(new BorderLayout());
+			final @NotNull JPanel colListControlPanel = new JPanel(new BorderLayout());
 			colListControlPanel.setBorder(BorderFactory.createEtchedBorder());
 
-			@NotNull final JPanel colListButtonPanel = new JPanel(new FlowLayout());
+			final @NotNull JPanel colListButtonPanel = new JPanel(new FlowLayout());
 
 			colListSelectAllButton = new JButton("Select All");
 			colListSelectAllButton.addActionListener(ae ->
@@ -823,9 +801,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			logText = new JTextArea();
 			logText.setEditable(false);
 			logText.setFont(fixedWidthFont);
-			@NotNull final JScrollPane logTextScroll = new JScrollPane(logText);
+			final @NotNull JScrollPane logTextScroll = new JScrollPane(logText);
 
-			@NotNull final JButton selectAllButton = new JButton("Select All");
+			final @NotNull JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(ae -> {
 				logText.selectAll();
@@ -838,14 +816,14 @@ public class JavaPH extends JApplet implements IconProvider {
 				logText.setWrapStyleWord(logWrapCheckBox.isSelected());
 			});
 
-			@NotNull final JButton logClearButton = new JButton("Clear Log");
+			final @NotNull JButton logClearButton = new JButton("Clear Log");
 			logClearButton.setMnemonic(KeyEvent.VK_C);
 			logClearButton.addActionListener(ae -> {
 				logText.setText("");
 				log("Log cleared");
 			});
 	
-			@NotNull final JPanel logControlPanel = new JPanel();
+			final @NotNull JPanel logControlPanel = new JPanel();
 			logControlPanel.add(logClearButton);
 			logControlPanel.add(selectAllButton);
 			logControlPanel.add(logWrapCheckBox);
@@ -862,11 +840,11 @@ public class JavaPH extends JApplet implements IconProvider {
 		{
 			setLayout(new BorderLayout());
 
-			@NotNull final JPanel leftPanel = new JPanel();
+			final @NotNull JPanel leftPanel = new JPanel();
 			leftPanel.setBorder(BorderFactory.createEtchedBorder());
 			leftPanel.setLayout(new BorderLayout());
 
-			@NotNull final JPanel rightPanel = new JPanel();
+			final @NotNull JPanel rightPanel = new JPanel();
 			rightPanel.setLayout(new BorderLayout());
 
 			add(leftPanel, BorderLayout.CENTER);
@@ -892,8 +870,8 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	public static void main(String[] args)
 	{
-		@NotNull final JavaPH applet = new JavaPH();
-		@NotNull final JFrame frame = new JFrame();
+		final @NotNull JavaPH applet = new JavaPH();
+		final @NotNull JFrame frame = new JFrame();
 
 		int frameHeight = applet.getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = applet.getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
@@ -1143,10 +1121,9 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	@NotNull
-	public String getCommand()
+	public @NotNull String getCommand()
 	{
-		@NotNull final StringBuilder out = new StringBuilder();
+		final @NotNull StringBuilder out = new StringBuilder();
 		
 		out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
 		
@@ -1199,14 +1176,12 @@ public class JavaPH extends JApplet implements IconProvider {
 		return defaultPane;
 	}
 
-	@Nullable
-	public QiConnection getConnection()
+	public @Nullable QiConnection getConnection()
 	{
 		return connection;
 	}
 
-	@Nullable
-	public String getFieldSeparator()
+	public @Nullable String getFieldSeparator()
 	{
 		return fieldSeparator;
 	}
@@ -1215,7 +1190,7 @@ public class JavaPH extends JApplet implements IconProvider {
 	{
 		try
 		{
-			@Nullable final String stringValue = getProperty(key);
+			final @Nullable String stringValue = getProperty(key);
 
 			if (stringValue == null) {
 				throw new NumberFormatException();
@@ -1236,7 +1211,7 @@ public class JavaPH extends JApplet implements IconProvider {
 
 		try
 		{
-			@Nullable final String stringValue = getPropertyDefault(key);
+			final @Nullable String stringValue = getPropertyDefault(key);
 
 			if (stringValue == null) {
 				throw new NumberFormatException();
@@ -1252,8 +1227,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		return intValue;
 	}
 
-	@Nullable
-	public String getLastCustomSeparator()
+	public @Nullable String getLastCustomSeparator()
 	{
 		return customFieldSeparator;
 	}
@@ -1268,26 +1242,22 @@ public class JavaPH extends JApplet implements IconProvider {
 		return logText;
 	}
 
-	@Nullable
-	private String getProperty(@NotNull String key)
+	private @Nullable String getProperty(@NotNull String key)
 	{
 		return properties.getProperty(key);
 	}
 
-	@NotNull
-	private String getProperty(@NotNull String key, @NotNull String defaultValue)
+	private @NotNull String getProperty(@NotNull String key, @NotNull String defaultValue)
 	{
 		return properties.getProperty(key, defaultValue);
 	}
 
-	@Nullable
-	public String getPropertyDefault(@NotNull String key)
+	public @Nullable String getPropertyDefault(@NotNull String key)
 	{
 		return defaultProperties.getProperty(key);
 	}
 
-	@NotNull
-	private String getPropertyDefault(@NotNull String key, @NotNull String defaultValue)
+	private @NotNull String getPropertyDefault(@NotNull String key, @NotNull String defaultValue)
 	{
 		return defaultProperties.getProperty(key, defaultValue);
 	}
@@ -1332,15 +1302,13 @@ public class JavaPH extends JApplet implements IconProvider {
 		return resultText;
 	}
 
-	@Nullable
-	public QiServer getServer()
+	public @Nullable QiServer getServer()
 	{
 		return (QiServer)serverComboBox.getSelectedItem();
 	}
 
 	@Override
-	@NotNull
-	public String getURL(@NotNull String location)
+	public @NotNull String getURL(@NotNull String location)
 	{
 		return location;
 		/*
@@ -1351,10 +1319,9 @@ public class JavaPH extends JApplet implements IconProvider {
 	}
 
 	@Override
-	@NotNull
-	public Icon getIcon(@NotNull String location)
+	public @NotNull Icon getIcon(@NotNull String location)
 	{
-		@NotNull final Icon icon = new ImageIcon((location));
+		final @NotNull Icon icon = new ImageIcon((location));
 		return icon;
 	}
 
@@ -1485,7 +1452,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		if (servers != null && !servers.isEmpty())
 		{
 
-			@NotNull final ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
+			final @NotNull ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
@@ -1550,8 +1517,8 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	private void populateColumnList()
 	{
-		@NotNull final TableSorter tableModel = (TableSorter)resultTable.getModel();
-		@NotNull final DefaultListModel listModel = (DefaultListModel)colList.getModel();
+		final @NotNull TableSorter tableModel = (TableSorter)resultTable.getModel();
+		final @NotNull DefaultListModel listModel = (DefaultListModel)colList.getModel();
 		listModel.clear();
 		
 		for (int i = 0; i < tableModel.getColumnCount(); i++)
@@ -1566,12 +1533,12 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	private void populateFieldList(@NotNull QiServer server)
 	{
-		@NotNull final DefaultListModel model = (DefaultListModel)fieldList.getModel();
+		final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
 		model.clear();
 					
 		if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
 		{
-			@NotNull final List<QiField> fields = server.getFields();
+			final @NotNull List<QiField> fields = server.getFields();
 
 			for (QiField field : fields) {
 				model.addElement(field);
@@ -1591,13 +1558,13 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	public boolean propertyDefaultEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
 	{
-		@NotNull final String value = getPropertyDefault(key, defaultValue);
+		final @NotNull String value = getPropertyDefault(key, defaultValue);
 		return value.equals(equalsValue);
 	}
 
 	public boolean propertyEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
 	{
-		@NotNull final String value = getProperty(key, defaultValue);
+		final @NotNull String value = getProperty(key, defaultValue);
 		return value.equals(equalsValue);
 	}
 
@@ -1619,7 +1586,7 @@ public class JavaPH extends JApplet implements IconProvider {
 	private void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
 	{
 
-		@NotNull final Component[] otherComponents = new Component[]
+		final @NotNull Component[] otherComponents = new Component[]
 		{
 			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
 		};
@@ -1753,7 +1720,7 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	public void showBrowserDialog()
 	{
-		@NotNull final Frame frame = JOptionPane.getFrameForComponent(defaultPane);
+		final @NotNull Frame frame = JOptionPane.getFrameForComponent(defaultPane);
 		Browser.dialogConfiguration(frame);
 	}
 

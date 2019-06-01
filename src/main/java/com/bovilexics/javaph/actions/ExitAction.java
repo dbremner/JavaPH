@@ -32,8 +32,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ExitAction extends AbstractAction
 {
-	@NotNull
-	private final JavaPH parent;
+	private final @NotNull JavaPH parent;
 	
 	public ExitAction(@NotNull JavaPH javaph)
 	{
