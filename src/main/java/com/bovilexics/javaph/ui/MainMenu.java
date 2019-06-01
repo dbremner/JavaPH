@@ -55,8 +55,16 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
  */
 public final class MainMenu extends JMenuBar
 {
-	class StatusMouseListener extends MouseAdapter
+	static final class StatusMouseListener extends MouseAdapter
 	{
+		@NotNull
+		private final JavaPH parent;
+
+		StatusMouseListener(@NotNull JavaPH parent)
+		{
+			this.parent = parent;
+		}
+
 		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
@@ -85,7 +93,7 @@ public final class MainMenu extends JMenuBar
 	{
 		parent = javaph;
 
-		mouseListener = new StatusMouseListener();
+		mouseListener = new StatusMouseListener(parent);
 		addMouseListener(mouseListener);
 
 		@NotNull JMenu menu = getFileComponent();
