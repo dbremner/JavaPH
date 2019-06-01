@@ -187,7 +187,6 @@ public class JavaPH extends JApplet implements IconProvider {
 	@NotNull
 	private final Properties properties = new Properties();
 	private PropertiesDialog propertiesDialog;
-	private ProgressMonitor fieldProgressMonitor; 
 	private ProgressMonitor queryProgressMonitor;
 	@NotNull
 	private final QiCommand[] commands;
@@ -216,7 +215,6 @@ public class JavaPH extends JApplet implements IconProvider {
 	private JButton fieldListSelectNoneButton;
 	@Nullable
 	private JButton fieldLoadButton;
-	private JButton logClearButton;
 	private JButton queryButton;
 	private JButton resultTableColButton;
 	private JButton resultTableColWidthButton;
@@ -232,15 +230,9 @@ public class JavaPH extends JApplet implements IconProvider {
 	private JPanel colListPanel;
 	private JPanel fieldListPanel;
 	private JPanel logTextPanel;
-	private JPanel queryPanel;
-	private JRadioButton fieldDefaultRadioButton;
-	private JRadioButton fieldAllRadioButton;
 	private JRadioButton fieldCustomRadioButton;
 	private JRootPane defaultPane;
-	private JScrollPane logTextScroll;
-	private JScrollPane resultTableScroll;
-	private JScrollPane resultTextScroll;
-	private JTabbedPane resultPanel; 
+	private JTabbedPane resultPanel;
 	private JTextArea logText;
 	private JTextArea resultText;
 
@@ -293,8 +285,8 @@ public class JavaPH extends JApplet implements IconProvider {
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
-			
-			queryPanel = new QueryPanel(javaph);
+
+			@NotNull final JPanel queryPanel = new QueryPanel(javaph);
 			add(queryPanel, BorderLayout.NORTH);
 			
 			resultPanel = new ResultPanel(javaph);		
@@ -429,9 +421,9 @@ public class JavaPH extends JApplet implements IconProvider {
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
 
 			fieldRadioGroup = new CustomButtonGroup();
-			
-			fieldDefaultRadioButton = new JRadioButton("Default Fields");
-			fieldAllRadioButton = new JRadioButton("All Fields");
+
+			@NotNull final JRadioButton fieldDefaultRadioButton = new JRadioButton("Default Fields");
+			@NotNull final JRadioButton fieldAllRadioButton = new JRadioButton("All Fields");
 			fieldCustomRadioButton = new JRadioButton("Custom Fields");
 			
 			fieldRadioGroup.add(fieldDefaultRadioButton);
@@ -738,7 +730,7 @@ public class JavaPH extends JApplet implements IconProvider {
 				}
 			});
 
-			resultTableScroll = new JScrollPane(resultTable);
+			@NotNull final JScrollPane resultTableScroll = new JScrollPane(resultTable);
 			resultControlPanel.add(resultTableColButton);
 			resultControlPanel.add(resultTableColWidthButton);
 
@@ -756,7 +748,7 @@ public class JavaPH extends JApplet implements IconProvider {
 			resultText = new JTextArea();
 			resultText.setEditable(false);
 			resultText.setFont(fixedWidthFont);
-			resultTextScroll = new JScrollPane(resultText);
+			@NotNull final JScrollPane resultTextScroll = new JScrollPane(resultText);
 
 			@NotNull final JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
@@ -831,7 +823,7 @@ public class JavaPH extends JApplet implements IconProvider {
 			logText = new JTextArea();
 			logText.setEditable(false);
 			logText.setFont(fixedWidthFont);
-			logTextScroll = new JScrollPane(logText);
+			@NotNull final JScrollPane logTextScroll = new JScrollPane(logText);
 
 			@NotNull final JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
@@ -845,8 +837,8 @@ public class JavaPH extends JApplet implements IconProvider {
 				logText.setLineWrap(logWrapCheckBox.isSelected());
 				logText.setWrapStyleWord(logWrapCheckBox.isSelected());
 			});
-	
-			logClearButton = new JButton("Clear Log");
+
+			@NotNull final JButton logClearButton = new JButton("Clear Log");
 			logClearButton.setMnemonic(KeyEvent.VK_C);
 			logClearButton.addActionListener(ae -> {
 				logText.setText("");
@@ -1493,7 +1485,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		if (servers != null && !servers.isEmpty())
 		{
 
-			fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
+			@NotNull final ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
