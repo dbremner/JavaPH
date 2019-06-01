@@ -71,10 +71,6 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import java.awt.BorderLayout;
@@ -91,8 +87,6 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -374,17 +368,12 @@ public class JavaPH extends JApplet implements IconProvider {
 			@NotNull final JPanel queryCommandPanel = new JPanel(new BorderLayout());
 
 			commandComboBox = new JComboBox<>(commands);
-			commandComboBox.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{	
-					queryComboBox.setSelectedIndex(-1);
-					queryComboBox.setEnabled(commands[commandComboBox.getSelectedIndex()].isTextEditable());
-					fieldRadioGroup.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
-					fieldCustomButton.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
-					fieldLoadButton.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
-				}
+			commandComboBox.addActionListener(ae -> {
+				queryComboBox.setSelectedIndex(-1);
+				queryComboBox.setEnabled(commands[commandComboBox.getSelectedIndex()].isTextEditable());
+				fieldRadioGroup.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
+				fieldCustomButton.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
+				fieldLoadButton.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
 			});
 
 			queryComboBoxEditor = new TextFieldComboBoxEditor(ae -> queryButton.doClick());
@@ -502,22 +491,17 @@ public class JavaPH extends JApplet implements IconProvider {
 				{
 				}
 			});
-			fieldCustomButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{	
-					final int[] prevSelections = fieldList.getSelectedIndices();
-					final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + serverComboBox.getSelectedItem().toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-					
-					if (option != JOptionPane.OK_OPTION)
-					{
-						fieldList.setSelectedIndices(prevSelections);
-					}
-					else
-					{
-						fieldCustomRadioButton.setSelected(true);
-					}
+			fieldCustomButton.addActionListener(ae -> {
+				final int[] prevSelections = fieldList.getSelectedIndices();
+				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + serverComboBox.getSelectedItem().toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+				if (option != JOptionPane.OK_OPTION)
+				{
+					fieldList.setSelectedIndices(prevSelections);
+				}
+				else
+				{
+					fieldCustomRadioButton.setSelected(true);
 				}
 			});
 
@@ -553,19 +537,14 @@ public class JavaPH extends JApplet implements IconProvider {
 				{
 				}
 			});
-			fieldLoadButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
+			fieldLoadButton.addActionListener(ae -> {
+				@Nullable final QiServer server = (QiServer)serverComboBox.getSelectedItem();
+
+				if (server != null)
 				{
-					@Nullable final QiServer server = (QiServer)serverComboBox.getSelectedItem();
-				
-					if (server != null)
-					{
-						loadFieldsForServer(server);
-						serverComboBox.repaint();
-						populateFieldList(server);
-					}
+					loadFieldsForServer(server);
+					serverComboBox.repaint();
+					populateFieldList(server);
 				}
 			});
 
@@ -652,43 +631,33 @@ public class JavaPH extends JApplet implements IconProvider {
 
 		
 			fieldListMoveUpButton = new JButton("Move Up");
-			fieldListMoveUpButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
+			fieldListMoveUpButton.addActionListener(ae -> {
+				final int[] selections = fieldList.getSelectedIndices();
+
+				for (int i = 0; i < selections.length; i++)
 				{
-					final int[] selections = fieldList.getSelectedIndices();
-					
-					for (int i = 0; i < selections.length; i++)
-					{
-						final Object toMove = fieldList.getModel().getElementAt(selections[i]);
-						((DefaultListModel)fieldList.getModel()).removeElementAt(selections[i]);
-						selections[i]--;
-						((DefaultListModel)fieldList.getModel()).insertElementAt(toMove, selections[i]);
-					}
-					
-					fieldList.setSelectedIndices(selections);
+					final Object toMove = fieldList.getModel().getElementAt(selections[i]);
+					((DefaultListModel)fieldList.getModel()).removeElementAt(selections[i]);
+					selections[i]--;
+					((DefaultListModel)fieldList.getModel()).insertElementAt(toMove, selections[i]);
 				}
+
+				fieldList.setSelectedIndices(selections);
 			});
 			
 			fieldListMoveDnButton = new JButton("Move Down");
-			fieldListMoveDnButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
+			fieldListMoveDnButton.addActionListener(ae -> {
+				final int[] selections = fieldList.getSelectedIndices();
+
+				for (int i = selections.length - 1; i >= 0; i--)
 				{
-					final int[] selections = fieldList.getSelectedIndices();
-				
-					for (int i = selections.length - 1; i >= 0; i--)
-					{
-						final Object toMove = fieldList.getModel().getElementAt(selections[i]);
-						((DefaultListModel)fieldList.getModel()).removeElementAt(selections[i]);
-						selections[i]++;
-						((DefaultListModel)fieldList.getModel()).insertElementAt(toMove, selections[i]);
-					}
-				
-					fieldList.setSelectedIndices(selections);
+					final Object toMove = fieldList.getModel().getElementAt(selections[i]);
+					((DefaultListModel)fieldList.getModel()).removeElementAt(selections[i]);
+					selections[i]++;
+					((DefaultListModel)fieldList.getModel()).insertElementAt(toMove, selections[i]);
 				}
+
+				fieldList.setSelectedIndices(selections);
 			});
 
 			fieldListSelectAllButton.setEnabled(false);
@@ -704,21 +673,16 @@ public class JavaPH extends JApplet implements IconProvider {
 			fieldListButtonPanel.add(fieldListMoveDnButton);
 
 			fieldList = new JList<>(new DefaultListModel<>());
-			fieldList.addListSelectionListener(new ListSelectionListener()
-			{
-				@Override
-				public void valueChanged(ListSelectionEvent lse)
+			fieldList.addListSelectionListener(lse -> {
+				if (fieldList.getSelectedIndex() >= 0)
 				{
-					if (fieldList.getSelectedIndex() >= 0)
-					{
-						fieldListMoveUpButton.setEnabled(!fieldList.isSelectedIndex(0));
-						fieldListMoveDnButton.setEnabled(!fieldList.isSelectedIndex(fieldList.getModel().getSize() - 1));
-					}
-					else
-					{
-						fieldListMoveUpButton.setEnabled(false);
-						fieldListMoveDnButton.setEnabled(false);
-					}
+					fieldListMoveUpButton.setEnabled(!fieldList.isSelectedIndex(0));
+					fieldListMoveDnButton.setEnabled(!fieldList.isSelectedIndex(fieldList.getModel().getSize() - 1));
+				}
+				else
+				{
+					fieldListMoveUpButton.setEnabled(false);
+					fieldListMoveDnButton.setEnabled(false);
 				}
 			});
 			fieldList.getModel().addListDataListener(new ListDataListener()
@@ -783,15 +747,10 @@ public class JavaPH extends JApplet implements IconProvider {
 			resultTable.setRowSelectionAllowed(false);
 			resultTable.setCellSelectionEnabled(true);
 			resultTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-			resultTable.getModel().addTableModelListener(new TableModelListener()
-			{
-				@Override
-				public void tableChanged(TableModelEvent tme)
-				{
-					resultTableColButton.setEnabled(resultTable.getRowCount() > 0);
-					resultTableColWidthButton.setEnabled(resultTable.getRowCount() > 0);
-					populateColumnList();
-				}
+			resultTable.getModel().addTableModelListener(tme -> {
+				resultTableColButton.setEnabled(resultTable.getRowCount() > 0);
+				resultTableColWidthButton.setEnabled(resultTable.getRowCount() > 0);
+				populateColumnList();
 			});
 				
 			@NotNull final JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();
@@ -881,25 +840,15 @@ public class JavaPH extends JApplet implements IconProvider {
 
 			@NotNull final JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
-			selectAllButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					resultText.selectAll();
-					resultText.getCaret().setSelectionVisible(true);
-				}
+			selectAllButton.addActionListener(ae -> {
+				resultText.selectAll();
+				resultText.getCaret().setSelectionVisible(true);
 			});
 
 			resultWrapCheckBox = new JCheckBox("Line Wrap");		
-			resultWrapCheckBox.addItemListener(new ItemListener()
-			{
-				@Override
-				public void itemStateChanged(ItemEvent ie)
-				{
-					resultText.setLineWrap(resultWrapCheckBox.isSelected());
-					resultText.setWrapStyleWord(resultWrapCheckBox.isSelected());
-				}
+			resultWrapCheckBox.addItemListener(ie -> {
+				resultText.setLineWrap(resultWrapCheckBox.isSelected());
+				resultText.setWrapStyleWord(resultWrapCheckBox.isSelected());
 			});
 	
 			@NotNull final JPanel resultControlPanel = new JPanel();
@@ -925,14 +874,8 @@ public class JavaPH extends JApplet implements IconProvider {
 			@NotNull final JPanel colListButtonPanel = new JPanel(new FlowLayout());
 
 			colListSelectAllButton = new JButton("Select All");
-			colListSelectAllButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					colList.setSelectionInterval(0, colList.getModel().getSize() - 1);
-				}
-			});
+			colListSelectAllButton.addActionListener(ae ->
+					colList.setSelectionInterval(0, colList.getModel().getSize() - 1));
 			
 			colListSelectNoneButton = new JButton("Delselect All");
 			colListSelectNoneButton.addActionListener(ae -> colList.clearSelection());
@@ -989,37 +932,22 @@ public class JavaPH extends JApplet implements IconProvider {
 
 			@NotNull final JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
-			selectAllButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					logText.selectAll();
-					logText.getCaret().setSelectionVisible(true);
-				}
+			selectAllButton.addActionListener(ae -> {
+				logText.selectAll();
+				logText.getCaret().setSelectionVisible(true);
 			});
 
 			logWrapCheckBox = new JCheckBox("Line Wrap");
-			logWrapCheckBox.addItemListener(new ItemListener()
-			{
-				@Override
-				public void itemStateChanged(ItemEvent ie)
-				{
-					logText.setLineWrap(logWrapCheckBox.isSelected());
-					logText.setWrapStyleWord(logWrapCheckBox.isSelected());
-				}
+			logWrapCheckBox.addItemListener(ie -> {
+				logText.setLineWrap(logWrapCheckBox.isSelected());
+				logText.setWrapStyleWord(logWrapCheckBox.isSelected());
 			});
 	
 			logClearButton = new JButton("Clear Log");
 			logClearButton.setMnemonic(KeyEvent.VK_C);
-			logClearButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{
-					logText.setText("");
-					log("Log cleared");
-				}
+			logClearButton.addActionListener(ae -> {
+				logText.setText("");
+				log("Log cleared");
 			});
 	
 			@NotNull final JPanel logControlPanel = new JPanel();
