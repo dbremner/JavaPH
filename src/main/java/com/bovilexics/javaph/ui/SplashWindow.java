@@ -16,11 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -28,11 +24,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
-
-import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.JavaPHConstants;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_COPYRIGHT;
 import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
@@ -45,7 +41,7 @@ import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
  */
 public final class SplashWindow extends JWindow {
 
-	public SplashWindow(@NotNull JavaPH javaph)
+	public SplashWindow(@NotNull IconProvider javaph)
 	{
 
 		final Container contentPane = getContentPane();

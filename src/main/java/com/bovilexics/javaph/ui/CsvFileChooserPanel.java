@@ -16,13 +16,9 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -32,10 +28,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import static com.bovilexics.javaph.JavaPHConstants.COMMA_SEPARATOR;
 import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
@@ -82,7 +81,7 @@ final class CsvFileChooserPanel extends JPanel
 	{
 		parent = javaph;
 
-		@NotNull final RadioButtonListener listener = new RadioButtonListener();
+		@NotNull final ActionListener listener = new RadioButtonListener();
 		
 		setBorder(BorderFactory.createEtchedBorder());
 		setPreferredSize(new Dimension(120, 0));
