@@ -1405,10 +1405,10 @@ public final class JavaPH extends JApplet implements IconProvider {
 		try
 		{
 			// TODO can I reuse the same stream?
-			try (FileInputStream inStream = new FileInputStream(PROP_FILE_DEF)) {
+			try (@NotNull FileInputStream inStream = new FileInputStream(PROP_FILE_DEF)) {
 				defaultProperties.load(inStream);
 			}
-			try (FileInputStream inStream1 = new FileInputStream(PROP_FILE_DEF)) {
+			try (@NotNull FileInputStream inStream1 = new FileInputStream(PROP_FILE_DEF)) {
 				properties.load(inStream1);
 			}
 		}
@@ -1471,7 +1471,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private void loadProperties()
 	{
 
-		try (FileInputStream inStream = new FileInputStream(PROP_FILE))
+		try (@NotNull FileInputStream inStream = new FileInputStream(PROP_FILE))
 		{
 			properties.load(inStream);
 		}
