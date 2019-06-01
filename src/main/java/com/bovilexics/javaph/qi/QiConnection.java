@@ -66,7 +66,7 @@ public class QiConnection
 	public QiConnection(@NotNull QiServer server)
 	{
 		host = server.getServer();
-		port = server.getPort().intValue();
+		port = server.getPort();
 		qiServer = server;
 	}
 

@@ -201,7 +201,7 @@ public class QiServer
 
 	private boolean isValidPort(@NotNull Integer port)
 	{
-		final int unboxed = port.intValue();
+		final int unboxed = port;
 		return isValidPort(unboxed);
 	}
 
