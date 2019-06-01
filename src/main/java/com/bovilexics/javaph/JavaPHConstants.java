@@ -20,7 +20,11 @@ package com.bovilexics.javaph;
  * @author Robert Fernandes robert@bovilexics.com
  */
 public final class JavaPHConstants
-{	
+{
+	private JavaPHConstants()
+	{
+	}
+
 	public static final int APP_DEFAULT_HEIGHT = 700;
 	public static final int APP_DEFAULT_WIDTH  = 700;
 	public static final int APP_MIN_HEIGHT     = 350;

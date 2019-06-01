@@ -36,6 +36,11 @@ public final class QiAPI
 	5XX - permanent errors
 	6XX - phquery specific codes
 */
+
+	private QiAPI()
+	{
+	}
+
 	public final static int LR_PROGRESS	= 100; // in progress
 	public final static int LR_ECHO		= 101; // echoing cmd
 	public final static int LR_NUMRET	= 102; // how many entries are being returned
