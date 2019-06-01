@@ -16,7 +16,6 @@
  */
 package com.bovilexics.javaph.actions;
 
-import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -32,11 +31,11 @@ public final class PrefsAction extends AbstractAction
 	@NotNull
 	private final Runnable runnable;
 		
-	public PrefsAction(@NotNull JavaPH javaph)
+	public PrefsAction(@NotNull Runnable runnable)
 	{
 		super("Preferences");
 
-		runnable = javaph::showPropertiesDialog;
+		this.runnable = runnable;
 	}
 	
 	@Override

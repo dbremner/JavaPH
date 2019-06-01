@@ -16,7 +16,6 @@
  */
 package com.bovilexics.javaph.actions;
 
-import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -31,12 +30,11 @@ public final class BrowserAction extends AbstractAction
 {
 	@NotNull
 	private final Runnable runnable;
-	
-	public BrowserAction(@NotNull JavaPH javaph)
+
+	public BrowserAction(@NotNull Runnable runnable)
 	{
 		super("Browser Options");
-
-		runnable = javaph::showBrowserDialog;
+		this.runnable = runnable;
 	}
 	
 	@Override

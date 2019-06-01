@@ -16,23 +16,6 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-import javax.swing.text.DefaultEditorKit.CopyAction;
-import javax.swing.text.DefaultEditorKit.CutAction;
-import javax.swing.text.DefaultEditorKit.PasteAction;
-
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.actions.AboutAction;
 import com.bovilexics.javaph.actions.BrowserAction;
@@ -43,6 +26,22 @@ import com.bovilexics.javaph.actions.NewAction;
 import com.bovilexics.javaph.actions.PrefsAction;
 import com.bovilexics.javaph.actions.SaveAction;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import javax.swing.text.DefaultEditorKit.CopyAction;
+import javax.swing.text.DefaultEditorKit.CutAction;
+import javax.swing.text.DefaultEditorKit.PasteAction;
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_TOOLBAR;
@@ -328,14 +327,14 @@ public final class MainMenu extends JMenuBar
 		windowMenu.add(new LookAndFeelMenu(parent));
 
 		menuItem = getNewMenuItem();
-		menuItem.setAction(new BrowserAction(parent));
+		menuItem.setAction(new BrowserAction(parent::showBrowserDialog));
 		menuItem.setActionCommand("Configure browser used to display JavaPH help");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK));
 		menuItem.setMnemonic(KeyEvent.VK_B);
 		windowMenu.add(menuItem);
 
 		menuItem = getNewMenuItem();
-		menuItem.setAction(new PrefsAction(parent));
+		menuItem.setAction(new PrefsAction(parent::showPropertiesDialog));
 		menuItem.setActionCommand("Set JavaPH preferences");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK));
 		menuItem.setMnemonic(KeyEvent.VK_P);
