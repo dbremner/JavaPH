@@ -16,23 +16,22 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.ui.CsvFileChooser;
+import com.bovilexics.javaph.ui.TextFileChooser;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-
-import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.ui.CsvFileChooser;
-import com.bovilexics.javaph.ui.TextFileChooser;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.event.ActionEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_QUOTE;
 import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_TAB;
@@ -91,9 +90,6 @@ public final class SaveAction extends AbstractAction
 	
 	private void saveCsvFile(int tab, @NotNull File file)
 	{
-		String message;
-		StringBuffer toWrite;
-
 		final boolean quoted = parent.isFieldQuoted();
 	
 		@Nullable final String separator = parent.getFieldSeparator();
@@ -104,7 +100,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
 		}
@@ -117,7 +113,7 @@ public final class SaveAction extends AbstractAction
 				// start at row -1 to grab headers first
 				for (int r = -1; r < rows; r++)
 				{
-					toWrite = new StringBuffer();
+					StringBuffer toWrite = new StringBuffer();
 
 					for (int c = 0; c < cols; c++)
 					{
@@ -148,14 +144,14 @@ public final class SaveAction extends AbstractAction
 					writer.flush();
 				}
 				writer.close();
-				
-				message = "File save finished";
+
+				final String message = "File save finished";
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 			}
 			catch (IOException e)
 			{
-				message = "Error: IOException received when trying to save file " + file.getPath();
+				final String message = "Error: IOException received when trying to save file " + file.getPath();
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 			}

@@ -157,8 +157,6 @@ public final class QiServerManager {
     }
 
     public static void saveServers() {
-        StringBuffer toWrite;
-
         try {
             @NotNull final BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
 
@@ -168,7 +166,7 @@ public final class QiServerManager {
             for (int i = 0; i < servers.size(); i++) {
                 final QiServer server = servers.get(i);
 
-                toWrite = new StringBuffer();
+                final StringBuffer toWrite = new StringBuffer();
                 toWrite.append(server.getName());
                 toWrite.append(SEPARATOR);
                 toWrite.append(server.getServer());
