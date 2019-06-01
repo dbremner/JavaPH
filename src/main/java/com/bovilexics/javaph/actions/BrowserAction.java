@@ -34,6 +34,7 @@ public final class BrowserAction extends AbstractAction
 	public BrowserAction(@NotNull Runnable runnable)
 	{
 		super("Browser Options");
+
 		this.runnable = runnable;
 	}
 	

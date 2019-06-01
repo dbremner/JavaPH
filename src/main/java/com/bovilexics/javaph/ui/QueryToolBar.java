@@ -16,7 +16,13 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Dimension;
+import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.actions.FindAction;
+import com.bovilexics.javaph.actions.HelpAction;
+import com.bovilexics.javaph.actions.NewAction;
+import com.bovilexics.javaph.actions.SaveAction;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -26,14 +32,7 @@ import javax.swing.JToolBar;
 import javax.swing.text.DefaultEditorKit.CopyAction;
 import javax.swing.text.DefaultEditorKit.CutAction;
 import javax.swing.text.DefaultEditorKit.PasteAction;
-
-import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.actions.FindAction;
-import com.bovilexics.javaph.actions.HelpAction;
-import com.bovilexics.javaph.actions.NewAction;
-import com.bovilexics.javaph.actions.SaveAction;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.Dimension;
 
 import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
 
@@ -66,7 +65,7 @@ public class QueryToolBar extends JToolBar
 			
 		addSeparator(new Dimension(sepWidth, sepHeight));
 			
-		addToolBarButton(new FindAction(javaph));
+		addToolBarButton(new FindAction(javaph, javaph::showFindDialog));
 			
 		addSeparator(new Dimension(sepWidth, sepHeight));
 			

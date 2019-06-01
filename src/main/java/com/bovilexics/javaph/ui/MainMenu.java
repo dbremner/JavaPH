@@ -159,7 +159,7 @@ public final class MainMenu extends JMenuBar
 		editMenu.addSeparator();
 		
 		menuItem = getNewMenuItem();
-		menuItem.setAction(new FindAction(parent));
+		menuItem.setAction(new FindAction(parent, parent::showFindDialog));
 		menuItem.setActionCommand("Finds the specified text in the query results");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK));
 		menuItem.setMnemonic(KeyEvent.VK_F);
@@ -218,7 +218,7 @@ public final class MainMenu extends JMenuBar
 		helpMenu.add(menuItem);
 		
 		menuItem = getNewMenuItem();
-		menuItem.setAction(new AboutAction(parent));
+		menuItem.setAction(new AboutAction(parent, parent::showAboutDialog));
 		menuItem.setActionCommand("Displays information about JavaPH");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK));
 		menuItem.setMnemonic(KeyEvent.VK_A);

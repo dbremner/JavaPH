@@ -16,7 +16,7 @@
  */
 package com.bovilexics.javaph.actions;
 
-import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -33,11 +33,11 @@ public final class FindAction extends AbstractAction
 	@NotNull
 	private final Runnable runnable;
 
-	public FindAction(@NotNull JavaPH javaph)
+	public FindAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("Find", new ImageIcon(javaph.getURL("img/find.gif")));
+		super("Find", new ImageIcon(provider.getURL("img/find.gif")));
 
-		runnable = javaph::showFindDialog;
+		this.runnable = runnable;
 	}
 	
 	@Override

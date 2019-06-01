@@ -16,15 +16,12 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Frame;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.awt.Frame;
 
 /**
  *
@@ -33,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
  */
 abstract class JavaPHDialog extends JDialog
 {
-	JavaPHDialog(@NotNull JavaPH javaph)
+	JavaPHDialog(@NotNull IconProvider javaph)
 	{
 		setModal(true);
 		setIcon(new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));		

@@ -16,7 +16,7 @@
  */
 package com.bovilexics.javaph.actions;
 
-import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -33,11 +33,11 @@ public final class AboutAction extends AbstractAction
 	@NotNull
 	private final Runnable runnable;
 	
-	public AboutAction(@NotNull JavaPH javaph)
+	public AboutAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("About JavaPH", new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));
-
-		runnable = javaph::showAboutDialog;
+		super("About JavaPH", new ImageIcon(provider.getURL("img/ph-icon-smaller.gif")));
+		
+		this.runnable = runnable;
 	}
 	
 	@Override

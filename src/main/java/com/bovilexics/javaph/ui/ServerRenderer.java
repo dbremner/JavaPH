@@ -25,7 +25,7 @@ public class ServerRenderer extends DefaultListCellRenderer
 	@Nullable
 	private final ImageIcon[] icons;
 	
-	public ServerRenderer(@NotNull JavaPH javaph)
+	public ServerRenderer(@NotNull IconProvider javaph)
 	{
 		icons = new ImageIcon[]
 	   {
