@@ -296,7 +296,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}	
 
-	class ContentPanel extends JPanel
+	final class ContentPanel extends JPanel
 	{	
 		ContentPanel(@NotNull final JavaPH javaph)
 		{	
@@ -311,7 +311,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	class QueryPanel extends JPanel
+	final class QueryPanel extends JPanel
 	{
 		@NotNull
 		private final JavaPH parent;
@@ -756,7 +756,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	class ResultPanel extends JTabbedPane
+	final class ResultPanel extends JTabbedPane
 	{
 		ResultPanel(final JavaPH javaph)
 		{
@@ -1033,7 +1033,7 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	}
 
-	class StatusPanel extends JPanel
+	final class StatusPanel extends JPanel
 	{	
 		StatusPanel()
 		{
