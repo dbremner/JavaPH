@@ -223,6 +223,12 @@ public class JavaPH extends JApplet implements IconProvider {
 	private JTextArea logText;
 	private JTextArea resultText;
 
+	private static class NullKeyAdapter extends KeyAdapter {
+	}
+
+	private static class NullMouseAdapter extends MouseAdapter {
+	}
+
 	class ControlTabDispatcher	implements KeyEventDispatcher
 	{
 		@Override
@@ -1478,8 +1484,8 @@ public class JavaPH extends JApplet implements IconProvider {
 
 		component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		component.setVisible(true);
-		component.addMouseListener(new MouseAdapter() {});
-		component.addKeyListener(new KeyAdapter() {});
+		component.addMouseListener(new NullMouseAdapter());
+		component.addKeyListener(new NullKeyAdapter());
 
 		server.loadFields();
 						
