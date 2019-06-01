@@ -114,7 +114,6 @@ public final class QiServerManager {
 
     public static @NotNull List<QiServer> loadServers(@NotNull String filename) {
         final @NotNull List<QiServer> serverResults = new ArrayList<>();
-        serverResults.clear();
 
         try {
             final @NotNull Reader in = new FileReader(filename);
