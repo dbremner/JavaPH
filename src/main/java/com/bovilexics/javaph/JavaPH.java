@@ -191,6 +191,7 @@ public class JavaPH extends JApplet implements IconProvider {
 	private ProgressMonitor queryProgressMonitor;
 	@NotNull
 	private final QiCommand[] commands;
+	@Nullable
 	private QiConnection connection;
 	private QueryComboBox queryComboBox;
 	private QueryToolBar queryToolBar;
@@ -1206,6 +1207,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		return defaultPane;
 	}
 
+	@Nullable
 	public QiConnection getConnection()
 	{
 		return connection;
@@ -1280,7 +1282,8 @@ public class JavaPH extends JApplet implements IconProvider {
 		return properties.getProperty(key);
 	}
 
-	private String getProperty(String key, String defaultValue)
+	@NotNull
+	private String getProperty(@NotNull String key, @NotNull String defaultValue)
 	{
 		return properties.getProperty(key, defaultValue);
 	}
@@ -1291,7 +1294,8 @@ public class JavaPH extends JApplet implements IconProvider {
 		return defaultProperties.getProperty(key);
 	}
 
-	private String getPropertyDefault(String key, String defaultValue)
+	@NotNull
+	private String getPropertyDefault(@NotNull String key, @NotNull String defaultValue)
 	{
 		return defaultProperties.getProperty(key, defaultValue);
 	}
@@ -1593,7 +1597,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public boolean propertyDefaultEquals(@NotNull String key, @Nullable String defaultValue, String equalsValue)
+	public boolean propertyDefaultEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
 	{
 		@Nullable final String value = (defaultValue == null) ? getPropertyDefault(key) : getPropertyDefault(key, defaultValue);
 		
@@ -1604,7 +1608,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public boolean propertyEquals(@NotNull String key, @Nullable String defaultValue, String equalsValue)
+	public boolean propertyEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
 	{
 		@Nullable final String value = (defaultValue == null) ? getProperty(key) : getProperty(key, defaultValue);
 		
