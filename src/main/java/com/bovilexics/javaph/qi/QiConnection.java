@@ -96,7 +96,7 @@ public class QiConnection
 	 */
 	public synchronized void connect() throws IOException
 	{
-		if (host.equals("")) {
+		if (host.isEmpty()) {
 			throw new IOException("No host specified, cannot connect");
 		}
 			
@@ -237,7 +237,7 @@ public class QiConnection
 			}
 
 			// "No Hostname found for IP address" maybe.
-			if (!blurb.equals("")) {
+			if (!blurb.isEmpty()) {
 				System.out.println("Error on Qi login: " + blurb);
 			}
 
@@ -255,7 +255,7 @@ public class QiConnection
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb.equals("")) {
+					if (!blurb.isEmpty()) {
 						System.out.println("Error on Qi login: " + blurb);
 					}
 						
@@ -308,7 +308,7 @@ public class QiConnection
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb.equals("")) {
+					if (!blurb.isEmpty()) {
 						System.out.println("Error on Qi logout: " + blurb);
 					}
 						

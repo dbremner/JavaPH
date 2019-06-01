@@ -103,7 +103,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	public void filterElements(@Nullable String filter)
 	{
 
-		if (filter == null || filter.equals(""))
+		if (filter == null || filter.isEmpty())
 		{
 			restoreAllElements();
 		}

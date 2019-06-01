@@ -132,7 +132,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	public void filterElements(@Nullable String filter)
 	{
 
-        if (filter == null || filter.equals(""))
+        if (filter == null || filter.isEmpty())
 		{
 			restoreAllElements();
 		}

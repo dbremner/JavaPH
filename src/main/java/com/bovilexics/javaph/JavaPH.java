@@ -347,7 +347,7 @@ public class JavaPH extends JApplet implements IconProvider {
 						final Object selectedItem = queryComboBox.getEditor().getItem();
 						@NotNull final QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
 		
-						if (selectedItem != null && !selectedItem.toString().equals(""))
+						if (selectedItem != null && !selectedItem.toString().isEmpty())
 						{
 							if ( model.getIndexOf(selectedItem) < 0) {
 								model.addElement(selectedItem);
@@ -1885,7 +1885,7 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	public void setFieldSeparator(@NotNull String separator)
 	{
-		if (separator.equals("")) {
+		if (separator.isEmpty()) {
 			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");
 		}
 			
