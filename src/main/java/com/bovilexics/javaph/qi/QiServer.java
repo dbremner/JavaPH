@@ -77,7 +77,7 @@ public class QiServer
 		
 		try
 		{
-			aPortInteger = new Integer(aPort);
+			aPortInteger = Integer.valueOf(aPort);
 			
 			if (!isValidPort(aPortInteger)) {
 				throw new IllegalArgumentException(PORT_ERROR);
