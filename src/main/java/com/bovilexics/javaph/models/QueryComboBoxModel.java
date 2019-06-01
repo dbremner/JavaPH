@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Vector;
 
 /**
@@ -57,10 +58,7 @@ public class QueryComboBoxModel extends AbstractListModel implements MutableComb
 	{
 		objects = new Vector<>();
 		objects.ensureCapacity( items.length );
-
-        for (Object item : items) {
-            objects.add(item);
-        }
+		objects.addAll(Arrays.asList(items));
 
 		if (getSize() > 0) {
             selectedObject = getElementAt(0);
