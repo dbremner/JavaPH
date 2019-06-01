@@ -1576,8 +1576,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
 	{
 
-		final @NotNull Component[] otherComponents = new Component[]
-		{
+		final @NotNull Component[] otherComponents = {
 			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
 		};
 		
