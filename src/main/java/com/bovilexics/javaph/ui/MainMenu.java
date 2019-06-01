@@ -37,8 +37,6 @@ import javax.swing.text.DefaultEditorKit.CopyAction;
 import javax.swing.text.DefaultEditorKit.CutAction;
 import javax.swing.text.DefaultEditorKit.PasteAction;
 import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -238,21 +236,16 @@ public final class MainMenu extends JMenuBar
 		showLogItem.setMnemonic(KeyEvent.VK_L);
 		showLogItem.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
 		
-		showLogItem.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(@NotNull ActionEvent ae)
+		showLogItem.addActionListener(ae -> {
+			// If the menu item was selected then just update
+			// the toolbar display to reflect the change,
+			// otherwise the accelerator key was used so we
+			// need to update the state of the menu item first
+			if (!(ae.getSource() instanceof JCheckBoxMenuItem))
 			{
-				// If the menu item was selected then just update
-				// the toolbar display to reflect the change,
-				// otherwise the accelerator key was used so we
-				// need to update the state of the menu item first
-				if (!(ae.getSource() instanceof JCheckBoxMenuItem))
-				{
-					showLogItem.setState(!showLogItem.isSelected());
-				}
-				parent.showLog(showLogItem.isSelected());
+				showLogItem.setState(!showLogItem.isSelected());
 			}
+			parent.showLog(showLogItem.isSelected());
 		});
 		
 		windowMenu.add(showLogItem);
@@ -264,21 +257,16 @@ public final class MainMenu extends JMenuBar
 		showToolBarItem.setMnemonic(KeyEvent.VK_T);
 		showToolBarItem.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
 		
-		showToolBarItem.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(@NotNull ActionEvent ae)
+		showToolBarItem.addActionListener(ae -> {
+			// If the menu item was selected then just update
+			// the toolbar display to reflect the change,
+			// otherwise the accelerator key was used so we
+			// need to update the state of the menu item first
+			if (!(ae.getSource() instanceof JCheckBoxMenuItem))
 			{
-				// If the menu item was selected then just update
-				// the toolbar display to reflect the change,
-				// otherwise the accelerator key was used so we
-				// need to update the state of the menu item first
-				if (!(ae.getSource() instanceof JCheckBoxMenuItem))
-				{
-					showToolBarItem.setSelected(!showToolBarItem.getState());
-				}
-				parent.showToolBar(showToolBarItem.isSelected());
+				showToolBarItem.setSelected(!showToolBarItem.getState());
 			}
+			parent.showToolBar(showToolBarItem.isSelected());
 		});
 		
 		windowMenu.add(showToolBarItem);
@@ -290,21 +278,16 @@ public final class MainMenu extends JMenuBar
 		rollToolBarItem.setMnemonic(KeyEvent.VK_R);
 		rollToolBarItem.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
 		
-		rollToolBarItem.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(@NotNull ActionEvent ae)
+		rollToolBarItem.addActionListener(ae -> {
+			// If the menu item was selected then just update
+			// the toolbar display to reflect the change,
+			// otherwise the accelerator key was used so we
+			// need to update the state of the menu item first
+			if (!(ae.getSource() instanceof JCheckBoxMenuItem))
 			{
-				// If the menu item was selected then just update
-				// the toolbar display to reflect the change,
-				// otherwise the accelerator key was used so we
-				// need to update the state of the menu item first
-				if (!(ae.getSource() instanceof JCheckBoxMenuItem))
-				{
-					rollToolBarItem.setSelected(!rollToolBarItem.getState());
-				}
-				parent.getQueryToolBar().setRollover(rollToolBarItem.isSelected());
+				rollToolBarItem.setSelected(!rollToolBarItem.getState());
 			}
+			parent.getQueryToolBar().setRollover(rollToolBarItem.isSelected());
 		});
 		
 		windowMenu.add(rollToolBarItem);
