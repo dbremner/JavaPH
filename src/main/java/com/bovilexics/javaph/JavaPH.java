@@ -196,34 +196,34 @@ public final class JavaPH extends JApplet implements IconProvider {
 	
 	// Swing widgets and stuff
 	
-	private JButton colListSelectAllButton;
-	private JButton colListSelectNoneButton;
+	private final JButton colListSelectAllButton = new JButton("Select All");
+	private final JButton colListSelectNoneButton = new JButton("Delselect All");
 	private @Nullable JButton fieldCustomButton;
 	private JButton fieldListMoveDnButton;
 	private JButton fieldListMoveUpButton;
 	private JButton fieldListSelectAllButton;
 	private JButton fieldListSelectNoneButton;
 	private @Nullable JButton fieldLoadButton;
-	private JButton queryButton;
-	private JButton resultTableColButton;
-	private JButton resultTableColWidthButton;
-	private JCheckBox logWrapCheckBox;
-	private JCheckBox resultWrapCheckBox;
+	private final JButton queryButton = new JButton("Execute Query");
+	private final JButton resultTableColButton = new JButton("Show/Hide Columns");
+	private final JButton resultTableColWidthButton = new JButton("Reset Column Widths");
+	private final JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
+	private final JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
 	private JComboBox<QiCommand> commandComboBox;
 	private JComboBox<QiServer> serverComboBox;
 	private JLabel portStatusLabel;
 	private JLabel serverStatusLabel;
 	private JLabel statusLabel;
-	private JList colList;
+	private final JList colList = new JList(new DefaultListModel());
 	private JList<QiField> fieldList;
-	private JPanel colListPanel;
-	private JPanel fieldListPanel;
-	private JPanel logTextPanel;
-	private JRadioButton fieldCustomRadioButton;
+	private final JPanel colListPanel = new JPanel(new BorderLayout());
+	private final JPanel fieldListPanel = new JPanel(new BorderLayout());
+	private final JPanel logTextPanel = new JPanel(new BorderLayout());
+	private final JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
 	private JRootPane defaultPane;
 	private JTabbedPane resultPanel;
-	private JTextArea logText;
-	private JTextArea resultText;
+	private final JTextArea logText = new JTextArea();
+	private final JTextArea resultText = new JTextArea();
 
 	private static class NullKeyAdapter extends KeyAdapter {
 	}
@@ -309,8 +309,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		private @NotNull JPanel getQueryButtonPanel(final @NotNull JavaPH javaph)
 		{
 			final @NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
-			
-			queryButton = new JButton("Execute Query");
+
 			queryButton.setMnemonic(KeyEvent.VK_Q);
 			queryButton.setToolTipText("Click this to start running the query.");
 			queryButton.addActionListener(ae -> {
@@ -414,8 +413,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton("Default Fields");
 			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton("All Fields");
-			fieldCustomRadioButton = new JRadioButton("Custom Fields");
-			
+
 			fieldRadioGroup.add(fieldDefaultRadioButton);
 			fieldRadioGroup.add(fieldAllRadioButton);
 			fieldRadioGroup.add(fieldCustomRadioButton);
@@ -542,8 +540,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			// This panel is not visible in the main window
 			// It will be in a separate dialog that is displayed
 			// when the custom field button is activated
-			fieldListPanel = new JPanel(new BorderLayout());
-			
+
 			final @NotNull JPanel fieldListControlPanel = new JPanel(new BorderLayout());
 			fieldListControlPanel.setBorder(BorderFactory.createEtchedBorder());
 			
@@ -677,7 +674,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 			});
 
 			final @NotNull JPanel resultControlPanel = new JPanel();
-			resultTableColButton = new JButton("Show/Hide Columns");
 			resultTableColButton.setEnabled(false);
 			resultTableColButton.addActionListener(ae -> {
 				final int[] prevSelections = colList.getSelectedIndices();
@@ -703,7 +699,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 				}
 			});
 
-			resultTableColWidthButton = new JButton("Reset Column Widths");
 			resultTableColWidthButton.setEnabled(false);
 			resultTableColWidthButton.addActionListener(ae -> {
 				for (int i = 0; i < colList.getModel().getSize(); i++)
@@ -731,7 +726,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 		{
 			final @NotNull JPanel resultTextPanel = new JPanel(new BorderLayout());
 
-			resultText = new JTextArea();
 			resultText.setEditable(false);
 			resultText.setFont(fixedWidthFont);
 			final @NotNull JScrollPane resultTextScroll = new JScrollPane(resultText);
@@ -743,7 +737,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 				resultText.getCaret().setSelectionVisible(true);
 			});
 
-			resultWrapCheckBox = new JCheckBox("Line Wrap");		
 			resultWrapCheckBox.addItemListener(ie -> {
 				resultText.setLineWrap(resultWrapCheckBox.isSelected());
 				resultText.setWrapStyleWord(resultWrapCheckBox.isSelected());
@@ -764,18 +757,14 @@ public final class JavaPH extends JApplet implements IconProvider {
 			// This panel is not visible in the main window
 			// It will be in a separate dialog that is displayed
 			// when the custom field button is activated
-			colListPanel = new JPanel(new BorderLayout());
-			
 			final @NotNull JPanel colListControlPanel = new JPanel(new BorderLayout());
 			colListControlPanel.setBorder(BorderFactory.createEtchedBorder());
 
 			final @NotNull JPanel colListButtonPanel = new JPanel(new FlowLayout());
 
-			colListSelectAllButton = new JButton("Select All");
 			colListSelectAllButton.addActionListener(ae ->
 					colList.setSelectionInterval(0, colList.getModel().getSize() - 1));
-			
-			colListSelectNoneButton = new JButton("Delselect All");
+
 			colListSelectNoneButton.addActionListener(ae -> colList.clearSelection());
 
 			colListSelectAllButton.setEnabled(false);
@@ -783,8 +772,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 			colListButtonPanel.add(colListSelectAllButton);
 			colListButtonPanel.add(colListSelectNoneButton);
-		
-			colList = new JList(new DefaultListModel());
+
 			colList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
@@ -804,9 +792,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 		
 		private void initLogTextPanel()
 		{
-			logTextPanel = new JPanel(new BorderLayout());
-			
-			logText = new JTextArea();
 			logText.setEditable(false);
 			logText.setFont(fixedWidthFont);
 			final @NotNull JScrollPane logTextScroll = new JScrollPane(logText);
@@ -818,7 +803,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 				logText.getCaret().setSelectionVisible(true);
 			});
 
-			logWrapCheckBox = new JCheckBox("Line Wrap");
 			logWrapCheckBox.addItemListener(ie -> {
 				logText.setLineWrap(logWrapCheckBox.isSelected());
 				logText.setWrapStyleWord(logWrapCheckBox.isSelected());
@@ -1261,7 +1245,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return loadFields;
 	}
 
-	public JTextArea getLogText()
+	public @NotNull JTextArea getLogText()
 	{
 		return logText;
 	}
@@ -1291,7 +1275,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return queryRuntime;
 	}
 
-	public JButton getQueryButton()
+	public @NotNull JButton getQueryButton()
 	{
 		return queryButton;
 	}
@@ -1321,7 +1305,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return resultTable;
 	}
 
-	public JTextArea getResultText()
+	public @NotNull JTextArea getResultText()
 	{
 		return resultText;
 	}
@@ -1501,13 +1485,10 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	public void log(String logMessage)
 	{
-		if (logText != null)
-		{
-			logText.append((new Date(System.currentTimeMillis())).toString());
-			logText.append(" :: ");
-			logText.append(logMessage);
-			logText.append("\n");
-		}
+		logText.append((new Date(System.currentTimeMillis())).toString());
+		logText.append(" :: ");
+		logText.append(logMessage);
+		logText.append("\n");
 	}
 
 	private void populateColumnList()
@@ -1601,9 +1582,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			// due to the weirdness of potentially running
 			// as either an application or an applet
 			for (i = 0; i < otherComponents.length; i++) {
-				if (otherComponents[i] != null) {
-					SwingUtilities.updateComponentTreeUI(otherComponents[i]);
-				}
+				SwingUtilities.updateComponentTreeUI(otherComponents[i]);
 			}
 			
 			return;
@@ -1627,9 +1606,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			// due to the weirdness of potentially running
 			// as either an application or an applet
 			for (i = 0; i < otherComponents.length; i++) {
-				if (otherComponents[i] != null) {
-					SwingUtilities.updateComponentTreeUI(otherComponents[i]);
-				}
+				SwingUtilities.updateComponentTreeUI(otherComponents[i]);
 			}
 
 			return;
@@ -1732,11 +1709,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	public void showLog(boolean show)
 	{
-		if (logTextPanel == null)
-		{
-			return;
-		}
-
 		final int location = resultPanel.indexOfTab(SYSTEM_LOG_LABEL);
 
 		// If requested to show the log and it's not already
@@ -1794,9 +1766,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	public void showToolBar(boolean show)
 	{
-		if (queryToolBar != null) {
-			queryToolBar.setVisible(show);
-		}
+		queryToolBar.setVisible(show);
 	}
 	
 	public void storeLookAndFeel()
