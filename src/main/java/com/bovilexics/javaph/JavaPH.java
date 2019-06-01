@@ -163,7 +163,7 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
 public class JavaPH extends JApplet implements IconProvider {
 	// Custom widgets and other private stuff
 
-	final @NotNull JFrame frame = new JFrame();
+	private final @NotNull JFrame frame = new JFrame();
 
 	private boolean fieldQuoted = false;
 	private boolean savePosition = false;
@@ -175,10 +175,10 @@ public class JavaPH extends JApplet implements IconProvider {
 	private CustomButtonGroup fieldRadioGroup;
 	private FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
-	private @Nullable ImageIcon fieldCustomOff;
-	private @Nullable ImageIcon fieldCustomOn;
-	private @Nullable ImageIcon fieldLoadOff;
-	private @Nullable ImageIcon fieldLoadOn;
+	private final @NotNull ImageIcon fieldCustomOff;
+	private final @NotNull ImageIcon fieldCustomOn;
+	private final @NotNull ImageIcon fieldLoadOff;
+	private final @NotNull ImageIcon fieldLoadOn;
 	private final @NotNull Properties defaultProperties = new Properties();
 	private final @NotNull Properties properties = new Properties();
 	private PropertiesDialog propertiesDialog;
@@ -879,34 +879,6 @@ public class JavaPH extends JApplet implements IconProvider {
 	public static void main(String[] args)
 	{
 		final @NotNull JavaPH applet = new JavaPH();
-
-		int frameHeight = applet.getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
-		int frameWidth = applet.getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
-		int frameX = applet.getIntProperty(PROP_APP_X_POSITION, -1);
-		int frameY = applet.getIntProperty(PROP_APP_Y_POSITION, -1);
-
-		if (frameHeight < APP_MIN_HEIGHT) {
-			frameHeight = APP_DEFAULT_HEIGHT;
-		}
-		if (frameWidth < APP_MIN_WIDTH) {
-			frameWidth = APP_DEFAULT_WIDTH;
-		}
-
-		applet.init();
-		applet.frame.setSize(frameWidth, frameHeight);
-		applet.frame.setTitle("JavaPH");
-
-		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-		// if no previous X/Y position specified or if the previous X/Y
-		// position is somehow off the screen then just center the frame
-		frameX = (frameX < 0 || frameX > screenSize.width) ? (screenSize.width/2 - (frameWidth/2)) : frameX;
-		frameY = (frameY < 0 || frameY > screenSize.height) ? (screenSize.height/2 - (frameHeight/2)) : frameY;
-		
-		applet.frame.setLocation(frameX, frameY);
-		applet.frame.setVisible(true);
-		applet.frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
 		applet.frame.addWindowListener(new WindowAdapter()
 		{
 			@Override
@@ -960,6 +932,52 @@ public class JavaPH extends JApplet implements IconProvider {
 	public JavaPH()
 	{
 		commands = QiCommand.commands;
+		fieldCustomOff = new ImageIcon(getURL("img/field-custom-off.gif"));
+		fieldCustomOn = new ImageIcon(getURL("img/field-custom-on.gif"));
+		fieldLoadOff = new ImageIcon(getURL("img/field-load-off.gif"));
+		fieldLoadOn = new ImageIcon(getURL("img/field-load-on.gif"));
+
+		int frameHeight = getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
+		int frameWidth = getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
+		int frameX = getIntProperty(PROP_APP_X_POSITION, -1);
+		int frameY = getIntProperty(PROP_APP_Y_POSITION, -1);
+
+		if (frameHeight < APP_MIN_HEIGHT) {
+			frameHeight = APP_DEFAULT_HEIGHT;
+		}
+		if (frameWidth < APP_MIN_WIDTH) {
+			frameWidth = APP_DEFAULT_WIDTH;
+		}
+
+		defaultPane = frame.getRootPane();
+
+		Browser.init();
+
+		initProperties();
+		initServers();
+		initDialogs();
+
+		if (defaultPane == null) {
+			defaultPane = getRootPane();
+		}
+
+		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
+
+		restoreLookAndFeel();
+		init();
+		frame.setSize(frameWidth, frameHeight);
+		frame.setTitle("JavaPH");
+
+		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		// if no previous X/Y position specified or if the previous X/Y
+		// position is somehow off the screen then just center the frame
+		frameX = (frameX < 0 || frameX > screenSize.width) ? (screenSize.width/2 - (frameWidth/2)) : frameX;
+		frameY = (frameY < 0 || frameY > screenSize.height) ? (screenSize.height/2 - (frameHeight/2)) : frameY;
+
+		frame.setLocation(frameX, frameY);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	public void findText(@NotNull String text, boolean caseSensitive, boolean wrap)
@@ -1330,23 +1348,6 @@ public class JavaPH extends JApplet implements IconProvider {
 	@Override
 	public void init()
 	{
-		defaultPane = frame.getRootPane();
-
-		Browser.init();
-
-		initProperties();
-		initServers();
-		initIcons();
-		initDialogs();
-
-		if (defaultPane == null) {
-			defaultPane = getRootPane();
-		}
-
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
-
-		restoreLookAndFeel();
-
 		if(propertyEquals(PROP_DISPLAY_SPLASH, "true", "true")) {
 			showSplashWindow();
 		}
@@ -1388,14 +1389,6 @@ public class JavaPH extends JApplet implements IconProvider {
 		propertiesDialog = new PropertiesDialog(this);
 		queryToolBar     = new QueryToolBar(this);
 		splashWindow     = new SplashWindow(this);
-	}
-
-	private void initIcons()
-	{
-		fieldCustomOff = new ImageIcon(getURL("img/field-custom-off.gif"));
-		fieldCustomOn  = new ImageIcon(getURL("img/field-custom-on.gif"));
-		fieldLoadOff   = new ImageIcon(getURL("img/field-load-off.gif"));
-		fieldLoadOn    = new ImageIcon(getURL("img/field-load-on.gif"));
 	}
 
 	private void initProperties()
