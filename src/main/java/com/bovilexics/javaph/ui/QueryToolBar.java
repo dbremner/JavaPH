@@ -22,7 +22,6 @@ import com.bovilexics.javaph.actions.HelpAction;
 import com.bovilexics.javaph.actions.NewAction;
 import com.bovilexics.javaph.actions.SaveAction;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -74,17 +73,17 @@ public class QueryToolBar extends JToolBar
 
 	private JButton addToolBarButton(Action action)
 	{
-		return addToolBarButton(action, null);
+		final JButton myJButton = add(action);
+		myJButton.setBorder(BorderFactory.createRaisedBevelBorder());
+		myJButton.setText(null);
+
+		return myJButton;
 	}
 		
-	private JButton addToolBarButton(Action action, @Nullable ImageIcon icon)
+	private JButton addToolBarButton(Action action, @NotNull ImageIcon icon)
 	{
 		final JButton myJButton = add(action);
-
-		if (icon != null) {
-            myJButton.setIcon(icon);
-        }
-
+		myJButton.setIcon(icon);
 		myJButton.setBorder(BorderFactory.createRaisedBevelBorder());
 		myJButton.setText(null);
 
