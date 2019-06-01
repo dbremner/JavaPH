@@ -29,6 +29,7 @@ import com.bovilexics.javaph.threads.QueryThread;
 import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.CustomButtonGroup;
 import com.bovilexics.javaph.ui.FindDialog;
+import com.bovilexics.javaph.ui.IconProvider;
 import com.bovilexics.javaph.ui.MainMenu;
 import com.bovilexics.javaph.ui.PropertiesDialog;
 import com.bovilexics.javaph.ui.QueryComboBox;
@@ -168,7 +169,7 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class JavaPH extends JApplet {
+public class JavaPH extends JApplet implements IconProvider {
 	// Custom widgets and other private stuff
 
 	private boolean fieldQuoted = false;
