@@ -44,6 +44,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JButton;
@@ -1511,6 +1512,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		return (QiServer)serverComboBox.getSelectedItem();
 	}
 
+	@Override
 	@NotNull
 	public String getURL(@NotNull String location)
 	{
@@ -1520,6 +1522,14 @@ public class JavaPH extends JApplet implements IconProvider {
 		@NotNull final URL url = (new File(location)).toURI().toURL();
 		return url;
 		*/
+	}
+
+	@Override
+	@NotNull
+	public Icon getIcon(@NotNull String location)
+	{
+		@NotNull final Icon icon = new ImageIcon((location));
+		return icon;
 	}
 
 	@Override
