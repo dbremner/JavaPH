@@ -38,8 +38,6 @@ import javax.swing.text.DefaultEditorKit.CutAction;
 import javax.swing.text.DefaultEditorKit.PasteAction;
 import java.awt.Event;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
@@ -53,29 +51,6 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
  */
 public final class MainMenu extends JMenuBar
 {
-	static final class StatusMouseListener extends MouseAdapter
-	{
-		private final @NotNull JavaPH parent;
-
-		StatusMouseListener(@NotNull JavaPH parent)
-		{
-			this.parent = parent;
-		}
-
-		@Override
-		public void mouseEntered(@NotNull MouseEvent e)
-		{
-			if (e.getSource() instanceof JMenuItem) {
-				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
-			}
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e)
-		{
-			parent.showDefaultStatus();
-		}
-	}
 
 	private final @NotNull MouseListener mouseListener;
 	

@@ -33,8 +33,6 @@ import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 //import com.sun.java.swing.plaf.mac.MacLookAndFeel;
@@ -108,29 +106,6 @@ final class LookAndFeelMenu extends JMenu
 			{
 				parent.restoreLookAndFeel(WINDOWS_LOOK_AND_FEEL);
 			}
-		}
-	}
-
-	static class StatusMouseListener extends MouseAdapter
-	{
-		private @NotNull JavaPH parent;
-
-		public StatusMouseListener(@NotNull JavaPH parent) {
-			this.parent = parent;
-		}
-
-		@Override
-		public void mouseEntered(@NotNull MouseEvent e)
-		{
-			if (e.getSource() instanceof JMenuItem) {
-				parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
-			}
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e)
-		{
-			parent.showDefaultStatus();
 		}
 	}
 
