@@ -1593,11 +1593,6 @@ public class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public boolean propertyDefaultEquals(@NotNull String key, String equalsValue)
-	{
-		return propertyDefaultEquals(key, null, equalsValue);
-	}
-
 	public boolean propertyDefaultEquals(@NotNull String key, @Nullable String defaultValue, String equalsValue)
 	{
 		@Nullable final String value = (defaultValue == null) ? getPropertyDefault(key) : getPropertyDefault(key, defaultValue);
@@ -1607,11 +1602,6 @@ public class JavaPH extends JApplet implements IconProvider {
 		} else {
 			return value.equals(equalsValue);
 		}
-	}
-
-	public boolean propertyEquals(@NotNull String key, String equalsValue)
-	{
-		return propertyEquals(key, null, equalsValue);
 	}
 
 	public boolean propertyEquals(@NotNull String key, @Nullable String defaultValue, String equalsValue)
