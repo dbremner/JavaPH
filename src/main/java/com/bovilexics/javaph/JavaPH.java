@@ -1599,24 +1599,14 @@ public class JavaPH extends JApplet implements IconProvider {
 
 	public boolean propertyDefaultEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
 	{
-		@Nullable final String value = (defaultValue == null) ? getPropertyDefault(key) : getPropertyDefault(key, defaultValue);
-		
-		if (value == null) {
-			return false;
-		} else {
-			return value.equals(equalsValue);
-		}
+		@NotNull final String value = getPropertyDefault(key, defaultValue);
+		return value.equals(equalsValue);
 	}
 
 	public boolean propertyEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
 	{
-		@Nullable final String value = (defaultValue == null) ? getProperty(key) : getProperty(key, defaultValue);
-		
-		if (value == null) {
-			return false;
-		} else {
-			return value.equals(equalsValue);
-		}
+		@NotNull final String value = getProperty(key, defaultValue);
+		return value.equals(equalsValue);
 	}
 
 	public void restoreLookAndFeel()
