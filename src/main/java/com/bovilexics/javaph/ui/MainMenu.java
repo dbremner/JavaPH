@@ -102,7 +102,7 @@ public final class MainMenu extends JMenuBar
 		mouseListener = new StatusMouseListener();
 		addMouseListener(mouseListener);
 
-		JMenu menu = getFileComponent();
+		@NotNull JMenu menu = getFileComponent();
 		menu.addMouseListener(mouseListener);
 		add(menu);
 		
@@ -126,7 +126,7 @@ public final class MainMenu extends JMenuBar
 		@NotNull final JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
-		JMenuItem menuItem = getNewMenuItem();
+		@NotNull JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new CutAction());
 		menuItem.setIcon(new ImageIcon(parent.getURL("img/cut.gif")));
 		menuItem.setText("Cut");
@@ -172,7 +172,7 @@ public final class MainMenu extends JMenuBar
 		@NotNull final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 
-		JMenuItem menuItem = getNewMenuItem();
+		@NotNull JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new NewAction(parent));
 		menuItem.setActionCommand("Create a New Query");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK));
@@ -205,7 +205,7 @@ public final class MainMenu extends JMenuBar
 		@NotNull final JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
-		JMenuItem menuItem = getNewMenuItem();
+		@NotNull JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new HelpAction(parent));
 		menuItem.setActionCommand("Open JavaPH help window");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, Event.CTRL_MASK));
@@ -319,7 +319,7 @@ public final class MainMenu extends JMenuBar
 
 		windowMenu.add(new LookAndFeelMenu(parent));
 
-		JMenuItem menuItem = getNewMenuItem();
+		@NotNull JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new BrowserAction(parent::showBrowserDialog));
 		menuItem.setActionCommand("Configure browser used to display JavaPH help");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK));

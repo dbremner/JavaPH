@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,7 +109,8 @@ public final class QiAPI
 	public final static int LQ_CLEAR		= 0x100; // use clear-text passwords
 	
 	public final static int LQ_ALL		= (LQ_FWTK | LQ_KRB4 | LQ_KRB5 | LQ_GSS | LQ_EMAIL | LQ_PASSWORD | LQ_CLEAR);
-	
+
+	@NotNull
 	private final static Map<Integer, String> QiCodes = new HashMap<>();
 	
 	static
