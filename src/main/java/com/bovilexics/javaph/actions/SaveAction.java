@@ -20,7 +20,6 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.ui.CsvFileChooser;
 import com.bovilexics.javaph.ui.TextFileChooser;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -91,7 +90,7 @@ public final class SaveAction extends AbstractAction
 	{
 		final boolean quoted = parent.isFieldQuoted();
 	
-		final @Nullable String separator = parent.getFieldSeparator();
+		final @NotNull String separator = parent.getFieldSeparator();
 		final TableModel model = parent.getResultTable().getModel();
 
 		final int cols = model.getColumnCount();

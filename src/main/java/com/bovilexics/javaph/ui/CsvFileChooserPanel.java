@@ -88,7 +88,7 @@ final class CsvFileChooserPanel extends JPanel
 		tabRadioButton = new JRadioButton("Tab");
 		customRadioButton = new JRadioButton("Custom");
 
-		final @Nullable String separator = parent.getFieldSeparator();
+		final @NotNull String separator = parent.getFieldSeparator();
 
 		if (separator.equals(COMMA_SEPARATOR)) {
 			commaRadioButton.setSelected(true);

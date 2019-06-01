@@ -188,7 +188,7 @@ public class JavaPH extends JApplet implements IconProvider {
 	private ResultTable resultTable;
 	private SplashWindow splashWindow;
 	private @Nullable String customFieldSeparator = CUSTOM_SEPARATOR;
-	private @Nullable String fieldSeparator = COMMA_SEPARATOR;
+	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
 	private Vector<QiServer> servers;
 	
@@ -1181,7 +1181,7 @@ public class JavaPH extends JApplet implements IconProvider {
 		return connection;
 	}
 
-	public @Nullable String getFieldSeparator()
+	public @NotNull String getFieldSeparator()
 	{
 		return fieldSeparator;
 	}
