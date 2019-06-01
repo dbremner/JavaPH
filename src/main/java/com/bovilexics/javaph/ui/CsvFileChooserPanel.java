@@ -33,8 +33,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import static com.bovilexics.javaph.JavaPHConstants.COMMA_SEPARATOR;
 import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
@@ -110,13 +110,8 @@ final class CsvFileChooserPanel extends JPanel
 		customTextField.setMinimumSize(new Dimension(20, customTextField.getPreferredSize().height));
 		customTextField.setMaximumSize(new Dimension(20, customTextField.getPreferredSize().height));
 		customTextField.setPreferredSize(new Dimension(20, customTextField.getPreferredSize().height));
-		customTextField.addKeyListener(new KeyListener()
+		customTextField.addKeyListener(new KeyAdapter()
 		{
-			@Override
-			public void keyPressed(KeyEvent ke)
-			{
-			}
-				
 			@Override
 			public void keyReleased(@NotNull KeyEvent ke)
 			{
@@ -125,11 +120,6 @@ final class CsvFileChooserPanel extends JPanel
 					customRadioButton.setSelected(true);
 					parent.setFieldSeparator(customTextField.getText());
 				}
-			}
-				
-			@Override
-			public void keyTyped(KeyEvent ke)
-			{
 			}
 		});
 
