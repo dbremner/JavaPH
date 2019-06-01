@@ -16,12 +16,11 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import com.bovilexics.javaph.JavaPH;
+import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
@@ -30,13 +29,15 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import com.bovilexics.javaph.JavaPH;
 //import com.sun.java.swing.plaf.mac.MacLookAndFeel;
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -117,13 +118,8 @@ final class LookAndFeelMenu extends JMenu
 		}
 	}
 
-	class StatusMouseListener implements MouseListener
+	class StatusMouseListener extends MouseAdapter
 	{
-		@Override
-		public void mouseClicked(MouseEvent e)
-		{
-		}
-
 		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
@@ -136,16 +132,6 @@ final class LookAndFeelMenu extends JMenu
 		public void mouseExited(MouseEvent e)
 		{
 			parent.showDefaultStatus();
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e)
-		{
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e)
-		{
 		}
 	}
 

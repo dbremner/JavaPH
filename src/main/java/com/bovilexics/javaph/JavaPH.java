@@ -92,7 +92,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
@@ -462,13 +461,8 @@ public class JavaPH extends JApplet implements IconProvider {
 			fieldCustomButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldCustomButton.setFocusable(false);
 			fieldCustomButton.setToolTipText("Choose the fields that queries will return");
-			fieldCustomButton.addMouseListener(new MouseListener()
+			fieldCustomButton.addMouseListener(new MouseAdapter()
 			{
-				@Override
-				public void mouseClicked(MouseEvent e)
-				{
-				}
-
 				@Override
 				public void mouseEntered(MouseEvent e)
 				{
@@ -479,16 +473,6 @@ public class JavaPH extends JApplet implements IconProvider {
 				public void mouseExited(MouseEvent e)
 				{
 					fieldCustomButton.setIcon(fieldCustomOff);
-				}
-
-				@Override
-				public void mousePressed(MouseEvent e)
-				{
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e)
-				{
 				}
 			});
 			fieldCustomButton.addActionListener(ae -> {
@@ -508,13 +492,8 @@ public class JavaPH extends JApplet implements IconProvider {
 			fieldLoadButton = new JButton(fieldLoadOff);
 			fieldLoadButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldLoadButton.setFocusable(false);
-			fieldLoadButton.addMouseListener(new MouseListener()
+			fieldLoadButton.addMouseListener(new MouseAdapter()
 			{
-				@Override
-				public void mouseClicked(MouseEvent e)
-				{
-				}
-
 				@Override
 				public void mouseEntered(MouseEvent e)
 				{
@@ -525,16 +504,6 @@ public class JavaPH extends JApplet implements IconProvider {
 				public void mouseExited(MouseEvent e)
 				{
 					fieldLoadButton.setIcon(fieldLoadOff);
-				}
-
-				@Override
-				public void mousePressed(MouseEvent e)
-				{
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e)
-				{
 				}
 			});
 			fieldLoadButton.addActionListener(ae -> {

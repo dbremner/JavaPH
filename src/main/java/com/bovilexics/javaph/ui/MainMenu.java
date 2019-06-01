@@ -40,6 +40,7 @@ import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -54,13 +55,8 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
  */
 public final class MainMenu extends JMenuBar
 {
-	class StatusMouseListener implements MouseListener
+	class StatusMouseListener extends MouseAdapter
 	{
-		@Override
-		public void mouseClicked(MouseEvent e)
-		{
-		}
-
 		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
@@ -73,16 +69,6 @@ public final class MainMenu extends JMenuBar
 		public void mouseExited(MouseEvent e)
 		{
 			parent.showDefaultStatus();
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e)
-		{
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e)
-		{
 		}
 	}
 
