@@ -30,8 +30,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 /**
@@ -75,29 +73,24 @@ public final class FindDialog extends JavaPHDialog
 		
 		findButton = new JButton("Find Next");
 		findButton.setMnemonic(KeyEvent.VK_F);
-		findButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
+		findButton.addActionListener(ae -> {
+			if (findComboBox.isEnabled())
 			{
-				if (findComboBox.isEnabled())
+				final Object selectedItem = findComboBox.getEditor().getItem();
+				@NotNull final DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
+				// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
+
+				if (selectedItem != null && !selectedItem.toString().isEmpty())
 				{
-					final Object selectedItem = findComboBox.getEditor().getItem();
-					@NotNull final DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
-					// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
-
-					if (selectedItem != null && !selectedItem.toString().isEmpty())
-					{
-						if ( model.getIndexOf(selectedItem) < 0) {
-							model.insertElementAt(selectedItem, 0);
-						}
-
-						model.setSelectedItem(selectedItem);
+					if ( model.getIndexOf(selectedItem) < 0) {
+						model.insertElementAt(selectedItem, 0);
 					}
-				}
 
-				parent.findText(findComboBox.getSelectedItem().toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
+					model.setSelectedItem(selectedItem);
+				}
 			}
+
+			parent.findText(findComboBox.getSelectedItem().toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
 		});
 
 		closeButton = new JButton("Close");

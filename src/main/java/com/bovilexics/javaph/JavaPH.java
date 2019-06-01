@@ -85,8 +85,6 @@ import java.awt.Frame;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -329,30 +327,25 @@ public class JavaPH extends JApplet implements IconProvider {
 			queryButton = new JButton("Execute Query");
 			queryButton.setMnemonic(KeyEvent.VK_Q);
 			queryButton.setToolTipText("Click this to start running the query.");
-			queryButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
+			queryButton.addActionListener(ae -> {
+				if (queryComboBox.isEnabled())
 				{
-					if (queryComboBox.isEnabled())
+					final Object selectedItem = queryComboBox.getEditor().getItem();
+					@NotNull final QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
+
+					if (selectedItem != null && !selectedItem.toString().isEmpty())
 					{
-						final Object selectedItem = queryComboBox.getEditor().getItem();
-						@NotNull final QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
-		
-						if (selectedItem != null && !selectedItem.toString().isEmpty())
-						{
-							if ( model.getIndexOf(selectedItem) < 0) {
-								model.addElement(selectedItem);
-							}
-						
-							model.setSelectedItem(selectedItem);
+						if ( model.getIndexOf(selectedItem) < 0) {
+							model.addElement(selectedItem);
 						}
+
+						model.setSelectedItem(selectedItem);
 					}
-					
-					queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
-					@NotNull final QueryThread qt = new QueryThread(javaph);
-					qt.start();
 				}
+
+				queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
+				@NotNull final QueryThread qt = new QueryThread(javaph);
+				qt.start();
 			});
 
 			queryButtonPanel.add(queryButton);
@@ -536,30 +529,25 @@ public class JavaPH extends JApplet implements IconProvider {
 
 			serverComboBox = new JComboBox<>(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
-			serverComboBox.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
+			serverComboBox.addActionListener(ae -> {
+				@NotNull final QiServer server = (QiServer)serverComboBox.getSelectedItem();
+				@NotNull final String serverText = server.getServer();
+
+				@Nullable final Integer portInt = server.getPort();
+
+				serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
+				@NotNull final String portText = portInt.toString();
+				portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
+
+				connection = new QiConnection(serverText, portInt);
+
+				if (getLoadFields() == LOAD_FIELDS_SELECTED && !(server.getFieldState() == QiFieldState.FIELD_LOAD_ERROR) && !(server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE))
 				{
-					@NotNull final QiServer server = (QiServer)serverComboBox.getSelectedItem();
-					@NotNull final String serverText = server.getServer();
-					
-					@Nullable final Integer portInt = server.getPort();
-
-					serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
-					@NotNull final String portText = portInt.toString();
-					portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
-					
-					connection = new QiConnection(serverText, portInt);
-
-					if (getLoadFields() == LOAD_FIELDS_SELECTED && !(server.getFieldState() == QiFieldState.FIELD_LOAD_ERROR) && !(server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE))
-					{
-						serverComboBox.hidePopup();
-						loadFieldsForServer(server);
-					}
-					
-					populateFieldList(server);
+					serverComboBox.hidePopup();
+					loadFieldsForServer(server);
 				}
+
+				populateFieldList(server);
 			});
 			QiServerManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER));
 
@@ -728,30 +716,25 @@ public class JavaPH extends JApplet implements IconProvider {
 			@NotNull final JPanel resultControlPanel = new JPanel();
 			resultTableColButton = new JButton("Show/Hide Columns");
 			resultTableColButton.setEnabled(false);
-			resultTableColButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{	
-					final int[] prevSelections = colList.getSelectedIndices();
-					final int option = JOptionPane.showConfirmDialog(getDefaultPane(), colListPanel, "Column List for Result Table", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-					
-					if (option != JOptionPane.OK_OPTION)
+			resultTableColButton.addActionListener(ae -> {
+				final int[] prevSelections = colList.getSelectedIndices();
+				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), colListPanel, "Column List for Result Table", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+				if (option != JOptionPane.OK_OPTION)
+				{
+					colList.setSelectedIndices(prevSelections);
+				}
+				else
+				{
+					for (int i = 0; i < colList.getModel().getSize(); i++)
 					{
-						colList.setSelectedIndices(prevSelections);
-					}
-					else
-					{
-						for (int i = 0; i < colList.getModel().getSize(); i++)
+						if (colList.isSelectedIndex(i))
 						{
-							if (colList.isSelectedIndex(i))
-							{
-								resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
-							}
-							else
-							{
-								resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(0);
-							}
+							resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
+						}
+						else
+						{
+							resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(0);
 						}
 					}
 				}
@@ -759,19 +742,14 @@ public class JavaPH extends JApplet implements IconProvider {
 
 			resultTableColWidthButton = new JButton("Reset Column Widths");
 			resultTableColWidthButton.setEnabled(false);
-			resultTableColWidthButton.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent ae)
-				{	
-					for (int i = 0; i < colList.getModel().getSize(); i++)
+			resultTableColWidthButton.addActionListener(ae -> {
+				for (int i = 0; i < colList.getModel().getSize(); i++)
+				{
+					// If it is a shown column and not hidden (selected in list)
+					// then reset its preferred width to its maximum width
+					if (colList.isSelectedIndex(i))
 					{
-						// If it is a shown column and not hidden (selected in list)
-						// then reset its preferred width to its maximum width
-						if (colList.isSelectedIndex(i))
-						{
-							resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
-						}
+						resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
 					}
 				}
 			});
