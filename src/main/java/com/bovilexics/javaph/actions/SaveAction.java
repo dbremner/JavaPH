@@ -181,13 +181,10 @@ public final class SaveAction extends AbstractAction
 			return;
 		}
 
-		try
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
 		{
-			final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(toWrite);
 			writer.flush();
-			writer.close();
-
 			final @NotNull String message = "File save finished";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
