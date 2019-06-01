@@ -30,6 +30,7 @@ import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.CustomButtonGroup;
 import com.bovilexics.javaph.ui.FindDialog;
 import com.bovilexics.javaph.ui.IconProvider;
+import com.bovilexics.javaph.ui.ListDataAdapter;
 import com.bovilexics.javaph.ui.MainMenu;
 import com.bovilexics.javaph.ui.PropertiesDialog;
 import com.bovilexics.javaph.ui.QueryComboBox;
@@ -70,7 +71,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import java.awt.BorderLayout;
@@ -631,27 +631,10 @@ public class JavaPH extends JApplet implements IconProvider {
 					fieldListMoveDnButton.setEnabled(false);
 				}
 			});
-			fieldList.getModel().addListDataListener(new ListDataListener()
+			fieldList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
-				public void contentsChanged(ListDataEvent lde)
-				{
-					updateSelectButtons();
-				}
-
-				@Override
-				public void intervalAdded(ListDataEvent lde)
-				{
-					updateSelectButtons();
-				}
-
-				@Override
-				public void intervalRemoved(ListDataEvent lde)
-				{
-					updateSelectButtons();
-				}
-				
-				private void updateSelectButtons()
+				protected void changed(ListDataEvent e)
 				{
 					fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
 					fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);					
@@ -823,27 +806,10 @@ public class JavaPH extends JApplet implements IconProvider {
 			colListButtonPanel.add(colListSelectNoneButton);
 		
 			colList = new JList(new DefaultListModel());
-			colList.getModel().addListDataListener(new ListDataListener()
+			colList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
-				public void contentsChanged(ListDataEvent lde)
-				{
-					updateSelectButtons();
-				}
-
-				@Override
-				public void intervalAdded(ListDataEvent lde)
-				{
-					updateSelectButtons();
-				}
-
-				@Override
-				public void intervalRemoved(ListDataEvent lde)
-				{
-					updateSelectButtons();
-				}
-				
-				private void updateSelectButtons()
+				protected void changed(ListDataEvent e)
 				{
 					colListSelectAllButton.setEnabled(colList.getModel().getSize() > 0);
 					colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);					
