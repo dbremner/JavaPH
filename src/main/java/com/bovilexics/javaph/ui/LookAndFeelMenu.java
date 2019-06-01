@@ -111,8 +111,14 @@ final class LookAndFeelMenu extends JMenu
 		}
 	}
 
-	class StatusMouseListener extends MouseAdapter
+	static class StatusMouseListener extends MouseAdapter
 	{
+		private @NotNull JavaPH parent;
+
+		public StatusMouseListener(@NotNull JavaPH parent) {
+			this.parent = parent;
+		}
+
 		@Override
 		public void mouseEntered(@NotNull MouseEvent e)
 		{
@@ -134,7 +140,7 @@ final class LookAndFeelMenu extends JMenu
 		
 		parent = javaph;
 
-		final @NotNull MouseListener mouseListener = new StatusMouseListener();
+		final @NotNull MouseListener mouseListener = new StatusMouseListener(parent);
 		addMouseListener(mouseListener);
 
 		final @NotNull ButtonGroup group = new ButtonGroup();
