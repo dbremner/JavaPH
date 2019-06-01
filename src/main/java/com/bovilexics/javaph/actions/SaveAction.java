@@ -100,7 +100,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			@NotNull final String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
 		}
@@ -113,7 +113,7 @@ public final class SaveAction extends AbstractAction
 				// start at row -1 to grab headers first
 				for (int r = -1; r < rows; r++)
 				{
-					StringBuffer toWrite = new StringBuffer();
+					@NotNull StringBuffer toWrite = new StringBuffer();
 
 					for (int c = 0; c < cols; c++)
 					{
@@ -145,13 +145,13 @@ public final class SaveAction extends AbstractAction
 				}
 				writer.close();
 
-				final String message = "File save finished";
+				@NotNull final String message = "File save finished";
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 			}
 			catch (IOException e)
 			{
-				final String message = "Error: IOException received when trying to save file " + file.getPath();
+				@NotNull final String message = "Error: IOException received when trying to save file " + file.getPath();
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
 			}

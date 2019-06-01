@@ -166,7 +166,7 @@ public final class QiServerManager {
             for (int i = 0; i < servers.size(); i++) {
                 final QiServer server = servers.get(i);
 
-                final StringBuffer toWrite = new StringBuffer();
+                @NotNull final StringBuffer toWrite = new StringBuffer();
                 toWrite.append(server.getName());
                 toWrite.append(SEPARATOR);
                 toWrite.append(server.getServer());

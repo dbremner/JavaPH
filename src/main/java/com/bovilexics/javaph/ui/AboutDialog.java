@@ -86,7 +86,7 @@ public final class AboutDialog extends JavaPHDialog
 	}
 	
 	@NotNull
-    private JPanel getInfoPanel(JavaPH parent)
+    private JPanel getInfoPanel(@NotNull JavaPH parent)
 	{
 
 		@NotNull final JPanel infoPanel = new JPanel();

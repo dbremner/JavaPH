@@ -69,7 +69,7 @@ public final class FindDialog extends JavaPHDialog
 	}
 	
 	@NotNull
-    private JPanel getButtonPanel(JavaPH parent)
+    private JPanel getButtonPanel(@NotNull JavaPH parent)
 	{
 		@NotNull final JPanel buttonPanel = new JPanel();
 		
