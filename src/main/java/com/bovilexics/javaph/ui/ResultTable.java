@@ -16,16 +16,15 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.Component;
+import com.bovilexics.javaph.models.ResultTableModel;
+import com.bovilexics.javaph.models.TableSorter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
-
-import com.bovilexics.javaph.models.ResultTableModel;
-import com.bovilexics.javaph.models.TableSorter;
-import org.jetbrains.annotations.NotNull;
+import java.awt.Component;
 
 /**
  *
@@ -76,14 +75,10 @@ public final class ResultTable extends JTable
 
 		int maxWidth = 0;
 
-		Component component;
-		TableCellRenderer renderer;
-		
 		for (int rowIndex = 0; rowIndex < getRowCount(); rowIndex++)
 		{
-			renderer = getCellRenderer(rowIndex, colIndex);
-			component = renderer.getTableCellRendererComponent(this, getValueAt(rowIndex, colIndex), false, false, rowIndex, colIndex);
-
+			final TableCellRenderer renderer = getCellRenderer(rowIndex, colIndex);
+			final Component component = renderer.getTableCellRendererComponent(this, getValueAt(rowIndex, colIndex), false, false, rowIndex, colIndex);
 			final int width = component.getPreferredSize().width;
 
 			if (width > maxWidth) {
