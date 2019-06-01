@@ -171,9 +171,9 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private int loadFields = LOAD_FIELDS_SELECTED;
 	private int queryRuntime = QUERY_RUNTIME_DEF;
 
-	private final AboutDialog aboutDialog;
+	private final @NotNull AboutDialog aboutDialog;
 	private CustomButtonGroup fieldRadioGroup;
-	private final FindDialog findDialog;
+	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
 	private final @NotNull ImageIcon fieldCustomOff;
 	private final @NotNull ImageIcon fieldCustomOn;
@@ -181,14 +181,14 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private final @NotNull ImageIcon fieldLoadOn;
 	private final @NotNull Properties defaultProperties = new Properties();
 	private final @NotNull Properties properties = new Properties();
-	private final PropertiesDialog propertiesDialog;
+	private final @NotNull PropertiesDialog propertiesDialog;
 	private ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
 	private @Nullable QiConnection connection;
 	private QueryComboBox queryComboBox;
-	private final QueryToolBar queryToolBar;
+	private final @NotNull QueryToolBar queryToolBar;
 	private ResultTable resultTable;
-	private final SplashWindow splashWindow;
+	private final @NotNull SplashWindow splashWindow;
 	private @Nullable String customFieldSeparator = CUSTOM_SEPARATOR;
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
@@ -1306,7 +1306,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return queryProgressMonitor;
 	}
 
-	public JToolBar getQueryToolBar()
+	public @NotNull JToolBar getQueryToolBar()
 	{
 		return queryToolBar;
 	}
