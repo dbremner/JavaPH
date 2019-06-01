@@ -89,7 +89,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -377,13 +376,8 @@ public class JavaPH extends JApplet implements IconProvider {
 
 			queryComboBoxEditor = new TextFieldComboBoxEditor(ae -> queryButton.doClick());
 
-			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyListener()
+			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyAdapter()
 			{
-				@Override
-				public void keyPressed(KeyEvent ke)
-				{
-				}
-				
 				@Override
 				public void keyReleased(@NotNull KeyEvent ke)
 				{
@@ -409,11 +403,6 @@ public class JavaPH extends JApplet implements IconProvider {
 						queryComboBox.setSelectedIndex(-1);
 						queryComboBox.setSelectedIndex(0);
 					}
-				}
-				
-				@Override
-				public void keyTyped(KeyEvent ke)
-				{
 				}
 			});
 
