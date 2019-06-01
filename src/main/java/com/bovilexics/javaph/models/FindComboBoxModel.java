@@ -229,7 +229,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	public void restoreAllElements()
 	{
-		objects = (Vector<Object>)allObjects.clone();
+		objects = new Vector<>(allObjects);
 		selectedObject = null;
 
 		if (getSize() > 0) {
