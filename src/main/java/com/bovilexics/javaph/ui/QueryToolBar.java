@@ -40,7 +40,7 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QueryToolBar extends JToolBar
+public final class QueryToolBar extends JToolBar
 {
 
 	public QueryToolBar(@NotNull JavaPH javaph)
