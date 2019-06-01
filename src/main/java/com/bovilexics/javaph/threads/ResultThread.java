@@ -31,7 +31,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 /**
  * 
@@ -96,9 +95,9 @@ public class ResultThread extends Thread
 	private StringBuffer rawResult;
 
 	@NotNull
-	private final Vector<Vector<QiLine>> records = new Vector<>();
+	private final List<List<QiLine>> records = new ArrayList<>();
 	@NotNull
-	private Vector<QiLine> record = new Vector<>();
+	private List<QiLine> record = new ArrayList<>();
 
 	public ResultThread(String command, @NotNull QiConnection connection)
 	{
@@ -220,14 +219,14 @@ public class ResultThread extends Thread
 	}
 
 	@NotNull
-	public synchronized Vector<Vector<QiLine>> getRecords()
+	public synchronized List<List<QiLine>> getRecords()
 	{
 		if (!isOk())
 		{
-			return new Vector<>();
+			return new ArrayList<>();
 		}
 
-		@NotNull final Vector<Vector<QiLine>> results = new Vector<>(records);
+		@NotNull final List<List<QiLine>> results = new ArrayList<>(records);
 		return results;
 	}
 
@@ -362,7 +361,7 @@ public class ResultThread extends Thread
 						if (entryIndex != 0)
 						{
 							addRecord(record);
-							record = new Vector<>();
+							record = new ArrayList<>();
 						}
 						entryIndex = qiLine.getIndex();
 					}
@@ -419,7 +418,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void addRecord(Vector<QiLine> aRecord)
+	private synchronized void addRecord(List<QiLine> aRecord)
 	{
 		records.add(aRecord);
 	}

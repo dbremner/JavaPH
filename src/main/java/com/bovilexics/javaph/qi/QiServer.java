@@ -22,7 +22,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * 
@@ -94,7 +93,7 @@ public class QiServer
 	}
 
 
-	private void convertRecordsToFields(@NotNull Vector<Vector<QiLine>> records)
+	private void convertRecordsToFields(@NotNull List<List<QiLine>> records)
 	{
 		fields = new ArrayList<>();
 
