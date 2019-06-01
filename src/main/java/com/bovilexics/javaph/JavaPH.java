@@ -160,7 +160,7 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class JavaPH extends JApplet implements IconProvider {
+public final class JavaPH extends JApplet implements IconProvider {
 	// Custom widgets and other private stuff
 
 	private final @NotNull JFrame frame = new JFrame();
