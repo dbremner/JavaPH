@@ -1333,8 +1333,11 @@ public class JavaPH extends JApplet implements IconProvider {
 		defaultPane = frame.getRootPane();
 
 		Browser.init();
-	
-		initStuff();
+
+		initProperties();
+		initServers();
+		initIcons();
+		initDialogs();
 
 		if (defaultPane == null) {
 			defaultPane = getRootPane();
@@ -1412,14 +1415,6 @@ public class JavaPH extends JApplet implements IconProvider {
 	{
 		QiServerManager.loadAllServers();
 		servers  = QiServerManager.getServers();
-	}
-
-	private void initStuff()
-	{
-		initProperties();
-		initServers();
-		initIcons();
-		initDialogs();
 	}
 
 	public boolean isFieldQuoted()
