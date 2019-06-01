@@ -117,7 +117,7 @@ public final class QiServerManager {
 
     @NotNull
     public static List<QiServer> loadServers(@NotNull String filename) {
-        @NotNull final List<QiServer> serverResults = new ArrayList<QiServer>();
+        @NotNull final List<QiServer> serverResults = new ArrayList<>();
         serverResults.clear();
 
         try {
