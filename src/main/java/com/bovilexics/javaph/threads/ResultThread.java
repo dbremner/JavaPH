@@ -384,6 +384,8 @@ public class ResultThread extends Thread
 				}
 				break;
 
+			case RS_UNKNOWN:
+				throw new QiProtocolException("Unknown State: ");
 			case RS_ERROR:
 				if (qiLine.getCode() >= QiAPI.LR_TEMP)
 				{
