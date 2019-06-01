@@ -26,8 +26,9 @@ import java.util.Map;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class QiAPI
+public enum QiAPI
 {
+    ;
 /*
 	Reply codes
 	-----------
@@ -39,11 +40,7 @@ public final class QiAPI
 	6XX - phquery specific codes
 */
 
-	private QiAPI()
-	{
-	}
-
-	public final static int LR_PROGRESS	= 100; // in progress
+    public final static int LR_PROGRESS	= 100; // in progress
 	public final static int LR_ECHO		= 101; // echoing cmd
 	public final static int LR_NUMRET	= 102; // how many entries are being returned
 	public final static int LR_NONAME	= 103; // no hostname found for IP address

@@ -74,13 +74,11 @@ package com.bovilexics.javaph.qi;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-final class QiFieldProperties
+enum QiFieldProperties
 {
-	private QiFieldProperties()
-	{
-	}
+    ;
 
-	public final static String INDEXED	= "Indexed";
+    public final static String INDEXED	= "Indexed";
 	public final static String LOOKUP	= "Lookup";
 	public final static String PUBLIC	= "Public";
 	public final static String DEFAULT	= "Default";
