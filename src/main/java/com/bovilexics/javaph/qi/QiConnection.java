@@ -143,23 +143,13 @@ public class QiConnection
 		try
 		{
 			writeQI(QiCommand.QUIT + "\n");
-		}
-		catch (IOException e)
-		{
-			throw e;
-		}
-		finally
+		} finally
 		{
 			try
 			{
 				toServer.close();
 				socket.close();
-			}
-			catch (IOException e)
-			{
-				throw e;
-			}
-			finally
+			} finally
 			{
 				connected = false;
 			}
