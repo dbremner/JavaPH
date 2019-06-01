@@ -892,12 +892,7 @@ public class JavaPH extends JApplet implements IconProvider {
 			frameWidth = APP_DEFAULT_WIDTH;
 		}
 
-		applet.defaultPane = applet.frame.getRootPane();
 		applet.init();
-		applet.restoreLookAndFeel(applet.getContentPane());
-		
-		applet.frame.setContentPane(applet.getContentPane());
-		applet.frame.setIconImage((new ImageIcon(applet.getURL("img/ph-icon-smaller.gif"))).getImage());
 		applet.frame.setSize(frameWidth, frameHeight);
 		applet.frame.setTitle("JavaPH");
 
@@ -1335,6 +1330,8 @@ public class JavaPH extends JApplet implements IconProvider {
 	@Override
 	public void init()
 	{
+		defaultPane = frame.getRootPane();
+
 		Browser.init();
 	
 		initStuff();
@@ -1376,6 +1373,9 @@ public class JavaPH extends JApplet implements IconProvider {
 		log("Default server initialized");
 		
 		showDefaultStatus();
+		restoreLookAndFeel(getContentPane());
+		frame.setContentPane(getContentPane());
+		frame.setIconImage((new ImageIcon(getURL("img/ph-icon-smaller.gif"))).getImage());
 	}
 
 	private void initDialogs()
