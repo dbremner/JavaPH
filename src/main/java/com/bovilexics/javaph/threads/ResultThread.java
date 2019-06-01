@@ -343,9 +343,9 @@ public class ResultThread extends Thread
 				{
 					// This implementation of QI must not give LR_NUMRET.
 					state = ResultThreadState.RS_INPROGRESS;
-
-					// fall-through
 				}
+
+				// fall through
 
 			case RS_INPROGRESS:
 				if (qiLine.getCode() == -QiAPI.LR_OK
