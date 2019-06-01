@@ -102,9 +102,7 @@ public final class MainMenu extends JMenuBar
 		mouseListener = new StatusMouseListener();
 		addMouseListener(mouseListener);
 
-		JMenu menu;
-		
-		menu = getFileComponent();
+		JMenu menu = getFileComponent();
 		menu.addMouseListener(mouseListener);
 		add(menu);
 		
@@ -124,12 +122,11 @@ public final class MainMenu extends JMenuBar
 	@NotNull
     private JMenu getEditComponent()
 	{
-		JMenuItem menuItem;
 
 		@NotNull final JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
-		menuItem = getNewMenuItem();
+		JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new CutAction());
 		menuItem.setIcon(new ImageIcon(parent.getURL("img/cut.gif")));
 		menuItem.setText("Cut");
@@ -171,12 +168,11 @@ public final class MainMenu extends JMenuBar
 	@NotNull
     private JMenu getFileComponent()
 	{
-		JMenuItem menuItem;
 
 		@NotNull final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
-		
-		menuItem = getNewMenuItem();
+
+		JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new NewAction(parent));
 		menuItem.setActionCommand("Create a New Query");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK));
@@ -205,12 +201,11 @@ public final class MainMenu extends JMenuBar
 	@NotNull
     private JMenu getHelpComponent()
 	{
-		JMenuItem menuItem;
 
 		@NotNull final JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
-		menuItem = getNewMenuItem();
+		JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new HelpAction(parent));
 		menuItem.setActionCommand("Open JavaPH help window");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, Event.CTRL_MASK));
@@ -239,8 +234,6 @@ public final class MainMenu extends JMenuBar
 	@NotNull
     private JMenu getWindowComponent()
 	{
-		JMenuItem menuItem;
-
 		@NotNull final JMenu windowMenu = new JMenu("Window");
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
@@ -326,7 +319,7 @@ public final class MainMenu extends JMenuBar
 
 		windowMenu.add(new LookAndFeelMenu(parent));
 
-		menuItem = getNewMenuItem();
+		JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new BrowserAction(parent::showBrowserDialog));
 		menuItem.setActionCommand("Configure browser used to display JavaPH help");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK));

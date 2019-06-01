@@ -608,9 +608,9 @@ public class JavaPH extends JApplet implements IconProvider {
 					@NotNull final String serverText = server.getServer();
 					
 					@Nullable final Integer portInt = server.getPort();
-					@NotNull final String portText = portInt.toString();
-					
+
 					serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
+					@NotNull final String portText = portInt.toString();
 					portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
 					
 					connection = new QiConnection(serverText, portInt.intValue());
