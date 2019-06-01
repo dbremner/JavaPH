@@ -16,14 +16,10 @@
  */
 package com.bovilexics.javaph.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.qi.QiServer;
+import com.bovilexics.javaph.qi.QiServerManager;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -36,11 +32,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
-
-import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.qi.QiServer;
-import com.bovilexics.javaph.qi.QiServerManager;
-import org.jetbrains.annotations.NotNull;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
 import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_DEF;
@@ -124,14 +121,9 @@ public final class PropertiesDialog extends JavaPHDialog
 		
 		okButton = new JButton("OK");
 		okButton.setMnemonic(KeyEvent.VK_O);
-		okButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent ae)
-			{
-				saveProperties();
-				dispose();
-			}
+		okButton.addActionListener(ae -> {
+			saveProperties();
+			dispose();
 		});
 
 		applyButton = new JButton("Apply");
