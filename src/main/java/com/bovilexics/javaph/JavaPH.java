@@ -163,6 +163,8 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
 public class JavaPH extends JApplet implements IconProvider {
 	// Custom widgets and other private stuff
 
+	final @NotNull JFrame frame = new JFrame();
+
 	private boolean fieldQuoted = false;
 	private boolean savePosition = false;
 
@@ -877,7 +879,6 @@ public class JavaPH extends JApplet implements IconProvider {
 	public static void main(String[] args)
 	{
 		final @NotNull JavaPH applet = new JavaPH();
-		final @NotNull JFrame frame = new JFrame();
 
 		int frameHeight = applet.getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = applet.getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
@@ -891,14 +892,14 @@ public class JavaPH extends JApplet implements IconProvider {
 			frameWidth = APP_DEFAULT_WIDTH;
 		}
 
-		applet.defaultPane = frame.getRootPane();
+		applet.defaultPane = applet.frame.getRootPane();
 		applet.init();
 		applet.restoreLookAndFeel(applet.getContentPane());
 		
-		frame.setContentPane(applet.getContentPane());
-		frame.setIconImage((new ImageIcon(applet.getURL("img/ph-icon-smaller.gif"))).getImage());
-		frame.setSize(frameWidth, frameHeight);
-		frame.setTitle("JavaPH");
+		applet.frame.setContentPane(applet.getContentPane());
+		applet.frame.setIconImage((new ImageIcon(applet.getURL("img/ph-icon-smaller.gif"))).getImage());
+		applet.frame.setSize(frameWidth, frameHeight);
+		applet.frame.setTitle("JavaPH");
 
 		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -907,11 +908,11 @@ public class JavaPH extends JApplet implements IconProvider {
 		frameX = (frameX < 0 || frameX > screenSize.width) ? (screenSize.width/2 - (frameWidth/2)) : frameX;
 		frameY = (frameY < 0 || frameY > screenSize.height) ? (screenSize.height/2 - (frameHeight/2)) : frameY;
 		
-		frame.setLocation(frameX, frameY);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		applet.frame.setLocation(frameX, frameY);
+		applet.frame.setVisible(true);
+		applet.frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-		frame.addWindowListener(new WindowAdapter()
+		applet.frame.addWindowListener(new WindowAdapter()
 		{
 			@Override
 			public void windowClosed(WindowEvent we)
@@ -921,10 +922,10 @@ public class JavaPH extends JApplet implements IconProvider {
 				if (applet.savePosition)
 				{
 					needToStore = true;
-					applet.setProperty(PROP_APP_HEIGHT, "" + frame.getHeight());
-					applet.setProperty(PROP_APP_WIDTH, "" + frame.getWidth());
-					applet.setProperty(PROP_APP_X_POSITION, "" + frame.getX());
-					applet.setProperty(PROP_APP_Y_POSITION, "" + frame.getY());
+					applet.setProperty(PROP_APP_HEIGHT, "" + applet.frame.getHeight());
+					applet.setProperty(PROP_APP_WIDTH, "" + applet.frame.getWidth());
+					applet.setProperty(PROP_APP_X_POSITION, "" + applet.frame.getX());
+					applet.setProperty(PROP_APP_Y_POSITION, "" + applet.frame.getY());
 				}
 				else
 				{
