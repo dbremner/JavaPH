@@ -171,9 +171,9 @@ public class JavaPH extends JApplet implements IconProvider {
 	private int loadFields = LOAD_FIELDS_SELECTED;
 	private int queryRuntime = QUERY_RUNTIME_DEF;
 
-	private AboutDialog aboutDialog;
+	private final AboutDialog aboutDialog;
 	private CustomButtonGroup fieldRadioGroup;
-	private FindDialog findDialog;
+	private final FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
 	private final @NotNull ImageIcon fieldCustomOff;
 	private final @NotNull ImageIcon fieldCustomOn;
@@ -181,14 +181,14 @@ public class JavaPH extends JApplet implements IconProvider {
 	private final @NotNull ImageIcon fieldLoadOn;
 	private final @NotNull Properties defaultProperties = new Properties();
 	private final @NotNull Properties properties = new Properties();
-	private PropertiesDialog propertiesDialog;
+	private final PropertiesDialog propertiesDialog;
 	private ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
 	private @Nullable QiConnection connection;
 	private QueryComboBox queryComboBox;
-	private QueryToolBar queryToolBar;
+	private final QueryToolBar queryToolBar;
 	private ResultTable resultTable;
-	private SplashWindow splashWindow;
+	private final SplashWindow splashWindow;
 	private @Nullable String customFieldSeparator = CUSTOM_SEPARATOR;
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
@@ -955,7 +955,11 @@ public class JavaPH extends JApplet implements IconProvider {
 
 		initProperties();
 		initServers();
-		initDialogs();
+		aboutDialog      = new AboutDialog(this);
+		findDialog       = new FindDialog(this);
+		propertiesDialog = new PropertiesDialog(this);
+		queryToolBar     = new QueryToolBar(this);
+		splashWindow     = new SplashWindow(this);
 
 		if (defaultPane == null) {
 			defaultPane = getRootPane();
@@ -1380,15 +1384,6 @@ public class JavaPH extends JApplet implements IconProvider {
 		restoreLookAndFeel(getContentPane());
 		frame.setContentPane(getContentPane());
 		frame.setIconImage((new ImageIcon(getURL("img/ph-icon-smaller.gif"))).getImage());
-	}
-
-	private void initDialogs()
-	{
-		aboutDialog      = new AboutDialog(this);
-		findDialog       = new FindDialog(this);
-		propertiesDialog = new PropertiesDialog(this);
-		queryToolBar     = new QueryToolBar(this);
-		splashWindow     = new SplashWindow(this);
 	}
 
 	private void initProperties()
