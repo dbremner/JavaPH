@@ -35,6 +35,12 @@ abstract class JavaPHDialog extends JDialog
 		setModal(true);
 		setIcon(new ImageIcon(javaph.getURL("img/ph-icon-smaller.gif")));		
 	}
+
+	JavaPHDialog(@NotNull IconProvider provider, @NotNull String title)
+	{
+		this(provider);
+		setTitle(title);
+	}
 	
 	private void setIcon(@NotNull ImageIcon icon)
 	{
