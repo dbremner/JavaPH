@@ -124,10 +124,10 @@ public final class SaveAction extends AbstractAction
 						
 						if (r == -1) // write the header
                         {
-                            toWrite.append((model.getColumnName(c)) == null ? "" : model.getColumnName(c));
+                            toWrite.append(model.getColumnName(c) == null ? "" : model.getColumnName(c));
                         } else // write the value
                         {
-                            toWrite.append((model.getValueAt(r, c)) == null ? "" : model.getValueAt(r, c).toString());
+                            toWrite.append(model.getValueAt(r, c) == null ? "" : model.getValueAt(r, c).toString());
                         }
 
 						if (quoted) {

@@ -1357,7 +1357,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 		defaultPane.setJMenuBar(new MainMenu(this));
 		
-		log("JavaPH initialized (" + ("Application") + " Mode)");
+		log("JavaPH initialized (Application) Mode)");
 		log("Initializing default server");
 
 		serverComboBox.setSelectedItem(QiServerManager.getDefaultServer());
@@ -1485,7 +1485,8 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	public void log(String logMessage)
 	{
-		logText.append((new Date(System.currentTimeMillis())).toString());
+		final @NotNull Date date = new Date(System.currentTimeMillis());
+		logText.append(date.toString());
 		logText.append(" :: ");
 		logText.append(logMessage);
 		logText.append("\n");
