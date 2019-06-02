@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiConnection;
@@ -71,7 +72,7 @@ public class ResultThread extends Thread
 	private @Nullable Object[] headers = null;
 	private @Nullable Object[][] values = null;
 
-	private QiConnection qiConnection;
+	private Connection connection;
 	private QiLine qiLine;
 
 	private @Nullable String command;
@@ -88,7 +89,7 @@ public class ResultThread extends Thread
 	private final @NotNull List<List<QiLine>> records = new ArrayList<>();
 	private @NotNull List<QiLine> record = new ArrayList<>();
 
-	public ResultThread(String command, @NotNull QiConnection connection)
+	public ResultThread(String command, @NotNull Connection connection)
 	{
 		this(null, command, connection);
 	}
@@ -105,7 +106,7 @@ public class ResultThread extends Thread
 		connect(parent.getCommand(), parent.getConnection());
 	}
 
-	private ResultThread(@Nullable JavaPH javaph, String command, @NotNull QiConnection connection)
+	private ResultThread(@Nullable JavaPH javaph, String command, @NotNull Connection connection)
 	{
 		parent = javaph;
 		connect(command, connection);
@@ -256,14 +257,14 @@ public class ResultThread extends Thread
 			return;
 		}
 		
-		qiConnection.lock();
+		connection.lock();
 
 		try
 		{
 			buildResult();
 			
-			if (!qiConnection.authenticated()) {
-				qiConnection.disconnect();
+			if (!connection.authenticated()) {
+				connection.disconnect();
 			}
 		}
 		catch (@NotNull QiProtocolException | IOException e)
@@ -272,7 +273,7 @@ public class ResultThread extends Thread
 			showStatus("Error: " + e);
 		} finally
 		{
-			qiConnection.unlock();
+			connection.unlock();
 		}
 		
 		finished = true;
@@ -505,9 +506,9 @@ public class ResultThread extends Thread
 			// If code >= LR_OK, Qi has said all it's going to say.
 			if (qiLine.getCode() >= QiAPI.LR_OK)
 			{
-				if (!qiConnection.authenticated())
+				if (!connection.authenticated())
 				{
-					qiConnection.disconnect();
+					connection.disconnect();
 				}
 				break;
 			}
@@ -667,8 +668,8 @@ public class ResultThread extends Thread
 				}
 			}
 
-			if (!qiConnection.authenticated()) {
-				qiConnection.disconnect();
+			if (!connection.authenticated()) {
+				connection.disconnect();
 			}
 		}
 		catch (@NotNull IOException | QiProtocolException e)
@@ -683,34 +684,34 @@ public class ResultThread extends Thread
 	 * It's here that the connection is established with the Qi server.
 	 *
 	 * @param aCommandLine the command to send to the server.
-	 * @param aQiConnection a QiConnection. Connection does not need to be open.
+	 * @param aConnection a QiConnection. Connection does not need to be open.
 	 *
 	 */
-	private synchronized void connect(@Nullable String aCommandLine, @NotNull QiConnection aQiConnection)
+	private synchronized void connect(@Nullable String aCommandLine, @NotNull Connection aConnection)
 	{
 		commandLine = aCommandLine;
-		qiConnection = aQiConnection;
+		connection = aConnection;
 		
 		command = (commandLine == null	? null : (String) (new StringTokenizer(commandLine).nextElement()));
 		
-		if (!qiConnection.connected())
+		if (!connection.connected())
 		{
 			try
 			{
-				qiConnection.connect();
+				connection.connect();
 			}
 			catch (IOException e)
 			{
 				error = true;
 				showStatus("Error: " + e);
-				showStatus("Error: Could not connect to " + qiConnection.getServer().getExpandedName());
+				showStatus("Error: Could not connect to " + connection.getServer().getExpandedName());
 			}
 		}
 	}
 
 	private String readQi() throws IOException
 	{
-		return qiConnection.readQI();
+		return connection.readQI();
 	}
 
 	private void showStatus(final String status)
@@ -732,7 +733,7 @@ public class ResultThread extends Thread
 	{
 		try
 		{
-			qiConnection.writeQI(aString);
+			connection.writeQI(aString);
 		}
 		catch (IOException e)
 		{

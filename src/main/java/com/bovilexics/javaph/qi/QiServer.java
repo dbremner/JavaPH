@@ -28,7 +28,7 @@ import java.util.List;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QiServer
+public class QiServer implements Server
 {
 
 	private static final int QUERY_RUNTIME = 10;
@@ -38,7 +38,7 @@ public class QiServer
 	private final @NotNull String name;
 	private final @NotNull String server;
 	private final @Nullable Integer port;
-	private @NotNull List<QiField> fields = new ArrayList<>();
+	private @NotNull List<Field> fields = new ArrayList<>();
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
@@ -137,6 +137,7 @@ public class QiServer
 		}
 	}
 	
+	@Override
 	public @NotNull String getExpandedName()
 	{
 		final @NotNull StringBuilder out = new StringBuilder();
@@ -151,17 +152,20 @@ public class QiServer
 		return out.toString();
 	}
 
-	public @NotNull List<QiField> getFields()
+	@Override
+	public @NotNull List<Field> getFields()
 	{
-		final @NotNull List<QiField> results = new ArrayList<>(fields);
+		final @NotNull List<Field> results = new ArrayList<>(fields);
 		return results;
 	}
 
+	@Override
 	public @NotNull QiFieldState getFieldState()
 	{
 		return fieldState;
 	}
 
+	@Override
 	public @NotNull String getFieldStateMessage()
 	{
 		if (fieldStateMessage.isEmpty()) {
@@ -171,16 +175,19 @@ public class QiServer
 		return fieldStateMessage;
 	}
 
+	@Override
 	public @NotNull String getName()
 	{
 		return name;
 	}
 	
+	@Override
 	public @Nullable Integer getPort()
 	{
 		return port;
 	}
 	
+	@Override
 	public @NotNull String getServer()
 	{
 		return server;
@@ -197,6 +204,7 @@ public class QiServer
 		return (port >= 0 && port <= 65535);
 	}
 
+	@Override
 	public void loadFields()
 	{
 

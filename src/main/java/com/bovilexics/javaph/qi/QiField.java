@@ -36,7 +36,7 @@ import java.util.*;
  * @author Robert Fernandes robert@bovilexics.com
  *
  */
-public class QiField
+public class QiField implements Field
 {
 	private int length;
 
@@ -62,26 +62,31 @@ public class QiField
 		this.description = description;
 	}
 
+	@Override
 	public @NotNull String getDescription()
 	{
 		return description;
 	}
 
+	@Override
 	public int getLength()
 	{
 		return length;
 	}
 
+	@Override
 	public @NotNull String getName()
 	{
 		return name;
 	}
 
+	@Override
 	public @NotNull List<String> getProperties()
 	{
 		return Collections.unmodifiableList(properties);
 	}
 
+	@Override
 	public boolean hasProperty(@NotNull String property)
 	{
 		return properties.contains(property);

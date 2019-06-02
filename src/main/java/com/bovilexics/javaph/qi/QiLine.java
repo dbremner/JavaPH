@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  *
  */
-public final class QiLine
+public final class QiLine implements Line
 {
 	// The line as read from Qi, unmodified
 	private final String verbatim;
@@ -70,36 +70,43 @@ public final class QiLine
 		parse();
 	}
 
+	@Override
 	public int getCode()
 	{
 		return code;
 	}
 
+	@Override
 	public @NotNull String getField()
 	{
 		return field;
 	}
 
+	@Override
 	public int getIndex()
 	{
 		return index;
 	}
 	
+	@Override
 	public @NotNull String getResponse()
 	{
 		return response;
 	}
 
+	@Override
 	public @NotNull String getTrimmedField()
 	{
 		return trimmedField;
 	}
 
+	@Override
 	public @NotNull String getTrimmedValue()
 	{
 		return trimmedValue;
 	}
 	
+	@Override
 	public @NotNull String getValue()
 	{
 		return value;

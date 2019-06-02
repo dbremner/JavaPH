@@ -36,7 +36,7 @@ import java.net.SocketAddress;
  * @author Robert Fernandes robert@bovilexics.com
  *
  */
-public class QiConnection
+public class QiConnection implements Connection
 {
 	// TODO does this support authentication?
 	private boolean authenticated = false;
@@ -82,6 +82,7 @@ public class QiConnection
 		qiServer = new QiServer("unspecified", aHost, aPort);
 	}
 
+	@Override
 	public boolean authenticated()
 	{
 		return authenticated;
@@ -91,6 +92,7 @@ public class QiConnection
 	  *
 	  * @exception IOException
 	 */
+	@Override
 	public synchronized void connect() throws IOException
 	{
 		if (host.isEmpty()) {
@@ -115,6 +117,7 @@ public class QiConnection
 	 * @param aPort port to connect to.
 	 *
 	 */
+	@Override
 	public synchronized void connect(@NotNull String aHost, int aPort) throws IOException
 	{
 		host = aHost;
@@ -122,6 +125,7 @@ public class QiConnection
 		connect();
 	}
 
+	@Override
 	public boolean connected()
 	{
 		return connected;
@@ -131,6 +135,7 @@ public class QiConnection
 	 * Drop the connection to Qi.
 	 *
 	*/
+	@Override
 	public synchronized void disconnect() throws IOException
 	{
 		if (!connected) {
@@ -153,16 +158,19 @@ public class QiConnection
 		}
 	}
 
+	@Override
 	public @NotNull String getHost()
 	{
 		return host;
 	}
 
+	@Override
 	public int getPort()
 	{
 		return port;
 	}
 
+	@Override
 	public @NotNull QiServer getServer()
 	{
 		return qiServer;
@@ -173,6 +181,7 @@ public class QiConnection
 	 * mechanism provided by lock() and unlock(). This avoids a situation in which
 	 * multiple conversations with Qi occur over a single connection.
 	 */
+	@Override
 	public synchronized void lock()
 	{
 		// Safeguard against deadlock.
@@ -204,6 +213,7 @@ public class QiConnection
 	 * @exception QiProtocolException upon an unexpected response from Qi
 	 * @exception IOException upon a socket error.
 	 */
+	@Override
 	public synchronized void login(@NotNull String anAlias, @NotNull String aPassword) throws IOException, QiProtocolException
 	{
 		alias = anAlias;
@@ -279,6 +289,7 @@ public class QiConnection
 	 * @exception QiProtocolException upon an unexpected response from Qi
 	 * @exception IOException upon a socket error.
 	 */
+	@Override
 	public synchronized void logout() throws QiProtocolException, IOException
 	{
 
@@ -326,6 +337,7 @@ public class QiConnection
 		}
 	}	
 
+	@Override
 	public String readQI() throws IOException
 	{
 		if (fromServer != null)
@@ -373,6 +385,7 @@ public class QiConnection
 	 * a situation in which multiple conversations with Qi occur over a single
 	 * connection. This is bad.
 	 */
+	@Override
 	public synchronized void unlock()
 	{
 		locked = false;
@@ -380,6 +393,7 @@ public class QiConnection
 		notify();
 	}
 
+	@Override
 	public void writeQI(@NotNull String string) throws IOException
 	{
 		if (toServer == null)

@@ -19,12 +19,14 @@ package com.bovilexics.javaph;
 import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.TableSorter;
+import com.bovilexics.javaph.qi.Connection;
+import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiConnection;
-import com.bovilexics.javaph.qi.QiField;
 import com.bovilexics.javaph.qi.QiFieldState;
 import com.bovilexics.javaph.qi.QiServer;
 import com.bovilexics.javaph.qi.QiServerManager;
+import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.threads.QueryThread;
 import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.CustomButtonGroup;
@@ -183,7 +185,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private final @NotNull PropertiesDialog propertiesDialog;
 	private ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
-	private @Nullable QiConnection connection;
+	private @Nullable Connection connection;
 	private QueryComboBox queryComboBox;
 	private final @NotNull QueryToolBar queryToolBar;
 	private ResultTable resultTable;
@@ -214,7 +216,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private JLabel serverStatusLabel;
 	private JLabel statusLabel;
 	private final JList colList = new JList(new DefaultListModel());
-	private JList<QiField> fieldList;
+	private JList<Field> fieldList;
 	private final JPanel colListPanel = new JPanel(new BorderLayout());
 	private final JPanel fieldListPanel = new JPanel(new BorderLayout());
 	private final JPanel logTextPanel = new JPanel(new BorderLayout());
@@ -1183,7 +1185,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return defaultPane;
 	}
 
-	public @Nullable QiConnection getConnection()
+	public @Nullable Connection getConnection()
 	{
 		return connection;
 	}
@@ -1448,7 +1450,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	private void loadFieldsForServer(@NotNull QiServer server)
+	private void loadFieldsForServer(@NotNull Server server)
 	{
 		showStatus("Loading fields for " + server.getExpandedName(), true);
 
@@ -1506,16 +1508,16 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	private void populateFieldList(@NotNull QiServer server)
+	private void populateFieldList(@NotNull Server server)
 	{
 		final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
 		model.clear();
 					
 		if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
 		{
-			final @NotNull List<QiField> fields = server.getFields();
+			final @NotNull List<Field> fields = server.getFields();
 
-			for (QiField field : fields) {
+			for (Field field : fields) {
 				model.addElement(field);
 			}
 		}
