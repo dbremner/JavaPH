@@ -90,7 +90,7 @@ public class QiConnection implements Connection
 
 	/** Establish a connection to Qi.
 	  *
-	  * @exception IOException
+	  * @throws IOException
 	 */
 	@Override
 	public synchronized void connect() throws IOException

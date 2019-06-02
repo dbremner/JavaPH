@@ -10,7 +10,7 @@ public interface Connection
 
     /** Establish a connection to Qi.
       *
-      * @exception IOException
+      * @throws IOException
      */
     void connect() throws IOException;
 
