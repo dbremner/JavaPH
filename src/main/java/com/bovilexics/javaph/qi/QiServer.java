@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.threads.ResultThread;
+import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -155,7 +156,7 @@ public class QiServer implements Server
 	@Override
 	public @NotNull List<Field> getFields()
 	{
-		final @NotNull List<Field> results = new ArrayList<>(fields);
+		final @NotNull List<Field> results = ImmutableList.copyOf(fields);
 		return results;
 	}
 

@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.qi;
 
+import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -83,7 +84,7 @@ public class QiField implements Field
 	@Override
 	public @NotNull List<String> getProperties()
 	{
-		return Collections.unmodifiableList(properties);
+		return properties;
 	}
 
 	@Override
@@ -133,13 +134,14 @@ public class QiField implements Field
 			length = -1;
 		}
 
-		final @NotNull List<String> props = new ArrayList<>();
+		final @NotNull ImmutableList.Builder<String> builder = new ImmutableList.Builder<>();
 		// Okay, here come the properties...
 		while (tokenizer.hasMoreElements())
 		{
-			props.add((String) tokenizer.nextElement());
+			builder.add((String) tokenizer.nextElement());
 		}
-		return props;
+		final @NotNull List<String> list = builder.build();
+		return list;
 	}
 
 	@Override
