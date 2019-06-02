@@ -91,7 +91,6 @@ public final class PropertiesDialog extends JavaPHDialog
 
 		parent = javaph;
 
-		setModal(true);
 		setTitle(INFO_NAME + " Properties");
 		
 		final Container contentPane = getContentPane();

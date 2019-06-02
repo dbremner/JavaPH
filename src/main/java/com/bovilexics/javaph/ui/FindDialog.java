@@ -51,8 +51,6 @@ public final class FindDialog extends JavaPHDialog
 	public FindDialog(@NotNull JavaPH javaph)
 	{
 		super(javaph);
-
-		setModal(true);
 		setTitle("Find Text");
 		
 		final Container contentPane = getContentPane();
