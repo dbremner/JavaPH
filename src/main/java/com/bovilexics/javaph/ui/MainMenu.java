@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -151,7 +152,7 @@ public final class MainMenu extends JMenuBar
 		fileMenu.addSeparator();
 
 		menuItem = getNewMenuItem();
-		menuItem.setAction(new ExitAction(parent));
+		menuItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
 		menuItem.setActionCommand("Exit JavaPH");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.ALT_MASK));
 		menuItem.setMnemonic(KeyEvent.VK_X);

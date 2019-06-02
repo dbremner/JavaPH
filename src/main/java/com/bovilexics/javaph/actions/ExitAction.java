@@ -16,14 +16,12 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
+import com.bovilexics.javaph.ui.IconProvider;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -32,18 +30,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ExitAction extends AbstractAction
 {
-	private final @NotNull JavaPH parent;
-	
-	public ExitAction(@NotNull JavaPH javaph)
-	{
-		super("Exit", new ImageIcon(javaph.getURL("img/cancel.gif")));
+	private final @NotNull Runnable runnable;
 
-		parent = javaph;
+	public ExitAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
+	{
+		super("Exit", new ImageIcon(provider.getURL("img/cancel.gif")));
+		this.runnable = runnable;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae)
 	{
-		((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose();
+		runnable.run();
 	}
 }
