@@ -19,6 +19,7 @@ package com.bovilexics.javaph.ui;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -34,5 +35,11 @@ public class TextFileChooser extends JFileChooser
 				"Text Files(*.txt, *.csv)",
 				"csv", "txt") ;
 		setFileFilter(filter);
+	}
+
+	@Override
+	public final void setFileFilter(FileFilter filter)
+	{
+		super.setFileFilter(filter);
 	}
 }

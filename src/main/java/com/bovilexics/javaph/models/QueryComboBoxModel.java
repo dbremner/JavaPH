@@ -30,7 +30,7 @@ import java.util.Vector;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QueryComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
+public final class QueryComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
 {
 	private @Nullable Object selectedObject;
 

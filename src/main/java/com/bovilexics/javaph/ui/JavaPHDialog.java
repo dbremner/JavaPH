@@ -47,4 +47,16 @@ abstract class JavaPHDialog extends JDialog
 		final Frame frame = JOptionPane.getFrameForComponent(this);
 		frame.setIconImage(icon.getImage());
 	}
+
+	@Override
+	public final void setModal(boolean modal)
+	{
+		super.setModal(modal);
+	}
+
+	@Override
+	public final void setTitle(@NotNull String title)
+	{
+		super.setTitle(title);
+	}
 }
