@@ -89,19 +89,19 @@ public class QiServer implements Server
 	}
 
 
-	private void convertRecordsToFields(@NotNull List<List<QiLine>> records)
+	private void convertRecordsToFields(@NotNull List<List<Line>> records)
 	{
 		fields = new ArrayList<>();
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final List<QiLine> record = records.get(i);
+			final List<Line> record = records.get(i);
 
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
-				final QiLine propsLine = record.get(j);
-				final QiLine descLine = record.get(j + 1);
+				final Line propsLine = record.get(j);
+				final Line descLine = record.get(j + 1);
 
 				final @NotNull String propsField = propsLine.getTrimmedField();
 				final @NotNull String propsValue = propsLine.getTrimmedValue();

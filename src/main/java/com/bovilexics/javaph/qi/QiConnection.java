@@ -48,8 +48,8 @@ public class QiConnection implements Connection
 	private String alias;
 	private @NotNull String host;
 	
-	private QiLine qiQiLine;
-	private final @NotNull QiServer qiServer;
+	private Line qiQiLine;
+	private final @NotNull Server qiServer;
 	private Socket socket;
 	private @Nullable Thread locker;
 		
@@ -60,7 +60,7 @@ public class QiConnection implements Connection
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
 	 * <b>connect(host, port)</b>
 	 */
-	public QiConnection(@NotNull QiServer server)
+	public QiConnection(@NotNull Server server)
 	{
 		host = server.getServer();
 		port = server.getPort();
@@ -171,7 +171,7 @@ public class QiConnection implements Connection
 	}
 
 	@Override
-	public @NotNull QiServer getServer()
+	public @NotNull Server getServer()
 	{
 		return qiServer;
 	}

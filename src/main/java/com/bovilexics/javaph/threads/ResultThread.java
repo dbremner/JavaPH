@@ -18,12 +18,13 @@ package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.Connection;
+import com.bovilexics.javaph.qi.Line;
 import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiLine;
 import com.bovilexics.javaph.qi.QiProtocolException;
-import com.bovilexics.javaph.qi.QiServer;
+import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,7 +74,7 @@ public class ResultThread extends Thread
 	private @Nullable Object[][] values = null;
 
 	private Connection connection;
-	private QiLine qiLine;
+	private Line qiLine;
 
 	private @Nullable String command;
 	private @Nullable String commandLine;
@@ -86,15 +87,15 @@ public class ResultThread extends Thread
 
 	private StringBuffer rawResult;
 
-	private final @NotNull List<List<QiLine>> records = new ArrayList<>();
-	private @NotNull List<QiLine> record = new ArrayList<>();
+	private final List<List<Line>> records = new ArrayList<>();
+	private @NotNull List<Line> record = new ArrayList<>();
 
 	public ResultThread(String command, @NotNull Connection connection)
 	{
 		this(null, command, connection);
 	}
 
-	public ResultThread(String command, @NotNull QiServer server)
+	public ResultThread(String command, @NotNull Server server)
 	{
 		this(null, command, new QiConnection(server));
 	}
@@ -130,7 +131,7 @@ public class ResultThread extends Thread
 
 		final @NotNull StringBuilder out = new StringBuilder();
 
-		final @Nullable List<QiLine> records = this.records.get(record);
+		final List<Line> records = this.records.get(record);
 		if (records == null) {
 			return null;
 		}
@@ -138,7 +139,7 @@ public class ResultThread extends Thread
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			final @Nullable QiLine qiLine = records.get(i);
+			final @Nullable Line qiLine = records.get(i);
 
 			// Skip empty and encrypted fields.
 			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().isEmpty()) {
@@ -202,14 +203,14 @@ public class ResultThread extends Thread
 		return isOk() ? records.size() : -1;
 	}
 
-	public synchronized @NotNull List<List<QiLine>> getRecords()
+	public synchronized @NotNull List<List<Line>> getRecords()
 	{
 		if (!isOk())
 		{
 			return new ArrayList<>();
 		}
 
-		final @NotNull List<List<QiLine>> results = new ArrayList<>(records);
+		final @NotNull List<List<Line>> results = new ArrayList<>(records);
 		return results;
 	}
 
@@ -399,7 +400,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void addRecord(List<QiLine> aRecord)
+	private synchronized void addRecord(List<Line> aRecord)
 	{
 		records.add(aRecord);
 	}
@@ -415,7 +416,7 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final @NotNull List<QiLine> currentQiLine = records.get(i);
+			final List<Line> currentQiLine = records.get(i);
 
 			for (int j = 0; j < currentQiLine.size(); j++)
 			{
@@ -570,11 +571,11 @@ public class ResultThread extends Thread
 		for (int i = 0; i < records.size(); i++)
 		{
 			final int yCoordinate = i;
-			final @NotNull List<QiLine> thisVector = records.get(i);
+			final List<Line> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size(); j++)
 			{
-				final @NotNull QiLine thisQiLine = thisVector.get(j);
+				final Line thisQiLine = thisVector.get(j);
 				@NotNull String field = thisQiLine.getTrimmedField();
 
 				if (field.isEmpty())
@@ -628,12 +629,12 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final @NotNull List<QiLine> thisVector = records.get(i);
+			final List<Line> thisVector = records.get(i);
 
 			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
 			{
-				final @NotNull QiLine propsQiLine = thisVector.get(j);
-				final @NotNull QiLine descQiLine = thisVector.get(j + 1);
+				final Line propsQiLine = thisVector.get(j);
+				final Line descQiLine = thisVector.get(j + 1);
 
 				final @NotNull String field = propsQiLine.getTrimmedField();
 				final @NotNull String props = propsQiLine.getTrimmedValue();

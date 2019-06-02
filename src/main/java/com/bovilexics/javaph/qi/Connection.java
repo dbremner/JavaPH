@@ -35,7 +35,7 @@ public interface Connection
 
     int getPort();
 
-    @NotNull QiServer getServer();
+    @NotNull Server getServer();
 
     /**
      * All threads intending to use shared connection to Qi should use the locking

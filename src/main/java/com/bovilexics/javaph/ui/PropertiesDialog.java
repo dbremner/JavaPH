@@ -17,8 +17,8 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.qi.QiServer;
 import com.bovilexics.javaph.qi.QiServerManager;
+import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
@@ -75,7 +75,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	private JCheckBox rollToolbarCheckBox;
 	private JCheckBox savePositionCheckBox;
 
-	private JComboBox<QiServer> defaultServerComboBox;
+	private JComboBox<Server> defaultServerComboBox;
 
 	private JRadioButton loadFieldsManual;
 	private JRadioButton loadFieldsSelected;

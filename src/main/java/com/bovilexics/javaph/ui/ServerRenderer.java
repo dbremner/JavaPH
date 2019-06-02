@@ -6,7 +6,7 @@
  */
 package com.bovilexics.javaph.ui;
 
-import com.bovilexics.javaph.qi.QiServer;
+import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +39,7 @@ public class ServerRenderer extends DefaultListCellRenderer
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-		setIcon(icons[((QiServer)value).getFieldState().getValue()]);
+		setIcon(icons[((Server)value).getFieldState().getValue()]);
 		setText(value.toString());
 		
 		return this;

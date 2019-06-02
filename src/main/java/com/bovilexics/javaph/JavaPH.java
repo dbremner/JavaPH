@@ -24,7 +24,6 @@ import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiFieldState;
-import com.bovilexics.javaph.qi.QiServer;
 import com.bovilexics.javaph.qi.QiServerManager;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.threads.QueryThread;
@@ -193,7 +192,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private @Nullable String customFieldSeparator = CUSTOM_SEPARATOR;
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
-	private Vector<QiServer> servers;
+	private Vector<Server> servers;
 	
 	// Swing widgets and stuff
 	
@@ -211,7 +210,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private final JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
 	private final JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
 	private JComboBox<QiCommand> commandComboBox;
-	private JComboBox<QiServer> serverComboBox;
+	private JComboBox<Server> serverComboBox;
 	private JLabel portStatusLabel;
 	private JLabel serverStatusLabel;
 	private JLabel statusLabel;
@@ -471,7 +470,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 				}
 			});
 			fieldLoadButton.addActionListener(ae -> {
-				final @Nullable QiServer server = (QiServer)serverComboBox.getSelectedItem();
+				final @Nullable Server server = (Server)serverComboBox.getSelectedItem();
 
 				if (server != null)
 				{
@@ -510,7 +509,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			serverComboBox = new JComboBox<>(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(ae -> {
-				final @NotNull QiServer server = (QiServer)serverComboBox.getSelectedItem();
+				final @NotNull Server server = (Server)serverComboBox.getSelectedItem();
 				final @NotNull String serverText = server.getServer();
 
 				final @Nullable Integer portInt = server.getPort();
@@ -1311,9 +1310,9 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return resultText;
 	}
 
-	public @Nullable QiServer getServer()
+	public @Nullable Server getServer()
 	{
-		return (QiServer)serverComboBox.getSelectedItem();
+		return (Server)serverComboBox.getSelectedItem();
 	}
 
 	@Override
@@ -1436,7 +1435,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
-				final QiServer server = servers.get(i);
+				final Server server = servers.get(i);
 				fieldProgressMonitor.setNote(server.getExpandedName());
 				server.loadFields();
 				fieldProgressMonitor.setProgress(i + 1);

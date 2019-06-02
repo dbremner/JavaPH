@@ -16,10 +16,10 @@ import java.util.Vector;
 public final class QiServerManager {
     private static final String SEPARATOR = "::";
     private static final String SERVER_FILE = "javaph.servers";
-    private static QiServer defaultServer;
-    private static final Vector<QiServer> servers = new Vector<>();
+    private static Server defaultServer;
+    private static final Vector<Server> servers = new Vector<>();
 
-    public static void addServer(@NotNull QiServer server) {
+    public static void addServer(@NotNull Server server) {
 
         if (servers.isEmpty())
         {
@@ -47,7 +47,7 @@ public final class QiServerManager {
         servers.insertElementAt(server, whereToAdd);
     }
 
-    public static @NotNull QiServer getDefaultServer()
+    public static @NotNull Server getDefaultServer()
     {
         if (defaultServer == null)
         {
@@ -57,14 +57,14 @@ public final class QiServerManager {
         return defaultServer;
     }
 
-    private static @NotNull QiServer getUndefinedServer()
+    private static @NotNull Server getUndefinedServer()
     {
         final @NotNull String UNDEFINED = "undefined";
-        final @NotNull QiServer undefined = new QiServer(UNDEFINED, UNDEFINED, "0");
+        final @NotNull Server undefined = new QiServer(UNDEFINED, UNDEFINED, "0");
         return undefined;
     }
 
-    public static @NotNull Vector<QiServer> getServers() {
+    public static @NotNull Vector<Server> getServers() {
         return servers;
     }
 
@@ -89,7 +89,7 @@ public final class QiServerManager {
                 if (items.length != 3) {
                     System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                 } else {
-                    final @NotNull QiServer server1 = new QiServer(items[0], items[1], items[2]);
+                    final @NotNull Server server1 = new QiServer(items[0], items[1], items[2]);
                     addServer(server1);
                 }
             }
@@ -106,14 +106,14 @@ public final class QiServerManager {
 
     public static void loadAllServers() {
         servers.clear();
-        final @NotNull List<QiServer> results = loadServers(SERVER_FILE);
-        for (final @NotNull QiServer server : results) {
+        final @NotNull List<Server> results = loadServers(SERVER_FILE);
+        for (final @NotNull Server server : results) {
             addServer(server);
         }
     }
 
-    public static @NotNull List<QiServer> loadServers(@NotNull String filename) {
-        final @NotNull List<QiServer> serverResults = new ArrayList<>();
+    public static @NotNull List<Server> loadServers(@NotNull String filename) {
+        final @NotNull List<Server> serverResults = new ArrayList<>();
 
         try {
             final @NotNull Reader in = new FileReader(filename);
@@ -133,7 +133,7 @@ public final class QiServerManager {
                 if (items.length != 3) {
                     System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                 } else {
-                    final @NotNull QiServer server1 = new QiServer(items[0], items[1], items[2]);
+                    final @NotNull Server server1 = new QiServer(items[0], items[1], items[2]);
                     serverResults.add(server1);
                 }
             }
@@ -147,7 +147,7 @@ public final class QiServerManager {
         return serverResults;
     }
 
-    public static void removeServer(QiServer server) {
+    public static void removeServer(Server server) {
         servers.remove(server);
     }
 
@@ -159,7 +159,7 @@ public final class QiServerManager {
             writer.flush();
 
             for (int i = 0; i < servers.size(); i++) {
-                final QiServer server = servers.get(i);
+                final Server server = servers.get(i);
 
                 final @NotNull StringBuilder toWrite = new StringBuilder();
                 toWrite.append(server.getName());
@@ -184,7 +184,7 @@ public final class QiServerManager {
 
     public static void setDefaultServer(@NotNull String server)
     {
-        for (final @NotNull QiServer item : servers) {
+        for (final @NotNull Server item : servers) {
             if (item.toString().equals(server)) {
                 defaultServer = item;
                 return;
@@ -207,7 +207,7 @@ public final class QiServerManager {
 
     public static void loadAllFields()
     {
-        for (final @NotNull QiServer server : servers) {
+        for (final @NotNull Server server : servers) {
             if (server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR) {
                 server.loadFields();
             }
