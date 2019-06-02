@@ -19,8 +19,6 @@ package com.bovilexics.javaph.actions;
 import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -30,6 +28,6 @@ public final class FindAction extends RunnableAction
 {
 	public FindAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("Find", runnable, new ImageIcon(provider.getURL("img/find.gif")));
+		super("Find", runnable, provider.getImageIcon("img/find.gif"));
 	}
 }

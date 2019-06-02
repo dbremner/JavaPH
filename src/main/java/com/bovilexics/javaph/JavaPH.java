@@ -45,7 +45,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JButton;
@@ -916,10 +915,10 @@ public final class JavaPH extends JApplet implements IconProvider {
 	public JavaPH()
 	{
 		commands = QiCommand.commands;
-		fieldCustomOff = new ImageIcon(getURL("img/field-custom-off.gif"));
-		fieldCustomOn = new ImageIcon(getURL("img/field-custom-on.gif"));
-		fieldLoadOff = new ImageIcon(getURL("img/field-load-off.gif"));
-		fieldLoadOn = new ImageIcon(getURL("img/field-load-on.gif"));
+		fieldCustomOff = getImageIcon("img/field-custom-off.gif");
+		fieldCustomOn = getImageIcon("img/field-custom-on.gif");
+		fieldLoadOff = getImageIcon("img/field-load-off.gif");
+		fieldLoadOn = getImageIcon("img/field-load-on.gif");
 
 		int frameHeight = getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
@@ -1327,9 +1326,9 @@ public final class JavaPH extends JApplet implements IconProvider {
 	}
 
 	@Override
-	public @NotNull Icon getIcon(@NotNull String location)
+	public @NotNull ImageIcon getImageIcon(@NotNull String location)
 	{
-		final @NotNull Icon icon = new ImageIcon((location));
+		final @NotNull ImageIcon icon = new ImageIcon((location));
 		return icon;
 	}
 
@@ -1367,7 +1366,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		showDefaultStatus();
 		restoreLookAndFeel(getContentPane());
 		frame.setContentPane(getContentPane());
-		frame.setIconImage((new ImageIcon(getURL("img/ph-icon-smaller.gif"))).getImage());
+		frame.setIconImage(getImageIcon("img/ph-icon-smaller.gif").getImage());
 	}
 
 	private void initProperties()

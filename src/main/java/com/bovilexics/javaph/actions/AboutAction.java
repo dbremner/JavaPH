@@ -19,8 +19,6 @@ package com.bovilexics.javaph.actions;
 import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -30,6 +28,6 @@ public final class AboutAction extends RunnableAction
 {
 	public AboutAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("About JavaPH", runnable, new ImageIcon(provider.getURL("img/ph-icon-smaller.gif")));
+		super("About JavaPH", runnable, provider.getImageIcon("img/ph-icon-smaller.gif"));
 	}
 }

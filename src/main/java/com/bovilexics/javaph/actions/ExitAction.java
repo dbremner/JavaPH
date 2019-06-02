@@ -19,8 +19,6 @@ package com.bovilexics.javaph.actions;
 import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -30,6 +28,6 @@ public final class ExitAction extends RunnableAction
 {
 	public ExitAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("Exit", runnable, new ImageIcon(provider.getURL("img/cancel.gif")));
+		super("Exit", runnable, provider.getImageIcon("img/cancel.gif"));
 	}
 }

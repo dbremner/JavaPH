@@ -20,7 +20,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
@@ -47,7 +46,7 @@ public final class SplashWindow extends JWindow {
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		final @NotNull JLabel phImageLabel = new JLabel(new ImageIcon(javaph.getURL("img/ph-bigger.gif")));
+		final @NotNull JLabel phImageLabel = new JLabel(javaph.getImageIcon("img/ph-bigger.gif"));
 		
 		final @NotNull JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
 		upperInfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));

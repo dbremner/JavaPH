@@ -21,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -62,7 +61,7 @@ public final class AboutDialog extends JavaPHDialog
 		final @NotNull JPanel imagePanel = new JPanel(new BorderLayout());
 		
 		final @NotNull JLabel phImageLabel = new JLabel();
-		phImageLabel.setIcon(new ImageIcon(parent.getURL("img/ph-smaller.gif")));
+		phImageLabel.setIcon(parent.getImageIcon("img/ph-smaller.gif"));
 		
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 		

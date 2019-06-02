@@ -16,15 +16,13 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
 
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
 
@@ -39,7 +37,7 @@ public final class NewAction extends AbstractAction
 		
 	public NewAction(@NotNull JavaPH javaph)
 	{
-		super("New Query", new ImageIcon(javaph.getURL("img/new.gif")));
+		super("New Query", javaph.getImageIcon("img/new.gif"));
 			
 		parent = javaph;
 	}

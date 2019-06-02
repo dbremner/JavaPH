@@ -6,7 +6,6 @@
  */
 package com.bovilexics.javaph.ui;
 
-import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,10 +27,10 @@ public class ServerRenderer extends DefaultListCellRenderer
 	{
 		icons = new ImageIcon[]
 	   {
-		   new ImageIcon(javaph.getURL("img/field-error.gif")),
-		   new ImageIcon(javaph.getURL("img/field-false.gif")),
-		   new ImageIcon(javaph.getURL("img/field-true.gif")),
-		   new ImageIcon(javaph.getURL("img/server-error.gif"))
+		   javaph.getImageIcon("img/field-error.gif"),
+		   javaph.getImageIcon("img/field-false.gif"),
+		   javaph.getImageIcon("img/field-true.gif"),
+		   javaph.getImageIcon("img/server-error.gif")
 	   };
 	}
 	

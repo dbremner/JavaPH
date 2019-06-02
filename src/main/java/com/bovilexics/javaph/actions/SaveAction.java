@@ -22,7 +22,6 @@ import com.bovilexics.javaph.ui.TextFileChooser;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
@@ -50,7 +49,7 @@ public final class SaveAction extends AbstractAction
 		
 	public SaveAction(@NotNull JavaPH javaph)
 	{
-		super("Save Results", new ImageIcon(javaph.getURL("img/save.gif")));
+		super("Save Results", javaph.getImageIcon("img/save.gif"));
 
 		parent = javaph;
 	}

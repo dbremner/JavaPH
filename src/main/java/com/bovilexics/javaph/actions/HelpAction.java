@@ -16,16 +16,14 @@
  */
 package com.bovilexics.javaph.actions;
 
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-
-import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
 import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 /**
  *
@@ -38,7 +36,7 @@ public final class HelpAction extends AbstractAction
 	
 	public HelpAction(@NotNull JavaPH javaph)
 	{
-		super("Help Contents", new ImageIcon(javaph.getURL("img/help.gif")));
+		super("Help Contents", javaph.getImageIcon("img/help.gif"));
 		
 		parent = javaph;
 		

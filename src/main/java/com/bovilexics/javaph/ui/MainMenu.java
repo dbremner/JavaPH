@@ -27,7 +27,6 @@ import com.bovilexics.javaph.actions.PrefsAction;
 import com.bovilexics.javaph.actions.SaveAction;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -92,7 +91,7 @@ public final class MainMenu extends JMenuBar
 
 		@NotNull JMenuItem menuItem = getNewMenuItem();
 		menuItem.setAction(new CutAction());
-		menuItem.setIcon(new ImageIcon(parent.getURL("img/cut.gif")));
+		menuItem.setIcon(parent.getImageIcon("img/cut.gif"));
 		menuItem.setText("Cut");
 		menuItem.setActionCommand("Cuts the selection and puts it on the clipboard");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
@@ -101,7 +100,7 @@ public final class MainMenu extends JMenuBar
 
 		menuItem = new JMenuItem("Copy");
 		menuItem.setAction(new CopyAction());
-		menuItem.setIcon(new ImageIcon(parent.getURL("img/copy.gif")));
+		menuItem.setIcon(parent.getImageIcon("img/copy.gif"));
 		menuItem.setText("Copy");
 		menuItem.setActionCommand("Copies the selection and puts it on the clipboard");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK));
@@ -110,7 +109,7 @@ public final class MainMenu extends JMenuBar
 
 		menuItem = getNewMenuItem();
 		menuItem.setAction(new PasteAction());
-		menuItem.setIcon(new ImageIcon(parent.getURL("img/paste.gif")));
+		menuItem.setIcon(parent.getImageIcon("img/paste.gif"));
 		menuItem.setText("Paste");
 		menuItem.setActionCommand("Inserts clipboard contents");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
