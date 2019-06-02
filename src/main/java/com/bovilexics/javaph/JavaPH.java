@@ -625,6 +625,50 @@ public final class JavaPH extends JApplet implements IconProvider {
 			fieldListPanel.add(new JLabel("Select the fields to be returned"), BorderLayout.NORTH);
 			fieldListPanel.add(fieldListControlPanel, BorderLayout.CENTER);
 		}
+
+		private void populateFieldList(@NotNull Server server)
+		{
+			final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
+			model.clear();
+
+			if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
+			{
+				final @NotNull List<Field> fields = server.getFields();
+
+				for (Field field : fields) {
+					model.addElement(field);
+				}
+			}
+
+			if (model.getSize() > 0) {
+				fieldList.setSelectionInterval(0, model.getSize() - 1);
+			}
+
+			if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE) {
+				fieldLoadButton.setToolTipText("Reload fields for the selected server");
+			} else {
+				fieldLoadButton.setToolTipText("Load fields for the selected server");
+			}
+		}
+
+		private void loadFieldsForServer(@NotNull Server server)
+		{
+			showStatus("Loading fields for " + server.getExpandedName(), true);
+
+			final Component component = ((RootPaneContainer)defaultPane.getTopLevelAncestor()).getGlassPane();
+
+			component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			component.setVisible(true);
+			component.addMouseListener(new NullMouseAdapter());
+			component.addKeyListener(new NullKeyAdapter());
+
+			server.loadFields();
+
+			component.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			component.setVisible(false);
+
+			showStatus(server.getFieldStateMessage(), true);
+		}
 	}
 
 	final class ResultPanel extends JTabbedPane
@@ -822,6 +866,22 @@ public final class JavaPH extends JApplet implements IconProvider {
 	
 			logTextPanel.add(logTextScroll, BorderLayout.CENTER);
 			logTextPanel.add(logControlPanel, BorderLayout.SOUTH);
+		}
+
+		private void populateColumnList()
+		{
+			final @NotNull TableSorter tableModel = (TableSorter)resultTable.getModel();
+			final @NotNull DefaultListModel listModel = (DefaultListModel)colList.getModel();
+			listModel.clear();
+
+			for (int i = 0; i < tableModel.getColumnCount(); i++)
+			{
+				listModel.addElement(tableModel.getColumnName(i));
+			}
+
+			if (listModel.getSize() > 0) {
+				colList.setSelectionInterval(0, listModel.getSize() - 1);
+			}
 		}
 
 	}
@@ -1449,25 +1509,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	private void loadFieldsForServer(@NotNull Server server)
-	{
-		showStatus("Loading fields for " + server.getExpandedName(), true);
-
-		final Component component = ((RootPaneContainer)defaultPane.getTopLevelAncestor()).getGlassPane();
-
-		component.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		component.setVisible(true);
-		component.addMouseListener(new NullMouseAdapter());
-		component.addKeyListener(new NullKeyAdapter());
-
-		server.loadFields();
-						
-		component.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		component.setVisible(false);
-						
-		showStatus(server.getFieldStateMessage(), true);
-	}
-
 	private void loadProperties()
 	{
 
@@ -1490,47 +1531,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 		logText.append(" :: ");
 		logText.append(logMessage);
 		logText.append("\n");
-	}
-
-	private void populateColumnList()
-	{
-		final @NotNull TableSorter tableModel = (TableSorter)resultTable.getModel();
-		final @NotNull DefaultListModel listModel = (DefaultListModel)colList.getModel();
-		listModel.clear();
-		
-		for (int i = 0; i < tableModel.getColumnCount(); i++)
-		{
-			listModel.addElement(tableModel.getColumnName(i));
-		}
-		
-		if (listModel.getSize() > 0) {
-			colList.setSelectionInterval(0, listModel.getSize() - 1);
-		}
-	}
-
-	private void populateFieldList(@NotNull Server server)
-	{
-		final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
-		model.clear();
-					
-		if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
-		{
-			final @NotNull List<Field> fields = server.getFields();
-
-			for (Field field : fields) {
-				model.addElement(field);
-			}
-		}
-					
-		if (model.getSize() > 0) {
-			fieldList.setSelectionInterval(0, model.getSize() - 1);
-		}
-						
-		if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE) {
-			fieldLoadButton.setToolTipText("Reload fields for the selected server");
-		} else {
-			fieldLoadButton.setToolTipText("Load fields for the selected server");
-		}
 	}
 
 	public boolean propertyDefaultEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
