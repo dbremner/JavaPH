@@ -18,28 +18,15 @@ package com.bovilexics.javaph.actions;
 
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.AbstractAction;
-import java.awt.event.ActionEvent;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class PrefsAction extends AbstractAction
+public final class PrefsAction extends RunnableAction
 {
-	private final @NotNull Runnable runnable;
-		
 	public PrefsAction(@NotNull Runnable runnable)
 	{
-		super("Preferences");
-
-		this.runnable = runnable;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent ae)
-	{
-		runnable.run();
+		super("Preferences", runnable);
 	}
 }

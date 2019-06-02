@@ -18,28 +18,15 @@ package com.bovilexics.javaph.actions;
 
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.AbstractAction;
-import java.awt.event.ActionEvent;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class BrowserAction extends AbstractAction
+public final class BrowserAction extends RunnableAction
 {
-	private final @NotNull Runnable runnable;
-
 	public BrowserAction(@NotNull Runnable runnable)
 	{
-		super("Browser Options");
-
-		this.runnable = runnable;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent ae)
-	{
-		runnable.run();
+		super("Browser Options", runnable);
 	}
 }
