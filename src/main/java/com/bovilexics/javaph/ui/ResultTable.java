@@ -91,9 +91,11 @@ public final class ResultTable extends JTable
 
 	public void resetColumnWidths()
 	{
+		final @NotNull TableModel model = getModel();
 		for (int i = 0; i < getColumnCount(); i++)
 		{
-			final TableColumn column = getColumn(getModel().getColumnName(i));
+			final @NotNull String value = model.getColumnName(i);
+			final @NotNull TableColumn column = getColumn(value);
 			final int width = getPreferredWidthForColumn(column);
 
 			column.setMinWidth(0);
