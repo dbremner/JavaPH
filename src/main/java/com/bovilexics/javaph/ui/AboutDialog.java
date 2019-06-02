@@ -60,9 +60,7 @@ public final class AboutDialog extends JavaPHDialog
 
 		final @NotNull JPanel imagePanel = new JPanel(new BorderLayout());
 		
-		final @NotNull JLabel phImageLabel = new JLabel();
-		phImageLabel.setIcon(parent.getImageIcon("img/ph-smaller.gif"));
-		
+		final @NotNull JLabel phImageLabel = new JLabel(parent.getImageIcon("img/ph-smaller.gif"));
 		imagePanel.add(phImageLabel, BorderLayout.CENTER);
 		
 		contentPanel.add(imagePanel, BorderLayout.CENTER);
