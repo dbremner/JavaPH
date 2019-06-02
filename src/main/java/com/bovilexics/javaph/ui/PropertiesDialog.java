@@ -87,11 +87,9 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	public PropertiesDialog(@NotNull JavaPH javaph)
 	{
-		super(javaph);
+		super(javaph, INFO_NAME + " Properties");
 
 		parent = javaph;
-
-		setTitle(INFO_NAME + " Properties");
 		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());

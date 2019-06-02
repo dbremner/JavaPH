@@ -49,12 +49,9 @@ public final class AboutDialog extends JavaPHDialog
 
 	public AboutDialog(@NotNull JavaPH javaph)
 	{
-		super(javaph);
+		super(javaph, "About " + INFO_NAME);
 
 		final @NotNull JavaPH parent = javaph;
-
-		setTitle("About " + INFO_NAME);
-		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		
