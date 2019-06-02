@@ -19,29 +19,17 @@ package com.bovilexics.javaph.actions;
 import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionEvent;
 
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class FindAction extends AbstractAction
+public final class FindAction extends RunnableAction
 {
-	private final @NotNull Runnable runnable;
-
 	public FindAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("Find", new ImageIcon(provider.getURL("img/find.gif")));
-
-		this.runnable = runnable;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent ae)
-	{
-		runnable.run();
+		super("Find", runnable, new ImageIcon(provider.getURL("img/find.gif")));
 	}
 }

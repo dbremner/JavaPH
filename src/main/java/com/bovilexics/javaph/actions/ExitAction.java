@@ -19,28 +19,17 @@ package com.bovilexics.javaph.actions;
 import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionEvent;
 
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class ExitAction extends AbstractAction
+public final class ExitAction extends RunnableAction
 {
-	private final @NotNull Runnable runnable;
-
 	public ExitAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
 	{
-		super("Exit", new ImageIcon(provider.getURL("img/cancel.gif")));
-		this.runnable = runnable;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent ae)
-	{
-		runnable.run();
+		super("Exit", runnable, new ImageIcon(provider.getURL("img/cancel.gif")));
 	}
 }
