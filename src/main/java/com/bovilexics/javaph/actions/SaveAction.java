@@ -111,7 +111,7 @@ public final class SaveAction extends AbstractAction
 				// start at row -1 to grab headers first
 				for (int r = -1; r < rows; r++)
 				{
-					@NotNull StringBuffer toWrite = new StringBuffer();
+					@NotNull final StringBuffer toWrite = new StringBuffer();
 
 					for (int c = 0; c < cols; c++)
 					{
