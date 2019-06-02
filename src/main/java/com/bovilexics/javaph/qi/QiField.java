@@ -63,6 +63,14 @@ public class QiField implements Field
 		this.description = description;
 	}
 
+	public QiField(@NotNull String name, int length, @NotNull List<String> properties, @NotNull String description)
+	{
+		this.name = name;
+		this.length = length;
+		this.properties = properties;
+		this.description = description;
+	}
+
 	@Override
 	public @NotNull String getDescription()
 	{
