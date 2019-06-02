@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class QiServer implements Server
 {
+	private static final @NotNull FieldFactory factory = new QiFieldFactory();
 
 	private static final int QUERY_RUNTIME = 10;
 
@@ -116,7 +117,7 @@ public class QiServer implements Server
 
 					try
 					{
-						fields.add(new QiField(propsField, propsValue, descValue));
+						fields.add(factory.create(propsField, propsValue, descValue));
 					}
 					catch (QiProtocolException e)
 					{
