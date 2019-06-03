@@ -1008,7 +1008,41 @@ public final class JavaPH extends JApplet implements IconProvider {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
 
 		restoreLookAndFeel();
-		init();
+		if(propertyEquals(PROP_DISPLAY_SPLASH, "true", "true")) {
+			showSplashWindow();
+		}
+
+		if (getLoadFields() == LOAD_FIELDS_STARTUP) {
+			loadFieldsForAllServers();
+		}
+
+		final Container contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
+
+		// Need to add status panel first so later panels
+		// can have access to the status labels
+		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
+		contentPane.add(queryToolBar, BorderLayout.NORTH);
+		resultPanel = new ResultPanel(this);
+		final @NotNull JPanel queryPanel = new QueryPanel(this);
+		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
+
+		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
+
+		defaultPane.setJMenuBar(new MainMenu(this));
+
+		log("JavaPH initialized (Application) Mode)");
+		log("Initializing default server");
+
+		serverComboBox.setSelectedItem(QiServerManager.getDefaultServer());
+
+		log("Default server initialized");
+
+		showDefaultStatus();
+		restoreLookAndFeel(getContentPane());
+		frame.setContentPane(getContentPane());
+		frame.setIconImage(getImageIcon("img/ph-icon-smaller.gif").getImage());
+
 		frame.setSize(frameWidth, frameHeight);
 		frame.setTitle("JavaPH");
 
