@@ -175,10 +175,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private CustomButtonGroup fieldRadioGroup;
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
-	private final @NotNull ImageIcon fieldCustomOff;
-	private final @NotNull ImageIcon fieldCustomOn;
-	private final @NotNull ImageIcon fieldLoadOff;
-	private final @NotNull ImageIcon fieldLoadOn;
 	private final @NotNull Properties defaultProperties = new Properties();
 	private final @NotNull Properties properties = new Properties();
 	private final @NotNull PropertiesDialog propertiesDialog;
@@ -196,19 +192,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	
 	// Swing widgets and stuff
 	
-	private final JButton colListSelectAllButton = new JButton("Select All");
-	private final JButton colListSelectNoneButton = new JButton("Delselect All");
-	private @Nullable JButton fieldCustomButton;
-	private JButton fieldListMoveDnButton;
-	private JButton fieldListMoveUpButton;
-	private JButton fieldListSelectAllButton;
-	private JButton fieldListSelectNoneButton;
-	private @Nullable JButton fieldLoadButton;
 	private final JButton queryButton = new JButton("Execute Query");
-	private final JButton resultTableColButton = new JButton("Show/Hide Columns");
-	private final JButton resultTableColWidthButton = new JButton("Reset Column Widths");
-	private final JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
-	private final JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
 	private JComboBox<QiCommand> commandComboBox;
 	private JComboBox<Server> serverComboBox;
 	private JLabel portStatusLabel;
@@ -219,7 +203,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private final JPanel colListPanel = new JPanel(new BorderLayout());
 	private final JPanel fieldListPanel = new JPanel(new BorderLayout());
 	private final JPanel logTextPanel = new JPanel(new BorderLayout());
-	private final JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
 	private JRootPane defaultPane;
 	private JTabbedPane resultPanel;
 	private final JTextArea logText = new JTextArea();
@@ -288,10 +271,27 @@ public final class JavaPH extends JApplet implements IconProvider {
 	final class QueryPanel extends JPanel
 	{
 		private final @NotNull JavaPH parent;
+		private JButton fieldListMoveDnButton;
+		private JButton fieldListMoveUpButton;
+		private JButton fieldListSelectAllButton;
+		private JButton fieldListSelectNoneButton;
+		private @Nullable JButton fieldLoadButton;
+		private @Nullable JButton fieldCustomButton;
+		private final @NotNull ImageIcon fieldCustomOff;
+		private final @NotNull ImageIcon fieldCustomOn;
+		private final @NotNull ImageIcon fieldLoadOff;
+		private final @NotNull ImageIcon fieldLoadOn;
+		private final JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
+
 		
 		QueryPanel(final @NotNull JavaPH javaph)
 		{
 			parent = javaph;
+
+			fieldCustomOff = getImageIcon("img/field-custom-off.gif");
+			fieldCustomOn = getImageIcon("img/field-custom-on.gif");
+			fieldLoadOff = getImageIcon("img/field-load-off.gif");
+			fieldLoadOn = getImageIcon("img/field-load-on.gif");
 
 			initFieldListPanel();
 
@@ -669,6 +669,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	final class ResultPanel extends JTabbedPane
 	{
+		private final JButton colListSelectAllButton = new JButton("Select All");
+		private final JButton colListSelectNoneButton = new JButton("Delselect All");
+		private final JButton resultTableColButton = new JButton("Show/Hide Columns");
+		private final JButton resultTableColWidthButton = new JButton("Reset Column Widths");
+		private final JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
+		private final JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
+
 		ResultPanel(final JavaPH javaph)
 		{
 			super(SwingConstants.TOP);
@@ -972,11 +979,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 	public JavaPH()
 	{
 		commands = QiCommand.commands;
-		fieldCustomOff = getImageIcon("img/field-custom-off.gif");
-		fieldCustomOn = getImageIcon("img/field-custom-on.gif");
-		fieldLoadOff = getImageIcon("img/field-load-off.gif");
-		fieldLoadOn = getImageIcon("img/field-load-on.gif");
-
 		int frameHeight = getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
 		int frameX = getIntProperty(PROP_APP_X_POSITION, -1);
