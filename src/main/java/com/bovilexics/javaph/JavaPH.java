@@ -276,15 +276,11 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	final class ContentPanel extends JPanel
 	{	
-		ContentPanel(final @NotNull JavaPH javaph)
+		ContentPanel(final @NotNull JPanel queryPanel, JTabbedPane resultPanel)
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
-
-			final @NotNull JPanel queryPanel = new QueryPanel(javaph);
 			add(queryPanel, BorderLayout.NORTH);
-			
-			resultPanel = new ResultPanel(javaph);		
 			add(resultPanel, BorderLayout.CENTER);
 		}
 	}
@@ -1411,7 +1407,9 @@ public final class JavaPH extends JApplet implements IconProvider {
 		// can have access to the status labels
 		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
 		contentPane.add(queryToolBar, BorderLayout.NORTH);
-		contentPane.add(new ContentPanel(this), BorderLayout.CENTER);
+		resultPanel = new ResultPanel(this);
+		final @NotNull JPanel queryPanel = new QueryPanel(this);
+		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
 		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
 
