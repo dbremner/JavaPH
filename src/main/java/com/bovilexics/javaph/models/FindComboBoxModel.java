@@ -22,7 +22,9 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -33,16 +35,16 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 {
 	private @Nullable Object selectedObject;
 
-	private final @NotNull Vector<Object> allObjects;
-	private Vector<Object> objects;
+	private final @NotNull List<Object> allObjects;
+	private List<Object> objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.
 	 */
 	public FindComboBoxModel()
 	{
-		objects = new Vector<>();
-		allObjects = new Vector<>();
+		objects = new ArrayList<>();
+		allObjects = new ArrayList<>();
 	}
 
 	/**
@@ -53,18 +55,13 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 */
 	public FindComboBoxModel(final @NotNull Object[] items)
 	{
-		objects = new Vector<>();
-		objects.ensureCapacity( items.length );
-
-        for (Object item : items) {
-            objects.addElement(item);
-        }
+		objects = new ArrayList<>(Arrays.asList(items));
 
 		if (getSize() > 0) {
 			selectedObject = getElementAt(0);
 		}
 			
-		allObjects = new Vector<>(objects);
+		allObjects = new ArrayList<>(objects);
 	}
 
 	/**
@@ -73,7 +70,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	 *
 	 * @param v  a Vector object ...
 	 */
-	public FindComboBoxModel(Vector<Object> v)
+	public FindComboBoxModel(List<Object> v)
 	{
 		objects = v;
 
@@ -81,7 +78,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			selectedObject = getElementAt(0);
 		}
 			
-		allObjects = new Vector<>(objects);
+		allObjects = new ArrayList<>(objects);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -111,7 +108,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 			
 			for (int i = 0; i < allObjects.size(); i++)
 			{
-				final Object anObject = allObjects.elementAt(i);
+				final Object anObject = allObjects.get(i);
 
 				if (anObject == null) {
 					continue;
@@ -120,7 +117,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 				final String element = anObject.toString();
 				
 				if (element.equals(filter) || element.startsWith(filter)) {
-					if (!objects.contains(allObjects.elementAt(i))) {
+					if (!objects.contains(allObjects.get(i))) {
 						insertElementAt(anObject, objects.size());
 					}
 				}
@@ -128,7 +125,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		}
 		
 		if (!objects.isEmpty()) {
-			selectedObject = objects.elementAt(0);
+			selectedObject = objects.get(0);
 		}
 	}
 
@@ -137,7 +134,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	public @Nullable Object getElementAt(int index)
 	{
 		if (index >= 0 && index < objects.size()) {
-			return objects.elementAt(index);
+			return objects.get(index);
 		} else {
 			return null;
 		}
@@ -173,11 +170,11 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	@Override
 	public void insertElementAt(Object anObject, int index)
 	{
-		objects.insertElementAt(anObject, index);
+		objects.add(index, anObject);
 		fireIntervalAdded(this, index, index);
 
 		if (!allObjects.contains(anObject)) {
-			allObjects.insertElementAt(anObject, index);
+			allObjects.add(index, anObject);
 		}
 	}
 
@@ -189,7 +186,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		if (!objects.isEmpty())
 		{
 			final int lastIndex = objects.size() - 1;
-			objects.removeAllElements();
+			objects.clear();
 			selectedObject = null;
 			final int firstIndex = 0;
 			fireIntervalRemoved(this, firstIndex, lastIndex);
@@ -219,13 +216,13 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 				setSelectedItem(getElementAt(index - 1));
 			}
 		}
-		objects.removeElementAt(index);
+		objects.remove(index);
 		fireIntervalRemoved(this, index, index);
 	}
 
 	public void restoreAllElements()
 	{
-		objects = new Vector<>(allObjects);
+		objects = new ArrayList<>(allObjects);
 		selectedObject = null;
 
 		if (getSize() > 0) {

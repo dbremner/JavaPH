@@ -22,8 +22,9 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
+import java.util.List;
 
 /**
  *
@@ -34,16 +35,16 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 {
 	private @Nullable Object selectedObject;
 
-	private final @NotNull Vector<Object> allObjects;
-	private final Vector<Object> objects;
+	private final @NotNull List<Object> allObjects;
+	private final List<Object> objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.
 	 */
 	public QueryComboBoxModel()
 	{
-		objects = new Vector<>();
-		allObjects = new Vector<>();
+		objects = new ArrayList<>();
+		allObjects = new ArrayList<>();
 	}
 
 	/**
@@ -54,15 +55,12 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 */
 	public QueryComboBoxModel(final @NotNull Object[] items)
 	{
-		objects = new Vector<>();
-		objects.ensureCapacity( items.length );
-		objects.addAll(Arrays.asList(items));
-
+		objects = new ArrayList<>(Arrays.asList(items));
 		if (getSize() > 0) {
             selectedObject = getElementAt(0);
         }
 			
-		allObjects = new Vector<>(objects);
+		allObjects = new ArrayList<>(objects);
 	}
 
 	/**
@@ -71,7 +69,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 *
 	 * @param v  a Vector object ...
 	 */
-	public QueryComboBoxModel(Vector<Object> v)
+	public QueryComboBoxModel(List<Object> v)
 	{
 		objects = v;
 
@@ -79,7 +77,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
             selectedObject = getElementAt(0);
         }
 			
-		allObjects = new Vector<>(objects);
+		allObjects = new ArrayList<>(objects);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -138,7 +136,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 			
 			for (int i = 0; i < allObjects.size(); i++)
 			{
-                final Object anObject = allObjects.elementAt(i);
+                final Object anObject = allObjects.get(i);
 
                 if (anObject == null) {
                     continue;
@@ -153,7 +151,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		}
 		
 		if (!objects.isEmpty()) {
-            selectedObject = objects.elementAt(0);
+            selectedObject = objects.get(0);
         }
 	}
 
@@ -166,7 +164,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 			return null;
 		}
 
-		return objects.elementAt(index);
+		return objects.get(index);
 	}
 
 	// implements javax.swing.ComboBoxModel
@@ -199,11 +197,11 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	@Override
     public void insertElementAt(Object anObject, int index)
 	{
-		objects.insertElementAt(anObject, index);
+		objects.add(index, anObject);
 		fireIntervalAdded(this, index, index);
 		
 		if (!allObjects.contains(anObject)) {
-            allObjects.insertElementAt(anObject, index);
+            allObjects.add(index, anObject);
         }
 	}
 
@@ -215,7 +213,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		if (!objects.isEmpty())
 		{
             final int lastIndex = objects.size() - 1;
-			objects.removeAllElements();
+			objects.clear();
 			selectedObject = null;
             final int firstIndex = 0;
             fireIntervalRemoved(this, firstIndex, lastIndex);
@@ -245,7 +243,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
                 setSelectedItem(getElementAt(index - 1));
             }
 		}
-		objects.removeElementAt(index);
+		objects.remove(index);
 		fireIntervalRemoved(this, index, index);
 	}
 
@@ -254,7 +252,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		removeAllElements();
 		
 		for (int i = 0; i < allObjects.size(); i++) {
-            addElement(allObjects.elementAt(i));
+            addElement(allObjects.get(i));
         }
 	}
 

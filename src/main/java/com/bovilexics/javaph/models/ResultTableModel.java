@@ -18,8 +18,10 @@ package com.bovilexics.javaph.models;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -54,14 +56,14 @@ public final class ResultTableModel extends DefaultTableModel
 		return headers;	
 	}
 	
-	public @NotNull Vector<String> getDefaultHeaderVector()
+	public @NotNull List<String> getDefaultHeaderVector()
 	{
 		return getDefaultHeaderVector(DEFAULT_COLS);
 	}
 	
-	public @NotNull Vector<String> getDefaultHeaderVector(int cols)
+	public @NotNull List<String> getDefaultHeaderVector(int cols)
 	{
-		final @NotNull Vector<String> headers = new Vector<>();
+		final @NotNull List<String> headers = new ArrayList<>();
 		
 		for (int i = 0; i < cols; i++) {
 			headers.add(DEFAULT_HEADER);
