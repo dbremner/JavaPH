@@ -40,11 +40,6 @@ public final class ResultTableModel extends DefaultTableModel
 		resetModel();
 	}
 
-	public @NotNull Object[] getDefaultHeaderArray()
-	{
-		return getDefaultHeaderArray(DEFAULT_COLS);
-	}
-	
 	public @NotNull Object[] getDefaultHeaderArray(int cols)
 	{
 		final @NotNull Object[] headers = new Object[DEFAULT_COLS];
@@ -75,7 +70,7 @@ public final class ResultTableModel extends DefaultTableModel
 	
 	public void resetModel()
 	{
-		setColumnIdentifiers(getDefaultHeaderArray());
+		setColumnIdentifiers(getDefaultHeaderArray(DEFAULT_COLS));
 		setColumnCount(DEFAULT_COLS);
 		setRowCount(DEFAULT_ROWS);
 	}
