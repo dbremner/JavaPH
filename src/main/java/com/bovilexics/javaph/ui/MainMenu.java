@@ -66,21 +66,21 @@ public final class MainMenu extends JMenuBar
 		mouseListener = new StatusMouseListener(parent);
 		addMouseListener(mouseListener);
 
-		@NotNull JMenu menu = getFileComponent();
-		menu.addMouseListener(mouseListener);
-		add(menu);
-		
-		menu = getEditComponent();
-		menu.addMouseListener(mouseListener);
-		add(menu);
-		
-		menu = getWindowComponent();
-		menu.addMouseListener(mouseListener);
-		add(menu);
+		final @NotNull JMenu fileMenu = getFileComponent();
+		fileMenu.addMouseListener(mouseListener);
+		add(fileMenu);
 
-		menu = getHelpComponent();
-		menu.addMouseListener(mouseListener);
-		add(menu);
+		final @NotNull JMenu editMenu = getEditComponent();
+		editMenu.addMouseListener(mouseListener);
+		add(editMenu);
+
+		final @NotNull JMenu windowMenu = getWindowComponent();
+		windowMenu.addMouseListener(mouseListener);
+		add(windowMenu);
+
+		final @NotNull JMenu helpMenu = getHelpComponent();
+		helpMenu.addMouseListener(mouseListener);
+		add(helpMenu);
 	}
 
 	private @NotNull JMenu getEditComponent()
@@ -89,41 +89,41 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
-		@NotNull JMenuItem menuItem = getNewMenuItem();
-		menuItem.setAction(new CutAction());
-		menuItem.setIcon(parent.getImageIcon("img/cut.gif"));
-		menuItem.setText("Cut");
-		menuItem.setActionCommand("Cuts the selection and puts it on the clipboard");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_T);
-		editMenu.add(menuItem);
+		final @NotNull JMenuItem cutItem = getNewMenuItem();
+		cutItem.setAction(new CutAction());
+		cutItem.setIcon(parent.getImageIcon("img/cut.gif"));
+		cutItem.setText("Cut");
+		cutItem.setActionCommand("Cuts the selection and puts it on the clipboard");
+		cutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
+		cutItem.setMnemonic(KeyEvent.VK_T);
+		editMenu.add(cutItem);
 
-		menuItem = new JMenuItem("Copy");
-		menuItem.setAction(new CopyAction());
-		menuItem.setIcon(parent.getImageIcon("img/copy.gif"));
-		menuItem.setText("Copy");
-		menuItem.setActionCommand("Copies the selection and puts it on the clipboard");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_C);
-		editMenu.add(menuItem);
+		final @NotNull JMenuItem copyItem = new JMenuItem("Copy");
+		copyItem.setAction(new CopyAction());
+		copyItem.setIcon(parent.getImageIcon("img/copy.gif"));
+		copyItem.setText("Copy");
+		copyItem.setActionCommand("Copies the selection and puts it on the clipboard");
+		copyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK));
+		copyItem.setMnemonic(KeyEvent.VK_C);
+		editMenu.add(copyItem);
 
-		menuItem = getNewMenuItem();
-		menuItem.setAction(new PasteAction());
-		menuItem.setIcon(parent.getImageIcon("img/paste.gif"));
-		menuItem.setText("Paste");
-		menuItem.setActionCommand("Inserts clipboard contents");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_P);
-		editMenu.add(menuItem);
+		final @NotNull JMenuItem pasteItem = getNewMenuItem();
+		pasteItem.setAction(new PasteAction());
+		pasteItem.setIcon(parent.getImageIcon("img/paste.gif"));
+		pasteItem.setText("Paste");
+		pasteItem.setActionCommand("Inserts clipboard contents");
+		pasteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
+		pasteItem.setMnemonic(KeyEvent.VK_P);
+		editMenu.add(pasteItem);
 		
 		editMenu.addSeparator();
-		
-		menuItem = getNewMenuItem();
-		menuItem.setAction(new FindAction(parent, parent::showFindDialog));
-		menuItem.setActionCommand("Finds the specified text in the query results");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_F);
-		editMenu.add(menuItem);
+
+		final @NotNull JMenuItem findItem = getNewMenuItem();
+		findItem.setAction(new FindAction(parent, parent::showFindDialog));
+		findItem.setActionCommand("Finds the specified text in the query results");
+		findItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK));
+		findItem.setMnemonic(KeyEvent.VK_F);
+		editMenu.add(findItem);
 		
 		return editMenu;
 	}
@@ -134,28 +134,28 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 
-		@NotNull JMenuItem menuItem = getNewMenuItem();
-		menuItem.setAction(new NewAction(parent));
-		menuItem.setActionCommand("Create a New Query");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_N);
-		fileMenu.add(menuItem);
+		final @NotNull JMenuItem newItem = getNewMenuItem();
+		newItem.setAction(new NewAction(parent));
+		newItem.setActionCommand("Create a New Query");
+		newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK));
+		newItem.setMnemonic(KeyEvent.VK_N);
+		fileMenu.add(newItem);
 
-		menuItem = getNewMenuItem();
-		menuItem.setAction(new SaveAction(parent));
-		menuItem.setActionCommand("Save a Query Results");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_S);
-		fileMenu.add(menuItem);
+		final @NotNull JMenuItem saveItem = getNewMenuItem();
+		saveItem.setAction(new SaveAction(parent));
+		saveItem.setActionCommand("Save a Query Results");
+		saveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK));
+		saveItem.setMnemonic(KeyEvent.VK_S);
+		fileMenu.add(saveItem);
 
 		fileMenu.addSeparator();
 
-		menuItem = getNewMenuItem();
-		menuItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
-		menuItem.setActionCommand("Exit JavaPH");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.ALT_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_X);
-		fileMenu.add(menuItem);
+		final @NotNull JMenuItem exitItem = getNewMenuItem();
+		exitItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
+		exitItem.setActionCommand("Exit JavaPH");
+		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.ALT_MASK));
+		exitItem.setMnemonic(KeyEvent.VK_X);
+		fileMenu.add(exitItem);
 
 		return fileMenu;
 	}
@@ -166,19 +166,19 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
-		@NotNull JMenuItem menuItem = getNewMenuItem();
-		menuItem.setAction(new HelpAction(parent));
-		menuItem.setActionCommand("Open JavaPH help window");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_H);
-		helpMenu.add(menuItem);
-		
-		menuItem = getNewMenuItem();
-		menuItem.setAction(new AboutAction(parent, parent::showAboutDialog));
-		menuItem.setActionCommand("Displays information about JavaPH");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_A);
-		helpMenu.add(menuItem);
+		final @NotNull JMenuItem helpItem = getNewMenuItem();
+		helpItem.setAction(new HelpAction(parent));
+		helpItem.setActionCommand("Open JavaPH help window");
+		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, Event.CTRL_MASK));
+		helpItem.setMnemonic(KeyEvent.VK_H);
+		helpMenu.add(helpItem);
+
+		final @NotNull JMenuItem aboutItem = getNewMenuItem();
+		aboutItem.setAction(new AboutAction(parent, parent::showAboutDialog));
+		aboutItem.setActionCommand("Displays information about JavaPH");
+		aboutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK));
+		aboutItem.setMnemonic(KeyEvent.VK_A);
+		helpMenu.add(aboutItem);
 		
 		return helpMenu;
 	}
@@ -263,19 +263,19 @@ public final class MainMenu extends JMenuBar
 
 		windowMenu.add(new LookAndFeelMenu(parent));
 
-		@NotNull JMenuItem menuItem = getNewMenuItem();
-		menuItem.setAction(new BrowserAction(parent::showBrowserDialog));
-		menuItem.setActionCommand("Configure browser used to display JavaPH help");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_B);
-		windowMenu.add(menuItem);
+		final @NotNull JMenuItem browserItem = getNewMenuItem();
+		browserItem.setAction(new BrowserAction(parent::showBrowserDialog));
+		browserItem.setActionCommand("Configure browser used to display JavaPH help");
+		browserItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK));
+		browserItem.setMnemonic(KeyEvent.VK_B);
+		windowMenu.add(browserItem);
 
-		menuItem = getNewMenuItem();
-		menuItem.setAction(new PrefsAction(parent::showPropertiesDialog));
-		menuItem.setActionCommand("Set JavaPH preferences");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK));
-		menuItem.setMnemonic(KeyEvent.VK_P);
-		windowMenu.add(menuItem);
+		final @NotNull JMenuItem propertiesItem = getNewMenuItem();
+		propertiesItem.setAction(new PrefsAction(parent::showPropertiesDialog));
+		propertiesItem.setActionCommand("Set JavaPH preferences");
+		propertiesItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK));
+		propertiesItem.setMnemonic(KeyEvent.VK_P);
+		windowMenu.add(propertiesItem);
 
 		return windowMenu;
 	}
