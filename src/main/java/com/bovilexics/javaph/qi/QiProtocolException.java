@@ -28,7 +28,7 @@ public class QiProtocolException extends Exception
 		super();
 	}
 
-	public QiProtocolException(String description)
+	public QiProtocolException(final String description)
 	{
 		super(description);
 	}

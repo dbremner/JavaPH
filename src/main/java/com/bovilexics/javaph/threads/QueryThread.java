@@ -37,7 +37,7 @@ public class QueryThread extends Thread
 	private final @NotNull JavaPH parent;
 	private @Nullable ResultThread resultThread = null;
 
-	public QueryThread(@NotNull JavaPH javaph)
+	public QueryThread(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
 	}
@@ -65,7 +65,7 @@ public class QueryThread extends Thread
 			{
 				Thread.sleep(1000);
 			}
-			catch(InterruptedException ie)
+			catch(final InterruptedException ie)
 			{
 				ie.printStackTrace();
 			}
@@ -111,7 +111,7 @@ public class QueryThread extends Thread
 		});
 	}
 
-	private void showStatus(String status)
+	private void showStatus(final String status)
 	{
 		showStatus(status, false);
 	}

@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ExitAction extends RunnableAction
 {
-	public ExitAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
+	public ExitAction(final @NotNull IconProvider provider, final @NotNull Runnable runnable)
 	{
 		super("Exit", runnable, provider.getImageIcon("img/cancel.gif"));
 	}

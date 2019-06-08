@@ -40,7 +40,7 @@ public final class ResultTableModel extends DefaultTableModel
 		resetModel();
 	}
 
-	public @NotNull Object[] getDefaultHeaderArray(int cols)
+	public @NotNull Object[] getDefaultHeaderArray(final int cols)
 	{
 		final @NotNull Object[] headers = new Object[DEFAULT_COLS];
 		Arrays.fill(headers, DEFAULT_HEADER);
@@ -52,7 +52,7 @@ public final class ResultTableModel extends DefaultTableModel
 		return getDefaultHeaderVector(DEFAULT_COLS);
 	}
 	
-	public @NotNull List<String> getDefaultHeaderVector(int cols)
+	public @NotNull List<String> getDefaultHeaderVector(final int cols)
 	{
 		final @NotNull List<String> headers = new ArrayList<>(cols);
 		for (int i = 0; i < cols; i++) {
@@ -63,7 +63,7 @@ public final class ResultTableModel extends DefaultTableModel
 	}
 	
 	@Override
-	public boolean isCellEditable(int row, int col)
+	public boolean isCellEditable(final int row, final int col)
 	{
 		return false;
 	}

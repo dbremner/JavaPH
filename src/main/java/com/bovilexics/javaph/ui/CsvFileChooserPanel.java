@@ -49,7 +49,7 @@ final class CsvFileChooserPanel extends JPanel
 	class RadioButtonListener implements ActionListener
 	{	
 		@Override
-		public void actionPerformed(ActionEvent ae)
+		public void actionPerformed(final ActionEvent ae)
 		{
 			if (commaRadioButton.isSelected()) {
 				parent.setFieldSeparator(COMMA_SEPARATOR);
@@ -71,7 +71,7 @@ final class CsvFileChooserPanel extends JPanel
 	
 	private final @Nullable JTextField customTextField;
 	
-	public CsvFileChooserPanel(@NotNull JavaPH javaph)
+	public CsvFileChooserPanel(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
 
@@ -113,7 +113,7 @@ final class CsvFileChooserPanel extends JPanel
 		customTextField.addKeyListener(new KeyAdapter()
 		{
 			@Override
-			public void keyReleased(@NotNull KeyEvent ke)
+			public void keyReleased(final @NotNull KeyEvent ke)
 			{
 				if (!ke.isActionKey() && ke.getKeyCode() != KeyEvent.VK_BACK_SPACE)
 				{

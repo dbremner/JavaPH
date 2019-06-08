@@ -38,7 +38,7 @@ final class HyperLinkLabel extends JLabel
 {
 	private final @NotNull JavaPH parent;
 
-	public HyperLinkLabel(@NotNull JavaPH javaph, final String text, final String url)
+	public HyperLinkLabel(final @NotNull JavaPH javaph, final String text, final String url)
 	{
 		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
 
@@ -50,13 +50,13 @@ final class HyperLinkLabel extends JLabel
 		addMouseListener(new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked(MouseEvent me)
+			public void mouseClicked(final MouseEvent me)
 			{
 				try
 				{
 					Browser.displayURL(url, text);
 				}
-				catch (IOException e)
+				catch (final IOException e)
 				{
 					final @NotNull String message = "Error: IOException received when trying to open " + url;
 					parent.log(message);

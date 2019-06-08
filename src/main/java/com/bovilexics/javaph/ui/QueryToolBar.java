@@ -43,7 +43,7 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
 public final class QueryToolBar extends JToolBar
 {
 
-	public QueryToolBar(@NotNull JavaPH javaph)
+	public QueryToolBar(final @NotNull JavaPH javaph)
 	{
 
 		setFloatable(false);
@@ -71,7 +71,7 @@ public final class QueryToolBar extends JToolBar
 		addToolBarButton(new HelpAction(javaph));
 	}
 
-	private JButton addToolBarButton(Action action)
+	private JButton addToolBarButton(final Action action)
 	{
 		final JButton myJButton = add(action);
 		myJButton.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -80,7 +80,7 @@ public final class QueryToolBar extends JToolBar
 		return myJButton;
 	}
 		
-	private JButton addToolBarButton(Action action, @NotNull ImageIcon icon)
+	private JButton addToolBarButton(final Action action, final @NotNull ImageIcon icon)
 	{
 		final JButton myJButton = add(action);
 		myJButton.setIcon(icon);

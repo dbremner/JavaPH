@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class FindAction extends RunnableAction
 {
-	public FindAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
+	public FindAction(final @NotNull IconProvider provider, final @NotNull Runnable runnable)
 	{
 		super("Find", runnable, provider.getImageIcon("img/find.gif"));
 	}

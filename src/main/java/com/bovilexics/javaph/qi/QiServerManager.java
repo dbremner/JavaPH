@@ -19,7 +19,7 @@ public final class QiServerManager {
     private static Server defaultServer;
     private static final Vector<Server> servers = new Vector<>();
 
-    public static void addServer(@NotNull Server server) {
+    public static void addServer(final @NotNull Server server) {
 
         if (servers.isEmpty())
         {
@@ -68,7 +68,7 @@ public final class QiServerManager {
         return servers;
     }
 
-    public static void loadAllServers(@NotNull String filename) {
+    public static void loadAllServers(final @NotNull String filename) {
         servers.clear();
 
         try {
@@ -95,10 +95,10 @@ public final class QiServerManager {
             }
 
             defaultServer = servers.get(0);
-        } catch (FileNotFoundException e) {
+        } catch (final FileNotFoundException e) {
             System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             System.err.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
@@ -116,7 +116,7 @@ public final class QiServerManager {
          */
     }
 
-    public static @NotNull List<Server> loadServers(@NotNull String filename) {
+    public static @NotNull List<Server> loadServers(final @NotNull String filename) {
         final @NotNull List<Server> serverResults = new ArrayList<>();
 
         try {
@@ -141,17 +141,17 @@ public final class QiServerManager {
                     serverResults.add(server1);
                 }
             }
-        } catch (FileNotFoundException e) {
+        } catch (final FileNotFoundException e) {
             System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             System.err.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
         return serverResults;
     }
 
-    public static void removeServer(Server server) {
+    public static void removeServer(final Server server) {
         servers.remove(server);
     }
 
@@ -180,13 +180,13 @@ public final class QiServerManager {
                 writer.flush();
             }
             writer.close();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             System.err.println("Error: IOException received when trying to write file " + SERVER_FILE);
             e.printStackTrace();
         }
     }
 
-    public static void setDefaultServer(@NotNull String server)
+    public static void setDefaultServer(final @NotNull String server)
     {
         for (final @NotNull Server item : servers) {
             if (item.toString().equals(server)) {

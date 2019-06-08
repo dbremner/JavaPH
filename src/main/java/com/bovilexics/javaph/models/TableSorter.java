@@ -33,7 +33,7 @@ public class TableSorter implements TableModel, TableModelListener
 	private final @NotNull TableModel realModel;
 	private int[] indexes;
 	
-	public TableSorter(@NotNull TableModel model)
+	public TableSorter(final @NotNull TableModel model)
 	{
 		realModel = model;
 		realModel.addTableModelListener(this);
@@ -49,7 +49,7 @@ public class TableSorter implements TableModel, TableModelListener
         }
 	}
 	
-	private int compare(int i, int j, int col)
+	private int compare(final int i, final int j, final int col)
 	{
 		final @Nullable Object io = realModel.getValueAt(i, col);
 		final @Nullable Object jo = realModel.getValueAt(j, col);
@@ -68,18 +68,18 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public Object getValueAt(int row, int col)
+    public Object getValueAt(final int row, final int col)
 	{
 		return realModel.getValueAt(indexes[row], col);
 	}
 	
 	@Override
-    public void setValueAt(Object aValue, int row, int col)
+    public void setValueAt(final Object aValue, final int row, final int col)
 	{
 		realModel.setValueAt(aValue, indexes[row], col);
 	}
 
-	public void sort(int column)
+	public void sort(final int column)
 	{
 		final int rowCount = getRowCount();
 		
@@ -94,7 +94,7 @@ public class TableSorter implements TableModel, TableModelListener
 		}
 	}
 	
-	private void swap(int i, int j)
+	private void swap(final int i, final int j)
 	{
 		final int temp = indexes[i];
 		indexes[i] = indexes[j];
@@ -102,7 +102,7 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public void tableChanged(TableModelEvent e)
+    public void tableChanged(final TableModelEvent e)
 	{
 		allocate();
 	}
@@ -110,13 +110,13 @@ public class TableSorter implements TableModel, TableModelListener
 	// TableModel pass-through methods follow
 	
 	@Override
-    public void addTableModelListener(TableModelListener listener)
+    public void addTableModelListener(final TableModelListener listener)
 	{
 		realModel.addTableModelListener(listener);
 	}
 
 	@Override
-    public Class<?> getColumnClass(int columnIndex)
+    public Class<?> getColumnClass(final int columnIndex)
 	{
 		return realModel.getColumnClass(columnIndex);
 	}
@@ -128,7 +128,7 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public String getColumnName(int columnIndex)
+    public String getColumnName(final int columnIndex)
 	{
 		return realModel.getColumnName(columnIndex);
 	}
@@ -140,13 +140,13 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 
 	@Override
-    public boolean isCellEditable(int rowIndex, int columnIndex)
+    public boolean isCellEditable(final int rowIndex, final int columnIndex)
 	{
 		return realModel.isCellEditable(rowIndex, columnIndex);
 	}
 	
 	@Override
-    public void removeTableModelListener(TableModelListener listener)
+    public void removeTableModelListener(final TableModelListener listener)
 	{
 		realModel.removeTableModelListener(listener);
 	}

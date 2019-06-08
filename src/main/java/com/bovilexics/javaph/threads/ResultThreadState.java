@@ -23,7 +23,7 @@ public enum ResultThreadState {
         return value;
     }
 
-    ResultThreadState(int value) {
+    ResultThreadState(final int value) {
         this.value = value;
     }
 }

@@ -217,7 +217,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	class ControlTabDispatcher	implements KeyEventDispatcher
 	{
 		@Override
-		public boolean dispatchKeyEvent(@NotNull KeyEvent ke)
+		public boolean dispatchKeyEvent(final @NotNull KeyEvent ke)
 		{
 			if (ke.isControlDown() && ke.getKeyCode() == KeyEvent.VK_TAB)
 			{
@@ -259,7 +259,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	final class ContentPanel extends JPanel
 	{	
-		ContentPanel(final @NotNull JPanel queryPanel, @NotNull JTabbedPane resultPanel)
+		ContentPanel(final @NotNull JPanel queryPanel, final @NotNull JTabbedPane resultPanel)
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
@@ -352,7 +352,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyAdapter()
 			{
 				@Override
-				public void keyReleased(@NotNull KeyEvent ke)
+				public void keyReleased(final @NotNull KeyEvent ke)
 				{
 					if (ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_ESCAPE)
 					{
@@ -423,13 +423,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 			fieldCustomButton.addMouseListener(new MouseAdapter()
 			{
 				@Override
-				public void mouseEntered(MouseEvent e)
+				public void mouseEntered(final MouseEvent e)
 				{
 					fieldCustomButton.setIcon(fieldCustomOn);
 				}
 
 				@Override
-				public void mouseExited(MouseEvent e)
+				public void mouseExited(final MouseEvent e)
 				{
 					fieldCustomButton.setIcon(fieldCustomOff);
 				}
@@ -454,13 +454,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 			fieldLoadButton.addMouseListener(new MouseAdapter()
 			{
 				@Override
-				public void mouseEntered(MouseEvent e)
+				public void mouseEntered(final MouseEvent e)
 				{
 					fieldLoadButton.setIcon(fieldLoadOn);
 				}
 
 				@Override
-				public void mouseExited(MouseEvent e)
+				public void mouseExited(final MouseEvent e)
 				{
 					fieldLoadButton.setIcon(fieldLoadOff);
 				}
@@ -608,7 +608,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			fieldList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
-				protected void changed(ListDataEvent e)
+				protected void changed(final ListDataEvent e)
 				{
 					fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
 					fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);					
@@ -622,7 +622,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			fieldListPanel.add(fieldListControlPanel, BorderLayout.CENTER);
 		}
 
-		private void populateFieldList(@NotNull Server server)
+		private void populateFieldList(final @NotNull Server server)
 		{
 			final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
 			model.clear();
@@ -631,7 +631,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			{
 				final @NotNull List<Field> fields = server.getFields();
 
-				for (Field field : fields) {
+				for (final Field field : fields) {
 					model.addElement(field);
 				}
 			}
@@ -647,7 +647,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			}
 		}
 
-		private void loadFieldsForServer(@NotNull Server server)
+		private void loadFieldsForServer(final @NotNull Server server)
 		{
 			showStatus("Loading fields for " + server.getExpandedName(), true);
 
@@ -710,7 +710,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
 				@Override
-				public void mouseClicked(@NotNull MouseEvent me)
+				public void mouseClicked(final @NotNull MouseEvent me)
 				{
 					final TableColumnModel tcm = resultTable.getColumnModel();
 					final int vc = tcm.getColumnIndexAtX(me.getX());
@@ -823,7 +823,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			colList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
-				protected void changed(ListDataEvent e)
+				protected void changed(final ListDataEvent e)
 				{
 					colListSelectAllButton.setEnabled(colList.getModel().getSize() > 0);
 					colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);					
@@ -923,13 +923,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public static void main(String[] args)
+	public static void main(final String[] args)
 	{
 		final @NotNull JavaPH applet = new JavaPH();
 		applet.frame.addWindowListener(new WindowAdapter()
 		{
 			@Override
-			public void windowClosed(WindowEvent we)
+			public void windowClosed(final WindowEvent we)
 			{
 				boolean needToStore = false;
 				
@@ -1060,7 +1060,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
-	public void findText(@NotNull String text, boolean caseSensitive, boolean wrap)
+	public void findText(final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
 		if (resultPanel.getSelectedIndex() == RESULT_TEXT_TAB)
 		{
@@ -1076,7 +1076,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	private void findTextInTable(@NotNull JTable table, @NotNull String text, boolean caseSensitive, boolean wrap)
+	private void findTextInTable(final @NotNull JTable table, final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
 
 		// if there aren't any rows or columns then we aren't going to find anything
@@ -1176,7 +1176,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	private void findTextInTextArea(@NotNull JTextArea textArea, @NotNull String text, boolean caseSensitive, boolean wrap)
+	private void findTextInTextArea(final @NotNull JTextArea textArea, final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
 		int startIndex;
 		
@@ -1251,7 +1251,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 				{
 					out.append(" return");
 
-					for (int selectedField : selectedFields) {
+					for (final int selectedField : selectedFields) {
 						out.append(" ");
 						out.append(fieldList.getModel().getElementAt(selectedField).getName());
 					}
@@ -1286,7 +1286,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return fieldSeparator;
 	}
 
-	private int getIntProperty(@NotNull String key, int defaultValue)
+	private int getIntProperty(final @NotNull String key, final int defaultValue)
 	{
 		try
 		{
@@ -1299,13 +1299,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 			final int intValue = Integer.parseInt(stringValue);
 			return intValue;
 		}
-		catch (NumberFormatException e)
+		catch (final NumberFormatException e)
 		{
 			return defaultValue;
 		}
 	}
 
-	public int getIntPropertyDefault(@NotNull String key, int defaultValue)
+	public int getIntPropertyDefault(final @NotNull String key, final int defaultValue)
 	{
 		int intValue;
 
@@ -1319,7 +1319,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			
 			intValue = Integer.parseInt(stringValue);
 		}
-		catch (NumberFormatException e)
+		catch (final NumberFormatException e)
 		{
 			intValue = defaultValue;
 		}
@@ -1342,22 +1342,22 @@ public final class JavaPH extends JApplet implements IconProvider {
 		return logText;
 	}
 
-	private @Nullable String getProperty(@NotNull String key)
+	private @Nullable String getProperty(final @NotNull String key)
 	{
 		return properties.getProperty(key);
 	}
 
-	private @NotNull String getProperty(@NotNull String key, @NotNull String defaultValue)
+	private @NotNull String getProperty(final @NotNull String key, final @NotNull String defaultValue)
 	{
 		return properties.getProperty(key, defaultValue);
 	}
 
-	public @Nullable String getPropertyDefault(@NotNull String key)
+	public @Nullable String getPropertyDefault(final @NotNull String key)
 	{
 		return defaultProperties.getProperty(key);
 	}
 
-	private @NotNull String getPropertyDefault(@NotNull String key, @NotNull String defaultValue)
+	private @NotNull String getPropertyDefault(final @NotNull String key, final @NotNull String defaultValue)
 	{
 		return defaultProperties.getProperty(key, defaultValue);
 	}
@@ -1408,7 +1408,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	}
 
 	@Override
-	public @NotNull String getURL(@NotNull String location)
+	public @NotNull String getURL(final @NotNull String location)
 	{
 		return location;
 		/*
@@ -1419,7 +1419,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 	}
 
 	@Override
-	public @NotNull ImageIcon getImageIcon(@NotNull String location)
+	public @NotNull ImageIcon getImageIcon(final @NotNull String location)
 	{
 		final @NotNull ImageIcon icon = new ImageIcon((location));
 		return icon;
@@ -1472,13 +1472,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 				properties.load(inStream1);
 			}
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.out.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			e.printStackTrace();
 			System.out.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
@@ -1516,15 +1516,15 @@ public final class JavaPH extends JApplet implements IconProvider {
 		{
 			properties.load(inStream);
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 		}
 	}
 
-	public void log(String logMessage)
+	public void log(final String logMessage)
 	{
 		final @NotNull Date date = new Date(System.currentTimeMillis());
 		logText.append(date.toString());
@@ -1533,13 +1533,13 @@ public final class JavaPH extends JApplet implements IconProvider {
 		logText.append("\n");
 	}
 
-	public boolean propertyDefaultEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
+	public boolean propertyDefaultEquals(final @NotNull String key, final @NotNull String defaultValue, final @NotNull String equalsValue)
 	{
 		final @NotNull String value = getPropertyDefault(key, defaultValue);
 		return value.equals(equalsValue);
 	}
 
-	public boolean propertyEquals(@NotNull String key, @NotNull String defaultValue, @NotNull String equalsValue)
+	public boolean propertyEquals(final @NotNull String key, final @NotNull String defaultValue, final @NotNull String equalsValue)
 	{
 		final @NotNull String value = getProperty(key, defaultValue);
 		return value.equals(equalsValue);
@@ -1550,17 +1550,17 @@ public final class JavaPH extends JApplet implements IconProvider {
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), defaultPane);
 	}
 
-	private void restoreLookAndFeel(@NotNull Component component)
+	private void restoreLookAndFeel(final @NotNull Component component)
 	{
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), component);
 	}
 
-	public void restoreLookAndFeel(String lookAndFeel)
+	public void restoreLookAndFeel(final String lookAndFeel)
 	{
 		restoreLookAndFeel(lookAndFeel, defaultPane);
 	}
 
-	private void restoreLookAndFeel(@Nullable String lookAndFeel, @NotNull Component component)
+	private void restoreLookAndFeel(@Nullable String lookAndFeel, final @NotNull Component component)
 	{
 
 		final @NotNull Component[] otherComponents = {
@@ -1588,7 +1588,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 			
 			return;
 		}
-		catch(Exception e)
+		catch(final Exception e)
 		{
 			// If we cannot set the look and feel to
 			// what was specified in the properties file
@@ -1612,7 +1612,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 			return;
 		}
-		catch(Exception e)
+		catch(final Exception e)
 		{
 			// If we cannot set the look and feel to
 			// what is set as the system look and feel
@@ -1623,12 +1623,12 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public void setFieldQuoted(boolean quoted)
+	public void setFieldQuoted(final boolean quoted)
 	{
 		fieldQuoted = quoted;
 	}
 
-	public void setFieldSeparator(@NotNull String separator)
+	public void setFieldSeparator(final @NotNull String separator)
 	{
 		if (separator.isEmpty()) {
 			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");
@@ -1643,7 +1643,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public void setLoadFields(int load)
+	public void setLoadFields(final int load)
 	{
 		if (load != LOAD_FIELDS_MANUAL && load != LOAD_FIELDS_SELECTED && load != LOAD_FIELDS_STARTUP)
 		{
@@ -1656,12 +1656,12 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}	
 	}
 
-	public void setProperty(String key, String value)
+	public void setProperty(final String key, final String value)
 	{
 		properties.setProperty(key, value);
 	}
 
-	public void setQueryRuntime(int runtime)
+	public void setQueryRuntime(final int runtime)
 	{
 		if (runtime > QUERY_RUNTIME_MAX)
 		{
@@ -1679,7 +1679,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public void setSavePosition(boolean save)
+	public void setSavePosition(final boolean save)
 	{
 		savePosition = save;
 	}
@@ -1708,7 +1708,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		findDialog.setVisible(true);
 	}
 
-	public void showLog(boolean show)
+	public void showLog(final boolean show)
 	{
 		final int location = resultPanel.indexOfTab(SYSTEM_LOG_LABEL);
 
@@ -1741,7 +1741,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		{
 			Thread.sleep(SPLASH_DISPLAY);
 		}
-		catch (InterruptedException e)
+		catch (final InterruptedException e)
 		{
 		}
 			
@@ -1749,12 +1749,12 @@ public final class JavaPH extends JApplet implements IconProvider {
 	}
 
 	@Override
-	public void showStatus(String status)
+	public void showStatus(final String status)
 	{
 		showStatus(status, false);
 	}
 
-	private void showStatus(String status, boolean logAlso)
+	private void showStatus(final String status, final boolean logAlso)
 	{
 		if (statusLabel != null) {
 			statusLabel.setText(" " + status);
@@ -1765,7 +1765,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		}
 	}
 
-	public void showToolBar(boolean show)
+	public void showToolBar(final boolean show)
 	{
 		queryToolBar.setVisible(show);
 	}
@@ -1782,12 +1782,12 @@ public final class JavaPH extends JApplet implements IconProvider {
 		{
 			properties.store(new FileOutputStream(PROP_FILE), PROP_HEADER);				
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.out.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			e.printStackTrace();
 			System.out.println("IOException occurred when trying to store properties to " + PROP_FILE);

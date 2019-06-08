@@ -60,7 +60,7 @@ public class QiConnection implements Connection
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
 	 * <b>connect(host, port)</b>
 	 */
-	public QiConnection(@NotNull Server server)
+	public QiConnection(final @NotNull Server server)
 	{
 		host = server.getServer();
 		port = server.getPort();
@@ -75,7 +75,7 @@ public class QiConnection implements Connection
 	 * @param aHost to connect to
 	 * @param aPort to connect to.
 	 */
-	public QiConnection(@NotNull String aHost, int aPort)
+	public QiConnection(final @NotNull String aHost, final int aPort)
 	{
 		host = aHost;
 		port = aPort;
@@ -118,7 +118,7 @@ public class QiConnection implements Connection
 	 *
 	 */
 	@Override
-	public synchronized void connect(@NotNull String aHost, int aPort) throws IOException
+	public synchronized void connect(final @NotNull String aHost, final int aPort) throws IOException
 	{
 		host = aHost;
 		port = aPort;
@@ -196,7 +196,7 @@ public class QiConnection implements Connection
 			{
 				wait();
 			}
-			catch (InterruptedException e)
+			catch (final InterruptedException e)
 			{
 			}
 		}
@@ -214,7 +214,7 @@ public class QiConnection implements Connection
 	 * @exception IOException upon a socket error.
 	 */
 	@Override
-	public synchronized void login(@NotNull String anAlias, @NotNull String aPassword) throws IOException, QiProtocolException
+	public synchronized void login(final @NotNull String anAlias, final @NotNull String aPassword) throws IOException, QiProtocolException
 	{
 		alias = anAlias;
 		lock();
@@ -394,7 +394,7 @@ public class QiConnection implements Connection
 	}
 
 	@Override
-	public void writeQI(@NotNull String string) throws IOException
+	public void writeQI(final @NotNull String string) throws IOException
 	{
 		if (toServer == null)
 		{

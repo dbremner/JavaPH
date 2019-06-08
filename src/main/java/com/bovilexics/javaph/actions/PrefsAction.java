@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class PrefsAction extends RunnableAction
 {
-	public PrefsAction(@NotNull Runnable runnable)
+	public PrefsAction(final @NotNull Runnable runnable)
 	{
 		super("Preferences", runnable);
 	}

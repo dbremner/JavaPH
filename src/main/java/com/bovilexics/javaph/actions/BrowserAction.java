@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class BrowserAction extends RunnableAction
 {
-	public BrowserAction(@NotNull Runnable runnable)
+	public BrowserAction(final @NotNull Runnable runnable)
 	{
 		super("Browser Options", runnable);
 	}

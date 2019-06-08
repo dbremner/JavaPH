@@ -35,7 +35,7 @@ public final class NewAction extends AbstractAction
 {
 	private final @NotNull JavaPH parent;
 		
-	public NewAction(@NotNull JavaPH javaph)
+	public NewAction(final @NotNull JavaPH javaph)
 	{
 		super("New Query", javaph.getImageIcon("img/new.gif"));
 			
@@ -43,7 +43,7 @@ public final class NewAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent ae)
+	public void actionPerformed(final ActionEvent ae)
 	{
 		// Clear the results
 		parent.getResultText().setText("");

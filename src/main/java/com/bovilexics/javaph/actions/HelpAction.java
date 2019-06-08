@@ -34,7 +34,7 @@ public final class HelpAction extends AbstractAction
 {
 	private final @NotNull JavaPH parent;
 	
-	public HelpAction(@NotNull JavaPH javaph)
+	public HelpAction(final @NotNull JavaPH javaph)
 	{
 		super("Help Contents", javaph.getImageIcon("img/help.gif"));
 		
@@ -44,13 +44,13 @@ public final class HelpAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent ae)
+	public void actionPerformed(final ActionEvent ae)
 	{
 		try
 		{
 			Browser.displayURL(parent.getURL("help/index.html").toString(), "JavaPH Help");
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			final @NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
 			parent.log(message);

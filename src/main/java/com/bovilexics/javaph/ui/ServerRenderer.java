@@ -23,7 +23,7 @@ public class ServerRenderer extends DefaultListCellRenderer
 {
 	private final @Nullable ImageIcon[] icons;
 	
-	public ServerRenderer(@NotNull IconProvider javaph)
+	public ServerRenderer(final @NotNull IconProvider javaph)
 	{
 		icons = new ImageIcon[]
 	   {
@@ -35,7 +35,7 @@ public class ServerRenderer extends DefaultListCellRenderer
 	}
 	
 	@Override
-    public @NotNull Component getListCellRendererComponent(@NotNull JList list, @NotNull Object value, int index, boolean isSelected, boolean cellHasFocus)
+    public @NotNull Component getListCellRendererComponent(final @NotNull JList list, final @NotNull Object value, final int index, final boolean isSelected, final boolean cellHasFocus)
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 

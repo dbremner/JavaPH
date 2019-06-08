@@ -40,12 +40,12 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-    public void addActionListener(ActionListener listener)
+    public void addActionListener(final ActionListener listener)
 	{
 		listenerList.add(java.awt.event.ActionListener.class, listener);
 	}
 
-	protected void fireActionPerformed(ActionEvent e)
+	protected void fireActionPerformed(final ActionEvent e)
 	{
 		final Object[] listeners = listenerList.getListenerList();
 
@@ -63,7 +63,7 @@ abstract class AbstractComboBoxEditor implements ComboBoxEditor
     public abstract Object getItem();
 
 	@Override
-    public void removeActionListener(ActionListener listener)
+    public void removeActionListener(final ActionListener listener)
 	{
 		listenerList.remove(java.awt.event.ActionListener.class, listener);
 	}

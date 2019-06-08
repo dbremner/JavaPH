@@ -59,9 +59,9 @@ public class CustomButtonGroup extends ButtonGroup
 		return enabled;
 	}
 
-	public void setEnabled(boolean enable)
+	public void setEnabled(final boolean enable)
 	{
-		for(@NotNull AbstractButton button : buttons)
+		for(final @NotNull AbstractButton button : buttons)
 		{
 			button.setEnabled(enable);
 		}

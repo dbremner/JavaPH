@@ -90,24 +90,24 @@ public class ResultThread extends Thread
 	private final List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
 
-	public ResultThread(String command, @NotNull Connection connection)
+	public ResultThread(final String command, final @NotNull Connection connection)
 	{
 		this(null, command, connection);
 	}
 
-	public ResultThread(String command, @NotNull Server server)
+	public ResultThread(final String command, final @NotNull Server server)
 	{
 		this(null, command, new QiConnection(server));
 	}
 
 
-	public ResultThread(@NotNull JavaPH javaph)
+	public ResultThread(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
 		connect(parent.getCommand(), parent.getConnection());
 	}
 
-	private ResultThread(@Nullable JavaPH javaph, String command, @NotNull Connection connection)
+	private ResultThread(final @Nullable JavaPH javaph, final String command, final @NotNull Connection connection)
 	{
 		parent = javaph;
 		connect(command, connection);
@@ -126,7 +126,7 @@ public class ResultThread extends Thread
 	 * e.g. fieldValue(0, email, false) will return the contents of the "email"
 	 *      field of the first record in our result with all newlines intact.
 	 */
-	public synchronized @Nullable String fieldValue(int record, String field, boolean replaceNewlines)
+	public synchronized @Nullable String fieldValue(final int record, final String field, final boolean replaceNewlines)
 	{
 
 		final @NotNull StringBuilder out = new StringBuilder();
@@ -400,7 +400,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void addRecord(List<Line> aRecord)
+	private synchronized void addRecord(final List<Line> aRecord)
 	{
 		records.add(aRecord);
 	}
@@ -688,7 +688,7 @@ public class ResultThread extends Thread
 	 * @param aConnection a QiConnection. Connection does not need to be open.
 	 *
 	 */
-	private synchronized void connect(@Nullable String aCommandLine, @NotNull Connection aConnection)
+	private synchronized void connect(final @Nullable String aCommandLine, final @NotNull Connection aConnection)
 	{
 		commandLine = aCommandLine;
 		connection = aConnection;
@@ -701,7 +701,7 @@ public class ResultThread extends Thread
 			{
 				connection.connect();
 			}
-			catch (IOException e)
+			catch (final IOException e)
 			{
 				error = true;
 				showStatus("Error: " + e);
@@ -730,13 +730,13 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private void writeQi(@NotNull String aString) throws IOException
+	private void writeQi(final @NotNull String aString) throws IOException
 	{
 		try
 		{
 			connection.writeQI(aString);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			error = true;
 			showStatus("Error: " + e);

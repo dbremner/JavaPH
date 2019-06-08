@@ -48,7 +48,7 @@ public final class FindDialog extends JavaPHDialog
 	private FindComboBox findComboBox;
 	private TextFieldComboBoxEditor findComboBoxEditor;
 	
-	public FindDialog(@NotNull JavaPH javaph)
+	public FindDialog(final @NotNull JavaPH javaph)
 	{
 		super(javaph, "Find Text");
 		
@@ -63,7 +63,7 @@ public final class FindDialog extends JavaPHDialog
 		pack();
 	}
 	
-	private @NotNull JPanel getButtonPanel(@NotNull JavaPH parent)
+	private @NotNull JPanel getButtonPanel(final @NotNull JavaPH parent)
 	{
 		final @NotNull JPanel buttonPanel = new JPanel();
 		

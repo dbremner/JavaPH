@@ -15,7 +15,7 @@ public final class QiServerFileReader
 {
     private static final String SEPARATOR = "::";
 
-    public @NotNull List<Server> readServers(@NotNull String fileName) throws FileNotFoundException, IOException
+    public @NotNull List<Server> readServers(final @NotNull String fileName) throws FileNotFoundException, IOException
     {
         final @NotNull Path path = Paths.get(fileName);
         final @NotNull List<String> lines = Files.readAllLines(path);

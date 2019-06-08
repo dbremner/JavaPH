@@ -47,7 +47,7 @@ public final class SaveAction extends AbstractAction
 {
 	private final @NotNull JavaPH parent;
 		
-	public SaveAction(@NotNull JavaPH javaph)
+	public SaveAction(final @NotNull JavaPH javaph)
 	{
 		super("Save Results", javaph.getImageIcon("img/save.gif"));
 
@@ -55,7 +55,7 @@ public final class SaveAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent ae)
+	public void actionPerformed(final ActionEvent ae)
 	{
 		final int selectedTab = parent.getResultPanel().getSelectedIndex();
 
@@ -85,7 +85,7 @@ public final class SaveAction extends AbstractAction
 		}
 	}
 	
-	private void saveCsvFile(int tab, @NotNull File file)
+	private void saveCsvFile(final int tab, final @NotNull File file)
 	{
 		final boolean quoted = parent.isFieldQuoted();
 	
@@ -146,7 +146,7 @@ public final class SaveAction extends AbstractAction
 				parent.log(message);
 				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 			}
-			catch (IOException e)
+			catch (final IOException e)
 			{
 				final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 				parent.log(message);
@@ -155,7 +155,7 @@ public final class SaveAction extends AbstractAction
 		}	
 	}
 	
-	private void saveTextFile(int tab, @NotNull File file)
+	private void saveTextFile(final int tab, final @NotNull File file)
 	{
 		final @NotNull String toWrite;
 		
@@ -188,7 +188,7 @@ public final class SaveAction extends AbstractAction
 			parent.log(message);
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 			parent.log(message);

@@ -85,9 +85,9 @@ public final class QiCommand
 	private final @NotNull String description;
 	private final @NotNull String name;
 
-	public static boolean isValidCommand(String command)
+	public static boolean isValidCommand(final String command)
 	{
-		for (@NotNull QiCommand qiCommand : commands) {
+		for (final @NotNull QiCommand qiCommand : commands) {
 			if (qiCommand.getName().equals(command)) {
 				return true;
 			}
@@ -95,7 +95,7 @@ public final class QiCommand
 		return false;
 	}
 	
-	private QiCommand(@NotNull String aName, @NotNull String aDescription, boolean isTextEditable, boolean isListEditable)
+	private QiCommand(final @NotNull String aName, final @NotNull String aDescription, final boolean isTextEditable, final boolean isListEditable)
 	{
 		name = aName;
 		description = aDescription;

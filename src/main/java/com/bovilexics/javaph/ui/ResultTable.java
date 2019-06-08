@@ -40,7 +40,7 @@ public final class ResultTable extends JTable
 		this(new ResultTableModel());
 	}
 	
-	private ResultTable(TableModel model)
+	private ResultTable(final TableModel model)
 	{
 		super(model);
 		
@@ -48,7 +48,7 @@ public final class ResultTable extends JTable
 		setModel(new TableSorter(getModel()));
 	}
 
-	private int getColumnHeaderWidth(@NotNull TableColumn column)
+	private int getColumnHeaderWidth(final @NotNull TableColumn column)
 	{
 		TableCellRenderer renderer = column.getHeaderRenderer();
 		
@@ -61,7 +61,7 @@ public final class ResultTable extends JTable
 		return component.getPreferredSize().width + WIDTH_BUFFER;
 	}
 	
-	private int getPreferredWidthForColumn(@NotNull TableColumn column)
+	private int getPreferredWidthForColumn(final @NotNull TableColumn column)
 	{
 		final int headerWidth = getColumnHeaderWidth(column);
 		final int cellWidth = getWidestCellWidth(column);
@@ -69,7 +69,7 @@ public final class ResultTable extends JTable
 		return (headerWidth > cellWidth) ? headerWidth : cellWidth;  
 	}
 
-	private int getWidestCellWidth(@NotNull TableColumn column)
+	private int getWidestCellWidth(final @NotNull TableColumn column)
 	{
 		final int colIndex = column.getModelIndex();
 

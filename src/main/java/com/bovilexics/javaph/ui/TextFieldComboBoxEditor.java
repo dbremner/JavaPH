@@ -34,7 +34,7 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 {
 	private final @NotNull JTextField textField;
 
-	public TextFieldComboBoxEditor(ActionListener listener)
+	public TextFieldComboBoxEditor(final ActionListener listener)
 	{
 		textField = new JTextField();
 		textField.setBorder(BorderFactory.createEmptyBorder());
@@ -60,7 +60,7 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 	}
 
 	@Override
-	public void setItem(@Nullable Object obj)
+	public void setItem(final @Nullable Object obj)
 	{
 		if (obj != null) {
             textField.setText(obj.toString());

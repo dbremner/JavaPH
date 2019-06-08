@@ -59,7 +59,7 @@ public final class MainMenu extends JMenuBar
 	private JCheckBoxMenuItem showLogItem;
 	private JCheckBoxMenuItem showToolBarItem;
 	
-	public MainMenu(@NotNull JavaPH javaph)
+	public MainMenu(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
 

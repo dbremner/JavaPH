@@ -44,7 +44,7 @@ public class QiServer implements Server
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
-	public QiServer(@NotNull String name, @NotNull String server, int port)
+	public QiServer(final @NotNull String name, final @NotNull String server, final int port)
 	{
 		if (!isValidPort(port)) {
 			throw new IllegalArgumentException(PORT_ERROR);
@@ -55,7 +55,7 @@ public class QiServer implements Server
 		this.port = port;
 	}
 
-	public QiServer(@NotNull String aName, @NotNull String aServer, @NotNull Integer aPortInteger)
+	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull Integer aPortInteger)
 	{
 		if (!isValidPort(aPortInteger)) {
 			throw new IllegalArgumentException(PORT_ERROR);
@@ -66,7 +66,7 @@ public class QiServer implements Server
 		port = aPortInteger;
 	}
 
-	public QiServer(@NotNull String aName, @NotNull String aServer, @NotNull String aPort)
+	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
 	{
 		final @Nullable Integer aPortInteger;
 		
@@ -78,7 +78,7 @@ public class QiServer implements Server
 				throw new IllegalArgumentException(PORT_ERROR);
 			}
 		}
-		catch (NumberFormatException e)
+		catch (final NumberFormatException e)
 		{
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
@@ -89,7 +89,7 @@ public class QiServer implements Server
 	}
 
 
-	private void convertRecordsToFields(@NotNull List<List<Line>> records)
+	private void convertRecordsToFields(final @NotNull List<List<Line>> records)
 	{
 		fields = new ArrayList<>();
 
@@ -119,7 +119,7 @@ public class QiServer implements Server
 					{
 						fields.add(factory.create(propsField, propsValue, descValue));
 					}
-					catch (QiProtocolException e)
+					catch (final QiProtocolException e)
 					{
 						fieldState = QiFieldState.FIELD_LOAD_ERROR;
 						System.err.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
@@ -195,7 +195,7 @@ public class QiServer implements Server
 		return server;
 	}
 
-	private boolean isValidPort(@NotNull Integer port)
+	private boolean isValidPort(final @NotNull Integer port)
 	{
 		final int unboxed = port;
 		return isValidPort(unboxed);
@@ -220,7 +220,7 @@ public class QiServer implements Server
 			{
 				Thread.sleep(1000);
 			}
-			catch(InterruptedException ie)
+			catch(final InterruptedException ie)
 			{
 				ie.printStackTrace();
 			}

@@ -40,7 +40,7 @@ import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
  */
 public final class SplashWindow extends JWindow {
 
-	public SplashWindow(@NotNull IconProvider javaph)
+	public SplashWindow(final @NotNull IconProvider javaph)
 	{
 
 		final Container contentPane = getContentPane();

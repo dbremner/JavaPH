@@ -13,7 +13,7 @@ public enum QiFieldState
         return value;
     }
 
-    QiFieldState(int value) {
+    QiFieldState(final int value) {
         this.value = value;
     }
 }

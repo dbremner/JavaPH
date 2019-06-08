@@ -56,14 +56,14 @@ public class QiField implements Field
 	 * @exception QiProtocolException in the event of an error parsing the data.
 	 *
 	 */
-	public QiField(@NotNull String name, @NotNull String someProperties, @NotNull String description) throws QiProtocolException
+	public QiField(final @NotNull String name, final @NotNull String someProperties, final @NotNull String description) throws QiProtocolException
 	{
 		this.name = name;
 		properties = setProperties(someProperties);
 		this.description = description;
 	}
 
-	public QiField(@NotNull String name, int length, @NotNull List<String> properties, @NotNull String description)
+	public QiField(final @NotNull String name, final int length, final @NotNull List<String> properties, final @NotNull String description)
 	{
 		this.name = name;
 		this.length = length;
@@ -96,7 +96,7 @@ public class QiField implements Field
 	}
 
 	@Override
-	public boolean hasProperty(@NotNull String property)
+	public boolean hasProperty(final @NotNull String property)
 	{
 		return properties.contains(property);
 	}
@@ -119,7 +119,7 @@ public class QiField implements Field
 	 *
 	 * @return properties collection
 	 */
-	private @NotNull List<String> setProperties(@NotNull String someProperties) throws QiProtocolException
+	private @NotNull List<String> setProperties(final @NotNull String someProperties) throws QiProtocolException
 	{
 		final @NotNull StringTokenizer tokenizer = new StringTokenizer(someProperties);
 		final @NotNull String token = (String) tokenizer.nextElement();
@@ -132,7 +132,7 @@ public class QiField implements Field
 				final @NotNull Integer boxed = Integer.valueOf(lengthString);
 				length = boxed;
 			}
-			catch (NumberFormatException e)
+			catch (final NumberFormatException e)
 			{
 				throw new QiProtocolException("Invalid value for max length property: " + someProperties);
 			}

@@ -69,7 +69,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 *
 	 * @param v  a Vector object ...
 	 */
-	public QueryComboBoxModel(List<Object> v)
+	public QueryComboBoxModel(final List<Object> v)
 	{
 		objects = v;
 
@@ -87,7 +87,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 * @param anObject
 	 */
 	@Override
-    public void addElement(@Nullable Object anObject)
+    public void addElement(final @Nullable Object anObject)
 	{
         if (anObject == null) {
             return;
@@ -123,7 +123,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		insertElementAt(anObject, whereToAdd);
 	}
 
-	public void filterElements(@Nullable String filter)
+	public void filterElements(final @Nullable String filter)
 	{
 
         if (filter == null || filter.isEmpty())
@@ -157,7 +157,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.ListModel
 	@Override
-	public @Nullable Object getElementAt(int index)
+	public @Nullable Object getElementAt(final int index)
 	{
 		if (index < 0 || index >= objects.size())
 		{
@@ -188,14 +188,14 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 * @return an int representing the index position, where 0 is 
 	 *         the first position
 	 */
-	public int getIndexOf(@Nullable Object anObject)
+	public int getIndexOf(final @Nullable Object anObject)
 	{
 		return objects.indexOf(anObject);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void insertElementAt(Object anObject, int index)
+    public void insertElementAt(final Object anObject, final int index)
 	{
 		objects.add(index, anObject);
 		fireIntervalAdded(this, index, index);
@@ -222,7 +222,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void removeElement(Object anObject)
+    public void removeElement(final Object anObject)
 	{
 		final int index = objects.indexOf(anObject);
 
@@ -233,7 +233,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void removeElementAt(int index)
+    public void removeElementAt(final int index)
 	{
 		if (getElementAt(index) == selectedObject)
 		{
@@ -263,7 +263,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 * @param anObject The combo box value or null for no selection.
 	 */
 	@Override
-    public void setSelectedItem(@Nullable Object anObject)
+    public void setSelectedItem(final @Nullable Object anObject)
 	{
 		if ((selectedObject != null && !selectedObject.equals(anObject))
 			|| selectedObject == null

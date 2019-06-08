@@ -11,13 +11,13 @@ final class StatusMouseListener extends MouseAdapter
 {
     private final @NotNull JavaPH parent;
 
-    StatusMouseListener(@NotNull JavaPH parent)
+    StatusMouseListener(final @NotNull JavaPH parent)
     {
         this.parent = parent;
     }
 
     @Override
-    public void mouseEntered(@NotNull MouseEvent e)
+    public void mouseEntered(final @NotNull MouseEvent e)
     {
         if (e.getSource() instanceof JMenuItem) {
             parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
@@ -25,7 +25,7 @@ final class StatusMouseListener extends MouseAdapter
     }
 
     @Override
-    public void mouseExited(MouseEvent e)
+    public void mouseExited(final MouseEvent e)
     {
         parent.showDefaultStatus();
     }

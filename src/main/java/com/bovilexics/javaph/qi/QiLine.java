@@ -64,7 +64,7 @@ public final class QiLine implements Line
 	  *
 	  * @exception QiProtocolException if the line can't be parsed.
 	 */
-	public QiLine(String line) throws QiProtocolException
+	public QiLine(final String line) throws QiProtocolException
 	{
 		verbatim = line;
 		parse();
@@ -149,7 +149,7 @@ public final class QiLine implements Line
 		{
 			code = Integer.parseInt(verbatim.substring(0, colon1Index));
 		}
-		catch (NumberFormatException e)
+		catch (final NumberFormatException e)
 		{
 			throw new QiProtocolException(verbatim);
 		}
@@ -170,7 +170,7 @@ public final class QiLine implements Line
 			{
 				index = Integer.parseInt(verbatim.substring(colon1Index + 1, colon2Index));
 			}
-			catch (NumberFormatException e)
+			catch (final NumberFormatException e)
 			{
 				// This isn't a field:value response but rather a one line description.
 				// Just record it and return.
@@ -197,7 +197,7 @@ public final class QiLine implements Line
     public @NotNull String toString()
 	{
 		final @NotNull StringBuilder out = new StringBuilder();
-		
+
 		out.append(verbatim);
 		out.append(" --> ");
 		out.append("{");
@@ -211,7 +211,7 @@ public final class QiLine implements Line
 		out.append("} {");
 		out.append(value);
 		out.append("}");
-			
+
 		return out.toString();
 	}
 }

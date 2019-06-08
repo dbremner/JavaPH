@@ -85,7 +85,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	
 	private JTextField runtimeText;
 
-	public PropertiesDialog(@NotNull JavaPH javaph)
+	public PropertiesDialog(final @NotNull JavaPH javaph)
 	{
 		super(javaph, INFO_NAME + " Properties");
 

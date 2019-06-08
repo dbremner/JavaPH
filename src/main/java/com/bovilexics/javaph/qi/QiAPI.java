@@ -161,7 +161,7 @@ public enum QiAPI
 		QiCodes.put(LR_AMBIGUOUS,	"Multiple matches found for nameserver query");
 	}
 
-	public static String toString(int code)
+	public static String toString(final int code)
 	{
 		final Integer boxedCode = code;
 		return QiAPI.QiCodes.get(boxedCode);

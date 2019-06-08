@@ -46,7 +46,7 @@ public final class AboutDialog extends JavaPHDialog
 {
 	private final @NotNull JButton okButton;
 
-	public AboutDialog(@NotNull JavaPH javaph)
+	public AboutDialog(final @NotNull JavaPH javaph)
 	{
 		super(javaph, "About " + INFO_NAME);
 
@@ -78,7 +78,7 @@ public final class AboutDialog extends JavaPHDialog
 		pack();
 	}
 	
-	private @NotNull JPanel getInfoPanel(@NotNull JavaPH parent)
+	private @NotNull JPanel getInfoPanel(final @NotNull JavaPH parent)
 	{
 
 		final @NotNull JPanel infoPanel = new JPanel();

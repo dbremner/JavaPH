@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class CsvFileChooser extends TextFileChooser
 {
-	public CsvFileChooser(@NotNull JavaPH javaph)
+	public CsvFileChooser(final @NotNull JavaPH javaph)
 	{
 		setAccessory(new CsvFileChooserPanel(javaph));
 	}

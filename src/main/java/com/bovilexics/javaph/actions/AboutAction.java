@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class AboutAction extends RunnableAction
 {
-	public AboutAction(@NotNull IconProvider provider, @NotNull Runnable runnable)
+	public AboutAction(final @NotNull IconProvider provider, final @NotNull Runnable runnable)
 	{
 		super("About JavaPH", runnable, provider.getImageIcon("img/ph-icon-smaller.gif"));
 	}

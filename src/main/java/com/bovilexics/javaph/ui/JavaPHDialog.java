@@ -30,27 +30,27 @@ import java.awt.Frame;
  */
 abstract class JavaPHDialog extends JDialog
 {
-	JavaPHDialog(@NotNull IconProvider provider, @NotNull String title)
+	JavaPHDialog(final @NotNull IconProvider provider, final @NotNull String title)
 	{
 		setModal(true);
 		setIcon(provider.getImageIcon("img/ph-icon-smaller.gif"));
 		setTitle(title);
 	}
 	
-	private void setIcon(@NotNull ImageIcon icon)
+	private void setIcon(final @NotNull ImageIcon icon)
 	{
 		final Frame frame = JOptionPane.getFrameForComponent(this);
 		frame.setIconImage(icon.getImage());
 	}
 
 	@Override
-	public final void setModal(boolean modal)
+	public final void setModal(final boolean modal)
 	{
 		super.setModal(modal);
 	}
 
 	@Override
-	public final void setTitle(@NotNull String title)
+	public final void setTitle(final @NotNull String title)
 	{
 		super.setTitle(title);
 	}
