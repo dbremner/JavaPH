@@ -48,11 +48,7 @@ public final class ResultTableModel extends DefaultTableModel
 	public @NotNull Object[] getDefaultHeaderArray(int cols)
 	{
 		final @NotNull Object[] headers = new Object[DEFAULT_COLS];
-		
-		for (int i = 0; i < DEFAULT_COLS; i++) {
-			headers[i] = DEFAULT_HEADER;
-		}
-			
+		Arrays.fill(headers, DEFAULT_HEADER);
 		return headers;	
 	}
 	
