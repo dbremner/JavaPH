@@ -30,15 +30,10 @@ import java.awt.Frame;
  */
 abstract class JavaPHDialog extends JDialog
 {
-	JavaPHDialog(@NotNull IconProvider javaph)
-	{
-		setModal(true);
-		setIcon(javaph.getImageIcon("img/ph-icon-smaller.gif"));
-	}
-
 	JavaPHDialog(@NotNull IconProvider provider, @NotNull String title)
 	{
-		this(provider);
+		setModal(true);
+		setIcon(provider.getImageIcon("img/ph-icon-smaller.gif"));
 		setTitle(title);
 	}
 	
