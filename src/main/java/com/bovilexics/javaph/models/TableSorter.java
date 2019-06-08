@@ -116,7 +116,7 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 
 	@Override
-    public Class getColumnClass(int columnIndex)
+    public Class<?> getColumnClass(int columnIndex)
 	{
 		return realModel.getColumnClass(columnIndex);
 	}
