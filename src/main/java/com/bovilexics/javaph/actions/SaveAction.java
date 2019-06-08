@@ -180,7 +180,7 @@ public final class SaveAction extends AbstractAction
 			return;
 		}
 
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
+		try (@NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
 		{
 			writer.write(toWrite);
 			writer.flush();

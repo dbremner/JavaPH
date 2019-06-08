@@ -259,7 +259,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 
 	final class ContentPanel extends JPanel
 	{	
-		ContentPanel(final @NotNull JPanel queryPanel, JTabbedPane resultPanel)
+		ContentPanel(final @NotNull JPanel queryPanel, @NotNull JTabbedPane resultPanel)
 		{	
 			setBorder(BorderFactory.createEtchedBorder());
 			setLayout(new BorderLayout());
