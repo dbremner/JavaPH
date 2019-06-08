@@ -105,11 +105,15 @@ public final class QiServerManager {
     }
 
     public static void loadAllServers() {
+        loadAllServers(SERVER_FILE);
+        /*
+        TODO test this
         servers.clear();
         final @NotNull List<Server> results = loadServers(SERVER_FILE);
         for (final @NotNull Server server : results) {
             addServer(server);
         }
+         */
     }
 
     public static @NotNull List<Server> loadServers(@NotNull String filename) {
