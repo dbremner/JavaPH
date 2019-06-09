@@ -63,8 +63,12 @@ final class LookAndFeelMenu extends JMenu
 
 	private final @NotNull JavaPH parent;
 
-	class LookAndFeelItemListener implements ActionListener
+	private final class LookAndFeelItemListener implements ActionListener
 	{
+		LookAndFeelItemListener()
+		{
+		}
+
 		@Override
 		public void actionPerformed(final @NotNull ActionEvent ae)
 		{
@@ -82,8 +86,12 @@ final class LookAndFeelMenu extends JMenu
 		}
 	}
 	
-	class LookAndFeelRadioListener implements ActionListener
+	private final class LookAndFeelRadioListener implements ActionListener
 	{
+		LookAndFeelRadioListener()
+		{
+		}
+
 		@Override
 		public void actionPerformed(final @NotNull ActionEvent ae)
 		{
