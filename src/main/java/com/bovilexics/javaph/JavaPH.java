@@ -227,10 +227,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		if (savePosition)
 		{
 			needToStore = true;
-			setProperty(PROP_APP_HEIGHT, "" + frame.getHeight());
-			setProperty(PROP_APP_WIDTH, "" + frame.getWidth());
-			setProperty(PROP_APP_X_POSITION, "" + frame.getX());
-			setProperty(PROP_APP_Y_POSITION, "" + frame.getY());
+			setProperty(PROP_APP_HEIGHT, frame.getHeight());
+			setProperty(PROP_APP_WIDTH, frame.getWidth());
+			setProperty(PROP_APP_X_POSITION, frame.getX());
+			setProperty(PROP_APP_Y_POSITION, frame.getY());
 		}
 		else
 		{
@@ -1688,6 +1688,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void setProperty(final String key, final String value)
 	{
 		properties.setProperty(key, value);
+	}
+
+	public void setProperty(final String key, final int value)
+	{
+		setProperty(key, String.valueOf(value));
 	}
 
 	public void setQueryRuntime(final int runtime)

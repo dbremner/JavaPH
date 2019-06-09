@@ -357,8 +357,8 @@ public final class PropertiesDialog extends JavaPHDialog
 		parent.setProperty(PROP_DISPLAY_SPLASH, Boolean.valueOf(displaySplashCheckBox.isSelected()).toString());
 		parent.setProperty(PROP_DISPLAY_TOOLBAR, Boolean.valueOf(displayToolbarCheckBox.isSelected()).toString());
 		parent.setProperty(PROP_ROLL_TOOLBAR, Boolean.valueOf(rollToolbarCheckBox.isSelected()).toString());
-		parent.setProperty(PROP_LOAD_FIELDS, "" + loadFields);
-		parent.setProperty(PROP_QUERY_RUNTIME, "" + runtimeSlider.getValue());
+		parent.setProperty(PROP_LOAD_FIELDS, loadFields);
+		parent.setProperty(PROP_QUERY_RUNTIME, runtimeSlider.getValue());
 		parent.setProperty(PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
 
         QiServerManager.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
