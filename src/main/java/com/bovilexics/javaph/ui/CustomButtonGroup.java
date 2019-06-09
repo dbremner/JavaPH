@@ -18,10 +18,9 @@ package com.bovilexics.javaph.ui;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Enumeration;
-
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import java.util.Enumeration;
 
 /**
  *
@@ -34,20 +33,19 @@ public class CustomButtonGroup extends ButtonGroup
 	
 	public int getSelectedIndex()
 	{
-		boolean foundSelected = false;
 		int currentIndex = -1;
 		int selectedIndex = -1;
 		
 		final Enumeration<AbstractButton> enum_ = getElements();
 		
-		while (enum_.hasMoreElements() && !foundSelected)
+		while (enum_.hasMoreElements())
 		{
 			currentIndex++;
 			
 			if (enum_.nextElement().isSelected())
 			{
 				selectedIndex = currentIndex;
-				foundSelected = true;
+				return selectedIndex;
 			}
 		}
 		
