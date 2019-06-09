@@ -751,7 +751,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
 		private final JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
 
-		ResultPanel(final JavaPH javaph)
+		ResultPanel()
 		{
 			super(SwingConstants.TOP);
 	
@@ -1053,7 +1053,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// can have access to the status labels
 		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
 		contentPane.add(queryToolBar, BorderLayout.NORTH);
-		resultPanel = new ResultPanel(this);
+		resultPanel = new ResultPanel();
 		final @NotNull JPanel queryPanel = new QueryPanel(this);
 		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
