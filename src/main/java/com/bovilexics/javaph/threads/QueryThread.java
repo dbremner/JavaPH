@@ -79,19 +79,19 @@ public class QueryThread extends Thread
 		{
 			resultThread.interrupt();
 			closeProgress();
-			showStatus("Query Canceled", true);
+			showStatusLog("Query Canceled");
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), "Query Canceled", "Canceled", JOptionPane.ERROR_MESSAGE);
 		}
 		else if (seconds == runtime)
 		{
 			resultThread.interrupt();
 			closeProgress();
-			showStatus("Query Timed Out", true);
+			showStatusLog("Query Timed Out");
 			JOptionPane.showMessageDialog(parent.getDefaultPane(), "Query Timed Out", "Timeout", JOptionPane.ERROR_MESSAGE);
 		}
 		else
 		{
-			showStatus("Query Finished", true);
+			showStatusLog("Query Finished");
 			showResult();
 		}
 
@@ -113,18 +113,15 @@ public class QueryThread extends Thread
 
 	private void showStatus(final String status)
 	{
-		showStatus(status, false);
+		SwingUtilities.invokeLater(() -> parent.showStatus(status));
 	}
 
-	private void showStatus(final String status, final boolean logAlso)
+	private void showStatusLog(final String status)
 	{
 		SwingUtilities.invokeLater(() ->
 		{
 			parent.showStatus(status);
-
-			if (logAlso) {
-				parent.log(status);
-			}
+			parent.log(status);
 		});
 	}
 
