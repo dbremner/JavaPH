@@ -74,8 +74,6 @@ final class CsvFileChooserPanel extends JPanel
 	public CsvFileChooserPanel(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
-
-		final @NotNull ActionListener listener = new RadioButtonListener();
 		
 		setBorder(BorderFactory.createEtchedBorder());
 		setPreferredSize(new Dimension(120, 0));
@@ -97,7 +95,9 @@ final class CsvFileChooserPanel extends JPanel
 		} else {
 			customRadioButton.setSelected(true);
 		}
-		
+
+		final @NotNull ActionListener listener = new RadioButtonListener();
+
 		commaRadioButton.addActionListener(listener);
 		tabRadioButton.addActionListener(listener);
 		customRadioButton.addActionListener(listener);
