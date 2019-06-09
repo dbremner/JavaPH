@@ -35,7 +35,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	private @Nullable Object selectedObject;
 
 	private final @NotNull List<Object> allObjects;
-	private final List<Object> objects;
+	private final @NotNull List<Object> objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.
