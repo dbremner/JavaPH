@@ -16,18 +16,17 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.Ostermiller.util.Browser;
+import com.bovilexics.javaph.JavaPH;
+import org.jetbrains.annotations.NotNull;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import com.Ostermiller.util.Browser;
-import com.bovilexics.javaph.JavaPH;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -36,34 +35,42 @@ import org.jetbrains.annotations.Nullable;
  */
 final class HyperLinkLabel extends JLabel
 {
-	private final @NotNull JavaPH parent;
-
-	public HyperLinkLabel(final @NotNull JavaPH javaph, final String text, final String url)
+	public HyperLinkLabel(final @NotNull JavaPH javaph, @NotNull final String text, @NotNull final String url)
 	{
 		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
-
-		parent = javaph;
-		
-		Browser.init();
-	
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		addMouseListener(new MouseAdapter()
-		{
-			@Override
-			public void mouseClicked(final MouseEvent me)
-			{
-				try
-				{
-					Browser.displayURL(url, text);
-				}
-				catch (final IOException e)
-				{
-					final @NotNull String message = "Error: IOException received when trying to open " + url;
-					parent.log(message);
-					JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		addMouseListener(new ClickListener(url, text, javaph, javaph.getDefaultPane()));
+	}
 
+	private static final class ClickListener extends MouseAdapter
+	{
+		private final @NotNull String url;
+		private final @NotNull String text;
+		private final @NotNull JavaPH parent;
+		private final @NotNull JRootPane rootPane;
+
+		ClickListener(final @NotNull String url, final @NotNull String text, final @NotNull JavaPH parent, final @NotNull JRootPane rootPane)
+		{
+			Browser.init();
+			this.url = url;
+			this.text = text;
+			this.parent = parent;
+			this.rootPane = rootPane;
+		}
+
+		@Override
+		public void mouseClicked(final MouseEvent e)
+		{
+			try
+			{
+				Browser.displayURL(url, text);
+			}
+			catch (final @NotNull IOException ex)
+			{
+				final @NotNull String message = "Error: IOException received when trying to open " + url;
+				parent.log(message);
+				JOptionPane.showMessageDialog(rootPane, message, "Exception", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 }
