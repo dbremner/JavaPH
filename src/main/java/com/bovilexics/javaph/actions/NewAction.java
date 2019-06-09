@@ -50,7 +50,7 @@ public final class NewAction extends AbstractAction
 		((ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel()).resetModel();
 		
 		// Clear the previous query
-		parent.getCommandComboBox().setSelectedIndex(QUERY_COMMAND);
+		parent.setCommandComboBoxSelectedIndex(QUERY_COMMAND);
 		parent.getQueryComboBox().setSelectedItem("");
 		
 		// Log the action
