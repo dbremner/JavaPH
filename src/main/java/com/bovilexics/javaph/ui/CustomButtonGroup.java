@@ -27,7 +27,7 @@ import java.util.Enumeration;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class CustomButtonGroup extends ButtonGroup
+public final class CustomButtonGroup extends ButtonGroup
 {
 	private boolean enabled = true;
 	
