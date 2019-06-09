@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-public abstract class AbstractHyperLinkLabelListener extends MouseAdapter
+abstract class AbstractHyperLinkLabelListener extends MouseAdapter
 {
     private final @NotNull String url;
     private final @NotNull String text;

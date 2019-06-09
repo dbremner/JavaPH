@@ -10,13 +10,13 @@ abstract class RunnableAction extends AbstractAction
 {
     private final @NotNull Runnable runnable;
 
-    protected RunnableAction(final @NotNull String title, final @NotNull Runnable runnable)
+    RunnableAction(final @NotNull String title, final @NotNull Runnable runnable)
     {
         super(title);
         this.runnable = runnable;
     }
 
-    protected RunnableAction(final @NotNull String title, final @NotNull Runnable runnable, final @NotNull Icon icon)
+    RunnableAction(final @NotNull String title, final @NotNull Runnable runnable, final @NotNull Icon icon)
     {
         super(title, icon);
         this.runnable = runnable;
