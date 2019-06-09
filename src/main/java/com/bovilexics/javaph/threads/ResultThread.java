@@ -629,12 +629,12 @@ public class ResultThread extends Thread
 
 		for (int i = 0; i < records.size(); i++)
 		{
-			final List<Line> thisVector = records.get(i);
+			final List<Line> list = records.get(i);
 
-			for (int j = 0; j < thisVector.size() - 1; j = j + 2)
+			for (int j = 0; j < list.size() - 1; j = j + 2)
 			{
-				final Line propsQiLine = thisVector.get(j);
-				final Line descQiLine = thisVector.get(j + 1);
+				final Line propsQiLine = list.get(j);
+				final Line descQiLine = list.get(j + 1);
 
 				final @NotNull String field = propsQiLine.getTrimmedField();
 				final @NotNull String props = propsQiLine.getTrimmedValue();
