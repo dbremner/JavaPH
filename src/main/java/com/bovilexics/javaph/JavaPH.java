@@ -205,7 +205,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final JPanel fieldListPanel = new JPanel(new BorderLayout());
 	private final JPanel logTextPanel = new JPanel(new BorderLayout());
 	private JRootPane defaultPane;
-	private JTabbedPane resultPanel;
+	private final JTabbedPane resultPanel;
 	private final JTextArea logText = new JTextArea();
 	private final JTextArea resultText = new JTextArea();
 
