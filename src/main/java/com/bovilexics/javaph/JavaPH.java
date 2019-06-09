@@ -724,7 +724,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		private void loadFieldsForServer(final @NotNull Server server)
 		{
-			showStatus("Loading fields for " + server.getExpandedName(), true);
+			showStatusLog("Loading fields for " + server.getExpandedName());
 
 			final Component component = ((RootPaneContainer)defaultPane.getTopLevelAncestor()).getGlassPane();
 
@@ -738,7 +738,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			component.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			component.setVisible(false);
 
-			showStatus(server.getFieldStateMessage(), true);
+			showStatusLog(server.getFieldStateMessage());
 		}
 	}
 
@@ -1806,15 +1806,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	private void showStatus(final String status, final boolean logAlso)
+	private void showStatusLog(final String status)
 	{
-		if (statusLabel != null) {
-			statusLabel.setText(" " + status);
-		}
-			
-		if (logAlso) {
-			log(status);
-		}
+		showStatus(status);
+		log(status);
 	}
 
 	public void showToolBar(final boolean show)
