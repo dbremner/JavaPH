@@ -1410,9 +1410,19 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return queryComboBox;
 	}
 
-	public ProgressMonitor getQueryProgressMonitor()
+	public boolean isQueryCanceled()
 	{
-		return queryProgressMonitor;
+		return queryProgressMonitor.isCanceled();
+	}
+
+	public void setQueryProgress(final int progress)
+	{
+		queryProgressMonitor.setProgress(progress);
+	}
+
+	public void closeQueryProgressMonitor()
+	{
+		queryProgressMonitor.close();
 	}
 
 	public @NotNull JToolBar getQueryToolBar()

@@ -22,7 +22,6 @@ import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -44,7 +43,7 @@ public class QueryThread extends Thread
 
 	private void closeProgress()
 	{
-		SwingUtilities.invokeLater(() -> parent.getQueryProgressMonitor().close());
+		SwingUtilities.invokeLater(parent::closeQueryProgressMonitor);
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class QueryThread extends Thread
 		resultThread = new ResultThread(parent.getCommand(), parent.getServer());
 		resultThread.start();
 
-		while (!parent.getQueryProgressMonitor().isCanceled() && seconds < runtime && !resultThread.isFinished())
+		while (!parent.isQueryCanceled() && seconds < runtime && !resultThread.isFinished())
 		{
 			try
 			{
@@ -75,7 +74,7 @@ public class QueryThread extends Thread
 			updateProgress(seconds);
 		}
 			
-		if (parent.getQueryProgressMonitor().isCanceled())
+		if (parent.isQueryCanceled())
 		{
 			resultThread.interrupt();
 			closeProgress();
@@ -102,7 +101,7 @@ public class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(() ->
 		{
-			parent.getQueryProgressMonitor().close();
+			parent.closeQueryProgressMonitor();
 			parent.getResultText().setText(resultThread.getRawResult());
 
 			final @NotNull ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
@@ -139,6 +138,6 @@ public class QueryThread extends Thread
 
 	private void updateProgress(final int progress)
 	{
-		SwingUtilities.invokeLater(() -> parent.getQueryProgressMonitor().setProgress(progress));
+		SwingUtilities.invokeLater(() -> parent.setQueryProgress(progress));
 	}
 }
