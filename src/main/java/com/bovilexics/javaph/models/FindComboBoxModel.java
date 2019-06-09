@@ -50,13 +50,12 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	/**
 	 * Adds elements to the beginning of the collection
 	 *
-	 * @param anObject
 	 */
 	@Override
-	public void addElement(final Object anObject)
+	public void addElement(final Object item)
 	{
-		if (objects.indexOf(anObject) < 0) {
-			insertElementAt(anObject, 0);
+		if (!objects.contains(item)) {
+			insertElementAt(item, 0);
 		}
 	}
 
@@ -87,21 +86,21 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-	public void insertElementAt(final Object anObject, final int index)
+	public void insertElementAt(final Object item, final int index)
 	{
-		objects.add(index, anObject);
+		objects.add(index, item);
 		fireIntervalAdded(this, index, index);
 
-		if (!allObjects.contains(anObject)) {
-			allObjects.add(index, anObject);
+		if (!allObjects.contains(item)) {
+			allObjects.add(index, item);
 		}
 	}
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-	public void removeElement(final Object anObject)
+	public void removeElement(final Object obj)
 	{
-		final int index = objects.indexOf(anObject);
+		final int index = objects.indexOf(obj);
 
 		if (index != -1) {
 			removeElementAt(index);
@@ -128,16 +127,16 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	/**
 	 * Set the value of the selected item. The selected item may be null.
 	 * <p>
-	 * @param anObject The combo box value or null for no selection.
+	 * @param anItem The combo box value or null for no selection.
 	 */
 	@Override
-	public void setSelectedItem(final @Nullable Object anObject)
+	public void setSelectedItem(final @Nullable Object anItem)
 	{
-		if ((selectedObject != null && !selectedObject.equals(anObject))
+		if ((selectedObject != null && !selectedObject.equals(anItem))
 			|| selectedObject == null
-			&& anObject != null)
+			&& anItem != null)
 		{
-			selectedObject = anObject;
+			selectedObject = anItem;
 			fireContentsChanged(this, -1, -1);
 		}
 	}

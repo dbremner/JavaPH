@@ -28,32 +28,26 @@ import java.util.Arrays;
  */
 public final class ResultTableModel extends DefaultTableModel
 {
-	public static final int DEFAULT_COLS = 1;
-	public static final int DEFAULT_ROWS = 0;
-	public static final String DEFAULT_HEADER = "No Results";
-	public static final String DEFAULT_VALUE = " ";
-	
+	private static final int DEFAULT_COLS = 1;
+	private static final int DEFAULT_ROWS = 0;
+	private static final String DEFAULT_HEADER = "No Results";
+
 	public ResultTableModel()
 	{	
 		resetModel();
 	}
 
-	public @NotNull Object[] getDefaultHeaderArray(final int cols)
-	{
-		final @NotNull Object[] headers = new Object[DEFAULT_COLS];
-		Arrays.fill(headers, DEFAULT_HEADER);
-		return headers;	
-	}
-
 	@Override
-	public boolean isCellEditable(final int row, final int col)
+	public boolean isCellEditable(final int row, final int column)
 	{
 		return false;
 	}
 	
 	public void resetModel()
 	{
-		setColumnIdentifiers(getDefaultHeaderArray(DEFAULT_COLS));
+		final @NotNull Object[] headers = new Object[DEFAULT_COLS];
+		Arrays.fill(headers, DEFAULT_HEADER);
+		setColumnIdentifiers(headers);
 		setColumnCount(DEFAULT_COLS);
 		setRowCount(DEFAULT_ROWS);
 	}
