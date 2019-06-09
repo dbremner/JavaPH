@@ -95,10 +95,10 @@ public final class QiServerManager {
             }
 
             defaultServer = servers.get(0);
-        } catch (final FileNotFoundException e) {
+        } catch (final @NotNull FileNotFoundException e) {
             System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
-        } catch (final IOException e) {
+        } catch (final @NotNull IOException e) {
             System.err.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
@@ -141,10 +141,10 @@ public final class QiServerManager {
                     serverResults.add(server1);
                 }
             }
-        } catch (final FileNotFoundException e) {
+        } catch (final @NotNull FileNotFoundException e) {
             System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
-        } catch (final IOException e) {
+        } catch (final @NotNull IOException e) {
             System.err.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
@@ -180,7 +180,7 @@ public final class QiServerManager {
                 writer.flush();
             }
             writer.close();
-        } catch (final IOException e) {
+        } catch (final @NotNull IOException e) {
             System.err.println("Error: IOException received when trying to write file " + SERVER_FILE);
             e.printStackTrace();
         }

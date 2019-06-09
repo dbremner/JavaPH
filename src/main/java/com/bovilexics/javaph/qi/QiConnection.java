@@ -196,7 +196,7 @@ public class QiConnection implements Connection
 			{
 				wait();
 			}
-			catch (final InterruptedException e)
+			catch (final @NotNull InterruptedException e)
 			{
 			}
 		}

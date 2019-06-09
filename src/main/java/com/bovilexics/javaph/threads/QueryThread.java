@@ -64,7 +64,7 @@ public class QueryThread extends Thread
 			{
 				Thread.sleep(1000);
 			}
-			catch(final InterruptedException ie)
+			catch(final @NotNull InterruptedException ie)
 			{
 				ie.printStackTrace();
 			}

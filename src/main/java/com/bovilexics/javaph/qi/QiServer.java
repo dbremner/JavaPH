@@ -78,7 +78,7 @@ public class QiServer implements Server
 				throw new IllegalArgumentException(PORT_ERROR);
 			}
 		}
-		catch (final NumberFormatException e)
+		catch (final @NotNull NumberFormatException e)
 		{
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
@@ -119,7 +119,7 @@ public class QiServer implements Server
 					{
 						fields.add(factory.create(propsField, propsValue, descValue));
 					}
-					catch (final QiProtocolException e)
+					catch (final @NotNull QiProtocolException e)
 					{
 						fieldState = QiFieldState.FIELD_LOAD_ERROR;
 						System.err.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
@@ -220,7 +220,7 @@ public class QiServer implements Server
 			{
 				Thread.sleep(1000);
 			}
-			catch(final InterruptedException ie)
+			catch(final @NotNull InterruptedException ie)
 			{
 				ie.printStackTrace();
 			}

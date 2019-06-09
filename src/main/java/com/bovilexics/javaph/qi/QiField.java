@@ -132,7 +132,7 @@ public class QiField implements Field
 				final @NotNull Integer boxed = Integer.valueOf(lengthString);
 				length = boxed;
 			}
-			catch (final NumberFormatException e)
+			catch (final @NotNull NumberFormatException e)
 			{
 				throw new QiProtocolException("Invalid value for max length property: " + someProperties);
 			}

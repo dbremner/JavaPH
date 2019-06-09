@@ -149,7 +149,7 @@ public final class QiLine implements Line
 		{
 			code = Integer.parseInt(verbatim.substring(0, colon1Index));
 		}
-		catch (final NumberFormatException e)
+		catch (final @NotNull NumberFormatException e)
 		{
 			throw new QiProtocolException(verbatim);
 		}
@@ -170,7 +170,7 @@ public final class QiLine implements Line
 			{
 				index = Integer.parseInt(verbatim.substring(colon1Index + 1, colon2Index));
 			}
-			catch (final NumberFormatException e)
+			catch (final @NotNull NumberFormatException e)
 			{
 				// This isn't a field:value response but rather a one line description.
 				// Just record it and return.

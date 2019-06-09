@@ -724,7 +724,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		private void loadFieldsForServer(final @NotNull Server server)
 		{
-			final String status1 = "Loading fields for " + server.getExpandedName();
+			final @NotNull String status1 = "Loading fields for " + server.getExpandedName();
 			showStatus(status1);
 			log(status1);
 
@@ -740,7 +740,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			component.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			component.setVisible(false);
 
-			final String status = server.getFieldStateMessage();
+			final @NotNull String status = server.getFieldStateMessage();
 			showStatus(status);
 			log(status);
 		}
@@ -1332,7 +1332,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final int intValue = Integer.parseInt(stringValue);
 			return intValue;
 		}
-		catch (final NumberFormatException e)
+		catch (final @NotNull NumberFormatException e)
 		{
 			return defaultValue;
 		}
@@ -1352,7 +1352,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			
 			intValue = Integer.parseInt(stringValue);
 		}
-		catch (final NumberFormatException e)
+		catch (final @NotNull NumberFormatException e)
 		{
 			intValue = defaultValue;
 		}
@@ -1515,13 +1515,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				properties.load(inStream1);
 			}
 		}
-		catch (final FileNotFoundException e)
+		catch (final @NotNull FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.out.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
-		catch (final IOException e)
+		catch (final @NotNull IOException e)
 		{
 			e.printStackTrace();
 			System.out.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
@@ -1559,10 +1559,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			properties.load(inStream);
 		}
-		catch (final FileNotFoundException e)
+		catch (final @NotNull FileNotFoundException e)
 		{
 		}
-		catch (final IOException e)
+		catch (final @NotNull IOException e)
 		{
 		}
 	}
@@ -1631,7 +1631,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			
 			return;
 		}
-		catch(final Exception e)
+		catch(final @NotNull Exception e)
 		{
 			// If we cannot set the look and feel to
 			// what was specified in the properties file
@@ -1655,7 +1655,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			return;
 		}
-		catch(final Exception e)
+		catch(final @NotNull Exception e)
 		{
 			// If we cannot set the look and feel to
 			// what is set as the system look and feel
@@ -1804,7 +1804,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			Thread.sleep(SPLASH_DISPLAY);
 		}
-		catch (final InterruptedException e)
+		catch (final @NotNull InterruptedException e)
 		{
 		}
 			
@@ -1837,12 +1837,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			properties.store(new FileOutputStream(PROP_FILE), PROP_HEADER);				
 		}
-		catch (final FileNotFoundException e)
+		catch (final @NotNull FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.out.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
 		}
-		catch (final IOException e)
+		catch (final @NotNull IOException e)
 		{
 			e.printStackTrace();
 			System.out.println("IOException occurred when trying to store properties to " + PROP_FILE);

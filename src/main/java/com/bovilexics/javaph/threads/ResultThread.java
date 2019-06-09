@@ -701,7 +701,7 @@ public class ResultThread extends Thread
 			{
 				connection.connect();
 			}
-			catch (final IOException e)
+			catch (final @NotNull IOException e)
 			{
 				error = true;
 				showStatus("Error: " + e);
@@ -736,7 +736,7 @@ public class ResultThread extends Thread
 		{
 			connection.writeQI(aString);
 		}
-		catch (final IOException e)
+		catch (final @NotNull IOException e)
 		{
 			error = true;
 			showStatus("Error: " + e);

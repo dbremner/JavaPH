@@ -49,7 +49,7 @@ public final class HelpAction extends AbstractAction
 		{
 			Browser.displayURL(parent.getURL("help/index.html").toString(), "JavaPH Help");
 		}
-		catch (final IOException e)
+		catch (final @NotNull IOException e)
 		{
 			final @NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
 			parent.log(message);
