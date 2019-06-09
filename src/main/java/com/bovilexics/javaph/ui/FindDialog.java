@@ -110,7 +110,7 @@ public final class FindDialog extends JavaPHDialog
 
 		final @NotNull JPanel findControlPanel = new JPanel(new FlowLayout());
 		
-		findComboBoxEditor = new TextFieldComboBoxEditor((ae) -> findButton.doClick());
+		findComboBoxEditor = new TextFieldComboBoxEditor(ae -> findButton.doClick());
 /*
 		findComboBoxEditor.getEditorComponent().addKeyListener(new KeyListener()
 		{
