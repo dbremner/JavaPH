@@ -112,7 +112,7 @@ public final class MainMenu extends JMenuBar
 		pasteItem.setIcon(parent.getImageIcon("img/paste.gif"));
 		pasteItem.setText("Paste");
 		pasteItem.setActionCommand("Inserts clipboard contents");
-		pasteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
+		pasteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK));
 		pasteItem.setMnemonic(KeyEvent.VK_P);
 		editMenu.add(pasteItem);
 		
