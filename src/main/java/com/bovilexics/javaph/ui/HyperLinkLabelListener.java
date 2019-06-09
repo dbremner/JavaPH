@@ -4,40 +4,19 @@ import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-final class HyperLinkLabelListener extends MouseAdapter
+final class HyperLinkLabelListener extends AbstractHyperLinkLabelListener
 {
-    private final @NotNull String url;
-    private final @NotNull String text;
-    private final @NotNull JavaPH parent;
-    private final @NotNull JRootPane rootPane;
-
-    HyperLinkLabelListener(final @NotNull String url, final @NotNull String text, final @NotNull JavaPH parent, final @NotNull JRootPane rootPane)
+    HyperLinkLabelListener(final @NotNull String url, final @NotNull String text, final @NotNull JavaPH parent)
     {
+        super(url, text, parent);
         Browser.init();
-        this.url = url;
-        this.text = text;
-        this.parent = parent;
-        this.rootPane = rootPane;
     }
 
     @Override
-    public void mouseClicked(final MouseEvent e)
+    protected void displayUrl(@NotNull final String url, @NotNull final String text) throws IOException
     {
-        try
-        {
-            Browser.displayURL(url, text);
-        }
-        catch (final @NotNull IOException ex)
-        {
-            final @NotNull String message = "Error: IOException received when trying to open " + url;
-            parent.log(message);
-            JOptionPane.showMessageDialog(rootPane, message, "Exception", JOptionPane.ERROR_MESSAGE);
-        }
+        Browser.displayURL(url, text);
     }
 }

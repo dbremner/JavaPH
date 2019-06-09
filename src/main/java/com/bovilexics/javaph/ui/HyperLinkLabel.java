@@ -33,7 +33,7 @@ final class HyperLinkLabel extends JLabel
 	{
 		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		addMouseListener(new HyperLinkLabelListener(url, text, javaph, javaph.getDefaultPane()));
+		addMouseListener(new HyperLinkLabelListener(url, text, javaph));
 	}
 
 }
