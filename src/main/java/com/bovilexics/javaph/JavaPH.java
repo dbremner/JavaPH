@@ -1800,7 +1800,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	@Override
 	public void showStatus(final String status)
 	{
-		showStatus(status, false);
+		if (statusLabel != null)
+		{
+			statusLabel.setText(" " + status);
+		}
 	}
 
 	private void showStatus(final String status, final boolean logAlso)
