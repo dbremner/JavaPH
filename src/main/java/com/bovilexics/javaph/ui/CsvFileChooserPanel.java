@@ -32,7 +32,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -46,21 +45,6 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  */
 final class CsvFileChooserPanel extends JPanel
 {
-	class RadioButtonListener implements ActionListener
-	{	
-		@Override
-		public void actionPerformed(final ActionEvent ae)
-		{
-			if (commaRadioButton.isSelected()) {
-				parent.setFieldSeparator(COMMA_SEPARATOR);
-			} else if (tabRadioButton.isSelected()) {
-				parent.setFieldSeparator(TAB_SEPARATOR);
-			} else if (customRadioButton.isSelected()) {
-				parent.setFieldSeparator(customTextField.getText());
-			}
-		}
-	}
-
 	private final @NotNull JavaPH parent;
 
 	private final @NotNull JCheckBox quotesCheckBox;
@@ -96,11 +80,9 @@ final class CsvFileChooserPanel extends JPanel
 			customRadioButton.setSelected(true);
 		}
 
-		final @NotNull ActionListener listener = new RadioButtonListener();
-
-		commaRadioButton.addActionListener(listener);
-		tabRadioButton.addActionListener(listener);
-		customRadioButton.addActionListener(listener);
+		commaRadioButton.addActionListener(this::setSeparator);
+		tabRadioButton.addActionListener(this::setSeparator);
+		customRadioButton.addActionListener(this::setSeparator);
 
 		group.add(commaRadioButton);
 		group.add(tabRadioButton);
@@ -183,5 +165,21 @@ final class CsvFileChooserPanel extends JPanel
 		gbc.gridwidth = 1;
 		add(Box.createHorizontalStrut(horizStrut), gbc);
 		add(quotesCheckBox, gbc);
+	}
+
+	private void setSeparator(final ActionEvent ae)
+	{
+		if (commaRadioButton.isSelected())
+		{
+			parent.setFieldSeparator(COMMA_SEPARATOR);
+		}
+		else if (tabRadioButton.isSelected())
+		{
+			parent.setFieldSeparator(TAB_SEPARATOR);
+		}
+		else if (customRadioButton.isSelected())
+		{
+			parent.setFieldSeparator(customTextField.getText());
+		}
 	}
 }
