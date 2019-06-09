@@ -23,7 +23,6 @@ import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,7 +35,7 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	private @Nullable Object selectedObject;
 
 	private final @NotNull List<Object> allObjects;
-	private List<Object> objects;
+	private final List<Object> objects;
 
 	/**
 	 * Constructs an empty DefaultComboBoxModel object.
@@ -45,40 +44,6 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	{
 		objects = new ArrayList<>();
 		allObjects = new ArrayList<>();
-	}
-
-	/**
-	 * Constructs a DefaultComboBoxModel object initialized
-	 * with an array of objects.
-	 *
-	 * @param items  an array of Object objects
-	 */
-	public FindComboBoxModel(final @NotNull Object[] items)
-	{
-		objects = new ArrayList<>(Arrays.asList(items));
-
-		if (getSize() > 0) {
-			selectedObject = getElementAt(0);
-		}
-			
-		allObjects = new ArrayList<>(objects);
-	}
-
-	/**
-	 * Constructs a DefaultComboBoxModel object initialized
-	 * with a vector.
-	 *
-	 * @param v  a Vector object ...
-	 */
-	public FindComboBoxModel(final List<Object> v)
-	{
-		objects = v;
-
-		if (getSize() > 0) {
-			selectedObject = getElementAt(0);
-		}
-			
-		allObjects = new ArrayList<>(objects);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -90,42 +55,8 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	@Override
 	public void addElement(final Object anObject)
 	{
-		if (getIndexOf(anObject) < 0) {
+		if (objects.indexOf(anObject) < 0) {
 			insertElementAt(anObject, 0);
-		}
-	}
-
-	public void filterElements(final @Nullable String filter)
-	{
-
-		if (filter == null || filter.isEmpty())
-		{
-			restoreAllElements();
-		}
-		else
-		{
-			removeAllElements();
-			
-			for (int i = 0; i < allObjects.size(); i++)
-			{
-				final Object anObject = allObjects.get(i);
-
-				if (anObject == null) {
-					continue;
-				}
-				
-				final String element = anObject.toString();
-				
-				if (element.equals(filter) || element.startsWith(filter)) {
-					if (!objects.contains(allObjects.get(i))) {
-						insertElementAt(anObject, objects.size());
-					}
-				}
-			}
-		}
-		
-		if (!objects.isEmpty()) {
-			selectedObject = objects.get(0);
 		}
 	}
 
@@ -154,18 +85,6 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		return objects.size();
 	}
 
-	/**
-	 * Returns the index-position of the specified object in the list.
-	 *
-	 * @param anObject  
-	 * @return an int representing the index position, where 0 is 
-	 *         the first position
-	 */
-	public int getIndexOf(final Object anObject)
-	{
-		return objects.indexOf(anObject);
-	}
-
 	// implements javax.swing.MutableComboBoxModel
 	@Override
 	public void insertElementAt(final Object anObject, final int index)
@@ -175,21 +94,6 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 
 		if (!allObjects.contains(anObject)) {
 			allObjects.add(index, anObject);
-		}
-	}
-
-	/**
-	 * Empties the list.
-	 */
-	public void removeAllElements()
-	{
-		if (!objects.isEmpty())
-		{
-			final int lastIndex = objects.size() - 1;
-			objects.clear();
-			selectedObject = null;
-			final int firstIndex = 0;
-			fireIntervalRemoved(this, firstIndex, lastIndex);
 		}
 	}
 
@@ -218,16 +122,6 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 		}
 		objects.remove(index);
 		fireIntervalRemoved(this, index, index);
-	}
-
-	public void restoreAllElements()
-	{
-		objects = new ArrayList<>(allObjects);
-		selectedObject = null;
-
-		if (getSize() > 0) {
-			fireIntervalAdded(this, 0, getSize() - 1);
-		}
 	}
 
 	// implements javax.swing.ComboBoxModel

@@ -23,7 +23,6 @@ import javax.swing.AbstractListModel;
 import javax.swing.MutableComboBoxModel;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -45,39 +44,6 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	{
 		objects = new ArrayList<>();
 		allObjects = new ArrayList<>();
-	}
-
-	/**
-	 * Constructs a DefaultComboBoxModel object initialized
-	 * with an array of objects.
-	 *
-	 * @param items  an array of Object objects
-	 */
-	public QueryComboBoxModel(final @NotNull Object[] items)
-	{
-		objects = new ArrayList<>(Arrays.asList(items));
-		if (getSize() > 0) {
-            selectedObject = getElementAt(0);
-        }
-			
-		allObjects = new ArrayList<>(objects);
-	}
-
-	/**
-	 * Constructs a DefaultComboBoxModel object initialized
-	 * with a vector.
-	 *
-	 * @param v  a Vector object ...
-	 */
-	public QueryComboBoxModel(final List<Object> v)
-	{
-		objects = v;
-
-		if (getSize() > 0) {
-            selectedObject = getElementAt(0);
-        }
-			
-		allObjects = new ArrayList<>(objects);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -208,7 +174,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	/**
 	 * Empties the list.
 	 */
-	public void removeAllElements()
+	private void removeAllElements()
 	{
 		if (!objects.isEmpty())
 		{
@@ -247,7 +213,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		fireIntervalRemoved(this, index, index);
 	}
 
-	public void restoreAllElements()
+	private void restoreAllElements()
 	{
 		removeAllElements();
 		
