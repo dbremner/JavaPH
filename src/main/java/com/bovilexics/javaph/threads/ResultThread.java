@@ -116,7 +116,7 @@ public class ResultThread extends Thread
 	/**
 	 * Return the value for a field of a particular result.
 	 *
-	 * @param record index from which we want the field.
+	 * @param recordIndex index from which we want the field.
 	 * @param field we want from that record.
 	 * @param replaceNewlines which will cause newlines to be replaced by spaces if set to true.
 	 *
@@ -126,12 +126,12 @@ public class ResultThread extends Thread
 	 * e.g. fieldValue(0, email, false) will return the contents of the "email"
 	 *      field of the first record in our result with all newlines intact.
 	 */
-	public synchronized @Nullable String fieldValue(final int record, final String field, final boolean replaceNewlines)
+	public synchronized @Nullable String fieldValue(final int recordIndex, final String field, final boolean replaceNewlines)
 	{
 
 		final @NotNull StringBuilder out = new StringBuilder();
 
-		final List<Line> records = this.records.get(record);
+		final List<Line> records = this.records.get(recordIndex);
 		if (records == null) {
 			return null;
 		}
@@ -139,21 +139,21 @@ public class ResultThread extends Thread
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			final @Nullable Line qiLine = records.get(i);
+			final @Nullable Line line = records.get(i);
 
 			// Skip empty and encrypted fields.
-			if ((!gotField && !qiLine.getTrimmedField().equals(field)) || qiLine.getCode() != -QiAPI.LR_OK || qiLine.getTrimmedValue().isEmpty()) {
+			if ((!gotField && !line.getTrimmedField().equals(field)) || line.getCode() != -QiAPI.LR_OK || line.getTrimmedValue().isEmpty()) {
 				continue;
 			}
 				
 			gotField = true;
 
 			// We're done.
-			if (!qiLine.getTrimmedField().equals(field) && !qiLine.getTrimmedField().isEmpty()) {
+			if (!line.getTrimmedField().equals(field) && !line.getTrimmedField().isEmpty()) {
 				break;
 			}
 
-			out.append(qiLine.getTrimmedValue());
+			out.append(line.getTrimmedValue());
 			out.append(replaceNewlines ? "\n" : " ");
 		}
 		return out.toString();
