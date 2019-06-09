@@ -54,21 +54,26 @@ public final class QueryToolBar extends JToolBar
 		addToolBarButton(new NewAction(javaph));
 		addToolBarButton(new SaveAction(javaph));
 
-        final int sepHeight = 26;
-        final int sepWidth = 13;
-        addSeparator(new Dimension(sepWidth, sepHeight));
+		addFixedSeparator();
 			
 		addToolBarButton(new CutAction(), javaph.getImageIcon("img/cut.gif"));
 		addToolBarButton(new CopyAction(), javaph.getImageIcon("img/copy.gif"));
 		addToolBarButton(new PasteAction(), javaph.getImageIcon("img/paste.gif"));
 
-		addSeparator(new Dimension(sepWidth, sepHeight));
+		addFixedSeparator();
 			
 		addToolBarButton(new FindAction(javaph, javaph::showFindDialog));
-			
-		addSeparator(new Dimension(sepWidth, sepHeight));
+
+		addFixedSeparator();
 			
 		addToolBarButton(new HelpAction(javaph));
+	}
+
+	private void addFixedSeparator()
+	{
+		final int sepHeight = 26;
+		final int sepWidth = 13;
+		addSeparator(new Dimension(sepWidth, sepHeight));
 	}
 
 	private JButton addToolBarButton(final Action action)
