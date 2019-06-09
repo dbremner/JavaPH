@@ -39,16 +39,14 @@ import java.awt.event.KeyEvent;
  */
 public final class FindDialog extends JavaPHDialog
 {
-	private JButton closeButton;
-	private JButton findButton;
+    private JButton findButton;
 	
 	private JCheckBox caseCheckBox;
 	private JCheckBox wrapCheckBox;
 
 	private FindComboBox findComboBox;
-	private TextFieldComboBoxEditor findComboBoxEditor;
-	
-	public FindDialog(final @NotNull JavaPH javaph)
+
+    public FindDialog(final @NotNull JavaPH javaph)
 	{
 		super(javaph, "Find Text");
 		
@@ -89,7 +87,7 @@ public final class FindDialog extends JavaPHDialog
 			parent.findText(findComboBox.getSelectedItem().toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
 		});
 
-		closeButton = new JButton("Close");
+        final @NotNull JButton closeButton = new JButton("Close");
 		closeButton.setMnemonic(KeyEvent.VK_C);
 		closeButton.addActionListener(ae -> dispose());
 
@@ -109,8 +107,8 @@ public final class FindDialog extends JavaPHDialog
 		findTextPanel.setLayout(new BoxLayout(findTextPanel, BoxLayout.X_AXIS));
 
 		final @NotNull JPanel findControlPanel = new JPanel(new FlowLayout());
-		
-		findComboBoxEditor = new TextFieldComboBoxEditor(ae -> findButton.doClick());
+
+        final @NotNull TextFieldComboBoxEditor findComboBoxEditor = new TextFieldComboBoxEditor(ae -> findButton.doClick());
 /*
 		findComboBoxEditor.getEditorComponent().addKeyListener(new KeyListener()
 		{

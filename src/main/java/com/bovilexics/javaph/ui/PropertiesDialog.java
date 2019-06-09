@@ -63,11 +63,6 @@ import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
 public final class PropertiesDialog extends JavaPHDialog
 {
 	private final @NotNull JavaPH parent;
-	
-	private JButton applyButton;
-	private JButton cancelButton;
-	private JButton defaultsButton;
-	private JButton okButton;
 
 	private JCheckBox displayLogCheckBox;
 	private JCheckBox displaySplashCheckBox;
@@ -113,23 +108,23 @@ public final class PropertiesDialog extends JavaPHDialog
 	private @NotNull JPanel getButtonPanel()
 	{
 		final @NotNull JPanel buttonPanel = new JPanel();
-		
-		okButton = new JButton("OK");
+
+		final @NotNull JButton okButton = new JButton("OK");
 		okButton.setMnemonic(KeyEvent.VK_O);
 		okButton.addActionListener(ae -> {
 			saveProperties();
 			dispose();
 		});
 
-		applyButton = new JButton("Apply");
+		final @NotNull JButton applyButton = new JButton("Apply");
 		applyButton.setMnemonic(KeyEvent.VK_A);
 		applyButton.addActionListener(ae -> saveProperties());
 
-		cancelButton = new JButton("Cancel");
+		final @NotNull JButton cancelButton = new JButton("Cancel");
 		cancelButton.setMnemonic(KeyEvent.VK_C);
 		cancelButton.addActionListener(ae -> dispose());
 
-		defaultsButton = new JButton("Defaults");
+		final @NotNull JButton defaultsButton = new JButton("Defaults");
 		defaultsButton.setMnemonic(KeyEvent.VK_D);
 		defaultsButton.addActionListener(ae -> refreshDefaultProperties());
 	

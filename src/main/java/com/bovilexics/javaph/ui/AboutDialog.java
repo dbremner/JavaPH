@@ -44,8 +44,6 @@ import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
  */
 public final class AboutDialog extends JavaPHDialog
 {
-	private final @NotNull JButton okButton;
-
 	public AboutDialog(final @NotNull JavaPH javaph)
 	{
 		super(javaph, "About " + INFO_NAME);
@@ -69,8 +67,8 @@ public final class AboutDialog extends JavaPHDialog
 
 		final @NotNull JPanel buttonPanel = new JPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
-		
-		okButton = new JButton("OK");
+
+		final @NotNull JButton okButton = new JButton("OK");
 		okButton.addActionListener(ae -> dispose());
 		
 		buttonPanel.add(okButton);
