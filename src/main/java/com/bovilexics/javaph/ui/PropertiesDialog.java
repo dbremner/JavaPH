@@ -158,12 +158,12 @@ public final class PropertiesDialog extends JavaPHDialog
 		runtimeSlider.setPaintLabels(true);
 		runtimeSlider.setSnapToTicks(true);
 		runtimeSlider.setValue(parent.getQueryRuntime());
-		runtimeSlider.addChangeListener(ce -> runtimeText.setText("" + runtimeSlider.getValue()));
+		runtimeSlider.addChangeListener(ce -> runtimeText.setText(String.valueOf(runtimeSlider.getValue())));
 
 		runtimeText = new JTextField();
 		runtimeText.setColumns(3);
 		runtimeText.setEditable(false);
-		runtimeText.setText("" + runtimeSlider.getValue());
+		runtimeText.setText(String.valueOf(runtimeSlider.getValue()));
 
 		runtimePanel.add(runtimeSlider);
 		runtimePanel.add(runtimeText);
