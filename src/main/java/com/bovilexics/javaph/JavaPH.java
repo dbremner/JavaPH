@@ -89,8 +89,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -160,7 +160,8 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class JavaPH extends JApplet implements IconProvider {
+public final class JavaPH extends JApplet implements IconProvider, WindowListener
+{
 	// Custom widgets and other private stuff
 
 	private final @NotNull JFrame frame = new JFrame();
@@ -207,6 +208,80 @@ public final class JavaPH extends JApplet implements IconProvider {
 	private JTabbedPane resultPanel;
 	private final JTextArea logText = new JTextArea();
 	private final JTextArea resultText = new JTextArea();
+
+	@Override
+	public void windowOpened(final WindowEvent e)
+	{
+	}
+
+	@Override
+	public void windowClosing(final WindowEvent e)
+	{
+	}
+
+	@Override
+	public void windowClosed(final WindowEvent e)
+	{
+		boolean needToStore = false;
+
+		if (savePosition)
+		{
+			needToStore = true;
+			setProperty(PROP_APP_HEIGHT, "" + frame.getHeight());
+			setProperty(PROP_APP_WIDTH, "" + frame.getWidth());
+			setProperty(PROP_APP_X_POSITION, "" + frame.getX());
+			setProperty(PROP_APP_Y_POSITION, "" + frame.getY());
+		}
+		else
+		{
+			if (getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT) != APP_DEFAULT_HEIGHT)
+			{
+				needToStore = true;
+				setProperty(PROP_APP_HEIGHT, "" + APP_DEFAULT_HEIGHT);
+			}
+			if (getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH) != APP_DEFAULT_WIDTH)
+			{
+				needToStore = true;
+				setProperty(PROP_APP_WIDTH, "" + APP_DEFAULT_WIDTH);
+			}
+			if (getIntProperty(PROP_APP_X_POSITION, -1) != -1)
+			{
+				needToStore = true;
+				setProperty(PROP_APP_X_POSITION, "" + -1);
+			}
+			if (getIntProperty(PROP_APP_Y_POSITION, -1) != -1)
+			{
+				needToStore = true;
+				setProperty(PROP_APP_Y_POSITION, "" + -1);
+			}
+		}
+
+		if (needToStore) {
+			storeProperties();
+		}
+
+		System.exit(0);
+	}
+
+	@Override
+	public void windowIconified(final WindowEvent e)
+	{
+	}
+
+	@Override
+	public void windowDeiconified(final WindowEvent e)
+	{
+	}
+
+	@Override
+	public void windowActivated(final WindowEvent e)
+	{
+	}
+
+	@Override
+	public void windowDeactivated(final WindowEvent e)
+	{
+	}
 
 	private static class NullKeyAdapter extends KeyAdapter {
 	}
@@ -926,53 +1001,6 @@ public final class JavaPH extends JApplet implements IconProvider {
 	public static void main(final String[] args)
 	{
 		final @NotNull JavaPH applet = new JavaPH();
-		applet.frame.addWindowListener(new WindowAdapter()
-		{
-			@Override
-			public void windowClosed(final WindowEvent we)
-			{
-				boolean needToStore = false;
-				
-				if (applet.savePosition)
-				{
-					needToStore = true;
-					applet.setProperty(PROP_APP_HEIGHT, "" + applet.frame.getHeight());
-					applet.setProperty(PROP_APP_WIDTH, "" + applet.frame.getWidth());
-					applet.setProperty(PROP_APP_X_POSITION, "" + applet.frame.getX());
-					applet.setProperty(PROP_APP_Y_POSITION, "" + applet.frame.getY());
-				}
-				else
-				{
-					if (applet.getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT) != APP_DEFAULT_HEIGHT)
-					{
-						needToStore = true;
-						applet.setProperty(PROP_APP_HEIGHT, "" + APP_DEFAULT_HEIGHT);
-					}
-					if (applet.getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH) != APP_DEFAULT_WIDTH)
-					{
-						needToStore = true;
-						applet.setProperty(PROP_APP_WIDTH, "" + APP_DEFAULT_WIDTH);
-					}
-					if (applet.getIntProperty(PROP_APP_X_POSITION, -1) != -1)
-					{
-						needToStore = true;
-						applet.setProperty(PROP_APP_X_POSITION, "" + -1);
-					}
-					if (applet.getIntProperty(PROP_APP_Y_POSITION, -1) != -1)
-					{
-						needToStore = true;
-						applet.setProperty(PROP_APP_Y_POSITION, "" + -1);
-					}
-				}
-				
-				if (needToStore) {
-					applet.storeProperties();
-				}
-
-				System.exit(0);
-			}
-		});
-
 		applet.queryComboBox.getEditor().getEditorComponent().requestFocus();
 	}
 
@@ -1058,6 +1086,7 @@ public final class JavaPH extends JApplet implements IconProvider {
 		frame.setLocation(frameX, frameY);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		frame.addWindowListener(this);
 	}
 
 	public void findText(final @NotNull String text, final boolean caseSensitive, final boolean wrap)
