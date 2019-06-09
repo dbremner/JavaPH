@@ -50,6 +50,18 @@ public final class CustomButtonGroup extends ButtonGroup
 		return -1;
 	}
 
+	@Override
+	public void add(final @NotNull AbstractButton b)
+	{
+		super.add(b);
+	}
+
+	@Override
+	public void remove(final @NotNull AbstractButton b)
+	{
+		super.remove(b);
+	}
+
 	public boolean isEnabled()
 	{
 		return enabled;
