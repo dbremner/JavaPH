@@ -36,7 +36,6 @@ import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit.CopyAction;
 import javax.swing.text.DefaultEditorKit.CutAction;
 import javax.swing.text.DefaultEditorKit.PasteAction;
-import java.awt.Event;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 
@@ -94,7 +93,7 @@ public final class MainMenu extends JMenuBar
 		cutItem.setIcon(parent.getImageIcon("img/cut.gif"));
 		cutItem.setText("Cut");
 		cutItem.setActionCommand("Cuts the selection and puts it on the clipboard");
-		cutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK));
+		cutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 		cutItem.setMnemonic(KeyEvent.VK_T);
 		editMenu.add(cutItem);
 
@@ -103,7 +102,7 @@ public final class MainMenu extends JMenuBar
 		copyItem.setIcon(parent.getImageIcon("img/copy.gif"));
 		copyItem.setText("Copy");
 		copyItem.setActionCommand("Copies the selection and puts it on the clipboard");
-		copyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK));
+		copyItem.setAccelerator(KeyStroke.getKeyStroke("ctrl C"));
 		copyItem.setMnemonic(KeyEvent.VK_C);
 		editMenu.add(copyItem);
 
@@ -112,7 +111,7 @@ public final class MainMenu extends JMenuBar
 		pasteItem.setIcon(parent.getImageIcon("img/paste.gif"));
 		pasteItem.setText("Paste");
 		pasteItem.setActionCommand("Inserts clipboard contents");
-		pasteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK));
+		pasteItem.setAccelerator(KeyStroke.getKeyStroke("ctrl V"));
 		pasteItem.setMnemonic(KeyEvent.VK_P);
 		editMenu.add(pasteItem);
 		
@@ -121,7 +120,7 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenuItem findItem = getNewMenuItem();
 		findItem.setAction(new FindAction(parent, parent::showFindDialog));
 		findItem.setActionCommand("Finds the specified text in the query results");
-		findItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK));
+		findItem.setAccelerator(KeyStroke.getKeyStroke("ctrl F"));
 		findItem.setMnemonic(KeyEvent.VK_F);
 		editMenu.add(findItem);
 		
@@ -137,14 +136,14 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenuItem newItem = getNewMenuItem();
 		newItem.setAction(new NewAction(parent));
 		newItem.setActionCommand("Create a New Query");
-		newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK));
+		newItem.setAccelerator(KeyStroke.getKeyStroke("ctrl N"));
 		newItem.setMnemonic(KeyEvent.VK_N);
 		fileMenu.add(newItem);
 
 		final @NotNull JMenuItem saveItem = getNewMenuItem();
 		saveItem.setAction(new SaveAction(parent));
 		saveItem.setActionCommand("Save a Query Results");
-		saveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK));
+		saveItem.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
 		saveItem.setMnemonic(KeyEvent.VK_S);
 		fileMenu.add(saveItem);
 
@@ -153,7 +152,7 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenuItem exitItem = getNewMenuItem();
 		exitItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
 		exitItem.setActionCommand("Exit JavaPH");
-		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.ALT_MASK));
+		exitItem.setAccelerator(KeyStroke.getKeyStroke("alt X"));
 		exitItem.setMnemonic(KeyEvent.VK_X);
 		fileMenu.add(exitItem);
 
@@ -169,14 +168,14 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenuItem helpItem = getNewMenuItem();
 		helpItem.setAction(new HelpAction(parent));
 		helpItem.setActionCommand("Open JavaPH help window");
-		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, Event.CTRL_MASK));
+		helpItem.setAccelerator(KeyStroke.getKeyStroke("ctrl H"));
 		helpItem.setMnemonic(KeyEvent.VK_H);
 		helpMenu.add(helpItem);
 
 		final @NotNull JMenuItem aboutItem = getNewMenuItem();
 		aboutItem.setAction(new AboutAction(parent, parent::showAboutDialog));
 		aboutItem.setActionCommand("Displays information about JavaPH");
-		aboutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK));
+		aboutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl A"));
 		aboutItem.setMnemonic(KeyEvent.VK_A);
 		helpMenu.add(aboutItem);
 		
@@ -199,7 +198,7 @@ public final class MainMenu extends JMenuBar
 		showLogItem = new JCheckBoxMenuItem("View System Log");
 		showLogItem.addMouseListener(mouseListener);
 		showLogItem.setActionCommand("Set visibility of system log");
-		showLogItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, Event.CTRL_MASK));
+		showLogItem.setAccelerator(KeyStroke.getKeyStroke("ctrl L"));
 		showLogItem.setMnemonic(KeyEvent.VK_L);
 		showLogItem.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
 		
@@ -220,7 +219,7 @@ public final class MainMenu extends JMenuBar
 		showToolBarItem = new JCheckBoxMenuItem("View Toolbar");
 		showToolBarItem.addMouseListener(mouseListener);
 		showToolBarItem.setActionCommand("Set visibility of toolbar");
-		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, Event.CTRL_MASK));
+		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl T"));
 		showToolBarItem.setMnemonic(KeyEvent.VK_T);
 		showToolBarItem.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
 		
@@ -241,7 +240,7 @@ public final class MainMenu extends JMenuBar
 		rollToolBarItem = new JCheckBoxMenuItem("Rollover Toolbar");
 		rollToolBarItem.addMouseListener(mouseListener);
 		rollToolBarItem.setActionCommand("Set rollover property of toolbar");
-		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK));
+		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl R"));
 		rollToolBarItem.setMnemonic(KeyEvent.VK_R);
 		rollToolBarItem.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
 		
@@ -266,14 +265,14 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenuItem browserItem = getNewMenuItem();
 		browserItem.setAction(new BrowserAction(parent::showBrowserDialog));
 		browserItem.setActionCommand("Configure browser used to display JavaPH help");
-		browserItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK));
+		browserItem.setAccelerator(KeyStroke.getKeyStroke("ctrl B"));
 		browserItem.setMnemonic(KeyEvent.VK_B);
 		windowMenu.add(browserItem);
 
 		final @NotNull JMenuItem propertiesItem = getNewMenuItem();
 		propertiesItem.setAction(new PrefsAction(parent::showPropertiesDialog));
 		propertiesItem.setActionCommand("Set JavaPH preferences");
-		propertiesItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK));
+		propertiesItem.setAccelerator(KeyStroke.getKeyStroke("ctrl P"));
 		propertiesItem.setMnemonic(KeyEvent.VK_P);
 		windowMenu.add(propertiesItem);
 
