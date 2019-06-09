@@ -19,9 +19,7 @@ package com.bovilexics.javaph.models;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -46,22 +44,7 @@ public final class ResultTableModel extends DefaultTableModel
 		Arrays.fill(headers, DEFAULT_HEADER);
 		return headers;	
 	}
-	
-	public @NotNull List<String> getDefaultHeaderVector()
-	{
-		return getDefaultHeaderVector(DEFAULT_COLS);
-	}
-	
-	public @NotNull List<String> getDefaultHeaderVector(final int cols)
-	{
-		final @NotNull List<String> headers = new ArrayList<>(cols);
-		for (int i = 0; i < cols; i++) {
-			headers.add(DEFAULT_HEADER);
-		}
-			
-		return headers;
-	}
-	
+
 	@Override
 	public boolean isCellEditable(final int row, final int col)
 	{
