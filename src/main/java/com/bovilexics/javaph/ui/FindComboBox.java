@@ -16,10 +16,10 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.models.FindComboBoxModel;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-
-import com.bovilexics.javaph.models.FindComboBoxModel;
 
 /**
  *
@@ -28,7 +28,7 @@ import com.bovilexics.javaph.models.FindComboBoxModel;
  */
 final class FindComboBox extends JComboBox
 {
-	public FindComboBox(final boolean useDefaultModel)
+	FindComboBox(final boolean useDefaultModel)
 	{
 		super();
 		
