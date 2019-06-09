@@ -80,14 +80,14 @@ public class QueryThread extends Thread
 			resultThread.interrupt();
 			closeProgress();
 			showStatusLog("Query Canceled");
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), "Query Canceled", "Canceled", JOptionPane.ERROR_MESSAGE);
+			parent.showErrorDialog("Query Canceled", "Canceled");
 		}
 		else if (seconds == runtime)
 		{
 			resultThread.interrupt();
 			closeProgress();
 			showStatusLog("Query Timed Out");
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), "Query Timed Out", "Timeout", JOptionPane.ERROR_MESSAGE);
+			parent.showErrorDialog("Query Timed Out", "Timeout");
 		}
 		else
 		{

@@ -21,7 +21,6 @@ import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
-import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
@@ -54,7 +53,7 @@ public final class HelpAction extends AbstractAction
 		{
 			final @NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
 			parent.log(message);
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
+			parent.showErrorDialog(message, "Exception");
 		}
 	}
 }

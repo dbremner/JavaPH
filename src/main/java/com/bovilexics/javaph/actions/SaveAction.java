@@ -23,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
@@ -99,7 +98,7 @@ public final class SaveAction extends AbstractAction
 		{
 			final @NotNull String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
+			parent.showWarningDialog(message, "Finished");
 		}
 		else
 		{
@@ -144,13 +143,13 @@ public final class SaveAction extends AbstractAction
 
 				final @NotNull String message = "File save finished";
 				parent.log(message);
-				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
+				parent.showInformationDialog(message, "Finished");
 			}
 			catch (final IOException e)
 			{
 				final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 				parent.log(message);
-				JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
+				parent.showErrorDialog(message, "Exception");
 			}
 		}	
 	}
@@ -176,7 +175,7 @@ public final class SaveAction extends AbstractAction
 		{
 			final @NotNull String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
 			parent.log(message);
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.WARNING_MESSAGE);
+			parent.showWarningDialog(message, "Finished");
 			return;
 		}
 
@@ -186,13 +185,13 @@ public final class SaveAction extends AbstractAction
 			writer.flush();
 			final @NotNull String message = "File save finished";
 			parent.log(message);
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Finished", JOptionPane.INFORMATION_MESSAGE);
+			parent.showInformationDialog(message, "Finished");
 		}
 		catch (final IOException e)
 		{
 			final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 			parent.log(message);
-			JOptionPane.showMessageDialog(parent.getDefaultPane(), message, "Exception", JOptionPane.ERROR_MESSAGE);
+			parent.showErrorDialog(message, "Exception");
 		}
 	}
 }

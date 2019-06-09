@@ -1718,6 +1718,21 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		savePosition = save;
 	}
 
+	public void showErrorDialog(final @NotNull String message, final @NotNull String title)
+	{
+		JOptionPane.showMessageDialog(getDefaultPane(), message, title, JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void showWarningDialog(final @NotNull String message, final @NotNull String title)
+	{
+		JOptionPane.showMessageDialog(getDefaultPane(), message, title, JOptionPane.WARNING_MESSAGE);
+	}
+
+	public void showInformationDialog(final @NotNull String message, final @NotNull String title)
+	{
+		JOptionPane.showMessageDialog(getDefaultPane(), message, title, JOptionPane.INFORMATION_MESSAGE);
+	}
+
 	public void showAboutDialog()
 	{
 		aboutDialog.setLocationRelativeTo(defaultPane);
