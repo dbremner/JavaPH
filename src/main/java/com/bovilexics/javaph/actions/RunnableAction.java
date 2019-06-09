@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import java.awt.event.ActionEvent;
 
-public abstract class RunnableAction extends AbstractAction
+abstract class RunnableAction extends AbstractAction
 {
     private final @NotNull Runnable runnable;
 
