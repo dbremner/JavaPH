@@ -1299,7 +1299,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return out.toString();
 	}
 
-	public void setCommandComboBoxSelectedIndex(int index)
+	public void setCommandComboBoxSelectedIndex(final int index)
 	{
 		commandComboBox.setSelectedIndex(index);
 	}
