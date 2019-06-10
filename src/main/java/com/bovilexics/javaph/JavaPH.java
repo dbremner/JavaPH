@@ -205,7 +205,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final JPanel fieldListPanel = new JPanel(new BorderLayout());
 	private final JPanel logTextPanel = new JPanel(new BorderLayout());
 	private JRootPane defaultPane;
-	private final JTabbedPane resultPanel;
+	private final @NotNull JTabbedPane resultPanel;
 	private final JTextArea logText = new JTextArea();
 	private final JTextArea resultText = new JTextArea();
 
@@ -1430,7 +1430,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return queryToolBar;
 	}
 
-	public JTabbedPane getResultPanel()
+	public @NotNull JTabbedPane getResultPanel()
 	{
 		return resultPanel;
 	}
