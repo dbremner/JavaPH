@@ -197,15 +197,19 @@ final class LookAndFeelMenu extends JMenu
 	private void resetSelectedLookAndFeel()
 	{
 		if (macSupported) {
+			assert macItem != null;
 			macItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(MAC_LOOK_AND_FEEL));
 		}
 		if (metalSupported) {
+			assert metalItem != null;
 			metalItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(METAL_LOOK_AND_FEEL));
 		}
 		if (motifSupported) {
+			assert motifItem != null;
 			motifItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(MOTIF_LOOK_AND_FEEL));
 		}
 		if (windowsSupported) {
+			assert windowsItem != null;
 			windowsItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(WINDOWS_LOOK_AND_FEEL));
 		}
 	}

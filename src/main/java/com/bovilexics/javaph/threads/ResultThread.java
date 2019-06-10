@@ -180,6 +180,7 @@ public class ResultThread extends Thread
 
 	public synchronized int getFieldCount()
 	{
+		assert headers != null;
 		return isOk() ? headers.length : 0;
 	}
 
@@ -539,7 +540,8 @@ public class ResultThread extends Thread
 		else
 		{
 			state = ResultThreadState.RS_OK;
-			
+
+			assert command != null;
 			if (command.equals(QiCommand.FIELDS))
 			{
 				buildHeadersForFields();
@@ -562,7 +564,8 @@ public class ResultThread extends Thread
 		if (!headersDone) {
 			buildHeaders();
 		}
-			
+
+		assert headers != null;
 		values = new Object[records.size()][headers.length];
 
 		int xCoordinate = -1;
@@ -586,6 +589,7 @@ public class ResultThread extends Thread
 				boolean found = false;
 				for (int k = 0; k < headers.length && !found; k++)
 				{
+					assert headers[k] != null;
 					if ( headers[k].equals(field) )
 					{
 						xCoordinate = k;
@@ -624,7 +628,8 @@ public class ResultThread extends Thread
 		if (!headersDone) {
 			buildHeadersForFields();
 		}
-			
+
+		assert headers != null;
 		values = new Object[records.size()][headers.length];
 
 		for (int i = 0; i < records.size(); i++)
