@@ -25,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
@@ -85,7 +86,7 @@ public final class QueryToolBar extends JToolBar
 		return myJButton;
 	}
 		
-	private JButton addToolBarButton(final Action action, final @NotNull ImageIcon icon)
+	private JButton addToolBarButton(final Action action, final @NotNull Icon icon)
 	{
 		final JButton myJButton = add(action);
 		myJButton.setIcon(icon);

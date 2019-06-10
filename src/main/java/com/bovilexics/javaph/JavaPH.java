@@ -73,6 +73,7 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ListDataEvent;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
@@ -952,7 +953,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		private void populateColumnList()
 		{
-			final @NotNull TableSorter tableModel = (TableSorter)resultTable.getModel();
+			final @NotNull TableModel tableModel = resultTable.getModel();
 			final @NotNull DefaultListModel listModel = (DefaultListModel)colList.getModel();
 			listModel.clear();
 
