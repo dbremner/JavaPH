@@ -85,7 +85,7 @@ public class ResultThread extends Thread
 	// Separator used in the display of queries which matched multiple records.
 	private static final @NotNull String recordSeparator = "------------------------------------------------------------\n";
 
-	private StringBuffer rawResult;
+	private StringBuilder rawResult;
 
 	private final List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
@@ -482,7 +482,7 @@ public class ResultThread extends Thread
 		writeQi(commandLine + "\n");
 
 		// Read the server's response, line by line.
-		rawResult = new StringBuffer();
+		rawResult = new StringBuilder();
 		int index = 0;
 		while ((readFromServer = readQi()) != null)
 		{
