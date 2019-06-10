@@ -19,7 +19,7 @@ final class DesktopHyperLinkLabelListener extends AbstractHyperLinkLabelListener
     }
 
     @Override
-    protected void displayUrl(@NotNull final String url, @NotNull final String text) throws IOException
+    protected void displayUrl(final @NotNull String url, final @NotNull String text) throws IOException
     {
         final URI uri;
         try
