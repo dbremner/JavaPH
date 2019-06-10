@@ -583,7 +583,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull Server server = getServer();
 				final @NotNull String serverText = server.getServer();
 
-				final @Nullable Integer portInt = server.getPort();
+				final @NotNull Integer portInt = server.getPort();
 
 				serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
 				final @NotNull String portText = portInt.toString();
