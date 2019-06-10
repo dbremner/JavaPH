@@ -19,6 +19,7 @@ package com.bovilexics.javaph.ui;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -48,13 +49,20 @@ public final class ResultTable extends JTable
 		setModel(new TableSorter(getModel()));
 	}
 
+
+	private @NotNull TableCellRenderer getRenderer(final @NotNull TableColumn column)
+	{
+		final @Nullable TableCellRenderer renderer = column.getHeaderRenderer();
+
+		if (renderer == null) {
+			return getDefaultRenderer(column.getClass());
+		}
+		return renderer;
+	}
+
 	private int getColumnHeaderWidth(final @NotNull TableColumn column)
 	{
-		TableCellRenderer renderer = column.getHeaderRenderer();
-		
-		if (renderer == null) {
-            renderer = getDefaultRenderer(column.getClass());
-        }
+		final @NotNull TableCellRenderer renderer = getRenderer(column);
 		
 		final Component component = renderer.getTableCellRendererComponent(this, column.getHeaderValue(), false, false, 0, 0);
 		
