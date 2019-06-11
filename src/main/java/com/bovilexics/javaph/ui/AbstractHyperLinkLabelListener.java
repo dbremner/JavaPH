@@ -13,7 +13,7 @@ abstract class AbstractHyperLinkLabelListener extends MouseAdapter
     private final @NotNull String text;
     private final @NotNull JavaPH parent;
 
-    protected AbstractHyperLinkLabelListener(final @NotNull String url, final @NotNull String text, final @NotNull JavaPH parent)
+    AbstractHyperLinkLabelListener(final @NotNull String url, final @NotNull String text, final @NotNull JavaPH parent)
     {
         this.url = url;
         this.text = text;
