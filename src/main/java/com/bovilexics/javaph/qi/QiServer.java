@@ -93,10 +93,8 @@ public class QiServer implements Server
 	{
 		fields = new ArrayList<>();
 
-		for (int i = 0; i < records.size(); i++)
+		for (final @NotNull List<Line> record : records)
 		{
-			final List<Line> record = records.get(i);
-
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
@@ -111,7 +109,8 @@ public class QiServer implements Server
 				if (propsField.equals(descField))
 				{
 					// Do not add this field if it is one of the special fields already handled elsewhere
-					if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all")) {
+					if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all"))
+					{
 						continue;
 					}
 

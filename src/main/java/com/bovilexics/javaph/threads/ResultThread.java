@@ -415,29 +415,30 @@ public class ResultThread extends Thread
 		@NotNull String lastField = "unknown";
 		final @NotNull List<String> uniqueHeaders = new ArrayList<>();
 
-		for (int i = 0; i < records.size(); i++)
+		for (final List<Line> currentQiLine : records)
 		{
-			final List<Line> currentQiLine = records.get(i);
-
-			for (int j = 0; j < currentQiLine.size(); j++)
+			for (final Line line : currentQiLine)
 			{
-				@NotNull String field = currentQiLine.get(j).getTrimmedField();
+				@NotNull String field = line.getTrimmedField();
 
 				if (field.isEmpty())
 				{
 					field = lastField + ".1";
 				}
-				
+
 				if (!uniqueHeaders.contains(field))
 				{
-					if (field.endsWith(".1")) {
+					if (field.endsWith(".1"))
+					{
 						final int index = uniqueHeaders.indexOf(field.substring(0, field.lastIndexOf(".1"))) + 1;
 						uniqueHeaders.add(index, field);
-					} else {
+					}
+					else
+					{
 						uniqueHeaders.add(field);
 					}
 				}
-				
+
 				lastField = field;
 			}
 		}
@@ -576,9 +577,8 @@ public class ResultThread extends Thread
 			final int yCoordinate = i;
 			final List<Line> thisVector = records.get(i);
 
-			for (int j = 0; j < thisVector.size(); j++)
+			for (final Line thisQiLine : thisVector)
 			{
-				final Line thisQiLine = thisVector.get(j);
 				@NotNull String field = thisQiLine.getTrimmedField();
 
 				if (field.isEmpty())
@@ -590,13 +590,13 @@ public class ResultThread extends Thread
 				for (int k = 0; k < headers.length && !found; k++)
 				{
 					assert headers[k] != null;
-					if ( headers[k].equals(field) )
+					if (headers[k].equals(field))
 					{
 						xCoordinate = k;
 						found = true;
 					}
 				}
-				
+
 				if (found)
 				{
 					values[yCoordinate][xCoordinate] = thisQiLine.getTrimmedValue();
@@ -604,14 +604,17 @@ public class ResultThread extends Thread
 				else
 				{
 					final @NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
-					
-					if (parent == null) {
+
+					if (parent == null)
+					{
 						System.err.println(message);
-					} else {
+					}
+					else
+					{
 						parent.log(message);
 					}
 				}
-				
+
 				lastField = field;
 			}	
 		}	

@@ -99,20 +99,20 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		else
 		{
 			removeAllElements();
-			
-			for (int i = 0; i < allObjects.size(); i++)
-			{
-                final Object anObject = allObjects.get(i);
 
-                if (anObject == null) {
-                    continue;
-                }
-				
+			for (final Object anObject : allObjects)
+			{
+				if (anObject == null)
+				{
+					continue;
+				}
+
 				final String element = anObject.toString();
-				
-				if (element.equals(filter) || element.startsWith(filter)) {
-                    addElement(anObject);
-                }
+
+				if (element.equals(filter) || element.startsWith(filter))
+				{
+					addElement(anObject);
+				}
 			}
 		}
 		
@@ -216,10 +216,11 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	private void restoreAllElements()
 	{
 		removeAllElements();
-		
-		for (int i = 0; i < allObjects.size(); i++) {
-            addElement(allObjects.get(i));
-        }
+
+		for (Object allObject : allObjects)
+		{
+			addElement(allObject);
+		}
 	}
 
 	// implements javax.swing.ComboBoxModel
