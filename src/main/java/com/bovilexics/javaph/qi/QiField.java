@@ -67,7 +67,7 @@ public class QiField implements Field
 	{
 		this.name = name;
 		this.length = length;
-		this.properties = properties;
+		this.properties = ImmutableList.copyOf(properties);
 		this.description = description;
 	}
 
