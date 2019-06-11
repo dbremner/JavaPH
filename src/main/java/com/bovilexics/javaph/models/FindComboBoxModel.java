@@ -54,9 +54,11 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	@Override
 	public void addElement(final Object item)
 	{
-		if (!objects.contains(item)) {
-			insertElementAt(item, 0);
+		if (objects.contains(item))
+		{
+			return;
 		}
+		insertElementAt(item, 0);
 	}
 
 	// implements javax.swing.ListModel
@@ -102,9 +104,11 @@ public final class FindComboBoxModel extends AbstractListModel implements Mutabl
 	{
 		final int index = objects.indexOf(obj);
 
-		if (index != -1) {
-			removeElementAt(index);
+		if (index == -1)
+		{
+			return;
 		}
+		removeElementAt(index);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
