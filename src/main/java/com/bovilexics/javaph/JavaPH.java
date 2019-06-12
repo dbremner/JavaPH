@@ -1623,7 +1623,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			logger.println("No look and feel specified, using system default (" + lookAndFeel + ")");
 		}
 
-		int i;
 		try
 		{
 			UIManager.setLookAndFeel(lookAndFeel);
@@ -1632,7 +1631,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// Must also include the dialogs and toolbars
 			// due to the weirdness of potentially running
 			// as either an application or an applet
-			for (i = 0; i < otherComponents.length; i++) {
+			for (int i = 0; i < otherComponents.length; i++) {
 				SwingUtilities.updateComponentTreeUI(otherComponents[i]);
 			}
 			
@@ -1656,7 +1655,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// Must also include the dialogs and toolbars
 			// due to the weirdness of potentially running
 			// as either an application or an applet
-			for (i = 0; i < otherComponents.length; i++) {
+			for (int i = 0; i < otherComponents.length; i++) {
 				SwingUtilities.updateComponentTreeUI(otherComponents[i]);
 			}
 
