@@ -1144,8 +1144,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			}
 		}
 
-		Object anObject;
-
 		if (!inLastCell)
 		{
 			for (int r = startRow; r < table.getRowCount(); r++)
@@ -1154,7 +1152,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				// otherwise start from the first column
 				for (int c = (r == startRow) ? startCol : 0; c < table.getColumnCount(); c++)
 				{
-					anObject = table.getValueAt(r, c);
+					final Object anObject = table.getValueAt(r, c);
 					
 					if (anObject == null)
 					{
@@ -1189,7 +1187,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				// otherwise start from the first column
 				for (int c = (r == startRow) ? startCol : 0; c < table.getColumnCount(); c++)
 				{
-					anObject = table.getValueAt(r, c);
+					final Object anObject = table.getValueAt(r, c);
 				
 					if (anObject == null)
 					{
