@@ -1163,7 +1163,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 						table.changeSelection(r, c, false, false);
 						return;
 					}
-					else if (!caseSensitive && anObject.toString().toLowerCase().contains(text.toLowerCase()))
+					else if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
 					{
 						table.changeSelection(r, c, false, false);
 						return;
@@ -1198,7 +1198,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 						table.changeSelection(r, c, false, false);
 						return;
 					}
-					else if (!caseSensitive && anObject.toString().toLowerCase().contains(text.toLowerCase()))
+					else if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
 					{
 						table.changeSelection(r, c, false, false);
 						return;
@@ -1227,7 +1227,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		if (caseSensitive) {
 			location = textArea.getText().indexOf(text, startIndex);
 		} else {
-			location = textArea.getText().toLowerCase().indexOf(text.toLowerCase(), startIndex);
+			location = textArea.getText().toUpperCase().indexOf(text.toUpperCase(), startIndex);
 		}
 		
 		if (location > 0)
@@ -1242,7 +1242,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			if (caseSensitive) {
 				location = textArea.getText().indexOf(text, startIndex);
 			} else {
-				location = textArea.getText().toLowerCase().indexOf(text.toLowerCase(), startIndex);
+				location = textArea.getText().toUpperCase().indexOf(text.toUpperCase(), startIndex);
 			}
 
 			if (location > 0)
