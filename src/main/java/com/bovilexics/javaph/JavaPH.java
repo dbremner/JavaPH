@@ -1211,7 +1211,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private void findTextInTextArea(final @NotNull JTextArea textArea, final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
 		int startIndex;
-		
+
 		// if nothing or everything is selected then start search from the
 		// beginning otherwise start search from the end of the selection
 		if (textArea.getSelectedText() == null) {
@@ -1222,14 +1222,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			startIndex = textArea.getSelectionEnd();
 		}
 
-		int location;
-		
-		if (caseSensitive) {
-			location = textArea.getText().indexOf(text, startIndex);
-		} else {
-			location = textArea.getText().toUpperCase().indexOf(text.toUpperCase(), startIndex);
-		}
-		
+		int location = getLocation(textArea, text, caseSensitive, startIndex);
+
 		if (location > 0)
 		{
 			textArea.select(location, location + text.length());
@@ -1238,12 +1232,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		else if (wrap && startIndex > 0)
 		{
 			startIndex = 0;
-			
-			if (caseSensitive) {
-				location = textArea.getText().indexOf(text, startIndex);
-			} else {
-				location = textArea.getText().toUpperCase().indexOf(text.toUpperCase(), startIndex);
-			}
+
+			location = getLocation(textArea, text, caseSensitive, startIndex);
 
 			if (location > 0)
 			{
@@ -1251,6 +1241,20 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				textArea.getCaret().setSelectionVisible(true);
 			}
 		}
+	}
+
+	private int getLocation(@NotNull JTextArea textArea, @NotNull String text, boolean caseSensitive, int startIndex)
+	{
+		final int location;
+		if (caseSensitive)
+		{
+			location = textArea.getText().indexOf(text, startIndex);
+		}
+		else
+		{
+			location = textArea.getText().toUpperCase().indexOf(text.toUpperCase(), startIndex);
+		}
+		return location;
 	}
 
 	public @NotNull String getCommand()
