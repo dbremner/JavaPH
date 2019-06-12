@@ -252,12 +252,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			if (getIntProperty(PROP_APP_X_POSITION, -1) != -1)
 			{
 				needToStore = true;
-				setProperty(PROP_APP_X_POSITION, "" + -1);
+				setProperty(PROP_APP_X_POSITION, -1);
 			}
 			if (getIntProperty(PROP_APP_Y_POSITION, -1) != -1)
 			{
 				needToStore = true;
-				setProperty(PROP_APP_Y_POSITION, "" + -1);
+				setProperty(PROP_APP_Y_POSITION, -1);
 			}
 		}
 
