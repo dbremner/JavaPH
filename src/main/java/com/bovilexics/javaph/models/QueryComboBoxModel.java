@@ -68,9 +68,9 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		int whereToAdd = -1;
 		final String newElement = anObject.toString();
 
-		for (int i = 0; i < getSize(); i++)
+		for (int i = 0; i < objects.size(); i++)
 		{
-			final String oldElement = getElementAt(i).toString();
+			final String oldElement = objects.get(i).toString();
 
 			if (newElement.compareTo(oldElement) == 0)
 			{
