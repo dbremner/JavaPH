@@ -86,7 +86,7 @@ public final class FindDialog extends JavaPHDialog
 				}
 			}
 
-			@Nullable final Object selected = findComboBox.getSelectedItem();
+			final @Nullable Object selected = findComboBox.getSelectedItem();
 			assert selected != null;
 			parent.findText(selected.toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
 		});

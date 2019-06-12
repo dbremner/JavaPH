@@ -415,9 +415,9 @@ public class ResultThread extends Thread
 		@NotNull String lastField = "unknown";
 		final @NotNull List<String> uniqueHeaders = new ArrayList<>();
 
-		for (final List<Line> currentQiLine : records)
+		for (final @NotNull List<Line> currentQiLine : records)
 		{
-			for (final Line line : currentQiLine)
+			for (final @NotNull Line line : currentQiLine)
 			{
 				@NotNull String field = line.getTrimmedField();
 
@@ -577,7 +577,7 @@ public class ResultThread extends Thread
 			final int yCoordinate = i;
 			final List<Line> thisVector = records.get(i);
 
-			for (final Line thisQiLine : thisVector)
+			for (final @NotNull Line thisQiLine : thisVector)
 			{
 				@NotNull String field = thisQiLine.getTrimmedField();
 

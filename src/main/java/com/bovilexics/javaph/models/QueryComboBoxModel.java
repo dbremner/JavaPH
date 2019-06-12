@@ -100,7 +100,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		{
 			removeAllElements();
 
-			for (final Object anObject : allObjects)
+			for (final @Nullable Object anObject : allObjects)
 			{
 				if (anObject == null)
 				{
