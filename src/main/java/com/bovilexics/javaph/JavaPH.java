@@ -511,7 +511,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				}
 			});
 			fieldCustomButton.addActionListener(ae -> {
-				final int[] prevSelections = fieldList.getSelectedIndices();
+				final @NotNull int[] prevSelections = fieldList.getSelectedIndices();
 				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + getServer().toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (option != JOptionPane.OK_OPTION)
@@ -628,7 +628,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		
 			fieldListMoveUpButton = new JButton("Move Up");
 			fieldListMoveUpButton.addActionListener(ae -> {
-				final int[] selections = fieldList.getSelectedIndices();
+				final @NotNull int[] selections = fieldList.getSelectedIndices();
 
 				for (int i = 0; i < selections.length; i++)
 				{
@@ -643,7 +643,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			
 			fieldListMoveDnButton = new JButton("Move Down");
 			fieldListMoveDnButton.addActionListener(ae -> {
-				final int[] selections = fieldList.getSelectedIndices();
+				final @NotNull int[] selections = fieldList.getSelectedIndices();
 
 				for (int i = selections.length - 1; i >= 0; i--)
 				{
@@ -803,7 +803,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull JPanel resultControlPanel = new JPanel();
 			resultTableColButton.setEnabled(false);
 			resultTableColButton.addActionListener(ae -> {
-				final int[] prevSelections = colList.getSelectedIndices();
+				final @NotNull int[] prevSelections = colList.getSelectedIndices();
 				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), colListPanel, "Column List for Result Table", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (option != JOptionPane.OK_OPTION)
