@@ -17,6 +17,8 @@
 package com.bovilexics.javaph;
 
 import com.Ostermiller.util.Browser;
+import com.bovilexics.javaph.logging.Logger;
+import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.TableSorter;
 import com.bovilexics.javaph.qi.Connection;
@@ -163,6 +165,8 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  */
 public final class JavaPH extends JApplet implements IconProvider, WindowListener
 {
+	private final Logger logger = new OutLogger();
+
 	// Custom widgets and other private stuff
 
 	private final @NotNull JFrame frame = new JFrame();
@@ -1521,13 +1525,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			e.printStackTrace();
-			System.out.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
+			logger.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
 		catch (final @NotNull IOException e)
 		{
 			e.printStackTrace();
-			System.out.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
+			logger.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
 	}
@@ -1616,7 +1620,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		if (lookAndFeel == null)
 		{
 			lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-			System.out.println("No look and feel specified, using system default (" + lookAndFeel + ")");	
+			logger.println("No look and feel specified, using system default (" + lookAndFeel + ")");
 		}
 
 		int i;
@@ -1640,7 +1644,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// what was specified in the properties file
 			// then just continue and set system default
 			e.printStackTrace();
-			System.out.println("Exception occurred when trying to set custom look and feel");
+			logger.println("Exception occurred when trying to set custom look and feel");
 		}
 		
 		try
@@ -1665,7 +1669,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// then just continue and allow the default
 			// cross platform look at feel to be used (metal)
 			e.printStackTrace();
-			System.out.println("Exception occurred when trying to set default look and feel");
+			logger.println("Exception occurred when trying to set default look and feel");
 		}
 	}
 
@@ -1843,12 +1847,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			e.printStackTrace();
-			System.out.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
+			logger.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
 		}
 		catch (final @NotNull IOException e)
 		{
 			e.printStackTrace();
-			System.out.println("IOException occurred when trying to store properties to " + PROP_FILE);
+			logger.println("IOException occurred when trying to store properties to " + PROP_FILE);
 		}
 	}
 }

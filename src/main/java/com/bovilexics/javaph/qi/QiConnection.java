@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.logging.OutLogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -243,7 +244,7 @@ public class QiConnection implements Connection
 
 			// "No Hostname found for IP address" maybe.
 			if (!blurb.isEmpty()) {
-				System.out.println("Error on Qi login: " + blurb);
+				OutLogger.instance.println("Error on Qi login: " + blurb);
 			}
 
 			blurb = "";
@@ -261,7 +262,7 @@ public class QiConnection implements Connection
 				{
 					// "No Hostname found for IP address" maybe.
 					if (!blurb.isEmpty()) {
-						System.out.println("Error on Qi login: " + blurb);
+						OutLogger.instance.println("Error on Qi login: " + blurb);
 					}
 						
 					authenticated = true;
@@ -315,7 +316,7 @@ public class QiConnection implements Connection
 				{
 					// "No Hostname found for IP address" maybe.
 					if (!blurb.isEmpty()) {
-						System.out.println("Error on Qi logout: " + blurb);
+						OutLogger.instance.println("Error on Qi logout: " + blurb);
 					}
 						
 					authenticated = false;
