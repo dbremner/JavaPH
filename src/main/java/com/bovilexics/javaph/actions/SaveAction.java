@@ -102,10 +102,8 @@ public final class SaveAction extends AbstractAction
 		}
 		else
 		{
-			try
+			try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
 			{
-				final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-
 				// start at row -1 to grab headers first
 				for (int r = -1; r < rows; r++)
 				{

@@ -68,37 +68,45 @@ public final class QiServerManager {
         return servers;
     }
 
-    public static void loadAllServers(final @NotNull String filename) {
+    public static void loadAllServers(final @NotNull String filename)
+    {
         servers.clear();
 
-        try {
-            final @NotNull Reader in = new FileReader(filename);
-
-            final @NotNull LineNumberReader lr = new LineNumberReader(in);
-
+        try(final @NotNull Reader in = new FileReader(filename);
+            final @NotNull LineNumberReader lr = new LineNumberReader(in))
+        {
             String line;
 
-            while ((line = lr.readLine()) != null) {
+            while ((line = lr.readLine()) != null)
+            {
                 // Ignore comment lines
-                if (line.startsWith("#")) {
+                if (line.startsWith("#"))
+                {
                     continue;
                 }
 
                 final @NotNull String[] items = line.split(SEPARATOR);
 
-                if (items.length != 3) {
+                if (items.length != 3)
+                {
                     System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
-                } else {
+                }
+                else
+                {
                     final @NotNull Server server1 = new QiServer(items[0], items[1], items[2]);
                     addServer(server1);
                 }
             }
 
             defaultServer = servers.get(0);
-        } catch (final @NotNull FileNotFoundException e) {
+        }
+        catch (final @NotNull FileNotFoundException e)
+        {
             System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
-        } catch (final @NotNull IOException e) {
+        }
+        catch (final @NotNull IOException e)
+        {
             System.err.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
@@ -119,32 +127,39 @@ public final class QiServerManager {
     public static @NotNull List<Server> loadServers(final @NotNull String filename) {
         final @NotNull List<Server> serverResults = new ArrayList<>();
 
-        try {
-            final @NotNull Reader in = new FileReader(filename);
-
-            final @NotNull LineNumberReader lr = new LineNumberReader(in);
-
+        try(final @NotNull Reader in = new FileReader(filename);
+            final @NotNull LineNumberReader lr = new LineNumberReader(in))
+        {
             String line;
 
-            while ((line = lr.readLine()) != null) {
+            while ((line = lr.readLine()) != null)
+            {
                 // Ignore comment lines
-                if (line.startsWith("#")) {
+                if (line.startsWith("#"))
+                {
                     continue;
                 }
 
                 final @NotNull String[] items = line.split(SEPARATOR);
 
-                if (items.length != 3) {
+                if (items.length != 3)
+                {
                     System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
-                } else {
+                }
+                else
+                {
                     final @NotNull Server server1 = new QiServer(items[0], items[1], items[2]);
                     serverResults.add(server1);
                 }
             }
-        } catch (final @NotNull FileNotFoundException e) {
+        }
+        catch (final @NotNull FileNotFoundException e)
+        {
             System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
-        } catch (final @NotNull IOException e) {
+        }
+        catch (final @NotNull IOException e)
+        {
             System.err.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
@@ -155,14 +170,15 @@ public final class QiServerManager {
         servers.remove(server);
     }
 
-    public static void saveServers() {
-        try {
-            final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE));
-
+    public static void saveServers()
+    {
+        try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE)))
+        {
             writer.write(getFileHeader());
             writer.flush();
 
-            for (int i = 0; i < servers.size(); i++) {
+            for (int i = 0; i < servers.size(); i++)
+            {
                 final Server server = servers.get(i);
 
                 final @NotNull StringBuilder toWrite = new StringBuilder();
@@ -172,15 +188,17 @@ public final class QiServerManager {
                 toWrite.append(SEPARATOR);
                 toWrite.append(server.getPort());
 
-                if (i < servers.size() - 1) {
+                if (i < servers.size() - 1)
+                {
                     toWrite.append("\n");
                 }
 
                 writer.write(toWrite.toString());
                 writer.flush();
             }
-            writer.close();
-        } catch (final @NotNull IOException e) {
+        }
+        catch (final @NotNull IOException e)
+        {
             System.err.println("Error: IOException received when trying to write file " + SERVER_FILE);
             e.printStackTrace();
         }
