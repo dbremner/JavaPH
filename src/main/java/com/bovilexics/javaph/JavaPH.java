@@ -17,6 +17,7 @@
 package com.bovilexics.javaph;
 
 import com.Ostermiller.util.Browser;
+import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
@@ -166,6 +167,8 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
 public final class JavaPH extends JApplet implements IconProvider, WindowListener
 {
 	private final Logger logger = new OutLogger();
+
+	private final Logger errLogger = new ErrLogger();
 
 	// Custom widgets and other private stuff
 
@@ -1525,13 +1528,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			e.printStackTrace();
-			logger.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
+			errLogger.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
 		catch (final @NotNull IOException e)
 		{
 			e.printStackTrace();
-			logger.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
+			errLogger.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
 	}
@@ -1846,12 +1849,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			e.printStackTrace();
-			logger.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
+			errLogger.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
 		}
 		catch (final @NotNull IOException e)
 		{
 			e.printStackTrace();
-			logger.println("IOException occurred when trying to store properties to " + PROP_FILE);
+			errLogger.println("IOException occurred when trying to store properties to " + PROP_FILE);
 		}
 	}
 }
