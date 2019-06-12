@@ -1280,10 +1280,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			}
 			else if (fieldRadioGroup.getSelectedIndex() == FIELD_CUSTOM)
 			{
-				final int[] selectedFields = fieldList.getSelectedIndices();
+				final @NotNull int[] selectedFields = fieldList.getSelectedIndices();
 				
 				// will return default list of fields if nothing selected
-				if (selectedFields != null &&  selectedFields.length > 0)
+				if (selectedFields.length > 0)
 				{
 					out.append(" return");
 
