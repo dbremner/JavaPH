@@ -8,7 +8,6 @@ package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
@@ -21,7 +20,7 @@ import java.awt.Component;
  */
 public class ServerRenderer extends DefaultListCellRenderer
 {
-	private final @Nullable ImageIcon[] icons;
+	private final @NotNull ImageIcon[] icons;
 	
 	public ServerRenderer(final @NotNull IconProvider javaph)
 	{

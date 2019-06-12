@@ -140,7 +140,7 @@ public class ResultThread extends Thread
 		boolean gotField = false;
 		for (int i = 0; i < records.size(); i++)
 		{
-			final @Nullable Line line = records.get(i);
+			final @NotNull Line line = records.get(i);
 
 			// Skip empty and encrypted fields.
 			if ((!gotField && !line.getTrimmedField().equals(field)) || line.getCode() != -QiAPI.LR_OK || line.getTrimmedValue().isEmpty()) {
