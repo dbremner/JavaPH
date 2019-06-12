@@ -26,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.text.DefaultEditorKit.CopyAction;
@@ -43,10 +42,14 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
  */
 public final class QueryToolBar extends JToolBar
 {
+	private final int sepHeight = 26;
+
+	private final int sepWidth = 13;
+
+	private final @NotNull Dimension separatorDimensions = new Dimension(sepWidth, sepHeight);
 
 	public QueryToolBar(final @NotNull JavaPH javaph)
 	{
-
 		setFloatable(false);
 		setFocusable(false);
 		setOrientation(JToolBar.HORIZONTAL);
@@ -72,9 +75,7 @@ public final class QueryToolBar extends JToolBar
 
 	private void addFixedSeparator()
 	{
-		final int sepHeight = 26;
-		final int sepWidth = 13;
-		addSeparator(new Dimension(sepWidth, sepHeight));
+		addSeparator(new Dimension(separatorDimensions));
 	}
 
 	private JButton addToolBarButton(final Action action)
