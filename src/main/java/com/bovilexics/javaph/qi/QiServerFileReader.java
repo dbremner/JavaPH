@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.logging.ErrLogger;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
@@ -33,7 +34,7 @@ public final class QiServerFileReader
 
             if (items.length != 3)
             {
-                System.err.println("Error: Invalid server entry in " + fileName + " on line " + i + " --> " + line);
+                ErrLogger.instance.println("Error: Invalid server entry in " + fileName + " on line " + i + " --> " + line);
             }
             else
                 {

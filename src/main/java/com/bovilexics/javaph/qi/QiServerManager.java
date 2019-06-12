@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.logging.ErrLogger;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedWriter;
@@ -89,7 +90,7 @@ public final class QiServerManager {
 
                 if (items.length != 3)
                 {
-                    System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
+                    ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                 }
                 else
                 {
@@ -102,12 +103,12 @@ public final class QiServerManager {
         }
         catch (final @NotNull FileNotFoundException e)
         {
-            System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
+            ErrLogger.instance.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
         }
         catch (final @NotNull IOException e)
         {
-            System.err.println("Error: IOException received when trying to read file " + filename);
+            ErrLogger.instance.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
     }
@@ -144,7 +145,7 @@ public final class QiServerManager {
 
                 if (items.length != 3)
                 {
-                    System.err.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
+                    ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                 }
                 else
                 {
@@ -155,12 +156,12 @@ public final class QiServerManager {
         }
         catch (final @NotNull FileNotFoundException e)
         {
-            System.err.println("Error: FileNotFoundException received when trying to read file " + filename);
+            ErrLogger.instance.println("Error: FileNotFoundException received when trying to read file " + filename);
             e.printStackTrace();
         }
         catch (final @NotNull IOException e)
         {
-            System.err.println("Error: IOException received when trying to read file " + filename);
+            ErrLogger.instance.println("Error: IOException received when trying to read file " + filename);
             e.printStackTrace();
         }
         return serverResults;
@@ -199,7 +200,7 @@ public final class QiServerManager {
         }
         catch (final @NotNull IOException e)
         {
-            System.err.println("Error: IOException received when trying to write file " + SERVER_FILE);
+            ErrLogger.instance.println("Error: IOException received when trying to write file " + SERVER_FILE);
             e.printStackTrace();
         }
     }

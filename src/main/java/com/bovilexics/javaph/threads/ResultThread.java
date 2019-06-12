@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
 import com.bovilexics.javaph.qi.QiAPI;
@@ -533,7 +534,7 @@ public class ResultThread extends Thread
 			final @NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
 			
 			if (parent == null) {
-				System.err.println(message);
+				ErrLogger.instance.println(message);
 			} else {
 				parent.log(message);
 			}
@@ -607,7 +608,7 @@ public class ResultThread extends Thread
 
 					if (parent == null)
 					{
-						System.err.println(message);
+						ErrLogger.instance.println(message);
 					}
 					else
 					{
@@ -734,7 +735,7 @@ public class ResultThread extends Thread
 		}
 		else
 		{
-			System.err.println(status);
+			ErrLogger.instance.println(status);
 		}
 	}
 

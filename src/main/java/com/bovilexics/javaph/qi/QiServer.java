@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
@@ -121,18 +122,18 @@ public class QiServer implements Server
 					catch (final @NotNull QiProtocolException e)
 					{
 						fieldState = QiFieldState.FIELD_LOAD_ERROR;
-						System.err.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
-						System.err.println(" --> Message:     " + e.getMessage());
-						System.err.println(" --> Properties:  " + propsLine.toString());
-						System.err.println(" --> Description: " + descLine.toString());
+						ErrLogger.instance.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
+						ErrLogger.instance.println(" --> Message:     " + e.getMessage());
+						ErrLogger.instance.println(" --> Properties:  " + propsLine.toString());
+						ErrLogger.instance.println(" --> Description: " + descLine.toString());
 					}
 				}
 				else
 				{
 					fieldState = QiFieldState.FIELD_LOAD_ERROR;
-					System.err.println("Error: property and description lines do not refer to the same field for " + getExpandedName());
-					System.err.println(" --> " + propsLine.toString());
-					System.err.println(" --> " + descLine.toString());
+					ErrLogger.instance.println("Error: property and description lines do not refer to the same field for " + getExpandedName());
+					ErrLogger.instance.println(" --> " + propsLine.toString());
+					ErrLogger.instance.println(" --> " + descLine.toString());
 				}
 			}
 		}
