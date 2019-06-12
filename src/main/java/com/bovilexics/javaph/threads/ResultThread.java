@@ -529,6 +529,7 @@ public class ResultThread extends Thread
 		if (lastCode >= QiAPI.LR_TEMP)
 		{
 			state = ResultThreadState.RS_ERROR;
+			assert qiLine != null;
 			prologue = qiLine.getResponse();
 			
 			final @NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;

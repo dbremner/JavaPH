@@ -102,6 +102,7 @@ public class QueryThread extends Thread
 		SwingUtilities.invokeLater(() ->
 		{
 			parent.closeQueryProgressMonitor();
+			assert resultThread != null;
 			parent.getResultText().setText(resultThread.getRawResult());
 
 			final @NotNull ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
