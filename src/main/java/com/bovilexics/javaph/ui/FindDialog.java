@@ -18,9 +18,11 @@ package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -70,7 +72,7 @@ public final class FindDialog extends JavaPHDialog
 		findButton.addActionListener(ae -> {
 			if (findComboBox.isEnabled())
 			{
-				final Object selectedItem = findComboBox.getEditor().getItem();
+				final @Nullable Object selectedItem = findComboBox.getEditor().getItem();
 				final @NotNull DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
 				// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
 
@@ -84,7 +86,9 @@ public final class FindDialog extends JavaPHDialog
 				}
 			}
 
-			parent.findText(findComboBox.getSelectedItem().toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
+			@Nullable final Object selected = findComboBox.getSelectedItem();
+			assert selected != null;
+			parent.findText(selected.toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
 		});
 
         final @NotNull JButton closeButton = new JButton("Close");
