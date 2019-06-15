@@ -59,13 +59,7 @@ public class QiServer implements Server
 
 	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull Integer aPortInteger)
 	{
-		if (!isValidPort(aPortInteger)) {
-			throw new IllegalArgumentException(PORT_ERROR);
-		}
-
-		name = aName;
-		server = aServer;
-		port = aPortInteger;
+		this(aName, aServer, aPortInteger.intValue());
 	}
 
 	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
