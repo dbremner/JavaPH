@@ -64,26 +64,28 @@ public class QiServer implements Server
 
 	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
 	{
-		final @Nullable Integer aPortInteger;
-		
+		name = aName;
+		server = aServer;
+		port = convertToPort(aPort);
+	}
+
+	private int convertToPort(final @NotNull String aPort)
+	{
 		try
 		{
-			aPortInteger = Integer.valueOf(aPort);
-			
-			if (!isValidPort(aPortInteger)) {
+			final @NotNull Integer aPortInteger = Integer.valueOf(aPort);
+
+			if (!isValidPort(aPortInteger))
+			{
 				throw new IllegalArgumentException(PORT_ERROR);
 			}
+			return aPortInteger;
 		}
 		catch (final @NotNull NumberFormatException e)
 		{
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
-		
-		name = aName;
-		server = aServer;
-		port = aPortInteger;
 	}
-
 
 	private void convertRecordsToFields(final @NotNull List<List<Line>> records)
 	{
