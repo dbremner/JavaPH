@@ -1589,12 +1589,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void restoreLookAndFeel()
 	{
-		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), defaultPane);
+		restoreDefaultLookAndFeel(defaultPane);
 	}
 
 	private void restoreLookAndFeel(final @NotNull Component component)
 	{
-		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), component);
+		restoreDefaultLookAndFeel(component);
 	}
 
 	public void restoreLookAndFeel(final @NotNull String lookAndFeel)
@@ -1602,19 +1602,29 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		restoreLookAndFeel(lookAndFeel, defaultPane);
 	}
 
-	private void restoreLookAndFeel(@Nullable String lookAndFeel, final @NotNull Component component)
+	private void restoreDefaultLookAndFeel(final @NotNull Component component)
 	{
-
-		final @NotNull Component[] otherComponents = {
-			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
-		};
-		final @NotNull ImmutableList<Component> list = ImmutableList.copyOf(otherComponents);
-		
-		if (lookAndFeel == null)
+		final @Nullable String value = getProperty(PROP_DEFAULT_LNF);
+		final @NotNull String lookAndFeel;
+		if (value == null)
 		{
 			lookAndFeel = UIManager.getSystemLookAndFeelClassName();
 			logger.println("No look and feel specified, using system default (" + lookAndFeel + ")");
 		}
+		else
+		{
+			lookAndFeel = value;
+		}
+
+		restoreLookAndFeel(lookAndFeel, component);
+	}
+
+	private void restoreLookAndFeel(final @NotNull String lookAndFeel, final @NotNull Component component)
+	{
+		final @NotNull Component[] otherComponents = {
+			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
+		};
+		final @NotNull ImmutableList<Component> list = ImmutableList.copyOf(otherComponents);
 
 		try
 		{
