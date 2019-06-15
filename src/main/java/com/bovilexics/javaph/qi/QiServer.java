@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.logging.ErrLogger;
+import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
@@ -61,7 +62,7 @@ public class QiServer implements Server
 		if (!isValidPort(aPortInteger)) {
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
-		
+
 		name = aName;
 		server = aServer;
 		port = aPortInteger;
@@ -122,18 +123,20 @@ public class QiServer implements Server
 					catch (final @NotNull QiProtocolException e)
 					{
 						fieldState = QiFieldState.FIELD_LOAD_ERROR;
-						ErrLogger.instance.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
-						ErrLogger.instance.println(" --> Message:     " + e.getMessage());
-						ErrLogger.instance.println(" --> Properties:  " + propsLine.toString());
-						ErrLogger.instance.println(" --> Description: " + descLine.toString());
+						final @NotNull Logger instance = ErrLogger.instance;
+						instance.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
+						instance.println(" --> Message:     " + e.getMessage());
+						instance.println(" --> Properties:  " + propsLine.toString());
+						instance.println(" --> Description: " + descLine.toString());
 					}
 				}
 				else
 				{
 					fieldState = QiFieldState.FIELD_LOAD_ERROR;
-					ErrLogger.instance.println("Error: property and description lines do not refer to the same field for " + getExpandedName());
-					ErrLogger.instance.println(" --> " + propsLine.toString());
-					ErrLogger.instance.println(" --> " + descLine.toString());
+					final @NotNull Logger instance = ErrLogger.instance;
+					instance.println("Error: property and description lines do not refer to the same field for " + getExpandedName());
+					instance.println(" --> " + propsLine.toString());
+					instance.println(" --> " + descLine.toString());
 				}
 			}
 		}
