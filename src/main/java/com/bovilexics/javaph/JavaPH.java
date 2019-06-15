@@ -1339,8 +1339,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				return defaultValue;
 			}
 
-			final int intValue = Integer.parseInt(stringValue);
-			return intValue;
+			return Integer.parseInt(stringValue);
 		}
 		catch (final @NotNull NumberFormatException e)
 		{
@@ -1350,8 +1349,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public int getIntPropertyDefault(final @NotNull String key, final int defaultValue)
 	{
-		int intValue;
-
 		try
 		{
 			final @Nullable String stringValue = getPropertyDefault(key);
@@ -1359,15 +1356,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			if (stringValue == null) {
 				return defaultValue;
 			}
-			
-			intValue = Integer.parseInt(stringValue);
+
+			return Integer.parseInt(stringValue);
 		}
 		catch (final @NotNull NumberFormatException e)
 		{
-			intValue = defaultValue;
+			return defaultValue;
 		}
-		
-		return intValue;
 	}
 
 	public @Nullable String getLastCustomSeparator()
