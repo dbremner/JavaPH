@@ -46,9 +46,9 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-	public void addActionListener(final ActionListener listener)
+	public void addActionListener(final ActionListener l)
 	{
-		listenerList.add(java.awt.event.ActionListener.class, listener);
+		listenerList.add(java.awt.event.ActionListener.class, l);
 	}
 
 	private void fireActionPerformed(final ActionEvent e)
@@ -75,9 +75,9 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-	public void removeActionListener(final ActionListener listener)
+	public void removeActionListener(final ActionListener l)
 	{
-		listenerList.remove(java.awt.event.ActionListener.class, listener);
+		listenerList.remove(java.awt.event.ActionListener.class, l);
 	}
 
 	@Override
@@ -87,10 +87,10 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-	public void setItem(final @Nullable Object obj)
+	public void setItem(final @Nullable Object anObject)
 	{
-		if (obj != null) {
-            textField.setText(obj.toString());
+		if (anObject != null) {
+            textField.setText(anObject.toString());
         }
 	}
 }

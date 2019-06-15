@@ -43,13 +43,13 @@ public final class HelpAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(final ActionEvent ae)
+	public void actionPerformed(final ActionEvent e)
 	{
 		try
 		{
 			Browser.displayURL(parent.getURL("help/index.html").toString(), "JavaPH Help");
 		}
-		catch (final @NotNull IOException e)
+		catch (final @NotNull IOException ex)
 		{
 			final @NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
 			parent.log(message);

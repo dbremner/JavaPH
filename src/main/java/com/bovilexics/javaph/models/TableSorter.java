@@ -68,15 +68,15 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public Object getValueAt(final int row, final int col)
+    public Object getValueAt(final int rowIndex, final int columnIndex)
 	{
-		return realModel.getValueAt(indexes[row], col);
+		return realModel.getValueAt(indexes[rowIndex], columnIndex);
 	}
 	
 	@Override
-    public void setValueAt(final Object aValue, final int row, final int col)
+    public void setValueAt(final Object aValue, final int rowIndex, final int columnIndex)
 	{
-		realModel.setValueAt(aValue, indexes[row], col);
+		realModel.setValueAt(aValue, indexes[rowIndex], columnIndex);
 	}
 
 	public void sort(final int column)
@@ -110,9 +110,9 @@ public class TableSorter implements TableModel, TableModelListener
 	// TableModel pass-through methods follow
 	
 	@Override
-    public void addTableModelListener(final TableModelListener listener)
+    public void addTableModelListener(final TableModelListener l)
 	{
-		realModel.addTableModelListener(listener);
+		realModel.addTableModelListener(l);
 	}
 
 	@Override
@@ -146,8 +146,8 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public void removeTableModelListener(final TableModelListener listener)
+    public void removeTableModelListener(final TableModelListener l)
 	{
-		realModel.removeTableModelListener(listener);
+		realModel.removeTableModelListener(l);
 	}
 }

@@ -43,7 +43,7 @@ public final class NewAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(final ActionEvent ae)
+	public void actionPerformed(final ActionEvent e)
 	{
 		// Clear the results
 		parent.getResultText().setText("");

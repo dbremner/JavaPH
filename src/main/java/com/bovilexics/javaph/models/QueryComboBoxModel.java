@@ -50,23 +50,23 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	/**
 	 * Adds elements in sorted string order
 	 *
-	 * @param anObject
+	 * @param item
 	 */
 	@Override
-    public void addElement(final @Nullable Object anObject)
+    public void addElement(final @Nullable Object item)
 	{
-        if (anObject == null) {
+        if (item == null) {
             return;
         }
 
         if (getSize() == 0)
 		{
-			insertElementAt(anObject, 0);
+			insertElementAt(item, 0);
 			return;
 		}
 
 		int whereToAdd = -1;
-		final String newElement = anObject.toString();
+		final String newElement = item.toString();
 
 		for (int i = 0; i < objects.size(); i++)
 		{
@@ -86,7 +86,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 		if (whereToAdd == -1) {
 			whereToAdd = getSize();
 		}
-		insertElementAt(anObject, whereToAdd);
+		insertElementAt(item, whereToAdd);
 	}
 
 	public void filterElements(final @Nullable String filter)
@@ -161,13 +161,13 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void insertElementAt(final Object anObject, final int index)
+    public void insertElementAt(final Object item, final int index)
 	{
-		objects.add(index, anObject);
+		objects.add(index, item);
 		fireIntervalAdded(this, index, index);
 		
-		if (!allObjects.contains(anObject)) {
-            allObjects.add(index, anObject);
+		if (!allObjects.contains(item)) {
+            allObjects.add(index, item);
         }
 	}
 
@@ -188,9 +188,9 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void removeElement(final Object anObject)
+    public void removeElement(final Object obj)
 	{
-		final int index = objects.indexOf(anObject);
+		final int index = objects.indexOf(obj);
 
 		if (index != -1) {
             removeElementAt(index);
@@ -227,16 +227,16 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	/**
 	 * Set the value of the selected item. The selected item may be null.
 	 * <p>
-	 * @param anObject The combo box value or null for no selection.
+	 * @param anItem The combo box value or null for no selection.
 	 */
 	@Override
-    public void setSelectedItem(final @Nullable Object anObject)
+    public void setSelectedItem(final @Nullable Object anItem)
 	{
-		if ((selectedObject != null && !selectedObject.equals(anObject))
+		if ((selectedObject != null && !selectedObject.equals(anItem))
 			|| selectedObject == null
-			&& anObject != null)
+			&& anItem != null)
 		{
-			selectedObject = anObject;
+			selectedObject = anItem;
 			fireContentsChanged(this, -1, -1);
 		}
 	}

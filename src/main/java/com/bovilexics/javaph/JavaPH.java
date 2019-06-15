@@ -301,18 +301,18 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	class ControlTabDispatcher	implements KeyEventDispatcher
 	{
 		@Override
-		public boolean dispatchKeyEvent(final @NotNull KeyEvent ke)
+		public boolean dispatchKeyEvent(final @NotNull KeyEvent e)
 		{
-			if (ke.isControlDown() && ke.getKeyCode() == KeyEvent.VK_TAB)
+			if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_TAB)
 			{
 				// If we don't have this condition then the tab will switch twice,
 				// once for the key pressed event and again for the key released event.
-				if (ke.getID() == Event.KEY_RELEASE)
+				if (e.getID() == Event.KEY_RELEASE)
 				{
 					int selected = getResultPanel().getSelectedIndex();
 					final int last = getResultPanel().getTabCount() - 1;
 			
-					if (ke.isShiftDown())
+					if (e.isShiftDown())
 					{
 						if (selected <= 0) {
 							selected = last;
@@ -436,13 +436,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyAdapter()
 			{
 				@Override
-				public void keyReleased(final @NotNull KeyEvent ke)
+				public void keyReleased(final @NotNull KeyEvent e)
 				{
-					if (ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_ESCAPE)
+					if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE)
 					{
 						queryComboBox.hidePopup();
 					}
-					else if (!ke.isActionKey())
+					else if (!e.isActionKey())
 					{
 						final String filter = queryComboBoxEditor.getItem().toString();
 						
@@ -453,7 +453,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 							queryComboBox.showPopup();
 						}
 					}
-					else if (queryComboBox.getModel().getSize() == 1 && (ke.getKeyCode() == KeyEvent.VK_UP || ke.getKeyCode() == KeyEvent.VK_DOWN))
+					else if (queryComboBox.getModel().getSize() == 1 && (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN))
 					{
 						// force reselecting of first item if only one item
 						// in the list and the up or down arrow is pressed
@@ -798,10 +798,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
 				@Override
-				public void mouseClicked(final @NotNull MouseEvent me)
+				public void mouseClicked(final @NotNull MouseEvent e)
 				{
 					final TableColumnModel tcm = resultTable.getColumnModel();
-					final int vc = tcm.getColumnIndexAtX(me.getX());
+					final int vc = tcm.getColumnIndexAtX(e.getX());
 					final int mc = resultTable.convertColumnIndexToModel(vc);
 						
 					((TableSorter)resultTable.getModel()).sort(mc);
@@ -1817,11 +1817,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	@Override
-	public void showStatus(final String status)
+	public void showStatus(final String msg)
 	{
 		if (statusLabel != null)
 		{
-			statusLabel.setText(" " + status);
+			statusLabel.setText(" " + msg);
 		}
 	}
 

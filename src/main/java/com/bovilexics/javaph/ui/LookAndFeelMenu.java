@@ -70,9 +70,9 @@ final class LookAndFeelMenu extends JMenu
 		}
 
 		@Override
-		public void actionPerformed(final @NotNull ActionEvent ae)
+		public void actionPerformed(final @NotNull ActionEvent e)
 		{
-			final @NotNull JMenuItem src = (JMenuItem) ae.getSource();
+			final @NotNull JMenuItem src = (JMenuItem) e.getSource();
 		
 			if (src == restoreDefaultItem)
 			{
@@ -93,9 +93,9 @@ final class LookAndFeelMenu extends JMenu
 		}
 
 		@Override
-		public void actionPerformed(final @NotNull ActionEvent ae)
+		public void actionPerformed(final @NotNull ActionEvent e)
 		{
-			final @NotNull JRadioButtonMenuItem src = (JRadioButtonMenuItem) ae.getSource();
+			final @NotNull JRadioButtonMenuItem src = (JRadioButtonMenuItem) e.getSource();
 		
 			if (macSupported && src == macItem)
 			{

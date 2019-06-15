@@ -94,9 +94,9 @@ final class CsvFileChooserPanel extends JPanel
 		customTextField.addKeyListener(new KeyAdapter()
 		{
 			@Override
-			public void keyReleased(final @NotNull KeyEvent ke)
+			public void keyReleased(final @NotNull KeyEvent e)
 			{
-				if (!ke.isActionKey() && ke.getKeyCode() != KeyEvent.VK_BACK_SPACE)
+				if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_BACK_SPACE)
 				{
 					customRadioButton.setSelected(true);
 					parent.setFieldSeparator(customTextField.getText());
