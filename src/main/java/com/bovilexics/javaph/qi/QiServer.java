@@ -64,9 +64,7 @@ public class QiServer implements Server
 
 	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
 	{
-		name = aName;
-		server = aServer;
-		port = QiServer.convertToPort(aPort);
+		this(aName, aServer, QiServer.convertToPort(aPort));
 	}
 
 	private static int convertToPort(final @NotNull String aPort)
