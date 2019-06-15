@@ -6,13 +6,18 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.qi.QiFieldState;
 import com.bovilexics.javaph.qi.Server;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 import javax.swing.JList;
 import java.awt.Component;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * @author Robert Fernandes
@@ -20,17 +25,16 @@ import java.awt.Component;
  */
 public class ServerRenderer extends DefaultListCellRenderer
 {
-	private final @NotNull ImageIcon[] icons;
+	private final @NotNull ImmutableMap<QiFieldState, Icon> map;
 	
 	public ServerRenderer(final @NotNull IconProvider javaph)
 	{
-		icons = new ImageIcon[]
-	   {
-		   javaph.getImageIcon("img/field-error.gif"),
-		   javaph.getImageIcon("img/field-false.gif"),
-		   javaph.getImageIcon("img/field-true.gif"),
-		   javaph.getImageIcon("img/server-error.gif")
-	   };
+		final @NotNull Map<QiFieldState, Icon> enumMap = new EnumMap<>(QiFieldState.class);
+		enumMap.put(QiFieldState.FIELD_LOAD_ERROR, javaph.getImageIcon("img/field-error.gif"));
+		enumMap.put(QiFieldState.FIELD_LOAD_FALSE, javaph.getImageIcon("img/field-false.gif"));
+		enumMap.put(QiFieldState.FIELD_LOAD_TRUE, javaph.getImageIcon("img/field-true.gif"));
+		enumMap.put(QiFieldState.SERVER_ERROR, javaph.getImageIcon("img/server-error.gif"));
+		map = Maps.immutableEnumMap(enumMap);
 	}
 	
 	@Override
@@ -38,8 +42,10 @@ public class ServerRenderer extends DefaultListCellRenderer
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-		setIcon(icons[((Server)value).getFieldState().getValue()]);
-		setText(value.toString());
+		final @NotNull Server server = (Server)value;
+		final @NotNull QiFieldState state = server.getFieldState();
+		setIcon(map.get(state));
+		setText(server.toString());
 		
 		return this;
 	}
