@@ -104,12 +104,12 @@ public final class QiServerManager {
         catch (final @NotNull FileNotFoundException e)
         {
             ErrLogger.instance.println("Error: FileNotFoundException received when trying to read file " + filename);
-            e.printStackTrace();
+            ErrLogger.instance.printStackTrace(e);
         }
         catch (final @NotNull IOException e)
         {
             ErrLogger.instance.println("Error: IOException received when trying to read file " + filename);
-            e.printStackTrace();
+            ErrLogger.instance.printStackTrace(e);
         }
     }
 
@@ -157,12 +157,12 @@ public final class QiServerManager {
         catch (final @NotNull FileNotFoundException e)
         {
             ErrLogger.instance.println("Error: FileNotFoundException received when trying to read file " + filename);
-            e.printStackTrace();
+            ErrLogger.instance.printStackTrace(e);
         }
         catch (final @NotNull IOException e)
         {
             ErrLogger.instance.println("Error: IOException received when trying to read file " + filename);
-            e.printStackTrace();
+            ErrLogger.instance.printStackTrace(e);
         }
         return serverResults;
     }
@@ -201,7 +201,7 @@ public final class QiServerManager {
         catch (final @NotNull IOException e)
         {
             ErrLogger.instance.println("Error: IOException received when trying to write file " + SERVER_FILE);
-            e.printStackTrace();
+            ErrLogger.instance.printStackTrace(e);
         }
     }
 

@@ -1527,13 +1527,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 		catch (final @NotNull FileNotFoundException e)
 		{
-			e.printStackTrace();
+			errLogger.printStackTrace(e);
 			errLogger.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
 		catch (final @NotNull IOException e)
 		{
-			e.printStackTrace();
+			errLogger.printStackTrace(e);
 			errLogger.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
 			System.exit(1);
 		}
@@ -1645,7 +1645,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// If we cannot set the look and feel to
 			// what was specified in the properties file
 			// then just continue and set system default
-			e.printStackTrace();
+			logger.printStackTrace(e);
 			logger.println("Exception occurred when trying to set custom look and feel");
 		}
 		
@@ -1670,7 +1670,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// what is set as the system look and feel
 			// then just continue and allow the default
 			// cross platform look at feel to be used (metal)
-			e.printStackTrace();
+			logger.printStackTrace(e);
 			logger.println("Exception occurred when trying to set default look and feel");
 		}
 	}
@@ -1848,12 +1848,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 		catch (final @NotNull FileNotFoundException e)
 		{
-			e.printStackTrace();
+			errLogger.printStackTrace(e);
 			errLogger.println("FileNotFound occurred when trying to store properties to " + PROP_FILE);
 		}
 		catch (final @NotNull IOException e)
 		{
-			e.printStackTrace();
+			errLogger.printStackTrace(e);
 			errLogger.println("IOException occurred when trying to store properties to " + PROP_FILE);
 		}
 	}
