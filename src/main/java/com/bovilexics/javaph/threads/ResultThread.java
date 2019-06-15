@@ -138,19 +138,19 @@ public class ResultThread extends Thread
 		}
 
 		boolean gotField = false;
-		for (int i = 0; i < records.size(); i++)
+		for (final @NotNull Line line : records)
 		{
-			final @NotNull Line line = records.get(i);
-
 			// Skip empty and encrypted fields.
-			if ((!gotField && !line.getTrimmedField().equals(field)) || line.getCode() != -QiAPI.LR_OK || line.getTrimmedValue().isEmpty()) {
+			if ((!gotField && !line.getTrimmedField().equals(field)) || line.getCode() != -QiAPI.LR_OK || line.getTrimmedValue().isEmpty())
+			{
 				continue;
 			}
-				
+
 			gotField = true;
 
 			// We're done.
-			if (!line.getTrimmedField().equals(field) && !line.getTrimmedField().isEmpty()) {
+			if (!line.getTrimmedField().equals(field) && !line.getTrimmedField().isEmpty())
+			{
 				break;
 			}
 

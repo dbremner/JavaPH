@@ -1634,8 +1634,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// Must also include the dialogs and toolbars
 			// due to the weirdness of potentially running
 			// as either an application or an applet
-			for (int i = 0; i < otherComponents.length; i++) {
-				SwingUtilities.updateComponentTreeUI(otherComponents[i]);
+			for (final Component otherComponent : otherComponents)
+			{
+				SwingUtilities.updateComponentTreeUI(otherComponent);
 			}
 			
 			return;
@@ -1658,8 +1659,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// Must also include the dialogs and toolbars
 			// due to the weirdness of potentially running
 			// as either an application or an applet
-			for (int i = 0; i < otherComponents.length; i++) {
-				SwingUtilities.updateComponentTreeUI(otherComponents[i]);
+			for (final Component otherComponent : otherComponents)
+			{
+				SwingUtilities.updateComponentTreeUI(otherComponent);
 			}
 
 			return;
