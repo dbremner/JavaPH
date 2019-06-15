@@ -793,7 +793,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				populateColumnList();
 			});
 				
-			final @NotNull JTableHeader resultTableHeader = (JTableHeader)resultTable.getTableHeader();
+			final @NotNull JTableHeader resultTableHeader = resultTable.getTableHeader();
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
 				@Override
