@@ -1336,7 +1336,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @Nullable String stringValue = getProperty(key);
 
 			if (stringValue == null) {
-				throw new NumberFormatException();
+				return defaultValue;
 			}
 
 			final int intValue = Integer.parseInt(stringValue);
@@ -1357,7 +1357,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @Nullable String stringValue = getPropertyDefault(key);
 
 			if (stringValue == null) {
-				throw new NumberFormatException();
+				return defaultValue;
 			}
 			
 			intValue = Integer.parseInt(stringValue);
