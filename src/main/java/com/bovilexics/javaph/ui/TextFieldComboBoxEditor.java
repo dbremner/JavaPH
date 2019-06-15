@@ -19,26 +19,47 @@ package com.bovilexics.javaph.ui;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.Component;
-import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
+import javax.swing.ComboBoxEditor;
 import javax.swing.JTextField;
+import javax.swing.event.EventListenerList;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
+public final class TextFieldComboBoxEditor implements ComboBoxEditor
 {
 	private final @NotNull JTextField textField;
+
+	private final @NotNull EventListenerList listenerList = new EventListenerList();
 
 	public TextFieldComboBoxEditor(final ActionListener listener)
 	{
 		textField = new JTextField();
 		textField.setBorder(BorderFactory.createEmptyBorder());
 		textField.addActionListener(listener);
+	}
+
+	@Override
+	public void addActionListener(final ActionListener listener)
+	{
+		listenerList.add(java.awt.event.ActionListener.class, listener);
+	}
+
+	private void fireActionPerformed(final ActionEvent e)
+	{
+		final Object[] listeners = listenerList.getListenerList();
+
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
+			if (listeners[i] == ActionListener.class) {
+				((ActionListener) listeners[i + 1]).actionPerformed(e);
+			}
+		}
 	}
 
 	@Override
@@ -51,6 +72,12 @@ public class TextFieldComboBoxEditor extends AbstractComboBoxEditor
 	public Object getItem()
 	{
 		return textField.getText();
+	}
+
+	@Override
+	public void removeActionListener(final ActionListener listener)
+	{
+		listenerList.remove(java.awt.event.ActionListener.class, listener);
 	}
 
 	@Override
