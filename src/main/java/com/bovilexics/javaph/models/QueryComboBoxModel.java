@@ -217,7 +217,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	{
 		removeAllElements();
 
-		for (Object allObject : allObjects)
+		for (final Object allObject : allObjects)
 		{
 			addElement(allObject);
 		}

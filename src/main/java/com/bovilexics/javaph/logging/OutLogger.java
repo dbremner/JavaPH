@@ -7,7 +7,7 @@ public final class OutLogger implements Logger
     public static final Logger instance = new OutLogger();
 
     @Override
-    public void printStackTrace(Exception exception)
+    public void printStackTrace(final Exception exception)
     {
         exception.printStackTrace(System.out);
     }
