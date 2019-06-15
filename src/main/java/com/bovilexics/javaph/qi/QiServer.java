@@ -66,10 +66,10 @@ public class QiServer implements Server
 	{
 		name = aName;
 		server = aServer;
-		port = convertToPort(aPort);
+		port = QiServer.convertToPort(aPort);
 	}
 
-	private int convertToPort(final @NotNull String aPort)
+	private static int convertToPort(final @NotNull String aPort)
 	{
 		try
 		{
@@ -194,13 +194,13 @@ public class QiServer implements Server
 		return server;
 	}
 
-	private boolean isValidPort(final @NotNull Integer port)
+	private static boolean isValidPort(final @NotNull Integer port)
 	{
 		final int unboxed = port;
 		return isValidPort(unboxed);
 	}
 
-	private boolean isValidPort(final int port)
+	private static boolean isValidPort(final int port)
 	{
 		return (port >= 0 && port <= 65535);
 	}
