@@ -89,9 +89,11 @@ public class QiField implements Field
 		return name;
 	}
 
+	@SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
 	@Override
 	public @NotNull List<String> getProperties()
 	{
+		// This is an immutable list.
 		return properties;
 	}
 
