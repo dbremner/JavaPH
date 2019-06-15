@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -23,12 +25,7 @@ package com.bovilexics.javaph.qi;
  */
 public class QiProtocolException extends Exception
 {
-	public QiProtocolException()
-	{
-		super();
-	}
-
-	public QiProtocolException(final String description)
+	public QiProtocolException(final @NotNull String description)
 	{
 		super(description);
 	}
