@@ -1558,10 +1558,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			properties.load(inStream);
 		}
-		catch (final @NotNull FileNotFoundException e)
+		catch (final @NotNull FileNotFoundException ignored)
 		{
 		}
-		catch (final @NotNull IOException e)
+		catch (final @NotNull IOException ignored)
 		{
 		}
 	}
@@ -1809,7 +1809,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			Thread.sleep(SPLASH_DISPLAY);
 		}
-		catch (final @NotNull InterruptedException e)
+		catch (final @NotNull InterruptedException ignored)
 		{
 		}
 			
