@@ -1597,7 +1597,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		restoreLookAndFeel(getProperty(PROP_DEFAULT_LNF), component);
 	}
 
-	public void restoreLookAndFeel(final String lookAndFeel)
+	public void restoreLookAndFeel(final @NotNull String lookAndFeel)
 	{
 		restoreLookAndFeel(lookAndFeel, defaultPane);
 	}
