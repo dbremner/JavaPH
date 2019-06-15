@@ -1250,7 +1250,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	private int getLocation(@NotNull final JTextArea textArea, @NotNull final String text, final boolean caseSensitive, final int startIndex)
+	private int getLocation(final @NotNull JTextArea textArea, final @NotNull String text, final boolean caseSensitive, final int startIndex)
 	{
 		final int location;
 		if (caseSensitive)
