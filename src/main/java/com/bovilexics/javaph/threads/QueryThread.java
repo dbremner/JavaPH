@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
@@ -66,7 +67,7 @@ public class QueryThread extends Thread
 			}
 			catch(final @NotNull InterruptedException ie)
 			{
-				ie.printStackTrace();
+				ErrLogger.instance.printStackTrace(ie);
 			}
 
 			++seconds;

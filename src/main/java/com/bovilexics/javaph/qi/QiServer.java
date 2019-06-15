@@ -215,7 +215,7 @@ public class QiServer implements Server
 			}
 			catch(final @NotNull InterruptedException ie)
 			{
-				ie.printStackTrace();
+				ErrLogger.instance.printStackTrace(ie);
 			}
 			
 			seconds++;
