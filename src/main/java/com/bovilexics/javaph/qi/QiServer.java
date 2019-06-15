@@ -49,7 +49,7 @@ public class QiServer implements Server
 
 	public QiServer(final @NotNull String name, final @NotNull String server, final int port)
 	{
-		if (!isValidPort(port)) {
+		if (!QiServer.isValidPort(port)) {
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
 

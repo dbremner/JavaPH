@@ -1630,7 +1630,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			UIManager.setLookAndFeel(lookAndFeel);
 			SwingUtilities.updateComponentTreeUI(component);
-			updateTreeUIs(list);
+			JavaPH.updateTreeUIs(list);
 			return;
 		}
 		catch(final @NotNull Exception e)
@@ -1647,7 +1647,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			SwingUtilities.updateComponentTreeUI(component);
-			updateTreeUIs(list);
+			JavaPH.updateTreeUIs(list);
 		}
 		catch(final @NotNull Exception e)
 		{
