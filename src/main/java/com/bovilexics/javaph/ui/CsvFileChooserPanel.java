@@ -18,7 +18,6 @@ package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -53,7 +52,7 @@ final class CsvFileChooserPanel extends JPanel
 	private final @NotNull JRadioButton tabRadioButton;
 	private final @NotNull JRadioButton customRadioButton;
 	
-	private final @Nullable JTextField customTextField;
+	private final @NotNull JTextField customTextField;
 	
 	public CsvFileChooserPanel(final @NotNull JavaPH javaph)
 	{
