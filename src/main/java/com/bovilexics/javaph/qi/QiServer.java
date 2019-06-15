@@ -46,30 +46,35 @@ public class QiServer implements Server
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
+	private QiServer(final @NotNull String name, final @NotNull String server)
+	{
+		this.name = name;
+		this.server = server;
+	}
+
 	public QiServer(final @NotNull String name, final @NotNull String server, final int port)
 	{
+		this(name, server);
 		if (!isValidPort(port)) {
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
 
-		this.name = name;
-		this.server = server;
 		this.port = port;
 	}
 
 	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull Integer aPortInteger)
 	{
+		this(aName, aServer);
 		if (!isValidPort(aPortInteger)) {
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
 
-		name = aName;
-		server = aServer;
 		port = aPortInteger;
 	}
 
 	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
 	{
+		this(aName, aServer);
 		final @Nullable Integer aPortInteger;
 		
 		try
@@ -85,8 +90,6 @@ public class QiServer implements Server
 			throw new IllegalArgumentException(PORT_ERROR);
 		}
 		
-		name = aName;
-		server = aServer;
 		port = aPortInteger;
 	}
 
