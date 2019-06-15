@@ -20,6 +20,7 @@ import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -192,12 +193,14 @@ public class QiServer implements Server
 		return server;
 	}
 
+	@Contract(pure = true)
 	private static boolean isValidPort(final @NotNull Integer port)
 	{
 		final int unboxed = port;
 		return isValidPort(unboxed);
 	}
 
+	@Contract(pure = true)
 	private static boolean isValidPort(final int port)
 	{
 		return (port >= 0 && port <= 65535);
