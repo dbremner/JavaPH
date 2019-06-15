@@ -74,7 +74,7 @@ public class QiServer implements Server
 		{
 			final @NotNull Integer aPortInteger = Integer.valueOf(aPort);
 
-			if (!isValidPort(aPortInteger))
+			if (!isValidPort(aPortInteger.intValue()))
 			{
 				throw new IllegalArgumentException(PORT_ERROR);
 			}
@@ -191,13 +191,6 @@ public class QiServer implements Server
 	public @NotNull String getServer()
 	{
 		return server;
-	}
-
-	@Contract(pure = true)
-	private static boolean isValidPort(final @NotNull Integer port)
-	{
-		final int unboxed = port;
-		return isValidPort(unboxed);
 	}
 
 	@Contract(pure = true)
