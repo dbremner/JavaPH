@@ -1331,29 +1331,22 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private int getIntProperty(final @NotNull String key, final int defaultValue)
 	{
-		try
-		{
-			final @Nullable String stringValue = getProperty(key);
-
-			if (stringValue == null) {
-				return defaultValue;
-			}
-
-			return Integer.parseInt(stringValue);
-		}
-		catch (final @NotNull NumberFormatException e)
-		{
-			return defaultValue;
-		}
+		return getIntProperty(properties, key, defaultValue);
 	}
 
 	public int getIntPropertyDefault(final @NotNull String key, final int defaultValue)
 	{
+		return getIntProperty(defaultProperties, key, defaultValue);
+	}
+
+	private int getIntProperty(final @NotNull Properties props, final @NotNull String key, final int defaultValue)
+	{
 		try
 		{
-			final @Nullable String stringValue = getPropertyDefault(key);
+			final @Nullable String stringValue = props.getProperty(key);
 
-			if (stringValue == null) {
+			if (stringValue == null)
+			{
 				return defaultValue;
 			}
 
