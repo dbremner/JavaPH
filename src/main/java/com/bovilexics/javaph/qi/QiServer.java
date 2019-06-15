@@ -72,9 +72,9 @@ public class QiServer implements Server
 	{
 		try
 		{
-			final @NotNull Integer aPortInteger = Integer.valueOf(aPort);
+			final int aPortInteger = Integer.parseInt(aPort);
 
-			if (!isValidPort(aPortInteger.intValue()))
+			if (!isValidPort(aPortInteger))
 			{
 				throw new IllegalArgumentException(PORT_ERROR);
 			}
