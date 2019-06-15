@@ -43,6 +43,7 @@ import com.bovilexics.javaph.ui.ResultTable;
 import com.bovilexics.javaph.ui.ServerRenderer;
 import com.bovilexics.javaph.ui.SplashWindow;
 import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
+import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -1607,6 +1608,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		final @NotNull Component[] otherComponents = {
 			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
 		};
+		final @NotNull ImmutableList<Component> list = ImmutableList.copyOf(otherComponents);
 		
 		if (lookAndFeel == null)
 		{
@@ -1618,15 +1620,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			UIManager.setLookAndFeel(lookAndFeel);
 			SwingUtilities.updateComponentTreeUI(component);
-			
-			// Must also include the dialogs and toolbars
-			// due to the weirdness of potentially running
-			// as either an application or an applet
-			for (final Component otherComponent : otherComponents)
-			{
-				SwingUtilities.updateComponentTreeUI(otherComponent);
-			}
-			
+			updateTreeUIs(list);
 			return;
 		}
 		catch(final @NotNull Exception e)
@@ -1643,16 +1637,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			SwingUtilities.updateComponentTreeUI(component);
-
-			// Must also include the dialogs and toolbars
-			// due to the weirdness of potentially running
-			// as either an application or an applet
-			for (final Component otherComponent : otherComponents)
-			{
-				SwingUtilities.updateComponentTreeUI(otherComponent);
-			}
-
-			return;
+			updateTreeUIs(list);
 		}
 		catch(final @NotNull Exception e)
 		{
@@ -1662,6 +1647,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// cross platform look at feel to be used (metal)
 			logger.printStackTrace(e);
 			logger.println("Exception occurred when trying to set default look and feel");
+		}
+	}
+
+	private static void updateTreeUIs(final @NotNull Iterable<Component> components)
+	{
+		// Must also include the dialogs and toolbars
+		// due to the weirdness of potentially running
+		// as either an application or an applet
+		for (final @NotNull Component component : components)
+		{
+			SwingUtilities.updateComponentTreeUI(component);
 		}
 	}
 
