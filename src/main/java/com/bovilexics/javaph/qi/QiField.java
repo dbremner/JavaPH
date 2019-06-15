@@ -129,8 +129,7 @@ public class QiField implements Field
 			final @NotNull String lengthString = (String) tokenizer.nextElement();
 			try
 			{
-				final @NotNull Integer boxed = Integer.valueOf(lengthString);
-				length = boxed;
+				length = Integer.valueOf(lengthString);
 			}
 			catch (final @NotNull NumberFormatException e)
 			{
