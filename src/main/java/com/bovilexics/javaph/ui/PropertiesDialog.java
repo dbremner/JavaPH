@@ -41,10 +41,6 @@ import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
-import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_DEF;
-import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_MANUAL;
-import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_SELECTED;
-import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_STARTUP;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_SERVER;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_SPLASH;
@@ -313,9 +309,10 @@ public final class PropertiesDialog extends JavaPHDialog
 		rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_ROLL_TOOLBAR, "true", "true"));
 		savePositionCheckBox.setSelected(parent.propertyDefaultEquals(PROP_SAVE_POSITION, "true", "true"));
 
-		loadFieldsManual.setSelected(parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF) == LOAD_FIELDS_MANUAL);
-		loadFieldsSelected.setSelected(parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF) == LOAD_FIELDS_SELECTED);
-		loadFieldsStartup.setSelected(parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF) == LOAD_FIELDS_STARTUP);
+		final @NotNull LoadFields lf = parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LoadFields.getDefault());
+		loadFieldsManual.setSelected(lf == LoadFields.Manual);
+		loadFieldsSelected.setSelected(lf == LoadFields.Selected);
+		loadFieldsStartup.setSelected(lf == LoadFields.Startup);
 
 		runtimeSlider.setValue(Integer.parseInt(parent.getPropertyDefault(PROP_QUERY_RUNTIME)));
 	}
@@ -329,23 +326,24 @@ public final class PropertiesDialog extends JavaPHDialog
 		rollToolbarCheckBox.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
 		savePositionCheckBox.setSelected(parent.propertyEquals(PROP_SAVE_POSITION, "true", "true"));
 
-		loadFieldsManual.setSelected(parent.getLoadFields() == LOAD_FIELDS_MANUAL);
-		loadFieldsSelected.setSelected(parent.getLoadFields() == LOAD_FIELDS_SELECTED);
-		loadFieldsStartup.setSelected(parent.getLoadFields() == LOAD_FIELDS_STARTUP);
+		final @NotNull LoadFields loadFields = parent.getLoadFields();
+		loadFieldsManual.setSelected(loadFields == LoadFields.Manual);
+		loadFieldsSelected.setSelected(loadFields == LoadFields.Selected);
+		loadFieldsStartup.setSelected(loadFields == LoadFields.Startup);
 
 		runtimeSlider.setValue(parent.getQueryRuntime());
 	}
 
 	private void saveProperties()
 	{
-		int loadFields = LOAD_FIELDS_DEF;
+		LoadFields loadFields = LoadFields.getDefault();
 
 		if (loadFieldsManual.isSelected()) {
-			loadFields = LOAD_FIELDS_MANUAL;
+			loadFields = LoadFields.Manual;
 		} else if (loadFieldsSelected.isSelected()) {
-			loadFields = LOAD_FIELDS_SELECTED;
+			loadFields = LoadFields.Selected;
 		} else if (loadFieldsStartup.isSelected()) {
-			loadFields = LOAD_FIELDS_STARTUP;
+			loadFields = LoadFields.Startup;
 		}
 
 		parent.setProperty(PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
@@ -353,7 +351,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		parent.setProperty(PROP_DISPLAY_SPLASH, Boolean.valueOf(displaySplashCheckBox.isSelected()).toString());
 		parent.setProperty(PROP_DISPLAY_TOOLBAR, Boolean.valueOf(displayToolbarCheckBox.isSelected()).toString());
 		parent.setProperty(PROP_ROLL_TOOLBAR, Boolean.valueOf(rollToolbarCheckBox.isSelected()).toString());
-		parent.setProperty(PROP_LOAD_FIELDS, loadFields);
+		parent.setProperty(PROP_LOAD_FIELDS, loadFields.getValue());
 		parent.setProperty(PROP_QUERY_RUNTIME, runtimeSlider.getValue());
 		parent.setProperty(PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
 
