@@ -46,6 +46,11 @@ public final class PropertyCollection
         properties.setProperty(key, value);
     }
 
+    public void setProperty(final @NotNull String key, final int value)
+    {
+        properties.setProperty(key, String.valueOf(value));
+    }
+
     public void load(final @NotNull InputStream inStream) throws IOException
     {
         properties.load(inStream);

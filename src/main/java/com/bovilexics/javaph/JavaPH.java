@@ -1727,7 +1727,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void setProperty(final String key, final int value)
 	{
-		setProperty(key, String.valueOf(value));
+		properties.setProperty(key, value);
 	}
 
 	public void setQueryRuntime(final int runtime)
