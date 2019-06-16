@@ -1,29 +1,19 @@
 package com.bovilexics.javaph.threads;
 
-public enum ResultThreadState {
-
+public enum ResultThreadState
+{
     // Starting
-    RS_START(0),
+    RS_START,
 
     // Multiline response.
-    RS_INPROGRESS(1),
+    RS_INPROGRESS,
 
     // We're done.
-    RS_OK(2),
+    RS_OK,
 
     // Oops!
-    RS_UNKNOWN(3),
+    RS_UNKNOWN,
 
     // Qi error response.
-    RS_ERROR(4);
-
-    private final int value;
-
-    public int getValue() {
-        return value;
-    }
-
-    ResultThreadState(final int value) {
-        this.value = value;
-    }
+    RS_ERROR;
 }
