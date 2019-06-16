@@ -31,6 +31,7 @@ import com.bovilexics.javaph.qi.QiServerManager;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.threads.QueryThread;
 import com.bovilexics.javaph.ui.AboutDialog;
+import com.bovilexics.javaph.ui.ContentPanel;
 import com.bovilexics.javaph.ui.CustomButtonGroup;
 import com.bovilexics.javaph.ui.FindDialog;
 import com.bovilexics.javaph.ui.IconProvider;
@@ -337,17 +338,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			{
 				return false;
 			}
-		}
-	}	
-
-	static final class ContentPanel extends JPanel
-	{	
-		ContentPanel(final @NotNull JPanel queryPanel, final @NotNull JTabbedPane resultPanel)
-		{	
-			setBorder(BorderFactory.createEtchedBorder());
-			setLayout(new BorderLayout());
-			add(queryPanel, BorderLayout.NORTH);
-			add(resultPanel, BorderLayout.CENTER);
 		}
 	}
 
