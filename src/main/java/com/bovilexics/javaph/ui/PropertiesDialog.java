@@ -337,14 +337,23 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	private void saveProperties()
 	{
-		LoadFields loadFields = LoadFields.getDefault();
+		final @NotNull LoadFields loadFields;
 
-		if (loadFieldsManual.isSelected()) {
+		if (loadFieldsManual.isSelected())
+		{
 			loadFields = LoadFields.Manual;
-		} else if (loadFieldsSelected.isSelected()) {
+		}
+		else if (loadFieldsSelected.isSelected())
+		{
 			loadFields = LoadFields.Selected;
-		} else if (loadFieldsStartup.isSelected()) {
+		}
+		else if (loadFieldsStartup.isSelected())
+		{
 			loadFields = LoadFields.Startup;
+		}
+		else
+		{
+			loadFields = LoadFields.getDefault();
 		}
 
 		final Object selectedItem = defaultServerComboBox.getSelectedItem();
