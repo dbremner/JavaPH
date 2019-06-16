@@ -105,7 +105,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.Vector;
 
 import static com.bovilexics.javaph.JavaPHConstants.APP_DEFAULT_HEIGHT;
@@ -177,8 +176,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private CustomButtonGroup fieldRadioGroup;
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
-	private final @NotNull Properties defaultProperties = new Properties();
-	private final @NotNull Properties properties = new Properties();
+	private final @NotNull PropertyCollection defaultProperties = new PropertyCollection();
+	private final @NotNull PropertyCollection properties = new PropertyCollection();
 	private final @NotNull PropertiesDialog propertiesDialog;
 	private ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
@@ -1375,18 +1374,18 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return getLoadFieldsPropertyDefault(defaultProperties, key, defaultValue);
 	}
 
-	private @NotNull LoadFields getLoadFieldsPropertyDefault(final @NotNull Properties properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
+	private @NotNull LoadFields getLoadFieldsPropertyDefault(final PropertyCollection properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
 	{
 		final int value = getIntProperty(properties, key, defaultValue.getValue());
 		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
 		return fields;
 	}
 
-	private int getIntProperty(final @NotNull Properties props, final @NotNull String key, final int defaultValue)
+	private int getIntProperty(final PropertyCollection props, final @NotNull String key, final int defaultValue)
 	{
 		try
 		{
-			final @NotNull Optional<String> stringValue = Optional.ofNullable(props.getProperty(key));
+			final @NotNull Optional<String> stringValue = props.getProperty(key);
 			return stringValue.map(Integer::parseInt).orElse(defaultValue);
 		}
 		catch (final @NotNull NumberFormatException e)
@@ -1412,7 +1411,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private Optional<String> getProperty(final @NotNull String key)
 	{
-		return Optional.ofNullable(properties.getProperty(key));
+		return properties.getProperty(key);
 	}
 
 	private @NotNull String getProperty(final @NotNull String key, final @NotNull String defaultValue)
@@ -1422,7 +1421,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public @NotNull Optional<String> getPropertyDefault(final @NotNull String key)
 	{
-		return Optional.ofNullable(defaultProperties.getProperty(key));
+		return defaultProperties.getProperty(key);
 	}
 
 	public @NotNull String getPropertyDefault(final @NotNull String key, final @NotNull String defaultValue)
