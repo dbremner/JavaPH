@@ -182,6 +182,7 @@ public class QiConnection implements Connection
 	{
 		// Safeguard against deadlock.
 		// (whereby a thread calls lock() more than once).
+		//noinspection ObjectEquality
 		if (locker == Thread.currentThread()) {
 			return;
 		}
