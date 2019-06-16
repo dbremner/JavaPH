@@ -606,7 +606,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				populateFieldList(server);
 			});
-			QiServerManager.setDefaultServer(getPropertyOptional(PROP_DEFAULT_SERVER).get());
+			QiServerManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER).get());
 
 			queryServerPanel.add(serverComboBox, BorderLayout.CENTER);
 
@@ -1410,7 +1410,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return logText;
 	}
 
-	private Optional<String> getPropertyOptional(final @NotNull String key)
+	private Optional<String> getProperty(final @NotNull String key)
 	{
 		return Optional.ofNullable(properties.getProperty(key));
 	}
@@ -1420,7 +1420,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return properties.getProperty(key, defaultValue);
 	}
 
-	public @NotNull Optional<String> getPropertyDefaultOptional(final @NotNull String key)
+	public @NotNull Optional<String> getPropertyDefault(final @NotNull String key)
 	{
 		return Optional.ofNullable(defaultProperties.getProperty(key));
 	}
@@ -1647,7 +1647,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private void restoreDefaultLookAndFeel(final @NotNull Component component)
 	{
-		final @NotNull Optional<String> value = getPropertyOptional(PROP_DEFAULT_LNF);
+		final @NotNull Optional<String> value = getProperty(PROP_DEFAULT_LNF);
 		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
 		if (!value.isPresent())
 		{

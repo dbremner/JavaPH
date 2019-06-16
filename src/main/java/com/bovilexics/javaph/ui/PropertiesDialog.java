@@ -302,7 +302,7 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	private void refreshDefaultProperties()
 	{
-		defaultServerComboBox.setSelectedItem(parent.getPropertyDefaultOptional(PROP_DEFAULT_SERVER).get());
+		defaultServerComboBox.setSelectedItem(parent.getPropertyDefault(PROP_DEFAULT_SERVER).get());
 		displayLogCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_LOG, "true", "true"));
 		displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_SPLASH, "true", "true"));
 		displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
