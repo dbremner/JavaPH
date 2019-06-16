@@ -2,6 +2,7 @@ package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.logging.ErrLogger;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -12,12 +13,13 @@ import java.io.LineNumberReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Vector;
 
 public final class QiServerManager {
     private static final String SEPARATOR = "::";
     private static final String SERVER_FILE = "javaph.servers";
-    private static Server defaultServer;
+    private static @Nullable Server defaultServer = null;
     private static final Vector<Server> servers = new Vector<>();
 
     public static void addServer(final @NotNull Server server) {
@@ -50,12 +52,7 @@ public final class QiServerManager {
 
     public static @NotNull Server getDefaultServer()
     {
-        if (defaultServer == null)
-        {
-            return QiServerManager.getUndefinedServer();
-        }
-
-        return defaultServer;
+        return Optional.ofNullable(defaultServer).orElse(QiServerManager.getUndefinedServer());
     }
 
     private static @NotNull Server getUndefinedServer()
