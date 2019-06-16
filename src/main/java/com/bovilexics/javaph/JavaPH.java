@@ -187,7 +187,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull QueryToolBar queryToolBar;
 	private ResultTable resultTable;
 	private final @NotNull SplashWindow splashWindow;
-	private @Nullable String customFieldSeparator = CUSTOM_SEPARATOR;
+	private @NotNull String customFieldSeparator = CUSTOM_SEPARATOR;
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
 	private Vector<Server> servers;
@@ -1357,7 +1357,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public @NotNull String getFieldSeparator()
 	{
-		return Optional.ofNullable(fieldSeparator).orElse("");
+		return fieldSeparator;
 	}
 
 	private int getIntProperty(final @NotNull String key, final int defaultValue)
@@ -1397,7 +1397,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public @NotNull String getLastCustomSeparator()
 	{
-		return Optional.ofNullable(customFieldSeparator).orElse("");
+		return customFieldSeparator;
 	}
 
 	public @NotNull LoadFields getLoadFields()
