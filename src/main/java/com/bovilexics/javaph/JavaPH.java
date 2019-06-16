@@ -419,9 +419,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			{
 				queryComboBox.setSelectedIndex(-1);
 				queryComboBox.setEnabled(commands[commandComboBox.getSelectedIndex()].isTextEditable());
-				fieldRadioGroup.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
-				fieldCustomButton.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
-				fieldLoadButton.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
+				final boolean isQueryCommand = commandComboBox.getSelectedIndex() == QUERY_COMMAND;
+				fieldRadioGroup.setEnabled(isQueryCommand);
+				fieldCustomButton.setEnabled(isQueryCommand);
+				fieldLoadButton.setEnabled(isQueryCommand);
 			});
 
 			queryComboBoxEditor = new TextFieldComboBoxEditor(ae -> queryButton.doClick());
