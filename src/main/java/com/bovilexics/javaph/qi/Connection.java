@@ -10,8 +10,7 @@ public interface Connection
 
     /** Establish a connection to Qi.
       *
-      * @throws IOException
-     */
+      */
     void connect() throws IOException;
 
     /**
@@ -47,8 +46,8 @@ public interface Connection
     /**
      * Login to  QI.
      *
-     * @param anAlias
-     * @param aPassword
+     * @param anAlias alias
+     * @param aPassword password
      *
      * @exception QiProtocolException upon an unexpected response from Qi
      * @exception IOException upon a socket error.

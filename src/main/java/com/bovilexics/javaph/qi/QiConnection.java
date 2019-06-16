@@ -89,10 +89,6 @@ public class QiConnection implements Connection
 		return authenticated;
 	}
 
-	/** Establish a connection to Qi.
-	  *
-	  * @throws IOException
-	 */
 	@Override
 	public synchronized void connect() throws IOException
 	{
@@ -205,15 +201,6 @@ public class QiConnection implements Connection
 		locker = Thread.currentThread();
 	}
 	
-	/**
-	 * Login to  QI.
-	 *
-	 * @param anAlias
-	 * @param aPassword
-	 *
-	 * @exception QiProtocolException upon an unexpected response from Qi
-	 * @exception IOException upon a socket error.
-	 */
 	@Override
 	public synchronized void login(final @NotNull String anAlias, final @NotNull String aPassword) throws IOException, QiProtocolException
 	{

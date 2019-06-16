@@ -50,7 +50,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	/**
 	 * Adds elements in sorted string order
 	 *
-	 * @param item
+	 * @param item an item
 	 */
 	@Override
     public void addElement(final @Nullable Object item)
