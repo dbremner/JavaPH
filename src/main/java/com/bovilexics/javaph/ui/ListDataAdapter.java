@@ -6,18 +6,18 @@ import javax.swing.event.ListDataListener;
 public abstract class ListDataAdapter implements ListDataListener {
     @Override
     public final void intervalAdded(final ListDataEvent e) {
-        changed(e);
+        changed();
     }
 
     @Override
     public final void intervalRemoved(final ListDataEvent e) {
-        changed(e);
+        changed();
     }
 
     @Override
     public final void contentsChanged(final ListDataEvent e) {
-        changed(e);
+        changed();
     }
 
-    protected abstract void changed(ListDataEvent e);
+    protected abstract void changed();
 }

@@ -74,7 +74,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
-import javax.swing.event.ListDataEvent;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -692,7 +691,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
-				protected void changed(final ListDataEvent e)
+				protected void changed()
 				{
 					fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
 					fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);					
@@ -911,7 +910,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			colList.getModel().addListDataListener(new ListDataAdapter()
 			{
 				@Override
-				protected void changed(final ListDataEvent e)
+				protected void changed()
 				{
 					colListSelectAllButton.setEnabled(colList.getModel().getSize() > 0);
 					colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);					
