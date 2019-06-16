@@ -347,7 +347,9 @@ public final class PropertiesDialog extends JavaPHDialog
 			loadFields = LoadFields.Startup;
 		}
 
-		parent.setProperty(PROP_DEFAULT_SERVER, defaultServerComboBox.getSelectedItem().toString());
+		final Object selectedItem = defaultServerComboBox.getSelectedItem();
+		assert selectedItem != null;
+		parent.setProperty(PROP_DEFAULT_SERVER, selectedItem.toString());
 		parent.setProperty(PROP_DISPLAY_LOG, Boolean.valueOf(displayLogCheckBox.isSelected()).toString());
 		parent.setProperty(PROP_DISPLAY_SPLASH, Boolean.valueOf(displaySplashCheckBox.isSelected()).toString());
 		parent.setProperty(PROP_DISPLAY_TOOLBAR, Boolean.valueOf(displayToolbarCheckBox.isSelected()).toString());
@@ -356,7 +358,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		parent.setProperty(PROP_QUERY_RUNTIME, runtimeSlider.getValue());
 		parent.setProperty(PROP_SAVE_POSITION, Boolean.valueOf(savePositionCheckBox.isSelected()).toString());
 
-        QiServerManager.setDefaultServer(defaultServerComboBox.getSelectedItem().toString());
+        QiServerManager.setDefaultServer(selectedItem.toString());
 		parent.setLoadFields(loadFields);
 		parent.setSavePosition(savePositionCheckBox.isSelected());
 
