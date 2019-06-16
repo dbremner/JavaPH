@@ -71,6 +71,19 @@ public final class PropertyCollection
         return properties.getProperty(key, defaultValue);
     }
 
+    public int getIntProperty(final @NotNull String key, final int defaultValue)
+    {
+        try
+        {
+            final @NotNull Optional<String> stringValue = getProperty(key);
+            return stringValue.map(Integer::parseInt).orElse(defaultValue);
+        }
+        catch (final @NotNull NumberFormatException e)
+        {
+            return defaultValue;
+        }
+    }
+
     public @NotNull Set<String> stringPropertyNames()
     {
         return ImmutableSet.copyOf(properties.stringPropertyNames());

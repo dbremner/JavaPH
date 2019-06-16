@@ -1381,19 +1381,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return fields;
 	}
 
-	private int getIntProperty(final PropertyCollection props, final @NotNull String key, final int defaultValue)
-	{
-		try
-		{
-			final @NotNull Optional<String> stringValue = props.getProperty(key);
-			return stringValue.map(Integer::parseInt).orElse(defaultValue);
-		}
-		catch (final @NotNull NumberFormatException e)
-		{
-			return defaultValue;
-		}
-	}
-
 	public @NotNull String getLastCustomSeparator()
 	{
 		return customFieldSeparator;
