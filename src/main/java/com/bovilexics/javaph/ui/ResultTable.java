@@ -38,12 +38,7 @@ public final class ResultTable extends JTable
 	
 	public ResultTable()
 	{
-		this(new ResultTableModel());
-	}
-	
-	private ResultTable(final TableModel model)
-	{
-		super(model);
+		super(new ResultTableModel());
 		
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		setModel(new TableSorter(getModel()));
