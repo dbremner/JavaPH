@@ -19,7 +19,7 @@ package com.bovilexics.javaph.qi;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Represents a Qi field (as described in the output of the "fields" command.
