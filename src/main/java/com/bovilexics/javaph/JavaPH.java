@@ -1357,7 +1357,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public @NotNull String getFieldSeparator()
 	{
-		return fieldSeparator;
+		return Optional.ofNullable(fieldSeparator).orElse("");
 	}
 
 	private int getIntProperty(final @NotNull String key, final int defaultValue)
@@ -1395,9 +1395,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public @Nullable String getLastCustomSeparator()
+	public @NotNull String getLastCustomSeparator()
 	{
-		return customFieldSeparator;
+		return Optional.ofNullable(customFieldSeparator).orElse("");
 	}
 
 	public @NotNull LoadFields getLoadFields()
