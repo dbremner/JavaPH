@@ -606,7 +606,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				populateFieldList(server);
 			});
-			QiServerManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER));
+			QiServerManager.setDefaultServer(getPropertyOptional(PROP_DEFAULT_SERVER).get());
 
 			queryServerPanel.add(serverComboBox, BorderLayout.CENTER);
 
@@ -1410,11 +1410,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return logText;
 	}
 
-	private @Nullable String getProperty(final @NotNull String key)
-	{
-		return properties.getProperty(key);
-	}
-
 	private Optional<String> getPropertyOptional(final @NotNull String key)
 	{
 		return Optional.ofNullable(properties.getProperty(key));
@@ -1425,9 +1420,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return properties.getProperty(key, defaultValue);
 	}
 
-	public @Nullable String getPropertyDefault(final @NotNull String key)
+	public @NotNull Optional<String> getPropertyDefaultOptional(final @NotNull String key)
 	{
-		return defaultProperties.getProperty(key);
+		return Optional.ofNullable(defaultProperties.getProperty(key));
 	}
 
 	public @NotNull String getPropertyDefault(final @NotNull String key, final @NotNull String defaultValue)
