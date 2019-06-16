@@ -88,9 +88,11 @@ final class CsvFileChooserPanel extends JPanel
 		group.add(customRadioButton);
 		
 		customTextField = new JTextField(parent.getLastCustomSeparator());
-		customTextField.setMinimumSize(new Dimension(20, customTextField.getPreferredSize().height));
-		customTextField.setMaximumSize(new Dimension(20, customTextField.getPreferredSize().height));
-		customTextField.setPreferredSize(new Dimension(20, customTextField.getPreferredSize().height));
+		final int WIDTH = 20;
+		final @NotNull Dimension dimension = new Dimension(WIDTH, customTextField.getPreferredSize().height);
+		customTextField.setMinimumSize(new Dimension(dimension));
+		customTextField.setMaximumSize(new Dimension(dimension));
+		customTextField.setPreferredSize(new Dimension(dimension));
 		customTextField.addKeyListener(new KeyAdapter()
 		{
 			@Override
