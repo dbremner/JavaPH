@@ -195,9 +195,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
 	private TextFieldComboBoxEditor queryComboBoxEditor;
 	private Vector<Server> servers;
-	
+
 	// Swing widgets and stuff
-	
+
 	private final JButton queryButton = new JButton("Execute Query");
 	private JComboBox<QiCommand> commandComboBox;
 	private JComboBox<Server> serverComboBox;
@@ -261,7 +261,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			}
 		}
 
-		if (needToStore) {
+		if (needToStore)
+		{
 			storeProperties();
 		}
 
@@ -288,13 +289,15 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 	}
 
-	private static class NullKeyAdapter extends KeyAdapter {
+	private static class NullKeyAdapter extends KeyAdapter
+	{
 	}
 
-	private static class NullMouseAdapter extends MouseAdapter {
+	private static class NullMouseAdapter extends MouseAdapter
+	{
 	}
 
-	class ControlTabDispatcher	implements KeyEventDispatcher
+	class ControlTabDispatcher implements KeyEventDispatcher
 	{
 		@Override
 		public boolean dispatchKeyEvent(final @NotNull KeyEvent e)
@@ -307,24 +310,30 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				{
 					int selected = getResultPanel().getSelectedIndex();
 					final int last = getResultPanel().getTabCount() - 1;
-			
+
 					if (e.isShiftDown())
 					{
-						if (selected <= 0) {
+						if (selected <= 0)
+						{
 							selected = last;
-						} else {
+						}
+						else
+						{
 							selected--;
 						}
 					}
 					else
 					{
-						if (selected < last) {
+						if (selected < last)
+						{
 							selected++;
-						} else {
+						}
+						else
+						{
 							selected = 0;
 						}
 					}
-				
+
 					getResultPanel().setSelectedIndex(selected);
 				}
 
@@ -352,7 +361,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldLoadOn;
 		private final JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
 
-		
+
 		QueryPanel(final @NotNull JavaPH javaph)
 		{
 			parent = javaph;
@@ -377,7 +386,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			queryButton.setMnemonic(KeyEvent.VK_Q);
 			queryButton.setToolTipText("Click this to start running the query.");
-			queryButton.addActionListener(ae -> {
+			queryButton.addActionListener(ae ->
+			{
 				if (queryComboBox.isEnabled())
 				{
 					final Object selectedItem = queryComboBox.getEditor().getItem();
@@ -385,7 +395,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 					if (selectedItem != null && !selectedItem.toString().isEmpty())
 					{
-						if ( model.getIndexOf(selectedItem) < 0) {
+						if (model.getIndexOf(selectedItem) < 0)
+						{
 							model.addElement(selectedItem);
 						}
 
@@ -399,7 +410,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			});
 
 			queryButtonPanel.add(queryButton);
-			
+
 			return queryButtonPanel;
 		}
 
@@ -408,7 +419,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull JPanel queryCommandPanel = new JPanel(new BorderLayout());
 
 			commandComboBox = new JComboBox<>(commands);
-			commandComboBox.addActionListener(ae -> {
+			commandComboBox.addActionListener(ae ->
+			{
 				queryComboBox.setSelectedIndex(-1);
 				queryComboBox.setEnabled(commands[commandComboBox.getSelectedIndex()].isTextEditable());
 				fieldRadioGroup.setEnabled(commandComboBox.getSelectedIndex() == QUERY_COMMAND);
@@ -430,11 +442,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					else if (!e.isActionKey())
 					{
 						final String filter = queryComboBoxEditor.getItem().toString();
-						
+
 						queryComboBox.hidePopup();
 						((QueryComboBoxModel)queryComboBox.getModel()).filterElements(filter);
-						
-						if (queryComboBox.getModel().getSize() > 0) {
+
+						if (queryComboBox.getModel().getSize() > 0)
+						{
 							queryComboBox.showPopup();
 						}
 					}
@@ -465,7 +478,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			queryContentPanel.add(getQueryServerPanel(), BorderLayout.NORTH);
 			queryContentPanel.add(getQueryCommandPanel(), BorderLayout.CENTER);
 			queryContentPanel.add(getQueryFieldPanel(), BorderLayout.SOUTH);
-			
+
 			return queryContentPanel;
 		}
 
@@ -482,9 +495,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldRadioGroup.add(fieldDefaultRadioButton);
 			fieldRadioGroup.add(fieldAllRadioButton);
 			fieldRadioGroup.add(fieldCustomRadioButton);
-			
+
 			fieldDefaultRadioButton.setSelected(true);
-				
+
 			fieldCustomButton = new JButton(fieldCustomOff);
 			fieldCustomButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldCustomButton.setFocusable(false);
@@ -503,7 +516,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					fieldCustomButton.setIcon(fieldCustomOff);
 				}
 			});
-			fieldCustomButton.addActionListener(ae -> {
+			fieldCustomButton.addActionListener(ae ->
+			{
 				final @NotNull int[] prevSelections = fieldList.getSelectedIndices();
 				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + getServer().toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
@@ -534,7 +548,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					fieldLoadButton.setIcon(fieldLoadOff);
 				}
 			});
-			fieldLoadButton.addActionListener(ae -> {
+			fieldLoadButton.addActionListener(ae ->
+			{
 				final @Nullable Server server = getServer();
 
 				if (server != null)
@@ -552,7 +567,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			queryFieldPanel.add(fieldCustomButton);
 			queryFieldPanel.add(new JLabel(" "));
 			queryFieldPanel.add(fieldLoadButton);
-			
+
 			return queryFieldPanel;
 		}
 
@@ -563,7 +578,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			queryLabelPanel.add(new JLabel(SERVER_LABEL_PREFIX), BorderLayout.NORTH);
 			queryLabelPanel.add(new JLabel(QUERY_LABEL_PREFIX), BorderLayout.CENTER);
 			queryLabelPanel.add(new JLabel(" "), BorderLayout.SOUTH);
-			
+
 			return queryLabelPanel;
 		}
 
@@ -573,7 +588,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			serverComboBox = new JComboBox<>(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
-			serverComboBox.addActionListener(ae -> {
+			serverComboBox.addActionListener(ae ->
+			{
 				final @NotNull Server server = getServer();
 				final @NotNull String serverText = server.getServer();
 
@@ -599,7 +615,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			return queryServerPanel;
 		}
-		
+
 		private void initFieldListPanel()
 		{
 			// This panel is not visible in the main window
@@ -608,19 +624,20 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			final @NotNull JPanel fieldListControlPanel = new JPanel(new BorderLayout());
 			fieldListControlPanel.setBorder(BorderFactory.createEtchedBorder());
-			
+
 			final @NotNull JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
 
 			fieldListSelectAllButton = new JButton("Select All");
 			fieldListSelectAllButton.addActionListener(
 					ae -> fieldList.setSelectionInterval(0, fieldList.getModel().getSize() - 1));
-			
+
 			fieldListSelectNoneButton = new JButton("Delselect All");
 			fieldListSelectNoneButton.addActionListener(ae -> fieldList.clearSelection());
 
-		
+
 			fieldListMoveUpButton = new JButton("Move Up");
-			fieldListMoveUpButton.addActionListener(ae -> {
+			fieldListMoveUpButton.addActionListener(ae ->
+			{
 				final @NotNull int[] selections = fieldList.getSelectedIndices();
 
 				for (int i = 0; i < selections.length; i++)
@@ -633,9 +650,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				fieldList.setSelectedIndices(selections);
 			});
-			
+
 			fieldListMoveDnButton = new JButton("Move Down");
-			fieldListMoveDnButton.addActionListener(ae -> {
+			fieldListMoveDnButton.addActionListener(ae ->
+			{
 				final @NotNull int[] selections = fieldList.getSelectedIndices();
 
 				for (int i = selections.length - 1; i >= 0; i--)
@@ -662,7 +680,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldListButtonPanel.add(fieldListMoveDnButton);
 
 			fieldList = new JList<>(new DefaultListModel<>());
-			fieldList.addListSelectionListener(lse -> {
+			fieldList.addListSelectionListener(lse ->
+			{
 				if (fieldList.getSelectedIndex() >= 0)
 				{
 					fieldListMoveUpButton.setEnabled(!fieldList.isSelectedIndex(0));
@@ -680,7 +699,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				protected void changed()
 				{
 					fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
-					fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);					
+					fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);
 				}
 			});
 
@@ -700,18 +719,23 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			{
 				final @NotNull List<Field> fields = server.getFields();
 
-				for (final Field field : fields) {
+				for (final Field field : fields)
+				{
 					model.addElement(field);
 				}
 			}
 
-			if (model.getSize() > 0) {
+			if (model.getSize() > 0)
+			{
 				fieldList.setSelectionInterval(0, model.getSize() - 1);
 			}
 
-			if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE) {
+			if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
+			{
 				fieldLoadButton.setToolTipText("Reload fields for the selected server");
-			} else {
+			}
+			else
+			{
 				fieldLoadButton.setToolTipText("Load fields for the selected server");
 			}
 		}
@@ -752,14 +776,15 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		ResultPanel()
 		{
 			super(SwingConstants.TOP);
-	
+
 			add(getResultTextPanel(), Tab.ResultText.getLabel());
 			add(getResultTablePanel(), Tab.ResultTable.getLabel());
 
 			initColumnListPanel();
 			initLogTextPanel();
-	
-			if (propertyEquals(PROP_DISPLAY_LOG, "true", "true")) {
+
+			if (propertyEquals(PROP_DISPLAY_LOG, "true", "true"))
+			{
 				add(logTextPanel, Tab.SystemLog.getLabel());
 			}
 		}
@@ -773,12 +798,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			resultTable.setRowSelectionAllowed(false);
 			resultTable.setCellSelectionEnabled(true);
 			resultTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-			resultTable.getModel().addTableModelListener(tme -> {
+			resultTable.getModel().addTableModelListener(tme ->
+			{
 				resultTableColButton.setEnabled(resultTable.getRowCount() > 0);
 				resultTableColWidthButton.setEnabled(resultTable.getRowCount() > 0);
 				populateColumnList();
 			});
-				
+
 			final @NotNull JTableHeader resultTableHeader = resultTable.getTableHeader();
 			resultTableHeader.addMouseListener(new MouseAdapter()
 			{
@@ -788,14 +814,15 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					final TableColumnModel tcm = resultTable.getColumnModel();
 					final int vc = tcm.getColumnIndexAtX(e.getX());
 					final int mc = resultTable.convertColumnIndexToModel(vc);
-						
+
 					((TableSorter)resultTable.getModel()).sort(mc);
 				}
 			});
 
 			final @NotNull JPanel resultControlPanel = new JPanel();
 			resultTableColButton.setEnabled(false);
-			resultTableColButton.addActionListener(ae -> {
+			resultTableColButton.addActionListener(ae ->
+			{
 				final @NotNull int[] prevSelections = colList.getSelectedIndices();
 				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), colListPanel, "Column List for Result Table", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
@@ -820,7 +847,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			});
 
 			resultTableColWidthButton.setEnabled(false);
-			resultTableColWidthButton.addActionListener(ae -> {
+			resultTableColWidthButton.addActionListener(ae ->
+			{
 				for (int i = 0; i < colList.getModel().getSize(); i++)
 				{
 					// If it is a shown column and not hidden (selected in list)
@@ -838,10 +866,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			resultTablePanel.add(resultTableScroll, BorderLayout.CENTER);
 			resultTablePanel.add(resultControlPanel, BorderLayout.SOUTH);
-	
+
 			return resultTablePanel;
 		}
-		
+
 		private @NotNull JPanel getResultTextPanel()
 		{
 			final @NotNull JPanel resultTextPanel = new JPanel(new BorderLayout());
@@ -852,24 +880,26 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			final @NotNull JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
-			selectAllButton.addActionListener(ae -> {
+			selectAllButton.addActionListener(ae ->
+			{
 				resultText.selectAll();
 				resultText.getCaret().setSelectionVisible(true);
 			});
 
-			resultWrapCheckBox.addItemListener(ie -> {
+			resultWrapCheckBox.addItemListener(ie ->
+			{
 				resultText.setLineWrap(resultWrapCheckBox.isSelected());
 				resultText.setWrapStyleWord(resultWrapCheckBox.isSelected());
 			});
-	
+
 			final @NotNull JPanel resultControlPanel = new JPanel();
 			resultControlPanel.add(selectAllButton);
 			resultControlPanel.add(resultWrapCheckBox);
-	
+
 			resultTextPanel.add(resultTextScroll, BorderLayout.CENTER);
 			resultTextPanel.add(resultControlPanel, BorderLayout.SOUTH);
 
-			return resultTextPanel;			
+			return resultTextPanel;
 		}
 
 		private void initColumnListPanel()
@@ -899,7 +929,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				protected void changed()
 				{
 					colListSelectAllButton.setEnabled(colList.getModel().getSize() > 0);
-					colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);					
+					colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);
 				}
 			});
 
@@ -909,7 +939,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			colListPanel.add(new JLabel("Select the columns to be displayed"), BorderLayout.NORTH);
 			colListPanel.add(colListControlPanel, BorderLayout.CENTER);
 		}
-		
+
 		private void initLogTextPanel()
 		{
 			logText.setEditable(false);
@@ -918,28 +948,31 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			final @NotNull JButton selectAllButton = new JButton("Select All");
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
-			selectAllButton.addActionListener(ae -> {
+			selectAllButton.addActionListener(ae ->
+			{
 				logText.selectAll();
 				logText.getCaret().setSelectionVisible(true);
 			});
 
-			logWrapCheckBox.addItemListener(ie -> {
+			logWrapCheckBox.addItemListener(ie ->
+			{
 				logText.setLineWrap(logWrapCheckBox.isSelected());
 				logText.setWrapStyleWord(logWrapCheckBox.isSelected());
 			});
 
 			final @NotNull JButton logClearButton = new JButton("Clear Log");
 			logClearButton.setMnemonic(KeyEvent.VK_C);
-			logClearButton.addActionListener(ae -> {
+			logClearButton.addActionListener(ae ->
+			{
 				logText.setText("");
 				log("Log cleared");
 			});
-	
+
 			final @NotNull JPanel logControlPanel = new JPanel();
 			logControlPanel.add(logClearButton);
 			logControlPanel.add(selectAllButton);
 			logControlPanel.add(logWrapCheckBox);
-	
+
 			logTextPanel.add(logTextScroll, BorderLayout.CENTER);
 			logTextPanel.add(logControlPanel, BorderLayout.SOUTH);
 		}
@@ -955,7 +988,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				listModel.addElement(tableModel.getColumnName(i));
 			}
 
-			if (listModel.getSize() > 0) {
+			if (listModel.getSize() > 0)
+			{
 				colList.setSelectionInterval(0, listModel.getSize() - 1);
 			}
 		}
@@ -963,7 +997,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	final class StatusPanel extends JPanel
-	{	
+	{
 		StatusPanel()
 		{
 			setLayout(new BorderLayout());
@@ -991,7 +1025,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			portStatusLabel.setBorder(BorderFactory.createEtchedBorder());
 			portStatusLabel.setHorizontalAlignment(JLabel.CENTER);
 			rightPanel.add(portStatusLabel, BorderLayout.EAST);
-			
+
 			showDefaultStatus();
 		}
 	}
@@ -1010,10 +1044,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		int frameX = getIntProperty(PROP_APP_X_POSITION, -1);
 		int frameY = getIntProperty(PROP_APP_Y_POSITION, -1);
 
-		if (frameHeight < APP_MIN_HEIGHT) {
+		if (frameHeight < APP_MIN_HEIGHT)
+		{
 			frameHeight = APP_DEFAULT_HEIGHT;
 		}
-		if (frameWidth < APP_MIN_WIDTH) {
+		if (frameWidth < APP_MIN_WIDTH)
+		{
 			frameWidth = APP_DEFAULT_WIDTH;
 		}
 
@@ -1023,20 +1059,22 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		initProperties();
 		initServers();
-		aboutDialog      = new AboutDialog(this);
-		findDialog       = new FindDialog(this);
+		aboutDialog = new AboutDialog(this);
+		findDialog = new FindDialog(this);
 		propertiesDialog = new PropertiesDialog(this);
-		queryToolBar     = new QueryToolBar(this);
-		splashWindow     = new SplashWindow(this);
+		queryToolBar = new QueryToolBar(this);
+		splashWindow = new SplashWindow(this);
 
-		if (defaultPane == null) {
+		if (defaultPane == null)
+		{
 			defaultPane = getRootPane();
 		}
 
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
 
 		restoreLookAndFeel();
-		if(propertyEquals(PROP_DISPLAY_SPLASH, "true", "true")) {
+		if (propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"))
+		{
 			showSplashWindow();
 		}
 
@@ -1078,8 +1116,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		// if no previous X/Y position specified or if the previous X/Y
 		// position is somehow off the screen then just center the frame
-		frameX = (frameX < 0 || frameX > screenSize.width) ? (screenSize.width/2 - (frameWidth/2)) : frameX;
-		frameY = (frameY < 0 || frameY > screenSize.height) ? (screenSize.height/2 - (frameHeight/2)) : frameY;
+		frameX = (frameX < 0 || frameX > screenSize.width) ? (screenSize.width / 2 - (frameWidth / 2)) : frameX;
+		frameY = (frameY < 0 || frameY > screenSize.height) ? (screenSize.height / 2 - (frameHeight / 2)) : frameY;
 
 		frame.setLocation(frameX, frameY);
 		frame.setVisible(true);
@@ -1113,7 +1151,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			log("Info: Cannot perform a search on an empty table");
 			return;
 		}
-		
+
 		// start from the next column if a cell was already selected (hence the +1 to the count)
 		int startCol = (table.getSelectedColumn() < 0) ? 0 : table.getSelectedColumn() + 1;
 		int startRow = (table.getSelectedRow() < 0) ? 0 : table.getSelectedRow();
@@ -1129,10 +1167,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			if (startRow > table.getRowCount() - 1)
 			{
 				log("Info: Cannot search past the last cell of a table");
-				
-				if (wrap) {
+
+				if (wrap)
+				{
 					inLastCell = true;
-				} else {
+				}
+				else
+				{
 					return;
 				}
 			}
@@ -1147,7 +1188,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				for (int c = (r == startRow) ? startCol : 0; c < table.getColumnCount(); c++)
 				{
 					final @Nullable Object anObject = table.getValueAt(r, c);
-					
+
 					if (anObject == null)
 					{
 						continue;
@@ -1169,7 +1210,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// haven't returned yet so must not have found anything -
 		// so if the whole table hasn't already been searched and
 		// wrap is allowed then lets start again from the beginning
-		
+
 		if (wrap && (startRow > 0 || startCol > 0))
 		{
 			startRow = 0;
@@ -1182,7 +1223,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				for (int c = (r == startRow) ? startCol : 0; c < table.getColumnCount(); c++)
 				{
 					final @Nullable Object anObject = table.getValueAt(r, c);
-				
+
 					if (anObject == null)
 					{
 						continue;
@@ -1208,11 +1249,16 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		// if nothing or everything is selected then start search from the
 		// beginning otherwise start search from the end of the selection
-		if (textArea.getSelectedText() == null) {
+		if (textArea.getSelectedText() == null)
+		{
 			startIndex = 0;
-		} else if (textArea.getSelectionStart() == 0 && textArea.getSelectionEnd() == textArea.getText().length() - 1) {
+		}
+		else if (textArea.getSelectionStart() == 0 && textArea.getSelectionEnd() == textArea.getText().length() - 1)
+		{
 			startIndex = 0;
-		} else {
+		}
+		else
+		{
 			startIndex = textArea.getSelectionEnd();
 		}
 
@@ -1254,14 +1300,14 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public @NotNull String getCommand()
 	{
 		final @NotNull StringBuilder out = new StringBuilder();
-		
+
 		out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
-		
+
 		if (queryComboBox.isEnabled() && queryComboBox.getSelectedItem() != null)
 		{
 			out.append(queryComboBox.getSelectedItem().toString());
 		}
-		
+
 		if (fieldRadioGroup.isEnabled())
 		{
 			if (fieldRadioGroup.getSelectedIndex() == FIELD_DEFAULT)
@@ -1275,13 +1321,14 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			else if (fieldRadioGroup.getSelectedIndex() == FIELD_CUSTOM)
 			{
 				final @NotNull int[] selectedFields = fieldList.getSelectedIndices();
-				
+
 				// will return default list of fields if nothing selected
 				if (selectedFields.length > 0)
 				{
 					out.append(" return");
 
-					for (final int selectedField : selectedFields) {
+					for (final int selectedField : selectedFields)
+					{
 						out.append(" ");
 						out.append(fieldList.getModel().getElementAt(selectedField).getName());
 					}
@@ -1292,7 +1339,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				}
 			}
 		}
-		
+
 		return out.toString();
 	}
 
