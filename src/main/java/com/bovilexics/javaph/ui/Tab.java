@@ -1,6 +1,5 @@
 package com.bovilexics.javaph.ui;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.jetbrains.annotations.NotNull;
 
 public enum Tab
@@ -37,7 +36,7 @@ public enum Tab
         return filename;
     }
 
-    public static @NotNull Tab fromIndex(final int index) throws InvalidArgumentException
+    public static @NotNull Tab fromIndex(final int index)
     {
         for(final @NotNull Tab value : values())
         {
@@ -46,6 +45,6 @@ public enum Tab
                 return value;
             }
         }
-        throw new InvalidArgumentException(new String[]{"argument is out of range"});
+        throw new AssertionError(new String[]{"argument is out of range"});
     }
 }
