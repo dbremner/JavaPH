@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 final class ServerTableModel extends DefaultTableModel
 {
-	public ServerTableModel()
+	ServerTableModel()
 	{
 		final @NotNull Object[] headers = {"Name", "Server", "Port", "Description"};
 		

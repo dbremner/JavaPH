@@ -29,7 +29,7 @@ import java.awt.Cursor;
  */
 final class HyperLinkLabel extends JLabel
 {
-	public HyperLinkLabel(final @NotNull JavaPH javaph, final @NotNull String text, final @NotNull String url)
+	HyperLinkLabel(final @NotNull JavaPH javaph, final @NotNull String text, final @NotNull String url)
 	{
 		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

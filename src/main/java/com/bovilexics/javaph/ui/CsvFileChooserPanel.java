@@ -54,7 +54,7 @@ final class CsvFileChooserPanel extends JPanel
 	
 	private final @NotNull JTextField customTextField;
 	
-	public CsvFileChooserPanel(final @NotNull JavaPH javaph)
+	CsvFileChooserPanel(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
 		

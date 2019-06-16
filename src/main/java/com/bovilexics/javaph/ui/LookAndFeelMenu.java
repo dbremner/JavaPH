@@ -116,7 +116,7 @@ final class LookAndFeelMenu extends JMenu
 		}
 	}
 
-	public LookAndFeelMenu(final @NotNull JavaPH javaph)
+	LookAndFeelMenu(final @NotNull JavaPH javaph)
 	{
 		super("Look and Feel");
 		
