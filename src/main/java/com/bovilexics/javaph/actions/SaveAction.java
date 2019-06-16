@@ -18,8 +18,10 @@ package com.bovilexics.javaph.actions;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.ui.CsvFileChooser;
+import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFileChooser;
 import org.jetbrains.annotations.NotNull;
+import sun.jvm.hotspot.utilities.AssertionFailure;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
@@ -31,11 +33,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_QUOTE;
-import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_TAB;
-import static com.bovilexics.javaph.JavaPHConstants.RESULT_TEXT_TAB;
-import static com.bovilexics.javaph.JavaPHConstants.SYSTEM_LOG_TAB;
-import static com.bovilexics.javaph.JavaPHConstants.TAB_FILENAMES;
-import static com.bovilexics.javaph.JavaPHConstants.TAB_LABELS;
 
 /**
  *
@@ -56,18 +53,24 @@ public final class SaveAction extends AbstractAction
 	@Override
 	public void actionPerformed(final ActionEvent e)
 	{
-		final int selectedTab = parent.getResultPanel().getSelectedIndex();
-
+		final @NotNull Tab tab = parent.getResultPanelSelectedTab();
 		final @NotNull JFileChooser chooser;
-		
-		if (selectedTab == RESULT_TABLE_TAB) {
-            chooser = new CsvFileChooser(parent);
-        } else {
-            chooser = new TextFileChooser();
-        }
 
-		chooser.setDialogTitle("Save " + TAB_LABELS[selectedTab]);
-		chooser.setSelectedFile(new File(TAB_FILENAMES[selectedTab]));
+		switch (tab)
+		{
+			case ResultTable:
+				chooser = new CsvFileChooser(parent);
+				break;
+			case ResultText:
+			case SystemLog:
+				chooser = new TextFileChooser();
+				break;
+			default:
+				throw new AssertionFailure("unreachable");
+		}
+
+		chooser.setDialogTitle("Save " + tab.getLabel());
+		chooser.setSelectedFile(new File(tab.getFilename()));
 
 		final int state = chooser.showSaveDialog(parent.getDefaultPane());
 		final File file = chooser.getSelectedFile();
@@ -75,16 +78,21 @@ public final class SaveAction extends AbstractAction
 		if (state == JFileChooser.APPROVE_OPTION && file != null)
 		{
 			parent.log("Saving file " + file.getPath());
-			
-			if (selectedTab == RESULT_TABLE_TAB) {
-                saveCsvFile(selectedTab, file);
-            } else {
-                saveTextFile(selectedTab, file);
-            }
+
+			switch (tab)
+			{
+				case ResultTable:
+					saveCsvFile(tab, file);
+					break;
+				case ResultText:
+				case SystemLog:
+					saveTextFile(tab, file);
+					break;
+			}
 		}
 	}
 	
-	private void saveCsvFile(final int tab, final @NotNull File file)
+	private void saveCsvFile(final @NotNull Tab tab, final @NotNull File file)
 	{
 		final boolean quoted = parent.isFieldQuoted();
 	
@@ -96,7 +104,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			final @NotNull String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			final @NotNull String message = "Nothing to save in " + tab.getLabel() + " tab";
 			parent.log(message);
 			parent.showWarningDialog(message, "Finished");
 		}
@@ -152,26 +160,28 @@ public final class SaveAction extends AbstractAction
 		}	
 	}
 	
-	private void saveTextFile(final int tab, final @NotNull File file)
+	private void saveTextFile(final @NotNull Tab tab, final @NotNull File file)
 	{
 		final @NotNull String toWrite;
-		
-		if (tab == RESULT_TEXT_TAB)
+
+		switch (tab)
 		{
-			toWrite = parent.getResultText().getText();
-		}
-		else if (tab == SYSTEM_LOG_TAB)
-		{
-			toWrite = parent.getLogText().getText();
-		}
-		else
-		{
-			toWrite = "";
+			case ResultText:
+				toWrite = parent.getResultText().getText();
+				break;
+			case SystemLog:
+				toWrite = parent.getLogText().getText();
+				break;
+			case ResultTable:
+				toWrite = "";
+				break;
+			default:
+				throw new AssertionFailure("unreachable");
 		}
 
 		if (toWrite.isEmpty())
 		{
-			final @NotNull String message = "Nothing to save in " + TAB_LABELS[tab] + " tab";
+			final @NotNull String message = "Nothing to save in " + tab.getLabel() + " tab";
 			parent.log(message);
 			parent.showWarningDialog(message, "Finished");
 			return;

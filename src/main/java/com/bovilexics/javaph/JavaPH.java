@@ -43,6 +43,7 @@ import com.bovilexics.javaph.ui.QueryToolBar;
 import com.bovilexics.javaph.ui.ResultTable;
 import com.bovilexics.javaph.ui.ServerRenderer;
 import com.bovilexics.javaph.ui.SplashWindow;
+import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
@@ -142,16 +143,9 @@ import static com.bovilexics.javaph.JavaPHConstants.QUERY_LABEL_PREFIX;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_DEF;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MAX;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
-import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_LABEL;
-import static com.bovilexics.javaph.JavaPHConstants.RESULT_TABLE_TAB;
-import static com.bovilexics.javaph.JavaPHConstants.RESULT_TEXT_LABEL;
-import static com.bovilexics.javaph.JavaPHConstants.RESULT_TEXT_TAB;
 import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_PREFIX;
 import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_SUFFIX;
 import static com.bovilexics.javaph.JavaPHConstants.SPLASH_DISPLAY;
-import static com.bovilexics.javaph.JavaPHConstants.SYSTEM_LOG_LABEL;
-import static com.bovilexics.javaph.JavaPHConstants.SYSTEM_LOG_TAB;
-import static com.bovilexics.javaph.JavaPHConstants.TAB_LABELS;
 import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
 
 // TODO : Future : ability to add and remove servers
@@ -757,14 +751,14 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			super(SwingConstants.TOP);
 	
-			add(getResultTextPanel(), RESULT_TEXT_LABEL);
-			add(getResultTablePanel(), RESULT_TABLE_LABEL);
+			add(getResultTextPanel(), Tab.ResultText.getLabel());
+			add(getResultTablePanel(), Tab.ResultTable.getLabel());
 
 			initColumnListPanel();
 			initLogTextPanel();
 	
 			if (propertyEquals(PROP_DISPLAY_LOG, "true", "true")) {
-				add(logTextPanel, SYSTEM_LOG_LABEL);
+				add(logTextPanel, Tab.SystemLog.getLabel());
 			}
 		}
 
@@ -1093,17 +1087,19 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void findText(final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
-		if (resultPanel.getSelectedIndex() == RESULT_TEXT_TAB)
+		final int index = resultPanel.getSelectedIndex();
+		final @NotNull Tab tab = Tab.fromIndex(index);
+		switch (tab)
 		{
-			findTextInTextArea(resultText, text, caseSensitive, wrap);
-		}
-		else if (resultPanel.getSelectedIndex() == SYSTEM_LOG_TAB)
-		{
-			findTextInTextArea(logText, text, caseSensitive, wrap);
-		}
-		else if (resultPanel.getSelectedIndex() == RESULT_TABLE_TAB)
-		{
-			findTextInTable(resultTable, text, caseSensitive, wrap);
+			case ResultText:
+				findTextInTextArea(resultText, text, caseSensitive, wrap);
+				break;
+			case SystemLog:
+				findTextInTextArea(logText, text, caseSensitive, wrap);
+				break;
+			case ResultTable:
+				findTextInTable(resultTable, text, caseSensitive, wrap);
+				break;
 		}
 	}
 
@@ -1418,9 +1414,16 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return queryToolBar;
 	}
 
-	public @NotNull JTabbedPane getResultPanel()
+	private @NotNull JTabbedPane getResultPanel()
 	{
 		return resultPanel;
+	}
+
+	public @NotNull Tab getResultPanelSelectedTab()
+	{
+		final int index = getResultPanel().getSelectedIndex();
+		final @NotNull Tab tab = Tab.fromIndex(index);
+		return tab;
 	}
 
 	public ResultTable getResultTable()
@@ -1761,19 +1764,20 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void showFindDialog()
 	{
 		findDialog.setLocationRelativeTo(defaultPane);
-		findDialog.setTitle("Find Text in " + TAB_LABELS[getResultPanel().getSelectedIndex()]);
+		final @NotNull Tab tab = getResultPanelSelectedTab();
+		findDialog.setTitle("Find Text in " + tab.getLabel());
 		findDialog.setVisible(true);
 	}
 
 	public void showLog(final boolean show)
 	{
-		final int location = resultPanel.indexOfTab(SYSTEM_LOG_LABEL);
+		final int location = resultPanel.indexOfTab(Tab.SystemLog.getLabel());
 
 		// If requested to show the log and it's not already
 		// there then add the tab and select it
 		if (show && location < 0)
 		{
-			resultPanel.add(SYSTEM_LOG_LABEL, logTextPanel);
+			resultPanel.add(Tab.SystemLog.getLabel(), logTextPanel);
 			resultPanel.setSelectedIndex(resultPanel.getTabCount() - 1);
 		}
 		// If requested to hide the log and it's
