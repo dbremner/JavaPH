@@ -15,5 +15,5 @@ public enum ResultThreadState
     RS_UNKNOWN,
 
     // Qi error response.
-    RS_ERROR;
+    RS_ERROR
 }
