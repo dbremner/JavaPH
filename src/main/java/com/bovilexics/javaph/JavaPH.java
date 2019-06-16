@@ -1739,18 +1739,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public void setLoadFields(final int load)
-	{
-		final @NotNull Optional<LoadFields> lf = LoadFields.tryFromValue(load);
-
-		if (!lf.isPresent())
-		{
-			log("Invalid load fields value " + load + " specified, using default value " + LoadFields.getDefault().getValue());
-		}
-		final @NotNull LoadFields value = lf.orElse(LoadFields.getDefault());
-		setLoadFields(value);
-	}
-
 	public void setLoadFields(final @NotNull LoadFields value)
 	{
 		loadFields = value;
