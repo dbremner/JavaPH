@@ -340,7 +340,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}	
 
-	final class ContentPanel extends JPanel
+	static final class ContentPanel extends JPanel
 	{	
 		ContentPanel(final @NotNull JPanel queryPanel, final @NotNull JTabbedPane resultPanel)
 		{	
