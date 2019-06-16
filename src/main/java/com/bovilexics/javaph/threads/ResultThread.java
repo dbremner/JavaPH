@@ -740,7 +740,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private void writeQi(final @NotNull String aString) throws IOException
+	private void writeQi(final @NotNull String aString)
 	{
 		try
 		{
