@@ -168,7 +168,8 @@ final class CsvFileChooserPanel extends JPanel
 		add(quotesCheckBox, gbc);
 	}
 
-	private void setSeparator(final ActionEvent ae)
+	@SuppressWarnings("unused")
+    private void setSeparator(final ActionEvent ae)
 	{
 		if (commaRadioButton.isSelected())
 		{
