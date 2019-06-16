@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph;
 
+import com.bovilexics.javaph.ui.Tab;
+
 /**
  * @author Robert Fernandes robert@bovilexics.com
  */
@@ -36,22 +38,22 @@ public enum JavaPHConstants
 	public static final int QUERY_RUNTIME_MIN = 10;
 	public static final int QUERY_RUNTIME_MAX = 180;
 
-	public static final int RESULT_TEXT_TAB  = 0;
-	public static final int RESULT_TABLE_TAB = 1;
-	public static final int SYSTEM_LOG_TAB   = 2;
+	public static final int RESULT_TEXT_TAB  = Tab.ResultText.getIndex();
+	public static final int RESULT_TABLE_TAB = Tab.ResultTable.getIndex();
+	public static final int SYSTEM_LOG_TAB   = Tab.SystemLog.getIndex();
 
-	public static final String RESULT_TEXT_LABEL  = "Text Results";
-	public static final String RESULT_TABLE_LABEL = "Table Results";
-	public static final String SYSTEM_LOG_LABEL   = "System Log";
+	public static final String RESULT_TEXT_LABEL  = Tab.ResultText.getLabel();
+	public static final String RESULT_TABLE_LABEL = Tab.ResultTable.getLabel();
+	public static final String SYSTEM_LOG_LABEL   = Tab.SystemLog.getLabel();
 
 	public static final String[] TAB_LABELS =
 	{
-		RESULT_TEXT_LABEL, RESULT_TABLE_LABEL, SYSTEM_LOG_LABEL
+		Tab.ResultText.getLabel(), Tab.ResultTable.getLabel(), Tab.SystemLog.getLabel()
 	};
 
 	public static final String[] TAB_FILENAMES =
 	{
-		"javaph-result.txt", "javaph-result.csv", "javaph-log.txt"
+		Tab.ResultText.getFilename(), Tab.ResultTable.getFilename(), Tab.SystemLog.getFilename()
 	};
 
 	public static final int FIELD_DEFAULT = 0;
