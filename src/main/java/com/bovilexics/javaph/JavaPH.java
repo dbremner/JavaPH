@@ -1087,8 +1087,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void findText(final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
-		final int index = resultPanel.getSelectedIndex();
-		final @NotNull Tab tab = Tab.fromIndex(index);
+		final @NotNull Tab tab = getResultPanelSelectedTab();
 		switch (tab)
 		{
 			case ResultText:
