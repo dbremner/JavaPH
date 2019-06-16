@@ -20,6 +20,7 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.qi.QiServerManager;
 import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -356,7 +357,7 @@ public final class PropertiesDialog extends JavaPHDialog
 			loadFields = LoadFields.getDefault();
 		}
 
-		final Object selectedItem = defaultServerComboBox.getSelectedItem();
+		final @Nullable Object selectedItem = defaultServerComboBox.getSelectedItem();
 		assert selectedItem != null;
 		parent.setProperty(PROP_DEFAULT_SERVER, selectedItem.toString());
 		parent.setProperty(PROP_DISPLAY_LOG, displayLogCheckBox.isSelected());

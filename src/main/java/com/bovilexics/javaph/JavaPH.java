@@ -1369,7 +1369,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return getLoadFieldsPropertyDefault(defaultProperties, key, defaultValue);
 	}
 
-	private @NotNull LoadFields getLoadFieldsPropertyDefault(final PropertyCollection properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
+	private @NotNull LoadFields getLoadFieldsPropertyDefault(final @NotNull PropertyCollection properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
 	{
 		final int value = properties.getIntProperty(key, defaultValue.getValue());
 		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
@@ -1391,7 +1391,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return logText;
 	}
 
-	private Optional<String> getProperty(final @NotNull String key)
+	private @NotNull Optional<String> getProperty(final @NotNull String key)
 	{
 		return properties.getProperty(key);
 	}
@@ -1715,17 +1715,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		loadFields = value;
 	}
 
-	public void setProperty(final String key, final String value)
+	public void setProperty(final @NotNull String key, final @NotNull String value)
 	{
 		properties.setProperty(key, value);
 	}
 
-	public void setProperty(final String key, final int value)
+	public void setProperty(final @NotNull String key, final int value)
 	{
 		properties.setProperty(key, value);
 	}
 
-	public void setProperty(final String key, final boolean value)
+	public void setProperty(final @NotNull String key, final boolean value)
 	{
 		properties.setProperty(key, value);
 	}

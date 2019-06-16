@@ -591,8 +591,9 @@ public class ResultThread extends Thread
 				boolean found = false;
 				for (int k = 0; k < headers.length && !found; k++)
 				{
-					assert headers[k] != null;
-					if (headers[k].equals(field))
+					final @Nullable Object value = headers[k];
+					assert value != null;
+					if (value.equals(field))
 					{
 						xCoordinate = k;
 						found = true;
@@ -725,7 +726,7 @@ public class ResultThread extends Thread
 		return connection.readQI();
 	}
 
-	private void showStatus(final String status)
+	private void showStatus(final @NotNull String status)
 	{
 		if (parent != null)
 		{

@@ -4,10 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 public final class OutLogger implements Logger
 {
-    public static final Logger instance = new OutLogger();
+    public static final @NotNull Logger instance = new OutLogger();
 
     @Override
-    public void printStackTrace(final Exception exception)
+    public void printStackTrace(final @NotNull Exception exception)
     {
         exception.printStackTrace(System.out);
     }
