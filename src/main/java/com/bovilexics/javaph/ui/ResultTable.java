@@ -19,13 +19,13 @@ package com.bovilexics.javaph.ui;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import java.awt.Component;
+import java.util.Optional;
 
 /**
  *
@@ -47,11 +47,8 @@ public final class ResultTable extends JTable
 
 	private @NotNull TableCellRenderer getRenderer(final @NotNull TableColumn column)
 	{
-		final @Nullable TableCellRenderer renderer = column.getHeaderRenderer();
-
-		if (renderer == null) {
-			return getDefaultRenderer(column.getClass());
-		}
+		final @NotNull Optional<TableCellRenderer> optional = Optional.ofNullable(column.getHeaderRenderer());
+		final @NotNull TableCellRenderer renderer = optional.orElse(getDefaultRenderer(column.getClass()));
 		return renderer;
 	}
 

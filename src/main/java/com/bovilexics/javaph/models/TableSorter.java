@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import java.util.Optional;
 
 /**
  *
@@ -51,11 +52,11 @@ public class TableSorter implements TableModel, TableModelListener
 	
 	private int compare(final int i, final int j, final int col)
 	{
-		final @Nullable Object io = realModel.getValueAt(i, col);
-		final @Nullable Object jo = realModel.getValueAt(j, col);
+		final @NotNull Optional<Object> ioOpt = Optional.ofNullable(realModel.getValueAt(i, col));
+		final @NotNull Optional<Object> joOpt = Optional.ofNullable(realModel.getValueAt(j, col));
 
-		final @NotNull String left = (io == null) ? "" : io.toString();
-		final @NotNull String right  = (jo == null) ? "" : jo.toString();
+		final @NotNull String left = ioOpt.orElse("").toString();
+		final @NotNull String right  = joOpt.orElse("").toString();
 		
 		final int c = left.compareTo(right);
 		

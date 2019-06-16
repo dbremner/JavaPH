@@ -105,7 +105,7 @@ public class ResultThread extends Thread
 	public ResultThread(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
-		connect(parent.getCommand(), parent.getConnection());
+		connect(parent.getCommand(), parent.getConnection().get());
 	}
 
 	private ResultThread(final @Nullable JavaPH javaph, final String command, final @NotNull Connection connection)

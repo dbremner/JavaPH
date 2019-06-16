@@ -1349,9 +1349,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return defaultPane;
 	}
 
-	public @Nullable Connection getConnection()
+	public @NotNull Optional<Connection> getConnection()
 	{
-		return connection;
+		return Optional.ofNullable(connection);
 	}
 
 	public @NotNull String getFieldSeparator()
@@ -1390,14 +1390,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		try
 		{
-			final @Nullable String stringValue = props.getProperty(key);
-
-			if (stringValue == null)
-			{
-				return defaultValue;
-			}
-
-			return Integer.parseInt(stringValue);
+			final @NotNull Optional<String> stringValue = Optional.ofNullable(props.getProperty(key));
+			return stringValue.map(Integer::parseInt).orElse(defaultValue);
 		}
 		catch (final @NotNull NumberFormatException e)
 		{
@@ -1427,8 +1421,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private Optional<String> getPropertyOptional(final @NotNull String key)
 	{
-		@Nullable String value = properties.getProperty(key);
-		return Optional.ofNullable(value);
+		return Optional.ofNullable(properties.getProperty(key));
 	}
 
 	private @NotNull String getProperty(final @NotNull String key, final @NotNull String defaultValue)
