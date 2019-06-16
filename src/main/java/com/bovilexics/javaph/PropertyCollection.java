@@ -8,8 +8,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.io.Reader;
-import java.io.Writer;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
@@ -48,11 +46,6 @@ public final class PropertyCollection
         properties.setProperty(key, value);
     }
 
-    public void load(final @NotNull Reader reader) throws IOException
-    {
-        properties.load(reader);
-    }
-
     public void load(final @NotNull InputStream inStream) throws IOException
     {
         properties.load(inStream);
@@ -61,11 +54,6 @@ public final class PropertyCollection
     public void save(final @NotNull OutputStream out, final @NotNull String comments)
     {
         properties.save(out, comments);
-    }
-
-    public void store(final @NotNull Writer writer, final @NotNull String comments) throws IOException
-    {
-        properties.store(writer, comments);
     }
 
     public void store(final @NotNull OutputStream out, final @NotNull String comments) throws IOException
