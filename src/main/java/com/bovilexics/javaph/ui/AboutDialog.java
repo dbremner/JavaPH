@@ -28,6 +28,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_AUTHOR;
 import static com.bovilexics.javaph.JavaPHConstants.INFO_CONTACT;
@@ -81,7 +82,7 @@ public final class AboutDialog extends JavaPHDialog
 
 		final @NotNull JPanel infoPanel = new JPanel();
 		
-		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull LayoutManager gbl = new GridBagLayout();
 		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		infoPanel.setLayout(gbl);

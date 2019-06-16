@@ -37,6 +37,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
@@ -211,7 +212,7 @@ public final class PropertiesDialog extends JavaPHDialog
 
 		final @NotNull JPanel loadFieldsPanel = new JPanel();
 		
-		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull LayoutManager gbl = new GridBagLayout();
 		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		loadFieldsPanel.setLayout(gbl);
@@ -261,7 +262,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		final @NotNull JPanel startupPanel = new JPanel();
 		startupPanel.setBorder(BorderFactory.createTitledBorder(" Startup Options "));
 
-		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull LayoutManager gbl = new GridBagLayout();
 		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		startupPanel.setLayout(gbl);

@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -111,7 +112,7 @@ final class CsvFileChooserPanel extends JPanel
 		quotesCheckBox.setSelected(parent.isFieldQuoted());
 		quotesCheckBox.setToolTipText("Add leading and trailing quotes to all table values");
 
-		final @NotNull GridBagLayout gbl = new GridBagLayout();
+		final @NotNull LayoutManager gbl = new GridBagLayout();
 		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
 		
 		setLayout(gbl);
