@@ -28,18 +28,6 @@ public enum LoadFields
         return Selected;
     }
 
-    public static @NotNull LoadFields fromValue(final int value)
-    {
-        for(final @NotNull LoadFields loadFields : values())
-        {
-            if (loadFields.getValue() == value)
-            {
-                return loadFields;
-            }
-        }
-        throw new AssertionError(new String[]{"argument is out of range"});
-    }
-
     public static @NotNull Optional<LoadFields> tryFromValue(final int value)
     {
         for(final @NotNull LoadFields loadFields : values())
