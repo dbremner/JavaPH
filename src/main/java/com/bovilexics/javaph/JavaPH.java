@@ -1425,6 +1425,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return properties.getProperty(key);
 	}
 
+	private Optional<String> getPropertyOptional(final @NotNull String key)
+	{
+		@Nullable String value = properties.getProperty(key);
+		return Optional.ofNullable(value);
+	}
+
 	private @NotNull String getProperty(final @NotNull String key, final @NotNull String defaultValue)
 	{
 		return properties.getProperty(key, defaultValue);
@@ -1435,7 +1441,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return defaultProperties.getProperty(key);
 	}
 
-	private @NotNull String getPropertyDefault(final @NotNull String key, final @NotNull String defaultValue)
+	public @NotNull String getPropertyDefault(final @NotNull String key, final @NotNull String defaultValue)
 	{
 		return defaultProperties.getProperty(key, defaultValue);
 	}
@@ -1657,16 +1663,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private void restoreDefaultLookAndFeel(final @NotNull Component component)
 	{
-		final @Nullable String value = getProperty(PROP_DEFAULT_LNF);
-		final @NotNull String lookAndFeel;
-		if (value == null)
+		final @NotNull Optional<String> value = getPropertyOptional(PROP_DEFAULT_LNF);
+		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
+		if (!value.isPresent())
 		{
-			lookAndFeel = UIManager.getSystemLookAndFeelClassName();
 			logger.println("No look and feel specified, using system default (" + lookAndFeel + ")");
-		}
-		else
-		{
-			lookAndFeel = value;
 		}
 
 		restoreLookAndFeel(lookAndFeel, component);

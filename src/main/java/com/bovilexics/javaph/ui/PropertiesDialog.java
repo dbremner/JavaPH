@@ -314,7 +314,8 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsSelected.setSelected(lf == LoadFields.Selected);
 		loadFieldsStartup.setSelected(lf == LoadFields.Startup);
 
-		runtimeSlider.setValue(Integer.parseInt(parent.getPropertyDefault(PROP_QUERY_RUNTIME)));
+		final @NotNull String queryRuntimeValue = parent.getPropertyDefault(PROP_QUERY_RUNTIME, String.valueOf(QUERY_RUNTIME_MIN));
+		runtimeSlider.setValue(Integer.parseInt(queryRuntimeValue));
 	}
 
 	private void refreshProperties()
