@@ -49,7 +49,6 @@ public class QiConnection implements Connection
 	private String alias;
 	private @NotNull String host;
 	
-	private Line qiQiLine;
 	private final @NotNull Server qiServer;
 	private Socket socket;
 	private @Nullable Thread locker;
@@ -214,11 +213,10 @@ public class QiConnection implements Connection
 			// Read server's response.
 			// Expecting: "301:"B`":X8Z;9)!CH0/"H\^GQWD-P7TEAD3".G['%W20:"
 			@NotNull String blurb = "";
-			@NotNull String buffer;
 			while (true)
 			{
-				buffer = readQI();
-				qiQiLine = new QiLine(buffer);
+				final @NotNull String buffer = readQI();
+				final @NotNull Line qiQiLine = new QiLine(buffer);
 				
 				if (qiQiLine.getCode() == QiAPI.LR_LOGIN) {
 					break;
@@ -234,33 +232,37 @@ public class QiConnection implements Connection
 				OutLogger.instance.println("Error on Qi login: " + blurb);
 			}
 
-			blurb = "";
-			
 			// Send password.
 			writeQI(QiCommand.CLEAR + " " + aPassword + "\n");
 
 			// Read server's response.
 			// Expecting: "200:myname:Hi how are you?"
+			@NotNull String blurb2 = "";
 			while (true)
 			{
-				buffer = readQI();
-				qiQiLine = new QiLine(buffer);
+				final @NotNull String buffer = readQI();
+				final @NotNull Line qiQiLine = new QiLine(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb.isEmpty()) {
-						OutLogger.instance.println("Error on Qi login: " + blurb);
+					if (!blurb2.isEmpty())
+					{
+						OutLogger.instance.println("Error on Qi login: " + blurb2);
 					}
 						
 					authenticated = true;
 					break;
 				}
-				else if (qiQiLine.getCode() < QiAPI.LR_OK) {
-					blurb += qiQiLine.getResponse() + " ";
-				} else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
+				else if (qiQiLine.getCode() < QiAPI.LR_OK)
+				{
+					blurb2 += qiQiLine.getResponse() + " ";
+				}
+				else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
 				{
 					throw new QiProtocolException(qiQiLine.getResponse());
-				} else {
+				}
+				else
+				{
 					throw new QiProtocolException(qiQiLine.getResponse());
 				}
 			}
@@ -298,7 +300,7 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @NotNull String buffer = readQI();
-				qiQiLine = new QiLine(buffer);
+				final @NotNull Line qiQiLine = new QiLine(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
