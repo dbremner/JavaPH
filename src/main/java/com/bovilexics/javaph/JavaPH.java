@@ -1361,12 +1361,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private int getIntProperty(final @NotNull String key, final int defaultValue)
 	{
-		return getIntProperty(properties, key, defaultValue);
-	}
-
-	private @NotNull LoadFields getLoadFieldsProperty(final @NotNull String key, final @NotNull LoadFields defaultValue)
-	{
-		return getLoadFieldsPropertyDefault(properties, key, defaultValue);
+		return properties.getIntProperty(key, defaultValue);
 	}
 
 	public @NotNull LoadFields getIntPropertyDefault(final @NotNull String key, final @NotNull LoadFields defaultValue)
@@ -1376,7 +1371,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private @NotNull LoadFields getLoadFieldsPropertyDefault(final PropertyCollection properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
 	{
-		final int value = getIntProperty(properties, key, defaultValue.getValue());
+		final int value = properties.getIntProperty(key, defaultValue.getValue());
 		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
 		return fields;
 	}
@@ -1503,13 +1498,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private void initProperties()
 	{
-		// First load default properties - prints exception and exits if not found 
+		// First load default properties - prints exception and exits if not found
 		loadDefaultProperties();
-		
+
 		// Next load custom properties, overrides defaults - ignores if not found
 		loadProperties();
 
-		setLoadFields(getLoadFieldsProperty(PROP_LOAD_FIELDS, LoadFields.getDefault()));
+		setLoadFields(getLoadFieldsPropertyDefault(properties, PROP_LOAD_FIELDS, LoadFields.getDefault()));
 		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
 		setSavePosition(propertyEquals(PROP_SAVE_POSITION, "true", "true"));
 	}
