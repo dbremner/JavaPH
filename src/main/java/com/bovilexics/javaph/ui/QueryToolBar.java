@@ -42,9 +42,9 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
  */
 public final class QueryToolBar extends JToolBar
 {
-	private final int sepHeight = 26;
+	private static final int sepHeight = 26;
 
-	private final int sepWidth = 13;
+	private static final int sepWidth = 13;
 
 	private final @NotNull Dimension separatorDimensions = new Dimension(sepWidth, sepHeight);
 
