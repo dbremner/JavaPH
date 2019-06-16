@@ -74,8 +74,6 @@ public final class FindDialog extends JavaPHDialog
 			{
 				final @Nullable Object selectedItem = findComboBox.getEditor().getItem();
 				final @NotNull DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
-				// FindComboBoxModel model = (FindComboBoxModel)findComboBox.getModel();
-
 				if (selectedItem != null && !selectedItem.toString().isEmpty())
 				{
 					if ( model.getIndexOf(selectedItem) < 0) {
@@ -143,7 +141,7 @@ public final class FindDialog extends JavaPHDialog
 			}
 		});
 */
-		findComboBox = new FindComboBox(true);
+		findComboBox = new FindComboBox();
 		findComboBox.setEditable(true);
 		findComboBox.setEditor(findComboBoxEditor);
 		findComboBox.setPreferredSize(new Dimension(200, 0));
