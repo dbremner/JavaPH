@@ -119,8 +119,6 @@ import static com.bovilexics.javaph.JavaPHConstants.FIELD_ALL;
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_CUSTOM;
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_DEFAULT;
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_LABEL_PREFIX;
-import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_DEF;
-import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_MANUAL;
 import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_SELECTED;
 import static com.bovilexics.javaph.JavaPHConstants.LOAD_FIELDS_STARTUP;
 import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_PREFIX;
@@ -1368,6 +1366,20 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return getIntProperty(properties, key, defaultValue);
 	}
 
+	private @NotNull LoadFields getIntProperty(final @NotNull String key, final @NotNull LoadFields defaultValue)
+	{
+		final int value = getIntProperty(properties, key, defaultValue.getValue());
+		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
+		return fields;
+	}
+
+	public LoadFields getIntPropertyDefault(final @NotNull String key, final @NotNull LoadFields defaultValue)
+	{
+		final int value = getIntProperty(defaultProperties, key, defaultValue.getValue());
+		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
+		return fields;
+	}
+
 	public int getIntPropertyDefault(final @NotNull String key, final int defaultValue)
 	{
 		return getIntProperty(defaultProperties, key, defaultValue);
@@ -1520,7 +1532,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// Next load custom properties, overrides defaults - ignores if not found
 		loadProperties();
 
-		setLoadFields(getIntProperty(PROP_LOAD_FIELDS, LOAD_FIELDS_DEF));
+		setLoadFields(getIntProperty(PROP_LOAD_FIELDS, LoadFields.getDefault()));
 		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
 		setSavePosition(propertyEquals(PROP_SAVE_POSITION, "true", "true"));
 	}
@@ -1735,15 +1747,23 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		final @NotNull Optional<LoadFields> lf = LoadFields.tryFromValue(load);
 
+		final  @NotNull LoadFields value;
+
 		if (!lf.isPresent())
 		{
 			log("Invalid load fields value " + load + " specified, using default value " + LoadFields.getDefault().getValue());
-			loadFields = LoadFields.getDefault().getValue();
+			value = LoadFields.getDefault();
 		}
 		else
 		{
-			loadFields = lf.get().getValue();
+			value = lf.get();
 		}
+		setLoadFields(value);
+	}
+
+	public void setLoadFields(final @NotNull LoadFields value)
+	{
+		loadFields = value.getValue();
 	}
 
 	public void setProperty(final String key, final String value)
