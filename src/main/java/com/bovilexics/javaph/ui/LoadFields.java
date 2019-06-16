@@ -51,4 +51,11 @@ public enum LoadFields
         }
         return Optional.empty();
     }
+
+    public static @NotNull LoadFields fromOrDefault(final int value)
+    {
+        final @NotNull Optional<LoadFields> maybe = tryFromValue(value);
+        final @NotNull LoadFields result = maybe.orElse(getDefault());
+        return result;
+    }
 }
