@@ -16,6 +16,8 @@
  */
 package com.bovilexics.javaph;
 
+import com.bovilexics.javaph.ui.LoadFields;
+
 /**
  * @author Robert Fernandes robert@bovilexics.com
  */
@@ -40,10 +42,10 @@ public enum JavaPHConstants
 	public static final int FIELD_ALL     = 1;
 	public static final int FIELD_CUSTOM  = 2;
 	
-	public static final int LOAD_FIELDS_DEF      = 1;
-	public static final int LOAD_FIELDS_MANUAL   = 0;
-	public static final int LOAD_FIELDS_SELECTED = 1;
-	public static final int LOAD_FIELDS_STARTUP  = 2;
+	public static final int LOAD_FIELDS_DEF      = LoadFields.getDefault().getValue();
+	public static final int LOAD_FIELDS_MANUAL   = LoadFields.Manual.getValue();
+	public static final int LOAD_FIELDS_SELECTED = LoadFields.Selected.getValue();
+	public static final int LOAD_FIELDS_STARTUP  = LoadFields.Startup.getValue();
 	
 	public static final String FIELD_LABEL_PREFIX  = " Return : ";
 	public static final String PORT_LABEL_PREFIX   = " Port : ";

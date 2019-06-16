@@ -36,6 +36,7 @@ import com.bovilexics.javaph.ui.CustomButtonGroup;
 import com.bovilexics.javaph.ui.FindDialog;
 import com.bovilexics.javaph.ui.IconProvider;
 import com.bovilexics.javaph.ui.ListDataAdapter;
+import com.bovilexics.javaph.ui.LoadFields;
 import com.bovilexics.javaph.ui.MainMenu;
 import com.bovilexics.javaph.ui.PropertiesDialog;
 import com.bovilexics.javaph.ui.QueryComboBox;
@@ -103,6 +104,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -1684,15 +1686,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void setLoadFields(final int load)
 	{
-		if (load != LOAD_FIELDS_MANUAL && load != LOAD_FIELDS_SELECTED && load != LOAD_FIELDS_STARTUP)
+		final @NotNull Optional<LoadFields> lf = LoadFields.tryFromValue(load);
+
+		if (!lf.isPresent())
 		{
-			log("Invalid load fields value " + load + " specified, using default value " + LOAD_FIELDS_DEF);
-			loadFields = LOAD_FIELDS_DEF;
+			log("Invalid load fields value " + load + " specified, using default value " + LoadFields.getDefault().getValue());
+			loadFields = LoadFields.getDefault().getValue();
 		}
 		else
 		{
-			loadFields = load;
-		}	
+			loadFields = lf.get().getValue();
+		}
 	}
 
 	public void setProperty(final String key, final String value)
