@@ -378,10 +378,10 @@ public final class PropertiesDialog extends JavaPHDialog
 	}
 
 	@Override
-	public void show()
+	public void setVisible(final boolean b)
 	{
 		refreshProperties();
-		super.show();
+		super.setVisible(b);
 	}
 }
 

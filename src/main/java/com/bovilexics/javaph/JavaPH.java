@@ -1789,7 +1789,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void showPropertiesDialog()
 	{
 		propertiesDialog.setLocationRelativeTo(defaultPane);
-		propertiesDialog.show();
+		propertiesDialog.setVisible(true);
 	}
 
 	private void showSplashWindow()
