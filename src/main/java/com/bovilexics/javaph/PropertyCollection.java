@@ -26,16 +26,19 @@ public final class PropertyCollection
         return properties.isEmpty();
     }
 
+    @Override
     public String toString()
     {
         return properties.toString();
     }
 
+    @Override
     public boolean equals(final Object o)
     {
         return properties.equals(o);
     }
 
+    @Override
     public int hashCode()
     {
         return properties.hashCode();
