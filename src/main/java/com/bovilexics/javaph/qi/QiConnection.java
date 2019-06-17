@@ -75,11 +75,11 @@ public class QiConnection implements Connection
 	 * @param aHost to connect to
 	 * @param aPort to connect to.
 	 */
-	public QiConnection(final FieldFactory factory, final @NotNull String aHost, final int aPort)
+	public QiConnection(final ServerFactory factory, final @NotNull String aHost, final int aPort)
 	{
 		host = aHost;
 		port = aPort;
-		qiServer = new QiServer(factory, "unspecified", aHost, aPort);
+		qiServer = factory.create("unspecified", aHost, aPort);
 	}
 
 	@Override

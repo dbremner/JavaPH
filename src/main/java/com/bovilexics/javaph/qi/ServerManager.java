@@ -15,6 +15,8 @@ public interface ServerManager
 
     @NotNull FieldFactory getFieldFactory();
 
+    @NotNull ServerFactory getServerFactory();
+
     void loadAllServers(@NotNull String filename);
 
     void loadAllServers();

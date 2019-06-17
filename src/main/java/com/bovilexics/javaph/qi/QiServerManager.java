@@ -85,6 +85,12 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
+    public @NotNull ServerFactory getServerFactory()
+    {
+        return serverFactory;
+    }
+
+    @Override
     public void loadAllServers(final @NotNull String filename)
     {
         servers.clear();
