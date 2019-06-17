@@ -19,7 +19,6 @@ package com.bovilexics.javaph.threads;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.models.ResultTableModel;
-import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -106,7 +105,7 @@ public class QueryThread extends Thread
 			assert resultThread != null;
 			parent.getResultText().setText(resultThread.getRawResult());
 
-			final @NotNull ResultTableModel resultModel = (ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel();
+			final @NotNull ResultTableModel resultModel = parent.getResultTable().getModel().getModel();
 			resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
 			parent.getResultTable().resetColumnWidths();
 		});

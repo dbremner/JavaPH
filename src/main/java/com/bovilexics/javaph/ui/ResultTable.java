@@ -96,4 +96,10 @@ public final class ResultTable extends JTable
 			column.setMaxWidth(width);
 		}
 	}
+
+	@Override
+	public TableSorter getModel()
+	{
+		return (TableSorter)super.getModel();
+	}
 }

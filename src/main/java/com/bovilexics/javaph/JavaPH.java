@@ -21,7 +21,6 @@ import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
-import com.bovilexics.javaph.models.TableSorter;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
@@ -811,7 +810,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					final int vc = tcm.getColumnIndexAtX(e.getX());
 					final int mc = resultTable.convertColumnIndexToModel(vc);
 
-					((TableSorter)resultTable.getModel()).sort(mc);
+					resultTable.getModel().sort(mc);
 				}
 			});
 

@@ -31,10 +31,10 @@ import java.util.Optional;
  */
 public class TableSorter implements TableModel, TableModelListener
 {
-	private final @NotNull TableModel realModel;
+	private final @NotNull ResultTableModel realModel;
 	private int[] indexes;
 	
-	public TableSorter(final @NotNull TableModel model)
+	public TableSorter(final @NotNull ResultTableModel model)
 	{
 		realModel = model;
 		realModel.addTableModelListener(this);
@@ -63,7 +63,7 @@ public class TableSorter implements TableModel, TableModelListener
 		return Integer.compare(c, 0);
 	}
 	
-	public @Nullable TableModel getModel()
+	public @Nullable ResultTableModel getModel()
 	{
 		return realModel;
 	}

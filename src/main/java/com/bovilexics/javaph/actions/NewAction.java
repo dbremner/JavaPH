@@ -17,8 +17,6 @@
 package com.bovilexics.javaph.actions;
 
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.models.ResultTableModel;
-import com.bovilexics.javaph.models.TableSorter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -47,7 +45,7 @@ public final class NewAction extends AbstractAction
 	{
 		// Clear the results
 		parent.getResultText().setText("");
-		((ResultTableModel)((TableSorter)parent.getResultTable().getModel()).getModel()).resetModel();
+		parent.getResultTable().getModel().getModel().resetModel();
 		
 		// Clear the previous query
 		parent.setCommandComboBoxSelectedIndex(QUERY_COMMAND);
