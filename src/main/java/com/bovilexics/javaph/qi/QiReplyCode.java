@@ -71,7 +71,7 @@ public enum QiReplyCode
 
     private final int value;
 
-    QiReplyCode(int value)
+    QiReplyCode(final int value)
     {
         this.value = value;
     }
