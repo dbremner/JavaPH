@@ -41,7 +41,7 @@ public final class ResultTable extends JTable
 		super(new ResultTableModel());
 		
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		final @NotNull ResultTableModel model = (ResultTableModel)super.getModel();
+		final @NotNull ResultTableModel model = (ResultTableModel)getModel();
 		setModel(new TableSorter(model));
 	}
 
