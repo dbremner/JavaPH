@@ -29,13 +29,12 @@ public final class QueryComboBox extends JComboBox
 {
 	public QueryComboBox()
 	{
-		super();
-		setModel(new QueryComboBoxModel());
+		super(new QueryComboBoxModel());
 	}
 
 	@Override
 	public QueryComboBoxModel getModel()
 	{
-		return (QueryComboBoxModel)super.getModel();
+		return (QueryComboBoxModel)dataModel;
 	}
 }
