@@ -1,5 +1,8 @@
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.NotNull;
+import sun.jvm.hotspot.utilities.AssertionFailure;
+
 public enum QiReplyCode
 {
     /*
@@ -76,5 +79,80 @@ public enum QiReplyCode
     public int getValue()
     {
         return value;
+    }
+
+    public static @NotNull QiReplyCode fromInt(final int value)
+    {
+        for(final @NotNull QiReplyCode replyCode : values())
+        {
+            if (replyCode.getValue() == value)
+            {
+                return replyCode;
+            }
+        }
+        throw new AssertionFailure("unreachable");
+    }
+
+    public @NotNull QiReplyCodeType getReplyCodeType()
+    {
+        switch (this)
+        {
+            case LR_PROGRESS:
+            case LR_ECHO:
+            case LR_NUMRET:
+            case LR_NONAME:
+                return QiReplyCodeType.Status;
+            case LR_OK:
+            case LR_RONLY:
+                return QiReplyCodeType.Information;
+            case LR_MORE:
+            case LR_LOGIN:
+            case LR_XLOGIN:
+                return QiReplyCodeType.AdditionalInformationOrAction;
+            case LR_TEMP:
+            case LR_INTERNAL:
+            case LR_LOCK:
+            case LR_COULDA:
+            case LR_DOWN:
+                return QiReplyCodeType.TemporaryError;
+            case LR_ERROR:
+            case LR_TOOMANY:
+            case LR_NOMATCH:
+            case LR_AINFO:
+            case LR_NOTLOG:
+            case LR_ACHANGE:
+            case LR_ASEARCH:
+            case LR_FIELD:
+            case LR_ABSENT:
+            case LR_ALIAS:
+            case LR_AENTRY:
+            case LR_ADD:
+            case LR_VALUE:
+            case LR_OPTION:
+            case LR_UNKNOWN:
+            case LR_NOKEY:
+            case LR_AUTH:
+            case LR_READONLY:
+            case LR_XCPU:
+            case LR_HISTORY:
+            case LR_ADDONLY:
+            case LR_LIMIT:
+            case LR_MISMATCH:
+            case LR_NOADDR:
+            case LR_NOEMAIL:
+            case LR_BADHELP:
+            case LR_NOANSWER:
+            case LR_ISCRYPT:
+            case LR_KDB5:
+            case LR_NOAUTH:
+            case LR_OFFCAMPUS:
+            case LR_NOCMD:
+            case LR_SYNTAX:
+                return QiReplyCodeType.PermanentError;
+            case LR_AMBIGUOUS:
+                return QiReplyCodeType.PhQueryCode;
+            default:
+                throw new AssertionFailure("unreachable");
+        }
     }
 }
