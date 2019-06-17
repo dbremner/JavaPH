@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Optional;
 
+@SuppressWarnings("RedundantThrows")
 public interface PropertyCollection
 {
     int size();
