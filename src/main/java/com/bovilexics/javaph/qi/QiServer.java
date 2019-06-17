@@ -37,8 +37,6 @@ public class QiServer implements Server
 
 	private static final int QUERY_RUNTIME = 10;
 
-	private static final String PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535";
-
 	private final @NotNull String name;
 	private final @NotNull String server;
 	private final @NotNull Integer port;
