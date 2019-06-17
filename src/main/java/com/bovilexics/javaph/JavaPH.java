@@ -37,6 +37,7 @@ import com.bovilexics.javaph.ui.IconProvider;
 import com.bovilexics.javaph.ui.ListDataAdapter;
 import com.bovilexics.javaph.ui.LoadFields;
 import com.bovilexics.javaph.ui.MainMenu;
+import com.bovilexics.javaph.ui.MouseEnterExitListener;
 import com.bovilexics.javaph.ui.PropertiesDialog;
 import com.bovilexics.javaph.ui.QueryComboBox;
 import com.bovilexics.javaph.ui.QueryToolBar;
@@ -497,20 +498,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldCustomButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldCustomButton.setFocusable(false);
 			fieldCustomButton.setToolTipText("Choose the fields that queries will return");
-			fieldCustomButton.addMouseListener(new MouseAdapter()
-			{
-				@Override
-				public void mouseEntered(final MouseEvent e)
-				{
-					fieldCustomButton.setIcon(fieldCustomOn);
-				}
-
-				@Override
-				public void mouseExited(final MouseEvent e)
-				{
-					fieldCustomButton.setIcon(fieldCustomOff);
-				}
-			});
+			fieldCustomButton.addMouseListener(new MouseEnterExitListener(fieldCustomButton, fieldCustomOn, fieldCustomOff));
 			fieldCustomButton.addActionListener(ae ->
 			{
 				final @NotNull int[] prevSelections = fieldList.getSelectedIndices();
@@ -529,20 +517,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldLoadButton = new JButton(fieldLoadOff);
 			fieldLoadButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldLoadButton.setFocusable(false);
-			fieldLoadButton.addMouseListener(new MouseAdapter()
-			{
-				@Override
-				public void mouseEntered(final MouseEvent e)
-				{
-					fieldLoadButton.setIcon(fieldLoadOn);
-				}
-
-				@Override
-				public void mouseExited(final MouseEvent e)
-				{
-					fieldLoadButton.setIcon(fieldLoadOff);
-				}
-			});
+			fieldLoadButton.addMouseListener(new MouseEnterExitListener(fieldLoadButton, fieldLoadOn, fieldLoadOff));
 			fieldLoadButton.addActionListener(ae ->
 			{
 				final @Nullable Server server = getServer();
