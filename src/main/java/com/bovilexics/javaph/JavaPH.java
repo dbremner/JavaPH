@@ -571,7 +571,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull String portText = portInt.toString();
 				portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
 
-				connection = new QiConnection(serverText, portInt);
+				connection = new QiConnection(serverManager.getFieldFactory(), serverText, portInt);
 
 				if (getLoadFields() == LoadFields.Selected && !(server.getFieldState() == QiFieldState.FIELD_LOAD_ERROR) && !(server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE))
 				{

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.StringTokenizer;
 
-class QiFieldFactory implements FieldFactory
+public class QiFieldFactory implements FieldFactory
 {
     @Override
     @Contract(pure = true)

@@ -15,6 +15,12 @@ import java.util.List;
 public final class QiServerFileReader
 {
     private static final String SEPARATOR = "::";
+    private FieldFactory factory = null;
+
+    public QiServerFileReader(final @NotNull FieldFactory factory)
+    {
+        this.factory = factory;
+    }
 
     public @NotNull List<Server> readServers(final @NotNull String fileName) throws FileNotFoundException, IOException
     {
@@ -38,7 +44,7 @@ public final class QiServerFileReader
             }
             else
                 {
-                final @NotNull Server server = new QiServer(items[0], items[1], items[2]);
+                final @NotNull Server server = new QiServer(factory, items[0], items[1], items[2]);
                 results.add(server);
             }
         }

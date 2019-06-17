@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class QiServer implements Server
 {
-	private static final @NotNull FieldFactory factory = new QiFieldFactory();
+	private final @NotNull FieldFactory factory;
 
 	private static final int QUERY_RUNTIME = 10;
 
@@ -47,7 +47,7 @@ public class QiServer implements Server
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
-	public QiServer(final @NotNull String name, final @NotNull String server, final int port)
+	public QiServer(final @NotNull FieldFactory factory, final @NotNull String name, final @NotNull String server, final int port)
 	{
 		if (!QiServer.isValidPort(port)) {
 			throw new IllegalArgumentException(PORT_ERROR);
@@ -56,11 +56,12 @@ public class QiServer implements Server
 		this.name = name;
 		this.server = server;
 		this.port = port;
+		this.factory = factory;
 	}
 
-	public QiServer(final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
+	public QiServer(final @NotNull FieldFactory factory, final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
 	{
-		this(aName, aServer, QiServer.convertToPort(aPort));
+		this(factory, aName, aServer, QiServer.convertToPort(aPort));
 	}
 
 	private static int convertToPort(final @NotNull String aPort)
