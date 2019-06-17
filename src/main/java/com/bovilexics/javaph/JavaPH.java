@@ -210,6 +210,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull JTabbedPane resultPanel;
 	private final JTextArea logText = new JTextArea();
 	private final JTextArea resultText = new JTextArea();
+	private final @NotNull IconProvider iconProvider;
 
 	@Override
 	public void windowOpened(final WindowEvent e)
@@ -1002,8 +1003,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH(final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
+	public JavaPH(final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
 	{
+		this.iconProvider = iconProvider;
 		this.serverManager = serverManager;
 		this.defaultProperties = defaultProperties;
 		this.properties = properties;
@@ -1454,19 +1456,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	@Override
 	public @NotNull String getURL(final @NotNull String location)
 	{
-		return location;
-		/*
-		TODO fix this
-		@NotNull final URL url = (new File(location)).toURI().toURL();
-		return url;
-		*/
+		return iconProvider.getURL(location);
 	}
 
 	@Override
 	public @NotNull ImageIcon getImageIcon(final @NotNull String location)
 	{
-		final @NotNull ImageIcon icon = new ImageIcon((location));
-		return icon;
+		return iconProvider.getImageIcon(location);
 	}
 
 	@Override
