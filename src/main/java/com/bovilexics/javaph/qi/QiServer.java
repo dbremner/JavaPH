@@ -20,7 +20,6 @@ import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -49,37 +48,10 @@ public class QiServer implements Server
 
 	public QiServer(final @NotNull FieldFactory factory, final @NotNull String name, final @NotNull String server, final int port)
 	{
-		if (!QiServer.isValidPort(port)) {
-			throw new IllegalArgumentException(PORT_ERROR);
-		}
-
 		this.name = name;
 		this.server = server;
 		this.port = port;
 		this.factory = factory;
-	}
-
-	public QiServer(final @NotNull FieldFactory factory, final @NotNull String aName, final @NotNull String aServer, final @NotNull String aPort)
-	{
-		this(factory, aName, aServer, QiServer.convertToPort(aPort));
-	}
-
-	private static int convertToPort(final @NotNull String aPort)
-	{
-		try
-		{
-			final int aPortInteger = Integer.parseInt(aPort);
-
-			if (!isValidPort(aPortInteger))
-			{
-				throw new IllegalArgumentException(PORT_ERROR);
-			}
-			return aPortInteger;
-		}
-		catch (final @NotNull NumberFormatException e)
-		{
-			throw new IllegalArgumentException(PORT_ERROR);
-		}
 	}
 
 	private void convertRecordsToFields(final @NotNull List<List<Line>> records)
@@ -187,12 +159,6 @@ public class QiServer implements Server
 	public @NotNull String getServer()
 	{
 		return server;
-	}
-
-	@Contract(pure = true)
-	private static boolean isValidPort(final int port)
-	{
-		return (port >= 0 && port <= 65535);
 	}
 
 	@Override
