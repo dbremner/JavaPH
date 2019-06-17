@@ -22,11 +22,13 @@ public final class QiServerManager implements ServerManager
     private static final String SERVER_FILE = "javaph.servers";
     private @Nullable Server defaultServer = null;
     private final Vector<Server> servers = new Vector<>();
-    private final @NotNull FieldFactory factory;
+    private final @NotNull FieldFactory fieldFactory;
+    private final @NotNull ServerFactory serverFactory;
 
-    public QiServerManager(final @NotNull FieldFactory factory)
+    public QiServerManager(final @NotNull FieldFactory fieldFactory, final @NotNull ServerFactory serverFactory)
     {
-        this.factory = factory;
+        this.fieldFactory = fieldFactory;
+        this.serverFactory = serverFactory;
     }
 
     @Override
@@ -67,7 +69,7 @@ public final class QiServerManager implements ServerManager
     private @NotNull Server getUndefinedServer()
     {
         final @NotNull String UNDEFINED = "undefined";
-        final @NotNull Server undefined = new QiServer(factory, UNDEFINED, UNDEFINED, "0");
+        final @NotNull Server undefined = serverFactory.create(UNDEFINED, UNDEFINED, "0");
         return undefined;
     }
 
@@ -79,7 +81,7 @@ public final class QiServerManager implements ServerManager
     @Override
     public @NotNull FieldFactory getFieldFactory()
     {
-        return factory;
+        return fieldFactory;
     }
 
     @Override
@@ -108,7 +110,7 @@ public final class QiServerManager implements ServerManager
                 }
                 else
                 {
-                    final @NotNull Server server1 = new QiServer(factory, items[0], items[1], items[2]);
+                    final @NotNull Server server1 = serverFactory.create(items[0], items[1], items[2]);
                     addServer(server1);
                 }
             }
@@ -165,7 +167,7 @@ public final class QiServerManager implements ServerManager
                 }
                 else
                 {
-                    final @NotNull Server server1 = new QiServer(factory, items[0], items[1], items[2]);
+                    final @NotNull Server server1 = serverFactory.create(items[0], items[1], items[2]);
                     serverResults.add(server1);
                 }
             }
