@@ -98,9 +98,8 @@ public final class ResultTable extends JTable
 		}
 	}
 
-	@Override
-	public TableSorter getModel()
+	public @NotNull TableSorter getTableSorter()
 	{
-		return (TableSorter)super.getModel();
+		return (TableSorter)dataModel;
 	}
 }

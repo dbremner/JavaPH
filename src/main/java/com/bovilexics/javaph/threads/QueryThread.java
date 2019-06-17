@@ -105,7 +105,7 @@ public class QueryThread extends Thread
 			assert resultThread != null;
 			parent.getResultText().setText(resultThread.getRawResult());
 
-			final @NotNull ResultTableModel resultModel = parent.getResultTable().getModel().getModel();
+			final @NotNull ResultTableModel resultModel = parent.getResultTable().getTableSorter().getModel();
 			resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
 			parent.getResultTable().resetColumnWidths();
 		});

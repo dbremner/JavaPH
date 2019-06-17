@@ -45,7 +45,7 @@ public final class NewAction extends AbstractAction
 	{
 		// Clear the results
 		parent.getResultText().setText("");
-		parent.getResultTable().getModel().getModel().resetModel();
+		parent.getResultTable().getTableSorter().getModel().resetModel();
 		
 		// Clear the previous query
 		parent.setCommandComboBoxSelectedIndex(QUERY_COMMAND);

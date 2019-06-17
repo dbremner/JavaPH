@@ -785,7 +785,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					final int vc = tcm.getColumnIndexAtX(e.getX());
 					final int mc = resultTable.convertColumnIndexToModel(vc);
 
-					resultTable.getModel().sort(mc);
+					resultTable.getTableSorter().sort(mc);
 				}
 			});
 
