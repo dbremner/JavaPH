@@ -214,7 +214,7 @@ public final class QiServerManager implements ServerManager
     {
         try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE)))
         {
-            writer.write(getFileHeader());
+            writer.write(QiServerManager.getFileHeader());
             writer.flush();
 
             for (int i = 0; i < servers.size(); i++)
