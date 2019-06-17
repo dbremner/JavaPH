@@ -25,7 +25,6 @@ import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
-import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiFieldState;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;

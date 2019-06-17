@@ -18,7 +18,6 @@ package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  *
