@@ -386,7 +386,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				if (queryComboBox.isEnabled())
 				{
 					final Object selectedItem = queryComboBox.getEditor().getItem();
-					final @NotNull QueryComboBoxModel model = (QueryComboBoxModel)queryComboBox.getModel();
+					final @NotNull QueryComboBoxModel model = queryComboBox.getModel();
 
 					if (selectedItem != null && !selectedItem.toString().isEmpty())
 					{
@@ -440,7 +440,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 						final String filter = queryComboBoxEditor.getItem().toString();
 
 						queryComboBox.hidePopup();
-						((QueryComboBoxModel)queryComboBox.getModel()).filterElements(filter);
+						queryComboBox.getModel().filterElements(filter);
 
 						if (queryComboBox.getModel().getSize() > 0)
 						{

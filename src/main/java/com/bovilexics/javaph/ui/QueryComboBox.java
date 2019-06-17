@@ -16,9 +16,9 @@
  */
 package com.bovilexics.javaph.ui;
 
-import javax.swing.JComboBox;
-
 import com.bovilexics.javaph.models.QueryComboBoxModel;
+
+import javax.swing.JComboBox;
 
 /**
  *
@@ -31,5 +31,11 @@ public final class QueryComboBox extends JComboBox
 	{
 		super();
 		setModel(new QueryComboBoxModel());
+	}
+
+	@Override
+	public QueryComboBoxModel getModel()
+	{
+		return (QueryComboBoxModel)super.getModel();
 	}
 }
