@@ -2,7 +2,7 @@ package com.bovilexics.javaph.main
 
 import com.bovilexics.javaph.JavaPH
 import com.bovilexics.javaph.configuration.PropertyCollectionImpl
-import com.bovilexics.javaph.qi.{ConnectionFactory, FieldFactory, QiConnectionFactory, QiFieldFactory, QiServerManager, ServerFactory, ServerFactoryImpl, ServerManager}
+import com.bovilexics.javaph.qi.{ConnectionFactory, ConnectionFactoryImpl, FieldFactory, QiFieldFactory, QiServerManager, ServerFactory, ServerFactoryImpl, ServerManager}
 
 object Main {
 
@@ -11,7 +11,7 @@ object Main {
     val properties = new PropertyCollectionImpl
     val factory : FieldFactory = new QiFieldFactory
     val serverFactory : ServerFactory = new ServerFactoryImpl(factory)
-    val connectionFactory : ConnectionFactory = new QiConnectionFactory(serverFactory)
+    val connectionFactory : ConnectionFactory = new ConnectionFactoryImpl(serverFactory)
     val serverManager: ServerManager = new QiServerManager(connectionFactory, serverFactory)
     val javaPh = new JavaPH(serverManager, defaultProperties, properties)
     javaPh.getQueryComboBox.getEditor.getEditorComponent.requestFocus()
