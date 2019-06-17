@@ -27,8 +27,8 @@ import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiFieldState;
-import com.bovilexics.javaph.qi.QiServerManager;
 import com.bovilexics.javaph.qi.Server;
+import com.bovilexics.javaph.qi.ServerManager;
 import com.bovilexics.javaph.threads.QueryThread;
 import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.ContentPanel;
@@ -177,6 +177,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private CustomButtonGroup fieldRadioGroup;
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
+	private final ServerManager serverManager;
 	private final @NotNull PropertyCollection defaultProperties;
 	private final @NotNull PropertyCollection properties;
 	private final @NotNull PropertiesDialog propertiesDialog;
@@ -580,7 +581,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				populateFieldList(server);
 			});
-			QiServerManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER).get());
+			serverManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER).get());
 
 			queryServerPanel.add(serverComboBox, BorderLayout.CENTER);
 
@@ -1001,8 +1002,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH(final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
+	public JavaPH(final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
 	{
+		this.serverManager = serverManager;
 		this.defaultProperties = defaultProperties;
 		this.properties = properties;
 		commands = QiCommand.commands;
@@ -1067,7 +1069,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		log("JavaPH initialized (Application) Mode)");
 		log("Initializing default server");
 
-		serverComboBox.setSelectedItem(QiServerManager.getDefaultServer());
+		serverComboBox.setSelectedItem(serverManager.getDefaultServer());
 
 		log("Default server initialized");
 
@@ -1362,6 +1364,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return logText;
 	}
 
+	public @NotNull ServerManager getServerManager()
+	{
+		return serverManager;
+	}
+
 	private @NotNull Optional<String> getProperty(final @NotNull String key)
 	{
 		return properties.getProperty(key);
@@ -1482,8 +1489,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private void initServers()
 	{
-		QiServerManager.loadAllServers();
-		servers  = QiServerManager.getServers();
+		serverManager.loadAllServers();
+		servers  = serverManager.getServers();
 	}
 
 	public boolean isFieldQuoted()

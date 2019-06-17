@@ -16,13 +16,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
-public final class QiServerManager {
+public final class QiServerManager implements ServerManager
+{
     private static final String SEPARATOR = "::";
     private static final String SERVER_FILE = "javaph.servers";
-    private static @Nullable Server defaultServer = null;
-    private static final Vector<Server> servers = new Vector<>();
+    private @Nullable Server defaultServer = null;
+    private final Vector<Server> servers = new Vector<>();
 
-    public static void addServer(final @NotNull Server server) {
+    @Override
+    public void addServer(final @NotNull Server server) {
 
         if (servers.isEmpty())
         {
@@ -50,7 +52,8 @@ public final class QiServerManager {
         servers.insertElementAt(server, whereToAdd);
     }
 
-    public static @NotNull Server getDefaultServer()
+    @Override
+    public @NotNull Server getDefaultServer()
     {
         return Optional.ofNullable(defaultServer).orElse(QiServerManager.getUndefinedServer());
     }
@@ -62,11 +65,13 @@ public final class QiServerManager {
         return undefined;
     }
 
-    public static @NotNull Vector<Server> getServers() {
+    @Override
+    public @NotNull Vector<Server> getServers() {
         return servers;
     }
 
-    public static void loadAllServers(final @NotNull String filename)
+    @Override
+    public void loadAllServers(final @NotNull String filename)
     {
         servers.clear();
 
@@ -110,7 +115,8 @@ public final class QiServerManager {
         }
     }
 
-    public static void loadAllServers() {
+    @Override
+    public void loadAllServers() {
         loadAllServers(SERVER_FILE);
         /*
         TODO test this
@@ -122,7 +128,8 @@ public final class QiServerManager {
          */
     }
 
-    public static @NotNull List<Server> loadServers(final @NotNull String filename) {
+    @Override
+    public @NotNull List<Server> loadServers(final @NotNull String filename) {
         final @NotNull List<Server> serverResults = new ArrayList<>();
 
         try(final @NotNull Reader in = new FileReader(filename);
@@ -164,11 +171,26 @@ public final class QiServerManager {
         return serverResults;
     }
 
-    public static void removeServer(final Server server) {
+    @Override
+    public void removeServer(final Server server) {
         servers.remove(server);
     }
 
-    public static void saveServers()
+    private static @NotNull String getFileHeader()
+    {
+        final @NotNull StringBuilder out = new StringBuilder();
+
+        out.append("# JavaPH Server File\n");
+        out.append("# \n");
+        out.append("# Manually add servers to this list using the following format\n");
+        out.append("#   <name / description> :: <host / ip address> :: <port (0-65535)>\n");
+        out.append("# \n");
+
+        return out.toString();
+    }
+
+    @Override
+    public void saveServers()
     {
         try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE)))
         {
@@ -202,7 +224,8 @@ public final class QiServerManager {
         }
     }
 
-    public static void setDefaultServer(final @NotNull String server)
+    @Override
+    public void setDefaultServer(final @NotNull String server)
     {
         for (final @NotNull Server item : servers) {
             if (item.toString().equals(server)) {
@@ -212,20 +235,8 @@ public final class QiServerManager {
         }
     }
 
-    public static @NotNull String getFileHeader()
-    {
-        final @NotNull StringBuilder out = new StringBuilder();
-
-        out.append("# JavaPH Server File\n");
-        out.append("# \n");
-        out.append("# Manually add servers to this list using the following format\n");
-        out.append("#   <name / description> :: <host / ip address> :: <port (0-65535)>\n");
-        out.append("# \n");
-
-        return out.toString();
-    }
-
-    public static void loadAllFields()
+    @Override
+    public void loadAllFields()
     {
         for (final @NotNull Server server : servers) {
             if (server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR) {
