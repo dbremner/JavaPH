@@ -85,6 +85,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		super(javaph, INFO_NAME + " Properties");
 
 		parent = javaph;
+		serverManager = parent.getServerManager();
 		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -103,7 +104,6 @@ public final class PropertiesDialog extends JavaPHDialog
 		contentPane.add(getButtonPanel(), BorderLayout.SOUTH);
 
 		pack();
-		serverManager = parent.getServerManager();
 	}
 	
 	private @NotNull JPanel getButtonPanel()
