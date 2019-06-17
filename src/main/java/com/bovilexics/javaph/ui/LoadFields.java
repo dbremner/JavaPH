@@ -2,8 +2,6 @@ package com.bovilexics.javaph.ui;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public enum LoadFields
 {
     Manual(0),
@@ -23,27 +21,22 @@ public enum LoadFields
         return value;
     }
 
+    @SuppressWarnings("SameReturnValue")
     public static @NotNull LoadFields getDefault()
     {
         return Selected;
     }
 
-    public static @NotNull Optional<LoadFields> tryFromValue(final int value)
+    @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+    public static @NotNull LoadFields fromOrDefault(final int value)
     {
         for(final @NotNull LoadFields loadFields : values())
         {
             if (loadFields.getValue() == value)
             {
-                return Optional.of(loadFields);
+                return loadFields;
             }
         }
-        return Optional.empty();
-    }
-
-    public static @NotNull LoadFields fromOrDefault(final int value)
-    {
-        final @NotNull Optional<LoadFields> maybe = tryFromValue(value);
-        final @NotNull LoadFields result = maybe.orElse(getDefault());
-        return result;
+        return getDefault();
     }
 }
