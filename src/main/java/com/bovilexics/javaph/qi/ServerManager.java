@@ -30,4 +30,6 @@ public interface ServerManager
     void setDefaultServer(@NotNull String server);
 
     void loadAllFields();
+
+    ConnectionFactory getConnectionFactory();
 }

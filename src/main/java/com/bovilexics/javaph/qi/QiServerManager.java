@@ -24,9 +24,11 @@ public final class QiServerManager implements ServerManager
     private final Vector<Server> servers = new Vector<>();
     private final @NotNull FieldFactory fieldFactory;
     private final @NotNull ServerFactory serverFactory;
+    private final @NotNull ConnectionFactory connectionFactory;
 
-    public QiServerManager(final @NotNull FieldFactory fieldFactory, final @NotNull ServerFactory serverFactory)
+    public QiServerManager(final @NotNull ConnectionFactory connectionFactory, final @NotNull FieldFactory fieldFactory, final @NotNull ServerFactory serverFactory)
     {
+        this.connectionFactory = connectionFactory;
         this.fieldFactory = fieldFactory;
         this.serverFactory = serverFactory;
     }
@@ -88,6 +90,12 @@ public final class QiServerManager implements ServerManager
     public @NotNull ServerFactory getServerFactory()
     {
         return serverFactory;
+    }
+
+    @Override
+    public @NotNull ConnectionFactory getConnectionFactory()
+    {
+        return connectionFactory;
     }
 
     @Override

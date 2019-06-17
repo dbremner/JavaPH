@@ -19,6 +19,7 @@ package com.bovilexics.javaph.threads;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.models.ResultTableModel;
+import com.bovilexics.javaph.qi.Connection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,7 +56,9 @@ public class QueryThread extends Thread
 
 		parent.log("Running query \"" + parent.getCommand() + "\"");
 
-		resultThread = new ResultThread(parent.getCommand(), parent.getServer());
+
+		final @NotNull Connection connection = parent.getServerManager().getConnectionFactory().create(parent.getServer());
+		resultThread = new ResultThread(parent.getCommand(), connection);
 		resultThread.start();
 
 		while (!parent.isQueryCanceled() && seconds < runtime && !resultThread.isFinished())

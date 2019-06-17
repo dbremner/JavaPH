@@ -67,21 +67,6 @@ public class QiConnection implements Connection
 		qiServer = server;
 	}
 
-	/**
-	 * Creates a QiConnection with an which will connect to host:port
-	 * once the <b>connect</b> method is called.
-	 * <i>connect(host, port)</i>
-	 *
-	 * @param aHost to connect to
-	 * @param aPort to connect to.
-	 */
-	public QiConnection(final ServerFactory factory, final @NotNull String aHost, final int aPort)
-	{
-		host = aHost;
-		port = aPort;
-		qiServer = factory.create("unspecified", aHost, aPort);
-	}
-
 	@Override
 	public boolean authenticated()
 	{
