@@ -7,5 +7,5 @@ public enum QiReplyCodeType
     AdditionalInformationOrAction,
     TemporaryError,
     PermanentError,
-    PhQueryCode;
+    PhQueryCode
 }
