@@ -6,14 +6,14 @@ final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFact
 {
   private val PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535"
 
-  override def create(name: String, server: String, port: Int) =
+  override def create(name: String, server: String, port: Int): Server =
   {
     if (!isValidPort(port))
       throw new IllegalArgumentException(PORT_ERROR)
     new QiServer(fieldFactory, name, server, port)
   }
 
-  override def create(name: String, server: String, port: String) =
+  override def create(name: String, server: String, port: String) : Server =
     new QiServer(fieldFactory, name, server, convertToPort(port))
 
   private def convertToPort(aPort: String) =
