@@ -1000,12 +1000,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public static void main(final String[] args)
-	{
-		final @NotNull JavaPH applet = new JavaPH();
-		applet.getQueryComboBox().getEditor().getEditorComponent().requestFocus();
-	}
-
 	public JavaPH()
 	{
 		commands = QiCommand.commands;

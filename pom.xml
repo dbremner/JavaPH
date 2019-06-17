@@ -76,7 +76,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>JavaPH</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
