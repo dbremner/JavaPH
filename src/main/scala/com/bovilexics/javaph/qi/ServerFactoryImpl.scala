@@ -26,7 +26,7 @@ final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFact
     }
     catch
     {
-      case e: NumberFormatException =>
+      case _: NumberFormatException =>
         throw new IllegalArgumentException(PORT_ERROR)
     }
 
