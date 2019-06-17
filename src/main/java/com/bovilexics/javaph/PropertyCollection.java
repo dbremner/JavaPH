@@ -64,11 +64,6 @@ public final class PropertyCollection
         properties.load(inStream);
     }
 
-    public void save(final @NotNull OutputStream out, final @NotNull String comments)
-    {
-        properties.save(out, comments);
-    }
-
     public void store(final @NotNull OutputStream out, final @NotNull String comments) throws IOException
     {
         properties.store(out, comments);
