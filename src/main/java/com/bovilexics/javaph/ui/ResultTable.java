@@ -45,17 +45,10 @@ public final class ResultTable extends JTable
 	}
 
 
-	private @NotNull TableCellRenderer getRenderer(final @NotNull TableColumn column)
+	private int getColumnHeaderWidth(final @NotNull TableColumn column)
 	{
 		final @NotNull Optional<TableCellRenderer> optional = Optional.ofNullable(column.getHeaderRenderer());
 		final @NotNull TableCellRenderer renderer = optional.orElse(getDefaultRenderer(column.getClass()));
-		return renderer;
-	}
-
-	private int getColumnHeaderWidth(final @NotNull TableColumn column)
-	{
-		final @NotNull TableCellRenderer renderer = getRenderer(column);
-		
 		final Component component = renderer.getTableCellRendererComponent(this, column.getHeaderValue(), false, false, 0, 0);
 		
 		return component.getPreferredSize().width + WIDTH_BUFFER;
