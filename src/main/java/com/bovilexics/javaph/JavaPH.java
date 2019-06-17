@@ -17,6 +17,7 @@
 package com.bovilexics.javaph;
 
 import com.Ostermiller.util.Browser;
+import com.bovilexics.javaph.configuration.PropertyCollection;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.OutLogger;
@@ -176,8 +177,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private CustomButtonGroup fieldRadioGroup;
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
-	private final @NotNull PropertyCollection defaultProperties = new PropertyCollection();
-	private final @NotNull PropertyCollection properties = new PropertyCollection();
+	private final @NotNull PropertyCollection defaultProperties;
+	private final @NotNull PropertyCollection properties;
 	private final @NotNull PropertiesDialog propertiesDialog;
 	private ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
@@ -1000,8 +1001,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH()
+	public JavaPH(final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
 	{
+		this.defaultProperties = defaultProperties;
+		this.properties = properties;
 		commands = QiCommand.commands;
 		int frameHeight = getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
