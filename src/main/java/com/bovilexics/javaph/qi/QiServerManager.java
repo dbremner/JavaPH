@@ -106,19 +106,20 @@ public final class QiServerManager implements ServerManager
                 // Ignore comment lines
                 if (line.startsWith("#"))
                 {
-                    continue;
-                }
-
-                final @NotNull String[] items = line.split(SEPARATOR);
-
-                if (items.length != 3)
-                {
-                    ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                 }
                 else
                 {
-                    final @NotNull Server server1 = serverFactory.create(items[0], items[1], items[2]);
-                    addServer(server1);
+                    final @NotNull String[] items = line.split(SEPARATOR);
+
+                    if (items.length != 3)
+                    {
+                        ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
+                    }
+                    else
+                    {
+                        final @NotNull Server server1 = serverFactory.create(items[0], items[1], items[2]);
+                        addServer(server1);
+                    }
                 }
             }
 
