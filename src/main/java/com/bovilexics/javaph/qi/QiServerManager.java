@@ -47,11 +47,12 @@ public final class QiServerManager implements ServerManager
         {
             final @NotNull String oldElement = servers.get(i).toString();
 
-            if (newElement.compareTo(oldElement) == 0)
+            final int compare = newElement.compareTo(oldElement);
+            if (compare == 0)
             {
                 return;
             }
-            else if (newElement.compareTo(oldElement) < 0)
+            else if (compare < 0)
             {
                 whereToAdd = i;
                 break;
