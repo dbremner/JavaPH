@@ -60,14 +60,7 @@ public final class QiServerManager implements ServerManager
             }
         }
 
-        if (whereToAdd == -1)
-        {
-            servers.add(server);
-        }
-        else
-        {
-            servers.insertElementAt(server, whereToAdd);
-        }
+        servers.add(server);
     }
 
     @Override
