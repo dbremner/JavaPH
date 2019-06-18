@@ -104,10 +104,7 @@ public final class QiServerManager implements ServerManager
             while ((line = lr.readLine()) != null)
             {
                 // Ignore comment lines
-                if (line.startsWith("#"))
-                {
-                }
-                else
+                if (!line.startsWith("#"))
                 {
                     final @NotNull String[] items = line.split(SEPARATOR);
 
