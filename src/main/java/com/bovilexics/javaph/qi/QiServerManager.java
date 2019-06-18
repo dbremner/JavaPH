@@ -55,7 +55,8 @@ public final class QiServerManager implements ServerManager
             else if (compare < 0)
             {
                 whereToAdd = i;
-                break;
+                servers.insertElementAt(server, whereToAdd);
+                return;
             }
         }
 
