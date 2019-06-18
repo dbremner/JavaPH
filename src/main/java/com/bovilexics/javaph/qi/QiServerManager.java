@@ -32,8 +32,8 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void addServer(final @NotNull Server server) {
-
+    public void addServer(final @NotNull Server server)
+    {
         if (servers.isEmpty())
         {
             servers.add(server);
@@ -43,18 +43,23 @@ public final class QiServerManager implements ServerManager
         int whereToAdd = -1;
         final @NotNull String newElement = server.toString();
 
-        for (int i = 0; i < servers.size(); i++) {
+        for (int i = 0; i < servers.size(); i++)
+        {
             final @NotNull String oldElement = servers.get(i).toString();
 
-            if (newElement.compareTo(oldElement) == 0) {
+            if (newElement.compareTo(oldElement) == 0)
+            {
                 return;
-            } else if (newElement.compareTo(oldElement) < 0) {
+            }
+            else if (newElement.compareTo(oldElement) < 0)
+            {
                 whereToAdd = i;
                 break;
             }
         }
 
-        if (whereToAdd == -1) {
+        if (whereToAdd == -1)
+        {
             whereToAdd = servers.size();
         }
         servers.insertElementAt(server, whereToAdd);
