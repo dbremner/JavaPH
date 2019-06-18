@@ -21,6 +21,7 @@ import com.bovilexics.javaph.ui.CsvFileChooser;
 import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFileChooser;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import sun.jvm.hotspot.utilities.AssertionFailure;
 
 import javax.swing.AbstractAction;
@@ -31,6 +32,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Optional;
 
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_QUOTE;
 
@@ -129,13 +131,19 @@ public final class SaveAction extends AbstractAction
 						
 						if (r == -1) // write the header
                         {
-                            toWrite.append(model.getColumnName(c) == null ? "" : model.getColumnName(c));
-                        } else // write the value
+                        	final @Nullable String name = model.getColumnName(c);
+                        	final @NotNull String value = Optional.ofNullable(name).orElse("");
+                            toWrite.append(value);
+                        }
+						else // write the value
                         {
-                            toWrite.append(model.getValueAt(r, c) == null ? "" : model.getValueAt(r, c).toString());
+                        	final @Nullable Object value = model.getValueAt(r, c);
+                        	final @NotNull String str = Optional.ofNullable(value).map(Object::toString).orElse("");
+                            toWrite.append(str);
                         }
 
-						if (quoted) {
+						if (quoted)
+						{
                             toWrite.append(FIELD_QUOTE);
                         }
 
