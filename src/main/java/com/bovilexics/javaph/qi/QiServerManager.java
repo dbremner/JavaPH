@@ -61,8 +61,7 @@ public final class QiServerManager implements ServerManager
 
         if (whereToAdd == -1)
         {
-            whereToAdd = servers.size();
-            servers.insertElementAt(server, whereToAdd);
+            servers.add(server);
         }
         else
         {
