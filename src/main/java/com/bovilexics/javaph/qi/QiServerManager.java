@@ -53,8 +53,7 @@ public final class QiServerManager implements ServerManager
             }
             else if (compare < 0)
             {
-                int whereToAdd = i;
-                servers.insertElementAt(server, whereToAdd);
+                servers.insertElementAt(server, i);
                 return;
             }
         }
