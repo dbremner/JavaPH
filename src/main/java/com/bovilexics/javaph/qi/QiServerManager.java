@@ -40,7 +40,6 @@ public final class QiServerManager implements ServerManager
             return;
         }
 
-        int whereToAdd;
         final @NotNull String newElement = server.toString();
 
         for (int i = 0; i < servers.size(); i++)
@@ -54,7 +53,7 @@ public final class QiServerManager implements ServerManager
             }
             else if (compare < 0)
             {
-                whereToAdd = i;
+                int whereToAdd = i;
                 servers.insertElementAt(server, whereToAdd);
                 return;
             }
