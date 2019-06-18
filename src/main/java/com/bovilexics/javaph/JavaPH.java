@@ -1035,11 +1035,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryToolBar = new QueryToolBar(this);
 		splashWindow = new SplashWindow(this);
 
-		if (defaultPane == null)
-		{
-			defaultPane = getRootPane();
-		}
-
+		defaultPane = Optional.ofNullable(defaultPane).orElseGet(this::getRootPane);
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
 
 		restoreLookAndFeel();
