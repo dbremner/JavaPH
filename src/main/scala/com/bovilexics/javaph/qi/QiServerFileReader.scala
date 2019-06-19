@@ -9,7 +9,7 @@ import com.bovilexics.javaph.logging.ErrLogger
 
 object QiServerFileReader
 {
-  val SEPARATOR = "::"
+  private val SEPARATOR = "::"
 }
 
 final class QiServerFileReader(val serverFactory: ServerFactory)
