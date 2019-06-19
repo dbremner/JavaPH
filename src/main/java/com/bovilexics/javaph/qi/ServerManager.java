@@ -13,8 +13,6 @@ public interface ServerManager
 
     @NotNull Vector<Server> getServers();
 
-    @NotNull ServerFactory getServerFactory();
-
     void loadAllServers(@NotNull String filename);
 
     void loadAllServers();

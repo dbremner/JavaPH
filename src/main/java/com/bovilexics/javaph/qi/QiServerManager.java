@@ -80,12 +80,6 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public @NotNull ServerFactory getServerFactory()
-    {
-        return serverFactory;
-    }
-
-    @Override
     public @NotNull ConnectionFactory getConnectionFactory()
     {
         return connectionFactory;
