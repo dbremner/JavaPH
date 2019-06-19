@@ -15,6 +15,7 @@ object ServerFactoryImpl
 
 final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFactory
 {
+  @throws[IllegalArgumentException]
   override def create(name: String, server: String, port: Int): Server =
   {
     if (!isValidPort(port))
@@ -22,9 +23,11 @@ final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFact
     new QiServer(fieldFactory, name, server, port)
   }
 
+  @throws[IllegalArgumentException]
   override def create(name: String, server: String, port: String) : Server =
     new QiServer(fieldFactory, name, server, convertToPort(port))
 
+  @throws[IllegalArgumentException]
   private def convertToPort(aPort: String) =
     try
     {
