@@ -12,15 +12,13 @@ class UndefinedServer extends Server
   override def getExpandedName: String =
   {
     val out = new StringBuilder
-
     out.append(UndefinedServer.UNDEFINED)
     out.append(" (")
     out.append(UndefinedServer.UNDEFINED)
     out.append(":")
     out.append("0")
     out.append(")")
-
-    return out.toString
+    out.toString
   }
 
   override def getFields: util.List[Field] = util.Collections.EMPTY_LIST[Field];
