@@ -4,12 +4,9 @@ import java.util
 
 object UndefinedServer
 {
-  val UNDEFINED = "undefined"
-}
-
-class UndefinedServer extends Server
-{
-  override def getExpandedName: String =
+  private val UNDEFINED = "undefined"
+  private val expandedName = getExpandedName
+  private def getExpandedName: String =
   {
     val out = new StringBuilder
     out.append(UndefinedServer.UNDEFINED)
@@ -20,6 +17,11 @@ class UndefinedServer extends Server
     out.append(")")
     out.toString
   }
+}
+
+class UndefinedServer extends Server
+{
+  override def getExpandedName: String = UndefinedServer.expandedName
 
   override def getFields: util.List[Field] = util.Collections.emptyList()
 
