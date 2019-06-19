@@ -21,7 +21,7 @@ class UndefinedServer extends Server
     out.toString
   }
 
-  override def getFields: util.List[Field] = util.Collections.emptyList();
+  override def getFields: util.List[Field] = util.Collections.emptyList()
 
   override def getFieldState: QiFieldState = QiFieldState.FIELD_LOAD_ERROR
 
