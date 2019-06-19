@@ -5,6 +5,7 @@ import java.util
 object UndefinedServer
 {
   private val UNDEFINED = "undefined"
+  private val fieldStateMessage = "Undefined Server, fields cannot be loaded."
   private val expandedName = getExpandedName
   private def getExpandedName: String =
   {
@@ -27,7 +28,7 @@ class UndefinedServer extends Server
 
   override def getFieldState: QiFieldState = QiFieldState.FIELD_LOAD_ERROR
 
-  override def getFieldStateMessage: String = "Undefined Server, fields cannot be loaded."
+  override def getFieldStateMessage: String = UndefinedServer.fieldStateMessage
 
   override def getName: String = UndefinedServer.UNDEFINED
 
