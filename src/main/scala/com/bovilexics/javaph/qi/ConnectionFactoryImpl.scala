@@ -10,10 +10,10 @@ class ConnectionFactoryImpl(val serverFactory: ServerFactory) extends Connection
     * @param aHost to connect to
     * @param aPort to connect to.
     */
-  override def create(aHost: String, aPort: Int): Connection = {
+  override def create(aHost: String, aPort: Int): Connection =
+  {
     val server = serverFactory.create("unspecified", aHost, aPort)
-    val connection = new QiConnection(server)
-    connection
+    create(server)
   }
 
   /**
