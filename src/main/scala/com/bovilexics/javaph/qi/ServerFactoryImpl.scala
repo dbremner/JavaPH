@@ -1,11 +1,20 @@
 package com.bovilexics.javaph.qi
 
+import com.bovilexics.javaph.qi.ServerFactoryImpl.{PORT_ERROR, isValidPort}
 import org.jetbrains.annotations.Contract
 
-final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFactory
+
+object ServerFactoryImpl
 {
   private val PORT_ERROR = "Error: invalid port value passed into QiServer, must be a an integer between 0 and 65,535"
 
+  @Contract(pure = true)
+  private def isValidPort(port: Int): Boolean =
+    port >= 0 && port <= 65535
+}
+
+final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFactory
+{
   override def create(name: String, server: String, port: Int): Server =
   {
     if (!isValidPort(port))
@@ -21,7 +30,9 @@ final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFact
     {
       val aPortInteger = aPort.toInt
       if (!isValidPort(aPortInteger))
+      {
         throw new IllegalArgumentException(PORT_ERROR)
+      }
       aPortInteger
     }
     catch
@@ -29,7 +40,4 @@ final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFact
       case _: NumberFormatException =>
         throw new IllegalArgumentException(PORT_ERROR)
     }
-
-  @Contract(pure = true) def isValidPort(port: Int): Boolean =
-    port >= 0 && port <= 65535
 }
