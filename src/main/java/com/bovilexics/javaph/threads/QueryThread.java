@@ -58,7 +58,7 @@ public class QueryThread extends Thread
 
 
 		final @NotNull Connection connection = parent.getServerManager().getConnectionFactory().create(parent.getServer());
-		resultThread = new ResultThread(parent.getCommand(), connection);
+		resultThread = new ResultThread(null, parent.getCommand(), connection);
 		resultThread.start();
 
 		while (!parent.isQueryCanceled() && seconds < runtime && !resultThread.isFinished())

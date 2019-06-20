@@ -22,10 +22,8 @@ import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
 import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
-import com.bovilexics.javaph.qi.QiConnection;
 import com.bovilexics.javaph.qi.QiLine;
 import com.bovilexics.javaph.qi.QiProtocolException;
-import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -91,24 +89,7 @@ public class ResultThread extends Thread
 	private final List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
 
-	public ResultThread(final String command, final @NotNull Connection connection)
-	{
-		this(null, command, connection);
-	}
-
-	public ResultThread(final String command, final @NotNull Server server)
-	{
-		this(null, command, new QiConnection(server));
-	}
-
-
-	public ResultThread(final @NotNull JavaPH javaph)
-	{
-		parent = javaph;
-		connect(parent.getCommand(), parent.getConnection().get());
-	}
-
-	private ResultThread(final @Nullable JavaPH javaph, final String command, final @NotNull Connection connection)
+	public ResultThread(final @Nullable JavaPH javaph, final String command, final @NotNull Connection connection)
 	{
 		parent = javaph;
 		connect(command, connection);
