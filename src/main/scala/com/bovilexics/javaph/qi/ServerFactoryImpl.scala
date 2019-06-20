@@ -30,17 +30,17 @@ object ServerFactoryImpl
     }
 }
 
-final class ServerFactoryImpl(val fieldFactory: FieldFactory) extends ServerFactory
+final class ServerFactoryImpl(val fieldFactory: FieldFactory, val lineFactory: LineFactory) extends ServerFactory
 {
   @throws[IllegalArgumentException]
   override def create(name: String, server: String, port: Int): Server =
   {
     if (!isValidPort(port))
       throw new IllegalArgumentException(PORT_ERROR)
-    new QiServer(fieldFactory, name, server, port)
+    new QiServer(fieldFactory, lineFactory, name, server, port)
   }
 
   @throws[IllegalArgumentException]
   override def create(name: String, server: String, port: String) : Server =
-    new QiServer(fieldFactory, name, server, ServerFactoryImpl.convertToPort(port))
+    new QiServer(fieldFactory, lineFactory, name, server, ServerFactoryImpl.convertToPort(port))
 }

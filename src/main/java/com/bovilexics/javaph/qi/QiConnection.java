@@ -50,6 +50,7 @@ public class QiConnection implements Connection
 	private @NotNull String host;
 	
 	private final @NotNull Server qiServer;
+	private final @NotNull LineFactory lineFactory;
 	private Socket socket;
 	private @Nullable Thread locker;
 		
@@ -60,11 +61,12 @@ public class QiConnection implements Connection
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
 	 * <b>connect(host, port)</b>
 	 */
-	public QiConnection(final @NotNull Server server)
+	public QiConnection(final @NotNull Server server, final @NotNull LineFactory lineFactory)
 	{
 		host = server.getServer();
 		port = server.getPort();
 		qiServer = server;
+		this.lineFactory = lineFactory;
 	}
 
 	@Override
@@ -202,7 +204,7 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @NotNull String buffer = readQI();
-				final @NotNull Line qiQiLine = new QiLine(buffer);
+				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				
 				if (qiQiLine.getCode() == QiAPI.LR_LOGIN) {
 					break;
@@ -227,7 +229,7 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @NotNull String buffer = readQI();
-				final @NotNull Line qiQiLine = new QiLine(buffer);
+				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
@@ -286,7 +288,7 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @NotNull String buffer = readQI();
-				final @NotNull Line qiQiLine = new QiLine(buffer);
+				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.

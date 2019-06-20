@@ -1,6 +1,6 @@
 package com.bovilexics.javaph.qi
 
-class ConnectionFactoryImpl(val serverFactory: ServerFactory) extends ConnectionFactory
+class ConnectionFactoryImpl(val serverFactory: ServerFactory, val lineFactory: LineFactory) extends ConnectionFactory
 {
   /**
     * Creates a QiConnection with an which will connect to host:port
@@ -20,5 +20,5 @@ class ConnectionFactoryImpl(val serverFactory: ServerFactory) extends Connection
     * Creates a QiConnection from a QiServer object which must then be initialized using
     * <b>connect(host, port)</b>
     */
-  override def create(server: Server): Connection = new QiConnection(server)
+  override def create(server: Server): Connection = new QiConnection(server, lineFactory)
 }

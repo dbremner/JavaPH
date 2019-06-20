@@ -34,6 +34,7 @@ import java.util.List;
 public class QiServer implements Server
 {
 	private final @NotNull FieldFactory factory;
+	private final @NotNull LineFactory lineFactory;
 
 	private static final int QUERY_RUNTIME = 10;
 
@@ -44,8 +45,9 @@ public class QiServer implements Server
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
-	public QiServer(final @NotNull FieldFactory factory, final @NotNull String name, final @NotNull String server, final int port)
+	public QiServer(final @NotNull FieldFactory factory, final @NotNull LineFactory lineFactory, final @NotNull String name, final @NotNull String server, final int port)
 	{
+		this.lineFactory = lineFactory;
 		this.name = name;
 		this.server = server;
 		this.port = port;
@@ -163,7 +165,7 @@ public class QiServer implements Server
 	public void loadFields()
 	{
 
-		@Nullable ResultThread resultThread = new ResultThread(null, QiCommand.FIELDS, new QiConnection(this));
+		@Nullable ResultThread resultThread = new ResultThread(null, QiCommand.FIELDS, new QiConnection(this, lineFactory));
 		resultThread.start();
 
 		int seconds = 0;
