@@ -114,12 +114,12 @@ public class QueryThread extends Thread
 		});
 	}
 
-	private void showStatus(final String status)
+	private void showStatus(final @NotNull String status)
 	{
 		SwingUtilities.invokeLater(() -> parent.showStatus(status));
 	}
 
-	private void showStatusLog(final String status)
+	private void showStatusLog(final @NotNull String status)
 	{
 		SwingUtilities.invokeLater(() ->
 		{

@@ -23,7 +23,7 @@ abstract class RunnableAction extends AbstractAction
     }
 
     @Override
-    public final void actionPerformed(final ActionEvent e)
+    public final void actionPerformed(final @NotNull ActionEvent e)
     {
         runnable.run();
     }

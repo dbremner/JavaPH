@@ -38,7 +38,7 @@ public class TextFileChooser extends JFileChooser
 	}
 
 	@Override
-	public final void setFileFilter(final FileFilter filter)
+	public final void setFileFilter(final @NotNull FileFilter filter)
 	{
 		super.setFileFilter(filter);
 	}

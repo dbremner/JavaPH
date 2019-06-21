@@ -170,7 +170,7 @@ final class CsvFileChooserPanel extends JPanel
 	}
 
 	@SuppressWarnings("unused")
-    private void setSeparator(final ActionEvent ae)
+    private void setSeparator(final @NotNull ActionEvent ae)
 	{
 		if (commaRadioButton.isSelected())
 		{

@@ -18,10 +18,10 @@ import java.util.Vector;
 
 public final class QiServerManager implements ServerManager
 {
-    private static final String SEPARATOR = "::";
-    private static final String SERVER_FILE = "javaph.servers";
+    private static final @NotNull String SEPARATOR = "::";
+    private static final @NotNull String SERVER_FILE = "javaph.servers";
     private @Nullable Server defaultServer = null;
-    private final Vector<Server> servers = new Vector<>();
+    private final @NotNull Vector<Server> servers = new Vector<>();
     private final @NotNull ServerFactory serverFactory;
     private final @NotNull ConnectionFactory connectionFactory;
 
@@ -183,7 +183,7 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void removeServer(final Server server) {
+    public void removeServer(final @NotNull Server server) {
         servers.remove(server);
     }
 

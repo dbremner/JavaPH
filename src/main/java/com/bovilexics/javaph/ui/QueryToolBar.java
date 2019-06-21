@@ -78,18 +78,18 @@ public final class QueryToolBar extends JToolBar
 		addSeparator(new Dimension(separatorDimensions));
 	}
 
-	private JButton addToolBarButton(final Action action)
+	private @NotNull JButton addToolBarButton(final @NotNull Action action)
 	{
-		final JButton myJButton = add(action);
+		final @NotNull JButton myJButton = add(action);
 		myJButton.setBorder(BorderFactory.createRaisedBevelBorder());
 		myJButton.setText(null);
 
 		return myJButton;
 	}
 		
-	private JButton addToolBarButton(final Action action, final @NotNull Icon icon)
+	private @NotNull JButton addToolBarButton(final @NotNull Action action, final @NotNull Icon icon)
 	{
-		final JButton myJButton = add(action);
+		final @NotNull JButton myJButton = add(action);
 		myJButton.setIcon(icon);
 		myJButton.setBorder(BorderFactory.createRaisedBevelBorder());
 		myJButton.setText(null);

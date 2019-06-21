@@ -54,9 +54,9 @@ public final class MainMenu extends JMenuBar
 	private final @NotNull MouseListener mouseListener;
 	
 	private final @NotNull JavaPH parent;
-	private JCheckBoxMenuItem rollToolBarItem;
-	private JCheckBoxMenuItem showLogItem;
-	private JCheckBoxMenuItem showToolBarItem;
+	private final @NotNull JCheckBoxMenuItem rollToolBarItem = new JCheckBoxMenuItem("Rollover Toolbar");
+	private final @NotNull JCheckBoxMenuItem showLogItem = new JCheckBoxMenuItem("View System Log");
+	private final @NotNull JCheckBoxMenuItem showToolBarItem = new JCheckBoxMenuItem("View Toolbar");
 	
 	public MainMenu(final @NotNull JavaPH javaph)
 	{
@@ -195,7 +195,6 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenu windowMenu = new JMenu("Window");
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
-		showLogItem = new JCheckBoxMenuItem("View System Log");
 		showLogItem.addMouseListener(mouseListener);
 		showLogItem.setActionCommand("Set visibility of system log");
 		showLogItem.setAccelerator(KeyStroke.getKeyStroke("ctrl L"));
@@ -216,7 +215,6 @@ public final class MainMenu extends JMenuBar
 		
 		windowMenu.add(showLogItem);
 
-		showToolBarItem = new JCheckBoxMenuItem("View Toolbar");
 		showToolBarItem.addMouseListener(mouseListener);
 		showToolBarItem.setActionCommand("Set visibility of toolbar");
 		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl T"));
@@ -237,7 +235,6 @@ public final class MainMenu extends JMenuBar
 		
 		windowMenu.add(showToolBarItem);
 
-		rollToolBarItem = new JCheckBoxMenuItem("Rollover Toolbar");
 		rollToolBarItem.addMouseListener(mouseListener);
 		rollToolBarItem.setActionCommand("Set rollover property of toolbar");
 		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl R"));

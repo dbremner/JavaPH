@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 public final class QiLine implements Line
 {
 	// The line as read from Qi, unmodified
-	private final String verbatim;
+	private final @NotNull String verbatim;
 
 	// The code which Qi prepended to this line (e.g. -200)
 	private int code = 0;
@@ -64,7 +64,7 @@ public final class QiLine implements Line
 	  *
 	  * @exception QiProtocolException if the line can't be parsed.
 	 */
-	public QiLine(final String line) throws QiProtocolException
+	public QiLine(final @NotNull String line) throws QiProtocolException
 	{
 		verbatim = line;
 		parse();

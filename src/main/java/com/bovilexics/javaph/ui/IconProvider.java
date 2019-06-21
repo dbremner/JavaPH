@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 public interface IconProvider
 {
-    @NotNull String getURL(String location);
+    @NotNull String getURL(@NotNull String location);
 
-    @NotNull ImageIcon getImageIcon(String location);
+    @NotNull ImageIcon getImageIcon(@NotNull String location);
 }

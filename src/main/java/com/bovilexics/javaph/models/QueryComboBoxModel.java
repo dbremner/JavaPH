@@ -161,7 +161,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void insertElementAt(final Object item, final int index)
+    public void insertElementAt(final @NotNull Object item, final int index)
 	{
 		objects.add(index, item);
 		fireIntervalAdded(this, index, index);
@@ -188,7 +188,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.MutableComboBoxModel
 	@Override
-    public void removeElement(final Object obj)
+    public void removeElement(final @NotNull Object obj)
 	{
 		final int index = objects.indexOf(obj);
 

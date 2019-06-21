@@ -62,21 +62,21 @@ public final class PropertiesDialog extends JavaPHDialog
 {
 	private final @NotNull JavaPH parent;
 
-	private JCheckBox displayLogCheckBox;
-	private JCheckBox displaySplashCheckBox;
-	private JCheckBox displayToolbarCheckBox;
-	private JCheckBox rollToolbarCheckBox;
-	private JCheckBox savePositionCheckBox;
+	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox("Display System Log");
+	private final @NotNull JCheckBox displaySplashCheckBox = new JCheckBox("Display Splash Screen");
+	private final @NotNull JCheckBox displayToolbarCheckBox = new JCheckBox("Display Toolbar");
+	private final @NotNull JCheckBox rollToolbarCheckBox = new JCheckBox("Rollover Toolbar");
+	private final @NotNull JCheckBox savePositionCheckBox = new JCheckBox("Save Window Size / Position");
 
-	private JComboBox<Server> defaultServerComboBox;
+	private final @NotNull JComboBox<Server> defaultServerComboBox;
 
-	private JRadioButton loadFieldsManual;
-	private JRadioButton loadFieldsSelected;
-	private JRadioButton loadFieldsStartup;
+	private final @NotNull JRadioButton loadFieldsManual = new JRadioButton("Load Fields Manually");
+	private final @NotNull JRadioButton loadFieldsSelected = new JRadioButton("Load Fields on Select");
+	private final @NotNull JRadioButton loadFieldsStartup = new JRadioButton("Load Fields on Startup  ( Slow! )");
 
-	private JSlider runtimeSlider;
+	private final @NotNull JSlider runtimeSlider = new JSlider(QUERY_RUNTIME_MIN, QUERY_RUNTIME_MAX);
 	
-	private JTextField runtimeText;
+	private final @NotNull JTextField runtimeText = new JTextField();
 
 	private final @NotNull ServerManager serverManager;
 
@@ -86,6 +86,7 @@ public final class PropertiesDialog extends JavaPHDialog
 
 		parent = javaph;
 		serverManager = parent.getServerManager();
+		defaultServerComboBox = new JComboBox<>(serverManager.getServers());
 		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -146,8 +147,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		
 		final @NotNull JPanel runtimePanel = new JPanel();
 		runtimePanel.setLayout(new FlowLayout());
-		
-		runtimeSlider = new JSlider(QUERY_RUNTIME_MIN, QUERY_RUNTIME_MAX);
+
 		runtimeSlider.setMinorTickSpacing(10);
 		runtimeSlider.setMajorTickSpacing(30);
 		runtimeSlider.setPaintTicks(true);
@@ -156,7 +156,6 @@ public final class PropertiesDialog extends JavaPHDialog
 		runtimeSlider.setValue(parent.getQueryRuntime());
 		runtimeSlider.addChangeListener(ce -> runtimeText.setText(String.valueOf(runtimeSlider.getValue())));
 
-		runtimeText = new JTextField();
 		runtimeText.setColumns(3);
 		runtimeText.setEditable(false);
 		runtimeText.setText(String.valueOf(runtimeSlider.getValue()));
@@ -190,19 +189,15 @@ public final class PropertiesDialog extends JavaPHDialog
 		final @NotNull JLabel defaultServerLabel = new JLabel("Default Server : ");
 		defaultServerLabel.setAlignmentY(JLabel.CENTER_ALIGNMENT);
 
-		defaultServerComboBox = new JComboBox<>(serverManager.getServers());
 		defaultServerComboBox.setRenderer(new ServerRenderer(parent));
 
 		defaultServerPanel.add(defaultServerLabel);
 		defaultServerPanel.add(defaultServerComboBox);
 
-		loadFieldsManual = new JRadioButton("Load Fields Manually");
 		loadFieldsManual.setToolTipText("Load fields for servers manually using the button here");
 
-		loadFieldsSelected = new JRadioButton("Load Fields on Select");
 		loadFieldsSelected.setToolTipText("Load fields for servers only when selected from the server list");
 
-		loadFieldsStartup = new JRadioButton("Load Fields on Startup  ( Slow! )");
 		loadFieldsStartup.setToolTipText("Load fields for all servers when starting the application");
 
 		final @NotNull ButtonGroup loadFieldsGroup = new ButtonGroup();
@@ -267,12 +262,6 @@ public final class PropertiesDialog extends JavaPHDialog
 		
 		startupPanel.setLayout(gbl);
 
-		displayLogCheckBox = new JCheckBox("Display System Log");
-		displaySplashCheckBox = new JCheckBox("Display Splash Screen");
-		displayToolbarCheckBox = new JCheckBox("Display Toolbar");
-		rollToolbarCheckBox = new JCheckBox("Rollover Toolbar");
-		savePositionCheckBox = new JCheckBox("Save Window Size / Position");
-		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.weightx = 0.5;
 		startupPanel.add(displaySplashCheckBox, gbc);

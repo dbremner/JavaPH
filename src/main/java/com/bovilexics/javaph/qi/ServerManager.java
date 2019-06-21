@@ -19,7 +19,7 @@ public interface ServerManager
 
     @NotNull List<Server> loadServers(@NotNull String filename);
 
-    void removeServer(Server server);
+    void removeServer(@NotNull Server server);
 
     void saveServers();
 
@@ -27,5 +27,5 @@ public interface ServerManager
 
     void loadAllFields();
 
-    ConnectionFactory getConnectionFactory();
+    @NotNull ConnectionFactory getConnectionFactory();
 }

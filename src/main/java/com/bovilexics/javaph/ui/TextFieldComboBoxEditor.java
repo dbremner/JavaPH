@@ -38,7 +38,7 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 
 	private final @NotNull EventListenerList listenerList = new EventListenerList();
 
-	public TextFieldComboBoxEditor(final ActionListener listener)
+	public TextFieldComboBoxEditor(final @NotNull ActionListener listener)
 	{
 		textField = new JTextField();
 		textField.setBorder(BorderFactory.createEmptyBorder());
@@ -46,12 +46,12 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-	public void addActionListener(final ActionListener l)
+	public void addActionListener(final @NotNull ActionListener l)
 	{
 		listenerList.add(java.awt.event.ActionListener.class, l);
 	}
 
-	private void fireActionPerformed(final ActionEvent e)
+	private void fireActionPerformed(final @NotNull ActionEvent e)
 	{
 		final Object[] listeners = listenerList.getListenerList();
 
@@ -69,13 +69,13 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 	}
 
 	@Override
-	public Object getItem()
+	public @Nullable Object getItem()
 	{
 		return textField.getText();
 	}
 
 	@Override
-	public void removeActionListener(final ActionListener l)
+	public void removeActionListener(final @NotNull ActionListener l)
 	{
 		listenerList.remove(java.awt.event.ActionListener.class, l);
 	}

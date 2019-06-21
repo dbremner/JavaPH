@@ -158,9 +158,9 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  */
 public final class JavaPH extends JApplet implements IconProvider, WindowListener
 {
-	private final Logger logger = new OutLogger();
+	private final @NotNull Logger logger = new OutLogger();
 
-	private final Logger errLogger = new ErrLogger();
+	private final @NotNull Logger errLogger = new ErrLogger();
 
 	// Custom widgets and other private stuff
 
@@ -173,56 +173,56 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private int queryRuntime = QUERY_RUNTIME_DEF;
 
 	private final @NotNull AboutDialog aboutDialog;
-	private CustomButtonGroup fieldRadioGroup;
+	private @NotNull CustomButtonGroup fieldRadioGroup;
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
-	private final ServerManager serverManager;
+	private final @NotNull ServerManager serverManager;
 	private final @NotNull PropertyCollection defaultProperties;
 	private final @NotNull PropertyCollection properties;
 	private final @NotNull PropertiesDialog propertiesDialog;
-	private ProgressMonitor queryProgressMonitor;
+	private @NotNull ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
 	private @Nullable Connection connection;
-	private QueryComboBox queryComboBox;
+	private @NotNull QueryComboBox queryComboBox;
 	private final @NotNull QueryToolBar queryToolBar;
-	private ResultTable resultTable;
+	private @NotNull ResultTable resultTable;
 	private final @NotNull SplashWindow splashWindow;
 	private @NotNull String customFieldSeparator = CUSTOM_SEPARATOR;
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
-	private TextFieldComboBoxEditor queryComboBoxEditor;
-	private Vector<Server> servers;
+	private @NotNull TextFieldComboBoxEditor queryComboBoxEditor;
+	private @NotNull Vector<Server> servers;
 
 	// Swing widgets and stuff
 
-	private final JButton queryButton = new JButton("Execute Query");
-	private JComboBox<QiCommand> commandComboBox;
-	private JComboBox<Server> serverComboBox;
-	private JLabel portStatusLabel;
-	private JLabel serverStatusLabel;
-	private JLabel statusLabel;
-	private final JList colList = new JList(new DefaultListModel());
-	private JList<Field> fieldList;
-	private final JPanel colListPanel = new JPanel(new BorderLayout());
-	private final JPanel fieldListPanel = new JPanel(new BorderLayout());
-	private final JPanel logTextPanel = new JPanel(new BorderLayout());
-	private JRootPane defaultPane;
+	private final @NotNull JButton queryButton = new JButton("Execute Query");
+	private @NotNull JComboBox<QiCommand> commandComboBox;
+	private @NotNull JComboBox<Server> serverComboBox;
+	private @NotNull JLabel portStatusLabel;
+	private @NotNull JLabel serverStatusLabel;
+	private @NotNull JLabel statusLabel;
+	private final @NotNull JList colList = new JList(new DefaultListModel());
+	private @NotNull JList<Field> fieldList;
+	private final @NotNull JPanel colListPanel = new JPanel(new BorderLayout());
+	private final @NotNull JPanel fieldListPanel = new JPanel(new BorderLayout());
+	private final @NotNull JPanel logTextPanel = new JPanel(new BorderLayout());
+	private @NotNull JRootPane defaultPane;
 	private final @NotNull JTabbedPane resultPanel;
-	private final JTextArea logText = new JTextArea();
-	private final JTextArea resultText = new JTextArea();
+	private final @NotNull JTextArea logText = new JTextArea();
+	private final @NotNull JTextArea resultText = new JTextArea();
 	private final @NotNull IconProvider iconProvider;
 
 	@Override
-	public void windowOpened(final WindowEvent e)
+	public void windowOpened(final @NotNull WindowEvent e)
 	{
 	}
 
 	@Override
-	public void windowClosing(final WindowEvent e)
+	public void windowClosing(final @NotNull WindowEvent e)
 	{
 	}
 
 	@Override
-	public void windowClosed(final WindowEvent e)
+	public void windowClosed(final @NotNull WindowEvent e)
 	{
 		boolean needToStore = false;
 
@@ -267,22 +267,22 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	@Override
-	public void windowIconified(final WindowEvent e)
+	public void windowIconified(final @NotNull WindowEvent e)
 	{
 	}
 
 	@Override
-	public void windowDeiconified(final WindowEvent e)
+	public void windowDeiconified(final @NotNull WindowEvent e)
 	{
 	}
 
 	@Override
-	public void windowActivated(final WindowEvent e)
+	public void windowActivated(final @NotNull WindowEvent e)
 	{
 	}
 
 	@Override
-	public void windowDeactivated(final WindowEvent e)
+	public void windowDeactivated(final @NotNull WindowEvent e)
 	{
 	}
 
@@ -346,17 +346,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	final class QueryPanel extends JPanel
 	{
 		private final @NotNull JavaPH parent;
-		private JButton fieldListMoveDnButton;
-		private JButton fieldListMoveUpButton;
-		private JButton fieldListSelectAllButton;
-		private JButton fieldListSelectNoneButton;
-		private @Nullable JButton fieldLoadButton;
-		private @Nullable JButton fieldCustomButton;
+		private final @NotNull JButton fieldListMoveDnButton = new JButton("Move Down");
+		private @NotNull JButton fieldListMoveUpButton;
+		private @NotNull JButton fieldListSelectAllButton;
+		private @NotNull JButton fieldListSelectNoneButton;
+		private final @NotNull JButton fieldLoadButton;
+		private final @NotNull JButton fieldCustomButton;
 		private final @NotNull ImageIcon fieldCustomOff;
 		private final @NotNull ImageIcon fieldCustomOn;
 		private final @NotNull ImageIcon fieldLoadOff;
 		private final @NotNull ImageIcon fieldLoadOn;
-		private final JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
+		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
 
 
 		QueryPanel(final @NotNull JavaPH javaph)
@@ -367,6 +367,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldCustomOn = getImageIcon("img/field-custom-on.gif");
 			fieldLoadOff = getImageIcon("img/field-load-off.gif");
 			fieldLoadOn = getImageIcon("img/field-load-on.gif");
+			fieldLoadButton = new JButton(fieldLoadOff);
+			fieldCustomButton = new JButton(fieldCustomOff);
 
 			initFieldListPanel();
 
@@ -496,7 +498,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			fieldDefaultRadioButton.setSelected(true);
 
-			fieldCustomButton = new JButton(fieldCustomOff);
 			fieldCustomButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldCustomButton.setFocusable(false);
 			fieldCustomButton.setToolTipText("Choose the fields that queries will return");
@@ -516,7 +517,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				}
 			});
 
-			fieldLoadButton = new JButton(fieldLoadOff);
 			fieldLoadButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldLoadButton.setFocusable(false);
 			fieldLoadButton.addMouseListener(new MouseEnterExitListener(fieldLoadButton, fieldLoadOn, fieldLoadOff));
@@ -623,7 +623,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				fieldList.setSelectedIndices(selections);
 			});
 
-			fieldListMoveDnButton = new JButton("Move Down");
 			fieldListMoveDnButton.addActionListener(ae ->
 			{
 				final @NotNull int[] selections = fieldList.getSelectedIndices();
@@ -738,12 +737,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	final class ResultPanel extends JTabbedPane
 	{
-		private final JButton colListSelectAllButton = new JButton("Select All");
-		private final JButton colListSelectNoneButton = new JButton("Delselect All");
-		private final JButton resultTableColButton = new JButton("Show/Hide Columns");
-		private final JButton resultTableColWidthButton = new JButton("Reset Column Widths");
-		private final JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
-		private final JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
+		private final @NotNull JButton colListSelectAllButton = new JButton("Select All");
+		private final @NotNull JButton colListSelectNoneButton = new JButton("Delselect All");
+		private final @NotNull JButton resultTableColButton = new JButton("Show/Hide Columns");
+		private final @NotNull JButton resultTableColWidthButton = new JButton("Reset Column Widths");
+		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
+		private final @NotNull JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
 
 		ResultPanel()
 		{
@@ -1314,7 +1313,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		commandComboBox.setSelectedIndex(index);
 	}
 
-	public JRootPane getDefaultPane()
+	public @NotNull JRootPane getDefaultPane()
 	{
 		return defaultPane;
 	}
@@ -1396,7 +1395,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryButton.setEnabled(enabled);
 	}
 
-	public QueryComboBox getQueryComboBox()
+	public @NotNull QueryComboBox getQueryComboBox()
 	{
 		return queryComboBox;
 	}
@@ -1433,7 +1432,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return tab;
 	}
 
-	public ResultTable getResultTable()
+	public @NotNull ResultTable getResultTable()
 	{
 		return resultTable;
 	}
@@ -1559,7 +1558,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public void log(final String logMessage)
+	public void log(final @NotNull String logMessage)
 	{
 		final @NotNull Date date = new Date(System.currentTimeMillis());
 		logText.append(date.toString());
@@ -1803,7 +1802,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	@Override
-	public void showStatus(final String msg)
+	public void showStatus(final @NotNull String msg)
 	{
 		if (statusLabel != null)
 		{

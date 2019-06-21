@@ -53,21 +53,21 @@ public final class QiCommand
 	// public static final String ADD		= "add";
 	// public static final String ANSWER	= "answer";
 	// public static final String CHANGE	= "change";
-	public static final String CLEAR		= "clear";
+	public static final @NotNull String CLEAR		= "clear";
 	// public static final String DELETE	= "delete";
-	public static final String EXIT		= "exit";
-	public static final String FIELDS	= "fields";
-	public static final String HELP		= "help";
+	public static final @NotNull String EXIT		= "exit";
+	public static final @NotNull String FIELDS	= "fields";
+	public static final @NotNull String HELP		= "help";
 	// public static final String ID		= "id";	
-	public static final String LOGIN		= "login";
-	public static final String LOGOUT	= "logout";
-	public static final String PH		= "ph";
-	public static final String QUERY		= "query";
-	public static final String QUIT		= "quit";
+	public static final @NotNull String LOGIN		= "login";
+	public static final @NotNull String LOGOUT	= "logout";
+	public static final @NotNull String PH		= "ph";
+	public static final @NotNull String QUERY		= "query";
+	public static final @NotNull String QUIT		= "quit";
 	// public static final String SET		= "set";
-	public static final String SITEINFO	= "siteinfo";
-	public static final String STATUS	= "status";
-	public static final String STOP		= "stop";
+	public static final @NotNull String SITEINFO	= "siteinfo";
+	public static final @NotNull String STATUS	= "status";
+	public static final @NotNull String STOP		= "stop";
 
 	public static final @NotNull QiCommand[] commands =
 	{
@@ -84,7 +84,7 @@ public final class QiCommand
 	private final @NotNull String description;
 	private final @NotNull String name;
 
-	public static boolean isValidCommand(final String command)
+	public static boolean isValidCommand(final @NotNull String command)
 	{
 		for (final @NotNull QiCommand qiCommand : commands) {
 			if (qiCommand.getName().equals(command)) {

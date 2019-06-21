@@ -66,7 +66,9 @@ package com.bovilexics.javaph.qi;
 	There are other defined attributes, but they are not used at this
 	time.
  */
- 
+
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 
  * Qi field properties
@@ -77,14 +79,13 @@ package com.bovilexics.javaph.qi;
 enum QiFieldProperties
 {
     ;
-
-    public static final String INDEXED	= "Indexed";
-	public static final String LOOKUP	= "Lookup";
-	public static final String PUBLIC	= "Public";
-	public static final String DEFAULT	= "Default";
-	public static final String CHANGE	= "Change";
-	public static final String FORCEPUB	= "ForcePub";
-	public static final String NOPEOPLE	= "NoPeople";
-	public static final String ENCRYPT	= "Encrypt";
-	public static final String ANY		= "Any";
+    public static final @NotNull String INDEXED	= "Indexed";
+	public static final @NotNull String LOOKUP	= "Lookup";
+	public static final @NotNull String PUBLIC	= "Public";
+	public static final @NotNull String DEFAULT	= "Default";
+	public static final @NotNull String CHANGE	= "Change";
+	public static final @NotNull String FORCEPUB	= "ForcePub";
+	public static final @NotNull String NOPEOPLE	= "NoPeople";
+	public static final @NotNull String ENCRYPT	= "Encrypt";
+	public static final @NotNull String ANY		= "Any";
 }

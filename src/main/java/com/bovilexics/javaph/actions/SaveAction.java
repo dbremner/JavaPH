@@ -53,7 +53,7 @@ public final class SaveAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(final ActionEvent e)
+	public void actionPerformed(final @NotNull ActionEvent e)
 	{
 		final @NotNull Tab tab = parent.getResultPanelSelectedTab();
 		final @NotNull JFileChooser chooser;

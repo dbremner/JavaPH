@@ -17,7 +17,6 @@
 package com.bovilexics.javaph.models;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -32,22 +31,28 @@ import java.util.Optional;
 public class TableSorter implements TableModel, TableModelListener
 {
 	private final @NotNull ResultTableModel realModel;
-	private int[] indexes;
+	private @NotNull int[] indexes;
 	
 	public TableSorter(final @NotNull ResultTableModel model)
 	{
 		realModel = model;
 		realModel.addTableModelListener(this);
-		allocate();
+		indexes = new int[getRowCount()];
+		init();
 	}
 
 	private void allocate()
 	{
 		indexes = new int[getRowCount()];
-		
-		for (int i = 0; i < indexes.length; ++i) {
-            indexes[i] = i;
-        }
+		init();
+	}
+
+	private void init()
+	{
+		for (int i = 0; i < indexes.length; ++i)
+		{
+			indexes[i] = i;
+		}
 	}
 	
 	private int compare(final int i, final int j, final int col)
@@ -63,19 +68,19 @@ public class TableSorter implements TableModel, TableModelListener
 		return Integer.compare(c, 0);
 	}
 	
-	public @Nullable ResultTableModel getModel()
+	public @NotNull ResultTableModel getModel()
 	{
 		return realModel;
 	}
 	
 	@Override
-    public Object getValueAt(final int rowIndex, final int columnIndex)
+	public @NotNull Object getValueAt(final int rowIndex, final int columnIndex)
 	{
 		return realModel.getValueAt(indexes[rowIndex], columnIndex);
 	}
 	
 	@Override
-    public void setValueAt(final Object aValue, final int rowIndex, final int columnIndex)
+    public void setValueAt(final @NotNull Object aValue, final int rowIndex, final int columnIndex)
 	{
 		realModel.setValueAt(aValue, indexes[rowIndex], columnIndex);
 	}
@@ -103,7 +108,7 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public void tableChanged(final TableModelEvent e)
+    public void tableChanged(final @NotNull TableModelEvent e)
 	{
 		allocate();
 	}
@@ -111,13 +116,13 @@ public class TableSorter implements TableModel, TableModelListener
 	// TableModel pass-through methods follow
 	
 	@Override
-    public void addTableModelListener(final TableModelListener l)
+    public void addTableModelListener(final @NotNull TableModelListener l)
 	{
 		realModel.addTableModelListener(l);
 	}
 
 	@Override
-    public Class<?> getColumnClass(final int columnIndex)
+	public @NotNull Class<?> getColumnClass(final int columnIndex)
 	{
 		return realModel.getColumnClass(columnIndex);
 	}
@@ -129,7 +134,7 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public String getColumnName(final int columnIndex)
+	public @NotNull String getColumnName(final int columnIndex)
 	{
 		return realModel.getColumnName(columnIndex);
 	}
@@ -147,7 +152,7 @@ public class TableSorter implements TableModel, TableModelListener
 	}
 	
 	@Override
-    public void removeTableModelListener(final TableModelListener l)
+    public void removeTableModelListener(final @NotNull TableModelListener l)
 	{
 		realModel.removeTableModelListener(l);
 	}

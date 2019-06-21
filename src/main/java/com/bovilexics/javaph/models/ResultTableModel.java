@@ -30,7 +30,7 @@ public final class ResultTableModel extends DefaultTableModel
 {
 	private static final int DEFAULT_COLS = 1;
 	private static final int DEFAULT_ROWS = 0;
-	private static final String DEFAULT_HEADER = "No Results";
+	private static final @NotNull String DEFAULT_HEADER = "No Results";
 
 	public ResultTableModel()
 	{	

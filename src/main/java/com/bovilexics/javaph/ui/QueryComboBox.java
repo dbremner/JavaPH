@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.models.QueryComboBoxModel;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JComboBox;
 
@@ -33,7 +34,7 @@ public final class QueryComboBox extends JComboBox
 	}
 
 	@Override
-	public QueryComboBoxModel getModel()
+	public @NotNull QueryComboBoxModel getModel()
 	{
 		return (QueryComboBoxModel)dataModel;
 	}

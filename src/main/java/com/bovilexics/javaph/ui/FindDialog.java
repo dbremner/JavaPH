@@ -41,14 +41,14 @@ import java.awt.event.KeyEvent;
  */
 public final class FindDialog extends JavaPHDialog
 {
-    private JButton findButton;
+    private final @NotNull JButton findButton = new JButton("Find Next");
 	
-	private JCheckBox caseCheckBox;
-	private JCheckBox wrapCheckBox;
+	private final @NotNull JCheckBox caseCheckBox = new JCheckBox("Case Sensitive");
+	private final @NotNull JCheckBox wrapCheckBox = new JCheckBox("Wrap Search");
 
-	private FindComboBox findComboBox;
+	private final @NotNull FindComboBox findComboBox = new FindComboBox();
 
-    public FindDialog(final @NotNull JavaPH javaph)
+	public FindDialog(final @NotNull JavaPH javaph)
 	{
 		super(javaph, "Find Text");
 		
@@ -66,8 +66,7 @@ public final class FindDialog extends JavaPHDialog
 	private @NotNull JPanel getButtonPanel(final @NotNull JavaPH parent)
 	{
 		final @NotNull JPanel buttonPanel = new JPanel();
-		
-		findButton = new JButton("Find Next");
+
 		findButton.setMnemonic(KeyEvent.VK_F);
 		findButton.addActionListener(ae -> {
 			if (findComboBox.isEnabled())
@@ -117,7 +116,7 @@ public final class FindDialog extends JavaPHDialog
 			public void keyPressed(KeyEvent ke)
 			{
 			}
-				
+
 			public void keyReleased(KeyEvent ke)
 			{
 				if (ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -127,21 +126,22 @@ public final class FindDialog extends JavaPHDialog
 				else if (!ke.isActionKey())
 				{
 					String filter = findComboBoxEditor.getItem().toString();
-						
+
 					findComboBox.hidePopup();
 					((FindComboBoxModel)findComboBox.getModel()).filterElements(filter);
-						
+
 					if (findComboBox.getModel().getSize() > 0)
 						findComboBox.showPopup();
 				}
 			}
-				
+
 			public void keyTyped(KeyEvent ke)
 			{
 			}
 		});
 */
-		findComboBox = new FindComboBox();
+
+
 		findComboBox.setEditable(true);
 		findComboBox.setEditor(findComboBoxEditor);
 		findComboBox.setPreferredSize(new Dimension(200, 0));
@@ -151,11 +151,9 @@ public final class FindDialog extends JavaPHDialog
 		findTextPanel.add(findLabel);
 		findTextPanel.add(findComboBox);
 
-		caseCheckBox = new JCheckBox("Case Sensitive");
 		caseCheckBox.setMnemonic(KeyEvent.VK_S);
 		caseCheckBox.setSelected(true);
 
-		wrapCheckBox = new JCheckBox("Wrap Search");
 		wrapCheckBox.setMnemonic(KeyEvent.VK_W);
 		wrapCheckBox.setSelected(true);
 

@@ -72,27 +72,28 @@ public class ResultThread extends Thread
 	private @Nullable Object[] headers = null;
 	private @Nullable Object[][] values = null;
 
-	private Connection connection;
-	private Line qiLine;
+	private final @NotNull Connection connection;
+	private @Nullable Line qiLine;
 
 	private @Nullable String command;
-	private @Nullable String commandLine;
+	private final @Nullable String commandLine;
 	private @NotNull String epilogue = "";
 	private @NotNull String prologue = "";
-	private String readFromServer;
 
 	// Separator used in the display of queries which matched multiple records.
 	private static final @NotNull String recordSeparator = "------------------------------------------------------------\n";
 
-	private StringBuilder rawResult;
+	private @Nullable StringBuilder rawResult;
 
-	private final List<List<Line>> records = new ArrayList<>();
+	private final @NotNull List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
 
-	public ResultThread(final @Nullable JavaPH javaph, final String command, final @NotNull Connection connection)
+	public ResultThread(final @Nullable JavaPH javaph, final @Nullable String command, final @NotNull Connection connection)
 	{
 		parent = javaph;
-		connect(command, connection);
+		this.connection = connection;
+		commandLine = command;
+		connect();
 	}
 
 	/**
@@ -108,7 +109,7 @@ public class ResultThread extends Thread
 	 * e.g. fieldValue(0, email, false) will return the contents of the "email"
 	 *      field of the first record in our result with all newlines intact.
 	 */
-	public synchronized @Nullable String fieldValue(final int recordIndex, final String field, final boolean replaceNewlines)
+	public synchronized @Nullable String fieldValue(final int recordIndex, final @NotNull String field, final boolean replaceNewlines)
 	{
 
 		final @NotNull StringBuilder out = new StringBuilder();
@@ -274,7 +275,7 @@ public class ResultThread extends Thread
 	 *
 	 * @exception QiProtocolException in the event of Qi throwing us a curve ball.
 	 */
-	private void add() throws QiProtocolException
+	private void add(final @NotNull String readFromServer) throws QiProtocolException
 	{
 		switch (state)
 		{
@@ -383,7 +384,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void addRecord(final List<Line> aRecord)
+	private synchronized void addRecord(final @NotNull List<Line> aRecord)
 	{
 		records.add(aRecord);
 	}
@@ -468,6 +469,7 @@ public class ResultThread extends Thread
 		// Read the server's response, line by line.
 		rawResult = new StringBuilder();
 		int index = 0;
+		@Nullable String readFromServer;
 		while ((readFromServer = readQi()) != null)
 		{
 			qiLine = new QiLine(readFromServer);
@@ -478,7 +480,7 @@ public class ResultThread extends Thread
 				return;
 			}
 
-			add();
+			add(readFromServer);
 
 			if (qiLine.getIndex() != index) {
 				rawResult.append(recordSeparator);
@@ -651,7 +653,7 @@ public class ResultThread extends Thread
 		{
 			if (qiLine != null && qiLine.getCode() < QiAPI.LR_OK)
 			{
-				String buffer;
+				@Nullable String buffer;
 				while ((buffer = readQi()) != null)
 				{
 					qiLine = new QiLine(buffer);
@@ -676,15 +678,10 @@ public class ResultThread extends Thread
 	 * 
 	 * It's here that the connection is established with the Qi server.
 	 *
-	 * @param aCommandLine the command to send to the server.
-	 * @param aConnection a QiConnection. Connection does not need to be open.
 	 *
 	 */
-	private synchronized void connect(final @Nullable String aCommandLine, final @NotNull Connection aConnection)
+	private synchronized void connect()
 	{
-		commandLine = aCommandLine;
-		connection = aConnection;
-		
 		command = (commandLine == null	? null : (String) (new StringTokenizer(commandLine).nextElement()));
 		
 		if (!connection.connected())
@@ -702,7 +699,7 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private String readQi() throws IOException
+	private @Nullable String readQi() throws IOException
 	{
 		return connection.readQI();
 	}
