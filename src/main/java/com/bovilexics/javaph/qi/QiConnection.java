@@ -39,6 +39,8 @@ import java.net.SocketAddress;
  */
 public class QiConnection implements Connection
 {
+	private static final String QI_SOCKET_UNINITIALIZED = "Qi socket uninitialized";
+	
 	// TODO does this support authentication?
 	private boolean authenticated = false;
 	private boolean connected = false;
@@ -324,7 +326,7 @@ public class QiConnection implements Connection
 		}
 		else
 		{
-			throw new IOException("Qi socket uninitialized");
+			throw new IOException(QI_SOCKET_UNINITIALIZED);
 		}
 	}
 
@@ -376,7 +378,7 @@ public class QiConnection implements Connection
 	{
 		if (toServer == null)
 		{
-			throw new IOException("Qi socket uninitialized");
+			throw new IOException(QI_SOCKET_UNINITIALIZED);
 		}
 
 		toServer.write(string);
