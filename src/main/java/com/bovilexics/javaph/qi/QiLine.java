@@ -42,13 +42,13 @@ public final class QiLine implements Line
 	private int index = 0;
 
 	// Set for those lines which are not field value responses (e.g. '200:Ok.')
-    private @NotNull String response = "";
+	private final @NotNull String response;
 	
 	//  The field, if defined, (e.g. '    email') in this line
-    private @NotNull String field = "";
+	private final @NotNull String field;
 	
 	// The value, if defined, (e.g. '  myemail') in this line
-    private @NotNull String value = "";
+	private final @NotNull String value;
 	
 	// The field, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'email').
@@ -110,6 +110,8 @@ public final class QiLine implements Line
 			// This isn't a field:value response but rather a one line description.
 			// Just record it and return.
 			response = verbatim.substring(colon1Index + 1);
+			field = "";
+			value = "";
 			return;
 		}
 		else
@@ -123,9 +125,12 @@ public final class QiLine implements Line
 				// This isn't a field:value response but rather a one line description.
 				// Just record it and return.
 				response = verbatim.substring(colon1Index + 1);
+				field = "";
+				value = "";
 				return;
 			}
 		}
+		response = "";
 
 		// This should be a field:value response.
 		// Get field, value and return.
