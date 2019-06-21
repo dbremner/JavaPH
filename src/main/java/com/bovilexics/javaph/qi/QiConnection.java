@@ -46,10 +46,10 @@ public class QiConnection implements Connection
 	private boolean connected = false;
 	private boolean locked = false;
 
-	private int port;
+	private final int port;
 	
 	private String alias;
-	private @NotNull String host;
+	private final @NotNull String host;
 	
 	private final @NotNull Server qiServer;
 	private final @NotNull LineFactory lineFactory;
@@ -93,21 +93,6 @@ public class QiConnection implements Connection
 		fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		toServer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		connected = true;
-	}
-
-	/**
-	 * Establish a connection to Qi.
-	 *
-	 * @param aHost host to connect to.
-	 * @param aPort port to connect to.
-	 *
-	 */
-	@Override
-	public synchronized void connect(final @NotNull String aHost, final int aPort) throws IOException
-	{
-		host = aHost;
-		port = aPort;
-		connect();
 	}
 
 	@Override

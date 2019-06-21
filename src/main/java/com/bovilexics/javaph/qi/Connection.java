@@ -14,15 +14,6 @@ public interface Connection
       */
     void connect() throws IOException;
 
-    /**
-     * Establish a connection to Qi.
-     *
-     * @param aHost host to connect to.
-     * @param aPort port to connect to.
-     *
-     */
-    void connect(@NotNull String aHost, int aPort) throws IOException;
-
     boolean connected();
 
     /**
