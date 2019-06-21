@@ -28,7 +28,7 @@ import java.util.Optional;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class TableSorter implements TableModel, TableModelListener
+public final class TableSorter implements TableModel, TableModelListener
 {
 	private final @NotNull ResultTableModel realModel;
 	private @NotNull int[] indexes;
