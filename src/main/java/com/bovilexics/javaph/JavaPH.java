@@ -173,7 +173,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private int queryRuntime = QUERY_RUNTIME_DEF;
 
 	private final @NotNull AboutDialog aboutDialog;
-	private @NotNull CustomButtonGroup fieldRadioGroup;
+	private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
 	private final @NotNull ServerManager serverManager;
@@ -183,23 +183,23 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private @NotNull ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
 	private @Nullable Connection connection;
-	private @NotNull QueryComboBox queryComboBox;
+	private final @NotNull QueryComboBox queryComboBox = new QueryComboBox();
 	private final @NotNull QueryToolBar queryToolBar;
-	private @NotNull ResultTable resultTable;
+	private final @NotNull ResultTable resultTable = new ResultTable();
 	private final @NotNull SplashWindow splashWindow;
 	private @NotNull String customFieldSeparator = CUSTOM_SEPARATOR;
 	private @NotNull String fieldSeparator = COMMA_SEPARATOR;
-	private @NotNull TextFieldComboBoxEditor queryComboBoxEditor;
-	private @NotNull Vector<Server> servers;
+	private final @NotNull TextFieldComboBoxEditor queryComboBoxEditor;
+	private final @NotNull Vector<Server> servers;
 
 	// Swing widgets and stuff
 
 	private final @NotNull JButton queryButton = new JButton("Execute Query");
-	private @NotNull JComboBox<QiCommand> commandComboBox;
+	private final @NotNull JComboBox<QiCommand> commandComboBox;
 	private @NotNull JComboBox<Server> serverComboBox;
-	private @NotNull JLabel portStatusLabel;
-	private @NotNull JLabel serverStatusLabel;
-	private @NotNull JLabel statusLabel;
+	private final @NotNull JLabel portStatusLabel = new JLabel();
+	private final @NotNull JLabel serverStatusLabel = new JLabel();
+	private final @NotNull JLabel statusLabel = new JLabel();
 	private final @NotNull JList colList = new JList(new DefaultListModel());
 	private @NotNull JList<Field> fieldList;
 	private final @NotNull JPanel colListPanel = new JPanel(new BorderLayout());
@@ -419,7 +419,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			final @NotNull JPanel queryCommandPanel = new JPanel(new BorderLayout());
 
-			commandComboBox = new JComboBox<>(commands);
 			commandComboBox.addActionListener(ae ->
 			{
 				queryComboBox.setSelectedIndex(-1);
@@ -429,8 +428,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				fieldCustomButton.setEnabled(isQueryCommand);
 				fieldLoadButton.setEnabled(isQueryCommand);
 			});
-
-			queryComboBoxEditor = new TextFieldComboBoxEditor(ae -> queryButton.doClick());
 
 			queryComboBoxEditor.getEditorComponent().addKeyListener(new KeyAdapter()
 			{
@@ -463,7 +460,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				}
 			});
 
-			queryComboBox = new QueryComboBox();
 			queryComboBox.setEditable(true);
 			queryComboBox.setEditor(queryComboBoxEditor);
 
@@ -488,8 +484,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			final @NotNull JPanel queryFieldPanel = new JPanel();
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
-
-			fieldRadioGroup = new CustomButtonGroup();
 
 			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton("Default Fields");
 			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton("All Fields");
@@ -763,7 +757,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		{
 			final @NotNull JPanel resultTablePanel = new JPanel(new BorderLayout());
 
-			resultTable = new ResultTable();
 			resultTable.setColumnSelectionAllowed(false);
 			resultTable.setRowSelectionAllowed(false);
 			resultTable.setCellSelectionEnabled(true);
@@ -982,16 +975,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			add(leftPanel, BorderLayout.CENTER);
 			add(rightPanel, BorderLayout.EAST);
 
-			statusLabel = new JLabel();
 			statusLabel.setHorizontalAlignment(JLabel.LEFT);
 			leftPanel.add(statusLabel, BorderLayout.WEST);
 
-			serverStatusLabel = new JLabel();
 			serverStatusLabel.setBorder(BorderFactory.createEtchedBorder());
 			serverStatusLabel.setHorizontalAlignment(JLabel.CENTER);
 			rightPanel.add(serverStatusLabel, BorderLayout.CENTER);
 
-			portStatusLabel = new JLabel();
 			portStatusLabel.setBorder(BorderFactory.createEtchedBorder());
 			portStatusLabel.setHorizontalAlignment(JLabel.CENTER);
 			rightPanel.add(portStatusLabel, BorderLayout.EAST);
@@ -1007,6 +997,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		this.defaultProperties = defaultProperties;
 		this.properties = properties;
 		commands = QiCommand.commands;
+		commandComboBox = new JComboBox<>(commands);
 		int frameHeight = getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
 		int frameX = getIntProperty(PROP_APP_X_POSITION, -1);
@@ -1025,8 +1016,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		Browser.init();
 
+		queryComboBoxEditor = new TextFieldComboBoxEditor(ae -> queryButton.doClick());
 		initProperties();
-		initServers();
+		this.serverManager.loadAllServers();
+		servers  = this.serverManager.getServers();
 		aboutDialog = new AboutDialog(this);
 		findDialog = new FindDialog(this);
 		propertiesDialog = new PropertiesDialog(this);
@@ -1474,12 +1467,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		setLoadFields(getLoadFieldsPropertyDefault(properties, PROP_LOAD_FIELDS, LoadFields.getDefault()));
 		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
 		setSavePosition(propertyEquals(PROP_SAVE_POSITION, "true", "true"));
-	}
-
-	private void initServers()
-	{
-		serverManager.loadAllServers();
-		servers  = serverManager.getServers();
 	}
 
 	public boolean isFieldQuoted()
