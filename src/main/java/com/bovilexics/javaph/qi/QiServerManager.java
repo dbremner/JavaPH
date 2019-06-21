@@ -235,7 +235,6 @@ public final class QiServerManager implements ServerManager
         }
     }
 
-    @Override
     public void setDefaultServer(final @NotNull String server)
     {
         for (final @NotNull Server item : servers) {
@@ -244,6 +243,16 @@ public final class QiServerManager implements ServerManager
                 return;
             }
         }
+    }
+
+    @Override
+    public void setDefaultServer(final @NotNull Optional<String> server)
+    {
+        if (!server.isPresent())
+        {
+            return;
+        }
+        setDefaultServer(server.get());
     }
 
     @Override

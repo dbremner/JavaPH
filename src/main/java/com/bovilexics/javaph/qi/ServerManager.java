@@ -3,6 +3,7 @@ package com.bovilexics.javaph.qi;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Vector;
 
 public interface ServerManager
@@ -24,6 +25,8 @@ public interface ServerManager
     void saveServers();
 
     void setDefaultServer(@NotNull String server);
+
+    void setDefaultServer(@NotNull Optional<String> server);
 
     void loadAllFields();
 
