@@ -47,8 +47,6 @@ public class QiConnection implements Connection
 	private boolean locked = false;
 
 	private final int port;
-	
-	private String alias;
 	private final @NotNull String host;
 	
 	private final @NotNull Server qiServer;
@@ -176,9 +174,8 @@ public class QiConnection implements Connection
 	}
 	
 	@Override
-	public synchronized void login(final @NotNull String anAlias, final @NotNull String aPassword) throws IOException, QiProtocolException
+	public synchronized void login(final @NotNull String alias, final @NotNull String aPassword) throws IOException, QiProtocolException
 	{
-		alias = anAlias;
 		lock();
 
 		try
