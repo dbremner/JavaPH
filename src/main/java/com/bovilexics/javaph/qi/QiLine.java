@@ -35,7 +35,7 @@ public final class QiLine implements Line
 	private final @NotNull String verbatim;
 
 	// The code which Qi prepended to this line (e.g. -200)
-	private int code = 0;
+	private final int code;
 
 	// If more than one record was returned, that is a (0 based)
 	// index representing the record that this line belongs to
@@ -100,14 +100,7 @@ public final class QiLine implements Line
             throw new QiProtocolException(verbatim);
         }
 
-		try
-		{
-			code = Integer.parseInt(verbatim.substring(0, colon1Index));
-		}
-		catch (final @NotNull NumberFormatException e)
-		{
-			throw new QiProtocolException(verbatim);
-		}
+		code = getCode(colon1Index);
 
 		// Get the index count, if there is one.
 		// Index of second colon --> -200:1:
@@ -146,6 +139,18 @@ public final class QiLine implements Line
 		value = verbatim.substring(colon3Index + 1);
 		trimmedField = field.trim();
 		trimmedValue = value.trim();
+	}
+
+	private int getCode(final int colon1Index) throws QiProtocolException
+	{
+		try
+		{
+			return Integer.parseInt(verbatim.substring(0, colon1Index));
+		}
+		catch (final @NotNull NumberFormatException e)
+		{
+			throw new QiProtocolException(verbatim);
+		}
 	}
 
 	@Override
