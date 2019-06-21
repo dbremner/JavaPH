@@ -205,7 +205,8 @@ public class QiServer implements Server
 			fieldState = QiFieldState.FIELD_LOAD_TRUE;
 			fieldStateMessage = "Successfully loaded fields for " + getExpandedName();
 		}
-		
+
+		//noinspection UnusedAssignment
 		resultThread = null;
 	}
 
