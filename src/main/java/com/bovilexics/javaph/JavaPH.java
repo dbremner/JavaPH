@@ -347,9 +347,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		private final @NotNull JavaPH parent;
 		private final @NotNull JButton fieldListMoveDnButton = new JButton("Move Down");
-		private @NotNull JButton fieldListMoveUpButton;
-		private @NotNull JButton fieldListSelectAllButton;
-		private @NotNull JButton fieldListSelectNoneButton;
+		private final @NotNull JButton fieldListMoveUpButton;
+		private final @NotNull JButton fieldListSelectAllButton;
+		private final @NotNull JButton fieldListSelectNoneButton;
 		private final @NotNull JButton fieldLoadButton;
 		private final @NotNull JButton fieldCustomButton;
 		private final @NotNull ImageIcon fieldCustomOff;
@@ -357,8 +357,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldLoadOff;
 		private final @NotNull ImageIcon fieldLoadOn;
 		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
-
-
+		
 		QueryPanel(final @NotNull JavaPH javaph)
 		{
 			parent = javaph;
@@ -369,6 +368,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldLoadOn = getImageIcon("img/field-load-on.gif");
 			fieldLoadButton = new JButton(fieldLoadOff);
 			fieldCustomButton = new JButton(fieldCustomOff);
+			fieldListSelectAllButton = new JButton("Select All");
+			fieldListSelectNoneButton = new JButton("Delselect All");
+			fieldListMoveUpButton = new JButton("Move Up");
 
 			initFieldListPanel();
 
@@ -599,15 +601,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			final @NotNull JPanel fieldListButtonPanel = new JPanel(new FlowLayout());
 
-			fieldListSelectAllButton = new JButton("Select All");
 			fieldListSelectAllButton.addActionListener(
 					ae -> fieldList.setSelectionInterval(0, fieldList.getModel().getSize() - 1));
 
-			fieldListSelectNoneButton = new JButton("Delselect All");
 			fieldListSelectNoneButton.addActionListener(ae -> fieldList.clearSelection());
 
 
-			fieldListMoveUpButton = new JButton("Move Up");
 			fieldListMoveUpButton.addActionListener(ae ->
 			{
 				final @NotNull int[] selections = fieldList.getSelectedIndices();
