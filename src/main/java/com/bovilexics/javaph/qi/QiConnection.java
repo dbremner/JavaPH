@@ -51,11 +51,11 @@ public class QiConnection implements Connection
 	
 	private final @NotNull Server qiServer;
 	private final @NotNull LineFactory lineFactory;
-	private Socket socket;
+	private @Nullable Socket socket;
 	private @Nullable Thread locker;
 		
-	private BufferedReader fromServer;
-	private BufferedWriter toServer;
+	private @Nullable BufferedReader fromServer;
+	private @Nullable BufferedWriter toServer;
 
 	/**
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
@@ -203,7 +203,7 @@ public class QiConnection implements Connection
 			@NotNull String blurb = "";
 			while (true)
 			{
-				final @NotNull String buffer = readQI();
+				final @Nullable String buffer = readQI();
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				
 				if (qiQiLine.getCode() == QiAPI.LR_LOGIN) {
@@ -228,7 +228,7 @@ public class QiConnection implements Connection
 			@NotNull String blurb2 = "";
 			while (true)
 			{
-				final @NotNull String buffer = readQI();
+				final @Nullable String buffer = readQI();
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
@@ -287,7 +287,7 @@ public class QiConnection implements Connection
 			@NotNull String blurb = "";
 			while (true)
 			{
-				final @NotNull String buffer = readQI();
+				final @Nullable String buffer = readQI();
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
@@ -316,7 +316,7 @@ public class QiConnection implements Connection
 	}	
 
 	@Override
-	public String readQI() throws IOException
+	public @Nullable String readQI() throws IOException
 	{
 		if (fromServer != null)
 		{

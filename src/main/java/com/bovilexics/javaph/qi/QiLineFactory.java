@@ -6,7 +6,7 @@ public final class QiLineFactory implements LineFactory
 {
     public @NotNull Line create(final @NotNull String buffer) throws QiProtocolException
     {
-        Line line = new QiLine(buffer);
+        final @NotNull Line line = new QiLine(buffer);
         return line;
     }
 }

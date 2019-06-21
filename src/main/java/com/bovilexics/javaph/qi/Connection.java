@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.qi;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 
@@ -62,7 +63,7 @@ public interface Connection
      */
     void logout() throws QiProtocolException, IOException;
 
-    String readQI() throws IOException;
+    @Nullable String readQI() throws IOException;
 
     /**
      * All threads intending to use shared connection to Qi should use
