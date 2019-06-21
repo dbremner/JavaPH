@@ -1508,7 +1508,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private void loadFieldsForAllServers()
 	{
-		if (servers != null && !servers.isEmpty())
+		if (!servers.isEmpty())
 		{
 
 			final @NotNull ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
@@ -1790,10 +1790,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	@Override
 	public void showStatus(final @NotNull String msg)
 	{
-		if (statusLabel != null)
-		{
-			statusLabel.setText(" " + msg);
-		}
+		statusLabel.setText(" " + msg);
 	}
 
 	public void showToolBar(final boolean show)
