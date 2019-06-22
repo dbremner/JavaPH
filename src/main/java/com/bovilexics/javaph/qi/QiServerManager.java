@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.logging.ErrLogger;
+import com.bovilexics.javaph.logging.Logger;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import org.jetbrains.annotations.NotNull;
@@ -28,6 +29,7 @@ public final class QiServerManager implements ServerManager
                                                               .trimResults();
 
     private static final @NotNull Joiner joiner = Joiner.on(SEPARATOR);
+    private final @NotNull Logger logger = ErrLogger.instance;
 
     private @Nullable Server defaultServer = null;
     private final @NotNull Vector<Server> servers = new Vector<>();
@@ -112,7 +114,7 @@ public final class QiServerManager implements ServerManager
 
                     if (items.size() != 3)
                     {
-                        ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + i + " --> " + line);
+                        logger.println("Error: Invalid server entry in " + filename + " on line " + i + " --> " + line);
                     }
                     else
                     {
@@ -126,18 +128,18 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull InvalidPathException e)
         {
-            ErrLogger.instance.println("Error: InvalidPathException thrown whem create file path");
-            ErrLogger.instance.printStackTrace(e);
+            logger.println("Error: InvalidPathException thrown whem create file path");
+            logger.printStackTrace(e);
         }
         catch (final @NotNull FileNotFoundException e)
         {
-            ErrLogger.instance.println("Error: FileNotFoundException received when trying to read file " + filename);
-            ErrLogger.instance.printStackTrace(e);
+            logger.println("Error: FileNotFoundException received when trying to read file " + filename);
+            logger.printStackTrace(e);
         }
         catch (final @NotNull IOException e)
         {
-            ErrLogger.instance.println("Error: IOException received when trying to read file " + filename);
-            ErrLogger.instance.printStackTrace(e);
+            logger.println("Error: IOException received when trying to read file " + filename);
+            logger.printStackTrace(e);
         }
     }
 
@@ -191,8 +193,8 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull IOException e)
         {
-            ErrLogger.instance.println("Error: IOException received when trying to write file " + SERVER_FILE);
-            ErrLogger.instance.printStackTrace(e);
+            logger.println("Error: IOException received when trying to write file " + SERVER_FILE);
+            logger.printStackTrace(e);
         }
     }
 
