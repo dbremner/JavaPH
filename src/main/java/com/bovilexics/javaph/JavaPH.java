@@ -76,6 +76,7 @@ import javax.swing.RootPaneContainer;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -1598,7 +1599,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			JavaPH.updateTreeUIs(list);
 			return;
 		}
-		catch(final @NotNull Exception e)
+		catch (ClassNotFoundException |
+				IllegalAccessException |
+				InstantiationException |
+				UnsupportedLookAndFeelException e)
 		{
 			// If we cannot set the look and feel to
 			// what was specified in the properties file
@@ -1606,7 +1610,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			logger.printStackTrace(e);
 			logger.println("Exception occurred when trying to set custom look and feel");
 		}
-		
+
 		try
 		{
 			// UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -1614,7 +1618,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			SwingUtilities.updateComponentTreeUI(component);
 			JavaPH.updateTreeUIs(list);
 		}
-		catch(final @NotNull Exception e)
+		catch (ClassNotFoundException |
+				IllegalAccessException |
+				InstantiationException |
+				UnsupportedLookAndFeelException e)
 		{
 			// If we cannot set the look and feel to
 			// what is set as the system look and feel
