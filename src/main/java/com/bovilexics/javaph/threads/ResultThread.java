@@ -203,6 +203,7 @@ public class ResultThread extends Thread
 
 	public synchronized @Nullable String getRawResult()
 	{
+		assert rawResult != null;
 		return isOk() && rawResult.length() > 0 ? rawResult.toString() : null;
 	}
 
@@ -280,6 +281,7 @@ public class ResultThread extends Thread
 	 */
 	private void add(final @NotNull String readFromServer) throws QiProtocolException
 	{
+		assert qiLine != null;
 		switch (state)
 		{
 			case RS_START:

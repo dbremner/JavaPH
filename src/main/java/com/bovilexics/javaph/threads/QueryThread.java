@@ -20,6 +20,7 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Connection;
+import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,7 +58,9 @@ public class QueryThread extends Thread
 		parent.log("Running query \"" + parent.getCommand() + "\"");
 
 
-		final @NotNull Connection connection = parent.getServerManager().getConnectionFactory().create(parent.getServer());
+		final @Nullable Server server = parent.getServer();
+		assert server != null;
+		final @NotNull Connection connection = parent.getServerManager().getConnectionFactory().create(server);
 		resultThread = new ResultThread(null, parent.getCommand(), connection);
 		resultThread.start();
 

@@ -441,7 +441,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					}
 					else if (!e.isActionKey())
 					{
-						final String filter = queryComboBoxEditor.getItem().toString();
+						final @Nullable Object obj = queryComboBoxEditor.getItem();
+						assert obj != null;
+						final String filter = obj.toString();
 
 						queryComboBox.hidePopup();
 						queryComboBox.getModel().filterElements(filter);
@@ -502,7 +504,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldCustomButton.addActionListener(ae ->
 			{
 				final @NotNull int[] prevSelections = fieldList.getSelectedIndices();
-				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + getServer().toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				final @Nullable Server server = getServer();
+				assert server != null;
+				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + server.toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (option != JOptionPane.OK_OPTION)
 				{
@@ -557,7 +561,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(ae ->
 			{
-				final @NotNull Server server = getServer();
+				final @Nullable Server server;
+				server = getServer();
+				assert server != null;
 				final @NotNull String serverText = server.getServer();
 
 				final @NotNull Integer portInt = server.getPort();

@@ -113,13 +113,17 @@ public class QiConnection implements Connection
 		try
 		{
 			writeQI(QiCommand.QUIT + "\n");
-		} finally
+		}
+		finally
 		{
 			try
 			{
+				assert toServer != null;
 				toServer.close();
+				assert socket != null;
 				socket.close();
-			} finally
+			}
+			finally
 			{
 				connected = false;
 			}
