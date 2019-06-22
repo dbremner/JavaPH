@@ -81,11 +81,10 @@ public class QiConnection implements Connection
 		if (host.isEmpty()) {
 			throw new IOException("No host specified, cannot connect");
 		}
-			
-		final @NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
+
 		socket = new Socket();
-		
 		// Timeout after 10 seconds
+		final @NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
 		socket.connect(sockaddr, 10000);
 		
 		fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
