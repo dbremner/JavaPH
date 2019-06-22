@@ -17,4 +17,6 @@ public interface Line
     @NotNull String getTrimmedValue();
 
     @NotNull String getValue();
+
+    @NotNull String getFieldValue();
 }

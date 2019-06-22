@@ -490,7 +490,7 @@ public class ResultThread extends Thread
 			}
 
 			index = qiLine.getIndex();
-			rawResult.append(qiLine.getResponse().isEmpty() ? qiLine.getField() + " : " + qiLine.getValue() : qiLine.getResponse());
+			rawResult.append(qiLine.getResponse().isEmpty() ? qiLine.getFieldValue() : qiLine.getResponse());
 			rawResult.append("\n");
 			
 			// If code >= LR_OK, Qi has said all it's going to say.

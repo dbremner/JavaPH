@@ -30,4 +30,6 @@ class LineImpl(val code: Int, val verbatim: String, val field: String, val index
   override def getTrimmedValue: String = trimmedValue
 
   override def getValue: String = value
+
+  override def getFieldValue: String = field + ":" + value
 }
