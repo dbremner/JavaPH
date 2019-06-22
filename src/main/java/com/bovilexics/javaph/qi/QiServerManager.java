@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.logging.ErrLogger;
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +26,8 @@ public final class QiServerManager implements ServerManager
     private static final @NotNull Splitter splitter = Splitter.on(SEPARATOR)
                                                               .omitEmptyStrings()
                                                               .trimResults();
+
+    private static final @NotNull Joiner joiner = Joiner.on(SEPARATOR);
 
     private @Nullable Server defaultServer = null;
     private final @NotNull Vector<Server> servers = new Vector<>();
@@ -219,11 +222,8 @@ public final class QiServerManager implements ServerManager
                 final Server server = servers.get(i);
 
                 final @NotNull StringBuilder toWrite = new StringBuilder();
-                toWrite.append(server.getName());
-                toWrite.append(SEPARATOR);
-                toWrite.append(server.getServer());
-                toWrite.append(SEPARATOR);
-                toWrite.append(server.getPort());
+                final String serverLine = joiner.join(server.getName(), server.getServer(), server.getPort());
+                toWrite.append(serverLine);
 
                 if (i < servers.size() - 1)
                 {
