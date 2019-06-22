@@ -69,6 +69,6 @@ class FieldFactoryImpl extends FieldFactory
   override def create(name: String, someProperties: String, description: String): Field =
   {
     val parseResult = FieldFactoryImpl.parseProperties(someProperties)
-    new QiField(name, parseResult.getLength, parseResult.getProperties, description)
+    new FieldImpl(name, parseResult.getLength, parseResult.getProperties, description)
   }
 }
