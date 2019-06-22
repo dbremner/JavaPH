@@ -139,9 +139,9 @@ public class QiConnection implements Connection
 	}
 
 	@Override
-	public @NotNull Server getServer()
+	public @NotNull String getExpandedName()
 	{
-		return qiServer;
+		return qiServer.getExpandedName();
 	}
 
 	@Override

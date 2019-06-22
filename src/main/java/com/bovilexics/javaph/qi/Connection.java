@@ -26,7 +26,7 @@ public interface Connection
 
     int getPort();
 
-    @NotNull Server getServer();
+    @NotNull String getExpandedName();
 
     @NotNull LineFactory getLineFactory();
 

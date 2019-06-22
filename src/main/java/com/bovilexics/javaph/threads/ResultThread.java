@@ -696,7 +696,7 @@ public class ResultThread extends Thread
 			{
 				error = true;
 				showStatus("Error: " + e);
-				showStatus("Error: Could not connect to " + connection.getServer().getExpandedName());
+				showStatus("Error: Could not connect to " + connection.getExpandedName());
 			}
 		}
 	}
