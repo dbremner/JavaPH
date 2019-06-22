@@ -115,13 +115,13 @@ public final class SaveAction extends AbstractAction
 			try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
 			{
 				// start at row -1 to grab headers first
-				for (int r = -1; r < rows; r++)
+				for (int row = -1; row < rows; row++)
 				{
 					final @NotNull StringBuilder toWrite = new StringBuilder();
 
-					for (int c = 0; c < cols; c++)
+					for (int col = 0; col < cols; col++)
 					{
-						if (c > 0) {
+						if (col > 0) {
                             toWrite.append(separator);
                         }
 
@@ -129,15 +129,15 @@ public final class SaveAction extends AbstractAction
                             toWrite.append(FIELD_QUOTE);
                         }
 						
-						if (r == -1) // write the header
+						if (row == -1) // write the header
                         {
-                        	final @Nullable String name = model.getColumnName(c);
+                        	final @Nullable String name = model.getColumnName(col);
                         	final @NotNull String value = Optional.ofNullable(name).orElse("");
                             toWrite.append(value);
                         }
 						else // write the value
                         {
-                        	final @Nullable Object value = model.getValueAt(r, c);
+                        	final @Nullable Object value = model.getValueAt(row, col);
                         	final @NotNull String str = Optional.ofNullable(value).map(Object::toString).orElse("");
                             toWrite.append(str);
                         }

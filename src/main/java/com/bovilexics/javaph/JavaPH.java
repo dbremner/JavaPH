@@ -1138,13 +1138,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		if (!inLastCell)
 		{
-			for (int r = startRow; r < table.getRowCount(); r++)
+			for (int row = startRow; row < table.getRowCount(); row++)
 			{
 				// if at the starting row then continue from the starting column
 				// otherwise start from the first column
-				for (int c = (r == startRow) ? startCol : 0; c < table.getColumnCount(); c++)
+				for (int col = (row == startRow) ? startCol : 0; col < table.getColumnCount(); col++)
 				{
-					final @Nullable Object anObject = table.getValueAt(r, c);
+					final @Nullable Object anObject = table.getValueAt(row, col);
 
 					if (anObject == null)
 					{
@@ -1152,12 +1152,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					}
 					else if (caseSensitive && anObject.toString().contains(text))
 					{
-						table.changeSelection(r, c, false, false);
+						table.changeSelection(row, col, false, false);
 						return;
 					}
 					else if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
 					{
-						table.changeSelection(r, c, false, false);
+						table.changeSelection(row, col, false, false);
 						return;
 					}
 				}
@@ -1173,13 +1173,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			startRow = 0;
 			startCol = 0;
 
-			for (int r = startRow; r < table.getRowCount(); r++)
+			for (int row = startRow; row < table.getRowCount(); row++)
 			{
 				// if at the starting row then continue from the starting column
 				// otherwise start from the first column
-				for (int c = (r == startRow) ? startCol : 0; c < table.getColumnCount(); c++)
+				for (int col = (row == startRow) ? startCol : 0; col < table.getColumnCount(); col++)
 				{
-					final @Nullable Object anObject = table.getValueAt(r, c);
+					final @Nullable Object anObject = table.getValueAt(row, col);
 
 					if (anObject == null)
 					{
@@ -1187,12 +1187,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					}
 					else if (caseSensitive && anObject.toString().contains(text))
 					{
-						table.changeSelection(r, c, false, false);
+						table.changeSelection(row, col, false, false);
 						return;
 					}
 					else if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
 					{
-						table.changeSelection(r, c, false, false);
+						table.changeSelection(row, col, false, false);
 						return;
 					}
 				}

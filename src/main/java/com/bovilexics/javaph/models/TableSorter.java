@@ -63,9 +63,9 @@ public final class TableSorter implements TableModel, TableModelListener
 		final @NotNull String left = ioOpt.orElse("").toString();
 		final @NotNull String right  = joOpt.orElse("").toString();
 		
-		final int c = left.compareTo(right);
+		final int compare = left.compareTo(right);
 		
-		return Integer.compare(c, 0);
+		return Integer.compare(compare, 0);
 	}
 	
 	public @NotNull ResultTableModel getModel()
