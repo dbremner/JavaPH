@@ -28,15 +28,13 @@ object FieldFactoryImpl
       {
         val lengthString = tokenizer.nextElement.asInstanceOf[String]
         try
-          {
-            length = Integer.valueOf(lengthString)
-          }
+        {
+          length = Integer.valueOf(lengthString)
+        }
         catch
         {
           case _: NumberFormatException =>
-          {
-            throw new QiProtocolException("Invalid value for max length property: " + someProperties)
-          }
+          throw new QiProtocolException("Invalid value for max length property: " + someProperties)
         }
       }
       else

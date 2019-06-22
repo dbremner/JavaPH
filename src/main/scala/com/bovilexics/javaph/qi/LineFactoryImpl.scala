@@ -81,8 +81,6 @@ final class LineFactoryImpl extends LineFactory
   catch
   {
     case _: NumberFormatException =>
-    {
-      throw new QiProtocolException(verbatim)
-    }
+    throw new QiProtocolException(verbatim)
   }
 }
