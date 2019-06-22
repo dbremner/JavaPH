@@ -14,7 +14,7 @@ object FieldFactoryImpl
     *                       "fields" command. The protocol stuff should be stripped
     *                       leaving just the field description
     *                       (e.g. "max 64 Indexed Lookup Public Default Any")
-    * @exception QiProtocolException in the event of an error parsing the data.
+    * @throws QiProtocolException in the event of an error parsing the data.
     * @return properties collection
     */
     @Contract(pure = true)
