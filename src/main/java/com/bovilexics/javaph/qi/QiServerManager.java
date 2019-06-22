@@ -13,6 +13,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -98,14 +102,13 @@ public final class QiServerManager implements ServerManager
     public void loadAllServers(final @NotNull String filename)
     {
         servers.clear();
-
-        try(final @NotNull Reader in = new FileReader(filename);
-            final @NotNull LineNumberReader lr = new LineNumberReader(in))
+        try
         {
-            String line;
-
-            while ((line = lr.readLine()) != null)
+            final @NotNull Path path = Paths.get(filename);
+            final @NotNull List<String> lines = Files.readAllLines(path);
+            for(int i = 0; i < lines.size(); i++)
             {
+                final @NotNull String line = lines.get(i);
                 // Ignore comment lines
                 if (!line.startsWith("#"))
                 {
@@ -113,7 +116,7 @@ public final class QiServerManager implements ServerManager
 
                     if (items.size() != 3)
                     {
-                        ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
+                        ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + i + " --> " + line);
                     }
                     else
                     {
@@ -124,6 +127,11 @@ public final class QiServerManager implements ServerManager
             }
 
             defaultServer = servers.get(0);
+        }
+        catch (final @NotNull InvalidPathException e)
+        {
+            ErrLogger.instance.println("Error: InvalidPathException thrown whem create file path");
+            ErrLogger.instance.printStackTrace(e);
         }
         catch (final @NotNull FileNotFoundException e)
         {
