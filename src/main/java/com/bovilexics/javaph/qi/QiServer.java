@@ -207,7 +207,7 @@ public class QiServer implements Server
 			fieldStateMessage = "Successfully loaded fields for " + getExpandedName();
 		}
 
-		//noinspection UnusedAssignment
+		//noinspection UnusedAssignment,ReuseOfLocalVariable,ReuseOfLocalVariable
 		resultThread = null;
 	}
 

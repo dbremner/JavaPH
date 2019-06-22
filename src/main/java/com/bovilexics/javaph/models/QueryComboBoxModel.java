@@ -150,7 +150,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	/**
 	 * Returns the index-position of the specified object in the list.
 	 *
-	 * @param anObject  
+	 * @param anObject an object
 	 * @return an int representing the index position, where 0 is 
 	 *         the first position
 	 */

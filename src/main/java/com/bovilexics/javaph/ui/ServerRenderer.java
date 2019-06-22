@@ -46,7 +46,8 @@ public class ServerRenderer extends DefaultListCellRenderer
 		final @NotNull QiFieldState state = server.getFieldState();
 		setIcon(map.get(state));
 		setText(server.toString());
-		
+
+		//noinspection ReturnOfThis
 		return this;
 	}
 }

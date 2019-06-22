@@ -11,5 +11,6 @@ public interface LineFactory
      *
      * @exception QiProtocolException if the line can't be parsed.
      */
+    @SuppressWarnings("RedundantThrows")
     @NotNull Line create(final @NotNull String buffer) throws QiProtocolException;
 }
