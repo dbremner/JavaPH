@@ -213,8 +213,8 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsPanel.setLayout(gbl);
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-		final int horizStrut = 6;
-		loadFieldsPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
+		final int horizontalStrut = 6;
+		loadFieldsPanel.add(Box.createHorizontalStrut(horizontalStrut), gbc);
 		loadFieldsPanel.add(loadFieldsManual, gbc);
 
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -222,11 +222,11 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsPanel.add(new JLabel(" "), gbc);
 		
 		gbc.weightx = 0;
-		final int vertStrut = 2;
-		loadFieldsPanel.add(Box.createVerticalStrut(vertStrut), gbc);
+		final int verticalStrut = 2;
+		loadFieldsPanel.add(Box.createVerticalStrut(verticalStrut), gbc);
 		
 		gbc.gridwidth = 1;
-		loadFieldsPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
+		loadFieldsPanel.add(Box.createHorizontalStrut(horizontalStrut), gbc);
 		loadFieldsPanel.add(loadFieldsSelected, gbc);
 
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -234,10 +234,10 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsPanel.add(new JLabel(" "), gbc);
 		
 		gbc.weightx = 0;
-		loadFieldsPanel.add(Box.createVerticalStrut(vertStrut), gbc);
+		loadFieldsPanel.add(Box.createVerticalStrut(verticalStrut), gbc);
 		
 		gbc.gridwidth = 1;
-		loadFieldsPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
+		loadFieldsPanel.add(Box.createHorizontalStrut(horizontalStrut), gbc);
 		loadFieldsPanel.add(loadFieldsStartup, gbc);
 
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -252,8 +252,6 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	private @NotNull JPanel getStartupPanel()
 	{	
-		//int horizStrut = 6;
-
 		final @NotNull JPanel startupPanel = new JPanel();
 		startupPanel.setBorder(BorderFactory.createTitledBorder(" Startup Options "));
 
@@ -270,8 +268,8 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.add(rollToolbarCheckBox, gbc);
 
 		gbc.weightx = 0;
-		final int vertStrut = 2;
-		startupPanel.add(Box.createVerticalStrut(vertStrut), gbc);
+		final int verticalStrut = 2;
+		startupPanel.add(Box.createVerticalStrut(verticalStrut), gbc);
 		
 		gbc.gridwidth = 1;
 		gbc.weightx = 0.5;
@@ -281,7 +279,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.add(savePositionCheckBox, gbc);
 
 		gbc.weightx = 0;
-		startupPanel.add(Box.createVerticalStrut(vertStrut), gbc);
+		startupPanel.add(Box.createVerticalStrut(verticalStrut), gbc);
 
 		gbc.gridwidth = 1;
 		gbc.weightx = 0.5;

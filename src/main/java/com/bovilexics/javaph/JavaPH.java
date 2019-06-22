@@ -370,7 +370,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldLoadButton = new JButton(fieldLoadOff);
 			fieldCustomButton = new JButton(fieldCustomOff);
 			fieldListSelectAllButton = new JButton("Select All");
-			fieldListSelectNoneButton = new JButton("Delselect All");
+			fieldListSelectNoneButton = new JButton("Deselect All");
 			fieldListMoveUpButton = new JButton("Move Up");
 
 			initFieldListPanel();
@@ -453,7 +453,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					}
 					else if (queryComboBox.getModel().getSize() == 1 && (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN))
 					{
-						// force reselecting of first item if only one item
+						// force reselection of first item if only one item
 						// in the list and the up or down arrow is pressed
 						queryComboBox.setSelectedIndex(-1);
 						queryComboBox.setSelectedIndex(0);
@@ -726,7 +726,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	final class ResultPanel extends JTabbedPane
 	{
 		private final @NotNull JButton colListSelectAllButton = new JButton("Select All");
-		private final @NotNull JButton colListSelectNoneButton = new JButton("Delselect All");
+		private final @NotNull JButton colListSelectNoneButton = new JButton("Deselect All");
 		private final @NotNull JButton resultTableColButton = new JButton("Show/Hide Columns");
 		private final @NotNull JButton resultTableColWidthButton = new JButton("Reset Column Widths");
 		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");

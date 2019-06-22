@@ -84,9 +84,9 @@ public class QiConnection implements Connection
 
 		socket = new Socket();
 		// Timeout after 10 seconds
-		final @NotNull SocketAddress sockaddr = new InetSocketAddress(host, port);
+		final @NotNull SocketAddress socketAddress = new InetSocketAddress(host, port);
 		final int TIMEOUT = 10000;
-		socket.connect(sockaddr, TIMEOUT);
+		socket.connect(socketAddress, TIMEOUT);
 		
 		fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		toServer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -328,7 +328,7 @@ public class QiConnection implements Connection
 		out.append(port);
 		out.append(" {connected=");
 		out.append(connected);
-		out.append(", authenticted=");
+		out.append(", authenticated=");
 		out.append(authenticated);
 		out.append(", locked=");
 		out.append(locked);

@@ -130,7 +130,7 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull InvalidPathException e)
         {
-            logger.println("Error: InvalidPathException thrown whem create file path");
+            logger.println("Error: InvalidPathException thrown when create file path");
             logger.printStackTrace(e);
         }
         catch (final @NotNull FileNotFoundException e)
