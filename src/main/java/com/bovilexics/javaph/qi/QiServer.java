@@ -81,7 +81,8 @@ public class QiServer implements Server
 
 					try
 					{
-						fields.add(factory.create(propsField, propsValue, descValue));
+						final @NotNull Field field = factory.create(propsField, propsValue, descValue);
+						fields.add(field);
 					}
 					catch (final @NotNull QiProtocolException e)
 					{
