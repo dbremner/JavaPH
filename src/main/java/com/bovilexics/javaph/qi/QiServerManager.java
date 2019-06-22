@@ -116,8 +116,8 @@ public final class QiServerManager implements ServerManager
                     }
                     else
                     {
-                        final @NotNull Server server1 = serverFactory.create(items.get(0), items.get(1), items.get(2));
-                        addServer(server1);
+                        final @NotNull Server server = serverFactory.create(items.get(0), items.get(1), items.get(2));
+                        addServer(server);
                     }
                 }
             }
@@ -179,8 +179,8 @@ public final class QiServerManager implements ServerManager
                 final Server server = servers.get(i);
 
                 final @NotNull StringBuilder toWrite = new StringBuilder();
-                final String serverLine = joiner.join(server.getName(), server.getServer(), server.getPort());
-                toWrite.append(serverLine);
+                final @NotNull String line = joiner.join(server.getName(), server.getServer(), server.getPort());
+                toWrite.append(line);
 
                 if (i < servers.size() - 1)
                 {
