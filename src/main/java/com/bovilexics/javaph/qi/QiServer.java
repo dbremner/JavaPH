@@ -41,7 +41,7 @@ public class QiServer implements Server
 	private final @NotNull String name;
 	private final @NotNull String server;
 	private final @NotNull Integer port;
-	private @NotNull List<Field> fields = new ArrayList<>();
+	private final @NotNull List<Field> fields = new ArrayList<>();
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
@@ -56,7 +56,7 @@ public class QiServer implements Server
 
 	private void convertRecordsToFields(final @NotNull List<List<Line>> records)
 	{
-		fields = new ArrayList<>();
+		fields.clear();
 
 		for (final @NotNull List<Line> record : records)
 		{
