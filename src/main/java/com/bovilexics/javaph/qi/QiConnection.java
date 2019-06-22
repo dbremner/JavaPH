@@ -180,7 +180,7 @@ public class QiConnection implements Connection
 	}
 	
 	@Override
-	public synchronized void login(final @NotNull String alias, final @NotNull String aPassword) throws IOException, QiProtocolException
+	public synchronized void login(final @NotNull String alias, final @NotNull String password) throws IOException, QiProtocolException
 	{
 		lock();
 
@@ -211,7 +211,7 @@ public class QiConnection implements Connection
 			}
 
 			// Send password.
-			writeQI(QiCommand.CLEAR + " " + aPassword + "\n");
+			writeQI(QiCommand.CLEAR + " " + password + "\n");
 
 			// Read server's response.
 			// Expecting: "200:myname:Hi how are you?"

@@ -40,13 +40,13 @@ public interface Connection
     /**
      * Login to  QI.
      *
-     * @param anAlias alias
-     * @param aPassword password
+     * @param alias alias
+     * @param password password
      *
      * @exception QiProtocolException upon an unexpected response from Qi
      * @exception IOException upon a socket error.
      */
-    void login(@NotNull String anAlias, @NotNull String aPassword) throws IOException, QiProtocolException;
+    void login(@NotNull String alias, @NotNull String password) throws IOException, QiProtocolException;
 
     /**
      * Logout from QI.
