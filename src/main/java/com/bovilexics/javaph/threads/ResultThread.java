@@ -24,6 +24,7 @@ import com.bovilexics.javaph.qi.LineFactory;
 import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiProtocolException;
+import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -193,10 +194,10 @@ public class ResultThread extends Thread
 	{
 		if (!isOk())
 		{
-			return new ArrayList<>();
+			return ImmutableList.of();
 		}
 
-		final @NotNull List<List<Line>> results = new ArrayList<>(records);
+		final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
 		return results;
 	}
 
