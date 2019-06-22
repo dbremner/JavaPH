@@ -657,15 +657,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					fieldListMoveDnButton.setEnabled(false);
 				}
 			});
-			fieldList.getModel().addListDataListener(new ListDataAdapter()
+			fieldList.getModel().addListDataListener(new ListDataAdapter( () ->
 			{
-				@Override
-				protected void changed()
-				{
-					fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
-					fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);
-				}
-			});
+				fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
+				fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);
+			}));
 
 			fieldListControlPanel.add(new JScrollPane(fieldList), BorderLayout.CENTER);
 			fieldListControlPanel.add(fieldListButtonPanel, BorderLayout.SOUTH);
@@ -886,15 +882,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			colListButtonPanel.add(colListSelectAllButton);
 			colListButtonPanel.add(colListSelectNoneButton);
 
-			colList.getModel().addListDataListener(new ListDataAdapter()
+			colList.getModel().addListDataListener(new ListDataAdapter(() ->
 			{
-				@Override
-				protected void changed()
-				{
-					colListSelectAllButton.setEnabled(colList.getModel().getSize() > 0);
-					colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);
-				}
-			});
+				colListSelectAllButton.setEnabled(colList.getModel().getSize() > 0);
+				colListSelectNoneButton.setEnabled(colList.getModel().getSize() > 0);
+			}));
 
 			colListControlPanel.add(new JScrollPane(colList), BorderLayout.CENTER);
 			colListControlPanel.add(colListButtonPanel, BorderLayout.SOUTH);

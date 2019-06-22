@@ -5,21 +5,35 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
-public abstract class ListDataAdapter implements ListDataListener {
+public final class ListDataAdapter implements ListDataListener
+{
+    private final @NotNull Runnable runnable;
+
+    public ListDataAdapter(final @NotNull Runnable runnable)
+    {
+        this.runnable = runnable;
+    }
+
     @Override
-    public final void intervalAdded(final @NotNull ListDataEvent e) {
+    public void intervalAdded(final @NotNull ListDataEvent e)
+    {
         changed();
     }
 
     @Override
-    public final void intervalRemoved(final @NotNull ListDataEvent e) {
+    public void intervalRemoved(final @NotNull ListDataEvent e)
+    {
         changed();
     }
 
     @Override
-    public final void contentsChanged(final @NotNull ListDataEvent e) {
+    public void contentsChanged(final @NotNull ListDataEvent e)
+    {
         changed();
     }
 
-    protected abstract void changed();
+    private void changed()
+    {
+        runnable.run();
+    }
 }
