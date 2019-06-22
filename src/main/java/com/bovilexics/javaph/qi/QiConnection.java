@@ -198,6 +198,10 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @Nullable String buffer = readQI();
+				if (buffer == null)
+				{
+					throw new QiProtocolException("Unexpected end of stream");
+				}
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				
 				if (qiQiLine.getCode() == QiAPI.LR_LOGIN) {
@@ -223,6 +227,10 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @Nullable String buffer = readQI();
+				if (buffer == null)
+				{
+					throw new QiProtocolException("Unexpected end of stream");
+				}
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
@@ -282,6 +290,10 @@ public class QiConnection implements Connection
 			while (true)
 			{
 				final @Nullable String buffer = readQI();
+				if (buffer == null)
+				{
+					throw new QiProtocolException("Unexpected end of stream");
+				}
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
