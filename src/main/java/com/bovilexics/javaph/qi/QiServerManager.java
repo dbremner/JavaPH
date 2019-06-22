@@ -122,7 +122,10 @@ public final class QiServerManager implements ServerManager
                 }
             }
 
-            defaultServer = servers.get(0);
+            if (!servers.isEmpty())
+            {
+                defaultServer = servers.get(0);
+            }
         }
         catch (final @NotNull QiServerFileException e)
         {
