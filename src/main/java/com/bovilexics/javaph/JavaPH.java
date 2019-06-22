@@ -507,11 +507,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				if (option != JOptionPane.OK_OPTION)
 				{
 					fieldList.setSelectedIndices(prevSelections);
+					return;
 				}
-				else
-				{
-					fieldCustomRadioButton.setSelected(true);
-				}
+				fieldCustomRadioButton.setSelected(true);
 			});
 
 			fieldLoadButton.setBorder(BorderFactory.createEtchedBorder());
@@ -789,19 +787,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				if (option != JOptionPane.OK_OPTION)
 				{
 					colList.setSelectedIndices(prevSelections);
+					return;
 				}
-				else
+				for (int i = 0; i < colList.getModel().getSize(); i++)
 				{
-					for (int i = 0; i < colList.getModel().getSize(); i++)
+					if (colList.isSelectedIndex(i))
 					{
-						if (colList.isSelectedIndex(i))
-						{
-							resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
-						}
-						else
-						{
-							resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(0);
-						}
+						resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
+					}
+					else
+					{
+						resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(0);
 					}
 				}
 			});
