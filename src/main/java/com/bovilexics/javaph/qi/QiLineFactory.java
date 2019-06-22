@@ -65,7 +65,6 @@ public final class QiLineFactory implements LineFactory
             final String description = verbatim.substring(colon1Index + 1);
             return new QiLine(verbatim, description, code);
         }
-        final String response = "";
 
         // This should be a field:value response.
         // Get field, value and return.
@@ -77,7 +76,7 @@ public final class QiLineFactory implements LineFactory
 
         final String field = verbatim.substring(colon2Index + 1, colon3Index);
         final String value = verbatim.substring(colon3Index + 1);
-        return new QiLine(verbatim, field, value, response, code, index);
+        return new QiLine(verbatim, field, value, "", code, index);
     }
 
     private int getCode(final String verbatim, final int colon1Index) throws QiProtocolException
