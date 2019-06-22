@@ -115,17 +115,18 @@ public final class QiServerManager implements ServerManager
 
                     if (items.size() != 3)
                     {
-                        logger.println("Error: Invalid server entry in " + filename + " on line " + i + " --> " + line);
+                        throw new QiServerFileException(filename, i, line);
                     }
-                    else
-                    {
-                        final @NotNull Server server = serverFactory.create(items.get(0), items.get(1), items.get(2));
-                        addServer(server);
-                    }
+                    final @NotNull Server server = serverFactory.create(items.get(0), items.get(1), items.get(2));
+                    addServer(server);
                 }
             }
 
             defaultServer = servers.get(0);
+        }
+        catch (final @NotNull QiServerFileException e)
+        {
+            logger.println("Error: Invalid server entry in " + e.getFilename() + " on line " + e.getLineNumber() + " --> " + e.getContents());
         }
         catch (final @NotNull InvalidPathException e)
         {
