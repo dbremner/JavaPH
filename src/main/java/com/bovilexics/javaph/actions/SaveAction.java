@@ -163,7 +163,7 @@ public final class SaveAction extends AbstractAction
 			{
 				final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 				parent.log(message);
-				parent.showErrorDialog(message, "Exception");
+				parent.showExceptionDialog(message);
 			}
 		}	
 	}
@@ -207,7 +207,7 @@ public final class SaveAction extends AbstractAction
 		{
 			final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
 			parent.log(message);
-			parent.showErrorDialog(message, "Exception");
+			parent.showExceptionDialog(message);
 		}
 	}
 }

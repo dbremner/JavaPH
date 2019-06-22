@@ -31,7 +31,7 @@ abstract class AbstractHyperLinkLabelListener extends MouseAdapter
         {
             final @NotNull String message = "Error: IOException received when trying to open " + url;
             parent.log(message);
-            parent.showErrorDialog(message, "Exception");
+            parent.showExceptionDialog(message);
         }
     }
 
