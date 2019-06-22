@@ -65,5 +65,5 @@ class FieldImpl private[qi](val name: String, val length: Int, val properties: I
 
   override def hashCode: Int = name.hashCode
 
-  override def toString: String = getName + " - " + getDescription
+  override def toString: String = name + " - " + description
 }
