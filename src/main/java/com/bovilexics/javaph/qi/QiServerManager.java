@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.logging.ErrLogger;
+import com.google.common.base.Splitter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,6 +21,11 @@ public final class QiServerManager implements ServerManager
 {
     private static final @NotNull String SEPARATOR = "::";
     private static final @NotNull String SERVER_FILE = "javaph.servers";
+
+    private static final @NotNull Splitter splitter = Splitter.on(SEPARATOR)
+                                                              .omitEmptyStrings()
+                                                              .trimResults();
+
     private @Nullable Server defaultServer = null;
     private final @NotNull Vector<Server> servers = new Vector<>();
     private final @NotNull ServerFactory serverFactory;
@@ -100,15 +106,15 @@ public final class QiServerManager implements ServerManager
                 // Ignore comment lines
                 if (!line.startsWith("#"))
                 {
-                    final @NotNull String[] items = line.split(SEPARATOR);
+                    final @NotNull List<String> items = splitter.splitToList(line);
 
-                    if (items.length != 3)
+                    if (items.size() != 3)
                     {
                         ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                     }
                     else
                     {
-                        final @NotNull Server server1 = serverFactory.create(items[0], items[1], items[2]);
+                        final @NotNull Server server1 = serverFactory.create(items.get(0), items.get(1), items.get(2));
                         addServer(server1);
                     }
                 }
@@ -155,15 +161,15 @@ public final class QiServerManager implements ServerManager
                 // Ignore comment lines
                 if (!line.startsWith("#"))
                 {
-                    final @NotNull String[] items = line.split(SEPARATOR);
+                    final List<String> items = splitter.splitToList(line);
 
-                    if (items.length != 3)
+                    if (items.size() != 3)
                     {
                         ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
                     }
                     else
                     {
-                        final @NotNull Server server1 = serverFactory.create(items[0], items[1], items[2]);
+                        final @NotNull Server server1 = serverFactory.create(items.get(0), items.get(1), items.get(2));
                         serverResults.add(server1);
                     }
                 }
