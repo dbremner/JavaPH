@@ -2,7 +2,6 @@ package com.bovilexics.javaph.qi;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
@@ -17,8 +16,6 @@ public interface ServerManager
     void loadAllServers(@NotNull String filename);
 
     void loadAllServers();
-
-    @NotNull List<Server> loadServers(@NotNull String filename);
 
     void removeServer(@NotNull Server server);
 

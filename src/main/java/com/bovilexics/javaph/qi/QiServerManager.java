@@ -8,16 +8,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.LineNumberReader;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
@@ -146,61 +142,14 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void loadAllServers() {
+    public void loadAllServers()
+    {
         loadAllServers(SERVER_FILE);
-        /*
-        TODO test this
-        servers.clear();
-        final @NotNull List<Server> results = loadServers(SERVER_FILE);
-        for (final @NotNull Server server : results) {
-            addServer(server);
-        }
-         */
     }
 
     @Override
-    public @NotNull List<Server> loadServers(final @NotNull String filename) {
-        final @NotNull List<Server> serverResults = new ArrayList<>();
-
-        try(final @NotNull Reader in = new FileReader(filename);
-            final @NotNull LineNumberReader lr = new LineNumberReader(in))
-        {
-            String line;
-
-            while ((line = lr.readLine()) != null)
-            {
-                // Ignore comment lines
-                if (!line.startsWith("#"))
-                {
-                    final List<String> items = splitter.splitToList(line);
-
-                    if (items.size() != 3)
-                    {
-                        ErrLogger.instance.println("Error: Invalid server entry in " + filename + " on line " + lr.getLineNumber() + " --> " + line);
-                    }
-                    else
-                    {
-                        final @NotNull Server server1 = serverFactory.create(items.get(0), items.get(1), items.get(2));
-                        serverResults.add(server1);
-                    }
-                }
-            }
-        }
-        catch (final @NotNull FileNotFoundException e)
-        {
-            ErrLogger.instance.println("Error: FileNotFoundException received when trying to read file " + filename);
-            ErrLogger.instance.printStackTrace(e);
-        }
-        catch (final @NotNull IOException e)
-        {
-            ErrLogger.instance.println("Error: IOException received when trying to read file " + filename);
-            ErrLogger.instance.printStackTrace(e);
-        }
-        return serverResults;
-    }
-
-    @Override
-    public void removeServer(final @NotNull Server server) {
+    public void removeServer(final @NotNull Server server)
+    {
         servers.remove(server);
     }
 
