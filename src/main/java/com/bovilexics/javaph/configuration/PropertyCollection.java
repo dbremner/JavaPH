@@ -18,6 +18,7 @@ public interface PropertyCollection
 
     void setProperty(@NotNull String key, int value);
 
+    @SuppressWarnings("BooleanParameter")
     void setProperty(@NotNull String key, boolean value);
 
     void load(@NotNull InputStream inStream) throws IOException;

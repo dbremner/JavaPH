@@ -1674,6 +1674,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		properties.setProperty(key, value);
 	}
 
+	@SuppressWarnings("BooleanParameter")
 	public void setProperty(final @NotNull String key, final boolean value)
 	{
 		properties.setProperty(key, value);
