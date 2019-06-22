@@ -60,6 +60,7 @@ public class QiServer implements Server
 
 		for (final @NotNull List<Line> record : records)
 		{
+			assert records.size() % 2 == 0;
 			// record should contain pairs of field property/description lines 
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
