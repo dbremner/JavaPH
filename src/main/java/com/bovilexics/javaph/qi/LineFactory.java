@@ -2,6 +2,7 @@ package com.bovilexics.javaph.qi;
 
 import org.jetbrains.annotations.NotNull;
 
+@FunctionalInterface
 public interface LineFactory
 {
     /** Given a line as read from Qi, construct a Line.
