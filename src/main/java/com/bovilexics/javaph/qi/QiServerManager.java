@@ -235,6 +235,7 @@ public final class QiServerManager implements ServerManager
         }
     }
 
+    @Override
     public void setDefaultServer(final @NotNull String server)
     {
         for (final @NotNull Server item : servers) {
