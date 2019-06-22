@@ -22,11 +22,11 @@ object FieldFactoryImpl
     def parseProperties(someProperties: String): (Int, ImmutableList[String]) =
     {
       val tokenizer = new StringTokenizer(someProperties)
-      val token = tokenizer.nextElement.asInstanceOf[String]
+      val token = tokenizer.nextToken
       var length = 0
       if (token.startsWith("max"))
       {
-        val lengthString = tokenizer.nextElement.asInstanceOf[String]
+        val lengthString = tokenizer.nextToken
         try
         {
           length = Integer.valueOf(lengthString)
@@ -45,7 +45,7 @@ object FieldFactoryImpl
       // Okay, here come the properties...
       while(tokenizer.hasMoreElements)
       {
-        builder.add(tokenizer.nextElement.asInstanceOf[String])
+        builder.add(tokenizer.nextToken)
       }
       val list = builder.build
       (length, list)
