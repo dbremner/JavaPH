@@ -1452,10 +1452,31 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private void initProperties()
 	{
 		// First load default properties - prints exception and exits if not found
-		loadDefaultProperties();
+		try
+		{
+			loadDefaultProperties();
+		}
+		catch (final @NotNull FileNotFoundException e)
+		{
+			errLogger.printStackTrace(e);
+			errLogger.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
+			System.exit(1);
+		}
+		catch (final @NotNull IOException e)
+		{
+			errLogger.printStackTrace(e);
+			errLogger.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
+			System.exit(1);
+		}
 
 		// Next load custom properties, overrides defaults - ignores if not found
-		loadProperties();
+		try
+		{
+			loadProperties();
+		}
+		catch (final IOException ignored)
+		{
+		}
 
 		setLoadFields(getLoadFieldsPropertyDefault(properties, PROP_LOAD_FIELDS, LoadFields.getDefault()));
 		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
@@ -1472,30 +1493,16 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return savePosition;
 	}
 
-	private void loadDefaultProperties()
+	private void loadDefaultProperties() throws IOException
 	{
-
-		try
+		// TODO can I reuse the same stream?
+		try (@NotNull FileInputStream inStream = new FileInputStream(PROP_FILE_DEF))
 		{
-			// TODO can I reuse the same stream?
-			try (@NotNull FileInputStream inStream = new FileInputStream(PROP_FILE_DEF)) {
-				defaultProperties.load(inStream);
-			}
-			try (@NotNull FileInputStream inStream1 = new FileInputStream(PROP_FILE_DEF)) {
-				properties.load(inStream1);
-			}
+			defaultProperties.load(inStream);
 		}
-		catch (final @NotNull FileNotFoundException e)
+		try (@NotNull FileInputStream inStream1 = new FileInputStream(PROP_FILE_DEF))
 		{
-			errLogger.printStackTrace(e);
-			errLogger.println("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
-			System.exit(1);
-		}
-		catch (final @NotNull IOException e)
-		{
-			errLogger.printStackTrace(e);
-			errLogger.println("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
-			System.exit(1);
+			properties.load(inStream1);
 		}
 	}
 
@@ -1522,18 +1529,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	private void loadProperties()
+	private void loadProperties() throws IOException
 	{
-
 		try (@NotNull FileInputStream inStream = new FileInputStream(PROP_FILE))
 		{
 			properties.load(inStream);
-		}
-		catch (final @NotNull FileNotFoundException ignored)
-		{
-		}
-		catch (final @NotNull IOException ignored)
-		{
 		}
 	}
 
