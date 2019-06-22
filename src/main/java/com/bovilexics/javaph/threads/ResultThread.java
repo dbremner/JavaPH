@@ -20,9 +20,9 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
+import com.bovilexics.javaph.qi.LineFactory;
 import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
-import com.bovilexics.javaph.qi.QiLine;
 import com.bovilexics.javaph.qi.QiProtocolException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -73,6 +73,7 @@ public class ResultThread extends Thread
 	private @Nullable Object[][] values = null;
 
 	private final @NotNull Connection connection;
+	private final @NotNull LineFactory lineFactory;
 	private @Nullable Line qiLine;
 
 	private @Nullable String command;
@@ -92,6 +93,7 @@ public class ResultThread extends Thread
 	{
 		parent = javaph;
 		this.connection = connection;
+		lineFactory = connection.getLineFactory();
 		commandLine = command;
 		connect();
 	}
@@ -472,7 +474,7 @@ public class ResultThread extends Thread
 		@Nullable String readFromServer;
 		while ((readFromServer = readQi()) != null)
 		{
-			qiLine = new QiLine(readFromServer);
+			qiLine = lineFactory.create(readFromServer);
 
 			if (halted)
 			{
@@ -656,7 +658,7 @@ public class ResultThread extends Thread
 				@Nullable String buffer;
 				while ((buffer = readQi()) != null)
 				{
-					qiLine = new QiLine(buffer);
+					qiLine = lineFactory.create(buffer);
 					if (qiLine.getCode() >= QiAPI.LR_OK) {
 						break;
 					}

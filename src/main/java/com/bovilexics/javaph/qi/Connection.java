@@ -28,6 +28,8 @@ public interface Connection
 
     @NotNull Server getServer();
 
+    @NotNull LineFactory getLineFactory();
+
     /**
      * All threads intending to use shared connection to Qi should use the locking
      * mechanism provided by lock() and unlock(). This avoids a situation in which

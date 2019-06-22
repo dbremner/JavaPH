@@ -144,6 +144,12 @@ public class QiConnection implements Connection
 		return qiServer;
 	}
 
+	@Override
+	public @NotNull LineFactory getLineFactory()
+	{
+		return lineFactory;
+	}
+
 	/**
 	 * All threads intending to use shared connection to Qi should use the locking
 	 * mechanism provided by lock() and unlock(). This avoids a situation in which
