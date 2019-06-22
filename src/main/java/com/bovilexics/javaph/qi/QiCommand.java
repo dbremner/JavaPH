@@ -48,6 +48,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
+@SuppressWarnings("WeakerAccess")
 public final class QiCommand
 {
 	// public static final String ADD		= "add";

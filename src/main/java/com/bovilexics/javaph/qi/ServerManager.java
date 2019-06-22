@@ -11,6 +11,7 @@ public interface ServerManager
 
     @NotNull Server getDefaultServer();
 
+    @SuppressWarnings("UseOfObsoleteCollectionType")
     @NotNull Vector<Server> getServers();
 
     void loadAllServers(@NotNull String filename);
