@@ -39,7 +39,7 @@ public final class QiLine implements Line
 
 	// If more than one record was returned, that is a (0 based)
 	// index representing the record that this line belongs to
-	private int index = 0;
+	private int index;
 
 	// Set for those lines which are not field value responses (e.g. '200:Ok.')
 	private final @NotNull String response;
@@ -52,11 +52,11 @@ public final class QiLine implements Line
 	
 	// The field, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'email').
-    private @NotNull String trimmedField = "";
+	private final @NotNull String trimmedField;
 
 	// The value, if defined, in this line with leading and
 	// trailing white space trimmed (e.g. 'myemail').
-    private @NotNull String trimmedValue = "";
+	private final @NotNull String trimmedValue;
 
 	/** Given a line as read from Qi, construct a Line.
 	  *
@@ -110,8 +110,11 @@ public final class QiLine implements Line
 			// This isn't a field:value response but rather a one line description.
 			// Just record it and return.
 			response = verbatim.substring(colon1Index + 1);
+			index = 0;
 			field = "";
 			value = "";
+			trimmedField = "";
+			trimmedValue = "";
 			return;
 		}
 		else
@@ -127,6 +130,9 @@ public final class QiLine implements Line
 				response = verbatim.substring(colon1Index + 1);
 				field = "";
 				value = "";
+				index = 0;
+				trimmedField = "";
+				trimmedValue = "";
 				return;
 			}
 		}
