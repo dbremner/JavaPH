@@ -75,9 +75,9 @@ final class LineFactoryImpl extends LineFactory
 
   @throws[QiProtocolException]
   private def getCode(verbatim: String, colon1Index: Int) = try
-    {
-      verbatim.substring(0, colon1Index).toInt
-    }
+  {
+    verbatim.substring(0, colon1Index).toInt
+  }
   catch
   {
     case _: NumberFormatException =>
