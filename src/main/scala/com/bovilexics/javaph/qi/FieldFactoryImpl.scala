@@ -19,7 +19,7 @@ object FieldFactoryImpl
     */
     @Contract(pure = true)
     @throws[QiProtocolException]
-    def parseProperties(someProperties: String): ParseResult =
+    def parseProperties(someProperties: String): (Int, ImmutableList[String]) =
     {
       val tokenizer = new StringTokenizer(someProperties)
       val token = tokenizer.nextElement.asInstanceOf[String]
@@ -48,16 +48,8 @@ object FieldFactoryImpl
         builder.add(tokenizer.nextElement.asInstanceOf[String])
       }
       val list = builder.build
-      new ParseResult(length, list)
+      (length, list)
     }
-
-  final private class ParseResult private[qi](val length: Int, val properties: ImmutableList[String])
-  {
-    private[qi] def getLength = length
-
-    private[qi] def getProperties = properties
-  }
-
 }
 
 class FieldFactoryImpl extends FieldFactory
@@ -67,6 +59,6 @@ class FieldFactoryImpl extends FieldFactory
   override def create(name: String, someProperties: String, description: String): Field =
   {
     val parseResult = FieldFactoryImpl.parseProperties(someProperties)
-    new FieldImpl(name, parseResult.getLength, parseResult.getProperties, description)
+    new FieldImpl(name, parseResult._1, parseResult._2, description)
   }
 }
