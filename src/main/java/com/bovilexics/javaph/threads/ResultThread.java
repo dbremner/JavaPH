@@ -581,11 +581,11 @@ public class ResultThread extends Thread
 		for (int i = 0; i < records.size(); i++)
 		{
 			final int yCoordinate = i;
-			final List<Line> thisVector = records.get(i);
+			final List<Line> list = records.get(i);
 
-			for (final @NotNull Line thisQiLine : thisVector)
+			for (final @NotNull Line line : list)
 			{
-				@NotNull String field = thisQiLine.getTrimmedField();
+				@NotNull String field = line.getTrimmedField();
 
 				if (field.isEmpty())
 				{
@@ -606,11 +606,11 @@ public class ResultThread extends Thread
 
 				if (found)
 				{
-					values[yCoordinate][xCoordinate] = thisQiLine.getTrimmedValue();
+					values[yCoordinate][xCoordinate] = line.getTrimmedValue();
 				}
 				else
 				{
-					final @NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
+					final @NotNull String message = "Couldn't find header for this column: " + line.toString();
 
 					log(message);
 				}
