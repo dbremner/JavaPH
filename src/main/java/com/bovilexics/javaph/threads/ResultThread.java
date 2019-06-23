@@ -78,7 +78,7 @@ public class ResultThread extends Thread
 	private @Nullable Line qiLine;
 
 	private @Nullable String command;
-	private final @Nullable String commandLine;
+	private final @NotNull String commandLine;
 	private @NotNull String epilogue = "";
 	private @NotNull String prologue = "";
 
@@ -90,7 +90,7 @@ public class ResultThread extends Thread
 	private final @NotNull List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
 
-	public ResultThread(final @Nullable JavaPH javaph, final @Nullable String command, final @NotNull Connection connection)
+	public ResultThread(final @Nullable JavaPH javaph, final @NotNull String command, final @NotNull Connection connection)
 	{
 		parent = javaph;
 		this.connection = connection;
@@ -695,7 +695,7 @@ public class ResultThread extends Thread
 	 */
 	private synchronized void connect()
 	{
-		command = (commandLine == null	? null : (String) (new StringTokenizer(commandLine).nextElement()));
+		command = (String)new StringTokenizer(commandLine).nextElement();
 		
 		if (!connection.connected())
 		{
