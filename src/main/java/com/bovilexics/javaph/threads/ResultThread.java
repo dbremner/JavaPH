@@ -695,7 +695,7 @@ public class ResultThread extends Thread
 	 */
 	private synchronized void connect()
 	{
-		command = (String)new StringTokenizer(commandLine).nextElement();
+		command = new StringTokenizer(commandLine).nextToken();
 		
 		if (!connection.connected())
 		{
