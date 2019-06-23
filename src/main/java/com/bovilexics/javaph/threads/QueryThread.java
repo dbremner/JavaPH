@@ -81,7 +81,8 @@ public class QueryThread extends Thread
 				parent.setQueryProgress(seconds);
 			});
 		}
-			
+
+		// TODO add helper meethod to reduce boilerplate?
 		if (parent.isQueryCanceled())
 		{
 			resultThread.interrupt();
@@ -90,6 +91,7 @@ public class QueryThread extends Thread
 				parent.closeQueryProgressMonitor();
 				parent.showStatusLog("Query Canceled");
 				parent.showErrorDialog("Query Canceled", "Canceled");
+				parent.enableQueryButton();
 			});
 		}
 		else if (seconds == runtime)
@@ -100,6 +102,7 @@ public class QueryThread extends Thread
 				parent.closeQueryProgressMonitor();
 				parent.showStatusLog("Query Timed Out");
 				parent.showErrorDialog("Query Timed Out", "Timeout");
+				parent.enableQueryButton();
 			});
 		}
 		else
@@ -113,10 +116,9 @@ public class QueryThread extends Thread
 				final @NotNull ResultTableModel resultModel = parent.getResultTable().getTableSorter().getModel();
 				resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
 				parent.getResultTable().resetColumnWidths();
+				parent.enableQueryButton();
 			});
 		}
-
-		SwingUtilities.invokeLater(parent::enableQueryButton);
 	}
 
 }
