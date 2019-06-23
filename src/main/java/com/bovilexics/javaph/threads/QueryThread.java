@@ -54,9 +54,7 @@ public final class QueryThread extends Thread
 	{
 		SwingUtilities.invokeLater(() ->
 		{
-			parent.disableQueryButton();
-			parent.showStatus("Query Running... Please Wait");
-			parent.log("Running query \"" + command + "\"");
+			parent.beginQuery(command);
 		});
 
 		final @NotNull ResultThread resultThread = new ResultThread(null, command, connection);

@@ -330,17 +330,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			add(getQueryButtonPanel(javaph), BorderLayout.EAST);
 		}
 
-		public boolean isQueryCanceled()
+		private boolean isQueryCanceled()
 		{
 			return queryProgressMonitor.isCanceled();
 		}
 
-		public void setQueryProgress(final int progress)
+		private void setQueryProgress(final int progress)
 		{
 			queryProgressMonitor.setProgress(progress);
 		}
 
-		public void closeQueryProgressMonitor()
+		private void closeQueryProgressMonitor()
 		{
 			queryProgressMonitor.close();
 		}
@@ -1212,7 +1212,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return location;
 	}
 
-	public @NotNull String getCommand()
+	private @NotNull String getCommand()
 	{
 		final @NotNull StringBuilder out = new StringBuilder();
 
@@ -1267,11 +1267,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public @NotNull JRootPane getDefaultPane()
 	{
 		return defaultPane;
-	}
-
-	public @NotNull Optional<Connection> getConnection()
-	{
-		return Optional.ofNullable(connection);
 	}
 
 	public @NotNull String getFieldSeparator()
@@ -1341,16 +1336,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return queryRuntime;
 	}
 
-	public void enableQueryButton()
-	{
-		queryButton.setEnabled(true);
-	}
-
-	public void disableQueryButton()
-	{
-		queryButton.setEnabled(false);
-	}
-
 	public @NotNull QueryComboBox getQueryComboBox()
 	{
 		return queryComboBox;
@@ -1366,30 +1351,33 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryPanel.setQueryProgress(progress);
 	}
 
+	public void beginQuery(final @NotNull String command)
+	{
+		queryButton.setEnabled(false);
+		showStatus("Query Running... Please Wait");
+		log("Running query \"" + command + "\"");
+	}
+
 	public void endFailedQuery(final @NotNull String message, final @NotNull String title)
 	{
-		closeQueryProgressMonitor();
-		showStatusLog(message);
+		queryPanel.closeQueryProgressMonitor();
+		showStatus(message);
+		log(message);
 		showErrorDialog(message, title);
-		enableQueryButton();
+		queryButton.setEnabled(true);
 	}
 
 	public void endQuery(final String rawResult, final Object[] headers, final Object[][] values)
 	{
-		showStatusLog("Query Finished");
-		closeQueryProgressMonitor();
-		getResultText().setText(rawResult);
-
-		final @NotNull ResultTableModel resultModel;
-		resultModel = getResultTable().getTableSorter().getModel();
-		resultModel.setDataVector(values, headers);
-		getResultTable().resetColumnWidths();
-		enableQueryButton();
-	}
-
-	public void closeQueryProgressMonitor()
-	{
+		showStatus("Query Finished");
+		log("Query Finished");
 		queryPanel.closeQueryProgressMonitor();
+		resultText.setText(rawResult);
+
+		final @NotNull ResultTableModel resultModel = resultTable.getTableSorter().getModel();
+		resultModel.setDataVector(values, headers);
+		resultTable.resetColumnWidths();
+		queryButton.setEnabled(true);
 	}
 
 	public @NotNull JToolBar getQueryToolBar()
@@ -1419,7 +1407,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return resultText;
 	}
 
-	public @Nullable Server getServer()
+	private @Nullable Server getServer()
 	{
 		return (Server)serverComboBox.getSelectedItem();
 	}
@@ -1704,7 +1692,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		showErrorDialog(message, "Exception");
 	}
 
-	public void showErrorDialog(final @NotNull String message, final @NotNull String title)
+	private void showErrorDialog(final @NotNull String message, final @NotNull String title)
 	{
 		JOptionPane.showMessageDialog(getDefaultPane(), message, title, JOptionPane.ERROR_MESSAGE);
 	}
@@ -1788,12 +1776,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void showStatus(final @NotNull String msg)
 	{
 		statusLabel.setText(" " + msg);
-	}
-
-	public void showStatusLog(final @Nullable String message)
-	{
-		showStatus(message);
-		log(message);
 	}
 
 	public void showToolBar(final boolean show)
