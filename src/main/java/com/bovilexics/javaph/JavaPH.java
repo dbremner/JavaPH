@@ -1261,6 +1261,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		if (fieldRadioGroup.isEnabled())
 		{
+			//noinspection StatementWithEmptyBody
 			if (fieldRadioGroup.getSelectedIndex() == FIELD_DEFAULT)
 			{
 				// Don't do anything if default fields selected
