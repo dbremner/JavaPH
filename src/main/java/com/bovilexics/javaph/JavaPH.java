@@ -561,8 +561,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(ae ->
 			{
-				final @Nullable Server server;
-				server = getServer();
+				final @Nullable Server server = getServer();
 				assert server != null;
 				final @NotNull String serverText = server.getServer();
 
