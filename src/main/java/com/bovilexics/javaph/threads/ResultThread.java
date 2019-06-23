@@ -79,7 +79,7 @@ public final class ResultThread extends Thread
 	private final @NotNull LineFactory lineFactory;
 	private @Nullable Line qiLine;
 
-	private @Nullable String command;
+	private final @NotNull String command;
 	private final @NotNull String commandLine;
 	private @NotNull String epilogue = "";
 	private @NotNull String prologue = "";
@@ -98,6 +98,7 @@ public final class ResultThread extends Thread
 		this.connection = connection;
 		lineFactory = connection.getLineFactory();
 		commandLine = command;
+		this.command = new StringTokenizer(commandLine).nextToken();
 		connect();
 	}
 
@@ -147,7 +148,7 @@ public final class ResultThread extends Thread
 		return out.toString();
 	}
 
-	public synchronized @Nullable String getCommand()
+	public synchronized @NotNull String getCommand()
 	{
 		return command;
 	}
@@ -546,8 +547,6 @@ public final class ResultThread extends Thread
 		else
 		{
 			state = ResultThreadState.RS_OK;
-
-			assert command != null;
 			if (command.equals(QiCommand.FIELDS))
 			{
 				buildHeadersForFields();
@@ -707,8 +706,6 @@ public final class ResultThread extends Thread
 	 */
 	private synchronized void connect()
 	{
-		command = new StringTokenizer(commandLine).nextToken();
-		
 		if (!connection.connected())
 		{
 			try
