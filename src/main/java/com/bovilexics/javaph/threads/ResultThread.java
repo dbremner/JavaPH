@@ -204,7 +204,7 @@ public final class ResultThread extends Thread
 
 	public synchronized @NotNull List<List<Line>> getRecords()
 	{
-		if (!(state == ResultThreadState.RS_OK))
+		if (state != ResultThreadState.RS_OK)
 		{
 			return ImmutableList.of();
 		}
