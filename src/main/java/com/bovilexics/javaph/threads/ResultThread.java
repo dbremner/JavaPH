@@ -290,13 +290,13 @@ public class ResultThread extends Thread
 					// Some implementations of qi return a 102 response before the
 					// actual entries, giving the number of entries found; be prepared
 					// to see or not see this response.
-					prologue += (qiLine.getResponse() + "\n");
+					prologue += qiLine.getResponse() + "\n";
 					break;
 				}
 				else if (qiLine.getCode() == QiAPI.LR_OK || qiLine.getCode() == QiAPI.LR_RONLY)
 				{
 					// Single line response.
-					prologue += (qiLine.getResponse() + "\n");
+					prologue += qiLine.getResponse() + "\n";
 					state = ResultThreadState.RS_OK;
 					lastCode = qiLine.getCode();
 					break;
@@ -304,7 +304,7 @@ public class ResultThread extends Thread
 				else if ((qiLine.getCode() < -QiAPI.LR_TEMP || qiLine.getCode() > QiAPI.LR_TEMP) && qiLine.getCode() != -QiAPI.LR_ABSENT)
 				{
 					// This should be an error
-					prologue += (qiLine.getResponse() + "\n");
+					prologue += qiLine.getResponse() + "\n";
 					state = ResultThreadState.RS_ERROR;
 					lastCode = qiLine.getCode();
 					break;
@@ -341,7 +341,7 @@ public class ResultThread extends Thread
 				else if (qiLine.getCode() >= QiAPI.LR_OK)
 				{
 					// It must be done so finish it up.
-					epilogue += (qiLine.getResponse() + "\n");
+					epilogue += qiLine.getResponse() + "\n";
 					addRecord(record);
 					state = ResultThreadState.RS_OK;
 
@@ -360,7 +360,7 @@ public class ResultThread extends Thread
 				if (qiLine.getCode() >= QiAPI.LR_TEMP)
 				{
 					// End of error response.
-					prologue += (qiLine.getResponse() + "\n");
+					prologue += qiLine.getResponse() + "\n";
 
 					// Make a record of what the last code was.
 					// Can be retrieved through getLastCode().
@@ -369,7 +369,7 @@ public class ResultThread extends Thread
 				else if (qiLine.getCode() < -QiAPI.LR_TEMP)
 				{
 					// This should be a multiline error description.
-					prologue += (qiLine.getResponse() + "\n");
+					prologue += qiLine.getResponse() + "\n";
 				}
 				else
 				{
