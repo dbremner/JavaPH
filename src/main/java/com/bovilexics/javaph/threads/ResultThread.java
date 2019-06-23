@@ -64,7 +64,7 @@ public class ResultThread extends Thread
 	private boolean headersDone = false;
 	private boolean valuesDone = false;
 	
-	private int entryIndex;	
+	private int entryIndex = 0;
 	private int lastCode = QiAPI.LR_OK;
 	private @NotNull ResultThreadState state = ResultThreadState.RS_START;
 
