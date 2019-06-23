@@ -574,14 +574,6 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildValues()
 	{
-		if (valuesDone) {
-			return;
-		}
-
-		if (!headersDone) {
-			buildHeaders();
-		}
-
 		assert headers != null;
 		values = new Object[records.size()][headers.length];
 
@@ -634,14 +626,6 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildValuesForFields()
 	{
-		if (valuesDone) {
-			return;
-		}
-
-		if (!headersDone) {
-			buildHeadersForFields();
-		}
-
 		assert headers != null;
 		values = new Object[records.size()][headers.length];
 
