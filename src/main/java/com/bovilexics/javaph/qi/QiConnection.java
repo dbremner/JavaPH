@@ -119,6 +119,8 @@ public final class QiConnection implements Connection
 		{
 			try
 			{
+				assert fromServer != null;
+				fromServer.close();
 				assert toServer != null;
 				toServer.close();
 				assert socket != null;
