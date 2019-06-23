@@ -45,17 +45,16 @@ public class QueryThread extends Thread
 		command = parent.getCommand();
 	}
 
-	private void closeProgress()
-	{
-		SwingUtilities.invokeLater(parent::closeQueryProgressMonitor);
-	}
-
 	@Override
 	public void run()
 	{
 		final int runtime = parent.getQueryRuntime();
-		
-		startup();
+
+		SwingUtilities.invokeLater(() ->
+		{
+			parent.disableQueryButton();
+			parent.showStatus("Query Running... Please Wait");
+		});
 
 		parent.log("Running query \"" + command + "\"");
 
@@ -78,73 +77,40 @@ public class QueryThread extends Thread
 			}
 
 			++seconds;
-			showStatus("Query running for " + seconds + " seconds");
-			updateProgress(seconds);
+			SwingUtilities.invokeLater(() -> parent.showStatus("Query running for " + seconds + " seconds"));
+			SwingUtilities.invokeLater(() -> parent.setQueryProgress(seconds));
 		}
 			
 		if (parent.isQueryCanceled())
 		{
 			resultThread.interrupt();
-			closeProgress();
-			showStatusLog("Query Canceled");
+			SwingUtilities.invokeLater(parent::closeQueryProgressMonitor);
+			SwingUtilities.invokeLater(() -> parent.showStatusLog("Query Canceled"));
 			parent.showErrorDialog("Query Canceled", "Canceled");
 		}
 		else if (seconds == runtime)
 		{
 			resultThread.interrupt();
-			closeProgress();
-			showStatusLog("Query Timed Out");
+			SwingUtilities.invokeLater(parent::closeQueryProgressMonitor);
+			SwingUtilities.invokeLater(() -> parent.showStatusLog("Query Timed Out"));
 			parent.showErrorDialog("Query Timed Out", "Timeout");
 		}
 		else
 		{
-			showStatusLog("Query Finished");
-			showResult();
+			SwingUtilities.invokeLater(() -> parent.showStatusLog("Query Finished"));
+			SwingUtilities.invokeLater(() ->
+			{
+				parent.closeQueryProgressMonitor();
+				assert resultThread != null;
+				parent.getResultText().setText(resultThread.getRawResult());
+
+				final @NotNull ResultTableModel resultModel = parent.getResultTable().getTableSorter().getModel();
+				resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
+				parent.getResultTable().resetColumnWidths();
+			});
 		}
 
-		shutdown();
-	}
-
-	private void showResult()
-	{
-		SwingUtilities.invokeLater(() ->
-		{
-			parent.closeQueryProgressMonitor();
-			assert resultThread != null;
-			parent.getResultText().setText(resultThread.getRawResult());
-
-			final @NotNull ResultTableModel resultModel = parent.getResultTable().getTableSorter().getModel();
-			resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
-			parent.getResultTable().resetColumnWidths();
-		});
-	}
-
-	private void showStatus(final @NotNull String status)
-	{
-		SwingUtilities.invokeLater(() -> parent.showStatus(status));
-	}
-
-	private void showStatusLog(final @NotNull String status)
-	{
-		SwingUtilities.invokeLater(() -> parent.showStatusLog(status));
-	}
-
-	private void shutdown()
-	{
 		SwingUtilities.invokeLater(parent::enableQueryButton);
 	}
 
-	private void startup()
-	{
-		SwingUtilities.invokeLater(() ->
-		{
-			parent.disableQueryButton();
-			parent.showStatus("Query Running... Please Wait");
-		});
-	}
-
-	private void updateProgress(final int progress)
-	{
-		SwingUtilities.invokeLater(() -> parent.setQueryProgress(progress));
-	}
 }
