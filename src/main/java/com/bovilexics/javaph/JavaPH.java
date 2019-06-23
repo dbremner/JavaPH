@@ -38,6 +38,8 @@ import com.bovilexics.javaph.ui.ListDataAdapter;
 import com.bovilexics.javaph.ui.LoadFields;
 import com.bovilexics.javaph.ui.MainMenu;
 import com.bovilexics.javaph.ui.MouseEnterExitListener;
+import com.bovilexics.javaph.ui.NullKeyAdapter;
+import com.bovilexics.javaph.ui.NullMouseAdapter;
 import com.bovilexics.javaph.ui.PropertiesDialog;
 import com.bovilexics.javaph.ui.QueryComboBox;
 import com.bovilexics.javaph.ui.QueryToolBar;
@@ -284,14 +286,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	@Override
 	public void windowDeactivated(final @NotNull WindowEvent e)
-	{
-	}
-
-	private static class NullKeyAdapter extends KeyAdapter
-	{
-	}
-
-	private static class NullMouseAdapter extends MouseAdapter
 	{
 	}
 
