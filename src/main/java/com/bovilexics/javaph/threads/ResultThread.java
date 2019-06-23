@@ -154,11 +154,7 @@ public final class ResultThread extends Thread
 
 	public synchronized @Nullable String getEpilogue()
 	{
-		return isOk() ? epilogue : null;
-	}
-
-	private boolean isOk() {
-		return state == ResultThreadState.RS_OK;
+		return state == ResultThreadState.RS_OK ? epilogue : null;
 	}
 
 	public @NotNull String getErrorString()
@@ -188,27 +184,27 @@ public final class ResultThread extends Thread
 	public synchronized int getFieldCount()
 	{
 		assert headers != null;
-		return isOk() ? headers.length : 0;
+		return state == ResultThreadState.RS_OK ? headers.length : 0;
 	}
 
 	public synchronized @Nullable Object[] getHeaders()
 	{
-		return isOk() ? headers : null;
+		return state == ResultThreadState.RS_OK ? headers : null;
 	}
 
 	public synchronized @Nullable String getPrologue()
 	{
-		return isOk() ? prologue : null;
+		return state == ResultThreadState.RS_OK ? prologue : null;
 	}
 
 	public synchronized int getRecordCount()
 	{
-		return isOk() ? records.size() : -1;
+		return state == ResultThreadState.RS_OK ? records.size() : -1;
 	}
 
 	public synchronized @NotNull List<List<Line>> getRecords()
 	{
-		if (!isOk())
+		if (!(state == ResultThreadState.RS_OK))
 		{
 			return ImmutableList.of();
 		}
@@ -220,12 +216,12 @@ public final class ResultThread extends Thread
 	public synchronized @Nullable String getRawResult()
 	{
 		assert rawResult != null;
-		return isOk() && rawResult.length() > 0 ? rawResult.toString() : null;
+		return state == ResultThreadState.RS_OK && rawResult.length() > 0 ? rawResult.toString() : null;
 	}
 
 	public synchronized @Nullable Object[][] getValues()
 	{
-		return isOk() ? values : null;
+		return state == ResultThreadState.RS_OK ? values : null;
 	}
 
 	@Override
@@ -246,7 +242,7 @@ public final class ResultThread extends Thread
 
 	public boolean isValidQiResponse()
 	{
-		return !error && !halted && (isOk() || state == ResultThreadState.RS_ERROR);
+		return !error && !halted && (state == ResultThreadState.RS_OK || state == ResultThreadState.RS_ERROR);
 	}
 
 	@Override
