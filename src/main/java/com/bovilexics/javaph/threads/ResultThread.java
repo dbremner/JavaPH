@@ -196,11 +196,6 @@ public class ResultThread extends Thread
 		return isOk() ? headers : null;
 	}
 
-	public int getLastCode()
-	{
-		return lastCode;
-	}
-
 	public synchronized @Nullable String getPrologue()
 	{
 		return isOk() ? prologue : null;
@@ -384,7 +379,6 @@ public class ResultThread extends Thread
 					prologue += qiLine.getResponse() + "\n";
 
 					// Make a record of what the last code was.
-					// Can be retrieved through getLastCode().
 					lastCode = qiLine.getCode();
 				}
 				else if (qiLine.getCode() < -QiAPI.LR_TEMP)
