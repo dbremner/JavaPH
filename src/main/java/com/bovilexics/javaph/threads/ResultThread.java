@@ -529,12 +529,8 @@ public class ResultThread extends Thread
 			prologue = qiLine.getResponse();
 			
 			final @NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
-			
-			if (parent == null) {
-				ErrLogger.instance.println(message);
-			} else {
-				parent.log(message);
-			}
+
+			log(message);
 		}
 		else
 		{
@@ -551,6 +547,18 @@ public class ResultThread extends Thread
 				buildHeaders();
 				buildValues();
 			}
+		}
+	}
+
+	private void log(final @NotNull String message)
+	{
+		if (parent == null)
+		{
+			ErrLogger.instance.println(message);
+		}
+		else
+		{
+			SwingUtilities.invokeLater(() ->parent.log(message));
 		}
 	}
 
@@ -604,14 +612,7 @@ public class ResultThread extends Thread
 				{
 					final @NotNull String message = "Couldn't find header for this column: " + thisQiLine.toString();
 
-					if (parent == null)
-					{
-						ErrLogger.instance.println(message);
-					}
-					else
-					{
-						parent.log(message);
-					}
+					log(message);
 				}
 
 				lastField = field;
