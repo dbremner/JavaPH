@@ -23,7 +23,7 @@ import java.util.Map;
  * @author Robert Fernandes
  * TODO fix interface type, this implements ListCellRenderer of Object
  */
-public class ServerRenderer extends DefaultListCellRenderer
+public final class ServerRenderer extends DefaultListCellRenderer
 {
 	private final @NotNull ImmutableMap<QiFieldState, Icon> map;
 	

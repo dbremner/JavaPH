@@ -56,7 +56,7 @@ import java.util.StringTokenizer;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class ResultThread extends Thread
+public final class ResultThread extends Thread
 {
 	// TODO Should these fields be volatile?
 

@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QiProtocolException extends Exception
+public final class QiProtocolException extends Exception
 {
 	public QiProtocolException(final @NotNull String description)
 	{

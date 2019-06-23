@@ -37,7 +37,7 @@ import java.net.SocketAddress;
  * @author Robert Fernandes robert@bovilexics.com
  *
  */
-public class QiConnection implements Connection
+public final class QiConnection implements Connection
 {
 	private static final @NotNull String QI_SOCKET_UNINITIALIZED = "Qi socket uninitialized";
 

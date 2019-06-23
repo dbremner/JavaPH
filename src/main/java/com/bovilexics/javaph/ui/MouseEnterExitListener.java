@@ -7,7 +7,7 @@ import javax.swing.Icon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MouseEnterExitListener extends MouseAdapter
+public final class MouseEnterExitListener extends MouseAdapter
 {
     private final @NotNull AbstractButton button;
     private final @NotNull Icon on;

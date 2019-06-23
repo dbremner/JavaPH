@@ -31,7 +31,7 @@ import java.util.List;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QiServer implements Server
+public final class QiServer implements Server
 {
 	private final @NotNull FieldFactory factory;
 	private final @NotNull LineFactory lineFactory;

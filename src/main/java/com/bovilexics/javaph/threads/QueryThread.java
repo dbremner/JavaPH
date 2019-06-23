@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public class QueryThread extends Thread
+public final class QueryThread extends Thread
 {
 	private final @NotNull Connection connection;
 	private int seconds = 0;
