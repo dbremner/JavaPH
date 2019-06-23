@@ -31,6 +31,7 @@ import com.bovilexics.javaph.qi.ServerManager;
 import com.bovilexics.javaph.threads.QueryThread;
 import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.ContentPanel;
+import com.bovilexics.javaph.ui.ControlTabDispatcher;
 import com.bovilexics.javaph.ui.CustomButtonGroup;
 import com.bovilexics.javaph.ui.FindDialog;
 import com.bovilexics.javaph.ui.IconProvider;
@@ -88,11 +89,9 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -287,62 +286,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	@Override
 	public void windowDeactivated(final @NotNull WindowEvent e)
 	{
-	}
-
-	private static final class ControlTabDispatcher implements KeyEventDispatcher
-	{
-		private final @NotNull JTabbedPane resultPanel;
-
-		ControlTabDispatcher(final @NotNull JTabbedPane resultPanel)
-		{
-			this.resultPanel = resultPanel;
-		}
-
-		@Override
-		public boolean dispatchKeyEvent(final @NotNull KeyEvent e)
-		{
-			if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_TAB)
-			{
-				// If we don't have this condition then the tab will switch twice,
-				// once for the key pressed event and again for the key released event.
-				if (e.getID() == Event.KEY_RELEASE)
-				{
-					int selected = resultPanel.getSelectedIndex();
-					final int last = resultPanel.getTabCount() - 1;
-
-					if (e.isShiftDown())
-					{
-						if (selected <= 0)
-						{
-							selected = last;
-						}
-						else
-						{
-							selected--;
-						}
-					}
-					else
-					{
-						if (selected < last)
-						{
-							selected++;
-						}
-						else
-						{
-							selected = 0;
-						}
-					}
-
-					resultPanel.setSelectedIndex(selected);
-				}
-
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
 	}
 
 	final class QueryPanel extends JPanel
