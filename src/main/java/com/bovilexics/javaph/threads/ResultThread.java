@@ -159,7 +159,7 @@ public class ResultThread extends Thread
 		return state == ResultThreadState.RS_OK;
 	}
 
-	public @Nullable String getErrorString()
+	public @NotNull String getErrorString()
 	{
 		switch (state)
 		{
@@ -172,7 +172,7 @@ public class ResultThread extends Thread
 			case RS_START:
 			case RS_INPROGRESS:
 			{
-				return null;
+				return "";
 			}
 			default:
 			{
