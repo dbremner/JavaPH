@@ -174,6 +174,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private @NotNull LoadFields loadFields = LoadFields.Selected;
 	private int queryRuntime = QUERY_RUNTIME_DEF;
 
+	private final @NotNull QueryPanel queryPanel;
+
 	private final @NotNull AboutDialog aboutDialog;
 	private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 	private final @NotNull FindDialog findDialog;
@@ -182,7 +184,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull PropertyCollection defaultProperties;
 	private final @NotNull PropertyCollection properties;
 	private final @NotNull PropertiesDialog propertiesDialog;
-	private @Nullable ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
 	private @Nullable Connection connection;
 	private final @NotNull QueryComboBox queryComboBox = new QueryComboBox();
@@ -290,6 +291,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	final class QueryPanel extends JPanel
 	{
+		private @Nullable ProgressMonitor queryProgressMonitor;
+
 		private final @NotNull JavaPH parent;
 		private final @NotNull JButton fieldListMoveDnButton = new JButton("Move Down");
 		private final @NotNull JButton fieldListMoveUpButton;
@@ -324,6 +327,21 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			add(getQueryLabelPanel(), BorderLayout.WEST);
 			add(getQueryContentPanel(), BorderLayout.CENTER);
 			add(getQueryButtonPanel(javaph), BorderLayout.EAST);
+		}
+
+		public boolean isQueryCanceled()
+		{
+			return queryProgressMonitor.isCanceled();
+		}
+
+		public void setQueryProgress(final int progress)
+		{
+			queryProgressMonitor.setProgress(progress);
+		}
+
+		public void closeQueryProgressMonitor()
+		{
+			queryProgressMonitor.close();
 		}
 
 		private @NotNull JPanel getQueryButtonPanel(final @NotNull JavaPH javaph)
@@ -986,7 +1004,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// can have access to the status labels
 		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
 		contentPane.add(queryToolBar, BorderLayout.NORTH);
-		final @NotNull JPanel queryPanel = new QueryPanel(this);
+		queryPanel = new QueryPanel(this);
 		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
 		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
@@ -1339,17 +1357,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public boolean isQueryCanceled()
 	{
-		return queryProgressMonitor.isCanceled();
+		return queryPanel.isQueryCanceled();
 	}
 
 	public void setQueryProgress(final int progress)
 	{
-		queryProgressMonitor.setProgress(progress);
+		queryPanel.setQueryProgress(progress);
 	}
 
 	public void closeQueryProgressMonitor()
 	{
-		queryProgressMonitor.close();
+		queryPanel.closeQueryProgressMonitor();
 	}
 
 	public @NotNull JToolBar getQueryToolBar()
