@@ -443,8 +443,6 @@ public final class ResultThread extends Thread
 		}
 		
 		headers = uniqueHeaders.toArray();
-		
-		headersDone = true;
 	}
 
 	private synchronized void buildHeadersForFields()
@@ -454,8 +452,6 @@ public final class ResultThread extends Thread
 		}
 		
 		headers = new String[] { "name", "description", "properties" };
-	
-		headersDone = true;
 	}
 
 	/**
