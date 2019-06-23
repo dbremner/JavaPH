@@ -63,8 +63,7 @@ public final class ResultThread extends Thread
 	private volatile boolean error = false;
 	private volatile boolean finished = false;
 	private volatile boolean halted = false;
-	private boolean headersDone = false;
-	
+
 	private int entryIndex = 0;
 	private volatile int lastCode = QiAPI.LR_OK;
 	private volatile @NotNull ResultThreadState state = ResultThreadState.RS_START;
@@ -407,10 +406,6 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildHeaders()
 	{
-		if (headersDone) {
-			return;
-		}
-
 		@NotNull String lastField = "unknown";
 		final @NotNull List<String> uniqueHeaders = new ArrayList<>();
 
@@ -447,10 +442,6 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildHeadersForFields()
 	{
-		if (headersDone) {
-			return;
-		}
-		
 		headers = new String[] { "name", "description", "properties" };
 	}
 
