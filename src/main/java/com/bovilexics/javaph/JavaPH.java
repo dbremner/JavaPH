@@ -1377,9 +1377,14 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return queryRuntime;
 	}
 
-	public void setQueryButtonStatus(final boolean enabled)
+	public void enableQueryButton()
 	{
-		queryButton.setEnabled(enabled);
+		queryButton.setEnabled(true);
+	}
+
+	public void disableQueryButton()
+	{
+		queryButton.setEnabled(false);
 	}
 
 	public @NotNull QueryComboBox getQueryComboBox()
