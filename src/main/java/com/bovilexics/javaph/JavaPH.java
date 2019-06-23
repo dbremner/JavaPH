@@ -407,7 +407,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				}
 
 				queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
-				final @NotNull QueryThread qt = new QueryThread(javaph);
+				final int runtime = parent.getQueryRuntime();
+				final @NotNull String command = parent.getCommand();
+				final @Nullable Server server = parent.getServer();
+				assert server != null;
+				final @NotNull Connection connection = serverManager.getConnectionFactory().create(server);
+				final @NotNull QueryThread qt = new QueryThread(parent, runtime, command, connection);
 				qt.start();
 			});
 

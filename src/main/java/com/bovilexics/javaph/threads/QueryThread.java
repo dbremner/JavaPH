@@ -20,9 +20,7 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Connection;
-import com.bovilexics.javaph.qi.Server;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.SwingUtilities;
 
@@ -40,14 +38,16 @@ public class QueryThread extends Thread
 	private final @NotNull String command;
 	private final int runtime;
 
-	public QueryThread(final @NotNull JavaPH javaph)
+	public QueryThread(
+			final @NotNull JavaPH parent,
+			final int runtime,
+			final @NotNull String command,
+			final @NotNull Connection connection)
 	{
-		parent = javaph;
-		runtime = parent.getQueryRuntime();
-		command = parent.getCommand();
-		final @Nullable Server server = parent.getServer();
-		assert server != null;
-		connection = parent.getServerManager().getConnectionFactory().create(server);
+		this.parent = parent;
+		this.runtime = runtime;
+		this.command = command;
+		this.connection = connection;
 	}
 
 	@Override
