@@ -77,29 +77,38 @@ public class QueryThread extends Thread
 			}
 
 			++seconds;
-			SwingUtilities.invokeLater(() -> parent.showStatus("Query running for " + seconds + " seconds"));
-			SwingUtilities.invokeLater(() -> parent.setQueryProgress(seconds));
+			SwingUtilities.invokeLater(() ->
+			{
+				parent.showStatus("Query running for " + seconds + " seconds");
+				parent.setQueryProgress(seconds);
+			});
 		}
 			
 		if (parent.isQueryCanceled())
 		{
 			resultThread.interrupt();
-			SwingUtilities.invokeLater(parent::closeQueryProgressMonitor);
-			SwingUtilities.invokeLater(() -> parent.showStatusLog("Query Canceled"));
+			SwingUtilities.invokeLater(() ->
+			{
+				parent.closeQueryProgressMonitor();
+				parent.showStatusLog("Query Canceled");
+			});
 			parent.showErrorDialog("Query Canceled", "Canceled");
 		}
 		else if (seconds == runtime)
 		{
 			resultThread.interrupt();
-			SwingUtilities.invokeLater(parent::closeQueryProgressMonitor);
-			SwingUtilities.invokeLater(() -> parent.showStatusLog("Query Timed Out"));
+			SwingUtilities.invokeLater(() ->
+			{
+				parent.closeQueryProgressMonitor();
+				parent.showStatusLog("Query Timed Out");
+			});
 			parent.showErrorDialog("Query Timed Out", "Timeout");
 		}
 		else
 		{
-			SwingUtilities.invokeLater(() -> parent.showStatusLog("Query Finished"));
 			SwingUtilities.invokeLater(() ->
 			{
+				parent.showStatusLog("Query Finished");
 				parent.closeQueryProgressMonitor();
 				assert resultThread != null;
 				parent.getResultText().setText(resultThread.getRawResult());
