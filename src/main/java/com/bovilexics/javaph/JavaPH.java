@@ -573,7 +573,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				connection = serverManager.getConnectionFactory().create(serverText, portInt);
 
-				if (getLoadFields() == LoadFields.Selected && !(server.getFieldState() == QiFieldState.FIELD_LOAD_ERROR) && !(server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE))
+				if (getLoadFields() == LoadFields.Selected && server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR && server.getFieldState() != QiFieldState.FIELD_LOAD_TRUE)
 				{
 					serverComboBox.hidePopup();
 					loadFieldsForServer(server);
@@ -1020,7 +1020,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryToolBar = new QueryToolBar(this);
 		splashWindow = new SplashWindow(this);
 
-		defaultPane = Optional.ofNullable(defaultPane).orElseGet(this::getRootPane);
+		defaultPane = Optional.of(defaultPane).orElseGet(this::getRootPane);
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
 
 		restoreLookAndFeel();
