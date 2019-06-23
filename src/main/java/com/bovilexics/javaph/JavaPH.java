@@ -531,13 +531,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				assert server != null;
 				final @NotNull String serverText = server.getServer();
 
-				final @NotNull Integer portInt = server.getPort();
+				final int portInt = server.getPort();
 
 				serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
-				final @NotNull String portText = portInt.toString();
+				final @NotNull String portText = String.valueOf(portInt);
 				portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
 
-				connection = serverManager.getConnectionFactory().create(serverText, portInt);
+				connection = connectionFactory.create(serverText, portInt);
 
 				if (getLoadFields() == LoadFields.Selected && server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR && server.getFieldState() != QiFieldState.FIELD_LOAD_TRUE)
 				{

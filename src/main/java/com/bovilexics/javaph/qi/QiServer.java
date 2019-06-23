@@ -40,7 +40,7 @@ public final class QiServer implements Server
 
 	private final @NotNull String name;
 	private final @NotNull String server;
-	private final @NotNull Integer port;
+	private final int port;
 	private final @NotNull List<Field> fields = new ArrayList<>();
 	private @NotNull QiFieldState fieldState = QiFieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
@@ -116,7 +116,7 @@ public final class QiServer implements Server
 		out.append(" (");
 		out.append(server);
 		out.append(":");
-		out.append(port.toString());
+		out.append(port);
 		out.append(")");
 		
 		return out.toString();
@@ -152,7 +152,7 @@ public final class QiServer implements Server
 	}
 	
 	@Override
-	public @NotNull Integer getPort()
+	public @NotNull int getPort()
 	{
 		return port;
 	}
