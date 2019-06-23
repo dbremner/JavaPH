@@ -135,18 +135,12 @@ public class QueryThread extends Thread
 
 	private void shutdown()
 	{
-		SwingUtilities.invokeLater(() ->
-		{
-			parent.enableQueryButton();
-		});
+		SwingUtilities.invokeLater(parent::enableQueryButton);
 	}
 
 	private void startup()
 	{
-		SwingUtilities.invokeLater(() ->
-		{
-			parent.disableQueryButton();
-		});
+		SwingUtilities.invokeLater(parent::disableQueryButton);
 		
 		showStatus("Query Running... Please Wait");
 	}
