@@ -469,13 +469,21 @@ public class ResultThread extends Thread
 		}
 
 		// Send query.
-		writeQi(commandLine + "\n");
+		try
+		{
+			connection.writeQI(commandLine + "\n");
+		}
+		catch (final @NotNull IOException e)
+		{
+			error = true;
+			showStatus("Error: " + e);
+		}
 
 		// Read the server's response, line by line.
 		rawResult = new StringBuilder();
 		int index = 0;
 		@Nullable String readFromServer;
-		while ((readFromServer = readQi()) != null)
+		while ((readFromServer = connection.readQI()) != null)
 		{
 			qiLine = lineFactory.create(readFromServer);
 
@@ -659,7 +667,7 @@ public class ResultThread extends Thread
 			if (qiLine != null && qiLine.getCode() < QiAPI.LR_OK)
 			{
 				@Nullable String buffer;
-				while ((buffer = readQi()) != null)
+				while ((buffer = connection.readQI()) != null)
 				{
 					qiLine = lineFactory.create(buffer);
 					if (qiLine.getCode() >= QiAPI.LR_OK) {
@@ -704,11 +712,6 @@ public class ResultThread extends Thread
 		}
 	}
 
-	private @Nullable String readQi() throws IOException
-	{
-		return connection.readQI();
-	}
-
 	private void showStatus(final @NotNull String status)
 	{
 		if (parent != null)
@@ -721,19 +724,6 @@ public class ResultThread extends Thread
 		else
 		{
 			ErrLogger.instance.println(status);
-		}
-	}
-
-	private void writeQi(final @NotNull String aString)
-	{
-		try
-		{
-			connection.writeQI(aString);
-		}
-		catch (final @NotNull IOException e)
-		{
-			error = true;
-			showStatus("Error: " + e);
 		}
 	}
 }
