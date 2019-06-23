@@ -64,7 +64,6 @@ public final class ResultThread extends Thread
 	private volatile boolean finished = false;
 	private volatile boolean halted = false;
 	private boolean headersDone = false;
-	private boolean valuesDone = false;
 	
 	private int entryIndex = 0;
 	private volatile int lastCode = QiAPI.LR_OK;
@@ -619,9 +618,7 @@ public final class ResultThread extends Thread
 
 				lastField = field;
 			}	
-		}	
-			
-		valuesDone = true;
+		}
 	}
 
 	private synchronized void buildValuesForFields()
@@ -646,9 +643,7 @@ public final class ResultThread extends Thread
 				values[i][1] = desc;
 				values[i][2] = props;
 			}	
-		}	
-			
-		valuesDone = true;
+		}
 	}
 
 	private synchronized void cleanup()
