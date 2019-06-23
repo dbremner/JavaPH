@@ -58,15 +58,17 @@ import java.util.StringTokenizer;
  */
 public class ResultThread extends Thread
 {
-	private boolean error = false;
-	private boolean finished = false;
-	private boolean halted = false;
+	// TODO Should these fields be volatile?
+
+	private volatile boolean error = false;
+	private volatile boolean finished = false;
+	private volatile boolean halted = false;
 	private boolean headersDone = false;
 	private boolean valuesDone = false;
 	
 	private int entryIndex = 0;
-	private int lastCode = QiAPI.LR_OK;
-	private @NotNull ResultThreadState state = ResultThreadState.RS_START;
+	private volatile int lastCode = QiAPI.LR_OK;
+	private volatile @NotNull ResultThreadState state = ResultThreadState.RS_START;
 
 	private final @Nullable JavaPH parent;
 
