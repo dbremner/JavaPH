@@ -42,9 +42,10 @@ public class QiConnection implements Connection
 	private static final @NotNull String QI_SOCKET_UNINITIALIZED = "Qi socket uninitialized";
 
 	// TODO does this support authentication?
-	private boolean authenticated = false;
-	private boolean connected = false;
-	private boolean locked = false;
+	// TODO should these fields be volatile?
+	private volatile boolean authenticated = false;
+	private volatile boolean connected = false;
+	private volatile boolean locked = false;
 
 	private final int port;
 	private final @NotNull String host;
