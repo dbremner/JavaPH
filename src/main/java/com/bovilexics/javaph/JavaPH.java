@@ -197,16 +197,16 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private final @NotNull JButton queryButton = new JButton("Execute Query");
 	private final @NotNull JComboBox<QiCommand> commandComboBox;
-	private @NotNull JComboBox<Server> serverComboBox;
+	private final @NotNull JComboBox<Server> serverComboBox;
 	private final @NotNull JLabel portStatusLabel = new JLabel();
 	private final @NotNull JLabel serverStatusLabel = new JLabel();
 	private final @NotNull JLabel statusLabel = new JLabel();
 	private final @NotNull JList colList = new JList(new DefaultListModel());
-	private @NotNull JList<Field> fieldList;
+	private final @NotNull JList<Field> fieldList = new JList<>(new DefaultListModel<>());
 	private final @NotNull JPanel colListPanel = new JPanel(new BorderLayout());
 	private final @NotNull JPanel fieldListPanel = new JPanel(new BorderLayout());
 	private final @NotNull JPanel logTextPanel = new JPanel(new BorderLayout());
-	private @NotNull JRootPane defaultPane;
+	private final @NotNull JRootPane defaultPane;
 	private final @NotNull JTabbedPane resultPanel;
 	private final @NotNull JTextArea logText = new JTextArea();
 	private final @NotNull JTextArea resultText = new JTextArea();
@@ -556,8 +556,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private @NotNull JPanel getQueryServerPanel()
 		{
 			final @NotNull JPanel queryServerPanel = new JPanel(new BorderLayout());
-
-			serverComboBox = new JComboBox<>(servers);
 			serverComboBox.setRenderer(new ServerRenderer(parent));
 			serverComboBox.addActionListener(ae ->
 			{
@@ -647,7 +645,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldListButtonPanel.add(fieldListMoveUpButton);
 			fieldListButtonPanel.add(fieldListMoveDnButton);
 
-			fieldList = new JList<>(new DefaultListModel<>());
 			fieldList.addListSelectionListener(lse ->
 			{
 				if (fieldList.getSelectedIndex() >= 0)
@@ -1014,6 +1011,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		initProperties();
 		this.serverManager.loadAllServers();
 		servers  = this.serverManager.getServers();
+		serverComboBox = new JComboBox<>(servers);
 		aboutDialog = new AboutDialog(this);
 		findDialog = new FindDialog(this);
 		propertiesDialog = new PropertiesDialog(this);
