@@ -126,11 +126,7 @@ public class QueryThread extends Thread
 
 	private void showStatusLog(final @NotNull String status)
 	{
-		SwingUtilities.invokeLater(() ->
-		{
-			parent.showStatus(status);
-			parent.log(status);
-		});
+		SwingUtilities.invokeLater(() -> parent.showStatusLog(status));
 	}
 
 	private void shutdown()
