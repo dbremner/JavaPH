@@ -295,8 +295,15 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 	}
 
-	class ControlTabDispatcher implements KeyEventDispatcher
+	private static final class ControlTabDispatcher implements KeyEventDispatcher
 	{
+		private final @NotNull JTabbedPane resultPanel;
+
+		ControlTabDispatcher(final @NotNull JTabbedPane resultPanel)
+		{
+			this.resultPanel = resultPanel;
+		}
+
 		@Override
 		public boolean dispatchKeyEvent(final @NotNull KeyEvent e)
 		{
@@ -306,8 +313,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				// once for the key pressed event and again for the key released event.
 				if (e.getID() == Event.KEY_RELEASE)
 				{
-					int selected = getResultPanel().getSelectedIndex();
-					final int last = getResultPanel().getTabCount() - 1;
+					int selected = resultPanel.getSelectedIndex();
+					final int last = resultPanel.getTabCount() - 1;
 
 					if (e.isShiftDown())
 					{
@@ -332,7 +339,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 						}
 					}
 
-					getResultPanel().setSelectedIndex(selected);
+					resultPanel.setSelectedIndex(selected);
 				}
 
 				return true;
@@ -1022,7 +1029,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		propertiesDialog = new PropertiesDialog(this);
 		queryToolBar = new QueryToolBar(this);
 		splashWindow = new SplashWindow(this);
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher());
+		resultPanel = new ResultPanel();
+		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher(resultPanel));
 
 		restoreLookAndFeel();
 		if (propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"))
@@ -1041,7 +1049,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// can have access to the status labels
 		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
 		contentPane.add(queryToolBar, BorderLayout.NORTH);
-		resultPanel = new ResultPanel();
 		final @NotNull JPanel queryPanel = new QueryPanel(this);
 		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
