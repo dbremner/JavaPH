@@ -161,7 +161,26 @@ public class ResultThread extends Thread
 
 	public @Nullable String getErrorString()
 	{
-		return state == ResultThreadState.RS_ERROR || state == ResultThreadState.RS_UNKNOWN ? prologue : null;
+		switch (state)
+		{
+			case RS_ERROR:
+			case RS_UNKNOWN:
+			{
+				return prologue;
+			}
+			case RS_OK:
+			case RS_START:
+			case RS_INPROGRESS:
+			{
+				return null;
+			}
+			default:
+			{
+				assert false;
+			}
+		}
+		assert false;
+		return "";
 	}
 
 	public synchronized int getFieldCount()
