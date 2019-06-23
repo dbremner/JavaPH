@@ -22,6 +22,7 @@ import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
+import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
@@ -1363,6 +1364,27 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void setQueryProgress(final int progress)
 	{
 		queryPanel.setQueryProgress(progress);
+	}
+
+	public void endFailedQuery(final @NotNull String message, final @NotNull String title)
+	{
+		closeQueryProgressMonitor();
+		showStatusLog(message);
+		showErrorDialog(message, title);
+		enableQueryButton();
+	}
+
+	public void endQuery(final String rawResult, final Object[] headers, final Object[][] values)
+	{
+		showStatusLog("Query Finished");
+		closeQueryProgressMonitor();
+		getResultText().setText(rawResult);
+
+		final @NotNull ResultTableModel resultModel;
+		resultModel = getResultTable().getTableSorter().getModel();
+		resultModel.setDataVector(values, headers);
+		getResultTable().resetColumnWidths();
+		enableQueryButton();
 	}
 
 	public void closeQueryProgressMonitor()

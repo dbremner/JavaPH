@@ -18,7 +18,6 @@ package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLogger;
-import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Connection;
 import org.jetbrains.annotations.NotNull;
 
@@ -88,10 +87,7 @@ public final class QueryThread extends Thread
 			resultThread.interrupt();
 			SwingUtilities.invokeLater(() ->
 			{
-				parent.closeQueryProgressMonitor();
-				parent.showStatusLog("Query Canceled");
-				parent.showErrorDialog("Query Canceled", "Canceled");
-				parent.enableQueryButton();
+				parent.endFailedQuery("Query Canceled", "Canceled");
 			});
 		}
 		else if (seconds == runtime)
@@ -99,24 +95,17 @@ public final class QueryThread extends Thread
 			resultThread.interrupt();
 			SwingUtilities.invokeLater(() ->
 			{
-				parent.closeQueryProgressMonitor();
-				parent.showStatusLog("Query Timed Out");
-				parent.showErrorDialog("Query Timed Out", "Timeout");
-				parent.enableQueryButton();
+				parent.endFailedQuery("Query Timed Out", "Timeout");
 			});
 		}
 		else
 		{
+			final String rawResult = resultThread.getRawResult();
+			final Object[] headers = resultThread.getHeaders();
+			final Object[][] values = resultThread.getValues();
 			SwingUtilities.invokeLater(() ->
 			{
-				parent.showStatusLog("Query Finished");
-				parent.closeQueryProgressMonitor();
-				parent.getResultText().setText(resultThread.getRawResult());
-
-				final @NotNull ResultTableModel resultModel = parent.getResultTable().getTableSorter().getModel();
-				resultModel.setDataVector(resultThread.getValues(), resultThread.getHeaders());
-				parent.getResultTable().resetColumnWidths();
-				parent.enableQueryButton();
+				parent.endQuery(rawResult, headers, values);
 			});
 		}
 	}
