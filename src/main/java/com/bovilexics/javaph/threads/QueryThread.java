@@ -58,10 +58,8 @@ public class QueryThread extends Thread
 		{
 			parent.disableQueryButton();
 			parent.showStatus("Query Running... Please Wait");
+			parent.log("Running query \"" + command + "\"");
 		});
-
-		parent.log("Running query \"" + command + "\"");
-
 
 		resultThread = new ResultThread(null, command, connection);
 		resultThread.start();
@@ -92,8 +90,8 @@ public class QueryThread extends Thread
 			{
 				parent.closeQueryProgressMonitor();
 				parent.showStatusLog("Query Canceled");
+				parent.showErrorDialog("Query Canceled", "Canceled");
 			});
-			parent.showErrorDialog("Query Canceled", "Canceled");
 		}
 		else if (seconds == runtime)
 		{
@@ -102,8 +100,8 @@ public class QueryThread extends Thread
 			{
 				parent.closeQueryProgressMonitor();
 				parent.showStatusLog("Query Timed Out");
+				parent.showErrorDialog("Query Timed Out", "Timeout");
 			});
-			parent.showErrorDialog("Query Timed Out", "Timeout");
 		}
 		else
 		{
