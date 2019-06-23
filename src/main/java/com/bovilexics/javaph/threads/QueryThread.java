@@ -38,7 +38,6 @@ public class QueryThread extends Thread
 
 	private final @NotNull JavaPH parent;
 	private final @NotNull String command;
-	private @Nullable ResultThread resultThread = null;
 	private final int runtime;
 
 	public QueryThread(final @NotNull JavaPH javaph)
@@ -61,7 +60,7 @@ public class QueryThread extends Thread
 			parent.log("Running query \"" + command + "\"");
 		});
 
-		resultThread = new ResultThread(null, command, connection);
+		final @NotNull ResultThread resultThread = new ResultThread(null, command, connection);
 		resultThread.start();
 
 		while (!parent.isQueryCanceled() && seconds < runtime && !resultThread.isFinished())
@@ -109,7 +108,6 @@ public class QueryThread extends Thread
 			{
 				parent.showStatusLog("Query Finished");
 				parent.closeQueryProgressMonitor();
-				assert resultThread != null;
 				parent.getResultText().setText(resultThread.getRawResult());
 
 				final @NotNull ResultTableModel resultModel = parent.getResultTable().getTableSorter().getModel();
