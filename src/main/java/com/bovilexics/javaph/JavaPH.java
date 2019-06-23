@@ -181,7 +181,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull PropertyCollection defaultProperties;
 	private final @NotNull PropertyCollection properties;
 	private final @NotNull PropertiesDialog propertiesDialog;
-	private @NotNull ProgressMonitor queryProgressMonitor;
+	private @Nullable ProgressMonitor queryProgressMonitor;
 	private final @NotNull QiCommand[] commands;
 	private @Nullable Connection connection;
 	private final @NotNull QueryComboBox queryComboBox = new QueryComboBox();
