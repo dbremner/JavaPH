@@ -290,34 +290,35 @@ public final class ResultThread extends Thread
 	 *
 	 * @exception QiProtocolException in the event of Qi throwing us a curve ball.
 	 */
-	private void add(final @NotNull String readFromServer) throws QiProtocolException
+	private void add(final @NotNull String readFromServer, final @NotNull Line line) throws QiProtocolException
 	{
-		assert qiLine != null;
+		final int code = line.getCode();
+		final @NotNull String response = line.getResponse();
 		switch (state)
 		{
 			case RS_START:
-				if (qiLine.getCode() >= QiAPI.LR_PROGRESS && qiLine.getCode() < QiAPI.LR_OK)
+				if (code >= QiAPI.LR_PROGRESS && code < QiAPI.LR_OK)
 				{
 					// Some implementations of qi return a 102 response before the
 					// actual entries, giving the number of entries found; be prepared
 					// to see or not see this response.
-					prologue += qiLine.getResponse() + "\n";
+					prologue += response + "\n";
 					break;
 				}
-				else if (qiLine.getCode() == QiAPI.LR_OK || qiLine.getCode() == QiAPI.LR_RONLY)
+				else if (code == QiAPI.LR_OK || code == QiAPI.LR_RONLY)
 				{
 					// Single line response.
-					prologue += qiLine.getResponse() + "\n";
+					prologue += response + "\n";
 					state = ResultThreadState.RS_OK;
-					lastCode = qiLine.getCode();
+					lastCode = code;
 					break;
 				}
-				else if ((qiLine.getCode() < -QiAPI.LR_TEMP || qiLine.getCode() > QiAPI.LR_TEMP) && qiLine.getCode() != -QiAPI.LR_ABSENT)
+				else if ((code < -QiAPI.LR_TEMP || code > QiAPI.LR_TEMP) && code != -QiAPI.LR_ABSENT)
 				{
 					// This should be an error
-					prologue += qiLine.getResponse() + "\n";
+					prologue += response + "\n";
 					state = ResultThreadState.RS_ERROR;
-					lastCode = qiLine.getCode();
+					lastCode = code;
 					break;
 				}
 				else
@@ -329,14 +330,15 @@ public final class ResultThread extends Thread
 				// fall through
 
 			case RS_INPROGRESS:
-				if (qiLine.getCode() == -QiAPI.LR_OK
-					|| qiLine.getCode() == -QiAPI.LR_RONLY
-					|| qiLine.getCode() == -QiAPI.LR_AINFO
-					|| qiLine.getCode() == -QiAPI.LR_ABSENT
-					|| qiLine.getCode() == -QiAPI.LR_ISCRYPT)
+				if (code == -QiAPI.LR_OK
+					|| code == -QiAPI.LR_RONLY
+					|| code == -QiAPI.LR_AINFO
+					|| code == -QiAPI.LR_ABSENT
+					|| code == -QiAPI.LR_ISCRYPT)
 				{
 					// Is this a new record?
-					if (qiLine.getIndex() != entryIndex)
+					final int index = line.getIndex();
+					if (index != entryIndex)
 					{
 						// It is a new record; append this record to the result and
 						// instantiate a new Vector object to hold the new record.
@@ -345,14 +347,14 @@ public final class ResultThread extends Thread
 							addRecord(record);
 							record = new ArrayList<>();
 						}
-						entryIndex = qiLine.getIndex();
+						entryIndex = index;
 					}
-					record.add(qiLine);
+					record.add(line);
 				}
-				else if (qiLine.getCode() >= QiAPI.LR_OK)
+				else if (code >= QiAPI.LR_OK)
 				{
 					// It must be done so finish it up.
-					epilogue += qiLine.getResponse() + "\n";
+					epilogue += response + "\n";
 					addRecord(record);
 					state = ResultThreadState.RS_OK;
 
@@ -368,18 +370,18 @@ public final class ResultThread extends Thread
 			case RS_UNKNOWN:
 				throw new QiProtocolException("Unknown State: ");
 			case RS_ERROR:
-				if (qiLine.getCode() >= QiAPI.LR_TEMP)
+				if (code >= QiAPI.LR_TEMP)
 				{
 					// End of error response.
-					prologue += qiLine.getResponse() + "\n";
+					prologue += response + "\n";
 
 					// Make a record of what the last code was.
-					lastCode = qiLine.getCode();
+					lastCode = code;
 				}
-				else if (qiLine.getCode() < -QiAPI.LR_TEMP)
+				else if (code < -QiAPI.LR_TEMP)
 				{
 					// This should be a multiline error description.
-					prologue += qiLine.getResponse() + "\n";
+					prologue += response + "\n";
 				}
 				else
 				{
@@ -390,7 +392,7 @@ public final class ResultThread extends Thread
 				
 			case RS_OK:
 				// "200:Bye!" is all that should seen here (and that is disposed).
-				if (qiLine.getCode() != QiAPI.LR_OK)
+				if (code != QiAPI.LR_OK)
 				{
 					state = ResultThreadState.RS_UNKNOWN;
 					throw new QiProtocolException("Unknown State: " + readFromServer);
@@ -491,7 +493,7 @@ public final class ResultThread extends Thread
 				return;
 			}
 
-			add(readFromServer);
+			add(readFromServer, qiLine);
 
 			if (qiLine.getIndex() != index) {
 				rawResult.append(recordSeparator);
