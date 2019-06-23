@@ -33,23 +33,27 @@ import javax.swing.SwingUtilities;
  */
 public class QueryThread extends Thread
 {
+	private final @NotNull Connection connection;
 	private int seconds = 0;
 
 	private final @NotNull JavaPH parent;
 	private final @NotNull String command;
 	private @Nullable ResultThread resultThread = null;
+	private final int runtime;
 
 	public QueryThread(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
+		runtime = parent.getQueryRuntime();
 		command = parent.getCommand();
+		final @Nullable Server server = parent.getServer();
+		assert server != null;
+		connection = parent.getServerManager().getConnectionFactory().create(server);
 	}
 
 	@Override
 	public void run()
 	{
-		final int runtime = parent.getQueryRuntime();
-
 		SwingUtilities.invokeLater(() ->
 		{
 			parent.disableQueryButton();
@@ -59,9 +63,6 @@ public class QueryThread extends Thread
 		parent.log("Running query \"" + command + "\"");
 
 
-		final @Nullable Server server = parent.getServer();
-		assert server != null;
-		final @NotNull Connection connection = parent.getServerManager().getConnectionFactory().create(server);
 		resultThread = new ResultThread(null, command, connection);
 		resultThread.start();
 
