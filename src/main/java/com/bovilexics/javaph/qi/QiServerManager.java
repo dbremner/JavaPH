@@ -183,7 +183,7 @@ public final class QiServerManager implements ServerManager
 
             for (int i = 0; i < servers.size(); i++)
             {
-                final Server server = servers.get(i);
+                final @NotNull Server server = servers.get(i);
 
                 final @NotNull StringBuilder toWrite = new StringBuilder();
                 joiner.appendTo(toWrite, server.getName(), server.getServer(), server.getPort());
