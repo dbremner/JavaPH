@@ -29,5 +29,5 @@ public interface PropertyCollection
 
     @NotNull String getProperty(@NotNull String key, @NotNull String defaultValue);
 
-    int getIntProperty(@NotNull String key, int defaultValue);
+    int getProperty(@NotNull String key, int defaultValue);
 }

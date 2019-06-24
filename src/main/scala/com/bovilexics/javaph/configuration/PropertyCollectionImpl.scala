@@ -33,7 +33,7 @@ final class PropertyCollectionImpl extends PropertyCollection
 
   override def getProperty(key: String, defaultValue: String): String = properties.getProperty(key, defaultValue)
 
-  override def getIntProperty(key: String, defaultValue: Int): Int = try
+  override def getProperty(key: String, defaultValue: Int): Int = try
   {
     // TODO get this working
     val option = getProperty(key)

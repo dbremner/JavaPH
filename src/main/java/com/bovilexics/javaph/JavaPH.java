@@ -1281,7 +1281,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private int getIntProperty(final @NotNull String key, final int defaultValue)
 	{
-		return properties.getIntProperty(key, defaultValue);
+		return properties.getProperty(key, defaultValue);
 	}
 
 	public @NotNull LoadFields getIntPropertyDefault(final @NotNull String key, final @NotNull LoadFields defaultValue)
@@ -1291,7 +1291,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private @NotNull LoadFields getLoadFieldsPropertyDefault(final @NotNull PropertyCollection properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
 	{
-		final int value = properties.getIntProperty(key, defaultValue.getValue());
+		final int value = properties.getProperty(key, defaultValue.getValue());
 		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
 		return fields;
 	}
