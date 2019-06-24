@@ -199,7 +199,7 @@ public final class MainMenu extends JMenuBar
 		showLogItem.setActionCommand("Set visibility of system log");
 		showLogItem.setAccelerator(KeyStroke.getKeyStroke("ctrl L"));
 		showLogItem.setMnemonic(KeyEvent.VK_L);
-		showLogItem.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
+		showLogItem.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG,  true, true));
 		
 		showLogItem.addActionListener(ae -> {
 			// If the menu item was selected then just update
@@ -219,7 +219,7 @@ public final class MainMenu extends JMenuBar
 		showToolBarItem.setActionCommand("Set visibility of toolbar");
 		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl T"));
 		showToolBarItem.setMnemonic(KeyEvent.VK_T);
-		showToolBarItem.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
+		showToolBarItem.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR,  true, true));
 		
 		showToolBarItem.addActionListener(ae -> {
 			// If the menu item was selected then just update
@@ -239,7 +239,7 @@ public final class MainMenu extends JMenuBar
 		rollToolBarItem.setActionCommand("Set rollover property of toolbar");
 		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl R"));
 		rollToolBarItem.setMnemonic(KeyEvent.VK_R);
-		rollToolBarItem.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
+		rollToolBarItem.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR,  true, true));
 		
 		rollToolBarItem.addActionListener(ae -> {
 			// If the menu item was selected then just update

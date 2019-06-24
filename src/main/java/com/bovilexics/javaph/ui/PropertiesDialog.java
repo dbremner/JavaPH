@@ -312,11 +312,11 @@ public final class PropertiesDialog extends JavaPHDialog
 	private void refreshProperties()
 	{
 		defaultServerComboBox.setSelectedItem(serverManager.getDefaultServer());
-		displayLogCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG, "true", "true"));
-		displaySplashCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"));
-		displayToolbarCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
-		rollToolbarCheckBox.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
-		savePositionCheckBox.setSelected(parent.propertyEquals(PROP_SAVE_POSITION, "true", "true"));
+		displayLogCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG,  true, true));
+		displaySplashCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_SPLASH,  true, true));
+		displayToolbarCheckBox.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR,  true, true));
+		rollToolbarCheckBox.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR,  true, true));
+		savePositionCheckBox.setSelected(parent.propertyEquals(PROP_SAVE_POSITION,  true, true));
 
 		final @NotNull LoadFields loadFields = parent.getLoadFields();
 		loadFieldsManual.setSelected(loadFields == LoadFields.Manual);

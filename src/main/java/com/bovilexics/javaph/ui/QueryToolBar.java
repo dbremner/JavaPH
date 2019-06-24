@@ -53,7 +53,7 @@ public final class QueryToolBar extends JToolBar
 		setFloatable(false);
 		setFocusable(false);
 		setOrientation(JToolBar.HORIZONTAL);
-		setRollover(javaph.propertyEquals(PROP_ROLL_TOOLBAR, "true", "true"));
+		setRollover(javaph.propertyEquals(PROP_ROLL_TOOLBAR,  true, true));
 
 		addToolBarButton(new NewAction(javaph));
 		addToolBarButton(new SaveAction(javaph));

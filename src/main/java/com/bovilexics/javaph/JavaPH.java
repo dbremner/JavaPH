@@ -717,7 +717,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			initColumnListPanel();
 			initLogTextPanel();
 
-			if (propertyEquals(PROP_DISPLAY_LOG, "true", "true"))
+			if (propertyEquals(PROP_DISPLAY_LOG,  true, true))
 			{
 				add(logTextPanel, Tab.SystemLog.getLabel());
 			}
@@ -994,7 +994,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher(resultPanel));
 
 		restoreLookAndFeel();
-		if (propertyEquals(PROP_DISPLAY_SPLASH, "true", "true"))
+		if (propertyEquals(PROP_DISPLAY_SPLASH, true, true))
 		{
 			showSplashWindow();
 		}
@@ -1013,7 +1013,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryPanel = new QueryPanel(this, serverManager.getConnectionFactory());
 		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
-		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
+		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, true, true));
 
 		defaultPane.setJMenuBar(new MainMenu(this));
 
@@ -1465,7 +1465,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		setLoadFields(getLoadFieldsPropertyDefault(properties, PROP_LOAD_FIELDS, LoadFields.getDefault()));
 		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
-		setSavePosition(propertyEquals(PROP_SAVE_POSITION, "true", "true"));
+		setSavePosition(propertyEquals(PROP_SAVE_POSITION,  true, true));
 	}
 
 	public boolean isFieldQuoted()
@@ -1535,6 +1535,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		final @NotNull String value = getPropertyDefault(key, defaultValue);
 		return value.equals(equalsValue);
+	}
+
+	public boolean propertyEquals(final @NotNull String key, final boolean defaultValue, final boolean equalsValue)
+	{
+		final @NotNull String value = getProperty(key, String.valueOf(defaultValue));
+		return value.equals(String.valueOf(equalsValue));
 	}
 
 	public boolean propertyEquals(final @NotNull String key, final @NotNull String defaultValue, final @NotNull String equalsValue)
