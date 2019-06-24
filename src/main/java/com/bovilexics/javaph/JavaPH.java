@@ -1357,7 +1357,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryButton.setEnabled(true);
 	}
 
-	public void endQuery(final String rawResult, final Object[] headers, final Object[][] values)
+	public void endQuery(final @NotNull String rawResult, final @NotNull Object[] headers, final @NotNull Object[][] values)
 	{
 		showStatus("Query Finished");
 		log("Query Finished");
