@@ -24,6 +24,7 @@ import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Connection;
+import com.bovilexics.javaph.qi.ConnectionFactory;
 import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiFieldState;
@@ -294,6 +295,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		private @Nullable ProgressMonitor queryProgressMonitor;
 
+		private final @NotNull ConnectionFactory connectionFactory;
+
 		private final @NotNull JavaPH parent;
 		private final @NotNull JButton fieldListMoveDnButton = new JButton("Move Down");
 		private final @NotNull JButton fieldListMoveUpButton;
@@ -307,9 +310,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldLoadOn;
 		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
 		
-		QueryPanel(final @NotNull JavaPH javaph)
+		QueryPanel(final @NotNull JavaPH javaph, final @NotNull ConnectionFactory connectionFactory)
 		{
 			parent = javaph;
+			this.connectionFactory = connectionFactory;
 
 			fieldCustomOff = getImageIcon("img/field-custom-off.gif");
 			fieldCustomOn = getImageIcon("img/field-custom-on.gif");
@@ -374,7 +378,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull String command = parent.getCommand();
 				final @Nullable Server server = parent.getServer();
 				assert server != null;
-				final @NotNull Connection connection = serverManager.getConnectionFactory().create(server);
+				final @NotNull Connection connection = connectionFactory.create(server);
 				final @NotNull Runnable runnable = new QueryThreadRunnable(parent, runtime, command, connection);
 				final @NotNull Thread qt = new Thread(runnable);
 				qt.start();
@@ -1006,7 +1010,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// can have access to the status labels
 		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
 		contentPane.add(queryToolBar, BorderLayout.NORTH);
-		queryPanel = new QueryPanel(this);
+		queryPanel = new QueryPanel(this, serverManager.getConnectionFactory());
 		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
 		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
