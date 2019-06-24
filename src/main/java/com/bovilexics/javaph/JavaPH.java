@@ -29,7 +29,7 @@ import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiFieldState;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;
-import com.bovilexics.javaph.threads.QueryThread;
+import com.bovilexics.javaph.threads.QueryThreadRunnable;
 import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.ContentPanel;
 import com.bovilexics.javaph.ui.ControlTabDispatcher;
@@ -375,7 +375,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @Nullable Server server = parent.getServer();
 				assert server != null;
 				final @NotNull Connection connection = serverManager.getConnectionFactory().create(server);
-				final @NotNull QueryThread qt = new QueryThread(parent, runtime, command, connection);
+				final @NotNull Runnable runnable = new QueryThreadRunnable(parent, runtime, command, connection);
+				final @NotNull Thread qt = new Thread(runnable);
 				qt.start();
 			});
 
