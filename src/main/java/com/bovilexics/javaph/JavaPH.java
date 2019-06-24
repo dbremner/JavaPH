@@ -241,22 +241,22 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 		else
 		{
-			if (getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT) != APP_DEFAULT_HEIGHT)
+			if (properties.getProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT) != APP_DEFAULT_HEIGHT)
 			{
 				needToStore = true;
 				setProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 			}
-			if (getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH) != APP_DEFAULT_WIDTH)
+			if (properties.getProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH) != APP_DEFAULT_WIDTH)
 			{
 				needToStore = true;
 				setProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
 			}
-			if (getIntProperty(PROP_APP_X_POSITION, -1) != -1)
+			if (properties.getProperty(PROP_APP_X_POSITION, -1) != -1)
 			{
 				needToStore = true;
 				setProperty(PROP_APP_X_POSITION, -1);
 			}
-			if (getIntProperty(PROP_APP_Y_POSITION, -1) != -1)
+			if (properties.getProperty(PROP_APP_Y_POSITION, -1) != -1)
 			{
 				needToStore = true;
 				setProperty(PROP_APP_Y_POSITION, -1);
@@ -552,7 +552,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				populateFieldList(server);
 			});
-			serverManager.setDefaultServer(getProperty(PROP_DEFAULT_SERVER));
+			serverManager.setDefaultServer(properties.getProperty(PROP_DEFAULT_SERVER));
 
 			queryServerPanel.add(serverComboBox, BorderLayout.CENTER);
 
@@ -962,10 +962,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		this.properties = properties;
 		commands = QiCommand.commands;
 		commandComboBox = new JComboBox<>(commands);
-		int frameHeight = getIntProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
-		int frameWidth = getIntProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
-		int frameX = getIntProperty(PROP_APP_X_POSITION, -1);
-		int frameY = getIntProperty(PROP_APP_Y_POSITION, -1);
+		int frameHeight = this.properties.getProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
+		int frameWidth = this.properties.getProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
+		int frameX = this.properties.getProperty(PROP_APP_X_POSITION, -1);
+		int frameY = this.properties.getProperty(PROP_APP_Y_POSITION, -1);
 
 		if (frameHeight < APP_MIN_HEIGHT)
 		{
@@ -1279,11 +1279,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return fieldSeparator;
 	}
 
-	private int getIntProperty(final @NotNull String key, final int defaultValue)
-	{
-		return properties.getProperty(key, defaultValue);
-	}
-
 	public @NotNull LoadFields getIntPropertyDefault(final @NotNull String key, final @NotNull LoadFields defaultValue)
 	{
 		return getLoadFieldsPropertyDefault(defaultProperties, key, defaultValue);
@@ -1314,16 +1309,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public @NotNull ServerManager getServerManager()
 	{
 		return serverManager;
-	}
-
-	private @NotNull Optional<String> getProperty(final @NotNull String key)
-	{
-		return properties.getProperty(key);
-	}
-
-	private @NotNull String getProperty(final @NotNull String key, final @NotNull String defaultValue)
-	{
-		return properties.getProperty(key, defaultValue);
 	}
 
 	public @NotNull Optional<String> getPropertyDefault(final @NotNull String key)
@@ -1464,7 +1449,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 
 		setLoadFields(getLoadFieldsPropertyDefault(properties, PROP_LOAD_FIELDS, LoadFields.getDefault()));
-		setQueryRuntime(getIntProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
+		setQueryRuntime(properties.getProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
 		setSavePosition(propertyEquals(PROP_SAVE_POSITION,  true, true));
 	}
 
@@ -1539,13 +1524,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public boolean propertyEquals(final @NotNull String key, final boolean defaultValue, final boolean equalsValue)
 	{
-		final @NotNull String value = getProperty(key, String.valueOf(defaultValue));
+		final @NotNull String value = properties.getProperty(key, String.valueOf(defaultValue));
 		return value.equals(String.valueOf(equalsValue));
 	}
 
 	public boolean propertyEquals(final @NotNull String key, final @NotNull String defaultValue, final @NotNull String equalsValue)
 	{
-		final @NotNull String value = getProperty(key, defaultValue);
+		final @NotNull String value = properties.getProperty(key, defaultValue);
 		return value.equals(equalsValue);
 	}
 
@@ -1566,7 +1551,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private void restoreDefaultLookAndFeel(final @NotNull Component component)
 	{
-		final @NotNull Optional<String> value = getProperty(PROP_DEFAULT_LNF);
+		final @NotNull Optional<String> value = properties.getProperty(PROP_DEFAULT_LNF);
 		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
 		if (!value.isPresent())
 		{
