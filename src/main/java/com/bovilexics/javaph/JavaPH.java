@@ -1792,9 +1792,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void storeProperties()
 	{
-		try
+		try(FileOutputStream stream = new FileOutputStream(PROP_FILE))
 		{
-			properties.store(new FileOutputStream(PROP_FILE), PROP_HEADER);				
+			properties.store(stream, PROP_HEADER);
 		}
 		catch (final @NotNull FileNotFoundException e)
 		{
