@@ -1284,9 +1284,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return getLoadFieldsPropertyDefault(defaultProperties, key, defaultValue);
 	}
 
-	private @NotNull LoadFields getLoadFieldsPropertyDefault(final @NotNull PropertyCollection properties, final @NotNull String key, final @NotNull LoadFields defaultValue)
+	private @NotNull LoadFields getLoadFieldsPropertyDefault(final @NotNull PropertyCollection collection, final @NotNull String key, final @NotNull LoadFields defaultValue)
 	{
-		final int value = properties.getProperty(key, defaultValue.getValue());
+		final int value = collection.getProperty(key, defaultValue.getValue());
 		final @NotNull LoadFields fields = LoadFields.fromOrDefault(value);
 		return fields;
 	}
@@ -1711,8 +1711,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void showBrowserDialog()
 	{
-		final @NotNull Frame frame = JOptionPane.getFrameForComponent(defaultPane);
-		Browser.dialogConfiguration(frame);
+		final @NotNull Frame defaultFrame = JOptionPane.getFrameForComponent(defaultPane);
+		Browser.dialogConfiguration(defaultFrame);
 	}
 
 	public void showDefaultStatus()
