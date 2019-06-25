@@ -27,7 +27,6 @@ import com.bovilexics.javaph.qi.Command;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.ConnectionFactory;
 import com.bovilexics.javaph.qi.Field;
-import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiFieldState;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;
@@ -1016,13 +1015,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH(final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
+	public JavaPH(final @NotNull Command[] commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
 	{
 		this.iconProvider = iconProvider;
 		this.serverManager = serverManager;
 		this.defaultProperties = defaultProperties;
 		this.properties = properties;
-		this.commands = QiCommand.commands;
+		this.commands = commands;
 		commandComboBox = new JComboBox<>(this.commands);
 		int frameHeight = this.properties.getProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = this.properties.getProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
@@ -1279,7 +1278,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return location;
 	}
 
-	public void setCommandComboBoxSelectedIndex(final int index)
+	private void setCommandComboBoxSelectedIndex(final int index)
 	{
 		commandComboBox.setSelectedIndex(index);
 	}
