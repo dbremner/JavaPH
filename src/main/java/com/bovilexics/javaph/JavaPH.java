@@ -1544,12 +1544,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return value.equals(String.valueOf(equalsValue));
 	}
 
-	public boolean propertyEquals(final @NotNull String key, final @NotNull String defaultValue, final @NotNull String equalsValue)
-	{
-		final @NotNull String value = properties.getProperty(key, defaultValue);
-		return value.equals(equalsValue);
-	}
-
 	public void restoreLookAndFeel()
 	{
 		restoreDefaultLookAndFeel(defaultPane);
