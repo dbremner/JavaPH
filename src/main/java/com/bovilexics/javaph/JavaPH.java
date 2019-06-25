@@ -286,7 +286,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 	}
 
-	final class QueryPanel extends JPanel
+	private final class QueryPanel extends JPanel
 	{
 		private @Nullable ProgressMonitor queryProgressMonitor;
 
@@ -756,7 +756,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	final class ResultPanel extends JTabbedPane
+	private final class ResultPanel extends JTabbedPane
 	{
 		private final @NotNull JButton colListSelectAllButton = new JButton("Select All");
 		private final @NotNull JButton colListSelectNoneButton = new JButton("Deselect All");
@@ -981,7 +981,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	}
 
-	final class StatusPanel extends JPanel
+	private final class StatusPanel extends JPanel
 	{
 		StatusPanel()
 		{
