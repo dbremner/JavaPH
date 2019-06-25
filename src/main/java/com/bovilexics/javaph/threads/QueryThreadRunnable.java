@@ -58,7 +58,7 @@ public final class QueryThreadRunnable implements Runnable
             });
         }
 
-        // TODO add helper meethod to reduce boilerplate?
+        // TODO add helper method to reduce boilerplate?
         if (parent.isQueryCanceled())
         {
             resultThread.interrupt();
