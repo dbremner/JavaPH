@@ -16,11 +16,6 @@
  */
 package com.bovilexics.javaph.qi;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 
  * @author Robert Fernandes robert@bovilexics.com
@@ -94,64 +89,4 @@ public enum QiAPI
 	public static final int LR_SYNTAX	= 599; // syntax error
 	
 	public static final int LR_AMBIGUOUS	= 600; // ambiguous or multiple match
-	
-	private static final @NotNull Map<Integer, String> QiCodes = new HashMap<>();
-	
-	static
-	{
-		QiCodes.put(LR_PROGRESS,	"Nameserver search in progress");
-		QiCodes.put(LR_ECHO,		"Echoing nameserver cmd");
-		QiCodes.put(LR_NUMRET,	"How many entries are being returned");
-		QiCodes.put(LR_NONAME,	"No hostname found for IP address");
-		QiCodes.put(LR_OK,		"Success");
-		QiCodes.put(LR_RONLY,		"Nameserver database ready in read only mode");
-		QiCodes.put(LR_MORE,		"More info needed to process nameserver query");
-		QiCodes.put(LR_LOGIN,		"Encrypt this string");
-		QiCodes.put(LR_XLOGIN,	"Prompt for password with enclosed challenge");
-		QiCodes.put(LR_TEMP,		"Temporary nameserver error");
-		QiCodes.put(LR_INTERNAL,	"Nameserver database error, possibly temporary");
-		QiCodes.put(LR_LOCK,		"Nameserver lock not obtained within timeout period");
-		QiCodes.put(LR_COULDA,	"Login would have been ok but db read only");
-		QiCodes.put(LR_DOWN,		"Nameserver database unavailable; try again later");
-		QiCodes.put(LR_ERROR,		"Nameserver hard error; general");
-		QiCodes.put(LR_NOMATCH,	"No matches to nameserver query");
-		QiCodes.put(LR_TOOMANY,	"Too many matches found to nameserver query");
-		QiCodes.put(LR_AINFO,		"May not see that nameserver field");
-		QiCodes.put(LR_ASEARCH,	"May not search on that nameserver field");
-		QiCodes.put(LR_ACHANGE,	"May not change that nameserver field");
-		QiCodes.put(LR_NOTLOG,	"Must be logged in to nameserver");
-		QiCodes.put(LR_FIELD,		"Unknown nameserver field");
-		QiCodes.put(LR_ABSENT,	"E-mail field not present in nameserver entry");
-		QiCodes.put(LR_ALIAS,		"Requested nameserver alias is already in use");
-		QiCodes.put(LR_AENTRY,	"May not change nameserver entry");
-		QiCodes.put(LR_ADD,		"May not add nameserver entries");
-		QiCodes.put(LR_VALUE,		"Illegal value");
-		QiCodes.put(LR_OPTION,	"Unknown nameserver option");
-		QiCodes.put(LR_UNKNOWN,	"Unknown nameserver command");
-		QiCodes.put(LR_NOKEY,		"No indexed field found in nameserver query");
-		QiCodes.put(LR_AUTH,		"No authorization for nameserver request");
-		QiCodes.put(LR_READONLY,	"Nameserver operation failed; database is read-only");
-		QiCodes.put(LR_LIMIT,		"Too many nameserver entries selected for change");
-		QiCodes.put(LR_HISTORY,	"History substitution failed (obsolete)");
-		QiCodes.put(LR_XCPU,		"Too much cpu used");
-		QiCodes.put(LR_ADDONLY,	"Addonly option set and change command applied to a field with data");
-		QiCodes.put(LR_ISCRYPT,	"Attempt to view encrypted field");
-		QiCodes.put(LR_NOANSWER,	"\"answer\" was expected but not gotten");
-		QiCodes.put(LR_BADHELP,	"Help topics cannot contain slashes");
-		QiCodes.put(LR_NOEMAIL,	"Email authentication failed");
-		QiCodes.put(LR_NOADDR,	"Host name address not found in DNS");
-		QiCodes.put(LR_MISMATCH,	"Host = gethostbyaddr(foo); foo != gethostbyname(host)");
-		QiCodes.put(LR_KDB5,		"General kerberos v5 database error");
-		QiCodes.put(LR_NOAUTH,	"Selected authentication method not available");
-		QiCodes.put(LR_OFFCAMPUS,	"Remote queries not allowed");
-		QiCodes.put(LR_NOCMD,		"No such command");
-		QiCodes.put(LR_SYNTAX,	"Syntax error");
-		QiCodes.put(LR_AMBIGUOUS,	"Multiple matches found for nameserver query");
-	}
-
-	public static @NotNull String toString(final int code)
-	{
-		final Integer boxedCode = code;
-		return QiAPI.QiCodes.get(boxedCode);
-	}
 }
