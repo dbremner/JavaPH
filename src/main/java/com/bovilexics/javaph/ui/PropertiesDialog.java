@@ -58,6 +58,7 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
  */
 public final class PropertiesDialog extends JavaPHDialog
 {
+	private static final double WEIGHTX = 0.5;
 	private final @NotNull JavaPH parent;
 
 	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox("Display System Log");
@@ -259,7 +260,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.setLayout(gbl);
 
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-		gbc.weightx = 0.5;
+		gbc.weightx = WEIGHTX;
 		startupPanel.add(displaySplashCheckBox, gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -270,7 +271,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.add(Box.createVerticalStrut(verticalStrut), gbc);
 		
 		gbc.gridwidth = 1;
-		gbc.weightx = 0.5;
+		gbc.weightx = WEIGHTX;
 		startupPanel.add(displayLogCheckBox, gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -280,7 +281,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		startupPanel.add(Box.createVerticalStrut(verticalStrut), gbc);
 
 		gbc.gridwidth = 1;
-		gbc.weightx = 0.5;
+		gbc.weightx = WEIGHTX;
 		startupPanel.add(displayToolbarCheckBox, gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
