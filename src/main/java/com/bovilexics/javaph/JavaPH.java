@@ -179,7 +179,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull QueryPanel queryPanel;
 
 	private final @NotNull AboutDialog aboutDialog;
-	private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 	private final @NotNull FindDialog findDialog;
 	private final @NotNull Font fixedWidthFont = new Font("Monospaced", Font.PLAIN, 12);
 	private final @NotNull ServerManager serverManager;
@@ -309,7 +308,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldLoadOff;
 		private final @NotNull ImageIcon fieldLoadOn;
 		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
-		
+		private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
+
 		QueryPanel(final @NotNull JavaPH javaph, final @NotNull ConnectionFactory connectionFactory)
 		{
 			parent = javaph;
@@ -349,6 +349,58 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			queryProgressMonitor.close();
 		}
 
+		private @NotNull String getCommand()
+		{
+			final @NotNull StringBuilder out = new StringBuilder();
+
+			out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
+
+			if (queryComboBox.isEnabled() && queryComboBox.getSelectedItem() != null)
+			{
+				out.append(queryComboBox.getSelectedItem().toString());
+			}
+
+			if (fieldRadioGroup.isEnabled())
+			{
+				//noinspection StatementWithEmptyBody
+				if (fieldRadioGroup.getSelectedIndex() == FIELD_DEFAULT)
+				{
+					// Don't do anything if default fields selected
+				}
+				else if (fieldRadioGroup.getSelectedIndex() == FIELD_ALL)
+				{
+					out.append(" return all");
+				}
+				else if (fieldRadioGroup.getSelectedIndex() == FIELD_CUSTOM)
+				{
+					final @NotNull int[] selectedFields = fieldList.getSelectedIndices();
+
+					// will return default list of fields if nothing selected
+					if (selectedFields.length > 0)
+					{
+						out.append(" return");
+
+						for (final int selectedField : selectedFields)
+						{
+							out.append(" ");
+							out.append(fieldList.getModel().getElementAt(selectedField).getName());
+						}
+					}
+					else
+					{
+						log("Either no fields available or no fields selected, returning default fields instead");
+					}
+				}
+			}
+
+			return out.toString();
+		}
+
+		private @Nullable Server getServer()
+		{
+			return (Server)serverComboBox.getSelectedItem();
+		}
+
 		private @NotNull JPanel getQueryButtonPanel(final @NotNull JavaPH javaph)
 		{
 			final @NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
@@ -375,8 +427,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
 				final int runtime = parent.getQueryRuntime();
-				final @NotNull String command = parent.getCommand();
-				final @Nullable Server server = parent.getServer();
+				final @NotNull String command = getCommand();
+				final @Nullable Server server = getServer();
 				assert server != null;
 				final @NotNull Connection connection = connectionFactory.create(server);
 				final @NotNull Runnable runnable = new QueryThreadRunnable(parent, runtime, command, connection);
@@ -1217,53 +1269,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return location;
 	}
 
-	private @NotNull String getCommand()
-	{
-		final @NotNull StringBuilder out = new StringBuilder();
-
-		out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
-
-		if (queryComboBox.isEnabled() && queryComboBox.getSelectedItem() != null)
-		{
-			out.append(queryComboBox.getSelectedItem().toString());
-		}
-
-		if (fieldRadioGroup.isEnabled())
-		{
-			//noinspection StatementWithEmptyBody
-			if (fieldRadioGroup.getSelectedIndex() == FIELD_DEFAULT)
-			{
-				// Don't do anything if default fields selected
-			}
-			else if (fieldRadioGroup.getSelectedIndex() == FIELD_ALL)
-			{
-				out.append(" return all");
-			}
-			else if (fieldRadioGroup.getSelectedIndex() == FIELD_CUSTOM)
-			{
-				final @NotNull int[] selectedFields = fieldList.getSelectedIndices();
-
-				// will return default list of fields if nothing selected
-				if (selectedFields.length > 0)
-				{
-					out.append(" return");
-
-					for (final int selectedField : selectedFields)
-					{
-						out.append(" ");
-						out.append(fieldList.getModel().getElementAt(selectedField).getName());
-					}
-				}
-				else
-				{
-					log("Either no fields available or no fields selected, returning default fields instead");
-				}
-			}
-		}
-
-		return out.toString();
-	}
-
 	public void setCommandComboBoxSelectedIndex(final int index)
 	{
 		commandComboBox.setSelectedIndex(index);
@@ -1395,11 +1400,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public @NotNull JTextArea getResultText()
 	{
 		return resultText;
-	}
-
-	private @Nullable Server getServer()
-	{
-		return (Server)serverComboBox.getSelectedItem();
 	}
 
 	@Override
