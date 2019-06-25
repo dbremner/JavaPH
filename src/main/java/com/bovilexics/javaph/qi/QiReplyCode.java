@@ -3,6 +3,7 @@ package com.bovilexics.javaph.qi;
 import org.jetbrains.annotations.NotNull;
 import sun.jvm.hotspot.utilities.AssertionFailure;
 
+@SuppressWarnings("SpellCheckingInspection")
 public enum QiReplyCode
 {
     /*

@@ -26,7 +26,7 @@ import java.util.Map;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
 public enum QiAPI
 {
     ;
