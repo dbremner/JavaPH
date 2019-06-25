@@ -15,7 +15,7 @@ public enum FieldSelection
         this.value = value;
     }
 
-    public int getValue()
+    private int getValue()
     {
         return value;
     }

@@ -21,7 +21,7 @@ public enum Tab
         this.filename = filename;
     }
 
-    public int getIndex()
+    private int getIndex()
     {
         return index;
     }
