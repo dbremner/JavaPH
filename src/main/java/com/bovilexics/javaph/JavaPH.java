@@ -1402,6 +1402,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return resultText;
 	}
 
+	public void clearPreviousQuery()
+	{
+		// Clear the results
+		getResultText().setText("");
+		getResultTable().getTableSorter().getModel().resetModel();
+
+		// Clear the previous query
+		setCommandComboBoxSelectedIndex(QUERY_COMMAND);
+		getQueryComboBox().setSelectedItem("");
+	}
+
 	@Override
 	public @NotNull String getURL(final @NotNull String location)
 	{

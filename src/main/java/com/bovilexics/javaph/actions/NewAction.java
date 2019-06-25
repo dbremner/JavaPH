@@ -22,8 +22,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 
-import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -43,14 +41,7 @@ public final class NewAction extends AbstractAction
 	@Override
 	public void actionPerformed(final @NotNull ActionEvent e)
 	{
-		// Clear the results
-		parent.getResultText().setText("");
-		parent.getResultTable().getTableSorter().getModel().resetModel();
-		
-		// Clear the previous query
-		parent.setCommandComboBoxSelectedIndex(QUERY_COMMAND);
-		parent.getQueryComboBox().setSelectedItem("");
-		
+		parent.clearPreviousQuery();
 		// Log the action
 		parent.log("New query requested, results cleared");
 	}
