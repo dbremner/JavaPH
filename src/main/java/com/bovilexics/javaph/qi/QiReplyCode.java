@@ -75,14 +75,27 @@ public enum QiReplyCode
 
     private final int value;
 
+    private final @NotNull String description;
+
     QiReplyCode(final int value)
     {
+        this(value, "");
+    }
+
+    QiReplyCode(final int value, final @NotNull String description)
+    {
         this.value = value;
+        this.description = description;
     }
 
     public int getValue()
     {
         return value;
+    }
+    
+    public @NotNull String getDescription()
+    {
+        return description;
     }
 
     public @NotNull QiReplyCodeType getReplyCodeType()
