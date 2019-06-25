@@ -1392,9 +1392,14 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return tab;
 	}
 
-	public @NotNull ResultTable getResultTable()
+	private @NotNull ResultTable getResultTable()
 	{
 		return resultTable;
+	}
+
+	public @NotNull TableModel getResultTableModel()
+	{
+		return getResultTable().getModel();
 	}
 
 	public @NotNull JTextArea getResultText()

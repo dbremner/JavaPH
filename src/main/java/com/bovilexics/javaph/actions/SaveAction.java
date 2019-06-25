@@ -99,7 +99,7 @@ public final class SaveAction extends AbstractAction
 		final boolean quoted = parent.isFieldQuoted();
 	
 		final @NotNull String separator = parent.getFieldSeparator();
-		final TableModel model = parent.getResultTable().getModel();
+		final TableModel model = parent.getResultTableModel();
 
 		final int cols = model.getColumnCount();
 		final int rows = model.getRowCount();
