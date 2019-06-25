@@ -35,6 +35,7 @@ import com.bovilexics.javaph.ui.AboutDialog;
 import com.bovilexics.javaph.ui.ContentPanel;
 import com.bovilexics.javaph.ui.ControlTabDispatcher;
 import com.bovilexics.javaph.ui.CustomButtonGroup;
+import com.bovilexics.javaph.ui.FieldSelection;
 import com.bovilexics.javaph.ui.FindDialog;
 import com.bovilexics.javaph.ui.IconProvider;
 import com.bovilexics.javaph.ui.ListDataAdapter;
@@ -119,9 +120,6 @@ import static com.bovilexics.javaph.JavaPHConstants.APP_MIN_HEIGHT;
 import static com.bovilexics.javaph.JavaPHConstants.APP_MIN_WIDTH;
 import static com.bovilexics.javaph.JavaPHConstants.COMMA_SEPARATOR;
 import static com.bovilexics.javaph.JavaPHConstants.CUSTOM_SEPARATOR;
-import static com.bovilexics.javaph.JavaPHConstants.FIELD_ALL;
-import static com.bovilexics.javaph.JavaPHConstants.FIELD_CUSTOM;
-import static com.bovilexics.javaph.JavaPHConstants.FIELD_DEFAULT;
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_LABEL_PREFIX;
 import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_PREFIX;
 import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_SUFFIX;
@@ -360,34 +358,44 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			if (fieldRadioGroup.isEnabled())
 			{
-				//noinspection StatementWithEmptyBody
-				if (fieldRadioGroup.getSelectedIndex() == FIELD_DEFAULT)
-				{
-					// Don't do anything if default fields selected
-				}
-				else if (fieldRadioGroup.getSelectedIndex() == FIELD_ALL)
-				{
-					out.append(" return all");
-				}
-				else if (fieldRadioGroup.getSelectedIndex() == FIELD_CUSTOM)
-				{
-					final @NotNull int[] selectedFields = fieldList.getSelectedIndices();
+				final int index = fieldRadioGroup.getSelectedIndex();
+				final @NotNull FieldSelection selection = FieldSelection.fromValue(index);
 
-					// will return default list of fields if nothing selected
-					if (selectedFields.length > 0)
+				switch (selection)
+				{
+					case DEFAULT:
 					{
-						out.append(" return");
+						// Don't do anything if default fields selected
+						break;
+					}
+					case ALL:
+					{
+						out.append(" return all");
+						break;
+					}
+					case CUSTOM:
+					{
+						final @NotNull int[] selectedFields = fieldList.getSelectedIndices();
 
-						for (final int selectedField : selectedFields)
+						// will return default list of fields if nothing selected
+						if (selectedFields.length > 0)
 						{
-							out.append(" ");
-							out.append(fieldList.getModel().getElementAt(selectedField).getName());
+							out.append(" return");
+
+							for (final int selectedField : selectedFields)
+							{
+								out.append(" ");
+								out.append(fieldList.getModel().getElementAt(selectedField).getName());
+							}
 						}
+						else
+						{
+							log("Either no fields available or no fields selected, returning default fields instead");
+						}
+						break;
 					}
-					else
-					{
-						log("Either no fields available or no fields selected, returning default fields instead");
-					}
+					default:
+						assert false;
 				}
 			}
 

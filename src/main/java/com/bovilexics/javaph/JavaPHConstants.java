@@ -34,10 +34,6 @@ public enum JavaPHConstants
 	public static final int QUERY_COMMAND  = 0;
 	public static final int SPLASH_DISPLAY = 3000; // display time in ms
 
-	public static final int FIELD_DEFAULT = 0;
-	public static final int FIELD_ALL     = 1;
-	public static final int FIELD_CUSTOM  = 2;
-	
 	public static final @NotNull String FIELD_LABEL_PREFIX  = " Return : ";
 	public static final @NotNull String PORT_LABEL_PREFIX   = " Port : ";
 	public static final @NotNull String PORT_LABEL_SUFFIX   = " ";
