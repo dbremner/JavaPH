@@ -49,28 +49,25 @@ import org.jetbrains.annotations.NotNull;
  * 
  */
 @SuppressWarnings("WeakerAccess")
-public final class QiCommand
+public enum QiCommand
 {
-	// public static final String ADD		= "add";
-	// public static final String ANSWER	= "answer";
-	// public static final String CHANGE	= "change";
+	;
+	public static final @NotNull String ADD		= "add";
+	public static final @NotNull String ANSWER	= "answer";
+	public static final @NotNull String CHANGE	= "change";
 	public static final @NotNull String CLEAR		= "clear";
-	// public static final String DELETE	= "delete";
+	public static final @NotNull String DELETE	= "delete";
 	public static final @NotNull String EXIT		= "exit";
 	public static final @NotNull String FIELDS	= "fields";
 	public static final @NotNull String HELP		= "help";
-	// public static final String ID		= "id";	
+	public static final @NotNull String ID		= "id";
 	public static final @NotNull String LOGIN		= "login";
 	public static final @NotNull String LOGOUT	= "logout";
 	public static final @NotNull String PH		= "ph";
 	public static final @NotNull String QUERY		= "query";
 	public static final @NotNull String QUIT		= "quit";
-	// public static final String SET		= "set";
+	public static final @NotNull String SET		= "set";
 	public static final @NotNull String SITEINFO	= "siteinfo";
 	public static final @NotNull String STATUS	= "status";
 	public static final @NotNull String STOP		= "stop";
-
-	private QiCommand()
-	{
-	}
 }
