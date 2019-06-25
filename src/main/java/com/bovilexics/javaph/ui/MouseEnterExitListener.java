@@ -21,13 +21,13 @@ public final class MouseEnterExitListener extends MouseAdapter
     }
 
     @Override
-    public final void mouseEntered(final @NotNull MouseEvent e)
+    public void mouseEntered(final @NotNull MouseEvent e)
     {
         button.setIcon(on);
     }
 
     @Override
-    public final void mouseExited(final @NotNull MouseEvent e)
+    public void mouseExited(final @NotNull MouseEvent e)
     {
         button.setIcon(off);
     }
