@@ -16,7 +16,7 @@ public interface Server
 
     @NotNull String getName();
 
-    @NotNull int getPort();
+    int getPort();
 
     @NotNull String getServer();
 

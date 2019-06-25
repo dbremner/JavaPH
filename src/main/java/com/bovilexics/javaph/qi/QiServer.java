@@ -152,7 +152,7 @@ public final class QiServer implements Server
 	}
 	
 	@Override
-	public @NotNull int getPort()
+	public int getPort()
 	{
 		return port;
 	}
