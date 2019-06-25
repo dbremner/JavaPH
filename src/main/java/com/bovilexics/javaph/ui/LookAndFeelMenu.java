@@ -65,6 +65,7 @@ final class LookAndFeelMenu extends JMenu
 
 	private final class LookAndFeelItemListener implements ActionListener
 	{
+		@SuppressWarnings("WeakerAccess")
 		LookAndFeelItemListener()
 		{
 		}
@@ -88,6 +89,7 @@ final class LookAndFeelMenu extends JMenu
 	
 	private final class LookAndFeelRadioListener implements ActionListener
 	{
+		@SuppressWarnings("WeakerAccess")
 		LookAndFeelRadioListener()
 		{
 		}

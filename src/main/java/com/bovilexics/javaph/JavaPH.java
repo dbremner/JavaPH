@@ -306,6 +306,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
 		private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 
+		@SuppressWarnings("WeakerAccess")
 		QueryPanel(final @NotNull JavaPH javaph, final @NotNull ConnectionFactory connectionFactory)
 		{
 			parent = javaph;
@@ -765,6 +766,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
 		private final @NotNull JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
 
+		@SuppressWarnings("WeakerAccess")
 		ResultPanel()
 		{
 			super(SwingConstants.TOP);
@@ -983,6 +985,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private final class StatusPanel extends JPanel
 	{
+		@SuppressWarnings("WeakerAccess")
 		StatusPanel()
 		{
 			setLayout(new BorderLayout());
