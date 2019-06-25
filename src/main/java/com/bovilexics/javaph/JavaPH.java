@@ -1278,9 +1278,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return location;
 	}
 
-	private void setCommandComboBoxSelectedIndex(final int index)
+	private void resetCommandComboBoxIndex()
 	{
-		commandComboBox.setSelectedIndex(index);
+		commandComboBox.setSelectedIndex(QUERY_COMMAND);
 	}
 
 	public @NotNull JRootPane getDefaultPane()
@@ -1423,7 +1423,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		getResultTable().getTableSorter().getModel().resetModel();
 
 		// Clear the previous query
-		setCommandComboBoxSelectedIndex(QUERY_COMMAND);
+		resetCommandComboBoxIndex();
 		getQueryComboBox().setSelectedItem("");
 	}
 
