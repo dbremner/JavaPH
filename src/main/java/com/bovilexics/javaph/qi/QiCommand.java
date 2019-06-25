@@ -49,7 +49,7 @@ import org.jetbrains.annotations.NotNull;
  * 
  */
 @SuppressWarnings("WeakerAccess")
-public final class QiCommand implements Command
+public final class QiCommand
 {
 	// public static final String ADD		= "add";
 	// public static final String ANSWER	= "answer";
@@ -70,72 +70,7 @@ public final class QiCommand implements Command
 	public static final @NotNull String STATUS	= "status";
 	public static final @NotNull String STOP		= "stop";
 
-	public static final @NotNull Command[] commands =
+	private QiCommand()
 	{
-		new QiCommand(QUERY, "Query", true, true),
-		new QiCommand(FIELDS, "Fields", false, false),
-		new QiCommand(STATUS, "Status", false, false),
-		new QiCommand(SITEINFO, "SiteInfo", false, false),
-		new QiCommand(HELP, "Help", true, false)
-	};
-
-	private final boolean listEditable;
-	private final boolean textEditable;
-
-	private final @NotNull String description;
-	private final @NotNull String name;
-
-	public static boolean isValidCommand(final @NotNull String name)
-	{
-		for (final @NotNull Command command : commands) {
-			if (command.getName().equals(name)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private QiCommand(final @NotNull String aName, final @NotNull String aDescription, final boolean isTextEditable, final boolean isListEditable)
-	{
-		name = aName;
-		description = aDescription;
-		textEditable = isTextEditable;
-		listEditable = isListEditable;
-	}
-
-	@Override
-	public @NotNull String getCommand()
-	{
-		return name + " ";
-	}
-	
-	@Override
-	public @NotNull String getDescription()
-	{
-		return description;
-	}
-
-	@Override
-	public @NotNull String getName()
-	{
-		return name;
-	}
-
-	@Override
-	public boolean isListEditable()
-	{
-		return listEditable;
-	}
-
-	@Override
-	public boolean isTextEditable()
-	{
-		return textEditable;
-	}
-	
-	@Override
-    public @NotNull String toString()
-	{
-		return description;
 	}
 }
