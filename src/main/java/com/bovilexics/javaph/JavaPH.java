@@ -23,6 +23,7 @@ import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.ResultTableModel;
+import com.bovilexics.javaph.qi.Command;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.ConnectionFactory;
 import com.bovilexics.javaph.qi.Field;
@@ -181,7 +182,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull PropertyCollection defaultProperties;
 	private final @NotNull PropertyCollection properties;
 	private final @NotNull PropertiesDialog propertiesDialog;
-	private final @NotNull QiCommand[] commands;
+	private final @NotNull Command[] commands;
 	private @Nullable Connection connection;
 	private final @NotNull QueryComboBox queryComboBox = new QueryComboBox();
 	private final @NotNull QueryToolBar queryToolBar;
@@ -195,7 +196,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	// Swing widgets and stuff
 
 	private final @NotNull JButton queryButton = new JButton("Execute Query");
-	private final @NotNull JComboBox<QiCommand> commandComboBox;
+	private final @NotNull JComboBox<Command> commandComboBox;
 	private final @NotNull JComboBox<Server> serverComboBox;
 	private final @NotNull JLabel portStatusLabel = new JLabel();
 	private final @NotNull JLabel serverStatusLabel = new JLabel();
@@ -1021,8 +1022,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		this.serverManager = serverManager;
 		this.defaultProperties = defaultProperties;
 		this.properties = properties;
-		commands = QiCommand.commands;
-		commandComboBox = new JComboBox<>(commands);
+		this.commands = QiCommand.commands;
+		commandComboBox = new JComboBox<>(this.commands);
 		int frameHeight = this.properties.getProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = this.properties.getProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);
 		int frameX = this.properties.getProperty(PROP_APP_X_POSITION, -1);

@@ -49,7 +49,7 @@ import org.jetbrains.annotations.NotNull;
  * 
  */
 @SuppressWarnings("WeakerAccess")
-public final class QiCommand
+public final class QiCommand implements Command
 {
 	// public static final String ADD		= "add";
 	// public static final String ANSWER	= "answer";
@@ -70,7 +70,7 @@ public final class QiCommand
 	public static final @NotNull String STATUS	= "status";
 	public static final @NotNull String STOP		= "stop";
 
-	public static final @NotNull QiCommand[] commands =
+	public static final @NotNull Command[] commands =
 	{
 		new QiCommand(QUERY, "Query", true, true),
 		new QiCommand(FIELDS, "Fields", false, false),
@@ -85,10 +85,10 @@ public final class QiCommand
 	private final @NotNull String description;
 	private final @NotNull String name;
 
-	public static boolean isValidCommand(final @NotNull String command)
+	public static boolean isValidCommand(final @NotNull String name)
 	{
-		for (final @NotNull QiCommand qiCommand : commands) {
-			if (qiCommand.getName().equals(command)) {
+		for (final @NotNull Command command : commands) {
+			if (command.getName().equals(name)) {
 				return true;
 			}
 		}
@@ -103,26 +103,31 @@ public final class QiCommand
 		listEditable = isListEditable;
 	}
 
+	@Override
 	public @NotNull String getCommand()
 	{
 		return name + " ";
 	}
 	
+	@Override
 	public @NotNull String getDescription()
 	{
 		return description;
 	}
 
+	@Override
 	public @NotNull String getName()
 	{
 		return name;
 	}
 
+	@Override
 	public boolean isListEditable()
 	{
 		return listEditable;
 	}
 
+	@Override
 	public boolean isTextEditable()
 	{
 		return textEditable;
