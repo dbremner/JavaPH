@@ -34,10 +34,6 @@ public enum JavaPHConstants
 	public static final int QUERY_COMMAND  = 0;
 	public static final int SPLASH_DISPLAY = 3000; // display time in ms
 
-	public static final int QUERY_RUNTIME_DEF = 20;
-	public static final int QUERY_RUNTIME_MIN = 10;
-	public static final int QUERY_RUNTIME_MAX = 180;
-
 	public static final int FIELD_DEFAULT = 0;
 	public static final int FIELD_ALL     = 1;
 	public static final int FIELD_CUSTOM  = 2;

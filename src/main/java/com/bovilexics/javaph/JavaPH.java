@@ -45,6 +45,7 @@ import com.bovilexics.javaph.ui.NullKeyAdapter;
 import com.bovilexics.javaph.ui.NullMouseAdapter;
 import com.bovilexics.javaph.ui.PropertiesDialog;
 import com.bovilexics.javaph.ui.QueryComboBox;
+import com.bovilexics.javaph.ui.QueryRuntime;
 import com.bovilexics.javaph.ui.QueryToolBar;
 import com.bovilexics.javaph.ui.ResultTable;
 import com.bovilexics.javaph.ui.ServerRenderer;
@@ -141,9 +142,6 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_QUERY_RUNTIME;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_LABEL_PREFIX;
-import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_DEF;
-import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MAX;
-import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
 import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_PREFIX;
 import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_SUFFIX;
 import static com.bovilexics.javaph.JavaPHConstants.SPLASH_DISPLAY;
@@ -174,7 +172,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private boolean savePosition = false;
 
 	private @NotNull LoadFields loadFields = LoadFields.Selected;
-	private int queryRuntime = QUERY_RUNTIME_DEF;
+	private int queryRuntime = QueryRuntime.DEFAULT.getValue();
 
 	private final @NotNull QueryPanel queryPanel;
 
@@ -1465,7 +1463,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 
 		setLoadFields(getLoadFieldsPropertyDefault(properties, PROP_LOAD_FIELDS, LoadFields.getDefault()));
-		setQueryRuntime(properties.getProperty(PROP_QUERY_RUNTIME, QUERY_RUNTIME_DEF));
+		setQueryRuntime(properties.getProperty(PROP_QUERY_RUNTIME, QueryRuntime.DEFAULT.getValue()));
 		setSavePosition(propertyEquals(PROP_SAVE_POSITION,  true, true));
 	}
 
@@ -1672,15 +1670,15 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void setQueryRuntime(final int runtime)
 	{
-		if (runtime > QUERY_RUNTIME_MAX)
+		if (QueryRuntime.overMaximum(runtime))
 		{
-			log("Query runtime " + runtime + " too high, using maximum value " + QUERY_RUNTIME_MAX);
-			queryRuntime = QUERY_RUNTIME_MAX;
+			log("Query runtime " + runtime + " too high, using maximum value " + QueryRuntime.MAX.getValue());
+			queryRuntime = QueryRuntime.MAX.getValue();
 		}
-		else if (runtime < QUERY_RUNTIME_MIN)
+		else if (QueryRuntime.underMinimum(runtime))
 		{
-			log("Query runtime " + runtime + " too low, using minimum value " + QUERY_RUNTIME_MIN);
-			queryRuntime = QUERY_RUNTIME_MIN;
+			log("Query runtime " + runtime + " too low, using minimum value " + QueryRuntime.MIN.getValue());
+			queryRuntime = QueryRuntime.MIN.getValue();
 		}
 		else
 		{

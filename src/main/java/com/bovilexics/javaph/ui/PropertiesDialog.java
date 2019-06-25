@@ -50,8 +50,6 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_LOAD_FIELDS;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_QUERY_RUNTIME;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_ROLL_TOOLBAR;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
-import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MAX;
-import static com.bovilexics.javaph.JavaPHConstants.QUERY_RUNTIME_MIN;
 
 /**
  *
@@ -74,7 +72,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	private final @NotNull JRadioButton loadFieldsSelected = new JRadioButton("Load Fields on Select");
 	private final @NotNull JRadioButton loadFieldsStartup = new JRadioButton("Load Fields on Startup  ( Slow! )");
 
-	private final @NotNull JSlider runtimeSlider = new JSlider(QUERY_RUNTIME_MIN, QUERY_RUNTIME_MAX);
+	private final @NotNull JSlider runtimeSlider = new JSlider(QueryRuntime.MIN.getValue(), QueryRuntime.MAX.getValue());
 	
 	private final @NotNull JTextField runtimeText = new JTextField();
 
@@ -305,7 +303,7 @@ public final class PropertiesDialog extends JavaPHDialog
 		loadFieldsSelected.setSelected(lf == LoadFields.Selected);
 		loadFieldsStartup.setSelected(lf == LoadFields.Startup);
 
-		final @NotNull String queryRuntimeValue = parent.getPropertyDefault(PROP_QUERY_RUNTIME, String.valueOf(QUERY_RUNTIME_MIN));
+		final @NotNull String queryRuntimeValue = parent.getPropertyDefault(PROP_QUERY_RUNTIME, String.valueOf(QueryRuntime.MIN.getValue()));
 		runtimeSlider.setValue(Integer.parseInt(queryRuntimeValue));
 	}
 
