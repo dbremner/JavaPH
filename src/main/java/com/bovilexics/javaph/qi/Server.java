@@ -10,7 +10,7 @@ public interface Server
 
     @NotNull List<Field> getFields();
 
-    @NotNull QiFieldState getFieldState();
+    @NotNull FieldState getFieldState();
 
     @NotNull String getFieldStateMessage();
 

@@ -1,6 +1,6 @@
 package com.bovilexics.javaph.qi;
 
-public enum QiReplyCodeType
+public enum ReplyCodeType
 {
     Status,
     Information,

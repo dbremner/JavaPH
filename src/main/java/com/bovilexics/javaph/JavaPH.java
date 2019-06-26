@@ -27,7 +27,7 @@ import com.bovilexics.javaph.qi.Command;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.ConnectionFactory;
 import com.bovilexics.javaph.qi.Field;
-import com.bovilexics.javaph.qi.QiFieldState;
+import com.bovilexics.javaph.qi.FieldState;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;
 import com.bovilexics.javaph.threads.QueryThreadRunnable;
@@ -603,7 +603,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				connection = connectionFactory.create(serverText, portInt);
 
-				if (getLoadFields() == LoadFields.Selected && server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR && server.getFieldState() != QiFieldState.FIELD_LOAD_TRUE)
+				if (getLoadFields() == LoadFields.Selected && server.getFieldState() != FieldState.FIELD_LOAD_ERROR && server.getFieldState() != FieldState.FIELD_LOAD_TRUE)
 				{
 					serverComboBox.hidePopup();
 					loadFieldsForServer(server);
@@ -708,7 +708,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
 			model.clear();
 
-			if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
+			if (server.getFieldState() == FieldState.FIELD_LOAD_TRUE)
 			{
 				final @NotNull List<Field> fields = server.getFields();
 
@@ -723,7 +723,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				fieldList.setSelectionInterval(0, model.getSize() - 1);
 			}
 
-			if (server.getFieldState() == QiFieldState.FIELD_LOAD_TRUE)
+			if (server.getFieldState() == FieldState.FIELD_LOAD_TRUE)
 			{
 				fieldLoadButton.setToolTipText("Reload fields for the selected server");
 			}

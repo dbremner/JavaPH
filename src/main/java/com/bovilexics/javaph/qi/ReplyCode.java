@@ -6,15 +6,15 @@ import sun.jvm.hotspot.utilities.AssertionFailure;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static com.bovilexics.javaph.qi.QiReplyCodeType.AdditionalInformationOrAction;
-import static com.bovilexics.javaph.qi.QiReplyCodeType.Information;
-import static com.bovilexics.javaph.qi.QiReplyCodeType.PermanentError;
-import static com.bovilexics.javaph.qi.QiReplyCodeType.PhQueryCode;
-import static com.bovilexics.javaph.qi.QiReplyCodeType.Status;
-import static com.bovilexics.javaph.qi.QiReplyCodeType.TemporaryError;
+import static com.bovilexics.javaph.qi.ReplyCodeType.AdditionalInformationOrAction;
+import static com.bovilexics.javaph.qi.ReplyCodeType.Information;
+import static com.bovilexics.javaph.qi.ReplyCodeType.PermanentError;
+import static com.bovilexics.javaph.qi.ReplyCodeType.PhQueryCode;
+import static com.bovilexics.javaph.qi.ReplyCodeType.Status;
+import static com.bovilexics.javaph.qi.ReplyCodeType.TemporaryError;
 
 @SuppressWarnings("SpellCheckingInspection")
-public enum QiReplyCode
+public enum ReplyCode
 {
     /*
 	Reply codes
@@ -83,14 +83,14 @@ public enum QiReplyCode
     private final int value;
 
     private final @NotNull String description;
-    private final @NotNull QiReplyCodeType type;
+    private final @NotNull ReplyCodeType type;
 
-    QiReplyCode(final int value, final @NotNull QiReplyCodeType type)
+    ReplyCode(final int value, final @NotNull ReplyCodeType type)
     {
         this(value, "", type);
     }
 
-    QiReplyCode(final int value, final @NotNull String description, final @NotNull QiReplyCodeType type)
+    ReplyCode(final int value, final @NotNull String description, final @NotNull ReplyCodeType type)
     {
         this.value = value;
         this.description = description;
@@ -107,12 +107,12 @@ public enum QiReplyCode
         return description;
     }
 
-    public @NotNull QiReplyCodeType getReplyCodeType()
+    public @NotNull ReplyCodeType getReplyCodeType()
     {
         return type;
     }
 
-    private static final @NotNull Map<QiReplyCode, String> QiCodes = new EnumMap<>(QiReplyCode.class);
+    private static final @NotNull Map<ReplyCode, String> QiCodes = new EnumMap<>(ReplyCode.class);
 
     static
     {
@@ -166,9 +166,9 @@ public enum QiReplyCode
         QiCodes.put(LR_AMBIGUOUS,	"Multiple matches found for nameserver query");
     }
 
-    public static @NotNull QiReplyCode fromInt(final int value)
+    public static @NotNull ReplyCode fromInt(final int value)
     {
-        for(final @NotNull QiReplyCode replyCode : values())
+        for(final @NotNull ReplyCode replyCode : values())
         {
             if (replyCode.getValue() == value)
             {
@@ -180,7 +180,7 @@ public enum QiReplyCode
 
     public static @NotNull String toString(final int code)
     {
-        final QiReplyCode value = fromInt(code);
+        final ReplyCode value = fromInt(code);
         return QiCodes.get(value);
     }
 }

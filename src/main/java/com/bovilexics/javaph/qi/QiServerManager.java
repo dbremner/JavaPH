@@ -228,7 +228,7 @@ public final class QiServerManager implements ServerManager
     public void loadAllFields()
     {
         for (final @NotNull Server server : servers) {
-            if (server.getFieldState() != QiFieldState.FIELD_LOAD_ERROR) {
+            if (server.getFieldState() != FieldState.FIELD_LOAD_ERROR) {
                 server.loadFields();
             }
         }
