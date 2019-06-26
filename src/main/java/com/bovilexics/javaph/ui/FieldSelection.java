@@ -31,6 +31,6 @@ public enum FieldSelection
                 return fieldSelection;
             }
         }
-        throw new AssertionError(new String[]{"argument is out of range"});
+        throw new IllegalArgumentException("argument is out of range");
     }
 }

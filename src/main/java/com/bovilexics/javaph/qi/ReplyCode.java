@@ -2,7 +2,6 @@ package com.bovilexics.javaph.qi;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import sun.jvm.hotspot.utilities.AssertionFailure;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -179,7 +178,7 @@ public enum ReplyCode
                 return replyCode;
             }
         }
-        throw new AssertionFailure("unreachable");
+        throw new IllegalArgumentException("unrecognized reply code");
     }
 
     public static @NotNull String toString(final int code)
