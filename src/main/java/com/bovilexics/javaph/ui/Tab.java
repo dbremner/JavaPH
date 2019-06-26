@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public enum Tab
@@ -26,11 +27,13 @@ public enum Tab
         return index;
     }
 
+    @Contract(pure = true)
     public @NotNull String getLabel()
     {
         return label;
     }
 
+    @Contract(pure = true)
     public @NotNull String getFilename()
     {
         return filename;

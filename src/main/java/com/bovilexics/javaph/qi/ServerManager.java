@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -28,5 +29,6 @@ public interface ServerManager
 
     void loadAllFields();
 
+    @Contract(pure = true)
     @NotNull ConnectionFactory getConnectionFactory();
 }

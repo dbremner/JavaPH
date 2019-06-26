@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 
 public interface Connection
 {
+    @Contract(pure = true)
     boolean authenticated();
 
     /** Establish a connection to Qi.
@@ -14,6 +16,7 @@ public interface Connection
       */
     void connect() throws IOException;
 
+    @Contract(pure = true)
     boolean connected();
 
     /**
@@ -22,12 +25,16 @@ public interface Connection
     */
     void disconnect() throws IOException;
 
+    @Contract(pure = true)
     @NotNull String getHost();
 
+    @Contract(pure = true)
     int getPort();
 
+    @Contract(pure = true)
     @NotNull String getExpandedName();
 
+    @Contract(pure = true)
     @NotNull LineFactory getLineFactory();
 
     /**

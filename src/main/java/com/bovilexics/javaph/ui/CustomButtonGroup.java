@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractButton;
@@ -30,7 +31,8 @@ import java.util.Enumeration;
 public final class CustomButtonGroup extends ButtonGroup
 {
 	private boolean enabled = true;
-	
+
+	@Contract(pure = true)
 	public int getSelectedIndex()
 	{
 		int currentIndex = -1;
@@ -62,6 +64,7 @@ public final class CustomButtonGroup extends ButtonGroup
 		super.remove(b);
 	}
 
+	@Contract(pure = true)
 	public boolean isEnabled()
 	{
 		return enabled;

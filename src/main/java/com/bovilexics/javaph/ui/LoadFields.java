@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public enum LoadFields
@@ -16,18 +17,21 @@ public enum LoadFields
         this.value = value;
     }
 
+    @Contract(pure = true)
     public int getValue()
     {
         return value;
     }
 
     @SuppressWarnings("SameReturnValue")
+    @Contract(pure = true)
     public static @NotNull LoadFields getDefault()
     {
         return Selected;
     }
 
     @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+    @Contract(pure = true)
     public static @NotNull LoadFields fromOrDefault(final int value)
     {
         for(final @NotNull LoadFields loadFields : values())

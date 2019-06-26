@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public enum FieldSelection
@@ -15,6 +16,7 @@ public enum FieldSelection
         this.value = value;
     }
 
+    @Contract(pure = true)
     private int getValue()
     {
         return value;

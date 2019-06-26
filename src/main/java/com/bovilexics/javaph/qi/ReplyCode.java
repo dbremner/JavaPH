@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import sun.jvm.hotspot.utilities.AssertionFailure;
 
@@ -97,16 +98,19 @@ public enum ReplyCode
         this.type = type;
     }
 
+    @Contract(pure = true)
     public int getValue()
     {
         return value;
     }
-    
+
+    @Contract(pure = true)
     public @NotNull String getDescription()
     {
         return description;
     }
 
+    @Contract(pure = true)
     public @NotNull ReplyCodeType getReplyCodeType()
     {
         return type;
