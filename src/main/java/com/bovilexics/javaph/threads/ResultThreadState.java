@@ -3,17 +3,17 @@ package com.bovilexics.javaph.threads;
 public enum ResultThreadState
 {
     // Starting
-    RS_START,
+    Starting,
 
     // Multiline response.
-    RS_INPROGRESS,
+    InProgress,
 
     // We're done.
-    RS_OK,
+    Ok,
 
     // Oops!
-    RS_UNKNOWN,
+    Unknown,
 
     // Qi error response.
-    RS_ERROR
+    Error
 }

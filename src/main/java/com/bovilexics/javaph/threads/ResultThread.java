@@ -66,7 +66,7 @@ public final class ResultThread extends Thread
 
 	private int entryIndex = 0;
 	private volatile int lastCode = QiAPI.LR_OK;
-	private volatile @NotNull ResultThreadState state = ResultThreadState.RS_START;
+	private volatile @NotNull ResultThreadState state = ResultThreadState.Starting;
 
 	private final @Nullable JavaPH parent;
 
@@ -153,21 +153,21 @@ public final class ResultThread extends Thread
 
 	public synchronized @Nullable String getEpilogue()
 	{
-		return state == ResultThreadState.RS_OK ? epilogue : null;
+		return state == ResultThreadState.Ok ? epilogue : null;
 	}
 
 	public @NotNull String getErrorString()
 	{
 		switch (state)
 		{
-			case RS_ERROR:
-			case RS_UNKNOWN:
+			case Error:
+			case Unknown:
 			{
 				return prologue;
 			}
-			case RS_OK:
-			case RS_START:
-			case RS_INPROGRESS:
+			case Ok:
+			case Starting:
+			case InProgress:
 			{
 				return "";
 			}
@@ -183,27 +183,27 @@ public final class ResultThread extends Thread
 	public synchronized int getFieldCount()
 	{
 		assert headers != null;
-		return state == ResultThreadState.RS_OK ? headers.length : 0;
+		return state == ResultThreadState.Ok ? headers.length : 0;
 	}
 
 	public synchronized @Nullable Object[] getHeaders()
 	{
-		return state == ResultThreadState.RS_OK ? headers : null;
+		return state == ResultThreadState.Ok ? headers : null;
 	}
 
 	public synchronized @Nullable String getPrologue()
 	{
-		return state == ResultThreadState.RS_OK ? prologue : null;
+		return state == ResultThreadState.Ok ? prologue : null;
 	}
 
 	public synchronized int getRecordCount()
 	{
-		return state == ResultThreadState.RS_OK ? records.size() : -1;
+		return state == ResultThreadState.Ok ? records.size() : -1;
 	}
 
 	public synchronized @NotNull List<List<Line>> getRecords()
 	{
-		if (state != ResultThreadState.RS_OK)
+		if (state != ResultThreadState.Ok)
 		{
 			return ImmutableList.of();
 		}
@@ -215,12 +215,12 @@ public final class ResultThread extends Thread
 	public synchronized @Nullable String getRawResult()
 	{
 		assert rawResult != null;
-		return state == ResultThreadState.RS_OK && rawResult.length() > 0 ? rawResult.toString() : null;
+		return state == ResultThreadState.Ok && rawResult.length() > 0 ? rawResult.toString() : null;
 	}
 
 	public synchronized @Nullable Object[][] getValues()
 	{
-		return state == ResultThreadState.RS_OK ? values : null;
+		return state == ResultThreadState.Ok ? values : null;
 	}
 
 	@Override
@@ -241,7 +241,7 @@ public final class ResultThread extends Thread
 
 	public boolean isValidQiResponse()
 	{
-		return !error && !halted && (state == ResultThreadState.RS_OK || state == ResultThreadState.RS_ERROR);
+		return !error && !halted && (state == ResultThreadState.Ok || state == ResultThreadState.Error);
 	}
 
 	@Override
@@ -251,7 +251,7 @@ public final class ResultThread extends Thread
 
 		if (error)
 		{
-			state = ResultThreadState.RS_ERROR;
+			state = ResultThreadState.Error;
 			showStatus("Error: Invalid connection, query stopped.");
 			finished = true;
 			return;
@@ -296,7 +296,7 @@ public final class ResultThread extends Thread
 		final @NotNull String response = line.getResponse();
 		switch (state)
 		{
-			case RS_START:
+			case Starting:
 				if (code >= QiAPI.LR_PROGRESS && code < QiAPI.LR_OK)
 				{
 					// Some implementations of qi return a 102 response before the
@@ -309,7 +309,7 @@ public final class ResultThread extends Thread
 				{
 					// Single line response.
 					prologue += response + "\n";
-					state = ResultThreadState.RS_OK;
+					state = ResultThreadState.Ok;
 					lastCode = code;
 					break;
 				}
@@ -317,19 +317,19 @@ public final class ResultThread extends Thread
 				{
 					// This should be an error
 					prologue += response + "\n";
-					state = ResultThreadState.RS_ERROR;
+					state = ResultThreadState.Error;
 					lastCode = code;
 					break;
 				}
 				else
 				{
 					// This implementation of QI must not give LR_NUMRET.
-					state = ResultThreadState.RS_INPROGRESS;
+					state = ResultThreadState.InProgress;
 				}
 
 				// fall through
 
-			case RS_INPROGRESS:
+			case InProgress:
 				if (code == -QiAPI.LR_OK
 					|| code == -QiAPI.LR_RONLY
 					|| code == -QiAPI.LR_AINFO
@@ -356,20 +356,20 @@ public final class ResultThread extends Thread
 					// It must be done so finish it up.
 					epilogue += response + "\n";
 					addRecord(record);
-					state = ResultThreadState.RS_OK;
+					state = ResultThreadState.Ok;
 
 				}
 				else
 				{
 					// If this ever happens then I've misinterpreted the protocol.
-					state = ResultThreadState.RS_UNKNOWN;
+					state = ResultThreadState.Unknown;
 					throw new QiProtocolException("Unknown State: " + readFromServer);
 				}
 				break;
 
-			case RS_UNKNOWN:
+			case Unknown:
 				throw new QiProtocolException("Unknown State: ");
-			case RS_ERROR:
+			case Error:
 				if (code >= QiAPI.LR_TEMP)
 				{
 					// End of error response.
@@ -385,16 +385,16 @@ public final class ResultThread extends Thread
 				}
 				else
 				{
-					state = ResultThreadState.RS_UNKNOWN;
+					state = ResultThreadState.Unknown;
 					throw new QiProtocolException("Unknown State: " + readFromServer);
 				}
 				break;
 				
-			case RS_OK:
+			case Ok:
 				// "200:Bye!" is all that should seen here (and that is disposed).
 				if (code != QiAPI.LR_OK)
 				{
-					state = ResultThreadState.RS_UNKNOWN;
+					state = ResultThreadState.Unknown;
 					throw new QiProtocolException("Unknown State: " + readFromServer);
 				}
 				break;
@@ -524,7 +524,7 @@ public final class ResultThread extends Thread
 
 		if (lastCode >= QiAPI.LR_TEMP)
 		{
-			state = ResultThreadState.RS_ERROR;
+			state = ResultThreadState.Error;
 			assert qiLine != null;
 			prologue = qiLine.getResponse();
 			
@@ -534,7 +534,7 @@ public final class ResultThread extends Thread
 		}
 		else
 		{
-			state = ResultThreadState.RS_OK;
+			state = ResultThreadState.Ok;
 			if (command.equals(QiCommand.FIELDS))
 			{
 				buildHeadersForFields();
@@ -637,7 +637,7 @@ public final class ResultThread extends Thread
 
 	private synchronized void cleanup()
 	{
-		state = ResultThreadState.RS_UNKNOWN;
+		state = ResultThreadState.Unknown;
 		prologue = "Stopped!";
 
 		// Read the remainder of the response from Qi (and dispose).
