@@ -48,9 +48,8 @@ public final class QiConnection implements Connection
 	private volatile boolean locked = false;
 
 	private final int port;
+	private final @NotNull String expandedName;
 	private final @NotNull String host;
-	
-	private final @NotNull Server qiServer;
 	private final @NotNull LineFactory lineFactory;
 	private @Nullable Socket socket;
 	private @Nullable Thread locker;
@@ -62,11 +61,15 @@ public final class QiConnection implements Connection
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
 	 * <b>connect(host, port)</b>
 	 */
-	public QiConnection(final @NotNull Server server, final @NotNull LineFactory lineFactory)
+	public QiConnection(
+			final @NotNull String expandedName,
+			final @NotNull String host,
+			final int port,
+			final @NotNull LineFactory lineFactory)
 	{
-		host = server.getServer();
-		port = server.getPort();
-		qiServer = server;
+		this.expandedName = expandedName;
+		this.host = host;
+		this.port = port;
 		this.lineFactory = lineFactory;
 	}
 
@@ -148,7 +151,7 @@ public final class QiConnection implements Connection
 	@Override
 	public @NotNull String getExpandedName()
 	{
-		return qiServer.getExpandedName();
+		return expandedName;
 	}
 
 	@Override

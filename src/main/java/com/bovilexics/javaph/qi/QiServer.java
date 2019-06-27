@@ -167,7 +167,7 @@ public final class QiServer implements Server
 	public void loadFields()
 	{
 
-		@Nullable ResultThread resultThread = new ResultThread(null, QiCommand.FIELDS, new QiConnection(this, lineFactory));
+		@Nullable ResultThread resultThread = new ResultThread(null, QiCommand.FIELDS, new QiConnection(getExpandedName(), getServer(), getPort(), lineFactory));
 		resultThread.start();
 
 		int seconds = 0;
