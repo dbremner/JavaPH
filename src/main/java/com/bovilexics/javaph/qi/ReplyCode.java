@@ -6,12 +6,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static com.bovilexics.javaph.qi.ReplyCodeType.AdditionalInformationOrAction;
-import static com.bovilexics.javaph.qi.ReplyCodeType.Information;
-import static com.bovilexics.javaph.qi.ReplyCodeType.PermanentError;
+import static com.bovilexics.javaph.qi.ReplyCodeType.InfoOrAction;
+import static com.bovilexics.javaph.qi.ReplyCodeType.Info;
+import static com.bovilexics.javaph.qi.ReplyCodeType.HardError;
 import static com.bovilexics.javaph.qi.ReplyCodeType.PhQueryCode;
 import static com.bovilexics.javaph.qi.ReplyCodeType.Status;
-import static com.bovilexics.javaph.qi.ReplyCodeType.TemporaryError;
+import static com.bovilexics.javaph.qi.ReplyCodeType.SoftError;
 
 @SuppressWarnings("SpellCheckingInspection")
 public enum ReplyCode
@@ -32,52 +32,52 @@ public enum ReplyCode
     LR_NUMRET	(102, Status), // how many entries are being returned
     LR_NONAME	(103, Status), // no hostname found for IP address
 
-    LR_OK		(200, Information), // success
-    LR_RONLY	(201, Information), // database ready in read only mode
+    LR_OK		(200, Info), // success
+    LR_RONLY	(201, Info), // database ready in read only mode
 
-    LR_MORE		(300, AdditionalInformationOrAction), // need more info
-    LR_LOGIN	(301, AdditionalInformationOrAction), // encrypt this string
-    LR_XLOGIN	(302, AdditionalInformationOrAction), // print this prompt
+    LR_MORE		(300, InfoOrAction), // need more info
+    LR_LOGIN	(301, InfoOrAction), // encrypt this string
+    LR_XLOGIN	(302, InfoOrAction), // print this prompt
 
-    LR_TEMP		(400, TemporaryError), // temporary error
-    LR_INTERNAL	(401, TemporaryError), // database error, possibly temporary
-    LR_LOCK		(402, TemporaryError), // lock not obtained within timeout period
-    LR_COULDA	(403, TemporaryError), // login would have been ok but db read only
-    LR_DOWN		(475, TemporaryError), // database unavailable; try again later
+    LR_TEMP		(400, SoftError), // temporary error
+    LR_INTERNAL	(401, SoftError), // database error, possibly temporary
+    LR_LOCK		(402, SoftError), // lock not obtained within timeout period
+    LR_COULDA	(403, SoftError), // login would have been ok but db read only
+    LR_DOWN		(475, SoftError), // database unavailable; try again later
 
-    LR_ERROR	(500, PermanentError), // hard error; general
-    LR_NOMATCH	(501, PermanentError), // no matches to query
-    LR_TOOMANY	(502, PermanentError), // too many matches to query
-    LR_AINFO	(503, PermanentError), // may not see that field
-    LR_ASEARCH	(504, PermanentError), // may not search on that field
-    LR_ACHANGE	(505, PermanentError), // may not change field
-    LR_NOTLOG	(506, PermanentError), // must be logged in
-    LR_FIELD	(507, PermanentError), // field unknown
-    LR_ABSENT	(508, PermanentError), // field not present in entry
-    LR_ALIAS	(509, PermanentError), // requested alias is already in use
-    LR_AENTRY	(510, PermanentError), // may not change entry
-    LR_ADD		(511, PermanentError), // may not add entries
-    LR_VALUE	(512, PermanentError), // illegal value
-    LR_OPTION	(513, PermanentError), // unknown option
-    LR_UNKNOWN	(514, PermanentError), // unknown command
-    LR_NOKEY	(515, PermanentError), // no indexed field found in query
-    LR_AUTH		(516, PermanentError), // no authorization for query
-    LR_READONLY	(517, PermanentError), // operation failed; database is read-only
-    LR_LIMIT	(518, PermanentError), // too many entries selected for change
-    LR_HISTORY	(519, PermanentError), // history substitution failed (obsolete)
-    LR_XCPU		(520, PermanentError), // too much cpu used
-    LR_ADDONLY	(521, PermanentError), // addonly option set and change command applied to a field with data
-    LR_ISCRYPT	(522, PermanentError), // attempt to view encrypted field
-    LR_NOANSWER	(523, PermanentError), // "answer" was expected but not gotten
-    LR_BADHELP	(524, PermanentError), // help topics cannot contain slashes
-    LR_NOEMAIL	(525, PermanentError), // email authentication failed
-    LR_NOADDR	(526, PermanentError), // host name address not found in DNS
-    LR_MISMATCH	(527, PermanentError), // host = gethostbyaddr(foo); foo != gethostbyname(host)
-    LR_KDB5		(528, PermanentError), // general kerberos database error
-    LR_NOAUTH	(529, PermanentError), // selected authentication method not avail
-    LR_OFFCAMPUS	(590, PermanentError), // remote queries not allowed
-    LR_NOCMD	(598, PermanentError), // no such command
-    LR_SYNTAX	(599, PermanentError), // syntax error
+    LR_ERROR	(500, HardError), // hard error; general
+    LR_NOMATCH	(501, HardError), // no matches to query
+    LR_TOOMANY	(502, HardError), // too many matches to query
+    LR_AINFO	(503, HardError), // may not see that field
+    LR_ASEARCH	(504, HardError), // may not search on that field
+    LR_ACHANGE	(505, HardError), // may not change field
+    LR_NOTLOG	(506, HardError), // must be logged in
+    LR_FIELD	(507, HardError), // field unknown
+    LR_ABSENT	(508, HardError), // field not present in entry
+    LR_ALIAS	(509, HardError), // requested alias is already in use
+    LR_AENTRY	(510, HardError), // may not change entry
+    LR_ADD		(511, HardError), // may not add entries
+    LR_VALUE	(512, HardError), // illegal value
+    LR_OPTION	(513, HardError), // unknown option
+    LR_UNKNOWN	(514, HardError), // unknown command
+    LR_NOKEY	(515, HardError), // no indexed field found in query
+    LR_AUTH		(516, HardError), // no authorization for query
+    LR_READONLY	(517, HardError), // operation failed; database is read-only
+    LR_LIMIT	(518, HardError), // too many entries selected for change
+    LR_HISTORY	(519, HardError), // history substitution failed (obsolete)
+    LR_XCPU		(520, HardError), // too much cpu used
+    LR_ADDONLY	(521, HardError), // addonly option set and change command applied to a field with data
+    LR_ISCRYPT	(522, HardError), // attempt to view encrypted field
+    LR_NOANSWER	(523, HardError), // "answer" was expected but not gotten
+    LR_BADHELP	(524, HardError), // help topics cannot contain slashes
+    LR_NOEMAIL	(525, HardError), // email authentication failed
+    LR_NOADDR	(526, HardError), // host name address not found in DNS
+    LR_MISMATCH	(527, HardError), // host = gethostbyaddr(foo); foo != gethostbyname(host)
+    LR_KDB5		(528, HardError), // general kerberos database error
+    LR_NOAUTH	(529, HardError), // selected authentication method not avail
+    LR_OFFCAMPUS	(590, HardError), // remote queries not allowed
+    LR_NOCMD	(598, HardError), // no such command
+    LR_SYNTAX	(599, HardError), // syntax error
     LR_AMBIGUOUS	(600, PhQueryCode); // ambiguous or multiple match
 
     private final int value;
