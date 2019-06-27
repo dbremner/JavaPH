@@ -89,8 +89,10 @@ public final class TextFieldComboBoxEditor implements ComboBoxEditor
 	@Override
 	public void setItem(final @Nullable Object anObject)
 	{
-		if (anObject != null) {
-            textField.setText(anObject.toString());
-        }
+		if (anObject == null)
+		{
+			return;
+		}
+		textField.setText(anObject.toString());
 	}
 }

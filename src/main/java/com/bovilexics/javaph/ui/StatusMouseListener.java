@@ -19,9 +19,12 @@ final class StatusMouseListener extends MouseAdapter
     @Override
     public void mouseEntered(final @NotNull MouseEvent e)
     {
-        if (e.getSource() instanceof JMenuItem) {
-            parent.showStatus(((JMenuItem)e.getSource()).getActionCommand());
+        final Object source = e.getSource();
+        if (!(source instanceof JMenuItem))
+        {
+            return;
         }
+        parent.showStatus(((JMenuItem)source).getActionCommand());
     }
 
     @Override
