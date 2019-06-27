@@ -1015,13 +1015,14 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH(final @NotNull Command[] commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
+	public JavaPH(final @NotNull List<Command> commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
 	{
 		this.iconProvider = iconProvider;
 		this.serverManager = serverManager;
 		this.defaultProperties = defaultProperties;
 		this.properties = properties;
-		this.commands = commands.clone();
+		final @NotNull Command[] cmds = new Command[commands.size()];
+		this.commands = commands.toArray(cmds);
 		commandComboBox = new JComboBox<>(this.commands);
 		int frameHeight = this.properties.getProperty(PROP_APP_HEIGHT, APP_DEFAULT_HEIGHT);
 		int frameWidth = this.properties.getProperty(PROP_APP_WIDTH, APP_DEFAULT_WIDTH);

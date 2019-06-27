@@ -1,10 +1,11 @@
 package com.bovilexics.javaph.qi
 
 import com.bovilexics.javaph.qi.QiCommand.{FIELDS, HELP, QUERY, SITEINFO, STATUS}
+import com.google.common.collect.ImmutableList
 
 object CommandImpl
 {
-  val commands: Array[Command] = Array[Command](
+  val commands: ImmutableList[Command] = ImmutableList.of(
     new CommandImpl(QUERY, "Query", true, true),
     new CommandImpl(FIELDS, "Fields", false, false),
     new CommandImpl(STATUS, "Status", false, false),
