@@ -231,7 +231,25 @@ public final class ResultThread extends Thread
 
 	public synchronized @NotNull String getPrologue()
 	{
-		return state == ResultThreadState.Ok ? prologue : "";
+		switch (state)
+		{
+			case Ok:
+			{
+				return prologue;
+			}
+			case Error:
+			case Unknown:
+			case Starting:
+			case InProgress:
+			{
+				return "";
+			}
+			default:
+			{
+				assert false;
+				return "";
+			}
+		}
 	}
 
 	public synchronized int getRecordCount()
