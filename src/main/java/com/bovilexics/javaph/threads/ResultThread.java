@@ -408,7 +408,7 @@ public final class ResultThread extends Thread
 	private synchronized void buildHeaders()
 	{
 		@NotNull String lastField = "unknown";
-		final @NotNull List<String> uniqueHeaders = new ArrayList<>();
+		final @NotNull List<Object> uniqueHeaders = new ArrayList<>();
 
 		for (final @NotNull List<Line> currentQiLine : records)
 		{
