@@ -157,7 +157,25 @@ public final class ResultThread extends Thread
 
 	public synchronized @NotNull String getEpilogue()
 	{
-		return state == ResultThreadState.Ok ? epilogue : "";
+		switch(state)
+		{
+			case Ok:
+			{
+				return epilogue;
+			}
+			case InProgress:
+			case Starting:
+			case Unknown:
+			case Error:
+			{
+				return "";
+			}
+			default:
+			{
+				assert false;
+				return "";
+			}
+		}
 	}
 
 	public @NotNull String getErrorString()
