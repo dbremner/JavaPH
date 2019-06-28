@@ -215,7 +215,7 @@ public final class ResultThread extends Thread
 		return results;
 	}
 
-	public synchronized @Nullable String getRawResult()
+	public synchronized @NotNull String getRawResult()
 	{
 		switch (state)
 		{
@@ -228,7 +228,7 @@ public final class ResultThread extends Thread
 				}
 				else
 				{
-					return null;
+					return "";
 				}
 			}
 			case Error:
@@ -236,7 +236,7 @@ public final class ResultThread extends Thread
 			case Starting:
 			case InProgress:
 			{
-				return null;
+				return "";
 			}
 			default:
 			{
@@ -244,7 +244,7 @@ public final class ResultThread extends Thread
 			}
 		}
 		assert false;
-		return null;
+		return "";
 	}
 
 	public synchronized @NotNull Object[][] getValues()
