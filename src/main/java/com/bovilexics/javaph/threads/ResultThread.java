@@ -314,7 +314,25 @@ public final class ResultThread extends Thread
 
 	public synchronized @NotNull Object[][] getValues()
 	{
-		return state == ResultThreadState.Ok ? values : emptyValues;
+		switch (state)
+		{
+			case InProgress:
+			case Starting:
+			case Unknown:
+			case Error:
+			{
+				return emptyValues.clone();
+			}
+			case Ok:
+			{
+				return values.clone();
+			}
+			default:
+			{
+				assert false;
+				return emptyValues.clone();
+			}
+		}
 	}
 
 	@Override
