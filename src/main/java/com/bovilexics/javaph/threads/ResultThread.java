@@ -581,8 +581,7 @@ public final class ResultThread extends Thread
 				boolean found = false;
 				for (int k = 0; k < headers.size() && !found; k++)
 				{
-					final @Nullable Object value = headers.get(k);
-					assert value != null;
+					final @NotNull Object value = headers.get(k);
 					if (value.equals(field))
 					{
 						xCoordinate = k;
