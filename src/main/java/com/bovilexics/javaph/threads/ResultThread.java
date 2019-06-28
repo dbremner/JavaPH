@@ -324,10 +324,9 @@ public final class ResultThread extends Thread
 			default:
 			{
 				assert false;
+				return "";
 			}
 		}
-		assert false;
-		return "";
 	}
 
 	public synchronized @NotNull Object[][] getValues()
