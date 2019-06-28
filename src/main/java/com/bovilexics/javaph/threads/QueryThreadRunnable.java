@@ -33,9 +33,7 @@ public final class QueryThreadRunnable implements Runnable
     public void run()
     {
         SwingUtilities.invokeLater(() ->
-        {
-            parent.beginQuery(command);
-        });
+                parent.beginQuery(command));
 
         final @NotNull ResultThread resultThread = new ResultThread(null, command, connection);
         resultThread.start();
@@ -64,17 +62,13 @@ public final class QueryThreadRunnable implements Runnable
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-            {
-                parent.endFailedQuery("Query Canceled", "Canceled");
-            });
+                    parent.endFailedQuery("Query Canceled", "Canceled"));
         }
         else if (seconds == runtime)
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-            {
-                parent.endFailedQuery("Query Timed Out", "Timeout");
-            });
+                    parent.endFailedQuery("Query Timed Out", "Timeout"));
         }
         else
         {
@@ -82,9 +76,7 @@ public final class QueryThreadRunnable implements Runnable
             final @NotNull Collection<Object> headers = resultThread.getHeaders();
             final @NotNull Object[][] values = resultThread.getValues();
             SwingUtilities.invokeLater(() ->
-            {
-                parent.endQuery(rawResult, headers, values);
-            });
+                    parent.endQuery(rawResult, headers, values));
         }
     }
 }
