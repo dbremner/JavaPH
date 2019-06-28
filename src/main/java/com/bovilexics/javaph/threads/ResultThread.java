@@ -201,18 +201,49 @@ public final class ResultThread extends Thread
 
 	public synchronized int getRecordCount()
 	{
-		return state == ResultThreadState.Ok ? records.size() : -1;
+		switch (state)
+		{
+			case Ok:
+			{
+				return records.size();
+			}
+			case InProgress:
+			case Starting:
+			case Unknown:
+			case Error:
+			{
+				return -1;
+			}
+			default:
+			{
+				assert false;
+				return -1;
+			}
+		}
 	}
 
 	public synchronized @NotNull List<List<Line>> getRecords()
 	{
-		if (state != ResultThreadState.Ok)
+		switch (state)
 		{
-			return ImmutableList.of();
+			case Error:
+			case Unknown:
+			case Starting:
+			case InProgress:
+			{
+				return ImmutableList.of();
+			}
+			case Ok:
+			{
+				final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
+				return results;
+			}
+			default:
+			{
+				assert false;
+				return ImmutableList.of();
+			}
 		}
-
-		final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
-		return results;
 	}
 
 	public synchronized @NotNull String getRawResult()
