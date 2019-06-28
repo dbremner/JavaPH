@@ -152,9 +152,9 @@ public final class ResultThread extends Thread
 		return command;
 	}
 
-	public synchronized @Nullable String getEpilogue()
+	public synchronized @NotNull String getEpilogue()
 	{
-		return state == ResultThreadState.Ok ? epilogue : null;
+		return state == ResultThreadState.Ok ? epilogue : "";
 	}
 
 	public @NotNull String getErrorString()
@@ -191,9 +191,9 @@ public final class ResultThread extends Thread
 		return state == ResultThreadState.Ok ? headers : ImmutableList.of();
 	}
 
-	public synchronized @Nullable String getPrologue()
+	public synchronized @NotNull String getPrologue()
 	{
-		return state == ResultThreadState.Ok ? prologue : null;
+		return state == ResultThreadState.Ok ? prologue : "";
 	}
 
 	public synchronized int getRecordCount()
