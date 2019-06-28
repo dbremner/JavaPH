@@ -71,8 +71,11 @@ public final class ResultThread extends Thread
 
 	private final @Nullable JavaPH parent;
 
+	// Empty arrays are immutable according to Effective Java.
+	private final @NotNull Object[][] emptyValues = new Object[0][0];
+
 	private @NotNull ImmutableList<Object> headers = ImmutableList.of();
-	private @NotNull Object[][] values = new Object[0][0];
+	private @NotNull Object[][] values = emptyValues;
 
 	private final @NotNull Connection connection;
 	private final @NotNull LineFactory lineFactory;
@@ -220,7 +223,7 @@ public final class ResultThread extends Thread
 
 	public synchronized @NotNull Object[][] getValues()
 	{
-		return state == ResultThreadState.Ok ? values : new Object[0][0];
+		return state == ResultThreadState.Ok ? values : emptyValues;
 	}
 
 	@Override
