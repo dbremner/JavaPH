@@ -89,7 +89,7 @@ public final class ResultThread extends Thread
 	// Separator used in the display of queries which matched multiple records.
 	private static final @NotNull String recordSeparator = "------------------------------------------------------------\n";
 
-	private @Nullable StringBuilder rawResult;
+	private @NotNull StringBuilder rawResult = new StringBuilder();
 
 	private final @NotNull List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
@@ -221,7 +221,6 @@ public final class ResultThread extends Thread
 		{
 			case Ok:
 			{
-				assert rawResult != null;
 				if (rawResult.length() > 0)
 				{
 					return rawResult.toString();
