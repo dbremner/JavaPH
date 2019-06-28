@@ -203,7 +203,25 @@ public final class ResultThread extends Thread
 
 	public synchronized int getFieldCount()
 	{
-		return state == ResultThreadState.Ok ? headers.size() : 0;
+		switch (state)
+		{
+			case Ok:
+			{
+				return headers.size();
+			}
+			case Error:
+			case Unknown:
+			case Starting:
+			case InProgress:
+			{
+				return 0;
+			}
+			default:
+			{
+				assert false;
+				return -1;
+			}
+		}
 	}
 
 	public synchronized @NotNull Collection<Object> getHeaders()
