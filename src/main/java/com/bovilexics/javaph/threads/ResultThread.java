@@ -228,16 +228,16 @@ public final class ResultThread extends Thread
 	{
 		switch (state)
 		{
+			case Ok:
+			{
+				return headers;
+			}
 			case InProgress:
 			case Starting:
 			case Unknown:
 			case Error:
 			{
 				return ImmutableList.of();
-			}
-			case Ok:
-			{
-				return headers;
 			}
 			default:
 			{
@@ -297,17 +297,17 @@ public final class ResultThread extends Thread
 	{
 		switch (state)
 		{
+			case Ok:
+			{
+				final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
+				return results;
+			}
 			case Error:
 			case Unknown:
 			case Starting:
 			case InProgress:
 			{
 				return ImmutableList.of();
-			}
-			case Ok:
-			{
-				final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
-				return results;
 			}
 			default:
 			{
@@ -351,16 +351,16 @@ public final class ResultThread extends Thread
 	{
 		switch (state)
 		{
+			case Ok:
+			{
+				return values.clone();
+			}
 			case InProgress:
 			case Starting:
 			case Unknown:
 			case Error:
 			{
 				return emptyValues.clone();
-			}
-			case Ok:
-			{
-				return values.clone();
 			}
 			default:
 			{
