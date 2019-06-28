@@ -72,7 +72,7 @@ public final class ResultThread extends Thread
 	private final @Nullable JavaPH parent;
 
 	private @NotNull ImmutableList<Object> headers = ImmutableList.of();
-	private @Nullable Object[][] values = null;
+	private @NotNull Object[][] values = new Object[0][0];
 
 	private final @NotNull Connection connection;
 	private final @NotNull LineFactory lineFactory;
@@ -218,9 +218,9 @@ public final class ResultThread extends Thread
 		return state == ResultThreadState.Ok && rawResult.length() > 0 ? rawResult.toString() : null;
 	}
 
-	public synchronized @Nullable Object[][] getValues()
+	public synchronized @NotNull Object[][] getValues()
 	{
-		return state == ResultThreadState.Ok ? values : null;
+		return state == ResultThreadState.Ok ? values : new Object[0][0];
 	}
 
 	@Override
