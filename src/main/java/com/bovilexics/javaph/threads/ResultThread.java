@@ -217,8 +217,34 @@ public final class ResultThread extends Thread
 
 	public synchronized @Nullable String getRawResult()
 	{
-		assert rawResult != null;
-		return state == ResultThreadState.Ok && rawResult.length() > 0 ? rawResult.toString() : null;
+		switch (state)
+		{
+			case Ok:
+			{
+				assert rawResult != null;
+				if (rawResult.length() > 0)
+				{
+					return rawResult.toString();
+				}
+				else
+				{
+					return null;
+				}
+			}
+			case Error:
+			case Unknown:
+			case Starting:
+			case InProgress:
+			{
+				return null;
+			}
+			default:
+			{
+				assert false;
+			}
+		}
+		assert false;
+		return null;
 	}
 
 	public synchronized @NotNull Object[][] getValues()
