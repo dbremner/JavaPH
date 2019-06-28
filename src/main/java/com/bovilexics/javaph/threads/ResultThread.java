@@ -31,6 +31,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.SwingUtilities;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -70,7 +72,7 @@ public final class ResultThread extends Thread
 
 	private final @Nullable JavaPH parent;
 
-	private @Nullable Object[] headers = null;
+	private @NotNull List<Object> headers = Collections.emptyList();
 	private @Nullable Object[][] values = null;
 
 	private final @NotNull Connection connection;
@@ -182,13 +184,12 @@ public final class ResultThread extends Thread
 
 	public synchronized int getFieldCount()
 	{
-		assert headers != null;
-		return state == ResultThreadState.Ok ? headers.length : 0;
+		return state == ResultThreadState.Ok ? headers.size() : 0;
 	}
 
 	public synchronized @Nullable Object[] getHeaders()
 	{
-		return state == ResultThreadState.Ok ? headers : null;
+		return state == ResultThreadState.Ok ? headers.toArray() : null;
 	}
 
 	public synchronized @Nullable String getPrologue()
@@ -439,12 +440,12 @@ public final class ResultThread extends Thread
 			}
 		}
 		
-		headers = uniqueHeaders.toArray();
+		headers = new ArrayList<>(uniqueHeaders);
 	}
 
 	private synchronized void buildHeadersForFields()
 	{
-		headers = new String[] { "name", "description", "properties" };
+		headers = Arrays.asList(new Object[] { "name", "description", "properties" });
 	}
 
 	/**
@@ -537,12 +538,10 @@ public final class ResultThread extends Thread
 			state = ResultThreadState.Ok;
 			if (command.equals(QiCommand.FIELDS))
 			{
-				buildHeadersForFields();
 				buildValuesForFields();
 			}
 			else
 			{
-				buildHeaders();
 				buildValues();
 			}
 		}
@@ -562,8 +561,8 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildValues()
 	{
-		assert headers != null;
-		values = new Object[records.size()][headers.length];
+		buildHeaders();
+		values = new Object[records.size()][headers.size()];
 
 		int xCoordinate = -1;
 		@NotNull String lastField = "unknown";
@@ -583,9 +582,9 @@ public final class ResultThread extends Thread
 				}
 
 				boolean found = false;
-				for (int k = 0; k < headers.length && !found; k++)
+				for (int k = 0; k < headers.size() && !found; k++)
 				{
-					final @Nullable Object value = headers[k];
+					final @Nullable Object value = headers.get(k);
 					assert value != null;
 					if (value.equals(field))
 					{
@@ -612,8 +611,8 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildValuesForFields()
 	{
-		assert headers != null;
-		values = new Object[records.size()][headers.length];
+		buildHeadersForFields();
+		values = new Object[records.size()][headers.size()];
 
 		for (int i = 0; i < records.size(); i++)
 		{
