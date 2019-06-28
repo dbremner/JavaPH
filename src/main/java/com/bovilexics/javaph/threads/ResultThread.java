@@ -31,8 +31,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.SwingUtilities;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -72,7 +70,7 @@ public final class ResultThread extends Thread
 
 	private final @Nullable JavaPH parent;
 
-	private @NotNull List<Object> headers = Collections.emptyList();
+	private @NotNull ImmutableList<Object> headers = ImmutableList.of();
 	private @Nullable Object[][] values = null;
 
 	private final @NotNull Connection connection;
@@ -440,12 +438,12 @@ public final class ResultThread extends Thread
 			}
 		}
 		
-		headers = new ArrayList<>(uniqueHeaders);
+		headers = ImmutableList.copyOf(uniqueHeaders);
 	}
 
 	private synchronized void buildHeadersForFields()
 	{
-		headers = Arrays.asList(new Object[] { "name", "description", "properties" });
+		headers = ImmutableList.copyOf(new Object[] { "name", "description", "properties" });
 	}
 
 	/**
