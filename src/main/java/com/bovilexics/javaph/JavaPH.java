@@ -108,6 +108,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -1372,7 +1373,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		queryButton.setEnabled(true);
 	}
 
-	public void endQuery(final @NotNull String rawResult, final @NotNull Object[] headers, final @NotNull Object[][] values)
+	public void endQuery(final @NotNull String rawResult, final @NotNull Collection<Object> headers, final @NotNull Object[][] values)
 	{
 		showStatus("Query Finished");
 		log("Query Finished");
@@ -1380,7 +1381,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		resultText.setText(rawResult);
 
 		final @NotNull ResultTableModel resultModel = resultTable.getTableSorter().getModel();
-		resultModel.setDataVector(values, headers);
+		resultModel.setDataVector(values, headers.toArray());
 		resultTable.resetColumnWidths();
 		queryButton.setEnabled(true);
 	}

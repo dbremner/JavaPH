@@ -31,6 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.SwingUtilities;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -185,9 +186,9 @@ public final class ResultThread extends Thread
 		return state == ResultThreadState.Ok ? headers.size() : 0;
 	}
 
-	public synchronized @NotNull Object[] getHeaders()
+	public synchronized @NotNull Collection<Object> getHeaders()
 	{
-		return state == ResultThreadState.Ok ? headers.toArray() : new Object[0];
+		return state == ResultThreadState.Ok ? headers : ImmutableList.of();
 	}
 
 	public synchronized @Nullable String getPrologue()

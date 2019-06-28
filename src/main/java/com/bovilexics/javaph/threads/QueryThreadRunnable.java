@@ -6,6 +6,7 @@ import com.bovilexics.javaph.qi.Connection;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.SwingUtilities;
+import java.util.Collection;
 
 public final class QueryThreadRunnable implements Runnable
 {
@@ -78,7 +79,7 @@ public final class QueryThreadRunnable implements Runnable
         else
         {
             final String rawResult = resultThread.getRawResult();
-            final @NotNull Object[] headers = resultThread.getHeaders();
+            final @NotNull Collection<Object> headers = resultThread.getHeaders();
             final Object[][] values = resultThread.getValues();
             SwingUtilities.invokeLater(() ->
             {
