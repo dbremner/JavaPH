@@ -328,7 +328,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			add(getQueryLabelPanel(), BorderLayout.WEST);
 			add(getQueryContentPanel(), BorderLayout.CENTER);
-			add(getQueryButtonPanel(javaph), BorderLayout.EAST);
+			add(getQueryButtonPanel(), BorderLayout.EAST);
 		}
 
 		private boolean isQueryCanceled()
@@ -408,7 +408,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			return (Server)serverComboBox.getSelectedItem();
 		}
 
-		private @NotNull JPanel getQueryButtonPanel(final @NotNull JavaPH javaph)
+		private @NotNull JPanel getQueryButtonPanel()
 		{
 			final @NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
 
