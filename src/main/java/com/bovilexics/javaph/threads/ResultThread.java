@@ -226,7 +226,25 @@ public final class ResultThread extends Thread
 
 	public synchronized @NotNull Collection<Object> getHeaders()
 	{
-		return state == ResultThreadState.Ok ? headers : ImmutableList.of();
+		switch (state)
+		{
+			case InProgress:
+			case Starting:
+			case Unknown:
+			case Error:
+			{
+				return ImmutableList.of();
+			}
+			case Ok:
+			{
+				return headers;
+			}
+			default:
+			{
+				assert false;
+				return ImmutableList.of();
+			}
+		}
 	}
 
 	public synchronized @NotNull String getPrologue()
