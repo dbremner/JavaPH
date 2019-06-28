@@ -78,13 +78,12 @@ public final class QueryThreadRunnable implements Runnable
         else
         {
             final String rawResult = resultThread.getRawResult();
-            final Object[] headers = resultThread.getHeaders();
+            final @NotNull Object[] headers = resultThread.getHeaders();
             final Object[][] values = resultThread.getValues();
             SwingUtilities.invokeLater(() ->
             {
                 assert rawResult != null;
                 assert values != null;
-                assert headers != null;
                 parent.endQuery(rawResult, headers, values);
             });
         }

@@ -185,9 +185,9 @@ public final class ResultThread extends Thread
 		return state == ResultThreadState.Ok ? headers.size() : 0;
 	}
 
-	public synchronized @Nullable Object[] getHeaders()
+	public synchronized @NotNull Object[] getHeaders()
 	{
-		return state == ResultThreadState.Ok ? headers.toArray() : null;
+		return state == ResultThreadState.Ok ? headers.toArray() : new Object[0];
 	}
 
 	public synchronized @Nullable String getPrologue()
