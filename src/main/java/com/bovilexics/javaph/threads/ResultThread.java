@@ -441,11 +441,6 @@ public final class ResultThread extends Thread
 		headers = ImmutableList.copyOf(uniqueHeaders);
 	}
 
-	private synchronized void buildHeadersForFields()
-	{
-		headers = ImmutableList.copyOf(new Object[] { "name", "description", "properties" });
-	}
-
 	/**
 	 * This is the main routine that the Result thread executes.
 	 * When it exits, we should have a valid result.
@@ -609,7 +604,7 @@ public final class ResultThread extends Thread
 
 	private synchronized void buildValuesForFields()
 	{
-		buildHeadersForFields();
+		headers = ImmutableList.copyOf(new Object[] { "name", "description", "properties" });
 		values = new Object[records.size()][headers.size()];
 
 		for (int i = 0; i < records.size(); i++)
