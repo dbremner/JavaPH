@@ -16,9 +16,9 @@ public final class StatusParentLoggerImpl implements StatusLogger
     }
 
     @Override
-    public void log(final @NotNull String message)
+    public void log(final @NotNull String text)
     {
-        SwingUtilities.invokeLater(() ->parent.log(message));
+        SwingUtilities.invokeLater(() ->parent.log(text));
     }
 
     @Override

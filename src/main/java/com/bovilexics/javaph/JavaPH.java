@@ -1544,12 +1544,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	@Override
-	public void log(final @NotNull String logMessage)
+	public void log(final @NotNull String text)
 	{
 		final @NotNull Date date = new Date(System.currentTimeMillis());
 		logText.append(date.toString());
 		logText.append(" :: ");
-		logText.append(logMessage);
+		logText.append(text);
 		logText.append("\n");
 	}
 
