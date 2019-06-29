@@ -86,6 +86,7 @@ enum QiFieldProperties
 	public static final @NotNull String LOOKUP	= "Lookup";
 	@NonNls
 	public static final @NotNull String PUBLIC	= "Public";
+	@SuppressWarnings("DuplicateStringLiteralInspection")
 	@NonNls
 	public static final @NotNull String DEFAULT	= "Default";
 	@NonNls
