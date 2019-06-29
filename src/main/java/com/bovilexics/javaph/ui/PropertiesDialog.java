@@ -60,6 +60,7 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
 public final class PropertiesDialog extends JavaPHDialog
 {
 	private static final double WEIGHTX = 0.5;
+	public static final String TRUE = "true";
 	private final @NotNull JavaPH parent;
 
 	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox("Display System Log");
@@ -118,15 +119,15 @@ public final class PropertiesDialog extends JavaPHDialog
 			dispose();
 		});
 
-		final @NotNull JButton applyButton = new JButton("Apply");
+		final @NotNull JButton applyButton = new JButton(JavaPHConstants.APPLY);
 		applyButton.setMnemonic(KeyEvent.VK_A);
 		applyButton.addActionListener(ae -> saveProperties());
 
-		final @NotNull JButton cancelButton = new JButton("Cancel");
+		final @NotNull JButton cancelButton = new JButton(JavaPHConstants.CANCEL);
 		cancelButton.setMnemonic(KeyEvent.VK_C);
 		cancelButton.addActionListener(ae -> dispose());
 
-		final @NotNull JButton defaultsButton = new JButton("Defaults");
+		final @NotNull JButton defaultsButton = new JButton(JavaPHConstants.DEFAULTS);
 		defaultsButton.setMnemonic(KeyEvent.VK_D);
 		defaultsButton.addActionListener(ae -> refreshDefaultProperties());
 	
@@ -294,11 +295,11 @@ public final class PropertiesDialog extends JavaPHDialog
 	private void refreshDefaultProperties()
 	{
 		defaultServerComboBox.setSelectedItem(parent.getPropertyDefault(PROP_DEFAULT_SERVER).get());
-		displayLogCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_LOG, "true", "true"));
-		displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_SPLASH, "true", "true"));
-		displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_TOOLBAR, "true", "true"));
-		rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_ROLL_TOOLBAR, "true", "true"));
-		savePositionCheckBox.setSelected(parent.propertyDefaultEquals(PROP_SAVE_POSITION, "true", "true"));
+		displayLogCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_LOG, TRUE, TRUE));
+		displaySplashCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_SPLASH, TRUE, TRUE));
+		displayToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_DISPLAY_TOOLBAR, TRUE, TRUE));
+		rollToolbarCheckBox.setSelected(parent.propertyDefaultEquals(PROP_ROLL_TOOLBAR, TRUE, TRUE));
+		savePositionCheckBox.setSelected(parent.propertyDefaultEquals(PROP_SAVE_POSITION, TRUE, TRUE));
 
 		final @NotNull LoadFields lf = parent.getIntPropertyDefault(PROP_LOAD_FIELDS, LoadFields.getDefault());
 		loadFieldsManual.setSelected(lf == LoadFields.Manual);

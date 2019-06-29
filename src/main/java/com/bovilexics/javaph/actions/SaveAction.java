@@ -72,7 +72,7 @@ public final class SaveAction extends AbstractAction
 				throw new AssertionFailure(JavaPHConstants.UNREACHABLE);
 		}
 
-		chooser.setDialogTitle(String.format("Save %s", tab.getLabel()));
+		chooser.setDialogTitle(String.format(JavaPHConstants.SAVE_S, tab.getLabel()));
 		chooser.setSelectedFile(new File(tab.getFilename()));
 
 		final int state = chooser.showSaveDialog(parent.getDefaultPane());
