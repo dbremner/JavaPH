@@ -39,6 +39,7 @@ package com.bovilexics.javaph.qi;
 	stop
 */
 
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -52,22 +53,40 @@ import org.jetbrains.annotations.NotNull;
 public enum QiCommand
 {
 	;
-	public static final @NotNull String ADD		= "add";
+	@NonNls
+    public static final @NotNull String ADD		= "add";
+	@NonNls
 	public static final @NotNull String ANSWER	= "answer";
+	@NonNls
 	public static final @NotNull String CHANGE	= "change";
+	@NonNls
 	public static final @NotNull String CLEAR		= "clear";
+	@NonNls
 	public static final @NotNull String DELETE	= "delete";
+	@NonNls
 	public static final @NotNull String EXIT		= "exit";
+	@NonNls
 	public static final @NotNull String FIELDS	= "fields";
+	@NonNls
 	public static final @NotNull String HELP		= "help";
+	@NonNls
 	public static final @NotNull String ID		= "id";
+	@NonNls
 	public static final @NotNull String LOGIN		= "login";
+	@NonNls
 	public static final @NotNull String LOGOUT	= "logout";
+	@NonNls
 	public static final @NotNull String PH		= "ph";
+	@NonNls
 	public static final @NotNull String QUERY		= "query";
+	@NonNls
 	public static final @NotNull String QUIT		= "quit";
+	@NonNls
 	public static final @NotNull String SET		= "set";
+	@NonNls
 	public static final @NotNull String SITEINFO	= "siteinfo";
+	@NonNls
 	public static final @NotNull String STATUS	= "status";
+	@NonNls
 	public static final @NotNull String STOP		= "stop";
 }
