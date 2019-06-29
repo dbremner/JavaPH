@@ -60,7 +60,7 @@ public final class ResultThread extends Thread
 	// TODO Should these fields be volatile?
 
 	private volatile boolean error = false;
-	private volatile boolean halted = false;
+	private boolean halted = false;
 
 	private int entryIndex = 0;
 	private volatile int lastCode = QiAPI.LR_OK;
@@ -388,7 +388,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public boolean isValidQiResponse()
+	public synchronized boolean isValidQiResponse()
 	{
 		return !error && !halted && (state == ResultThreadState.Ok || state == ResultThreadState.Error);
 	}
