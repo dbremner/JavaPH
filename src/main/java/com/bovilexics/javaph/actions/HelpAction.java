@@ -18,6 +18,7 @@ package com.bovilexics.javaph.actions;
 
 import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -47,7 +48,7 @@ public final class HelpAction extends AbstractAction
 	{
 		try
 		{
-			Browser.displayURL(parent.getURL("help/index.html").toString(), "JavaPH Help");
+			Browser.displayURL(parent.getURL("help/index.html").toString(), String.format("%s Help", JavaPHConstants.INFO_NAME));
 		}
 		catch (final @NotNull IOException ex)
 		{

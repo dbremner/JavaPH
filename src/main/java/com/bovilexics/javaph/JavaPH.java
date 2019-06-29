@@ -1082,7 +1082,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		defaultPane.setJMenuBar(new MainMenu(this));
 
-		log("JavaPH initialized (Application) Mode)");
+		log(String.format("%s initialized (Application) Mode)", JavaPHConstants.INFO_NAME));
 		log("Initializing default server");
 
 		serverComboBox.setSelectedItem(serverManager.getDefaultServer());

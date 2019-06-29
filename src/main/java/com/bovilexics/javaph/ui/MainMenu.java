@@ -152,7 +152,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem exitItem = getNewMenuItem();
 		exitItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
-		exitItem.setActionCommand("Exit JavaPH");
+		exitItem.setActionCommand(String.format("Exit %s", JavaPHConstants.INFO_NAME));
 		exitItem.setAccelerator(KeyStroke.getKeyStroke("alt X"));
 		exitItem.setMnemonic(KeyEvent.VK_X);
 		fileMenu.add(exitItem);
@@ -168,14 +168,14 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem helpItem = getNewMenuItem();
 		helpItem.setAction(new HelpAction(parent));
-		helpItem.setActionCommand("Open JavaPH help window");
+		helpItem.setActionCommand(String.format("Open %s help window", JavaPHConstants.INFO_NAME));
 		helpItem.setAccelerator(KeyStroke.getKeyStroke("ctrl H"));
 		helpItem.setMnemonic(KeyEvent.VK_H);
 		helpMenu.add(helpItem);
 
 		final @NotNull JMenuItem aboutItem = getNewMenuItem();
 		aboutItem.setAction(new AboutAction(parent, parent::showAboutDialog));
-		aboutItem.setActionCommand("Displays information about JavaPH");
+		aboutItem.setActionCommand(String.format("Displays information about %s", JavaPHConstants.INFO_NAME));
 		aboutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl A"));
 		aboutItem.setMnemonic(KeyEvent.VK_A);
 		helpMenu.add(aboutItem);
@@ -262,14 +262,14 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem browserItem = getNewMenuItem();
 		browserItem.setAction(new BrowserAction(parent::showBrowserDialog));
-		browserItem.setActionCommand("Configure browser used to display JavaPH help");
+		browserItem.setActionCommand(String.format("Configure browser used to display %s help", JavaPHConstants.INFO_NAME));
 		browserItem.setAccelerator(KeyStroke.getKeyStroke("ctrl B"));
 		browserItem.setMnemonic(KeyEvent.VK_B);
 		windowMenu.add(browserItem);
 
 		final @NotNull JMenuItem propertiesItem = getNewMenuItem();
 		propertiesItem.setAction(new PrefsAction(parent::showPropertiesDialog));
-		propertiesItem.setActionCommand("Set JavaPH preferences");
+		propertiesItem.setActionCommand(String.format("Set %s preferences", JavaPHConstants.INFO_NAME));
 		propertiesItem.setAccelerator(KeyStroke.getKeyStroke("ctrl P"));
 		propertiesItem.setMnemonic(KeyEvent.VK_P);
 		windowMenu.add(propertiesItem);

@@ -45,7 +45,7 @@ public enum JavaPHConstants
 	@NonNls
 	public static final @NotNull String PROP_FILE_DEF = "javaph.default.properties";
 	public static final @NotNull String PROP_FILE     = "javaph.properties";
-	public static final @NotNull String PROP_HEADER   = "Generated JavaPH Properties File";
+	public static final @NotNull String PROP_HEADER   = String.format("Generated %s Properties File", JavaPHConstants.INFO_NAME);
 
 	public static final @NotNull String PROP_APP_HEIGHT      = "javaph.startup.height";
 	public static final @NotNull String PROP_APP_WIDTH       = "javaph.startup.width";
