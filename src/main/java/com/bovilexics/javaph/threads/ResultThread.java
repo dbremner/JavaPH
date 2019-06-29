@@ -249,92 +249,15 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public synchronized @NotNull String getPrologue()
+	public @NotNull String getPrologue()
 	{
 		switch (state)
 		{
 			case Ok:
 			{
-				return prologue;
-			}
-			case Error:
-			case Unknown:
-			case Starting:
-			case InProgress:
-			{
-				return "";
-			}
-			case Stopped:
-			default:
-			{
-				assert false;
-				return "";
-			}
-		}
-	}
-
-	public synchronized int getRecordCount()
-	{
-		switch (state)
-		{
-			case Ok:
-			{
-				return records.size();
-			}
-			case InProgress:
-			case Starting:
-			case Unknown:
-			case Error:
-			{
-				return -1;
-			}
-			case Stopped:
-			default:
-			{
-				assert false;
-				return -1;
-			}
-		}
-	}
-
-	public synchronized @NotNull List<List<Line>> getRecords()
-	{
-		switch (state)
-		{
-			case Ok:
-			{
-				final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
-				return results;
-			}
-			case Error:
-			case Unknown:
-			case Starting:
-			case InProgress:
-			{
-				return ImmutableList.of();
-			}
-			case Stopped:
-			default:
-			{
-				assert false;
-				return ImmutableList.of();
-			}
-		}
-	}
-
-	public synchronized @NotNull String getRawResult()
-	{
-		switch (state)
-		{
-			case Ok:
-			{
-				if (rawResult.length() > 0)
+				synchronized (this)
 				{
-					return rawResult.toString();
-				}
-				else
-				{
-					return "";
+					return prologue;
 				}
 			}
 			case Error:
@@ -353,13 +276,102 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public synchronized @NotNull Object[][] getValues()
+	public int getRecordCount()
 	{
 		switch (state)
 		{
 			case Ok:
 			{
-				return values.clone();
+				synchronized (this)
+				{
+					return records.size();
+				}
+			}
+			case InProgress:
+			case Starting:
+			case Unknown:
+			case Error:
+			{
+				return -1;
+			}
+			case Stopped:
+			default:
+			{
+				assert false;
+				return -1;
+			}
+		}
+	}
+
+	public @NotNull List<List<Line>> getRecords()
+	{
+		switch (state)
+		{
+			case Ok:
+			{
+				synchronized (this)
+				{
+					final @NotNull List<List<Line>> results = ImmutableList.copyOf(records);
+					return results;
+				}
+			}
+			case Error:
+			case Unknown:
+			case Starting:
+			case InProgress:
+			{
+				return ImmutableList.of();
+			}
+			case Stopped:
+			default:
+			{
+				assert false;
+				return ImmutableList.of();
+			}
+		}
+	}
+
+	public @NotNull String getRawResult()
+	{
+		switch (state)
+		{
+			case Ok:
+			{
+				synchronized (this)
+				{
+					if (rawResult.length() > 0)
+					{
+						return rawResult.toString();
+					}
+				}
+				return "";
+			}
+			case Error:
+			case Unknown:
+			case Starting:
+			case InProgress:
+			{
+				return "";
+			}
+			case Stopped:
+			default:
+			{
+				assert false;
+				return "";
+			}
+		}
+	}
+
+	public @NotNull Object[][] getValues()
+	{
+		switch (state)
+		{
+			case Ok:
+			{
+				synchronized (this)
+				{
+					return values.clone();
+				}
 			}
 			case InProgress:
 			case Starting:
