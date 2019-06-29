@@ -204,8 +204,18 @@ public final class QiServer implements Server
 		else
 		{
 			convertRecordsToFields(resultThread.getRecords());
-			fieldState = FieldState.FIELD_LOAD_TRUE;
-			fieldStateMessage = "Successfully loaded fields for " + getExpandedName();
+			// TODO this is vulgar
+			// convertRecordsToFields assigns fieldState
+			// so we test for failure before reassigning it
+			if (fieldState != FieldState.FIELD_LOAD_ERROR)
+			{
+				fieldState = FieldState.FIELD_LOAD_TRUE;
+				fieldStateMessage = "Successfully loaded fields for " + getExpandedName();
+			}
+			else
+			{
+				fieldStateMessage = "Corrupt field results for " + getExpandedName();
+			}
 		}
 
 		//noinspection UnusedAssignment,ReuseOfLocalVariable,ReuseOfLocalVariable
