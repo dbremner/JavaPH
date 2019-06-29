@@ -20,6 +20,7 @@ import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.configuration.PropertyCollection;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
+import com.bovilexics.javaph.logging.StatusLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Command;
@@ -157,7 +158,7 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-public final class JavaPH extends JApplet implements IconProvider, WindowListener
+public final class JavaPH extends JApplet implements IconProvider, WindowListener, StatusLogger
 {
 	private final @NotNull ErrLogger errLogger = new ErrLoggerImpl();
 
@@ -1540,6 +1541,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
+	@Override
 	public void log(final @NotNull String logMessage)
 	{
 		final @NotNull Date date = new Date(System.currentTimeMillis());
