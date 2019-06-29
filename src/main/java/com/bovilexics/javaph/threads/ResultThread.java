@@ -58,6 +58,7 @@ import java.util.StringTokenizer;
  */
 public final class ResultThread extends Thread
 {
+	public static final String DUPLICATE_FIELD_SUFFIX = ".1";
 	// TODO Should these fields be volatile?
 
 	private volatile boolean error = false;
@@ -564,14 +565,14 @@ public final class ResultThread extends Thread
 
 				if (field.isEmpty())
 				{
-					field = lastField + ".1";
+					field = lastField + DUPLICATE_FIELD_SUFFIX;
 				}
 
 				if (!uniqueHeaders.contains(field))
 				{
-					if (field.endsWith(".1"))
+					if (field.endsWith(DUPLICATE_FIELD_SUFFIX))
 					{
-						final int index = uniqueHeaders.indexOf(field.substring(0, field.lastIndexOf(".1"))) + 1;
+						final int index = uniqueHeaders.indexOf(field.substring(0, field.lastIndexOf(DUPLICATE_FIELD_SUFFIX))) + 1;
 						uniqueHeaders.add(index, field);
 					}
 					else
@@ -710,7 +711,7 @@ public final class ResultThread extends Thread
 
 				if (field.isEmpty())
 				{
-					field = lastField + ".1";
+					field = lastField + DUPLICATE_FIELD_SUFFIX;
 				}
 
 				boolean found = false;
