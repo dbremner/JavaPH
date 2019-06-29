@@ -42,6 +42,7 @@ public final class QiServer implements Server
 	private final @NotNull String name;
 	private final @NotNull String server;
 	private final int port;
+	private final @NotNull String expandedName;
 	private final @NotNull List<Field> fields = new ArrayList<>();
 	private @NotNull FieldState fieldState = FieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
@@ -53,6 +54,7 @@ public final class QiServer implements Server
 		this.server = server;
 		this.port = port;
 		this.factory = factory;
+		expandedName = String.format(Locale.US, "%s (%s:%d)", name, server, port);
 	}
 
 	private void convertRecordsToFields(final @NotNull List<List<Line>> records)
@@ -111,7 +113,7 @@ public final class QiServer implements Server
 	@Override
 	public @NotNull String getExpandedName()
 	{
-		return String.format(Locale.US, "%s (%s:%d)", name, server, port);
+		return expandedName;
 	}
 
 	@Override
