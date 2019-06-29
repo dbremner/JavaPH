@@ -37,4 +37,10 @@ abstract class AbstractHyperLinkLabelListener extends MouseAdapter
 
     protected abstract void displayUrl(final @NotNull String url, final @NotNull String text) throws IOException;
 
+    @Override
+    public @NotNull String toString()
+    {
+        final @NotNull String message = String.format("url: %s \ntext: %s", url, text);
+        return message;
+    }
 }

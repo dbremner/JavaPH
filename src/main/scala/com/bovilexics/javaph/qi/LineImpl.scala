@@ -32,4 +32,6 @@ final class LineImpl private[qi](val code: Int, val verbatim: String, val field:
   override def getValue: String = value
 
   override def getFieldValue: String = field + ":" + value
+
+  override def toString: String = verbatim
 }
