@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
@@ -40,6 +41,9 @@ import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
  */
 public final class SplashWindow extends JWindow {
 
+	@NonNls
+	private static final @NotNull String FontName = "Dialog";
+
 	public SplashWindow(final @NotNull IconProvider javaph)
 	{
 
@@ -49,11 +53,11 @@ public final class SplashWindow extends JWindow {
 		final @NotNull JLabel phImageLabel = new JLabel(javaph.getImageIcon("img/ph-bigger.gif"));
 		
 		final @NotNull JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
-		upperInfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		upperInfoLabel.setFont(new Font(FontName, Font.BOLD, 14));
 		upperInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
 		final @NotNull JLabel lowerInfoLabel = new JLabel(INFO_COPYRIGHT);
-		lowerInfoLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lowerInfoLabel.setFont(new Font(FontName, Font.PLAIN, 12));
 		lowerInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
 		final @NotNull JPanel contentPanel = new JPanel(new BorderLayout());
