@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.actions;
 
+import com.bovilexics.javaph.FilePaths;
 import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.ui.IconProvider;
 import org.jetbrains.annotations.NotNull;
@@ -30,6 +31,6 @@ public final class AboutAction extends RunnableAction
 
 	public AboutAction(final @NotNull IconProvider provider, final @NotNull Runnable runnable)
 	{
-		super(JavaPHConstants.ABOUT_JAVA_PH, runnable, provider.getImageIcon("img/ph-icon-smaller.gif"));
+		super(JavaPHConstants.ABOUT_JAVA_PH, runnable, provider.getImageIcon(FilePaths.IMG_PH_ICON_SMALLER_GIF_FILEPATH));
 	}
 }

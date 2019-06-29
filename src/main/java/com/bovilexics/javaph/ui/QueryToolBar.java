@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.FilePaths;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.actions.FindAction;
 import com.bovilexics.javaph.actions.HelpAction;
@@ -60,9 +61,9 @@ public final class QueryToolBar extends JToolBar
 
 		addFixedSeparator();
 			
-		addToolBarButton(new CutAction(), javaph.getImageIcon("img/cut.gif"));
-		addToolBarButton(new CopyAction(), javaph.getImageIcon("img/copy.gif"));
-		addToolBarButton(new PasteAction(), javaph.getImageIcon("img/paste.gif"));
+		addToolBarButton(new CutAction(), javaph.getImageIcon(FilePaths.IMG_CUT_GIF_FILEPATH));
+		addToolBarButton(new CopyAction(), javaph.getImageIcon(FilePaths.IMG_COPY_GIF_FILEPATH));
+		addToolBarButton(new PasteAction(), javaph.getImageIcon(FilePaths.IMG_PASTE_GIF_FILEPATH));
 
 		addFixedSeparator();
 			

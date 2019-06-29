@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.FilePaths;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.actions.AboutAction;
@@ -91,7 +92,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem cutItem = getNewMenuItem();
 		cutItem.setAction(new CutAction());
-		cutItem.setIcon(parent.getImageIcon("img/cut.gif"));
+		cutItem.setIcon(parent.getImageIcon(FilePaths.IMG_CUT_GIF_FILEPATH));
 		cutItem.setText(JavaPHConstants.CUT);
 		cutItem.setActionCommand("Cuts the selection and puts it on the clipboard");
 		cutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
@@ -100,7 +101,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem copyItem = new JMenuItem(JavaPHConstants.COPY);
 		copyItem.setAction(new CopyAction());
-		copyItem.setIcon(parent.getImageIcon("img/copy.gif"));
+		copyItem.setIcon(parent.getImageIcon(FilePaths.IMG_COPY_GIF_FILEPATH));
 		copyItem.setText(JavaPHConstants.COPY);
 		copyItem.setActionCommand("Copies the selection and puts it on the clipboard");
 		copyItem.setAccelerator(KeyStroke.getKeyStroke("ctrl C"));
@@ -109,7 +110,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem pasteItem = getNewMenuItem();
 		pasteItem.setAction(new PasteAction());
-		pasteItem.setIcon(parent.getImageIcon("img/paste.gif"));
+		pasteItem.setIcon(parent.getImageIcon(FilePaths.IMG_PASTE_GIF_FILEPATH));
 		pasteItem.setText(JavaPHConstants.PASTE);
 		pasteItem.setActionCommand("Inserts clipboard contents");
 		pasteItem.setAccelerator(KeyStroke.getKeyStroke("ctrl V"));

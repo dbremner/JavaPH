@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.FilePaths;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.ImageIcon;
@@ -33,7 +34,7 @@ abstract class JavaPHDialog extends JDialog
 	JavaPHDialog(final @NotNull IconProvider provider, final @NotNull String title)
 	{
 		setModal(true);
-		setIcon(provider.getImageIcon("img/ph-icon-smaller.gif"));
+		setIcon(provider.getImageIcon(FilePaths.IMG_PH_ICON_SMALLER_GIF_FILEPATH));
 		setTitle(title);
 	}
 	

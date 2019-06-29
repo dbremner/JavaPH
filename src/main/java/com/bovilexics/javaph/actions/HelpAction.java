@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.actions;
 
 import com.Ostermiller.util.Browser;
+import com.bovilexics.javaph.FilePaths;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
@@ -48,11 +49,11 @@ public final class HelpAction extends AbstractAction
 	{
 		try
 		{
-			Browser.displayURL(parent.getURL(JavaPHConstants.HELP_FILE_PATH).toString(), String.format("%s Help", JavaPHConstants.INFO_NAME));
+			Browser.displayURL(parent.getURL(FilePaths.HELP_FILE_PATH).toString(), String.format("%s Help", JavaPHConstants.INFO_NAME));
 		}
 		catch (final @NotNull IOException ex)
 		{
-			final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_OPEN_S, parent.getURL(JavaPHConstants.HELP_FILE_PATH).toString());
+			final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_OPEN_S, parent.getURL(FilePaths.HELP_FILE_PATH).toString());
 			parent.log(message);
 			parent.showExceptionDialog(message);
 		}
