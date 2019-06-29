@@ -20,7 +20,6 @@ import com.Ostermiller.util.Browser;
 import com.bovilexics.javaph.configuration.PropertyCollection;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
-import com.bovilexics.javaph.logging.OutLogger;
 import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Command;
@@ -160,8 +159,6 @@ import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
  */
 public final class JavaPH extends JApplet implements IconProvider, WindowListener
 {
-	private final @NotNull ErrLogger logger = new OutLogger();
-
 	private final @NotNull ErrLogger errLogger = new ErrLoggerImpl();
 
 	// Custom widgets and other private stuff
@@ -1585,7 +1582,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
 		if (!value.isPresent())
 		{
-			logger.log("No look and feel specified, using system default (" + lookAndFeel + ")");
+			errLogger.log("No look and feel specified, using system default (" + lookAndFeel + ")");
 		}
 
 		restoreLookAndFeel(lookAndFeel, component);
@@ -1613,8 +1610,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// If we cannot set the look and feel to
 			// what was specified in the properties file
 			// then just continue and set system default
-			logger.printStackTrace(e);
-			logger.log("Exception occurred when trying to set custom look and feel");
+			errLogger.printStackTrace(e);
+			errLogger.log("Exception occurred when trying to set custom look and feel");
 		}
 
 		try
@@ -1633,8 +1630,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// what is set as the system look and feel
 			// then just continue and allow the default
 			// cross platform look at feel to be used (metal)
-			logger.printStackTrace(e);
-			logger.log("Exception occurred when trying to set default look and feel");
+			errLogger.printStackTrace(e);
+			errLogger.log("Exception occurred when trying to set default look and feel");
 		}
 	}
 
