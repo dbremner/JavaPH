@@ -16,7 +16,6 @@
  */
 package com.bovilexics.javaph.threads;
 
-import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.StatusLogger;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
@@ -91,9 +90,9 @@ public final class ResultThread extends Thread
 	private final @NotNull List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
 
-	public ResultThread(final @Nullable JavaPH javaph, final @NotNull String command, final @NotNull Connection connection)
+	public ResultThread(final @NotNull StatusLogger logger, final @NotNull String command, final @NotNull Connection connection)
 	{
-		logger = new ResultThreadLogger(javaph);
+		this.logger = logger;
 		this.connection = connection;
 		lineFactory = connection.getLineFactory();
 		commandLine = command;

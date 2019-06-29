@@ -18,6 +18,7 @@ package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.logging.Logger;
+import com.bovilexics.javaph.logging.StatusErrorLogger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
@@ -161,7 +162,7 @@ public final class QiServer implements Server
 	public void loadFields()
 	{
 
-		@Nullable ResultThread resultThread = new ResultThread(null, QiCommand.FIELDS, new QiConnection(getExpandedName(), getServer(), getPort(), lineFactory));
+		@Nullable ResultThread resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, new QiConnection(getExpandedName(), getServer(), getPort(), lineFactory));
 		resultThread.start();
 
 		int seconds = 0;

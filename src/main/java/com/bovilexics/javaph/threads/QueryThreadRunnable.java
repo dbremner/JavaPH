@@ -2,6 +2,7 @@ package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
+import com.bovilexics.javaph.logging.StatusErrorLogger;
 import com.bovilexics.javaph.qi.Connection;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +36,7 @@ public final class QueryThreadRunnable implements Runnable
         SwingUtilities.invokeLater(() ->
                 parent.beginQuery(command));
 
-        final @NotNull ResultThread resultThread = new ResultThread(null, command, connection);
+        final @NotNull ResultThread resultThread = new ResultThread(new StatusErrorLogger(), command, connection);
         resultThread.start();
 
         while (!parent.isQueryCanceled() && seconds < runtime && resultThread.isAlive())
