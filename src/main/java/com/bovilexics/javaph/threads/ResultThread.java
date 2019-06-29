@@ -17,7 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.logging.ErrLoggerImpl;
+import com.bovilexics.javaph.logging.StatusLogger;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
 import com.bovilexics.javaph.qi.LineFactory;
@@ -28,7 +28,6 @@ import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.SwingUtilities;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,8 +67,6 @@ public final class ResultThread extends Thread
 	private volatile int lastCode = QiAPI.LR_OK;
 	private volatile @NotNull ResultThreadState state = ResultThreadState.Starting;
 
-	private final @Nullable JavaPH parent;
-
 	// Empty arrays are immutable according to Effective Java.
 	private final @NotNull Object[][] emptyValues = new Object[0][0];
 
@@ -82,6 +79,7 @@ public final class ResultThread extends Thread
 
 	private final @NotNull String command;
 	private final @NotNull String commandLine;
+	private final @NotNull StatusLogger logger;
 	private @NotNull String epilogue = "";
 	private @NotNull String prologue = "";
 
@@ -95,7 +93,7 @@ public final class ResultThread extends Thread
 
 	public ResultThread(final @Nullable JavaPH javaph, final @NotNull String command, final @NotNull Connection connection)
 	{
-		parent = javaph;
+		logger = new ResultThreadLogger(javaph);
 		this.connection = connection;
 		lineFactory = connection.getLineFactory();
 		commandLine = command;
@@ -690,14 +688,7 @@ public final class ResultThread extends Thread
 
 	private void log(final @NotNull String message)
 	{
-		if (parent == null)
-		{
-			ErrLoggerImpl.instance.log(message);
-		}
-		else
-		{
-			SwingUtilities.invokeLater(() ->parent.log(message));
-		}
+		logger.log(message);
 	}
 
 	private void buildValues()
@@ -831,16 +822,6 @@ public final class ResultThread extends Thread
 
 	private void showStatus(final @NotNull String status)
 	{
-		if (parent != null)
-		{
-			SwingUtilities.invokeLater(() -> {
-				parent.showStatus(status);
-				parent.log(status);
-			});
-		}
-		else
-		{
-			ErrLoggerImpl.instance.log(status);
-		}
+		logger.showStatus(status);
 	}
 }

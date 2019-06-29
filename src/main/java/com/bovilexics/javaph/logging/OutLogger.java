@@ -1,12 +1,9 @@
 package com.bovilexics.javaph.logging;
 
-import org.jetbrains.annotations.NotNull;
-
-public final class OutLogger implements Logger
+public final class OutLogger extends PrintStreamLogger
 {
-    @Override
-    public void log(final @NotNull String text)
+    OutLogger()
     {
-        System.out.println(text);
+        super(System.out);
     }
 }
