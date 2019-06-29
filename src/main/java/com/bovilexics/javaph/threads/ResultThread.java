@@ -170,6 +170,7 @@ public final class ResultThread extends Thread
 			{
 				return "";
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -193,6 +194,7 @@ public final class ResultThread extends Thread
 			{
 				return "";
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -216,6 +218,7 @@ public final class ResultThread extends Thread
 			{
 				return 0;
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -239,6 +242,7 @@ public final class ResultThread extends Thread
 			{
 				return ImmutableList.of();
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -262,6 +266,7 @@ public final class ResultThread extends Thread
 			{
 				return "";
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -285,6 +290,7 @@ public final class ResultThread extends Thread
 			{
 				return -1;
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -309,6 +315,7 @@ public final class ResultThread extends Thread
 			{
 				return ImmutableList.of();
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -339,6 +346,7 @@ public final class ResultThread extends Thread
 			{
 				return "";
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -362,6 +370,7 @@ public final class ResultThread extends Thread
 			{
 				return emptyValues.clone();
 			}
+			case Stopped:
 			default:
 			{
 				assert false;
@@ -545,6 +554,11 @@ public final class ResultThread extends Thread
 					throw new QiProtocolException("Unknown State: " + readFromServer);
 				}
 				break;
+			case Stopped:
+			{
+				//This shouldn't be possible.
+				assert false;
+			}
 		}
 	}
 
@@ -776,7 +790,7 @@ public final class ResultThread extends Thread
 
 	private synchronized void cleanup()
 	{
-		state = ResultThreadState.Unknown;
+		state = ResultThreadState.Stopped;
 		prologue = "Stopped!";
 
 		// Read the remainder of the response from Qi (and dispose).

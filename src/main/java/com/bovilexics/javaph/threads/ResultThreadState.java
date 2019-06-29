@@ -15,5 +15,8 @@ public enum ResultThreadState
     Unknown,
 
     // Qi error response.
-    Error
+    Error,
+
+    //Execution is complete, any method calls are an assertion failure
+    Stopped
 }
