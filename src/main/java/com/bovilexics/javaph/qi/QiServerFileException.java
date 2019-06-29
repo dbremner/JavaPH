@@ -11,7 +11,7 @@ public final class QiServerFileException extends Exception
 
     public QiServerFileException(final @NotNull String filename, final int lineNumber, final @NotNull String contents)
     {
-        super("Error: Invalid server entry in " + filename + " on line " + lineNumber + " --> " + contents);
+        super(String.format("Error: Invalid server entry in %s on line %d --> %s", filename, lineNumber, contents));
         this.filename = filename;
         this.lineNumber = lineNumber;
         this.contents = contents;

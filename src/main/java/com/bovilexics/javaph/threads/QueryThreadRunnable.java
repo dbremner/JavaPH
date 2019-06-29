@@ -53,7 +53,7 @@ public final class QueryThreadRunnable implements Runnable
             ++seconds;
             SwingUtilities.invokeLater(() ->
             {
-                parent.showStatus("Query running for " + seconds + " seconds");
+                parent.showStatus(String.format("Query running for %d seconds", seconds));
                 parent.setQueryProgress(seconds);
             });
         }

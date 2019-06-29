@@ -541,7 +541,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull int[] prevSelections = fieldList.getSelectedIndices();
 				final @Nullable Server server = getServer();
 				assert server != null;
-				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, "Field List for " + server.toString(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, String.format("Field List for %s", server.toString()), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (option != JOptionPane.OK_OPTION)
 				{
@@ -600,9 +600,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				final int portInt = server.getPort();
 
-				serverStatusLabel.setText(SERVER_LABEL_PREFIX + serverText + SERVER_LABEL_SUFFIX);
+				serverStatusLabel.setText(String.format("%s%s%s", SERVER_LABEL_PREFIX, serverText, SERVER_LABEL_SUFFIX));
 				final @NotNull String portText = String.valueOf(portInt);
-				portStatusLabel.setText(PORT_LABEL_PREFIX + portText + PORT_LABEL_SUFFIX);
+				portStatusLabel.setText(String.format("%s%s%s", PORT_LABEL_PREFIX, portText, PORT_LABEL_SUFFIX));
 
 				connection = connectionFactory.create(serverText, portInt);
 
@@ -738,7 +738,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		private void loadFieldsForServer(final @NotNull Server server)
 		{
-			final @NotNull String status1 = "Loading fields for " + server.getExpandedName();
+			final @NotNull String status1 = String.format("Loading fields for %s", server.getExpandedName());
 			showStatus(status1);
 			log(status1);
 
@@ -1368,7 +1368,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		queryButton.setEnabled(false);
 		showStatus("Query Running... Please Wait");
-		log("Running query \"" + command + "\"");
+		log(String.format("Running query \"%s\"", command));
 	}
 
 	public void endFailedQuery(final @NotNull String message, final @NotNull String title)
@@ -1586,7 +1586,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
 		if (!value.isPresent())
 		{
-			errLogger.log("No look and feel specified, using system default (" + lookAndFeel + ")");
+			errLogger.log(String.format("No look and feel specified, using system default (%s)", lookAndFeel));
 		}
 
 		restoreLookAndFeel(lookAndFeel, component);
@@ -1695,12 +1695,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		if (QueryRuntime.overMaximum(runtime))
 		{
-			log("Query runtime " + runtime + " too high, using maximum value " + QueryRuntime.MAX.getValue());
+			log(String.format("Query runtime %d too high, using maximum value %d", runtime, QueryRuntime.MAX.getValue()));
 			queryRuntime = QueryRuntime.MAX.getValue();
 		}
 		else if (QueryRuntime.underMinimum(runtime))
 		{
-			log("Query runtime " + runtime + " too low, using minimum value " + QueryRuntime.MIN.getValue());
+			log(String.format("Query runtime %d too low, using minimum value %d", runtime, QueryRuntime.MIN.getValue()));
 			queryRuntime = QueryRuntime.MIN.getValue();
 		}
 		else
@@ -1755,7 +1755,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		findDialog.setLocationRelativeTo(defaultPane);
 		final @NotNull Tab tab = getResultPanelSelectedTab();
-		findDialog.setTitle("Find Text in " + tab.getLabel());
+		findDialog.setTitle(String.format("Find Text in %s", tab.getLabel()));
 		findDialog.setVisible(true);
 	}
 
@@ -1825,12 +1825,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log("FileNotFound occurred when trying to store properties to " + PROP_FILE);
+			errLogger.log(String.format("FileNotFound occurred when trying to store properties to %s", PROP_FILE));
 		}
 		catch (final @NotNull IOException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log("IOException occurred when trying to store properties to " + PROP_FILE);
+			errLogger.log(String.format("IOException occurred when trying to store properties to %s", PROP_FILE));
 		}
 	}
 }

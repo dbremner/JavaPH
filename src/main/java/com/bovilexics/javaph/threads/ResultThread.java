@@ -416,7 +416,7 @@ public final class ResultThread extends Thread
 		catch (@NotNull QiProtocolException | IOException e)
 		{
 			error = true;
-			showStatus("Error: " + e);
+			showStatus(String.format("Error: %s", e));
 		} finally
 		{
 			connection.unlock();
@@ -507,7 +507,7 @@ public final class ResultThread extends Thread
 				{
 					// If this ever happens then I've misinterpreted the protocol.
 					state = ResultThreadState.Unknown;
-					throw new QiProtocolException("Unknown State: " + readFromServer);
+					throw new QiProtocolException(String.format("Unknown State: %s", readFromServer));
 				}
 				break;
 
@@ -530,7 +530,7 @@ public final class ResultThread extends Thread
 				else
 				{
 					state = ResultThreadState.Unknown;
-					throw new QiProtocolException("Unknown State: " + readFromServer);
+					throw new QiProtocolException(String.format("Unknown State: %s", readFromServer));
 				}
 				break;
 				
@@ -539,7 +539,7 @@ public final class ResultThread extends Thread
 				if (code != QiAPI.LR_OK)
 				{
 					state = ResultThreadState.Unknown;
-					throw new QiProtocolException("Unknown State: " + readFromServer);
+					throw new QiProtocolException(String.format("Unknown State: %s", readFromServer));
 				}
 				break;
 			case Stopped:
@@ -615,7 +615,7 @@ public final class ResultThread extends Thread
 		catch (final @NotNull IOException e)
 		{
 			error = true;
-			showStatus("Error: " + e);
+			showStatus(String.format("Error: %s", e));
 		}
 
 		// Read the server's response, line by line.
@@ -667,7 +667,7 @@ public final class ResultThread extends Thread
 			assert qiLine != null;
 			prologue = qiLine.getResponse();
 			
-			final @NotNull String message = "Got error " + qiLine.getCode() + " on line --> " + readFromServer;
+			final @NotNull String message = String.format("Got error %d on line --> %s", qiLine.getCode(), readFromServer);
 
 			log(message);
 		}
@@ -729,7 +729,7 @@ public final class ResultThread extends Thread
 				}
 				else
 				{
-					final @NotNull String message = "Couldn't find header for this column: " + line.toString();
+					final @NotNull String message = String.format("Couldn't find header for this column: %s", line.toString());
 
 					log(message);
 				}
@@ -792,7 +792,7 @@ public final class ResultThread extends Thread
 		catch (@NotNull IOException | QiProtocolException e)
 		{
 			error = true;
-			showStatus("Error: " + e);
+			showStatus(String.format("Error: %s", e));
 		}
 	}
 
@@ -813,8 +813,8 @@ public final class ResultThread extends Thread
 			catch (final @NotNull IOException e)
 			{
 				error = true;
-				showStatus("Error: " + e);
-				showStatus("Error: Could not connect to " + connection.getExpandedName());
+				showStatus(String.format("Error: %s", e));
+				showStatus(String.format("Error: Could not connect to %s", connection.getExpandedName()));
 			}
 		}
 	}

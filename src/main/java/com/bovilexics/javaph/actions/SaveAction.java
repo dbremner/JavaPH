@@ -72,7 +72,7 @@ public final class SaveAction extends AbstractAction
 				throw new AssertionFailure(JavaPHConstants.UNREACHABLE);
 		}
 
-		chooser.setDialogTitle("Save " + tab.getLabel());
+		chooser.setDialogTitle(String.format("Save %s", tab.getLabel()));
 		chooser.setSelectedFile(new File(tab.getFilename()));
 
 		final int state = chooser.showSaveDialog(parent.getDefaultPane());
@@ -80,7 +80,7 @@ public final class SaveAction extends AbstractAction
 
 		if (state == JFileChooser.APPROVE_OPTION && file != null)
 		{
-			parent.log("Saving file " + file.getPath());
+			parent.log(String.format("Saving file %s", file.getPath()));
 
 			switch (tab)
 			{
@@ -107,7 +107,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			final @NotNull String message = "Nothing to save in " + tab.getLabel() + " tab";
+			final @NotNull String message = String.format("Nothing to save in %s tab", tab.getLabel());
 			parent.log(message);
 			parent.showWarningDialog(message, JavaPHConstants.FINISHED);
 		}
@@ -162,7 +162,7 @@ public final class SaveAction extends AbstractAction
 			}
 			catch (final @NotNull IOException e)
 			{
-				final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
+				final @NotNull String message = String.format("Error: IOException received when trying to save file %s", file.getPath());
 				parent.log(message);
 				parent.showExceptionDialog(message);
 			}
@@ -190,7 +190,7 @@ public final class SaveAction extends AbstractAction
 
 		if (toWrite.isEmpty())
 		{
-			final @NotNull String message = "Nothing to save in " + tab.getLabel() + " tab";
+			final @NotNull String message = String.format("Nothing to save in %s tab", tab.getLabel());
 			parent.log(message);
 			parent.showWarningDialog(message, JavaPHConstants.FINISHED);
 			return;
@@ -206,7 +206,7 @@ public final class SaveAction extends AbstractAction
 		}
 		catch (final @NotNull IOException e)
 		{
-			final @NotNull String message = "Error: IOException received when trying to save file " + file.getPath();
+			final @NotNull String message = String.format("Error: IOException received when trying to save file %s", file.getPath());
 			parent.log(message);
 			parent.showExceptionDialog(message);
 		}

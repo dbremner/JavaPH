@@ -221,7 +221,7 @@ public final class QiConnection implements Connection
 
 			// "No Hostname found for IP address" maybe.
 			if (!blurb.isEmpty()) {
-				ErrLoggerImpl.instance.log("Error on Qi login: " + blurb);
+				ErrLoggerImpl.instance.log(String.format("Error on Qi login: %s", blurb));
 			}
 
 			// Send password.
@@ -243,7 +243,7 @@ public final class QiConnection implements Connection
 					// "No Hostname found for IP address" maybe.
 					if (!blurb2.isEmpty())
 					{
-						ErrLoggerImpl.instance.log("Error on Qi login: " + blurb2);
+						ErrLoggerImpl.instance.log(String.format("Error on Qi login: %s", blurb2));
 					}
 						
 					authenticated = true;
@@ -305,7 +305,7 @@ public final class QiConnection implements Connection
 				{
 					// "No Hostname found for IP address" maybe.
 					if (!blurb.isEmpty()) {
-						ErrLoggerImpl.instance.log("Error on Qi logout: " + blurb);
+						ErrLoggerImpl.instance.log(String.format("Error on Qi logout: %s", blurb));
 					}
 						
 					authenticated = false;

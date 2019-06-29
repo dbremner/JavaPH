@@ -93,7 +93,7 @@ public final class QiServer implements Server
 					{
 						fieldState = FieldState.FIELD_LOAD_ERROR;
 						final @NotNull Logger instance = ErrLoggerImpl.instance;
-						instance.log("Error: QiProtocolException received when trying to add field to " + getExpandedName());
+						instance.log(String.format("Error: QiProtocolException received when trying to add field to %s", getExpandedName()));
 						instance.log(" --> Message:     " + e.getMessage());
 						instance.log(" --> Properties:  " + propsLine.toString());
 						instance.log(" --> Description: " + descLine.toString());
@@ -103,7 +103,7 @@ public final class QiServer implements Server
 				{
 					fieldState = FieldState.FIELD_LOAD_ERROR;
 					final @NotNull Logger instance = ErrLoggerImpl.instance;
-					instance.log("Error: property and description lines do not refer to the same field for " + getExpandedName());
+					instance.log(String.format("Error: property and description lines do not refer to the same field for %s", getExpandedName()));
 					instance.log(" --> " + propsLine.toString());
 					instance.log(" --> " + descLine.toString());
 				}
@@ -134,7 +134,7 @@ public final class QiServer implements Server
 	public @NotNull String getFieldStateMessage()
 	{
 		if (fieldStateMessage.isEmpty()) {
-			fieldStateMessage = "Fields not yet loaded for " + getExpandedName();
+			fieldStateMessage = String.format("Fields not yet loaded for %s", getExpandedName());
 		}
 			
 		return fieldStateMessage;
@@ -184,17 +184,17 @@ public final class QiServer implements Server
 		{
 			resultThread.interrupt();
 			fieldState = FieldState.FIELD_LOAD_ERROR;
-			fieldStateMessage = "Timeout trying to load fields for " + getExpandedName();
+			fieldStateMessage = String.format("Timeout trying to load fields for %s", getExpandedName());
 		}
 		else if (resultThread.getRecordCount() < 0)
 		{
 			fieldState = FieldState.SERVER_ERROR;
-			fieldStateMessage = "Server error trying to load fields for " + getExpandedName();
+			fieldStateMessage = String.format("Server error trying to load fields for %s", getExpandedName());
 		}
 		else if (resultThread.getRecordCount() == 0)
 		{
 			fieldState = FieldState.FIELD_LOAD_ERROR;
-			fieldStateMessage = "No fields available for " + getExpandedName();
+			fieldStateMessage = String.format("No fields available for %s", getExpandedName());
 		}
 		else
 		{
@@ -205,11 +205,11 @@ public final class QiServer implements Server
 			if (fieldState != FieldState.FIELD_LOAD_ERROR)
 			{
 				fieldState = FieldState.FIELD_LOAD_TRUE;
-				fieldStateMessage = "Successfully loaded fields for " + getExpandedName();
+				fieldStateMessage = String.format("Successfully loaded fields for %s", getExpandedName());
 			}
 			else
 			{
-				fieldStateMessage = "Corrupt field results for " + getExpandedName();
+				fieldStateMessage = String.format("Corrupt field results for %s", getExpandedName());
 			}
 		}
 

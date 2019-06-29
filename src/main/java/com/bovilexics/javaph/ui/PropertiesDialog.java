@@ -81,7 +81,7 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	public PropertiesDialog(final @NotNull JavaPH javaph)
 	{
-		super(javaph, INFO_NAME + " Properties");
+		super(javaph, String.format("%s Properties", INFO_NAME));
 
 		parent = javaph;
 		serverManager = parent.getServerManager();

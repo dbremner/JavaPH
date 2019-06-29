@@ -129,7 +129,7 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull QiServerFileException e)
         {
-            logger.log("Error: Invalid server entry in " + e.getFilename() + " on line " + e.getLineNumber() + " --> " + e.getContents());
+            logger.log(String.format("Error: Invalid server entry in %s on line %d --> %s", e.getFilename(), e.getLineNumber(), e.getContents()));
         }
         catch (final @NotNull InvalidPathException e)
         {
@@ -138,12 +138,12 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull FileNotFoundException e)
         {
-            logger.log("Error: FileNotFoundException received when trying to read file " + filename);
+            logger.log(String.format("Error: FileNotFoundException received when trying to read file %s", filename));
             logger.printStackTrace(e);
         }
         catch (final @NotNull IOException e)
         {
-            logger.log("Error: IOException received when trying to read file " + filename);
+            logger.log(String.format("Error: IOException received when trying to read file %s", filename));
             logger.printStackTrace(e);
         }
     }
@@ -198,7 +198,7 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull IOException e)
         {
-            logger.log("Error: IOException received when trying to write file " + SERVER_FILE);
+            logger.log(String.format("Error: IOException received when trying to write file %s", SERVER_FILE));
             logger.printStackTrace(e);
         }
     }

@@ -51,7 +51,7 @@ public final class HelpAction extends AbstractAction
 		}
 		catch (final @NotNull IOException ex)
 		{
-			final @NotNull String message = "Error: IOException received when trying to open " + parent.getURL("help/index.html").toString();
+			final @NotNull String message = String.format("Error: IOException received when trying to open %s", parent.getURL("help/index.html").toString());
 			parent.log(message);
 			parent.showExceptionDialog(message);
 		}

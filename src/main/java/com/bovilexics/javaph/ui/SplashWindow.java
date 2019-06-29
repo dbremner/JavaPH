@@ -52,7 +52,7 @@ public final class SplashWindow extends JWindow {
 
 		final @NotNull JLabel phImageLabel = new JLabel(javaph.getImageIcon("img/ph-bigger.gif"));
 		
-		final @NotNull JLabel upperInfoLabel = new JLabel(INFO_NAME + " " + INFO_VERSION);
+		final @NotNull JLabel upperInfoLabel = new JLabel(String.format("%s %s", INFO_NAME, INFO_VERSION));
 		upperInfoLabel.setFont(new Font(FontName, Font.BOLD, 14));
 		upperInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		
