@@ -294,7 +294,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ConnectionFactory connectionFactory;
 
 		private final @NotNull JavaPH parent;
-		private final @NotNull JButton fieldListMoveDnButton = new JButton("Move Down");
+		private final @NotNull JButton fieldListMoveDnButton = new JButton(JavaPHConstants.MOVE_DOWN);
 		private final @NotNull JButton fieldListMoveUpButton;
 		private final @NotNull JButton fieldListSelectAllButton;
 		private final @NotNull JButton fieldListSelectNoneButton;
@@ -304,8 +304,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldCustomOn;
 		private final @NotNull ImageIcon fieldLoadOff;
 		private final @NotNull ImageIcon fieldLoadOn;
-		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton(String.format("%s Fields",
-				"Custom"));
+		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton(String.format(JavaPHConstants.S_FIELDS, JavaPHConstants.CUSTOM));
 		private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 
 		@SuppressWarnings("WeakerAccess")
@@ -322,7 +321,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldCustomButton = new JButton(fieldCustomOff);
 			fieldListSelectAllButton = new JButton(JavaPHConstants.SELECT_ALL);
 			fieldListSelectNoneButton = new JButton(JavaPHConstants.DESELECT_ALL);
-			fieldListMoveUpButton = new JButton("Move Up");
+			fieldListMoveUpButton = new JButton(JavaPHConstants.MOVE_UP);
 
 			initFieldListPanel();
 
@@ -524,8 +523,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull JPanel queryFieldPanel = new JPanel();
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
 
-			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton(String.format("%s Fields", JavaPHConstants.DEFAULT));
-			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton(String.format("%s Fields", "All"));
+			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton(String.format(JavaPHConstants.S_FIELDS, JavaPHConstants.DEFAULT));
+			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton(String.format(JavaPHConstants.S_FIELDS, JavaPHConstants.ALL));
 
 			fieldRadioGroup.add(fieldDefaultRadioButton);
 			fieldRadioGroup.add(fieldAllRadioButton);
@@ -535,7 +534,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			fieldCustomButton.setBorder(BorderFactory.createEtchedBorder());
 			fieldCustomButton.setFocusable(false);
-			fieldCustomButton.setToolTipText("Choose the fields that queries will return");
+			fieldCustomButton.setToolTipText(JavaPHConstants.CHOOSE_THE_FIELDS_THAT_QUERIES_WILL_RETURN);
 			fieldCustomButton.addMouseListener(new MouseEnterExitListener(fieldCustomButton, fieldCustomOn, fieldCustomOff));
 			fieldCustomButton.addActionListener(ae ->
 			{
@@ -703,7 +702,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldListControlPanel.add(new JScrollPane(fieldList), BorderLayout.CENTER);
 			fieldListControlPanel.add(fieldListButtonPanel, BorderLayout.SOUTH);
 
-			fieldListPanel.add(new JLabel("Select the fields to be returned"), BorderLayout.NORTH);
+			fieldListPanel.add(new JLabel(JavaPHConstants.SELECT_THE_FIELDS_TO_BE_RETURNED), BorderLayout.NORTH);
 			fieldListPanel.add(fieldListControlPanel, BorderLayout.CENTER);
 		}
 
@@ -729,17 +728,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			if (server.getFieldState() == FieldState.FIELD_LOAD_TRUE)
 			{
-				fieldLoadButton.setToolTipText("Reload fields for the selected server");
+				fieldLoadButton.setToolTipText(JavaPHConstants.RELOAD_FIELDS_FOR_THE_SELECTED_SERVER);
 			}
 			else
 			{
-				fieldLoadButton.setToolTipText("Load fields for the selected server");
+				fieldLoadButton.setToolTipText(JavaPHConstants.LOAD_FIELDS_FOR_THE_SELECTED_SERVER);
 			}
 		}
 
 		private void loadFieldsForServer(final @NotNull Server server)
 		{
-			final @NotNull String status1 = String.format("Loading fields for %s", server.getExpandedName());
+			final @NotNull String status1 = String.format(JavaPHConstants.LOADING_FIELDS_FOR_S, server.getExpandedName());
 			showStatus(status1);
 			log(status1);
 
@@ -1368,7 +1367,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void beginQuery(final @NotNull String command)
 	{
 		queryButton.setEnabled(false);
-		showStatus("Query Running... Please Wait");
+		showStatus(String.format(JavaPHConstants.QUERY_S, "Running... Please Wait"));
 		log(String.format("Running query \"%s\"", command));
 	}
 
@@ -1518,7 +1517,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		if (!servers.isEmpty())
 		{
 
-			final @NotNull ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, "Loading Fields for Server", "", 0, servers.size());
+			final @NotNull ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, String.format(JavaPHConstants.LOADING_FIELDS_FOR_S, JavaPHConstants.SERVER), "", 0, servers.size());
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
@@ -1616,7 +1615,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// what was specified in the properties file
 			// then just continue and set system default
 			errLogger.printStackTrace(e);
-			errLogger.log("Exception occurred when trying to set custom look and feel");
+			errLogger.log(String.format(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_S_LOOK_AND_FEEL, "custom"));
 		}
 
 		try
@@ -1636,7 +1635,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// then just continue and allow the default
 			// cross platform look at feel to be used (metal)
 			errLogger.printStackTrace(e);
-			errLogger.log("Exception occurred when trying to set default look and feel");
+			errLogger.log(String.format(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_S_LOOK_AND_FEEL, "default"));
 		}
 	}
 
@@ -1659,7 +1658,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void setFieldSeparator(final @NotNull String separator)
 	{
 		if (separator.isEmpty()) {
-			throw new IllegalArgumentException("Error: null or empty string passed to setFieldSeparator");
+			throw new IllegalArgumentException(String.format(JavaPHConstants.ERROR_S, "null or empty string passed to setFieldSeparator"));
 		}
 			
 		// log("Changing field separator string from " + fieldSeparator + " to " + separator);
@@ -1717,7 +1716,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void showExceptionDialog(final @NotNull String message)
 	{
-		showErrorDialog(message, "Exception");
+		showErrorDialog(message, JavaPHConstants.EXCEPTION);
 	}
 
 	private void showErrorDialog(final @NotNull String message, final @NotNull String title)

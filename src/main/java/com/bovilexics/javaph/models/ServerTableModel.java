@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.models;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +30,7 @@ final class ServerTableModel extends DefaultTableModel
 {
 	ServerTableModel()
 	{
-		final @NotNull Object[] headers = {"Name", "Server", "Port", "Description"};
+		final @NotNull Object[] headers = {JavaPHConstants.NAME, JavaPHConstants.SERVER, JavaPHConstants.PORT, JavaPHConstants.DESCRIPTION};
 		
 		setColumnIdentifiers(headers);
 		setRowCount(1);

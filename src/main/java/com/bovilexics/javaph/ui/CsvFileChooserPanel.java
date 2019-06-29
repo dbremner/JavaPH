@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
@@ -62,13 +63,13 @@ final class CsvFileChooserPanel extends JPanel
 		setBorder(BorderFactory.createEtchedBorder());
 		setPreferredSize(new Dimension(120, 0));
 
-		final @NotNull JLabel label = new JLabel("Field Separator");
+		final @NotNull JLabel label = new JLabel(JavaPHConstants.FIELD_SEPARATOR);
 		
 		final @NotNull ButtonGroup group = new ButtonGroup();
 		
-		commaRadioButton = new JRadioButton("Comma");
-		tabRadioButton = new JRadioButton("Tab");
-		customRadioButton = new JRadioButton("Custom");
+		commaRadioButton = new JRadioButton(JavaPHConstants.COMMA);
+		tabRadioButton = new JRadioButton(JavaPHConstants.TAB);
+		customRadioButton = new JRadioButton(JavaPHConstants.CUSTOM);
 
 		final @NotNull String separator = parent.getFieldSeparator();
 
@@ -107,10 +108,10 @@ final class CsvFileChooserPanel extends JPanel
 			}
 		});
 
-		quotesCheckBox = new JCheckBox("Add Quotes");
+		quotesCheckBox = new JCheckBox(JavaPHConstants.ADD_QUOTES);
 		quotesCheckBox.addActionListener(ae -> parent.setFieldQuoted(quotesCheckBox.isSelected()));
 		quotesCheckBox.setSelected(parent.isFieldQuoted());
-		quotesCheckBox.setToolTipText("Add leading and trailing quotes to all table values");
+		quotesCheckBox.setToolTipText(JavaPHConstants.ADD_LEADING_AND_TRAILING_QUOTES_TO_ALL_TABLE_VALUES);
 
 		final @NotNull LayoutManager gbl = new GridBagLayout();
 		final @NotNull GridBagConstraints gbc = new GridBagConstraints();

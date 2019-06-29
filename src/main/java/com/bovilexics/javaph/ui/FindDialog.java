@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,16 +42,16 @@ import java.awt.event.KeyEvent;
  */
 public final class FindDialog extends JavaPHDialog
 {
-    private final @NotNull JButton findButton = new JButton("Find Next");
+    private final @NotNull JButton findButton = new JButton(JavaPHConstants.FIND_NEXT);
 	
-	private final @NotNull JCheckBox caseCheckBox = new JCheckBox("Case Sensitive");
-	private final @NotNull JCheckBox wrapCheckBox = new JCheckBox("Wrap Search");
+	private final @NotNull JCheckBox caseCheckBox = new JCheckBox(JavaPHConstants.CASE_SENSITIVE);
+	private final @NotNull JCheckBox wrapCheckBox = new JCheckBox(JavaPHConstants.WRAP_SEARCH);
 
 	private final @NotNull FindComboBox findComboBox = new FindComboBox();
 
 	public FindDialog(final @NotNull JavaPH javaph)
 	{
-		super(javaph, "Find Text");
+		super(javaph, JavaPHConstants.FIND_TEXT);
 		
 		final Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -88,7 +89,7 @@ public final class FindDialog extends JavaPHDialog
 			parent.findText(selected.toString(), caseCheckBox.isSelected(), wrapCheckBox.isSelected());
 		});
 
-        final @NotNull JButton closeButton = new JButton("Close");
+        final @NotNull JButton closeButton = new JButton(JavaPHConstants.CLOSE);
 		closeButton.setMnemonic(KeyEvent.VK_C);
 		closeButton.addActionListener(ae -> dispose());
 

@@ -63,8 +63,8 @@ public final class PropertiesDialog extends JavaPHDialog
 	private static final @NotNull String TRUE = "true";
 	private final @NotNull JavaPH parent;
 
-	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox("Display System Log");
-	private final @NotNull JCheckBox displaySplashCheckBox = new JCheckBox("Display Splash Screen");
+	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox(JavaPHConstants.DISPLAY_SYSTEM_LOG);
+	private final @NotNull JCheckBox displaySplashCheckBox = new JCheckBox(JavaPHConstants.DISPLAY_SPLASH_SCREEN);
 	private final @NotNull JCheckBox displayToolbarCheckBox = new JCheckBox(JavaPHConstants.DISPLAY_TOOLBAR);
 	private final @NotNull JCheckBox rollToolbarCheckBox = new JCheckBox(JavaPHConstants.ROLLOVER_TOOLBAR);
 	private final @NotNull JCheckBox savePositionCheckBox = new JCheckBox("Save Window Size / Position");

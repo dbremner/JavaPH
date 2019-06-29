@@ -54,7 +54,7 @@ public final class QueryThreadRunnable implements Runnable
             ++seconds;
             SwingUtilities.invokeLater(() ->
             {
-                parent.showStatus(String.format("Query running for %d seconds", seconds));
+                parent.showStatus(String.format(JavaPHConstants.QUERY_RUNNING_FOR_D_SECONDS, seconds));
                 parent.setQueryProgress(seconds);
             });
         }
@@ -70,7 +70,7 @@ public final class QueryThreadRunnable implements Runnable
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery(String.format(JavaPHConstants.QUERY_S, "Timed Out"), "Timeout"));
+                    parent.endFailedQuery(String.format(JavaPHConstants.QUERY_S, JavaPHConstants.TIMED_OUT), JavaPHConstants.TIMEOUT));
         }
         else
         {

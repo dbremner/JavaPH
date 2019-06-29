@@ -57,8 +57,8 @@ public final class MainMenu extends JMenuBar
 	
 	private final @NotNull JavaPH parent;
 	private final @NotNull JCheckBoxMenuItem rollToolBarItem = new JCheckBoxMenuItem(JavaPHConstants.ROLLOVER_TOOLBAR);
-	private final @NotNull JCheckBoxMenuItem showLogItem = new JCheckBoxMenuItem("View System Log");
-	private final @NotNull JCheckBoxMenuItem showToolBarItem = new JCheckBoxMenuItem("View Toolbar");
+	private final @NotNull JCheckBoxMenuItem showLogItem = new JCheckBoxMenuItem(String.format(JavaPHConstants.VIEW_S, JavaPHConstants.SYSTEM_LOG));
+	private final @NotNull JCheckBoxMenuItem showToolBarItem = new JCheckBoxMenuItem(String.format(JavaPHConstants.VIEW_S, JavaPHConstants.TOOLBAR));
 	
 	public MainMenu(final @NotNull JavaPH javaph)
 	{

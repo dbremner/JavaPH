@@ -514,7 +514,7 @@ public final class ResultThread extends Thread
 				break;
 
 			case Unknown:
-				throw new QiProtocolException("Unknown State: ");
+				throw new QiProtocolException(String.format(JavaPHConstants.UNKNOWN_STATE_S, readFromServer));
 			case Error:
 				if (code >= QiAPI.LR_TEMP)
 				{
@@ -743,7 +743,7 @@ public final class ResultThread extends Thread
 
 	private void buildValuesForFields(final @NotNull List<List<Line>> lists)
 	{
-		headers = ImmutableList.copyOf(new Object[] { "name", "description", "properties" });
+		headers = ImmutableList.copyOf(new Object[] {JavaPHConstants.NAME, JavaPHConstants.DESCRIPTION, JavaPHConstants.PROPERTIES});
 		values = new Object[lists.size()][headers.size()];
 
 		for (int i = 0; i < lists.size(); i++)

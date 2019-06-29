@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.actions;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -27,6 +28,6 @@ public final class PrefsAction extends RunnableAction
 {
 	public PrefsAction(final @NotNull Runnable runnable)
 	{
-		super("Preferences", runnable);
+		super(JavaPHConstants.PREFERENCES, runnable);
 	}
 }

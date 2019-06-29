@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.actions;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -27,6 +28,6 @@ public final class BrowserAction extends RunnableAction
 {
 	public BrowserAction(final @NotNull Runnable runnable)
 	{
-		super("Browser Options", runnable);
+		super(JavaPHConstants.BROWSER_OPTIONS, runnable);
 	}
 }

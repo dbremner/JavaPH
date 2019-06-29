@@ -48,7 +48,7 @@ public final class SaveAction extends AbstractAction
 		
 	public SaveAction(final @NotNull JavaPH javaph)
 	{
-		super("Save Results", javaph.getImageIcon("img/save.gif"));
+		super(JavaPHConstants.SAVE_RESULTS, javaph.getImageIcon("img/save.gif"));
 
 		parent = javaph;
 	}
@@ -80,7 +80,7 @@ public final class SaveAction extends AbstractAction
 
 		if (state == JFileChooser.APPROVE_OPTION && file != null)
 		{
-			parent.log(String.format("Saving file %s", file.getPath()));
+			parent.log(String.format(JavaPHConstants.SAVING_FILE_S, file.getPath()));
 
 			switch (tab)
 			{

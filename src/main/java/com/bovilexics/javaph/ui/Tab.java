@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 
 public enum Tab
 {
-    ResultText(0, "Text Results", "javaph-result.txt"),
-    ResultTable(1, "Table Results", "javaph-result.csv"),
-    SystemLog(2, "System Log", "javaph-log.txt");
+    ResultText(0, JavaPHConstants.TEXT_RESULTS, "javaph-result.txt"),
+    ResultTable(1, JavaPHConstants.TABLE_RESULTS, "javaph-result.csv"),
+    SystemLog(2, JavaPHConstants.SYSTEM_LOG, "javaph-log.txt");
 
     private final int index;
 
