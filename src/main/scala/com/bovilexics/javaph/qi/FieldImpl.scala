@@ -51,7 +51,7 @@ import com.google.common.collect.ImmutableList
   * @author Robert Fernandes robert@bovilexics.com
   *
   */
-class FieldImpl private[qi](val name: String, val length: Int, val properties: ImmutableList[String], val description: String) extends Field
+final class FieldImpl private[qi](val name: String, val length: Int, val properties: ImmutableList[String], val description: String) extends Field
 {
   override def getDescription: String = description
 

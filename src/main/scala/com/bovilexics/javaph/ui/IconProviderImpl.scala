@@ -1,7 +1,7 @@
 package com.bovilexics.javaph.ui
 import javax.swing.ImageIcon
 
-class IconProviderImpl extends IconProvider
+final class IconProviderImpl extends IconProvider
 {
   override def getURL(location: String): String =
   {

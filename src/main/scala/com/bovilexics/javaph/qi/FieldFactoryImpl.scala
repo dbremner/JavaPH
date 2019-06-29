@@ -52,7 +52,7 @@ object FieldFactoryImpl
     }
 }
 
-class FieldFactoryImpl extends FieldFactory
+final class FieldFactoryImpl extends FieldFactory
 {
   @Contract(pure = true)
   @throws[QiProtocolException]

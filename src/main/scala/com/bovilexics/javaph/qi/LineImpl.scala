@@ -1,6 +1,6 @@
 package com.bovilexics.javaph.qi
 
-class LineImpl(val code: Int, val verbatim: String, val field: String, val index: Int, val response: String, val trimmedField : String, val trimmedValue : String, val value: String) extends Line
+final class LineImpl private[qi](val code: Int, val verbatim: String, val field: String, val index: Int, val response: String, val trimmedField : String, val trimmedValue : String, val value: String) extends Line
 {
   def this(code: Int, verbatim: String, field: String, value: String, response: String, index: Int)
   {
