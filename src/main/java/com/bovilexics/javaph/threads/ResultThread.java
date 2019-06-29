@@ -801,8 +801,8 @@ public final class ResultThread extends Thread
 				@Nullable String buffer;
 				while ((buffer = connection.readQI()) != null)
 				{
-					qiLine = lineFactory.create(buffer);
-					if (qiLine.getCode() >= QiAPI.LR_OK) {
+					final @NotNull Line line = lineFactory.create(buffer);
+					if (line.getCode() >= QiAPI.LR_OK) {
 						break;
 					}
 				}
