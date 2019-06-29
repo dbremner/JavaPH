@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.actions;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.ui.CsvFileChooser;
 import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFileChooser;
@@ -68,7 +69,7 @@ public final class SaveAction extends AbstractAction
 				chooser = new TextFileChooser();
 				break;
 			default:
-				throw new AssertionFailure("unreachable");
+				throw new AssertionFailure(JavaPHConstants.UNREACHABLE);
 		}
 
 		chooser.setDialogTitle("Save " + tab.getLabel());
@@ -108,7 +109,7 @@ public final class SaveAction extends AbstractAction
 		{
 			final @NotNull String message = "Nothing to save in " + tab.getLabel() + " tab";
 			parent.log(message);
-			parent.showWarningDialog(message, "Finished");
+			parent.showWarningDialog(message, JavaPHConstants.FINISHED);
 		}
 		else
 		{
@@ -155,9 +156,9 @@ public final class SaveAction extends AbstractAction
 				}
 				writer.close();
 
-				final @NotNull String message = "File save finished";
+				final @NotNull String message = JavaPHConstants.FILE_SAVE_FINISHED;
 				parent.log(message);
-				parent.showInformationDialog(message, "Finished");
+				parent.showInformationDialog(message, JavaPHConstants.FINISHED);
 			}
 			catch (final @NotNull IOException e)
 			{
@@ -184,14 +185,14 @@ public final class SaveAction extends AbstractAction
 				toWrite = "";
 				break;
 			default:
-				throw new AssertionFailure("unreachable");
+				throw new AssertionFailure(JavaPHConstants.UNREACHABLE);
 		}
 
 		if (toWrite.isEmpty())
 		{
 			final @NotNull String message = "Nothing to save in " + tab.getLabel() + " tab";
 			parent.log(message);
-			parent.showWarningDialog(message, "Finished");
+			parent.showWarningDialog(message, JavaPHConstants.FINISHED);
 			return;
 		}
 
@@ -199,9 +200,9 @@ public final class SaveAction extends AbstractAction
 		{
 			writer.write(toWrite);
 			writer.flush();
-			final @NotNull String message = "File save finished";
+			final @NotNull String message = JavaPHConstants.FILE_SAVE_FINISHED;
 			parent.log(message);
-			parent.showInformationDialog(message, "Finished");
+			parent.showInformationDialog(message, JavaPHConstants.FINISHED);
 		}
 		catch (final @NotNull IOException e)
 		{

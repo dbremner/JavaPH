@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.actions.AboutAction;
 import com.bovilexics.javaph.actions.BrowserAction;
 import com.bovilexics.javaph.actions.ExitAction;
@@ -97,10 +98,10 @@ public final class MainMenu extends JMenuBar
 		cutItem.setMnemonic(KeyEvent.VK_T);
 		editMenu.add(cutItem);
 
-		final @NotNull JMenuItem copyItem = new JMenuItem("Copy");
+		final @NotNull JMenuItem copyItem = new JMenuItem(JavaPHConstants.COPY);
 		copyItem.setAction(new CopyAction());
 		copyItem.setIcon(parent.getImageIcon("img/copy.gif"));
-		copyItem.setText("Copy");
+		copyItem.setText(JavaPHConstants.COPY);
 		copyItem.setActionCommand("Copies the selection and puts it on the clipboard");
 		copyItem.setAccelerator(KeyStroke.getKeyStroke("ctrl C"));
 		copyItem.setMnemonic(KeyEvent.VK_C);
@@ -109,7 +110,7 @@ public final class MainMenu extends JMenuBar
 		final @NotNull JMenuItem pasteItem = getNewMenuItem();
 		pasteItem.setAction(new PasteAction());
 		pasteItem.setIcon(parent.getImageIcon("img/paste.gif"));
-		pasteItem.setText("Paste");
+		pasteItem.setText(JavaPHConstants.PASTE);
 		pasteItem.setActionCommand("Inserts clipboard contents");
 		pasteItem.setAccelerator(KeyStroke.getKeyStroke("ctrl V"));
 		pasteItem.setMnemonic(KeyEvent.VK_P);

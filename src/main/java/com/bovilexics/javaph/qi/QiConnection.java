@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -39,7 +40,6 @@ import java.net.SocketAddress;
  */
 public final class QiConnection implements Connection
 {
-	private static final @NotNull String QI_SOCKET_UNINITIALIZED = "Qi socket uninitialized";
 
 	// TODO does this support authentication?
 	// TODO should these fields be volatile?
@@ -206,7 +206,7 @@ public final class QiConnection implements Connection
 				final @Nullable String buffer = readQI();
 				if (buffer == null)
 				{
-					throw new QiProtocolException("Unexpected end of stream");
+					throw new QiProtocolException(JavaPHConstants.UNEXPECTED_END_OF_STREAM);
 				}
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				
@@ -235,7 +235,7 @@ public final class QiConnection implements Connection
 				final @Nullable String buffer = readQI();
 				if (buffer == null)
 				{
-					throw new QiProtocolException("Unexpected end of stream");
+					throw new QiProtocolException(JavaPHConstants.UNEXPECTED_END_OF_STREAM);
 				}
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
@@ -298,7 +298,7 @@ public final class QiConnection implements Connection
 				final @Nullable String buffer = readQI();
 				if (buffer == null)
 				{
-					throw new QiProtocolException("Unexpected end of stream");
+					throw new QiProtocolException(JavaPHConstants.UNEXPECTED_END_OF_STREAM);
 				}
 				final @NotNull Line qiQiLine = lineFactory.create(buffer);
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
@@ -332,7 +332,7 @@ public final class QiConnection implements Connection
 	{
 		if (fromServer == null)
 		{
-			throw new IOException(QI_SOCKET_UNINITIALIZED);
+			throw new IOException(JavaPHConstants.QI_SOCKET_UNINITIALIZED);
 		}
 		return fromServer.readLine();
 	}
@@ -385,7 +385,7 @@ public final class QiConnection implements Connection
 	{
 		if (toServer == null)
 		{
-			throw new IOException(QI_SOCKET_UNINITIALIZED);
+			throw new IOException(JavaPHConstants.QI_SOCKET_UNINITIALIZED);
 		}
 
 		toServer.write(string);

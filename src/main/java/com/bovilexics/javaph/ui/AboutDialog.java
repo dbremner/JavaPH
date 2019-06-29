@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.BorderFactory;
@@ -47,7 +48,7 @@ public final class AboutDialog extends JavaPHDialog
 {
 	public AboutDialog(final @NotNull JavaPH javaph)
 	{
-		super(javaph, "About " + INFO_NAME);
+		super(javaph, JavaPHConstants.ABOUT_JAVA_PH);
 
 		final @NotNull JavaPH parent = javaph;
 		final Container contentPane = getContentPane();

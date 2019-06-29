@@ -72,4 +72,15 @@ public enum JavaPHConstants
 	public static final @NotNull String INFO_HOME      = "http://www.bovilexics.com/software/javaph/";
 	public static final @NotNull String INFO_NAME      = "JavaPH";
 	public static final @NotNull String INFO_VERSION   = "v1.0";
+	public static final @NotNull String ABOUT_JAVA_PH = String.format("About %s", INFO_NAME);
+	public static final @NotNull String SELECT_ALL = "Select All";
+	public static final @NotNull String DESELECT_ALL = "Deselect All";
+	public static final @NotNull String QUERY_FINISHED = "Query Finished";
+	public static final @NotNull String PASTE = "Paste";
+	public static final @NotNull String COPY = "Copy";
+    public static final @NotNull String QI_SOCKET_UNINITIALIZED = "Qi socket uninitialized";
+    public static final @NotNull String UNEXPECTED_END_OF_STREAM = "Unexpected end of stream";
+	public static final @NotNull String FINISHED = "Finished";
+	public static final @NotNull String FILE_SAVE_FINISHED = "File save finished";
+	public static final @NotNull String UNREACHABLE = "unreachable";
 }

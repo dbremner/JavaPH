@@ -318,8 +318,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			fieldLoadOn = getImageIcon("img/field-load-on.gif");
 			fieldLoadButton = new JButton(fieldLoadOff);
 			fieldCustomButton = new JButton(fieldCustomOff);
-			fieldListSelectAllButton = new JButton("Select All");
-			fieldListSelectNoneButton = new JButton("Deselect All");
+			fieldListSelectAllButton = new JButton(JavaPHConstants.SELECT_ALL);
+			fieldListSelectNoneButton = new JButton(JavaPHConstants.DESELECT_ALL);
 			fieldListMoveUpButton = new JButton("Move Up");
 
 			initFieldListPanel();
@@ -760,8 +760,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	private final class ResultPanel extends JTabbedPane
 	{
-		private final @NotNull JButton colListSelectAllButton = new JButton("Select All");
-		private final @NotNull JButton colListSelectNoneButton = new JButton("Deselect All");
+		private final @NotNull JButton colListSelectAllButton = new JButton(JavaPHConstants.SELECT_ALL);
+		private final @NotNull JButton colListSelectNoneButton = new JButton(JavaPHConstants.DESELECT_ALL);
 		private final @NotNull JButton resultTableColButton = new JButton("Show/Hide Columns");
 		private final @NotNull JButton resultTableColWidthButton = new JButton("Reset Column Widths");
 		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
@@ -870,7 +870,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			resultText.setFont(fixedWidthFont);
 			final @NotNull JScrollPane resultTextScroll = new JScrollPane(resultText);
 
-			final @NotNull JButton selectAllButton = new JButton("Select All");
+			final @NotNull JButton selectAllButton = new JButton(JavaPHConstants.SELECT_ALL);
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(ae ->
 			{
@@ -934,7 +934,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			logText.setFont(fixedWidthFont);
 			final @NotNull JScrollPane logTextScroll = new JScrollPane(logText);
 
-			final @NotNull JButton selectAllButton = new JButton("Select All");
+			final @NotNull JButton selectAllButton = new JButton(JavaPHConstants.SELECT_ALL);
 			selectAllButton.setMnemonic(KeyEvent.VK_A);
 			selectAllButton.addActionListener(ae ->
 			{
@@ -1093,7 +1093,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		frame.setIconImage(getImageIcon("img/ph-icon-smaller.gif").getImage());
 
 		frame.setSize(frameWidth, frameHeight);
-		frame.setTitle("JavaPH");
+		frame.setTitle(JavaPHConstants.INFO_NAME);
 
 		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -1380,8 +1380,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public void endQuery(final @NotNull String rawResult, final @NotNull Collection<Object> headers, final @NotNull Object[][] values)
 	{
-		showStatus("Query Finished");
-		log("Query Finished");
+		showStatus(JavaPHConstants.QUERY_FINISHED);
+		log(JavaPHConstants.QUERY_FINISHED);
 		queryPanel.closeQueryProgressMonitor();
 		resultText.setText(rawResult);
 
