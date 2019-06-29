@@ -55,6 +55,7 @@ import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -349,6 +350,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		private @NotNull String getCommand()
 		{
+			@NonNls
 			final @NotNull StringBuilder out = new StringBuilder();
 
 			out.append(commands[commandComboBox.getSelectedIndex()].getCommand());
@@ -1441,7 +1443,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	@Override
-	public @NotNull ImageIcon getImageIcon(final @NotNull String location)
+	public @NotNull ImageIcon getImageIcon(@NonNls final @NotNull String location)
 	{
 		return iconProvider.getImageIcon(location);
 	}

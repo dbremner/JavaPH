@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph;
 
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -41,6 +42,7 @@ public enum JavaPHConstants
 	public static final @NotNull String SERVER_LABEL_PREFIX = " Server : ";
 	public static final @NotNull String SERVER_LABEL_SUFFIX = " ";
 	
+	@NonNls
 	public static final @NotNull String PROP_FILE_DEF = "javaph.default.properties";
 	public static final @NotNull String PROP_FILE     = "javaph.properties";
 	public static final @NotNull String PROP_HEADER   = "Generated JavaPH Properties File";
@@ -59,8 +61,10 @@ public enum JavaPHConstants
 	public static final @NotNull String PROP_SAVE_POSITION   = "javaph.startup.savePosition";
 	public static final @NotNull String PROP_ROLL_TOOLBAR    = "javaph.startup.rolloverToolbar";
 	
+	@NonNls
 	public static final @NotNull String COMMA_SEPARATOR  = ",";
 	public static final @NotNull String CUSTOM_SEPARATOR = "|";
+	@NonNls
 	public static final @NotNull String TAB_SEPARATOR    = "\t";
 
 	public static final @NotNull String FIELD_QUOTE = "\"";

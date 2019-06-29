@@ -67,6 +67,7 @@ package com.bovilexics.javaph.qi;
 	time.
  */
 
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -79,13 +80,22 @@ import org.jetbrains.annotations.NotNull;
 enum QiFieldProperties
 {
     ;
+    @NonNls
     public static final @NotNull String INDEXED	= "Indexed";
+	@NonNls
 	public static final @NotNull String LOOKUP	= "Lookup";
+	@NonNls
 	public static final @NotNull String PUBLIC	= "Public";
+	@NonNls
 	public static final @NotNull String DEFAULT	= "Default";
+	@NonNls
 	public static final @NotNull String CHANGE	= "Change";
+	@NonNls
 	public static final @NotNull String FORCEPUB	= "ForcePub";
+	@NonNls
 	public static final @NotNull String NOPEOPLE	= "NoPeople";
+	@NonNls
 	public static final @NotNull String ENCRYPT	= "Encrypt";
+	@NonNls
 	public static final @NotNull String ANY		= "Any";
 }
