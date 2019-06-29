@@ -504,7 +504,7 @@ public final class ResultThread extends Thread
 						// instantiate a new Vector object to hold the new record.
 						if (entryIndex != 0)
 						{
-							addRecord(record);
+							records.add(record);
 							record = new ArrayList<>();
 						}
 						entryIndex = index;
@@ -515,7 +515,7 @@ public final class ResultThread extends Thread
 				{
 					// It must be done so finish it up.
 					epilogue += response + "\n";
-					addRecord(record);
+					records.add(record);
 					state = ResultThreadState.Ok;
 
 				}
@@ -564,11 +564,6 @@ public final class ResultThread extends Thread
 				assert false;
 			}
 		}
-	}
-
-	private void addRecord(final @NotNull List<Line> aRecord)
-	{
-		records.add(aRecord);
 	}
 
 	private void buildHeaders()
