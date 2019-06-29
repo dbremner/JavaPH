@@ -330,14 +330,11 @@ public final class QiConnection implements Connection
 	@Override
 	public @Nullable String readQI() throws IOException
 	{
-		if (fromServer != null)
-		{
-			return fromServer.readLine();
-		}
-		else
+		if (fromServer == null)
 		{
 			throw new IOException(QI_SOCKET_UNINITIALIZED);
 		}
+		return fromServer.readLine();
 	}
 
 	@Override
