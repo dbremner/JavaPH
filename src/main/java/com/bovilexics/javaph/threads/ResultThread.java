@@ -151,7 +151,7 @@ public final class ResultThread extends Thread
 		return out.toString();
 	}
 
-	public synchronized @NotNull String getCommand()
+	public @NotNull String getCommand()
 	{
 		return command;
 	}
