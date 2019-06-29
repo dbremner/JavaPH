@@ -772,6 +772,7 @@ public final class ResultThread extends Thread
 		{
 			final List<Line> list = lists.get(i);
 
+			assert list.size() % 2 == 0;
 			for (int j = 0; j < list.size() - 1; j = j + 2)
 			{
 				final Line propsQiLine = list.get(j);
