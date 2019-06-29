@@ -566,12 +566,12 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void addRecord(final @NotNull List<Line> aRecord)
+	private void addRecord(final @NotNull List<Line> aRecord)
 	{
 		records.add(aRecord);
 	}
 
-	private synchronized void buildHeaders()
+	private void buildHeaders()
 	{
 		@NotNull String lastField = "unknown";
 		final @NotNull List<Object> uniqueHeaders = new ArrayList<>();
@@ -718,7 +718,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void buildValues()
+	private void buildValues()
 	{
 		buildHeaders();
 		values = new Object[records.size()][headers.size()];
@@ -767,7 +767,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void buildValuesForFields(final @NotNull List<List<Line>> lists)
+	private void buildValuesForFields(final @NotNull List<List<Line>> lists)
 	{
 		headers = ImmutableList.copyOf(new Object[] { "name", "description", "properties" });
 		values = new Object[lists.size()][headers.size()];
@@ -793,7 +793,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void cleanup()
+	private void cleanup()
 	{
 		state = ResultThreadState.Stopped;
 		prologue = "Stopped!";
