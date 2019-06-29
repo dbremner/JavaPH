@@ -107,7 +107,7 @@ public final class SaveAction extends AbstractAction
 
 		if (rows <= 0)
 		{
-			final @NotNull String message = String.format("Nothing to save in %s tab", tab.getLabel());
+			final @NotNull String message = String.format(JavaPHConstants.NOTHING_TO_SAVE_IN_S_TAB, tab.getLabel());
 			parent.log(message);
 			parent.showWarningDialog(message, JavaPHConstants.FINISHED);
 		}
@@ -162,7 +162,7 @@ public final class SaveAction extends AbstractAction
 			}
 			catch (final @NotNull IOException e)
 			{
-				final @NotNull String message = String.format("Error: IOException received when trying to save file %s", file.getPath());
+				final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_SAVE_FILE_S, file.getPath());
 				parent.log(message);
 				parent.showExceptionDialog(message);
 			}
@@ -190,7 +190,7 @@ public final class SaveAction extends AbstractAction
 
 		if (toWrite.isEmpty())
 		{
-			final @NotNull String message = String.format("Nothing to save in %s tab", tab.getLabel());
+			final @NotNull String message = String.format(JavaPHConstants.NOTHING_TO_SAVE_IN_S_TAB, tab.getLabel());
 			parent.log(message);
 			parent.showWarningDialog(message, JavaPHConstants.FINISHED);
 			return;
@@ -206,7 +206,7 @@ public final class SaveAction extends AbstractAction
 		}
 		catch (final @NotNull IOException e)
 		{
-			final @NotNull String message = String.format("Error: IOException received when trying to save file %s", file.getPath());
+			final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_SAVE_FILE_S, file.getPath());
 			parent.log(message);
 			parent.showExceptionDialog(message);
 		}

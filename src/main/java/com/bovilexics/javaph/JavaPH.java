@@ -766,8 +766,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull JButton colListSelectNoneButton = new JButton(JavaPHConstants.DESELECT_ALL);
 		private final @NotNull JButton resultTableColButton = new JButton("Show/Hide Columns");
 		private final @NotNull JButton resultTableColWidthButton = new JButton("Reset Column Widths");
-		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox("Line Wrap");
-		private final @NotNull JCheckBox resultWrapCheckBox = new JCheckBox("Line Wrap");
+		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox(JavaPHConstants.LINE_WRAP);
+		private final @NotNull JCheckBox resultWrapCheckBox = new JCheckBox(JavaPHConstants.LINE_WRAP);
 
 		@SuppressWarnings("WeakerAccess")
 		ResultPanel()

@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import org.jetbrains.annotations.NotNull;
@@ -137,58 +138,58 @@ final class LookAndFeelMenu extends JMenu
 
 		if (macSupported)
 		{
-			macItem = new JRadioButtonMenuItem("Mac");
+			macItem = new JRadioButtonMenuItem(JavaPHConstants.MAC);
 			group.add(macItem);
 			macItem.addActionListener(lookAndFeelRadioListener);
 			macItem.addMouseListener(mouseListener);
-			macItem.setActionCommand("Change to Mac look and feel");
+			macItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.MAC));
 			add(macItem);
 		}
 
 		if (metalSupported)
 		{
-			metalItem = new JRadioButtonMenuItem("Metal");
+			metalItem = new JRadioButtonMenuItem(JavaPHConstants.METAL);
 			group.add(metalItem);
 			metalItem.addActionListener(lookAndFeelRadioListener);
 			metalItem.addMouseListener(mouseListener);
-			metalItem.setActionCommand("Change to Metal look and feel");
+			metalItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.METAL));
 			add(metalItem);
 		}
 
 		if (motifSupported)
 		{
-			motifItem = new JRadioButtonMenuItem("Motif");
+			motifItem = new JRadioButtonMenuItem(JavaPHConstants.MOTIF);
 			group.add(motifItem);
 			motifItem.addActionListener(lookAndFeelRadioListener);
 			motifItem.addMouseListener(mouseListener);
-			motifItem.setActionCommand("Change to Motif look and feel");
+			motifItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.MOTIF));
 			add(motifItem);
 		}
 
 		if (windowsSupported)
 		{
-			windowsItem = new JRadioButtonMenuItem("Windows");		
+			windowsItem = new JRadioButtonMenuItem(JavaPHConstants.WINDOWS);
 			group.add(windowsItem);
 			windowsItem.addActionListener(lookAndFeelRadioListener);
 			windowsItem.addMouseListener(mouseListener);
-			windowsItem.setActionCommand("Change to Windows look and feel");
+			windowsItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.WINDOWS));
 			add(windowsItem);
 		}
 
 		addSeparator();
 		
-		restoreDefaultItem = new JMenuItem("Restore Default");
+		restoreDefaultItem = new JMenuItem(String.format("Restore %s", JavaPHConstants.DEFAULT));
 		restoreDefaultItem.addActionListener(lookAndFeelItemListener);
 		restoreDefaultItem.addMouseListener(mouseListener);
-		restoreDefaultItem.setActionCommand("Change to Default look and feel");
+		restoreDefaultItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.DEFAULT));
 		restoreDefaultItem.setAccelerator(KeyStroke.getKeyStroke("ctrl R"));
 		restoreDefaultItem.setMnemonic(KeyEvent.VK_R);
 		add(restoreDefaultItem);
 
-		storeDefaultItem = new JMenuItem("Save Default");
+		storeDefaultItem = new JMenuItem(String.format(JavaPHConstants.SAVE_S, JavaPHConstants.DEFAULT));
 		storeDefaultItem.addActionListener(lookAndFeelItemListener);
 		storeDefaultItem.addMouseListener(mouseListener);
-		storeDefaultItem.setActionCommand("Save look and feel as Default");
+		storeDefaultItem.setActionCommand(String.format("Save look and feel as %s", JavaPHConstants.DEFAULT));
 		storeDefaultItem.setAccelerator(KeyStroke.getKeyStroke("ctrl D"));
 		storeDefaultItem.setMnemonic(KeyEvent.VK_S);
 		add(storeDefaultItem);

@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.threads;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.StatusLogger;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
@@ -416,7 +417,7 @@ public final class ResultThread extends Thread
 		catch (@NotNull QiProtocolException | IOException e)
 		{
 			error = true;
-			showStatus(String.format("Error: %s", e));
+			showStatus(String.format(JavaPHConstants.ERROR_S, e));
 		} finally
 		{
 			connection.unlock();
@@ -507,7 +508,7 @@ public final class ResultThread extends Thread
 				{
 					// If this ever happens then I've misinterpreted the protocol.
 					state = ResultThreadState.Unknown;
-					throw new QiProtocolException(String.format("Unknown State: %s", readFromServer));
+					throw new QiProtocolException(String.format(JavaPHConstants.UNKNOWN_STATE_S, readFromServer));
 				}
 				break;
 
@@ -530,7 +531,7 @@ public final class ResultThread extends Thread
 				else
 				{
 					state = ResultThreadState.Unknown;
-					throw new QiProtocolException(String.format("Unknown State: %s", readFromServer));
+					throw new QiProtocolException(String.format(JavaPHConstants.UNKNOWN_STATE_S, readFromServer));
 				}
 				break;
 				
@@ -539,7 +540,7 @@ public final class ResultThread extends Thread
 				if (code != QiAPI.LR_OK)
 				{
 					state = ResultThreadState.Unknown;
-					throw new QiProtocolException(String.format("Unknown State: %s", readFromServer));
+					throw new QiProtocolException(String.format(JavaPHConstants.UNKNOWN_STATE_S, readFromServer));
 				}
 				break;
 			case Stopped:
@@ -552,7 +553,7 @@ public final class ResultThread extends Thread
 
 	private void buildHeaders()
 	{
-		@NotNull String lastField = "unknown";
+		@NotNull String lastField = JavaPHConstants.UNKNOWN;
 		final @NotNull List<Object> uniqueHeaders = new ArrayList<>();
 
 		for (final @NotNull List<Line> currentQiLine : records)
@@ -615,7 +616,7 @@ public final class ResultThread extends Thread
 		catch (final @NotNull IOException e)
 		{
 			error = true;
-			showStatus(String.format("Error: %s", e));
+			showStatus(String.format(JavaPHConstants.ERROR_S, e));
 		}
 
 		// Read the server's response, line by line.
@@ -696,7 +697,7 @@ public final class ResultThread extends Thread
 		values = new Object[records.size()][headers.size()];
 
 		int xCoordinate = -1;
-		@NotNull String lastField = "unknown";
+		@NotNull String lastField = JavaPHConstants.UNKNOWN;
 
 		for (int i = 0; i < records.size(); i++)
 		{
@@ -792,7 +793,7 @@ public final class ResultThread extends Thread
 		catch (@NotNull IOException | QiProtocolException e)
 		{
 			error = true;
-			showStatus(String.format("Error: %s", e));
+			showStatus(String.format(JavaPHConstants.ERROR_S, e));
 		}
 	}
 
@@ -813,7 +814,7 @@ public final class ResultThread extends Thread
 			catch (final @NotNull IOException e)
 			{
 				error = true;
-				showStatus(String.format("Error: %s", e));
+				showStatus(String.format(JavaPHConstants.ERROR_S, e));
 				showStatus(String.format("Error: Could not connect to %s", connection.getExpandedName()));
 			}
 		}

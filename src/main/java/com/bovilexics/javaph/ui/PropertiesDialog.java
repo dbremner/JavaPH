@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;
 import org.jetbrains.annotations.NotNull;
@@ -63,8 +64,8 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox("Display System Log");
 	private final @NotNull JCheckBox displaySplashCheckBox = new JCheckBox("Display Splash Screen");
-	private final @NotNull JCheckBox displayToolbarCheckBox = new JCheckBox("Display Toolbar");
-	private final @NotNull JCheckBox rollToolbarCheckBox = new JCheckBox("Rollover Toolbar");
+	private final @NotNull JCheckBox displayToolbarCheckBox = new JCheckBox(JavaPHConstants.DISPLAY_TOOLBAR);
+	private final @NotNull JCheckBox rollToolbarCheckBox = new JCheckBox(JavaPHConstants.ROLLOVER_TOOLBAR);
 	private final @NotNull JCheckBox savePositionCheckBox = new JCheckBox("Save Window Size / Position");
 
 	private final @NotNull JComboBox<Server> defaultServerComboBox;
@@ -110,7 +111,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	{
 		final @NotNull JPanel buttonPanel = new JPanel();
 
-		final @NotNull JButton okButton = new JButton("OK");
+		final @NotNull JButton okButton = new JButton(JavaPHConstants.OK);
 		okButton.setMnemonic(KeyEvent.VK_O);
 		okButton.addActionListener(ae -> {
 			saveProperties();

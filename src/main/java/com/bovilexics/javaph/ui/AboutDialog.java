@@ -70,7 +70,7 @@ public final class AboutDialog extends JavaPHDialog
 		final @NotNull JPanel buttonPanel = new JPanel();
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
-		final @NotNull JButton okButton = new JButton("OK");
+		final @NotNull JButton okButton = new JButton(JavaPHConstants.OK);
 		okButton.addActionListener(ae -> dispose());
 		
 		buttonPanel.add(okButton);

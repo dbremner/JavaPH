@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +32,6 @@ public enum FieldSelection
                 return fieldSelection;
             }
         }
-        throw new IllegalArgumentException("argument is out of range");
+        throw new IllegalArgumentException(JavaPHConstants.ARGUMENT_IS_OUT_OF_RANGE);
     }
 }

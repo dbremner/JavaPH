@@ -55,7 +55,7 @@ public final class MainMenu extends JMenuBar
 	private final @NotNull MouseListener mouseListener;
 	
 	private final @NotNull JavaPH parent;
-	private final @NotNull JCheckBoxMenuItem rollToolBarItem = new JCheckBoxMenuItem("Rollover Toolbar");
+	private final @NotNull JCheckBoxMenuItem rollToolBarItem = new JCheckBoxMenuItem(JavaPHConstants.ROLLOVER_TOOLBAR);
 	private final @NotNull JCheckBoxMenuItem showLogItem = new JCheckBoxMenuItem("View System Log");
 	private final @NotNull JCheckBoxMenuItem showToolBarItem = new JCheckBoxMenuItem("View Toolbar");
 	
@@ -86,13 +86,13 @@ public final class MainMenu extends JMenuBar
 	private @NotNull JMenu getEditComponent()
 	{
 
-		final @NotNull JMenu editMenu = new JMenu("Edit");
+		final @NotNull JMenu editMenu = new JMenu(JavaPHConstants.EDIT);
 		editMenu.setMnemonic(KeyEvent.VK_E);
 
 		final @NotNull JMenuItem cutItem = getNewMenuItem();
 		cutItem.setAction(new CutAction());
 		cutItem.setIcon(parent.getImageIcon("img/cut.gif"));
-		cutItem.setText("Cut");
+		cutItem.setText(JavaPHConstants.CUT);
 		cutItem.setActionCommand("Cuts the selection and puts it on the clipboard");
 		cutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 		cutItem.setMnemonic(KeyEvent.VK_T);
@@ -163,7 +163,7 @@ public final class MainMenu extends JMenuBar
 	private @NotNull JMenu getHelpComponent()
 	{
 
-		final @NotNull JMenu helpMenu = new JMenu("Help");
+		final @NotNull JMenu helpMenu = new JMenu(JavaPHConstants.HELP);
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 
 		final @NotNull JMenuItem helpItem = getNewMenuItem();

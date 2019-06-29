@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.ui;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.event.MouseAdapter;
@@ -29,7 +30,7 @@ abstract class AbstractHyperLinkLabelListener extends MouseAdapter
         }
         catch (final @NotNull IOException ex)
         {
-            final @NotNull String message = String.format("Error: IOException received when trying to open %s", url);
+            final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_OPEN_S, url);
             parent.log(message);
             parent.showExceptionDialog(message);
         }
