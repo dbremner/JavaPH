@@ -60,7 +60,7 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
 public final class PropertiesDialog extends JavaPHDialog
 {
 	private static final double WEIGHTX = 0.5;
-	public static final String TRUE = "true";
+	private static final @NotNull String TRUE = "true";
 	private final @NotNull JavaPH parent;
 
 	private final @NotNull JCheckBox displayLogCheckBox = new JCheckBox("Display System Log");

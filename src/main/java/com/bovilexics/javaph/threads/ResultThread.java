@@ -58,7 +58,7 @@ import java.util.StringTokenizer;
  */
 public final class ResultThread extends Thread
 {
-	public static final String DUPLICATE_FIELD_SUFFIX = ".1";
+	private static final @NotNull String DUPLICATE_FIELD_SUFFIX = ".1";
 	// TODO Should these fields be volatile?
 
 	private volatile boolean error = false;
