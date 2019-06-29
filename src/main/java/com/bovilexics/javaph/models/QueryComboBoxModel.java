@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.models;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -142,6 +143,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 
 	// implements javax.swing.ListModel
 	@Override
+	@Contract(pure = true)
     public int getSize()
 	{
 		return objects.size();
@@ -154,6 +156,7 @@ public final class QueryComboBoxModel extends AbstractListModel implements Mutab
 	 * @return an int representing the index position, where 0 is 
 	 *         the first position
 	 */
+	@Contract(pure = true)
 	public int getIndexOf(final @Nullable Object anObject)
 	{
 		return objects.indexOf(anObject);

@@ -54,6 +54,7 @@ import com.bovilexics.javaph.ui.SplashWindow;
 import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
 import com.google.common.collect.ImmutableList;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -332,6 +333,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			add(getQueryButtonPanel(), BorderLayout.EAST);
 		}
 
+		@Contract(pure = true)
 		private boolean isQueryCanceled()
 		{
 			return queryProgressMonitor.isCanceled();
@@ -1290,6 +1292,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return defaultPane;
 	}
 
+	@Contract(pure = true)
 	public @NotNull String getFieldSeparator()
 	{
 		return fieldSeparator;
@@ -1307,11 +1310,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return fields;
 	}
 
+	@Contract(pure = true)
 	public @NotNull String getLastCustomSeparator()
 	{
 		return customFieldSeparator;
 	}
 
+	@Contract(pure = true)
 	public @NotNull LoadFields getLoadFields()
 	{
 		return loadFields;
@@ -1337,6 +1342,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return defaultProperties.getProperty(key, defaultValue);
 	}
 
+	@Contract(pure = true)
 	public int getQueryRuntime()
 	{
 		return queryRuntime;
@@ -1347,6 +1353,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return queryComboBox;
 	}
 
+	@Contract(pure = true)
 	public boolean isQueryCanceled()
 	{
 		return queryPanel.isQueryCanceled();
@@ -1480,11 +1487,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		setSavePosition(propertyEquals(PROP_SAVE_POSITION,  true, true));
 	}
 
+	@Contract(pure = true)
 	public boolean isFieldQuoted()
 	{
 		return fieldQuoted;
 	}
 
+	@Contract(pure = true)
 	public boolean isSavePosition()
 	{
 		return savePosition;

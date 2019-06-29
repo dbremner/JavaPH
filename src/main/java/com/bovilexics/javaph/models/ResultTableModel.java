@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.models;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.table.DefaultTableModel;
@@ -38,6 +39,7 @@ public final class ResultTableModel extends DefaultTableModel
 	}
 
 	@Override
+	@Contract(pure = true)
 	public boolean isCellEditable(final int row, final int column)
 	{
 		return false;
