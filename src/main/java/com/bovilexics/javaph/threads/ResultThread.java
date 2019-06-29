@@ -693,7 +693,7 @@ public final class ResultThread extends Thread
 			state = ResultThreadState.Ok;
 			if (command.equals(QiCommand.FIELDS))
 			{
-				buildValuesForFields();
+				buildValuesForFields(records);
 			}
 			else
 			{
@@ -763,14 +763,14 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private synchronized void buildValuesForFields()
+	private synchronized void buildValuesForFields(final @NotNull List<List<Line>> lists)
 	{
 		headers = ImmutableList.copyOf(new Object[] { "name", "description", "properties" });
-		values = new Object[records.size()][headers.size()];
+		values = new Object[lists.size()][headers.size()];
 
-		for (int i = 0; i < records.size(); i++)
+		for (int i = 0; i < lists.size(); i++)
 		{
-			final List<Line> list = records.get(i);
+			final List<Line> list = lists.get(i);
 
 			for (int j = 0; j < list.size() - 1; j = j + 2)
 			{
