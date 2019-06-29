@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.logging.StatusErrorLogger;
 import com.bovilexics.javaph.qi.Connection;
@@ -63,13 +64,13 @@ public final class QueryThreadRunnable implements Runnable
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery("Query Canceled", "Canceled"));
+                    parent.endFailedQuery(String.format(JavaPHConstants.QUERY_S, JavaPHConstants.CANCELED), JavaPHConstants.CANCELED));
         }
         else if (seconds == runtime)
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery("Query Timed Out", "Timeout"));
+                    parent.endFailedQuery(String.format(JavaPHConstants.QUERY_S, "Timed Out"), "Timeout"));
         }
         else
         {

@@ -401,7 +401,7 @@ public final class ResultThread extends Thread
 		if (error)
 		{
 			state = ResultThreadState.Error;
-			showStatus("Error: Invalid connection, query stopped.");
+			showStatus(String.format(JavaPHConstants.ERROR_S, "Invalid connection, query stopped."));
 			return;
 		}
 		

@@ -17,6 +17,7 @@
 package com.bovilexics.javaph.actions;
 
 import com.bovilexics.javaph.JavaPH;
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -33,7 +34,7 @@ public final class NewAction extends AbstractAction
 		
 	public NewAction(final @NotNull JavaPH javaph)
 	{
-		super("New Query", javaph.getImageIcon("img/new.gif"));
+		super(String.format("New %s", JavaPHConstants.QUERY), javaph.getImageIcon("img/new.gif"));
 			
 		parent = javaph;
 	}

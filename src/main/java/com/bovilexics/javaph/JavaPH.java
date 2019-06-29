@@ -195,7 +195,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	// Swing widgets and stuff
 
-	private final @NotNull JButton queryButton = new JButton("Execute Query");
+	private final @NotNull JButton queryButton = new JButton(String.format("Execute %s", JavaPHConstants.QUERY));
 	private final @NotNull JComboBox<Command> commandComboBox;
 	private final @NotNull JComboBox<Server> serverComboBox;
 	private final @NotNull JLabel portStatusLabel = new JLabel();
@@ -304,7 +304,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldCustomOn;
 		private final @NotNull ImageIcon fieldLoadOff;
 		private final @NotNull ImageIcon fieldLoadOn;
-		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton("Custom Fields");
+		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton(String.format("%s Fields",
+				"Custom"));
 		private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 
 		@SuppressWarnings("WeakerAccess")
@@ -435,7 +436,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					}
 				}
 
-				queryProgressMonitor = new ProgressMonitor(defaultPane, "Executing Query", getCommand(), 0, getQueryRuntime());
+				queryProgressMonitor = new ProgressMonitor(defaultPane, String.format("Executing %s", JavaPHConstants.QUERY), getCommand(), 0, getQueryRuntime());
 				final int runtime = parent.getQueryRuntime();
 				final @NotNull String command = getCommand();
 				final @Nullable Server server = getServer();
@@ -523,8 +524,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull JPanel queryFieldPanel = new JPanel();
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
 
-			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton("Default Fields");
-			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton("All Fields");
+			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton(String.format("%s Fields", JavaPHConstants.DEFAULT));
+			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton(String.format("%s Fields", "All"));
 
 			fieldRadioGroup.add(fieldDefaultRadioButton);
 			fieldRadioGroup.add(fieldAllRadioButton);
