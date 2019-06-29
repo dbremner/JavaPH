@@ -165,7 +165,7 @@ public final class QiServer implements Server
 		resultThread.start();
 
 		int seconds = 0;
-		while (seconds < QUERY_RUNTIME && !resultThread.isFinished())
+		while (seconds < QUERY_RUNTIME && resultThread.isAlive())
 		{
 			try
 			{

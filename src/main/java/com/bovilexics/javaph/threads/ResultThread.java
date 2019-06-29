@@ -25,7 +25,6 @@ import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiProtocolException;
 import com.google.common.collect.ImmutableList;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -63,7 +62,6 @@ public final class ResultThread extends Thread
 	// TODO Should these fields be volatile?
 
 	private volatile boolean error = false;
-	private volatile boolean finished = false;
 	private volatile boolean halted = false;
 
 	private int entryIndex = 0;
@@ -385,18 +383,12 @@ public final class ResultThread extends Thread
 	@Override
 	public synchronized void interrupt()
 	{
-		if (!finished)
+		if (isAlive())
 		{
 			halted = true;
 			cleanup();
 			super.interrupt();
 		}
-	}
-
-	@Contract(pure = true)
-	public synchronized boolean isFinished()
-	{
-		return finished;
 	}
 
 	public boolean isValidQiResponse()
@@ -407,13 +399,10 @@ public final class ResultThread extends Thread
 	@Override
 	public void run()
 	{
-		finished = false;
-
 		if (error)
 		{
 			state = ResultThreadState.Error;
 			showStatus("Error: Invalid connection, query stopped.");
-			finished = true;
 			return;
 		}
 		
@@ -435,8 +424,6 @@ public final class ResultThread extends Thread
 		{
 			connection.unlock();
 		}
-		
-		finished = true;
 	}
 
 	/** 

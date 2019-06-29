@@ -38,7 +38,7 @@ public final class QueryThreadRunnable implements Runnable
         final @NotNull ResultThread resultThread = new ResultThread(null, command, connection);
         resultThread.start();
 
-        while (!parent.isQueryCanceled() && seconds < runtime && !resultThread.isFinished())
+        while (!parent.isQueryCanceled() && seconds < runtime && resultThread.isAlive())
         {
             try
             {
