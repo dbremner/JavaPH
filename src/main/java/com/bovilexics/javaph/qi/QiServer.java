@@ -25,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 
@@ -110,16 +111,7 @@ public final class QiServer implements Server
 	@Override
 	public @NotNull String getExpandedName()
 	{
-		final @NotNull StringBuilder out = new StringBuilder();
-		
-		out.append(name);
-		out.append(" (");
-		out.append(server);
-		out.append(":");
-		out.append(port);
-		out.append(")");
-		
-		return out.toString();
+		return String.format(Locale.US, "%s (%s:%d)", name, server, port);
 	}
 
 	@Override
