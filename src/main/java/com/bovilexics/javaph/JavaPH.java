@@ -1463,13 +1463,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log("FileNotFound occurred when trying to load properties from " + PROP_FILE_DEF);
+			errLogger.log(String.format("FileNotFound occurred when trying to load properties from %s", PROP_FILE_DEF));
 			System.exit(1);
 		}
 		catch (final @NotNull IOException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log("IOException occurred when trying to load properties from " + PROP_FILE_DEF);
+			errLogger.log(String.format("IOException occurred when trying to load properties from %s", PROP_FILE_DEF));
 			System.exit(1);
 		}
 

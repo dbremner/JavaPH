@@ -31,7 +31,7 @@ final class HyperLinkLabel extends JLabel
 {
 	HyperLinkLabel(final @NotNull JavaPH javaph, final @NotNull String text, final @NotNull String url)
 	{
-		super("<html><font name='Dialog' color='blue'><u>" + text + "</u></font></html>");
+		super(String.format("<html><font name='Dialog' color='blue'><u>%s</u></font></html>", text));
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addMouseListener(new HyperLinkLabelListener(url, text, javaph));
 	}
