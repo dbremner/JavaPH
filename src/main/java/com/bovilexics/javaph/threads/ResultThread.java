@@ -369,13 +369,15 @@ public final class ResultThread extends Thread
 			case Unknown:
 			case Error:
 			{
-				return emptyValues.clone();
+				//noinspection AssignmentOrReturnOfFieldWithMutableType
+				return emptyValues;
 			}
 			case Stopped:
 			default:
 			{
 				assert false;
-				return emptyValues.clone();
+				//noinspection AssignmentOrReturnOfFieldWithMutableType
+				return emptyValues;
 			}
 		}
 	}
