@@ -16,7 +16,7 @@
  */
 package com.bovilexics.javaph.qi;
 
-import com.bovilexics.javaph.logging.ErrLogger;
+import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
@@ -91,20 +91,20 @@ public final class QiServer implements Server
 					catch (final @NotNull QiProtocolException e)
 					{
 						fieldState = FieldState.FIELD_LOAD_ERROR;
-						final @NotNull Logger instance = ErrLogger.instance;
-						instance.println("Error: QiProtocolException received when trying to add field to " + getExpandedName());
-						instance.println(" --> Message:     " + e.getMessage());
-						instance.println(" --> Properties:  " + propsLine.toString());
-						instance.println(" --> Description: " + descLine.toString());
+						final @NotNull Logger instance = ErrLoggerImpl.instance;
+						instance.log("Error: QiProtocolException received when trying to add field to " + getExpandedName());
+						instance.log(" --> Message:     " + e.getMessage());
+						instance.log(" --> Properties:  " + propsLine.toString());
+						instance.log(" --> Description: " + descLine.toString());
 					}
 				}
 				else
 				{
 					fieldState = FieldState.FIELD_LOAD_ERROR;
-					final @NotNull Logger instance = ErrLogger.instance;
-					instance.println("Error: property and description lines do not refer to the same field for " + getExpandedName());
-					instance.println(" --> " + propsLine.toString());
-					instance.println(" --> " + descLine.toString());
+					final @NotNull Logger instance = ErrLoggerImpl.instance;
+					instance.log("Error: property and description lines do not refer to the same field for " + getExpandedName());
+					instance.log(" --> " + propsLine.toString());
+					instance.log(" --> " + descLine.toString());
 				}
 			}
 		}
@@ -173,7 +173,7 @@ public final class QiServer implements Server
 			}
 			catch(final @NotNull InterruptedException ie)
 			{
-				ErrLogger.instance.printStackTrace(ie);
+				ErrLoggerImpl.instance.printStackTrace(ie);
 			}
 			
 			seconds++;

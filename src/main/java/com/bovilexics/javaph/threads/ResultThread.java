@@ -17,7 +17,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.logging.ErrLogger;
+import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.Line;
 import com.bovilexics.javaph.qi.LineFactory;
@@ -692,7 +692,7 @@ public final class ResultThread extends Thread
 	{
 		if (parent == null)
 		{
-			ErrLogger.instance.println(message);
+			ErrLoggerImpl.instance.log(message);
 		}
 		else
 		{
@@ -840,7 +840,7 @@ public final class ResultThread extends Thread
 		}
 		else
 		{
-			ErrLogger.instance.println(status);
+			ErrLoggerImpl.instance.log(status);
 		}
 	}
 }

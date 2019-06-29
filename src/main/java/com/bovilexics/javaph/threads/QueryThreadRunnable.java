@@ -1,7 +1,7 @@
 package com.bovilexics.javaph.threads;
 
 import com.bovilexics.javaph.JavaPH;
-import com.bovilexics.javaph.logging.ErrLogger;
+import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.qi.Connection;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,7 +46,7 @@ public final class QueryThreadRunnable implements Runnable
             }
             catch(final @NotNull InterruptedException ie)
             {
-                ErrLogger.instance.printStackTrace(ie);
+                ErrLoggerImpl.instance.printStackTrace(ie);
             }
 
             ++seconds;
