@@ -1799,7 +1799,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	@Override
 	public void showStatus(final @NotNull String msg)
 	{
-		statusLabel.setText(" " + msg);
+		statusLabel.setText(String.format(" %s", msg));
 	}
 
 	public void showToolBar(final boolean show)

@@ -169,7 +169,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.weightx = 1.0;
-		infoPanel.add(new JLabel(INFO_COPYRIGHT + "     "), gbc);
+		infoPanel.add(new JLabel(String.format("%s     ", INFO_COPYRIGHT)), gbc);
 
 		gbc.weightx = 0;
 		infoPanel.add(Box.createVerticalStrut(vertStrut * 10), gbc);
