@@ -95,9 +95,9 @@ public final class QiServer implements Server
 						fieldState = FieldState.FIELD_LOAD_ERROR;
 						final @NotNull Logger instance = ErrLoggerImpl.instance;
 						instance.log(String.format(JavaPHConstants.ERROR_QI_PROTOCOL_EXCEPTION_RECEIVED_WHEN_TRYING_TO_ADD_FIELD_TO_S, getExpandedName()));
-						instance.log(" --> Message:     " + e.getMessage());
-						instance.log(" --> Properties:  " + propsLine.toString());
-						instance.log(" --> Description: " + descLine.toString());
+						instance.log(String.format(" --> Message:     %s", e.getMessage()));
+						instance.log(String.format(" --> Properties:  %s", propsLine.toString()));
+						instance.log(String.format(" --> Description: %s", descLine.toString()));
 					}
 				}
 				else
@@ -105,8 +105,8 @@ public final class QiServer implements Server
 					fieldState = FieldState.FIELD_LOAD_ERROR;
 					final @NotNull Logger instance = ErrLoggerImpl.instance;
 					instance.log(String.format(JavaPHConstants.ERROR_PROPERTY_AND_DESCRIPTION_LINES_DO_NOT_REFER_TO_THE_SAME_FIELD_FOR_S, getExpandedName()));
-					instance.log(" --> " + propsLine.toString());
-					instance.log(" --> " + descLine.toString());
+					instance.log(String.format(" --> %s", propsLine.toString()));
+					instance.log(String.format(" --> %s", descLine.toString()));
 				}
 			}
 		}
