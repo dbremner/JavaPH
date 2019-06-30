@@ -562,12 +562,12 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private void buildHeaders()
+	private static @NotNull ImmutableList<Object> buildHeaders(final @NotNull List<List<Line>> list)
 	{
 		@NotNull String lastField = JavaPHConstants.UNKNOWN;
 		final @NotNull List<Object> uniqueHeaders = new ArrayList<>();
 
-		for (final @NotNull List<Line> currentQiLine : records)
+		for (final @NotNull List<Line> currentQiLine : list)
 		{
 			for (final @NotNull Line line : currentQiLine)
 			{
@@ -595,7 +595,7 @@ public final class ResultThread extends Thread
 			}
 		}
 		
-		headers = ImmutableList.copyOf(uniqueHeaders);
+		return ImmutableList.copyOf(uniqueHeaders);
 	}
 
 	/**
@@ -688,11 +688,13 @@ public final class ResultThread extends Thread
 			state = ResultThreadState.Ok;
 			if (command.equals(QiCommand.FIELDS))
 			{
-				buildValuesForFields(records);
+				headers = ResultThread.buildHeadersForFields();
+				values = ResultThread.buildValuesForFields(headers, records);
 			}
 			else
 			{
-				buildValues();
+				headers = ResultThread.buildHeaders(records);
+				values = buildValues(headers, records);
 			}
 		}
 	}
@@ -702,18 +704,18 @@ public final class ResultThread extends Thread
 		logger.log(message);
 	}
 
-	private void buildValues()
+	private @NotNull Object[][] buildValues(final @NotNull ImmutableList<Object> headersList,
+											 final @NotNull List<List<Line>> lists)
 	{
-		buildHeaders();
-		values = new Object[records.size()][headers.size()];
+		final Object[][] results = new Object[lists.size()][headersList.size()];
 
 		int xCoordinate = -1;
 		@NonNls @NotNull String lastField = JavaPHConstants.UNKNOWN;
 
-		for (int i = 0; i < records.size(); i++)
+		for (int i = 0; i < lists.size(); i++)
 		{
 			final int yCoordinate = i;
-			final List<Line> list = records.get(i);
+			final List<Line> list = lists.get(i);
 
 			for (final @NotNull Line line : list)
 			{
@@ -725,9 +727,9 @@ public final class ResultThread extends Thread
 				}
 
 				boolean found = false;
-				for (int k = 0; k < headers.size() && !found; k++)
+				for (int k = 0; k < headersList.size() && !found; k++)
 				{
-					final @NotNull Object value = headers.get(k);
+					final @NotNull Object value = headersList.get(k);
 					if (value.equals(field))
 					{
 						xCoordinate = k;
@@ -737,7 +739,7 @@ public final class ResultThread extends Thread
 
 				if (found)
 				{
-					values[yCoordinate][xCoordinate] = line.getTrimmedValue();
+					results[yCoordinate][xCoordinate] = line.getTrimmedValue();
 				}
 				else
 				{
@@ -749,12 +751,19 @@ public final class ResultThread extends Thread
 				lastField = field;
 			}	
 		}
+		return results;
 	}
 
-	private void buildValuesForFields(final @NotNull List<List<Line>> lists)
+	private static @NotNull ImmutableList<Object> buildHeadersForFields()
 	{
-		headers = ImmutableList.copyOf(new Object[] {JavaPHConstants.NAME, JavaPHConstants.DESCRIPTION, JavaPHConstants.PROPERTIES});
-		values = new Object[lists.size()][headers.size()];
+		return ImmutableList.copyOf(new Object[] {JavaPHConstants.NAME, JavaPHConstants.DESCRIPTION,
+			JavaPHConstants.PROPERTIES});
+	}
+
+	private static @NotNull Object[][] buildValuesForFields(final @NotNull ImmutableList<Object> headersList,
+													 final @NotNull List<List<Line>> lists)
+	{
+		final @NotNull Object[][] results = new Object[lists.size()][headersList.size()];
 
 		for (int i = 0; i < lists.size(); i++)
 		{
@@ -770,11 +779,12 @@ public final class ResultThread extends Thread
 				final @NotNull String props = propsQiLine.getTrimmedValue();
 				final @NotNull String desc = descQiLine.getTrimmedValue();
 
-				values[i][0] = field;
-				values[i][1] = desc;
-				values[i][2] = props;
+				results[i][0] = field;
+				results[i][1] = desc;
+				results[i][2] = props;
 			}	
 		}
+		return results;
 	}
 
 	private void cleanup()
