@@ -356,7 +356,10 @@ public final class QiConnection implements Connection
 		if (locked)
 		{
 			out.append("(");
-			out.append(locker);
+			synchronized (this)
+			{
+				out.append(locker);
+			}
 			out.append(")}");
 		}
 		else
