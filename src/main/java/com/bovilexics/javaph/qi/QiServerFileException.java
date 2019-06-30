@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +12,7 @@ public final class QiServerFileException extends Exception
 
     public QiServerFileException(final @NotNull String filename, final int lineNumber, final @NotNull String contents)
     {
-        super(String.format("Error: Invalid server entry in %s on line %d --> %s", filename, lineNumber, contents));
+        super(String.format(JavaPHConstants.ERROR_INVALID_SERVER_ENTRY_IN_S_ON_LINE_D_S, filename, lineNumber, contents));
         this.filename = filename;
         this.lineNumber = lineNumber;
         this.contents = contents;

@@ -178,7 +178,7 @@ final class LookAndFeelMenu extends JMenu
 
 		addSeparator();
 		
-		restoreDefaultItem = new JMenuItem(String.format("Restore %s", JavaPHConstants.DEFAULT));
+		restoreDefaultItem = new JMenuItem(JavaPHConstants.RESTORE_DEFAULT);
 		restoreDefaultItem.addActionListener(lookAndFeelItemListener);
 		restoreDefaultItem.addMouseListener(mouseListener);
 		restoreDefaultItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.DEFAULT));
@@ -186,10 +186,10 @@ final class LookAndFeelMenu extends JMenu
 		restoreDefaultItem.setMnemonic(KeyEvent.VK_R);
 		add(restoreDefaultItem);
 
-		storeDefaultItem = new JMenuItem(String.format(JavaPHConstants.SAVE_S, JavaPHConstants.DEFAULT));
+		storeDefaultItem = new JMenuItem(JavaPHConstants.SAVE_DEFAULT);
 		storeDefaultItem.addActionListener(lookAndFeelItemListener);
 		storeDefaultItem.addMouseListener(mouseListener);
-		storeDefaultItem.setActionCommand(String.format("Save look and feel as %s", JavaPHConstants.DEFAULT));
+		storeDefaultItem.setActionCommand(JavaPHConstants.SAVE_LOOK_AND_FEEL_AS_DEFAULT);
 		storeDefaultItem.setAccelerator(KeyStroke.getKeyStroke("ctrl D"));
 		storeDefaultItem.setMnemonic(KeyEvent.VK_S);
 		add(storeDefaultItem);

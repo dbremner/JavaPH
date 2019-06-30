@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,8 +32,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import static com.bovilexics.javaph.JavaPHConstants.INFO_COPYRIGHT;
-import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
-import static com.bovilexics.javaph.JavaPHConstants.INFO_VERSION;
 
 /**
  *
@@ -51,8 +50,8 @@ public final class SplashWindow extends JWindow {
 		contentPane.setLayout(new BorderLayout());
 
 		final @NotNull JLabel phImageLabel = new JLabel(javaph.getImageIcon("img/ph-bigger.gif"));
-		
-		final @NotNull JLabel upperInfoLabel = new JLabel(String.format("%s %s", INFO_NAME, INFO_VERSION));
+
+		final @NotNull JLabel upperInfoLabel = new JLabel(JavaPHConstants.INFO_NAME_VERSION);
 		upperInfoLabel.setFont(new Font(FontName, Font.BOLD, 14));
 		upperInfoLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		

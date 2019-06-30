@@ -145,7 +145,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.weightx = 1.0;
-		infoPanel.add(new HyperLinkLabel(parent, INFO_CONTACT, String.format("mailto:%s", INFO_CONTACT)), gbc);
+		infoPanel.add(new HyperLinkLabel(parent, INFO_CONTACT, JavaPHConstants.INFO_EMAIL), gbc);
 
 		gbc.weightx = 0;
 		infoPanel.add(Box.createVerticalStrut(vertStrut), gbc);

@@ -305,7 +305,7 @@ public final class QiConnection implements Connection
 				{
 					// "No Hostname found for IP address" maybe.
 					if (!blurb.isEmpty()) {
-						ErrLoggerImpl.instance.log(String.format("Error on Qi logout: %s", blurb));
+						ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGOUT_S, blurb));
 					}
 						
 					authenticated = false;

@@ -64,13 +64,13 @@ public final class QueryThreadRunnable implements Runnable
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery(String.format(JavaPHConstants.QUERY_S, JavaPHConstants.CANCELED), JavaPHConstants.CANCELED));
+                    parent.endFailedQuery(JavaPHConstants.QUERY_CANCELED, JavaPHConstants.CANCELED));
         }
         else if (seconds == runtime)
         {
             resultThread.interrupt();
             SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery(String.format(JavaPHConstants.QUERY_S, JavaPHConstants.TIMED_OUT), JavaPHConstants.TIMEOUT));
+                    parent.endFailedQuery(JavaPHConstants.QUERY_TIMED_OUT, JavaPHConstants.TIMEOUT));
         }
         else
         {

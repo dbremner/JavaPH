@@ -57,9 +57,9 @@ public final class MainMenu extends JMenuBar
 	
 	private final @NotNull JavaPH parent;
 	private final @NotNull JCheckBoxMenuItem rollToolBarItem = new JCheckBoxMenuItem(JavaPHConstants.ROLLOVER_TOOLBAR);
-	private final @NotNull JCheckBoxMenuItem showLogItem = new JCheckBoxMenuItem(String.format(JavaPHConstants.VIEW_S, JavaPHConstants.SYSTEM_LOG));
-	private final @NotNull JCheckBoxMenuItem showToolBarItem = new JCheckBoxMenuItem(String.format(JavaPHConstants.VIEW_S, JavaPHConstants.TOOLBAR));
-	
+	private final @NotNull JCheckBoxMenuItem showLogItem = new JCheckBoxMenuItem(JavaPHConstants.VIEW_SYSTEM_LOG);
+	private final @NotNull JCheckBoxMenuItem showToolBarItem = new JCheckBoxMenuItem(JavaPHConstants.VIEW_TOOLBAR);
+
 	public MainMenu(final @NotNull JavaPH javaph)
 	{
 		parent = javaph;
@@ -137,14 +137,14 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem newItem = getNewMenuItem();
 		newItem.setAction(new NewAction(parent));
-		newItem.setActionCommand("Create a New Query");
+		newItem.setActionCommand(JavaPHConstants.CREATE_A_NEW_QUERY);
 		newItem.setAccelerator(KeyStroke.getKeyStroke("ctrl N"));
 		newItem.setMnemonic(KeyEvent.VK_N);
 		fileMenu.add(newItem);
 
 		final @NotNull JMenuItem saveItem = getNewMenuItem();
 		saveItem.setAction(new SaveAction(parent));
-		saveItem.setActionCommand("Save a Query Results");
+		saveItem.setActionCommand(JavaPHConstants.SAVE_A_QUERY_RESULTS);
 		saveItem.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
 		saveItem.setMnemonic(KeyEvent.VK_S);
 		fileMenu.add(saveItem);
@@ -153,7 +153,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem exitItem = getNewMenuItem();
 		exitItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
-		exitItem.setActionCommand(String.format("Exit %s", JavaPHConstants.INFO_NAME));
+		exitItem.setActionCommand(String.format(JavaPHConstants.EXIT_S, JavaPHConstants.INFO_NAME));
 		exitItem.setAccelerator(KeyStroke.getKeyStroke("alt X"));
 		exitItem.setMnemonic(KeyEvent.VK_X);
 		fileMenu.add(exitItem);
@@ -169,14 +169,14 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem helpItem = getNewMenuItem();
 		helpItem.setAction(new HelpAction(parent));
-		helpItem.setActionCommand(String.format("Open %s help window", JavaPHConstants.INFO_NAME));
+		helpItem.setActionCommand(JavaPHConstants.OPEN_INFO_NAME_HELP_WINDOW);
 		helpItem.setAccelerator(KeyStroke.getKeyStroke("ctrl H"));
 		helpItem.setMnemonic(KeyEvent.VK_H);
 		helpMenu.add(helpItem);
 
 		final @NotNull JMenuItem aboutItem = getNewMenuItem();
 		aboutItem.setAction(new AboutAction(parent, parent::showAboutDialog));
-		aboutItem.setActionCommand(String.format("Displays information about %s", JavaPHConstants.INFO_NAME));
+		aboutItem.setActionCommand(JavaPHConstants.DISPLAYS_INFORMATION_ABOUT_INFO_NAME);
 		aboutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl A"));
 		aboutItem.setMnemonic(KeyEvent.VK_A);
 		helpMenu.add(aboutItem);

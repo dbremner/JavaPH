@@ -195,7 +195,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	// Swing widgets and stuff
 
-	private final @NotNull JButton queryButton = new JButton(String.format("Execute %s", JavaPHConstants.QUERY));
+	private final @NotNull JButton queryButton = new JButton(JavaPHConstants.EXECUTE_QUERY);
 	private final @NotNull JComboBox<Command> commandComboBox;
 	private final @NotNull JComboBox<Server> serverComboBox;
 	private final @NotNull JLabel portStatusLabel = new JLabel();
@@ -304,7 +304,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull ImageIcon fieldCustomOn;
 		private final @NotNull ImageIcon fieldLoadOff;
 		private final @NotNull ImageIcon fieldLoadOn;
-		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton(String.format(JavaPHConstants.S_FIELDS, JavaPHConstants.CUSTOM));
+		private final @NotNull JRadioButton fieldCustomRadioButton = new JRadioButton(JavaPHConstants.CUSTOM_FIELDS);
 		private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 
 		@SuppressWarnings("WeakerAccess")
@@ -435,7 +435,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					}
 				}
 
-				queryProgressMonitor = new ProgressMonitor(defaultPane, String.format("Executing %s", JavaPHConstants.QUERY), getCommand(), 0, getQueryRuntime());
+				queryProgressMonitor = new ProgressMonitor(defaultPane, JavaPHConstants.EXECUTING_QUERY, getCommand(), 0, getQueryRuntime());
 				final int runtime = parent.getQueryRuntime();
 				final @NotNull String command = getCommand();
 				final @Nullable Server server = getServer();
@@ -523,8 +523,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull JPanel queryFieldPanel = new JPanel();
 			queryFieldPanel.setLayout(new BoxLayout(queryFieldPanel, BoxLayout.X_AXIS));
 
-			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton(String.format(JavaPHConstants.S_FIELDS, JavaPHConstants.DEFAULT));
-			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton(String.format(JavaPHConstants.S_FIELDS, JavaPHConstants.ALL));
+			final @NotNull JRadioButton fieldDefaultRadioButton = new JRadioButton(JavaPHConstants.DEFAULT_FIELDS);
+			final @NotNull JRadioButton fieldAllRadioButton = new JRadioButton(JavaPHConstants.ALL_FIELDS);
 
 			fieldRadioGroup.add(fieldDefaultRadioButton);
 			fieldRadioGroup.add(fieldAllRadioButton);
@@ -541,7 +541,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull int[] prevSelections = fieldList.getSelectedIndices();
 				final @Nullable Server server = getServer();
 				assert server != null;
-				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, String.format("Field List for %s", server.toString()), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), fieldListPanel, String.format(JavaPHConstants.FIELD_LIST_FOR_S, server.toString()), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (option != JOptionPane.OK_OPTION)
 				{
@@ -1082,12 +1082,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		defaultPane.setJMenuBar(new MainMenu(this));
 
-		log(String.format("%s initialized (Application) Mode)", JavaPHConstants.INFO_NAME));
-		log("Initializing default server");
+		log(String.format("%s initialized", JavaPHConstants.INFO_NAME));
+		log(JavaPHConstants.INITIALIZING_DEFAULT_SERVER);
 
 		serverComboBox.setSelectedItem(serverManager.getDefaultServer());
 
-		log("Default server initialized");
+		log(JavaPHConstants.DEFAULT_SERVER_INITIALIZED);
 
 		showDefaultStatus();
 		restoreLookAndFeel(getContentPane());
@@ -1367,8 +1367,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void beginQuery(final @NotNull String command)
 	{
 		queryButton.setEnabled(false);
-		showStatus(String.format(JavaPHConstants.QUERY_S, "Running... Please Wait"));
-		log(String.format("Running query \"%s\"", command));
+		showStatus(JavaPHConstants.QUERY_RUNNING_PLEASE_WAIT);
+		log(String.format(JavaPHConstants.RUNNING_QUERY_S, command));
 	}
 
 	public void endFailedQuery(final @NotNull String message, final @NotNull String title)
@@ -1463,13 +1463,13 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log(String.format("FileNotFound occurred when trying to load properties from %s", PROP_FILE_DEF));
+			errLogger.log(String.format(JavaPHConstants.FILE_NOT_FOUND_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, PROP_FILE_DEF));
 			System.exit(1);
 		}
 		catch (final @NotNull IOException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log(String.format("IOException occurred when trying to load properties from %s", PROP_FILE_DEF));
+			errLogger.log(String.format(JavaPHConstants.IOEXCEPTION_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, PROP_FILE_DEF));
 			System.exit(1);
 		}
 
@@ -1517,7 +1517,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		if (!servers.isEmpty())
 		{
 
-			final @NotNull ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, String.format(JavaPHConstants.LOADING_FIELDS_FOR_S, JavaPHConstants.SERVER), "", 0, servers.size());
+			final @NotNull ProgressMonitor fieldProgressMonitor = new ProgressMonitor(defaultPane, JavaPHConstants.LOADING_FIELDS_FOR_SERVER, "", 0, servers.size());
 			
 			for (int i = 0; i < servers.size(); i++)
 			{
@@ -1615,7 +1615,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// what was specified in the properties file
 			// then just continue and set system default
 			errLogger.printStackTrace(e);
-			errLogger.log(String.format(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_S_LOOK_AND_FEEL, "custom"));
+			errLogger.log("Exception occurred when trying to set custom look and feel");
 		}
 
 		try
@@ -1635,7 +1635,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// then just continue and allow the default
 			// cross platform look at feel to be used (metal)
 			errLogger.printStackTrace(e);
-			errLogger.log(String.format(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_S_LOOK_AND_FEEL, "default"));
+			errLogger.log(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_DEFAULT_LOOK_AND_FEEL);
 		}
 	}
 
@@ -1658,7 +1658,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void setFieldSeparator(final @NotNull String separator)
 	{
 		if (separator.isEmpty()) {
-			throw new IllegalArgumentException(String.format(JavaPHConstants.ERROR_S, "null or empty string passed to setFieldSeparator"));
+			throw new IllegalArgumentException(JavaPHConstants.ERROR_NULL_OR_EMPTY_STRING_PASSED_TO_SET_FIELD_SEPARATOR);
 		}
 			
 		// log("Changing field separator string from " + fieldSeparator + " to " + separator);
@@ -1695,12 +1695,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		if (QueryRuntime.overMaximum(runtime))
 		{
-			log(String.format("Query runtime %d too high, using maximum value %d", runtime, QueryRuntime.MAX.getValue()));
+			log(String.format(JavaPHConstants.QUERY_RUNTIME_D_TOO_HIGH_USING_MAXIMUM_VALUE_D, runtime, QueryRuntime.MAX.getValue()));
 			queryRuntime = QueryRuntime.MAX.getValue();
 		}
 		else if (QueryRuntime.underMinimum(runtime))
 		{
-			log(String.format("Query runtime %d too low, using minimum value %d", runtime, QueryRuntime.MIN.getValue()));
+			log(String.format(JavaPHConstants.QUERY_RUNTIME_D_TOO_LOW_USING_MINIMUM_VALUE_D, runtime, QueryRuntime.MIN.getValue()));
 			queryRuntime = QueryRuntime.MIN.getValue();
 		}
 		else
@@ -1755,7 +1755,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		findDialog.setLocationRelativeTo(defaultPane);
 		final @NotNull Tab tab = getResultPanelSelectedTab();
-		findDialog.setTitle(String.format("Find Text in %s", tab.getLabel()));
+		findDialog.setTitle(String.format(JavaPHConstants.FIND_TEXT_IN_S, tab.getLabel()));
 		findDialog.setVisible(true);
 	}
 
@@ -1825,12 +1825,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		catch (final @NotNull FileNotFoundException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log(String.format("FileNotFound occurred when trying to store properties to %s", PROP_FILE));
+			errLogger.log(String.format(JavaPHConstants.FILE_NOT_FOUND_OCCURRED_WHEN_TRYING_TO_STORE_PROPERTIES_TO_S, PROP_FILE));
 		}
 		catch (final @NotNull IOException e)
 		{
 			errLogger.printStackTrace(e);
-			errLogger.log(String.format("IOException occurred when trying to store properties to %s", PROP_FILE));
+			errLogger.log(String.format(JavaPHConstants.IOEXCEPTION_OCCURRED_WHEN_TRYING_TO_STORE_PROPERTIES_TO_S, PROP_FILE));
 		}
 	}
 }

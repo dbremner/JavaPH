@@ -34,7 +34,7 @@ public final class NewAction extends AbstractAction
 		
 	public NewAction(final @NotNull JavaPH javaph)
 	{
-		super(String.format("New %s", JavaPHConstants.QUERY), javaph.getImageIcon("img/new.gif"));
+		super(JavaPHConstants.NEW_QUERY, javaph.getImageIcon("img/new.gif"));
 			
 		parent = javaph;
 	}

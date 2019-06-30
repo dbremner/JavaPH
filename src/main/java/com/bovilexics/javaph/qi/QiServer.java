@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.StatusErrorLogger;
@@ -93,7 +94,7 @@ public final class QiServer implements Server
 					{
 						fieldState = FieldState.FIELD_LOAD_ERROR;
 						final @NotNull Logger instance = ErrLoggerImpl.instance;
-						instance.log(String.format("Error: QiProtocolException received when trying to add field to %s", getExpandedName()));
+						instance.log(String.format(JavaPHConstants.ERROR_QI_PROTOCOL_EXCEPTION_RECEIVED_WHEN_TRYING_TO_ADD_FIELD_TO_S, getExpandedName()));
 						instance.log(" --> Message:     " + e.getMessage());
 						instance.log(" --> Properties:  " + propsLine.toString());
 						instance.log(" --> Description: " + descLine.toString());
@@ -103,7 +104,7 @@ public final class QiServer implements Server
 				{
 					fieldState = FieldState.FIELD_LOAD_ERROR;
 					final @NotNull Logger instance = ErrLoggerImpl.instance;
-					instance.log(String.format("Error: property and description lines do not refer to the same field for %s", getExpandedName()));
+					instance.log(String.format(JavaPHConstants.ERROR_PROPERTY_AND_DESCRIPTION_LINES_DO_NOT_REFER_TO_THE_SAME_FIELD_FOR_S, getExpandedName()));
 					instance.log(" --> " + propsLine.toString());
 					instance.log(" --> " + descLine.toString());
 				}
@@ -134,7 +135,7 @@ public final class QiServer implements Server
 	public @NotNull String getFieldStateMessage()
 	{
 		if (fieldStateMessage.isEmpty()) {
-			fieldStateMessage = String.format("Fields not yet loaded for %s", getExpandedName());
+			fieldStateMessage = String.format(JavaPHConstants.FIELDS_NOT_YET_LOADED_FOR_S, getExpandedName());
 		}
 			
 		return fieldStateMessage;
@@ -184,17 +185,17 @@ public final class QiServer implements Server
 		{
 			resultThread.interrupt();
 			fieldState = FieldState.FIELD_LOAD_ERROR;
-			fieldStateMessage = String.format("Timeout trying to load fields for %s", getExpandedName());
+			fieldStateMessage = String.format(JavaPHConstants.TIMEOUT_TRYING_TO_LOAD_FIELDS_FOR_S, getExpandedName());
 		}
 		else if (resultThread.getRecordCount() < 0)
 		{
 			fieldState = FieldState.SERVER_ERROR;
-			fieldStateMessage = String.format("Server error trying to load fields for %s", getExpandedName());
+			fieldStateMessage = String.format(JavaPHConstants.SERVER_ERROR_TRYING_TO_LOAD_FIELDS_FOR_S, getExpandedName());
 		}
 		else if (resultThread.getRecordCount() == 0)
 		{
 			fieldState = FieldState.FIELD_LOAD_ERROR;
-			fieldStateMessage = String.format("No fields available for %s", getExpandedName());
+			fieldStateMessage = String.format(JavaPHConstants.NO_FIELDS_AVAILABLE_FOR_S, getExpandedName());
 		}
 		else
 		{
@@ -205,11 +206,11 @@ public final class QiServer implements Server
 			if (fieldState != FieldState.FIELD_LOAD_ERROR)
 			{
 				fieldState = FieldState.FIELD_LOAD_TRUE;
-				fieldStateMessage = String.format("Successfully loaded fields for %s", getExpandedName());
+				fieldStateMessage = String.format(JavaPHConstants.SUCCESSFULLY_LOADED_FIELDS_FOR_S, getExpandedName());
 			}
 			else
 			{
-				fieldStateMessage = String.format("Corrupt field results for %s", getExpandedName());
+				fieldStateMessage = String.format(JavaPHConstants.CORRUPT_FIELD_RESULTS_FOR_S, getExpandedName());
 			}
 		}
 

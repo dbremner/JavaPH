@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLogger;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.google.common.base.Joiner;
@@ -129,7 +130,7 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull QiServerFileException e)
         {
-            logger.log(String.format("Error: Invalid server entry in %s on line %d --> %s", e.getFilename(), e.getLineNumber(), e.getContents()));
+            logger.log(String.format(JavaPHConstants.ERROR_INVALID_SERVER_ENTRY_IN_S_ON_LINE_D_S, e.getFilename(), e.getLineNumber(), e.getContents()));
         }
         catch (final @NotNull InvalidPathException e)
         {
@@ -138,12 +139,12 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull FileNotFoundException e)
         {
-            logger.log(String.format("Error: FileNotFoundException received when trying to read file %s", filename));
+            logger.log(String.format(JavaPHConstants.ERROR_FILE_NOT_FOUND_EXCEPTION_RECEIVED_WHEN_TRYING_TO_READ_FILE_S, filename));
             logger.printStackTrace(e);
         }
         catch (final @NotNull IOException e)
         {
-            logger.log(String.format("Error: IOException received when trying to read file %s", filename));
+            logger.log(String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_READ_FILE_S, filename));
             logger.printStackTrace(e);
         }
     }
@@ -198,7 +199,7 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull IOException e)
         {
-            logger.log(String.format("Error: IOException received when trying to write file %s", SERVER_FILE));
+            logger.log(String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_WRITE_FILE_S, SERVER_FILE));
             logger.printStackTrace(e);
         }
     }

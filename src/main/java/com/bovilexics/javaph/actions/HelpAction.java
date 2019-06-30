@@ -49,7 +49,7 @@ public final class HelpAction extends AbstractAction
 	{
 		try
 		{
-			Browser.displayURL(parent.getURL(FilePaths.HELP_FILE_PATH).toString(), String.format("%s Help", JavaPHConstants.INFO_NAME));
+			Browser.displayURL(parent.getURL(FilePaths.HELP_FILE_PATH).toString(), String.format(JavaPHConstants.S_HELP, JavaPHConstants.INFO_NAME));
 		}
 		catch (final @NotNull IOException ex)
 		{

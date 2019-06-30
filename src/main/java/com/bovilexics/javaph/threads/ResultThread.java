@@ -413,7 +413,7 @@ public final class ResultThread extends Thread
 		if (error)
 		{
 			state = ResultThreadState.Error;
-			showStatus(String.format(JavaPHConstants.ERROR_S, "Invalid connection, query stopped."));
+			showStatus(JavaPHConstants.ERROR_INVALID_CONNECTION_QUERY_STOPPED);
 			return;
 		}
 		
@@ -681,7 +681,7 @@ public final class ResultThread extends Thread
 			assert qiLine != null;
 			prologue = qiLine.getResponse();
 			
-			final @NotNull String message = String.format("Got error %d on line --> %s", qiLine.getCode(), readFromServer);
+			final @NotNull String message = String.format(JavaPHConstants.GOT_ERROR_D_ON_LINE_S, qiLine.getCode(), readFromServer);
 
 			log(message);
 		}
@@ -743,7 +743,7 @@ public final class ResultThread extends Thread
 				}
 				else
 				{
-					final @NotNull String message = String.format("Couldn't find header for this column: %s", line.toString());
+					final @NotNull String message = String.format(JavaPHConstants.COULDN_T_FIND_HEADER_FOR_THIS_COLUMN_S, line.toString());
 
 					log(message);
 				}
@@ -828,7 +828,7 @@ public final class ResultThread extends Thread
 			{
 				error = true;
 				showStatus(String.format(JavaPHConstants.ERROR_S, e));
-				showStatus(String.format("Error: Could not connect to %s", connection.getExpandedName()));
+				showStatus(String.format(JavaPHConstants.ERROR_COULD_NOT_CONNECT_TO_S, connection.getExpandedName()));
 			}
 		}
 	}
