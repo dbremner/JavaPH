@@ -73,11 +73,11 @@ public final class FindDialog extends JavaPHDialog
 			if (findComboBox.isEnabled())
 			{
 				final @Nullable Object selectedItem = findComboBox.getEditor().getItem();
-				final @NotNull DefaultComboBoxModel model = (DefaultComboBoxModel)findComboBox.getModel();
+				final @NotNull DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>)findComboBox.getModel();
 				if (selectedItem != null && !selectedItem.toString().isEmpty())
 				{
 					if ( model.getIndexOf(selectedItem) < 0) {
-						model.insertElementAt(selectedItem, 0);
+						model.insertElementAt(selectedItem.toString(), 0);
 					}
 
 					model.setSelectedItem(selectedItem);

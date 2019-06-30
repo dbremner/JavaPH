@@ -198,7 +198,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	private final @NotNull JLabel portStatusLabel = new JLabel();
 	private final @NotNull JLabel serverStatusLabel = new JLabel();
 	private final @NotNull JLabel statusLabel = new JLabel();
-	private final @NotNull JList colList = new JList(new DefaultListModel());
+	private final @NotNull JList<String> colList = new JList<>(new DefaultListModel<>());
 	private final @NotNull JList<Field> fieldList = new JList<>(new DefaultListModel<>());
 	private final @NotNull JPanel colListPanel = new JPanel(new BorderLayout());
 	private final @NotNull JPanel fieldListPanel = new JPanel(new BorderLayout());
@@ -641,10 +641,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				for (int i = 0; i < selections.length; i++)
 				{
-					final Object toMove = fieldList.getModel().getElementAt(selections[i]);
-					((DefaultListModel)fieldList.getModel()).removeElementAt(selections[i]);
+					final Field toMove = fieldList.getModel().getElementAt(selections[i]);
+					((DefaultListModel<Field>)fieldList.getModel()).removeElementAt(selections[i]);
 					selections[i]--;
-					((DefaultListModel)fieldList.getModel()).insertElementAt(toMove, selections[i]);
+					((DefaultListModel<Field>)fieldList.getModel()).insertElementAt(toMove, selections[i]);
 				}
 
 				fieldList.setSelectedIndices(selections);
@@ -656,10 +656,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				for (int i = selections.length - 1; i >= 0; i--)
 				{
-					final Object toMove = fieldList.getModel().getElementAt(selections[i]);
-					((DefaultListModel)fieldList.getModel()).removeElementAt(selections[i]);
+					final Field toMove = fieldList.getModel().getElementAt(selections[i]);
+					((DefaultListModel<Field>)fieldList.getModel()).removeElementAt(selections[i]);
 					selections[i]++;
-					((DefaultListModel)fieldList.getModel()).insertElementAt(toMove, selections[i]);
+					((DefaultListModel<Field>)fieldList.getModel()).insertElementAt(toMove, selections[i]);
 				}
 
 				fieldList.setSelectedIndices(selections);
@@ -705,7 +705,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		private void populateFieldList(final @NotNull Server server)
 		{
-			final @NotNull DefaultListModel model = (DefaultListModel)fieldList.getModel();
+			final DefaultListModel<Field> model = (DefaultListModel<Field>)fieldList.getModel();
 			model.clear();
 
 			if (server.getFieldState() == FieldState.FIELD_LOAD_TRUE)
@@ -828,11 +828,11 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				{
 					if (colList.isSelectedIndex(i))
 					{
-						resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
+						resultTable.getColumn(colList.getModel().getElementAt(i)).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i)).getMaxWidth());
 					}
 					else
 					{
-						resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(0);
+						resultTable.getColumn(colList.getModel().getElementAt(i)).setPreferredWidth(0);
 					}
 				}
 			});
@@ -846,7 +846,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					// then reset its preferred width to its maximum width
 					if (colList.isSelectedIndex(i))
 					{
-						resultTable.getColumn(colList.getModel().getElementAt(i).toString()).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i).toString()).getMaxWidth());
+						resultTable.getColumn(colList.getModel().getElementAt(i)).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i)).getMaxWidth());
 					}
 				}
 			});
@@ -967,7 +967,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private void populateColumnList()
 		{
 			final @NotNull TableModel tableModel = resultTable.getModel();
-			final @NotNull DefaultListModel listModel = (DefaultListModel)colList.getModel();
+			final DefaultListModel<String> listModel = (DefaultListModel<String>)colList.getModel();
 			listModel.clear();
 
 			for (int i = 0; i < tableModel.getColumnCount(); i++)

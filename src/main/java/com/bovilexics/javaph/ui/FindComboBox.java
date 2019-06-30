@@ -24,11 +24,11 @@ import javax.swing.JComboBox;
  * @author Robert Fernandes robert@bovilexics.com
  * 
  */
-final class FindComboBox extends JComboBox
+final class FindComboBox extends JComboBox<String>
 {
 	FindComboBox()
 	{
 		super();
-		setModel(new DefaultComboBoxModel());
+		setModel(new DefaultComboBoxModel<>());
 	}
 }

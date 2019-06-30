@@ -38,7 +38,9 @@ public final class ServerRenderer extends DefaultListCellRenderer
 	}
 	
 	@Override
-    public @NotNull Component getListCellRendererComponent(final @NotNull JList list, final @NotNull Object value, final int index, final boolean isSelected, final boolean cellHasFocus)
+    public @NotNull Component getListCellRendererComponent(final @NotNull JList<?> list,
+														   final @NotNull Object value,
+														   final int index, final boolean isSelected, final boolean cellHasFocus)
 	{
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
