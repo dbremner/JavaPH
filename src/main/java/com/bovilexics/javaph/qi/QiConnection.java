@@ -18,6 +18,7 @@ package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -200,7 +201,7 @@ public final class QiConnection implements Connection
 
 			// Read server's response.
 			// Expecting: "301:"B`":X8Z;9)!CH0/"H\^GQWD-P7TEAD3".G['%W20:"
-			@NotNull String blurb = "";
+			@NonNls @NotNull String blurb = "";
 			while (true)
 			{
 				final @Nullable String buffer = readQI();
@@ -229,7 +230,7 @@ public final class QiConnection implements Connection
 
 			// Read server's response.
 			// Expecting: "200:myname:Hi how are you?"
-			@NotNull String blurb2 = "";
+			@NonNls @NotNull String blurb2 = "";
 			while (true)
 			{
 				final @Nullable String buffer = readQI();

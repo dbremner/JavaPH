@@ -25,6 +25,7 @@ import com.bovilexics.javaph.qi.QiAPI;
 import com.bovilexics.javaph.qi.QiCommand;
 import com.bovilexics.javaph.qi.QiProtocolException;
 import com.google.common.collect.ImmutableList;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -451,7 +452,7 @@ public final class ResultThread extends Thread
 	private void add(final @NotNull String readFromServer, final @NotNull Line line) throws QiProtocolException
 	{
 		final int code = line.getCode();
-		final @NotNull String response = line.getResponse();
+		@NonNls final @NotNull String response = line.getResponse();
 		switch (state)
 		{
 			case Starting:
