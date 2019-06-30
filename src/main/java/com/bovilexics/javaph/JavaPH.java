@@ -480,12 +480,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 						queryComboBox.hidePopup();
 						queryComboBox.getModel().filterElements(filter);
 
-						if (queryComboBox.getModel().getSize() > 0)
+						if (queryComboBox.getItemCount() > 0)
 						{
 							queryComboBox.showPopup();
 						}
 					}
-					else if (queryComboBox.getModel().getSize() == 1 && (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN))
+					else if (queryComboBox.getItemCount() == 1 && (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN))
 					{
 						// force reselection of first item if only one item
 						// in the list and the up or down arrow is pressed
