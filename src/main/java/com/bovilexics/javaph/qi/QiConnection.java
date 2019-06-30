@@ -117,7 +117,7 @@ public final class QiConnection implements Connection
 
 		try
 		{
-			writeQI(QiCommand.QUIT + "\n");
+			writeLine(QiCommand.QUIT + "\n");
 		}
 		finally
 		{
@@ -197,14 +197,14 @@ public final class QiConnection implements Connection
 
 		try
 		{
-			writeQI(QiCommand.LOGIN + " " + alias + "\n");
+			writeLine(QiCommand.LOGIN + " " + alias + "\n");
 
 			// Read server's response.
 			// Expecting: "301:"B`":X8Z;9)!CH0/"H\^GQWD-P7TEAD3".G['%W20:"
 			@NonNls @NotNull String blurb = "";
 			while (true)
 			{
-				final @Nullable String buffer = readQI();
+				final @Nullable String buffer = readLine();
 				if (buffer == null)
 				{
 					throw new QiProtocolException(JavaPHConstants.UNEXPECTED_END_OF_STREAM);
@@ -226,14 +226,14 @@ public final class QiConnection implements Connection
 			}
 
 			// Send password.
-			writeQI(QiCommand.CLEAR + " " + password + "\n");
+			writeLine(QiCommand.CLEAR + " " + password + "\n");
 
 			// Read server's response.
 			// Expecting: "200:myname:Hi how are you?"
 			@NonNls @NotNull String blurb2 = "";
 			while (true)
 			{
-				final @Nullable String buffer = readQI();
+				final @Nullable String buffer = readLine();
 				if (buffer == null)
 				{
 					throw new QiProtocolException(JavaPHConstants.UNEXPECTED_END_OF_STREAM);
@@ -289,14 +289,14 @@ public final class QiConnection implements Connection
 		try
 		{
 			// Log out.
-			writeQI(QiCommand.LOGOUT + "\n");
+			writeLine(QiCommand.LOGOUT + "\n");
 
 			// Read server's response.
 			// Expecting: "200:Ok."
 			@NotNull String blurb = "";
 			while (true)
 			{
-				final @Nullable String buffer = readQI();
+				final @Nullable String buffer = readLine();
 				if (buffer == null)
 				{
 					throw new QiProtocolException(JavaPHConstants.UNEXPECTED_END_OF_STREAM);
@@ -329,7 +329,12 @@ public final class QiConnection implements Connection
 	}	
 
 	@Override
-	public @Nullable String readQI() throws IOException
+	public synchronized @Nullable String readQI() throws IOException
+	{
+		return readLine();
+	}
+
+	private @Nullable String readLine() throws IOException
 	{
 		if (fromServer == null)
 		{
@@ -385,7 +390,12 @@ public final class QiConnection implements Connection
 	}
 
 	@Override
-	public void writeQI(final @NotNull String string) throws IOException
+	public synchronized void writeQI(final @NotNull String string) throws IOException
+	{
+		writeLine(string);
+	}
+
+	private void writeLine(final @NotNull String string) throws IOException
 	{
 		if (toServer == null)
 		{
