@@ -86,7 +86,7 @@ public final class QiServerManager implements ServerManager
         return undefined;
     }
 
-    @SuppressWarnings("UseOfObsoleteCollectionType")
+    @SuppressWarnings({"UseOfObsoleteCollectionType", "AssignmentOrReturnOfFieldWithMutableType"})
     @Override
     public @NotNull Vector<Server> getServers() {
         return servers;

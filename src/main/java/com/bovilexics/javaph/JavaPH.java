@@ -1110,6 +1110,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		frame.addWindowListener(this);
 	}
 
+	@SuppressWarnings("BooleanParameter")
 	public void findText(final @NotNull String text, final boolean caseSensitive, final boolean wrap)
 	{
 		final @NotNull Tab tab = getResultPanelSelectedTab();
@@ -1559,6 +1560,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return value.equals(equalsValue);
 	}
 
+	@SuppressWarnings("BooleanParameter")
 	public boolean propertyEquals(final @NotNull String key, final boolean defaultValue, final boolean equalsValue)
 	{
 		final @NotNull String value = properties.getProperty(key, String.valueOf(defaultValue));
@@ -1759,6 +1761,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		findDialog.setVisible(true);
 	}
 
+	@SuppressWarnings("BooleanParameter")
 	public void showLog(final boolean show)
 	{
 		final int location = resultPanel.indexOfTab(Tab.SystemLog.getLabel());
@@ -1805,6 +1808,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		statusLabel.setText(String.format(" %s", msg));
 	}
 
+	@SuppressWarnings("BooleanParameter")
 	public void showToolBar(final boolean show)
 	{
 		queryToolBar.setVisible(show);
