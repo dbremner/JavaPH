@@ -150,11 +150,6 @@ public final class ResultThread extends Thread
 		return out.toString();
 	}
 
-	private @NotNull String getCommand()
-	{
-		return command;
-	}
-
 	private synchronized @NotNull String getEpilogue()
 	{
 		switch(state)
