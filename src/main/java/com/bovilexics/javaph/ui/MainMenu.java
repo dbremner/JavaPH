@@ -94,7 +94,7 @@ public final class MainMenu extends JMenuBar
 		cutItem.setAction(new CutAction());
 		cutItem.setIcon(parent.getImageIcon(FilePaths.IMG_CUT_GIF_FILEPATH));
 		cutItem.setText(JavaPHConstants.CUT);
-		cutItem.setActionCommand("Cuts the selection and puts it on the clipboard");
+		cutItem.setActionCommand(JavaPHConstants.CUTS_THE_SELECTION_AND_PUTS_IT_ON_THE_CLIPBOARD);
 		cutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 		cutItem.setMnemonic(KeyEvent.VK_T);
 		editMenu.add(cutItem);
@@ -103,7 +103,7 @@ public final class MainMenu extends JMenuBar
 		copyItem.setAction(new CopyAction());
 		copyItem.setIcon(parent.getImageIcon(FilePaths.IMG_COPY_GIF_FILEPATH));
 		copyItem.setText(JavaPHConstants.COPY);
-		copyItem.setActionCommand("Copies the selection and puts it on the clipboard");
+		copyItem.setActionCommand(JavaPHConstants.COPIES_THE_SELECTION_AND_PUTS_IT_ON_THE_CLIPBOARD);
 		copyItem.setAccelerator(KeyStroke.getKeyStroke("ctrl C"));
 		copyItem.setMnemonic(KeyEvent.VK_C);
 		editMenu.add(copyItem);
@@ -112,7 +112,7 @@ public final class MainMenu extends JMenuBar
 		pasteItem.setAction(new PasteAction());
 		pasteItem.setIcon(parent.getImageIcon(FilePaths.IMG_PASTE_GIF_FILEPATH));
 		pasteItem.setText(JavaPHConstants.PASTE);
-		pasteItem.setActionCommand("Inserts clipboard contents");
+		pasteItem.setActionCommand(JavaPHConstants.INSERTS_CLIPBOARD_CONTENTS);
 		pasteItem.setAccelerator(KeyStroke.getKeyStroke("ctrl V"));
 		pasteItem.setMnemonic(KeyEvent.VK_P);
 		editMenu.add(pasteItem);
@@ -121,7 +121,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem findItem = getNewMenuItem();
 		findItem.setAction(new FindAction(parent, parent::showFindDialog));
-		findItem.setActionCommand("Finds the specified text in the query results");
+		findItem.setActionCommand(JavaPHConstants.FINDS_THE_SPECIFIED_TEXT_IN_THE_QUERY_RESULTS);
 		findItem.setAccelerator(KeyStroke.getKeyStroke("ctrl F"));
 		findItem.setMnemonic(KeyEvent.VK_F);
 		editMenu.add(findItem);
@@ -153,7 +153,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem exitItem = getNewMenuItem();
 		exitItem.setAction(new ExitAction(parent, () -> ((JFrame)parent.getDefaultPane().getTopLevelAncestor()).dispose()));
-		exitItem.setActionCommand(String.format(JavaPHConstants.EXIT_S, JavaPHConstants.INFO_NAME));
+		exitItem.setActionCommand(JavaPHConstants.EXIT_INFO_NAME);
 		exitItem.setAccelerator(KeyStroke.getKeyStroke("alt X"));
 		exitItem.setMnemonic(KeyEvent.VK_X);
 		fileMenu.add(exitItem);
@@ -194,11 +194,11 @@ public final class MainMenu extends JMenuBar
 
 	private @NotNull JMenu getWindowComponent()
 	{
-		final @NotNull JMenu windowMenu = new JMenu("Window");
+		final @NotNull JMenu windowMenu = new JMenu(JavaPHConstants.WINDOW);
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 
 		showLogItem.addMouseListener(mouseListener);
-		showLogItem.setActionCommand("Set visibility of system log");
+		showLogItem.setActionCommand(JavaPHConstants.SET_VISIBILITY_OF_SYSTEM_LOG);
 		showLogItem.setAccelerator(KeyStroke.getKeyStroke("ctrl L"));
 		showLogItem.setMnemonic(KeyEvent.VK_L);
 		showLogItem.setSelected(parent.propertyEquals(PROP_DISPLAY_LOG,  true, true));
@@ -218,7 +218,7 @@ public final class MainMenu extends JMenuBar
 		windowMenu.add(showLogItem);
 
 		showToolBarItem.addMouseListener(mouseListener);
-		showToolBarItem.setActionCommand("Set visibility of toolbar");
+		showToolBarItem.setActionCommand(JavaPHConstants.SET_VISIBILITY_OF_TOOLBAR);
 		showToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl T"));
 		showToolBarItem.setMnemonic(KeyEvent.VK_T);
 		showToolBarItem.setSelected(parent.propertyEquals(PROP_DISPLAY_TOOLBAR,  true, true));
@@ -238,7 +238,7 @@ public final class MainMenu extends JMenuBar
 		windowMenu.add(showToolBarItem);
 
 		rollToolBarItem.addMouseListener(mouseListener);
-		rollToolBarItem.setActionCommand("Set rollover property of toolbar");
+		rollToolBarItem.setActionCommand(JavaPHConstants.SET_ROLLOVER_PROPERTY_OF_TOOLBAR);
 		rollToolBarItem.setAccelerator(KeyStroke.getKeyStroke("ctrl R"));
 		rollToolBarItem.setMnemonic(KeyEvent.VK_R);
 		rollToolBarItem.setSelected(parent.propertyEquals(PROP_ROLL_TOOLBAR,  true, true));
@@ -263,14 +263,14 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem browserItem = getNewMenuItem();
 		browserItem.setAction(new BrowserAction(parent::showBrowserDialog));
-		browserItem.setActionCommand(String.format("Configure browser used to display %s help", JavaPHConstants.INFO_NAME));
+		browserItem.setActionCommand(JavaPHConstants.CONFIGURE_BROWSER_USED_TO_DISPLAY_INFO_NAME_HELP);
 		browserItem.setAccelerator(KeyStroke.getKeyStroke("ctrl B"));
 		browserItem.setMnemonic(KeyEvent.VK_B);
 		windowMenu.add(browserItem);
 
 		final @NotNull JMenuItem propertiesItem = getNewMenuItem();
 		propertiesItem.setAction(new PrefsAction(parent::showPropertiesDialog));
-		propertiesItem.setActionCommand(String.format("Set %s preferences", JavaPHConstants.INFO_NAME));
+		propertiesItem.setActionCommand(JavaPHConstants.SET_INFO_NAME_PREFERENCES);
 		propertiesItem.setAccelerator(KeyStroke.getKeyStroke("ctrl P"));
 		propertiesItem.setMnemonic(KeyEvent.VK_P);
 		windowMenu.add(propertiesItem);

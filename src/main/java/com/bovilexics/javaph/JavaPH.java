@@ -124,8 +124,6 @@ import static com.bovilexics.javaph.JavaPHConstants.APP_MIN_WIDTH;
 import static com.bovilexics.javaph.JavaPHConstants.COMMA_SEPARATOR;
 import static com.bovilexics.javaph.JavaPHConstants.CUSTOM_SEPARATOR;
 import static com.bovilexics.javaph.JavaPHConstants.FIELD_LABEL_PREFIX;
-import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_PREFIX;
-import static com.bovilexics.javaph.JavaPHConstants.PORT_LABEL_SUFFIX;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_HEIGHT;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_WIDTH;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_X_POSITION;
@@ -144,7 +142,6 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_COMMAND;
 import static com.bovilexics.javaph.JavaPHConstants.QUERY_LABEL_PREFIX;
 import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_PREFIX;
-import static com.bovilexics.javaph.JavaPHConstants.SERVER_LABEL_SUFFIX;
 import static com.bovilexics.javaph.JavaPHConstants.SPLASH_DISPLAY;
 import static com.bovilexics.javaph.JavaPHConstants.TAB_SEPARATOR;
 
@@ -394,7 +391,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 						}
 						else
 						{
-							log("Either no fields available or no fields selected, returning default fields instead");
+							log(JavaPHConstants.EITHER_NO_FIELDS_AVAILABLE_OR_NO_FIELDS_SELECTED_RETURNING_DEFAULT_FIELDS_INSTEAD);
 						}
 						break;
 					}
@@ -416,7 +413,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			final @NotNull JPanel queryButtonPanel = new JPanel(new FlowLayout());
 
 			queryButton.setMnemonic(KeyEvent.VK_Q);
-			queryButton.setToolTipText("Click this to start running the query.");
+			queryButton.setToolTipText(JavaPHConstants.CLICK_THIS_TO_START_RUNNING_THE_QUERY);
 			queryButton.addActionListener(ae ->
 			{
 				if (queryComboBox.isEnabled())
@@ -600,9 +597,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				final int portInt = server.getPort();
 
-				serverStatusLabel.setText(String.format("%s%s%s", SERVER_LABEL_PREFIX, serverText, SERVER_LABEL_SUFFIX));
+				serverStatusLabel.setText(String.format(JavaPHConstants.SERVER_S, serverText));
 				final @NotNull String portText = String.valueOf(portInt);
-				portStatusLabel.setText(String.format("%s%s%s", PORT_LABEL_PREFIX, portText, PORT_LABEL_SUFFIX));
+				portStatusLabel.setText(String.format(JavaPHConstants.PORT_S, portText));
 
 				connection = connectionFactory.create(serverText, portInt);
 
@@ -764,8 +761,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		private final @NotNull JButton colListSelectAllButton = new JButton(JavaPHConstants.SELECT_ALL);
 		private final @NotNull JButton colListSelectNoneButton = new JButton(JavaPHConstants.DESELECT_ALL);
-		private final @NotNull JButton resultTableColButton = new JButton("Show/Hide Columns");
-		private final @NotNull JButton resultTableColWidthButton = new JButton("Reset Column Widths");
+		private final @NotNull JButton resultTableColButton = new JButton(JavaPHConstants.SHOW_HIDE_COLUMNS);
+		private final @NotNull JButton resultTableColWidthButton = new JButton(JavaPHConstants.RESET_COLUMN_WIDTHS);
 		private final @NotNull JCheckBox logWrapCheckBox = new JCheckBox(JavaPHConstants.LINE_WRAP);
 		private final @NotNull JCheckBox resultWrapCheckBox = new JCheckBox(JavaPHConstants.LINE_WRAP);
 
@@ -820,7 +817,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			resultTableColButton.addActionListener(ae ->
 			{
 				final @NotNull int[] prevSelections = colList.getSelectedIndices();
-				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), colListPanel, "Column List for Result Table", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				final int option = JOptionPane.showConfirmDialog(getDefaultPane(), colListPanel, JavaPHConstants.COLUMN_LIST_FOR_RESULT_TABLE, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (option != JOptionPane.OK_OPTION)
 				{
@@ -926,7 +923,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			colListControlPanel.add(new JScrollPane(colList), BorderLayout.CENTER);
 			colListControlPanel.add(colListButtonPanel, BorderLayout.SOUTH);
 
-			colListPanel.add(new JLabel("Select the columns to be displayed"), BorderLayout.NORTH);
+			colListPanel.add(new JLabel(JavaPHConstants.SELECT_THE_COLUMNS_TO_BE_DISPLAYED), BorderLayout.NORTH);
 			colListPanel.add(colListControlPanel, BorderLayout.CENTER);
 		}
 
@@ -950,12 +947,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				logText.setWrapStyleWord(logWrapCheckBox.isSelected());
 			});
 
-			final @NotNull JButton logClearButton = new JButton("Clear Log");
+			final @NotNull JButton logClearButton = new JButton(JavaPHConstants.CLEAR_LOG);
 			logClearButton.setMnemonic(KeyEvent.VK_C);
 			logClearButton.addActionListener(ae ->
 			{
 				logText.setText("");
-				log("Log cleared");
+				log(JavaPHConstants.LOG_CLEARED);
 			});
 
 			final @NotNull JPanel logControlPanel = new JPanel();
@@ -1082,7 +1079,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		defaultPane.setJMenuBar(new MainMenu(this));
 
-		log(String.format("%s initialized", JavaPHConstants.INFO_NAME));
+		log(JavaPHConstants.INFO_NAME_INITIALIZED);
 		log(JavaPHConstants.INITIALIZING_DEFAULT_SERVER);
 
 		serverComboBox.setSelectedItem(serverManager.getDefaultServer());
@@ -1586,7 +1583,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
 		if (!value.isPresent())
 		{
-			errLogger.log(String.format("No look and feel specified, using system default (%s)", lookAndFeel));
+			errLogger.log(String.format(JavaPHConstants.NO_LOOK_AND_FEEL_SPECIFIED_USING_SYSTEM_DEFAULT_S, lookAndFeel));
 		}
 
 		restoreLookAndFeel(lookAndFeel, component);

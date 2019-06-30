@@ -34,10 +34,10 @@ import java.io.IOException;
 public final class HelpAction extends AbstractAction
 {
 	private final @NotNull JavaPH parent;
-	
+
 	public HelpAction(final @NotNull JavaPH javaph)
 	{
-		super("Help Contents", javaph.getImageIcon("img/help.gif"));
+		super(JavaPHConstants.HELP_CONTENTS, javaph.getImageIcon("img/help.gif"));
 		
 		parent = javaph;
 		
@@ -49,7 +49,7 @@ public final class HelpAction extends AbstractAction
 	{
 		try
 		{
-			Browser.displayURL(parent.getURL(FilePaths.HELP_FILE_PATH).toString(), String.format(JavaPHConstants.S_HELP, JavaPHConstants.INFO_NAME));
+			Browser.displayURL(parent.getURL(FilePaths.HELP_FILE_PATH).toString(), JavaPHConstants.INFO_NAME_HELP);
 		}
 		catch (final @NotNull IOException ex)
 		{

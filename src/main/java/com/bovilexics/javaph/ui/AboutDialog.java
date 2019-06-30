@@ -157,7 +157,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.weightx = 1.0;
-		infoPanel.add(new HyperLinkLabel(parent, String.format("%s Home Page", JavaPHConstants.INFO_NAME), INFO_HOME), gbc);
+		infoPanel.add(new HyperLinkLabel(parent, JavaPHConstants.INFO_NAME_HOME_PAGE, INFO_HOME), gbc);
 
 		gbc.weightx = 0;
 		infoPanel.add(Box.createVerticalStrut(vertStrut * 10), gbc);

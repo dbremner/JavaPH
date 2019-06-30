@@ -121,7 +121,7 @@ final class LookAndFeelMenu extends JMenu
 
 	LookAndFeelMenu(final @NotNull JavaPH javaph)
 	{
-		super("Look and Feel");
+		super(JavaPHConstants.LOOK_AND_FEEL);
 		
 		parent = javaph;
 
@@ -133,7 +133,7 @@ final class LookAndFeelMenu extends JMenu
 		final @NotNull ActionListener lookAndFeelItemListener = new LookAndFeelItemListener();
 		final @NotNull ActionListener lookAndFeelRadioListener = new LookAndFeelRadioListener();
 
-		setActionCommand("Change look and feel");
+		setActionCommand(JavaPHConstants.CHANGE_LOOK_AND_FEEL);
 		setMnemonic(KeyEvent.VK_L);
 
 		if (macSupported)

@@ -44,6 +44,6 @@ public final class NewAction extends AbstractAction
 	{
 		parent.clearPreviousQuery();
 		// Log the action
-		parent.log("New query requested, results cleared");
+		parent.log(JavaPHConstants.NEW_QUERY_REQUESTED_RESULTS_CLEARED);
 	}
 }

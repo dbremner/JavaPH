@@ -42,7 +42,6 @@ import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
 
-import static com.bovilexics.javaph.JavaPHConstants.INFO_NAME;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_SERVER;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_SPLASH;
@@ -67,13 +66,13 @@ public final class PropertiesDialog extends JavaPHDialog
 	private final @NotNull JCheckBox displaySplashCheckBox = new JCheckBox(JavaPHConstants.DISPLAY_SPLASH_SCREEN);
 	private final @NotNull JCheckBox displayToolbarCheckBox = new JCheckBox(JavaPHConstants.DISPLAY_TOOLBAR);
 	private final @NotNull JCheckBox rollToolbarCheckBox = new JCheckBox(JavaPHConstants.ROLLOVER_TOOLBAR);
-	private final @NotNull JCheckBox savePositionCheckBox = new JCheckBox("Save Window Size / Position");
+	private final @NotNull JCheckBox savePositionCheckBox = new JCheckBox(JavaPHConstants.SAVE_WINDOW_SIZE_POSITION);
 
 	private final @NotNull JComboBox<Server> defaultServerComboBox;
 
-	private final @NotNull JRadioButton loadFieldsManual = new JRadioButton("Load Fields Manually");
-	private final @NotNull JRadioButton loadFieldsSelected = new JRadioButton("Load Fields on Select");
-	private final @NotNull JRadioButton loadFieldsStartup = new JRadioButton("Load Fields on Startup  ( Slow! )");
+	private final @NotNull JRadioButton loadFieldsManual = new JRadioButton(JavaPHConstants.LOAD_FIELDS_MANUALLY);
+	private final @NotNull JRadioButton loadFieldsSelected = new JRadioButton(JavaPHConstants.LOAD_FIELDS_ON_SELECT);
+	private final @NotNull JRadioButton loadFieldsStartup = new JRadioButton(JavaPHConstants.LOAD_FIELDS_ON_STARTUP_SLOW);
 
 	private final @NotNull JSlider runtimeSlider = new JSlider(QueryRuntime.MIN.getValue(), QueryRuntime.MAX.getValue());
 	
@@ -83,7 +82,7 @@ public final class PropertiesDialog extends JavaPHDialog
 
 	public PropertiesDialog(final @NotNull JavaPH javaph)
 	{
-		super(javaph, String.format("%s Properties", INFO_NAME));
+		super(javaph, JavaPHConstants.INFO_NAME_PROPERTIES);
 
 		parent = javaph;
 		serverManager = parent.getServerManager();
@@ -143,7 +142,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	private @NotNull JPanel getQueryPanel()
 	{
 		final @NotNull JPanel queryPanel = new JPanel();
-		queryPanel.setBorder(BorderFactory.createTitledBorder(" Query Runtime (Seconds) "));
+		queryPanel.setBorder(BorderFactory.createTitledBorder(JavaPHConstants.QUERY_RUNTIME_SECONDS));
 		queryPanel.setLayout(new BorderLayout());
 		
 		final @NotNull JPanel runtimePanel = new JPanel();
@@ -181,13 +180,13 @@ public final class PropertiesDialog extends JavaPHDialog
 	private @NotNull JPanel getServerPanel()
 	{
 		final @NotNull JPanel serverPanel = new JPanel();
-		serverPanel.setBorder(BorderFactory.createTitledBorder(" Server Options "));
+		serverPanel.setBorder(BorderFactory.createTitledBorder(JavaPHConstants.SERVER_OPTIONS));
 		serverPanel.setLayout(new BorderLayout());
 
 		final @NotNull JPanel defaultServerPanel = new JPanel();
 		defaultServerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		final @NotNull JLabel defaultServerLabel = new JLabel("Default Server : ");
+		final @NotNull JLabel defaultServerLabel = new JLabel(JavaPHConstants.DEFAULT_SERVER);
 		defaultServerLabel.setAlignmentY(JLabel.CENTER_ALIGNMENT);
 
 		defaultServerComboBox.setRenderer(new ServerRenderer(parent));
@@ -195,11 +194,11 @@ public final class PropertiesDialog extends JavaPHDialog
 		defaultServerPanel.add(defaultServerLabel);
 		defaultServerPanel.add(defaultServerComboBox);
 
-		loadFieldsManual.setToolTipText("Load fields for servers manually using the button here");
+		loadFieldsManual.setToolTipText(JavaPHConstants.LOAD_FIELDS_FOR_SERVERS_MANUALLY_USING_THE_BUTTON_HERE);
 
-		loadFieldsSelected.setToolTipText("Load fields for servers only when selected from the server list");
+		loadFieldsSelected.setToolTipText(JavaPHConstants.LOAD_FIELDS_FOR_SERVERS_ONLY_WHEN_SELECTED_FROM_THE_SERVER_LIST);
 
-		loadFieldsStartup.setToolTipText("Load fields for all servers when starting the application");
+		loadFieldsStartup.setToolTipText(JavaPHConstants.LOAD_FIELDS_FOR_ALL_SERVERS_WHEN_STARTING_THE_APPLICATION);
 
 		final @NotNull ButtonGroup loadFieldsGroup = new ButtonGroup();
 		loadFieldsGroup.add(loadFieldsManual);
@@ -254,7 +253,7 @@ public final class PropertiesDialog extends JavaPHDialog
 	private @NotNull JPanel getStartupPanel()
 	{	
 		final @NotNull JPanel startupPanel = new JPanel();
-		startupPanel.setBorder(BorderFactory.createTitledBorder(" Startup Options "));
+		startupPanel.setBorder(BorderFactory.createTitledBorder(JavaPHConstants.STARTUP_OPTIONS));
 
 		final @NotNull LayoutManager gbl = new GridBagLayout();
 		final @NotNull GridBagConstraints gbc = new GridBagConstraints();
