@@ -29,11 +29,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class TextFileChooser extends JFileChooser
 {
+
+	private static final @NotNull String CSV = "csv";
+	private static final @NotNull String TXT = "txt";
+	private static final @NotNull String DESCRIPTION = "Text Files(*.txt, *.csv)";
+
 	public TextFileChooser()
 	{
-		final @NotNull FileNameExtensionFilter filter = new FileNameExtensionFilter(
-				"Text Files(*.txt, *.csv)",
-				"csv", "txt") ;
+		final @NotNull FileNameExtensionFilter filter = new FileNameExtensionFilter(DESCRIPTION, CSV, TXT) ;
 		setFileFilter(filter);
 	}
 
