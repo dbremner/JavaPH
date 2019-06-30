@@ -332,16 +332,19 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		@Contract(pure = true)
 		private boolean isQueryCanceled()
 		{
+			assert queryProgressMonitor != null;
 			return queryProgressMonitor.isCanceled();
 		}
 
 		private void setQueryProgress(final int progress)
 		{
+			assert queryProgressMonitor != null;
 			queryProgressMonitor.setProgress(progress);
 		}
 
 		private void closeQueryProgressMonitor()
 		{
+			assert queryProgressMonitor != null;
 			queryProgressMonitor.close();
 		}
 
