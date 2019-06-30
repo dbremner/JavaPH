@@ -29,9 +29,9 @@ import java.util.List;
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
- * 
+ * TODO change type to Strings
  */
-public final class QueryComboBoxModel extends AbstractListModel implements MutableComboBoxModel, Serializable
+public final class QueryComboBoxModel extends AbstractListModel<Object> implements MutableComboBoxModel<Object>, Serializable
 {
 	private @Nullable Object selectedObject;
 
