@@ -214,7 +214,7 @@ public final class QiServer implements Server
 			}
 		}
 
-		//noinspection UnusedAssignment,ReuseOfLocalVariable,ReuseOfLocalVariable
+		//noinspection UnusedAssignment,ReuseOfLocalVariable
 		resultThread = null;
 	}
 
