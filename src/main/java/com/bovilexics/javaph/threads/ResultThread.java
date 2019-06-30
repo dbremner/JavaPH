@@ -117,7 +117,7 @@ public final class ResultThread extends Thread
 	 * e.g. fieldValue(0, email, false) will return the contents of the "email"
 	 *      field of the first record in our result with all newlines intact.
 	 */
-	public synchronized @Nullable String fieldValue(final int recordIndex, final @NotNull String field, final boolean replaceNewlines)
+	private synchronized @Nullable String fieldValue(final int recordIndex, final @NotNull String field, final boolean replaceNewlines)
 	{
 
 		final @NotNull StringBuilder out = new StringBuilder();
@@ -150,12 +150,12 @@ public final class ResultThread extends Thread
 		return out.toString();
 	}
 
-	public @NotNull String getCommand()
+	private @NotNull String getCommand()
 	{
 		return command;
 	}
 
-	public synchronized @NotNull String getEpilogue()
+	private synchronized @NotNull String getEpilogue()
 	{
 		switch(state)
 		{
@@ -179,7 +179,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public @NotNull String getErrorString()
+	private @NotNull String getErrorString()
 	{
 		switch (state)
 		{
@@ -203,7 +203,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public synchronized int getFieldCount()
+	private synchronized int getFieldCount()
 	{
 		switch (state)
 		{
@@ -251,7 +251,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public @NotNull String getPrologue()
+	private @NotNull String getPrologue()
 	{
 		switch (state)
 		{
@@ -404,7 +404,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public synchronized boolean isValidQiResponse()
+	private synchronized boolean isValidQiResponse()
 	{
 		return !error && !halted && (state == ResultThreadState.Ok || state == ResultThreadState.Error);
 	}
