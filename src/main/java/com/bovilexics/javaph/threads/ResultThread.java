@@ -222,7 +222,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public synchronized @NotNull Collection<Object> getHeaders()
+	private @NotNull Collection<Object> getHeaders()
 	{
 		switch (state)
 		{
@@ -328,20 +328,24 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public @NotNull String getRawResult()
+	synchronized @NotNull ResultThreadResult getResult()
+	{
+		assert state == ResultThreadState.Ok;
+		final @NotNull String rawResultLocal = getRawResult();
+		final @NotNull Collection<Object> headersLocal = getHeaders();
+		final @NotNull Object[][] valuesLocal = getValues();
+
+		final ResultThreadResult result = new ResultThreadResult(rawResultLocal, headersLocal, valuesLocal);
+		return result;
+	}
+
+	private @NotNull String getRawResult()
 	{
 		switch (state)
 		{
 			case Ok:
 			{
-				synchronized (this)
-				{
-					if (rawResult.length() > 0)
-					{
-						return rawResult.toString();
-					}
-				}
-				return "";
+				return rawResult.toString();
 			}
 			case Error:
 			case Unknown:
@@ -359,16 +363,13 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	public @NotNull Object[][] getValues()
+	private @NotNull Object[][] getValues()
 	{
 		switch (state)
 		{
 			case Ok:
 			{
-				synchronized (this)
-				{
-					return values.clone();
-				}
+				return values.clone();
 			}
 			case InProgress:
 			case Starting:
