@@ -6,6 +6,7 @@ import java.io.PrintStream;
 
 public class PrintStreamLogger implements Logger
 {
+    @SuppressWarnings("WeakerAccess")
     protected final @NotNull PrintStream printStream;
 
     PrintStreamLogger(final @NotNull PrintStream printStream)
