@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author Robert Fernandes robert@bovilexics.com
  */
+@SuppressWarnings("HardCodedStringLiteral")
 public enum JavaPHConstants
 {
 	;

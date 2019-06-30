@@ -2,6 +2,7 @@ package com.bovilexics.javaph;
 
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("HardCodedStringLiteral")
 public class FilePaths
 {
     public static final @NotNull String HELP_FILE_PATH = "help/index.html";
