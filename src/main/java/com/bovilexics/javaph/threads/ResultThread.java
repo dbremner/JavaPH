@@ -59,6 +59,7 @@ import java.util.StringTokenizer;
  */
 public final class ResultThread extends Thread
 {
+	@NonNls
 	private static final @NotNull String DUPLICATE_FIELD_SUFFIX = ".1";
 	// TODO Should these fields be volatile?
 
@@ -711,7 +712,7 @@ public final class ResultThread extends Thread
 		values = new Object[records.size()][headers.size()];
 
 		int xCoordinate = -1;
-		@NotNull String lastField = JavaPHConstants.UNKNOWN;
+		@NonNls @NotNull String lastField = JavaPHConstants.UNKNOWN;
 
 		for (int i = 0; i < records.size(); i++)
 		{

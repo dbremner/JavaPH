@@ -20,6 +20,7 @@ import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,6 +60,7 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_SAVE_POSITION;
 public final class PropertiesDialog extends JavaPHDialog
 {
 	private static final double WEIGHTX = 0.5;
+	@NonNls
 	private static final @NotNull String TRUE = "true";
 	private final @NotNull JavaPH parent;
 
