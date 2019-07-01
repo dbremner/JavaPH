@@ -620,15 +620,7 @@ public final class ResultThread extends Thread
 		}
 
 		// Send query.
-		try
-		{
-			connection.writeQI(commandLine + "\n");
-		}
-		catch (final @NotNull IOException e)
-		{
-			error = true;
-			showStatus(String.format(JavaPHConstants.ERROR_S, e));
-		}
+		connection.writeQI(commandLine + "\n");
 
 		// Read the server's response, line by line.
 		rawResult = new StringBuilder();
