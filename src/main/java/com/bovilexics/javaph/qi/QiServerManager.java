@@ -175,7 +175,7 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void saveServers()
+    public void saveServers() throws IOException
     {
         try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE)))
         {
@@ -196,11 +196,6 @@ public final class QiServerManager implements ServerManager
                 writer.write(toWrite.toString());
                 writer.flush();
             }
-        }
-        catch (final @NotNull IOException e)
-        {
-            logger.log(String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_WRITE_FILE_S, SERVER_FILE));
-            logger.printStackTrace(e);
         }
     }
 

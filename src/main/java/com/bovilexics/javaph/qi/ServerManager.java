@@ -3,6 +3,7 @@ package com.bovilexics.javaph.qi;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Vector;
 
@@ -21,7 +22,7 @@ public interface ServerManager
 
     void removeServer(@NotNull Server server);
 
-    void saveServers();
+    void saveServers() throws IOException;
 
     void setDefaultServer(@NotNull String server);
 
