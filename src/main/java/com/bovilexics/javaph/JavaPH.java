@@ -1338,15 +1338,17 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return defaultProperties.getProperty(key);
 	}
 
-	public @NotNull String getPropertyDefault(final @NotNull String key, final @NotNull String defaultValue)
-	{
-		return defaultProperties.getProperty(key, defaultValue);
-	}
-
 	@Contract(pure = true)
 	public int getQueryRuntime()
 	{
 		return queryRuntime;
+	}
+
+	public int getDefaultQueryRuntimeValue()
+	{
+		final int minValue = QueryRuntime.MIN.getValue();
+		final @NotNull Optional<String> result = defaultProperties.getProperty(PROP_QUERY_RUNTIME);
+		return result.map(Integer::valueOf).orElse(minValue);
 	}
 
 	public @NotNull QueryComboBox getQueryComboBox()
@@ -1444,7 +1446,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	}
 
 	@Override
-	public @NotNull ImageIcon getImageIcon(@NonNls final @NotNull String location)
+	public @NotNull ImageIcon getImageIcon(final @NotNull String location)
 	{
 		return iconProvider.getImageIcon(location);
 	}
@@ -1556,7 +1558,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 	public boolean propertyDefaultEquals(final @NotNull String key, final @NotNull String defaultValue, final @NotNull String equalsValue)
 	{
-		final @NotNull String value = getPropertyDefault(key, defaultValue);
+		final @NotNull String value = defaultProperties.getProperty(key, defaultValue);
 		return value.equals(equalsValue);
 	}
 
