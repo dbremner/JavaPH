@@ -29,9 +29,11 @@ import java.awt.Cursor;
  */
 final class HyperLinkLabel extends JLabel
 {
+	private static final @NotNull String HTML_S_HTML = "<html><font name='Dialog' color='blue'><u>%s</u></font></html>";
+
 	HyperLinkLabel(final @NotNull JavaPH javaph, final @NotNull String text, final @NotNull String url)
 	{
-		super(String.format("<html><font name='Dialog' color='blue'><u>%s</u></font></html>", text));
+		super(String.format(HTML_S_HTML, text));
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addMouseListener(new HyperLinkLabelListener(url, text, javaph));
 	}

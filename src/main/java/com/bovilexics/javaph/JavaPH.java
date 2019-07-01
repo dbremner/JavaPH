@@ -1134,7 +1134,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// if there aren't any rows or columns then we aren't going to find anything
 		if (table.getColumnCount() <= 0 || table.getRowCount() <= 0)
 		{
-			log("Info: Cannot perform a search on an empty table");
+			log(JavaPHConstants.INFO_CANNOT_PERFORM_A_SEARCH_ON_AN_EMPTY_TABLE);
 			return;
 		}
 
@@ -1152,7 +1152,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 			if (startRow > table.getRowCount() - 1)
 			{
-				log("Info: Cannot search past the last cell of a table");
+				log(JavaPHConstants.INFO_CANNOT_SEARCH_PAST_THE_LAST_CELL_OF_A_TABLE);
 
 				if (wrap)
 				{
@@ -1617,7 +1617,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			// what was specified in the properties file
 			// then just continue and set system default
 			errLogger.printStackTrace(e);
-			errLogger.log("Exception occurred when trying to set custom look and feel");
+			errLogger.log(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_CUSTOM_LOOK_AND_FEEL);
 		}
 
 		try
