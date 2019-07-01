@@ -1018,7 +1018,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH(final @NotNull List<Command> commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties)
+	public JavaPH(final @NotNull List<Command> commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties) throws IOException
 	{
 		this.iconProvider = iconProvider;
 		this.serverManager = serverManager;
@@ -1456,25 +1456,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 	}
 
-	private void initProperties()
+	private void initProperties() throws IOException
 	{
 		// First load default properties - prints exception and exits if not found
-		try
-		{
-			loadDefaultProperties();
-		}
-		catch (final @NotNull FileNotFoundException e)
-		{
-			errLogger.printStackTrace(e);
-			errLogger.log(String.format(JavaPHConstants.FILE_NOT_FOUND_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, PROP_FILE_DEF));
-			System.exit(1);
-		}
-		catch (final @NotNull IOException e)
-		{
-			errLogger.printStackTrace(e);
-			errLogger.log(String.format(JavaPHConstants.IOEXCEPTION_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, PROP_FILE_DEF));
-			System.exit(1);
-		}
+		loadDefaultProperties();
 
 		// Next load custom properties, overrides defaults - ignores if not found
 		try

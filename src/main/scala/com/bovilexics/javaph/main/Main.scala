@@ -1,7 +1,10 @@
 package com.bovilexics.javaph.main
 
-import com.bovilexics.javaph.JavaPH
+import java.io.{FileNotFoundException, IOException}
+
+import com.bovilexics.javaph.{JavaPH, JavaPHConstants}
 import com.bovilexics.javaph.configuration.PropertyCollectionImpl
+import com.bovilexics.javaph.logging.ErrLoggerImpl
 import com.bovilexics.javaph.qi.{CommandImpl, ConnectionFactory, ConnectionFactoryImpl, FieldFactory, FieldFactoryImpl, LineFactory, LineFactoryImpl, QiServerManager, ServerFactory, ServerFactoryImpl, ServerManager}
 import com.bovilexics.javaph.ui.{IconProvider, IconProviderImpl}
 
@@ -16,9 +19,24 @@ object Main
     val serverFactory : ServerFactory = new ServerFactoryImpl(factory, lineFactory)
     val connectionFactory : ConnectionFactory = new ConnectionFactoryImpl(serverFactory, lineFactory)
     val serverManager: ServerManager = new QiServerManager(connectionFactory, serverFactory)
+    val errLogger = new ErrLoggerImpl
     val iconProvider : IconProvider = new IconProviderImpl
     val commands = CommandImpl.commands
-    val javaPh = new JavaPH(commands, iconProvider, serverManager, defaultProperties, properties)
-    javaPh.getQueryComboBox.getEditor.getEditorComponent.requestFocus()
+    try
+    {
+      val javaPh = new JavaPH(commands, iconProvider, serverManager, defaultProperties, properties)
+      javaPh.getQueryComboBox.getEditor.getEditorComponent.requestFocus()
+    }
+    catch
+    {
+      case e: FileNotFoundException =>
+        errLogger.printStackTrace(e)
+        errLogger.log(String.format(JavaPHConstants.FILE_NOT_FOUND_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, JavaPHConstants.PROP_FILE_DEF))
+        System.exit(1)
+      case e: IOException =>
+        errLogger.printStackTrace(e)
+        errLogger.log(String.format(JavaPHConstants.IOEXCEPTION_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, JavaPHConstants.PROP_FILE_DEF))
+        System.exit(1)
+    }
   }
 }
