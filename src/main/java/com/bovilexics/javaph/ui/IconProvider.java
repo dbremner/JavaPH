@@ -9,5 +9,5 @@ public interface IconProvider
 {
     @NotNull String getURL(@NotNull String location);
 
-    @NotNull ImageIcon getImageIcon(@NonNls @NotNull String location);
+    @NotNull ImageIcon getImageIcon(final @NonNls @NotNull String location);
 }
