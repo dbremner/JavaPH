@@ -25,7 +25,6 @@ import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,7 +44,7 @@ public final class QiServer implements Server
 	private final @NotNull String server;
 	private final int port;
 	private final @NotNull String expandedName;
-	private final @NotNull List<Field> fields = new ArrayList<>();
+	private @NotNull ImmutableList<Field> fields = ImmutableList.of();
 	private @NotNull FieldState fieldState = FieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
@@ -59,11 +58,10 @@ public final class QiServer implements Server
 		expandedName = String.format(Locale.US, "%s (%s:%d)", name, server, port);
 	}
 
-	private void convertRecordsToFields(final @NotNull List<List<Line>> records)
+	private @NotNull ImmutableList<Field> convertRecordsToFields(final @NotNull List<List<Line>> records)
 	{
-		fields.clear();
-
 		assert records.size() % 2 == 0;
+		final @NotNull ImmutableList.Builder<Field> builder = new ImmutableList.Builder<>();
 		for (final @NotNull List<Line> record : records)
 		{
 			// record should contain pairs of field property/description lines
@@ -88,7 +86,7 @@ public final class QiServer implements Server
 					try
 					{
 						final @NotNull Field field = factory.create(propsField, propsValue, descValue);
-						fields.add(field);
+						builder.add(field);
 					}
 					catch (final @NotNull QiProtocolException e)
 					{
@@ -110,6 +108,7 @@ public final class QiServer implements Server
 				}
 			}
 		}
+		return builder.build();
 	}
 	
 	@Override
@@ -121,8 +120,7 @@ public final class QiServer implements Server
 	@Override
 	public @NotNull List<Field> getFields()
 	{
-		final @NotNull List<Field> results = ImmutableList.copyOf(fields);
-		return results;
+		return fields;
 	}
 
 	@Override
@@ -199,7 +197,7 @@ public final class QiServer implements Server
 		}
 		else
 		{
-			convertRecordsToFields(resultThread.getRecords());
+			fields = convertRecordsToFields(resultThread.getRecords());
 			// TODO this is vulgar
 			// convertRecordsToFields assigns fieldState
 			// so we test for failure before reassigning it
