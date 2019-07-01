@@ -246,4 +246,5 @@ public enum JavaPHConstants
     public static final @NotNull String INFO_CANNOT_PERFORM_A_SEARCH_ON_AN_EMPTY_TABLE = "Info: Cannot perform a search on an empty table";
 	public static final @NotNull String INFO_CANNOT_SEARCH_PAST_THE_LAST_CELL_OF_A_TABLE = "Info: Cannot search past the last cell of a table";
 	public static final @NotNull String EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_CUSTOM_LOOK_AND_FEEL = "Exception occurred when trying to set custom look and feel";
+    public static final @NotNull String BLANK_HOST_IS_NOT_PERMITTED = "Blank host is not permitted.";
 }

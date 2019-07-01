@@ -69,6 +69,10 @@ public final class QiConnection implements Connection
 			final @NotNull LineFactory lineFactory)
 	{
 		this.expandedName = expandedName;
+		if (host.isEmpty())
+		{
+			throw new IllegalArgumentException(JavaPHConstants.BLANK_HOST_IS_NOT_PERMITTED);
+		}
 		this.host = host;
 		this.port = port;
 		this.lineFactory = lineFactory;
@@ -83,10 +87,6 @@ public final class QiConnection implements Connection
 	@Override
 	public synchronized void connect() throws IOException
 	{
-		if (host.isEmpty()) {
-			throw new IOException("No host specified, cannot connect");
-		}
-
 		socket = new Socket();
 		// Timeout after 10 seconds
 		final @NotNull SocketAddress socketAddress = new InetSocketAddress(host, port);
