@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.ui;
 
+import com.apple.laf.AquaLookAndFeel;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
@@ -35,8 +36,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 
-//import com.sun.java.swing.plaf.mac.MacLookAndFeel;
-
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
@@ -44,12 +43,12 @@ import java.awt.event.MouseListener;
  */
 final class LookAndFeelMenu extends JMenu
 {
-	private static final @NotNull String MAC_LOOK_AND_FEEL = "com.sun.java.swing.plaf.mac.MacLookAndFeel";
+	private static final @NotNull String MAC_LOOK_AND_FEEL = "com.apple.laf.AquaLookAndFeel";
 	private static final @NotNull String METAL_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
 	private static final @NotNull String MOTIF_LOOK_AND_FEEL = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
 	private static final @NotNull String WINDOWS_LOOK_AND_FEEL = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 
-	private boolean macSupported; //= new MacLookAndFeel().isSupportedLookAndFeel();
+	private final boolean macSupported = new AquaLookAndFeel().isSupportedLookAndFeel();
 	private final boolean metalSupported = new MetalLookAndFeel().isSupportedLookAndFeel();
 	private final boolean motifSupported = new MotifLookAndFeel().isSupportedLookAndFeel();
 	private final boolean windowsSupported = new WindowsLookAndFeel().isSupportedLookAndFeel();
