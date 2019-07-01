@@ -51,7 +51,15 @@ public final class QiServer implements Server
 	public QiServer(final @NotNull FieldFactory factory, final @NotNull LineFactory lineFactory, final @NotNull String name, final @NotNull String server, final int port)
 	{
 		this.lineFactory = lineFactory;
+		if (name.isEmpty())
+		{
+			throw new IllegalArgumentException(JavaPHConstants.BLANK_NAME_IS_NOT_PERMITTED);
+		}
 		this.name = name;
+		if (server.isEmpty())
+		{
+			throw new IllegalArgumentException(JavaPHConstants.BLANK_SERVER_IS_NOT_PERMITTED);
+		}
 		this.server = server;
 		this.port = port;
 		this.factory = factory;
