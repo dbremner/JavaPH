@@ -70,10 +70,10 @@ public final class QiServer implements Server
 				final Line propsLine = record.get(j);
 				final Line descLine = record.get(j + 1);
 
-				final @NotNull String propsField = propsLine.getTrimmedField();
-				final @NotNull String propsValue = propsLine.getTrimmedValue();
-				final @NotNull String descField = descLine.getTrimmedField();
-				final @NotNull String descValue = descLine.getTrimmedValue();
+				final @NotNull String propsField = propsLine.getField();
+				final @NotNull String propsValue = propsLine.getValue();
+				final @NotNull String descField = descLine.getField();
+				final @NotNull String descValue = descLine.getValue();
 
 				if (propsField.equals(descField))
 				{

@@ -131,7 +131,7 @@ public final class ResultThread extends Thread
 		for (final @NotNull Line line : records)
 		{
 			// Skip empty and encrypted fields.
-			if ((!gotField && !line.getTrimmedField().equals(field)) || line.getCode() != -QiAPI.LR_OK || line.getTrimmedValue().isEmpty())
+			if ((!gotField && !line.getField().equals(field)) || line.getCode() != -QiAPI.LR_OK || line.getValue().isEmpty())
 			{
 				continue;
 			}
@@ -139,12 +139,12 @@ public final class ResultThread extends Thread
 			gotField = true;
 
 			// We're done.
-			if (!line.getTrimmedField().equals(field) && !line.getTrimmedField().isEmpty())
+			if (!line.getField().equals(field) && !line.getField().isEmpty())
 			{
 				break;
 			}
 
-			out.append(line.getTrimmedValue());
+			out.append(line.getValue());
 			out.append(replaceNewlines ? "\n" : " ");
 		}
 		return out.toString();
@@ -571,7 +571,7 @@ public final class ResultThread extends Thread
 		{
 			for (final @NotNull Line line : currentQiLine)
 			{
-				@NotNull String field = line.getTrimmedField();
+				@NotNull String field = line.getField();
 
 				if (field.isEmpty())
 				{
@@ -719,7 +719,7 @@ public final class ResultThread extends Thread
 
 			for (final @NotNull Line line : list)
 			{
-				@NotNull String field = line.getTrimmedField();
+				@NotNull String field = line.getField();
 
 				if (field.isEmpty())
 				{
@@ -739,7 +739,7 @@ public final class ResultThread extends Thread
 
 				if (found)
 				{
-					results[yCoordinate][xCoordinate] = line.getTrimmedValue();
+					results[yCoordinate][xCoordinate] = line.getValue();
 				}
 				else
 				{
@@ -775,9 +775,9 @@ public final class ResultThread extends Thread
 				final Line propsQiLine = list.get(j);
 				final Line descQiLine = list.get(j + 1);
 
-				final @NotNull String field = propsQiLine.getTrimmedField();
-				final @NotNull String props = propsQiLine.getTrimmedValue();
-				final @NotNull String desc = descQiLine.getTrimmedValue();
+				final @NotNull String field = propsQiLine.getField();
+				final @NotNull String props = propsQiLine.getValue();
+				final @NotNull String desc = descQiLine.getValue();
 
 				results[i][0] = field;
 				results[i][1] = desc;

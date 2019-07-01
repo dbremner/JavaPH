@@ -9,19 +9,13 @@ public interface Line
     int getCode();
 
     @Contract(pure = true)
-    @NotNull String getField();
-
-    @Contract(pure = true)
     int getIndex();
 
     @Contract(pure = true)
     @NotNull String getResponse();
 
     @Contract(pure = true)
-    @NotNull String getTrimmedField();
-
-    @Contract(pure = true)
-    @NotNull String getTrimmedValue();
+    @NotNull String getField();
 
     @Contract(pure = true)
     @NotNull String getValue();

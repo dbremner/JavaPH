@@ -19,17 +19,13 @@ final class LineImpl private[qi](val code: Int, val verbatim: String, val field:
 
   override def getCode: Int = code
 
-  override def getField: String = field
-
   override def getIndex: Int = index
 
   override def getResponse: String = response
 
-  override def getTrimmedField: String = trimmedField
+  override def getField: String = trimmedField
 
-  override def getTrimmedValue: String = trimmedValue
-
-  override def getValue: String = value
+  override def getValue: String = trimmedValue
 
   override def getFieldValue: String = field + ":" + value
 
