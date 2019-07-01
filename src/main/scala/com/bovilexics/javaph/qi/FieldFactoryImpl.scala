@@ -18,7 +18,7 @@ object FieldFactoryImpl
     * @return properties collection
     */
     @Contract(pure = true)
-    @throws[QiProtocolException]
+    @throws[IllegalArgumentException]
     def parseProperties(someProperties: String): (Int, ImmutableList[String]) =
     {
       val tokenizer = new StringTokenizer(someProperties)
@@ -34,7 +34,7 @@ object FieldFactoryImpl
         catch
         {
           case _: NumberFormatException =>
-          throw new QiProtocolException("Invalid value for max length property: " + someProperties)
+          throw new IllegalArgumentException("Invalid value for max length property: " + someProperties)
         }
       }
       else
@@ -55,9 +55,24 @@ object FieldFactoryImpl
 final class FieldFactoryImpl extends FieldFactory
 {
   @Contract(pure = true)
-  @throws[QiProtocolException]
   override def create(name: String, someProperties: String, description: String): Field =
   {
+    // TODO literal strings
+    if (name.isEmpty)
+    {
+      throw new IllegalArgumentException("name may not be empty")
+    }
+
+    if (someProperties.isEmpty)
+    {
+      throw new IllegalArgumentException("someProperties may not be empty")
+    }
+
+    if (description.isEmpty)
+    {
+      throw new IllegalArgumentException("description may not be empty")
+    }
+
     val parseResult = FieldFactoryImpl.parseProperties(someProperties)
     new FieldImpl(name, parseResult._1, parseResult._2, description)
   }

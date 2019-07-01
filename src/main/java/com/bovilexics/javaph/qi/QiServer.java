@@ -48,6 +48,16 @@ public final class QiServer implements Server
 	private @NotNull FieldState fieldState = FieldState.FIELD_LOAD_FALSE;
 	private @NotNull String fieldStateMessage = "";
 
+
+	/**
+	 * TODO improve this
+	 * @param factory field factory
+	 * @param lineFactory line factory
+	 * @param name server name
+	 * @param server host name
+	 * @param port port number, assumed to be valid
+	 * @throws IllegalArgumentException on blank strings
+	 */
 	public QiServer(final @NotNull FieldFactory factory, final @NotNull LineFactory lineFactory, final @NotNull String name, final @NotNull String server, final int port)
 	{
 		this.lineFactory = lineFactory;
@@ -91,20 +101,8 @@ public final class QiServer implements Server
 						continue;
 					}
 
-					try
-					{
-						final @NotNull Field field = factory.create(propsField, propsValue, descValue);
-						builder.add(field);
-					}
-					catch (final @NotNull QiProtocolException e)
-					{
-						fieldState = FieldState.FIELD_LOAD_ERROR;
-						final @NotNull Logger instance = ErrLoggerImpl.instance;
-						instance.log(String.format(JavaPHConstants.ERROR_QI_PROTOCOL_EXCEPTION_RECEIVED_WHEN_TRYING_TO_ADD_FIELD_TO_S, getExpandedName()));
-						instance.log(String.format(" --> Message:     %s", e.getMessage()));
-						instance.log(String.format(" --> Properties:  %s", propsLine.toString()));
-						instance.log(String.format(" --> Description: %s", descLine.toString()));
-					}
+					final @NotNull Field field = factory.create(propsField, propsValue, descValue);
+					builder.add(field);
 				}
 				else
 				{
