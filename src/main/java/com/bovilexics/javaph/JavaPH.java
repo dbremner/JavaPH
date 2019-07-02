@@ -54,7 +54,6 @@ import com.bovilexics.javaph.ui.ServerRenderer;
 import com.bovilexics.javaph.ui.SplashWindow;
 import com.bovilexics.javaph.ui.Tab;
 import com.bovilexics.javaph.ui.TextFieldComboBoxEditor;
-import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -84,9 +83,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ProgressMonitor;
 import javax.swing.RootPaneContainer;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -129,7 +125,6 @@ import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_HEIGHT;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_WIDTH;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_X_POSITION;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_APP_Y_POSITION;
-import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_LNF;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DEFAULT_SERVER;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_LOG;
 import static com.bovilexics.javaph.JavaPHConstants.PROP_DISPLAY_SPLASH;
@@ -1059,7 +1054,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		resultPanel = new ResultPanel();
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new ControlTabDispatcher(resultPanel));
 
-		restoreLookAndFeel();
 		if (propertyEquals(PROP_DISPLAY_SPLASH, true, true))
 		{
 			showSplashWindow();
@@ -1091,7 +1085,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		log(JavaPHConstants.DEFAULT_SERVER_INITIALIZED);
 
 		showDefaultStatus();
-		restoreLookAndFeel(getContentPane());
 		frame.setContentPane(getContentPane());
 		frame.setIconImage(getImageIcon(FilePaths.IMG_PH_ICON_SMALLER_GIF_FILEPATH).getImage());
 
@@ -1555,91 +1548,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return value.equals(String.valueOf(equalsValue));
 	}
 
-	public void restoreLookAndFeel()
-	{
-		restoreDefaultLookAndFeel(defaultPane);
-	}
-
-	private void restoreLookAndFeel(final @NotNull Component component)
-	{
-		restoreDefaultLookAndFeel(component);
-	}
-
-	public void restoreLookAndFeel(final @NotNull String lookAndFeel)
-	{
-		restoreLookAndFeel(lookAndFeel, defaultPane);
-	}
-
-	private void restoreDefaultLookAndFeel(final @NotNull Component component)
-	{
-		final @NotNull Optional<String> value = properties.getProperty(PROP_DEFAULT_LNF);
-		final @NotNull String lookAndFeel = value.orElse(UIManager.getSystemLookAndFeelClassName());
-		if (!value.isPresent())
-		{
-			errLogger.log(String.format(JavaPHConstants.NO_LOOK_AND_FEEL_SPECIFIED_USING_SYSTEM_DEFAULT_S, lookAndFeel));
-		}
-
-		restoreLookAndFeel(lookAndFeel, component);
-	}
-
-	private void restoreLookAndFeel(final @NotNull String lookAndFeel, final @NotNull Component component)
-	{
-		final @NotNull Component[] otherComponents = {
-			aboutDialog, colListPanel, fieldListPanel, findDialog, propertiesDialog, queryToolBar, splashWindow
-		};
-		final @NotNull ImmutableList<Component> list = ImmutableList.copyOf(otherComponents);
-
-		try
-		{
-			UIManager.setLookAndFeel(lookAndFeel);
-			SwingUtilities.updateComponentTreeUI(component);
-			JavaPH.updateTreeUIs(list);
-			return;
-		}
-		catch (ClassNotFoundException |
-				IllegalAccessException |
-				InstantiationException |
-				UnsupportedLookAndFeelException e)
-		{
-			// If we cannot set the look and feel to
-			// what was specified in the properties file
-			// then just continue and set system default
-			errLogger.printStackTrace(e);
-			errLogger.log(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_CUSTOM_LOOK_AND_FEEL);
-		}
-
-		try
-		{
-			// UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			SwingUtilities.updateComponentTreeUI(component);
-			JavaPH.updateTreeUIs(list);
-		}
-		catch (ClassNotFoundException |
-				IllegalAccessException |
-				InstantiationException |
-				UnsupportedLookAndFeelException e)
-		{
-			// If we cannot set the look and feel to
-			// what is set as the system look and feel
-			// then just continue and allow the default
-			// cross platform look at feel to be used (metal)
-			errLogger.printStackTrace(e);
-			errLogger.log(JavaPHConstants.EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_DEFAULT_LOOK_AND_FEEL);
-		}
-	}
-
-	private static void updateTreeUIs(final @NotNull Iterable<Component> components)
-	{
-		// Must also include the dialogs and toolbars
-		// due to the weirdness of potentially running
-		// as either an application or an applet
-		for (final @NotNull Component component : components)
-		{
-			SwingUtilities.updateComponentTreeUI(component);
-		}
-	}
-
 	public void setFieldQuoted(final boolean quoted)
 	{
 		fieldQuoted = quoted;
@@ -1800,12 +1708,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	public void showToolBar(final boolean show)
 	{
 		queryToolBar.setVisible(show);
-	}
-	
-	public void storeLookAndFeel()
-	{
-		setProperty(PROP_DEFAULT_LNF, UIManager.getLookAndFeel().getClass().getName());
-		storeProperties();
 	}
 
 	public void storeProperties()

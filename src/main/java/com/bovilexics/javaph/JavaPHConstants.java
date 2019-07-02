@@ -49,7 +49,6 @@ public enum JavaPHConstants
 	public static final @NotNull String PROP_APP_WIDTH       = "javaph.startup.width";
 	public static final @NotNull String PROP_APP_X_POSITION  = "javaph.startup.xPosition";
 	public static final @NotNull String PROP_APP_Y_POSITION  = "javaph.startup.yPosition";
-	public static final @NotNull String PROP_DEFAULT_LNF     = "javaph.default.lnf";
 	public static final @NotNull String PROP_DEFAULT_SERVER  = "javaph.default.server";
 	public static final @NotNull String PROP_DISPLAY_LOG     = "javaph.startup.displayLog";
 	public static final @NotNull String PROP_DISPLAY_SPLASH  = "javaph.startup.displaySplashWindow";
@@ -100,7 +99,6 @@ public enum JavaPHConstants
 	public static final @NotNull String CANCEL = "Cancel";
 	public static final @NotNull String CANCELED = "Canceled";
 	public static final @NotNull String CASE_SENSITIVE = "Case Sensitive";
-	public static final @NotNull String CHANGE_TO_S_LOOK_AND_FEEL = "Change to %s look and feel";
 	public static final @NotNull String CHOOSE_THE_FIELDS_THAT_QUERIES_WILL_RETURN = "Choose the fields that queries will return";
 	public static final @NotNull String CLOSE = "Close";
 	public static final @NotNull String COMMA = "Comma";
@@ -158,15 +156,11 @@ public enum JavaPHConstants
 	public static final @NotNull String LOAD_FIELDS_FOR_THE_SELECTED_SERVER = "Load fields for the selected server";
 	public static final @NotNull String LOADING_FIELDS_FOR_S = "Loading fields for %s";
 	public static final @NotNull String LOADING_FIELDS_FOR_SERVER = "Loading fields for Server";
-	public static final @NotNull String MAC = "Mac";
-	public static final @NotNull String METAL = "Metal";
-	public static final @NotNull String MOTIF = "Motif";
 	public static final @NotNull String MOVE_DOWN = "Move Down";
 	public static final @NotNull String MOVE_UP = "Move Up";
 	public static final @NotNull String NAME = "Name";
 	public static final @NotNull String NEW_QUERY = "New Query";
 	public static final @NotNull String NO_FIELDS_AVAILABLE_FOR_S = "No fields available for %s";
-	public static final @NotNull String NO_LOOK_AND_FEEL_SPECIFIED_USING_SYSTEM_DEFAULT_S = "No look and feel specified, using system default (%s)";
 	public static final @NotNull String NOTHING_TO_SAVE_IN_S_TAB = "Nothing to save in %s tab";
 	public static final @NotNull String OK = "OK";
 	public static final @NotNull String PASTE = "Paste";
@@ -182,12 +176,9 @@ public enum JavaPHConstants
 	public static final @NotNull String QUERY_RUNTIME_D_TOO_LOW_USING_MINIMUM_VALUE_D = "Query runtime %d too low, using minimum value %d";
 	public static final @NotNull String QUERY_TIMED_OUT = "Query Timed Out";
 	public static final @NotNull String RELOAD_FIELDS_FOR_THE_SELECTED_SERVER = "Reload fields for the selected server";
-	public static final @NotNull String RESTORE_DEFAULT = "Restore Default";
 	public static final @NotNull String ROLLOVER_TOOLBAR = "Rollover Toolbar";
 	public static final @NotNull String RUNNING_QUERY_S = "Running query \"%s\"";
 	public static final @NotNull String SAVE_A_QUERY_RESULTS = "Save a Query Results";
-	public static final @NotNull String SAVE_DEFAULT = "Save Default";
-	public static final @NotNull String SAVE_LOOK_AND_FEEL_AS_DEFAULT = "Save look and feel as Default";
 	public static final @NotNull String SAVE_RESULTS = "Save Results";
 	public static final @NotNull String SAVE_S = "Save %s";
 	public static final @NotNull String SAVING_FILE_S = "Saving file %s";
@@ -208,7 +199,6 @@ public enum JavaPHConstants
 	public static final @NotNull String UNREACHABLE = "unreachable";
 	public static final @NotNull String VIEW_SYSTEM_LOG = "View System Log";
 	public static final @NotNull String VIEW_TOOLBAR = "View Toolbar";
-	public static final @NotNull String WINDOWS = "Windows";
 	public static final @NotNull String WRAP_SEARCH = "Wrap Search";
 	public static final @NotNull String SERVER_S = " Server : %s ";
 	public static final @NotNull String PORT_S = " Port : %s ";
@@ -221,8 +211,6 @@ public enum JavaPHConstants
 	public static final @NotNull String SELECT_THE_COLUMNS_TO_BE_DISPLAYED = "Select the columns to be displayed";
 	public static final @NotNull String CLEAR_LOG = "Clear Log";
 	public static final @NotNull String LOG_CLEARED = "Log cleared";
-	public static final @NotNull String LOOK_AND_FEEL = "Look and Feel";
-	public static final @NotNull String CHANGE_LOOK_AND_FEEL = "Change look and feel";
 	public static final @NotNull String COPIES_THE_SELECTION_AND_PUTS_IT_ON_THE_CLIPBOARD = "Copies the selection and puts it on the clipboard";
 	public static final @NotNull String INSERTS_CLIPBOARD_CONTENTS = "Inserts clipboard contents";
 	public static final @NotNull String CUTS_THE_SELECTION_AND_PUTS_IT_ON_THE_CLIPBOARD = "Cuts the selection and puts it on the clipboard";
@@ -245,8 +233,7 @@ public enum JavaPHConstants
 	public static final @NotNull String STARTUP_OPTIONS = " Startup Options ";
     public static final @NotNull String INFO_CANNOT_PERFORM_A_SEARCH_ON_AN_EMPTY_TABLE = "Info: Cannot perform a search on an empty table";
 	public static final @NotNull String INFO_CANNOT_SEARCH_PAST_THE_LAST_CELL_OF_A_TABLE = "Info: Cannot search past the last cell of a table";
-	public static final @NotNull String EXCEPTION_OCCURRED_WHEN_TRYING_TO_SET_CUSTOM_LOOK_AND_FEEL = "Exception occurred when trying to set custom look and feel";
-    public static final @NotNull String BLANK_HOST_IS_NOT_PERMITTED = "Blank host is not permitted.";
+	public static final @NotNull String BLANK_HOST_IS_NOT_PERMITTED = "Blank host is not permitted.";
 	public static final @NotNull String BLANK_SERVER_IS_NOT_PERMITTED = "Blank server is not permitted.";
 	public static final @NotNull String BLANK_NAME_IS_NOT_PERMITTED = "Blank name is not permitted.";
 	public static final @NotNull String ERROR_PROP_AND_DESC_LINES_DO_NOT_MATCH_FOR_S_PROPS_S_DESC_S = "Error: property and description lines do not match for %s\nProps - %s\nDesc - %s";

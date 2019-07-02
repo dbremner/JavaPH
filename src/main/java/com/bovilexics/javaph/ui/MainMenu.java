@@ -259,8 +259,6 @@ public final class MainMenu extends JMenuBar
 
 		windowMenu.addSeparator();
 
-		windowMenu.add(new LookAndFeelMenu(parent));
-
 		final @NotNull JMenuItem browserItem = getNewMenuItem();
 		browserItem.setAction(new BrowserAction(parent::showBrowserDialog));
 		browserItem.setActionCommand(JavaPHConstants.CONFIGURE_BROWSER_USED_TO_DISPLAY_INFO_NAME_HELP);
