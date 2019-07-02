@@ -1,8 +1,5 @@
 package com.bovilexics.javaph.qi;
 
-import com.bovilexics.javaph.JavaPHConstants;
-import com.bovilexics.javaph.logging.ErrLogger;
-import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +27,6 @@ public final class QiServerManager implements ServerManager
                                                               .trimResults();
 
     private static final @NotNull Joiner joiner = Joiner.on(SEPARATOR);
-    private final @NotNull ErrLogger logger = ErrLoggerImpl.instance;
 
     private @Nullable Server defaultServer = null;
     private final @NotNull Vector<Server> servers = new Vector<>();
@@ -137,18 +133,15 @@ public final class QiServerManager implements ServerManager
         }
         catch (final @NotNull InvalidPathException e)
         {
-            logger.log("Error: InvalidPathException thrown when create file path");
-            logger.printStackTrace(e);
+            throw new QiServerFileException(e, filename);
         }
         catch (final @NotNull FileNotFoundException e)
         {
-            logger.log(String.format(JavaPHConstants.ERROR_FILE_NOT_FOUND_EXCEPTION_RECEIVED_WHEN_TRYING_TO_READ_FILE_S, filename));
-            logger.printStackTrace(e);
+            throw new QiServerFileException(e, filename);
         }
         catch (final @NotNull IOException e)
         {
-            logger.log(String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_READ_FILE_S, filename));
-            logger.printStackTrace(e);
+            throw new QiServerFileException(e, filename);
         }
     }
 
