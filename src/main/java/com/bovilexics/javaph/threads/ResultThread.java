@@ -411,7 +411,7 @@ public final class ResultThread extends Thread
 		if (error)
 		{
 			state = ResultThreadState.Error;
-			showStatus(JavaPHConstants.ERROR_INVALID_CONNECTION_QUERY_STOPPED);
+			logger.showStatus(JavaPHConstants.ERROR_INVALID_CONNECTION_QUERY_STOPPED);
 			return;
 		}
 		
@@ -428,7 +428,7 @@ public final class ResultThread extends Thread
 		catch (@NotNull QiProtocolException | IOException e)
 		{
 			error = true;
-			showStatus(String.format(JavaPHConstants.ERROR_S, e));
+			logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
 		} finally
 		{
 			connection.unlock();
@@ -673,7 +673,7 @@ public final class ResultThread extends Thread
 			
 			final @NotNull String message = String.format(JavaPHConstants.GOT_ERROR_D_ON_LINE_S, qiLine.getCode(), readFromServer);
 
-			log(message);
+			logger.log(message);
 		}
 		else
 		{
@@ -689,11 +689,6 @@ public final class ResultThread extends Thread
 				values = buildValues(headers, records);
 			}
 		}
-	}
-
-	private void log(final @NotNull String message)
-	{
-		logger.log(message);
 	}
 
 	private @NotNull Object[][] buildValues(final @NotNull ImmutableList<Object> headersList,
@@ -737,7 +732,7 @@ public final class ResultThread extends Thread
 				{
 					final @NotNull String message = String.format(JavaPHConstants.COULDN_T_FIND_HEADER_FOR_THIS_COLUMN_S, line.toString());
 
-					log(message);
+					logger.log(message);
 				}
 
 				lastField = field;
@@ -806,7 +801,7 @@ public final class ResultThread extends Thread
 		catch (@NotNull IOException | QiProtocolException e)
 		{
 			error = true;
-			showStatus(String.format(JavaPHConstants.ERROR_S, e));
+			logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
 		}
 	}
 
@@ -827,14 +822,10 @@ public final class ResultThread extends Thread
 			catch (final @NotNull IOException e)
 			{
 				error = true;
-				showStatus(String.format(JavaPHConstants.ERROR_S, e));
-				showStatus(String.format(JavaPHConstants.ERROR_COULD_NOT_CONNECT_TO_S, connection.getExpandedName()));
+				logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
+				logger.showStatus(String.format(JavaPHConstants.ERROR_COULD_NOT_CONNECT_TO_S, connection.getExpandedName()));
 			}
 		}
 	}
 
-	private void showStatus(final @NotNull String status)
-	{
-		logger.showStatus(status);
-	}
 }
