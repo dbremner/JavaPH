@@ -100,7 +100,17 @@ public final class ResultThread extends Thread
 		lineFactory = connection.getLineFactory();
 		commandLine = command;
 		this.command = new StringTokenizer(commandLine).nextToken();
-		connect();
+
+		try
+		{
+			connect();
+		}
+		catch (final @NotNull IOException e)
+		{
+			error = true;
+			logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
+			logger.showStatus(String.format(JavaPHConstants.ERROR_COULD_NOT_CONNECT_TO_S, connection.getExpandedName()));
+		}
 	}
 
 	/**
@@ -810,20 +820,11 @@ public final class ResultThread extends Thread
 	 *
 	 *
 	 */
-	private synchronized void connect()
+	private synchronized void connect() throws IOException
 	{
 		if (!connection.connected())
 		{
-			try
-			{
-				connection.connect();
-			}
-			catch (final @NotNull IOException e)
-			{
-				error = true;
-				logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
-				logger.showStatus(String.format(JavaPHConstants.ERROR_COULD_NOT_CONNECT_TO_S, connection.getExpandedName()));
-			}
+			connection.connect();
 		}
 	}
 
