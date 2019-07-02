@@ -28,6 +28,7 @@ import com.bovilexics.javaph.qi.Connection;
 import com.bovilexics.javaph.qi.ConnectionFactory;
 import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.FieldState;
+import com.bovilexics.javaph.qi.QiServerFileException;
 import com.bovilexics.javaph.qi.Server;
 import com.bovilexics.javaph.qi.ServerManager;
 import com.bovilexics.javaph.threads.QueryThreadRunnable;
@@ -1018,7 +1019,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		}
 	}
 
-	public JavaPH(final @NotNull List<Command> commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties) throws IOException
+	public JavaPH(final @NotNull List<Command> commands,  final @NotNull IconProvider iconProvider, final @NotNull ServerManager serverManager, final @NotNull PropertyCollection defaultProperties, final @NotNull PropertyCollection properties) throws IOException, QiServerFileException
 	{
 		this.iconProvider = iconProvider;
 		this.serverManager = serverManager;

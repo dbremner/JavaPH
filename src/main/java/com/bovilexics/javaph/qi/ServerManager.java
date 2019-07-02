@@ -18,7 +18,7 @@ public interface ServerManager
 
     void loadAllServers(@NotNull String filename) throws IOException, QiServerFileException;
 
-    void loadAllServers();
+    void loadAllServers() throws QiServerFileException;
 
     void removeServer(@NotNull Server server);
 

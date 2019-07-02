@@ -5,7 +5,7 @@ import java.io.{FileNotFoundException, IOException}
 import com.bovilexics.javaph.{JavaPH, JavaPHConstants}
 import com.bovilexics.javaph.configuration.PropertyCollectionImpl
 import com.bovilexics.javaph.logging.ErrLoggerImpl
-import com.bovilexics.javaph.qi.{CommandImpl, ConnectionFactory, ConnectionFactoryImpl, FieldFactory, FieldFactoryImpl, LineFactory, LineFactoryImpl, QiServerManager, ServerFactory, ServerFactoryImpl, ServerManager}
+import com.bovilexics.javaph.qi.{CommandImpl, ConnectionFactory, ConnectionFactoryImpl, FieldFactory, FieldFactoryImpl, LineFactory, LineFactoryImpl, QiServerFileException, QiServerManager, ServerFactory, ServerFactoryImpl, ServerManager}
 import com.bovilexics.javaph.ui.{IconProvider, IconProviderImpl}
 
 object Main
@@ -29,6 +29,10 @@ object Main
     }
     catch
     {
+      case e: QiServerFileException =>
+        errLogger.printStackTrace(e)
+        errLogger.log(e.getMessage)
+        System.exit(1)
       case e: FileNotFoundException =>
         errLogger.printStackTrace(e)
         errLogger.log(String.format(JavaPHConstants.FILE_NOT_FOUND_OCCURRED_WHEN_TRYING_TO_LOAD_PROPERTIES_FROM_S, JavaPHConstants.PROP_FILE_DEF))

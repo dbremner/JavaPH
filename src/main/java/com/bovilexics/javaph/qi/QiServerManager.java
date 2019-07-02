@@ -128,16 +128,12 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void loadAllServers()
+    public void loadAllServers() throws QiServerFileException
     {
         final String filename = SERVER_FILE;
         try
         {
             loadAllServers(SERVER_FILE);
-        }
-        catch (final @NotNull QiServerFileException e)
-        {
-            logger.log(String.format(JavaPHConstants.ERROR_INVALID_SERVER_ENTRY_IN_S_ON_LINE_D_S, e.getFilename(), e.getLineNumber(), e.getContents()));
         }
         catch (final @NotNull InvalidPathException e)
         {
