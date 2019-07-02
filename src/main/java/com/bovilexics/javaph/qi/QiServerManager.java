@@ -148,6 +148,10 @@ public final class QiServerManager implements ServerManager
     @Override
     public void removeServer(final @NotNull Server server)
     {
+        if (servers.isEmpty())
+        {
+            return;
+        }
         servers.remove(server);
     }
 
@@ -192,6 +196,11 @@ public final class QiServerManager implements ServerManager
     @Override
     public void setDefaultServer(final @NotNull String server)
     {
+        if (servers.isEmpty())
+        {
+            return;
+        }
+
         for (final @NotNull Server item : servers) {
             if (item.toString().equals(server)) {
                 defaultServer = item;
