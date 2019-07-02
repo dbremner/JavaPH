@@ -40,7 +40,7 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void addServer(final @NotNull Server server)
+    public void add(final @NotNull Server server)
     {
         if (servers.isEmpty())
         {
@@ -113,7 +113,7 @@ public final class QiServerManager implements ServerManager
                     throw new QiServerFileException(filename, i, line);
                 }
                 final @NotNull Server server = serverFactory.create(items.get(0), items.get(1), items.get(2));
-                addServer(server);
+                add(server);
             }
         }
 
@@ -146,7 +146,7 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void removeServer(final @NotNull Server server)
+    public void remove(final @NotNull Server server)
     {
         if (servers.isEmpty())
         {
@@ -169,7 +169,7 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void saveServers() throws IOException
+    public void save() throws IOException
     {
         try(final @NotNull BufferedWriter writer = new BufferedWriter(new FileWriter(SERVER_FILE)))
         {

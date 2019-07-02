@@ -9,7 +9,7 @@ import java.util.Vector;
 
 public interface ServerManager
 {
-    void addServer(@NotNull Server server);
+    void add(@NotNull Server server);
 
     @NotNull Server getDefaultServer();
 
@@ -20,9 +20,9 @@ public interface ServerManager
 
     void loadAllServers() throws QiServerFileException;
 
-    void removeServer(@NotNull Server server);
+    void remove(@NotNull Server server);
 
-    void saveServers() throws IOException;
+    void save() throws IOException;
 
     void setDefaultServer(@NotNull String server);
 
