@@ -18,7 +18,6 @@ package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
-import com.bovilexics.javaph.logging.Logger;
 import com.bovilexics.javaph.logging.StatusErrorLogger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
@@ -76,7 +75,7 @@ public final class QiServer implements Server
 		expandedName = String.format(Locale.US, "%s (%s:%d)", name, server, port);
 	}
 
-	private @NotNull ImmutableList<Field> convertRecordsToFields(final @NotNull List<List<Line>> records)
+	private @NotNull ImmutableList<Field> convertRecordsToFields(final @NotNull List<List<Line>> records) throws QiProtocolException
 	{
 		assert records.size() % 2 == 0;
 		final @NotNull ImmutableList.Builder<Field> builder = new ImmutableList.Builder<>();
@@ -93,25 +92,19 @@ public final class QiServer implements Server
 				final @NotNull String descField = descLine.getField();
 				final @NotNull String descValue = descLine.getValue();
 
-				if (propsField.equals(descField))
+				if (!propsField.equals(descField))
 				{
-					// Do not add this field if it is one of the special fields already handled elsewhere
-					if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all"))
-					{
-						continue;
-					}
+					throw new QiProtocolException(String.format(JavaPHConstants.ERROR_PROP_AND_DESC_LINES_DO_NOT_MATCH_FOR_S_PROPS_S_DESC_S,
+							getExpandedName(), propsLine.toString(), descLine.toString()));
+				}
+				// Do not add this field if it is one of the special fields already handled elsewhere
+				if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all"))
+				{
+					continue;
+				}
 
-					final @NotNull Field field = factory.create(propsField, propsValue, descValue);
-					builder.add(field);
-				}
-				else
-				{
-					fieldState = FieldState.FIELD_LOAD_ERROR;
-					final @NotNull Logger instance = ErrLoggerImpl.instance;
-					instance.log(String.format(JavaPHConstants.ERROR_PROPERTY_AND_DESCRIPTION_LINES_DO_NOT_REFER_TO_THE_SAME_FIELD_FOR_S, getExpandedName()));
-					instance.log(String.format(" --> %s", propsLine.toString()));
-					instance.log(String.format(" --> %s", descLine.toString()));
-				}
+				final @NotNull Field field = factory.create(propsField, propsValue, descValue);
+				builder.add(field);
 			}
 		}
 		return builder.build();
@@ -203,19 +196,18 @@ public final class QiServer implements Server
 		}
 		else
 		{
-			fields = convertRecordsToFields(resultThread.getRecords());
-			// TODO this is vulgar
-			// convertRecordsToFields assigns fieldState
-			// so we test for failure before reassigning it
-			if (fieldState != FieldState.FIELD_LOAD_ERROR)
+			try
 			{
-				fieldState = FieldState.FIELD_LOAD_TRUE;
-				fieldStateMessage = String.format(JavaPHConstants.SUCCESSFULLY_LOADED_FIELDS_FOR_S, getExpandedName());
+				fields = convertRecordsToFields(resultThread.getRecords());
 			}
-			else
+			catch (final @NotNull QiProtocolException e)
 			{
-				fieldStateMessage = String.format(JavaPHConstants.CORRUPT_FIELD_RESULTS_FOR_S, getExpandedName());
+				fieldState = FieldState.FIELD_LOAD_ERROR;
+				fieldStateMessage = e.getMessage();
+				return;
 			}
+			fieldState = FieldState.FIELD_LOAD_TRUE;
+			fieldStateMessage = String.format(JavaPHConstants.SUCCESSFULLY_LOADED_FIELDS_FOR_S, getExpandedName());
 		}
 
 		//noinspection UnusedAssignment,ReuseOfLocalVariable

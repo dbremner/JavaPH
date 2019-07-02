@@ -249,4 +249,5 @@ public enum JavaPHConstants
     public static final @NotNull String BLANK_HOST_IS_NOT_PERMITTED = "Blank host is not permitted.";
 	public static final @NotNull String BLANK_SERVER_IS_NOT_PERMITTED = "Blank server is not permitted.";
 	public static final @NotNull String BLANK_NAME_IS_NOT_PERMITTED = "Blank name is not permitted.";
+	public static final @NotNull String ERROR_PROP_AND_DESC_LINES_DO_NOT_MATCH_FOR_S_PROPS_S_DESC_S = "Error: property and description lines do not match for %s\nProps - %s\nDesc - %s";
 }
