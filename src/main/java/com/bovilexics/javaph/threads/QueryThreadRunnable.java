@@ -8,6 +8,7 @@ import com.bovilexics.javaph.qi.Connection;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.SwingUtilities;
+import java.io.IOException;
 import java.util.Collection;
 
 public final class QueryThreadRunnable implements Runnable
@@ -37,7 +38,16 @@ public final class QueryThreadRunnable implements Runnable
         SwingUtilities.invokeLater(() ->
                 parent.beginQuery(command));
 
-        final @NotNull ResultThread resultThread = new ResultThread(new StatusErrorLogger(), command, connection);
+        final @NotNull ResultThread resultThread;
+        try
+        {
+            resultThread = new ResultThread(new StatusErrorLogger(), command, connection);
+        }
+        catch (final @NotNull IOException e)
+        {
+            SwingUtilities.invokeLater(() -> parent.endFailedQuery(JavaPHConstants.QUERY_CONNECTION_FAILED, JavaPHConstants.CONNECTION_FAILED));
+            return;
+        }
         resultThread.start();
 
         while (!parent.isQueryCanceled() && seconds < runtime && resultThread.isAlive())

@@ -24,6 +24,7 @@ import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -160,7 +161,17 @@ public final class QiServer implements Server
 	public void loadFields()
 	{
 		final @NotNull Connection connection = new QiConnection(expandedName, server, port, lineFactory);
-		@Nullable ResultThread resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, connection);
+		@Nullable ResultThread resultThread;
+		try
+		{
+			resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, connection);
+		}
+		catch (final @NotNull IOException e)
+		{
+			fieldState = FieldState.FIELD_LOAD_ERROR;
+			fieldStateMessage = String.format(JavaPHConstants.FAILED_TO_CONNECT_TO_S_D, server, port);
+			return;
+		}
 		resultThread.start();
 
 		int seconds = 0;

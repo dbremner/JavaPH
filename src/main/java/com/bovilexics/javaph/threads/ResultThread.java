@@ -93,7 +93,8 @@ public final class ResultThread extends Thread
 	private final @NotNull List<List<Line>> records = new ArrayList<>();
 	private @NotNull List<Line> record = new ArrayList<>();
 
-	public ResultThread(final @NotNull StatusLogger logger, final @NotNull String command, final @NotNull Connection connection)
+	public ResultThread(final @NotNull StatusLogger logger, final @NotNull String command,
+						final @NotNull Connection connection) throws IOException
 	{
 		this.logger = logger;
 		this.connection = connection;
@@ -101,16 +102,7 @@ public final class ResultThread extends Thread
 		commandLine = command;
 		this.command = new StringTokenizer(commandLine).nextToken();
 
-		try
-		{
-			connect();
-		}
-		catch (final @NotNull IOException e)
-		{
-			error = true;
-			logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
-			logger.showStatus(String.format(JavaPHConstants.ERROR_COULD_NOT_CONNECT_TO_S, connection.getExpandedName()));
-		}
+		connect();
 	}
 
 	/**
@@ -425,6 +417,7 @@ public final class ResultThread extends Thread
 	@Override
 	public void run()
 	{
+		// TODO dead branch?
 		if (error)
 		{
 			state = ResultThreadState.Error;

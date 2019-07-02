@@ -237,4 +237,7 @@ public enum JavaPHConstants
 	public static final @NotNull String BLANK_SERVER_IS_NOT_PERMITTED = "Blank server is not permitted.";
 	public static final @NotNull String BLANK_NAME_IS_NOT_PERMITTED = "Blank name is not permitted.";
 	public static final @NotNull String ERROR_PROP_AND_DESC_LINES_DO_NOT_MATCH_FOR_S_PROPS_S_DESC_S = "Error: property and description lines do not match for %s\nProps - %s\nDesc - %s";
+	public static final @NotNull String FAILED_TO_CONNECT_TO_S_D = "Failed to connect to %s:%d";
+	public static final @NotNull String QUERY_CONNECTION_FAILED = "Query Connection Failed";
+	public static final @NotNull String CONNECTION_FAILED = "Connection Failed";
 }
