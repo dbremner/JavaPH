@@ -35,4 +35,10 @@ public final class QiServerFileException extends Exception
     {
         return contents;
     }
+
+    @Override
+    public @NotNull String toString()
+    {
+        return String.format("QiServerFileException{filename='%s', lineNumber=%d, contents='%s'}", filename, lineNumber, contents);
+    }
 }
