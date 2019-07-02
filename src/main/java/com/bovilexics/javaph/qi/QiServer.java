@@ -21,6 +21,7 @@ import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.logging.StatusErrorLogger;
 import com.bovilexics.javaph.threads.ResultThread;
 import com.google.common.collect.ImmutableList;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -98,8 +99,7 @@ public final class QiServer implements Server
 					throw new QiProtocolException(String.format(JavaPHConstants.ERROR_PROP_AND_DESC_LINES_DO_NOT_MATCH_FOR_S_PROPS_S_DESC_S,
 							getExpandedName(), propsLine.toString(), descLine.toString()));
 				}
-				// Do not add this field if it is one of the special fields already handled elsewhere
-				if (propsField.equalsIgnoreCase("any") || propsField.equalsIgnoreCase("all"))
+				if (isSpecialField(propsField))
 				{
 					continue;
 				}
@@ -110,7 +110,14 @@ public final class QiServer implements Server
 		}
 		return builder.build();
 	}
-	
+
+	@Contract(pure = true)
+	private boolean isSpecialField(final @NotNull String field)
+	{
+		// Do not add this field if it is one of the special fields already handled elsewhere
+		return field.equalsIgnoreCase("any") || field.equalsIgnoreCase("all");
+	}
+
 	@Override
 	public @NotNull String getExpandedName()
 	{
