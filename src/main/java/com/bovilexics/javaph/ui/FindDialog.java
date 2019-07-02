@@ -147,7 +147,7 @@ public final class FindDialog extends JavaPHDialog
 		findComboBox.setEditor(findComboBoxEditor);
 		findComboBox.setPreferredSize(new Dimension(200, 0));
 		
-		final @NotNull JLabel findLabel = new JLabel(" Find Text : ");
+		final @NotNull JLabel findLabel = new JLabel(JavaPHConstants.FIND_TEXT_LABEL);
 		
 		findTextPanel.add(findLabel);
 		findTextPanel.add(findComboBox);

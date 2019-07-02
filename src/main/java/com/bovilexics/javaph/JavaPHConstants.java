@@ -240,4 +240,15 @@ public enum JavaPHConstants
 	public static final @NotNull String FAILED_TO_CONNECT_TO_S_D = "Failed to connect to %s:%d";
 	public static final @NotNull String QUERY_CONNECTION_FAILED = "Query Connection Failed";
 	public static final @NotNull String CONNECTION_FAILED = "Connection Failed";
+    public static final @NotNull String NO_RESULTS = "No Results";
+	public static final @NotNull String STOPPED = "Stopped!";
+	public static final @NotNull String CONTACT_LABEL = "Contact :";
+	public static final @NotNull String HOME_LABEL = "Home :";
+	public static final @NotNull String COPYRIGHT_LABEL = "Copyright :";
+	public static final @NotNull String AUTHOR_LABEL = "Author :";
+	public static final @NotNull String DATE_LABEL = "Date :";
+	public static final @NotNull String VERSION_LABEL = "Version :";
+	public static final @NotNull String NAME_LABEL = "Name :";
+	public static final @NotNull String FIND_TEXT_LABEL = " Find Text : ";
+	public static final @NotNull String ERROR_INVALID_PATH_EXCEPTION_THROWN_WHEN_CREATING_FILE_PATH_S = "Error: InvalidPathException thrown when creating file path - %s";
 }

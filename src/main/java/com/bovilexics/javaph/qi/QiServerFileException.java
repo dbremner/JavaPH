@@ -27,7 +27,7 @@ public final class QiServerFileException extends Exception
 
     public QiServerFileException(final @NotNull InvalidPathException exception, final @NotNull String filename)
     {
-        super(String.format("Error: InvalidPathException thrown when creating file path - %s", filename));
+        super(String.format(JavaPHConstants.ERROR_INVALID_PATH_EXCEPTION_THROWN_WHEN_CREATING_FILE_PATH_S, filename));
         this.exception = exception;
         this.filename = filename;
         lineNumber = -1;

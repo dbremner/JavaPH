@@ -91,7 +91,7 @@ public final class AboutDialog extends JavaPHDialog
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		final int horizStrut = 6;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Name :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.NAME_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -104,7 +104,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = 1;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Version :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.VERSION_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -116,7 +116,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = 1;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Date :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.DATE_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -128,7 +128,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = 1;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Author :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.AUTHOR_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -140,7 +140,7 @@ public final class AboutDialog extends JavaPHDialog
 		
 		gbc.gridwidth = 1;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Contact :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.CONTACT_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -152,7 +152,7 @@ public final class AboutDialog extends JavaPHDialog
 
 		gbc.gridwidth = 1;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Home :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.HOME_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -164,7 +164,7 @@ public final class AboutDialog extends JavaPHDialog
 
 		gbc.gridwidth = 1;
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
-		infoPanel.add(new JLabel("Copyright :"), gbc);
+		infoPanel.add(new JLabel(JavaPHConstants.COPYRIGHT_LABEL), gbc);
 		infoPanel.add(Box.createHorizontalStrut(horizStrut), gbc);
 		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;

@@ -788,7 +788,7 @@ public final class ResultThread extends Thread
 	private void cleanup() throws IOException, QiProtocolException
 	{
 		state = ResultThreadState.Stopped;
-		prologue = "Stopped!";
+		prologue = JavaPHConstants.STOPPED;
 
 		// Read the remainder of the response from Qi (and dispose).
 		if (qiLine != null && qiLine.getCode() < QiAPI.LR_OK)

@@ -16,6 +16,7 @@
  */
 package com.bovilexics.javaph.models;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,7 +32,7 @@ public final class ResultTableModel extends DefaultTableModel
 {
 	private static final int DEFAULT_COLS = 1;
 	private static final int DEFAULT_ROWS = 0;
-	private static final @NotNull String DEFAULT_HEADER = "No Results";
+	private static final @NotNull String DEFAULT_HEADER = JavaPHConstants.NO_RESULTS;
 
 	public ResultTableModel()
 	{	
