@@ -31,7 +31,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -222,7 +221,7 @@ public final class ResultThread extends Thread
 		}
 	}
 
-	private @NotNull Collection<Object> getHeaders()
+	private @NotNull ImmutableList<Object> getHeaders()
 	{
 		switch (state)
 		{
@@ -332,7 +331,7 @@ public final class ResultThread extends Thread
 	{
 		assert state == ResultThreadState.Ok;
 		final @NotNull String rawResultLocal = getRawResult();
-		final @NotNull Collection<Object> headersLocal = getHeaders();
+		final @NotNull ImmutableList<Object> headersLocal = getHeaders();
 		final @NotNull Object[][] valuesLocal = getValues();
 
 		final ResultThreadResult result = new ResultThreadResult(rawResultLocal, headersLocal, valuesLocal);

@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.Collection;
 
 final class ResultThreadResult
 {
@@ -15,12 +14,12 @@ final class ResultThreadResult
 
     ResultThreadResult(
             final @NotNull String rawResult,
-            final @NotNull Collection<Object> headers,
+            final @NotNull ImmutableList<Object> headers,
             final @NotNull Object[][] values)
     {
 
         this.rawResult = rawResult;
-        this.headers = ImmutableList.copyOf(headers);
+        this.headers = headers;
         this.values = values.clone();
     }
 
