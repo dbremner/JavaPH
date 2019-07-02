@@ -157,15 +157,14 @@ public final class QiServerManager implements ServerManager
 
     private static @NotNull String getFileHeader()
     {
-        final @NotNull StringBuilder out = new StringBuilder();
 
-        out.append("# JavaPH Server File\n");
-        out.append("# \n");
-        out.append("# Manually add servers to this list using the following format\n");
-        out.append("#   <name / description> :: <host / ip address> :: <port (0-65535)>\n");
-        out.append("# \n");
-
-        return out.toString();
+        final String out =
+                "# JavaPH Server File\n" +
+                "# \n" +
+                "# Manually add servers to this list using the following format\n" +
+                "#   <name / description> :: <host / ip address> :: <port (0-65535)>\n" +
+                "# \n";
+        return out;
     }
 
     @Override
