@@ -126,10 +126,10 @@ public final class QiServerManager implements ServerManager
     @Override
     public void loadAllServers() throws QiServerFileException
     {
-        final String filename = SERVER_FILE;
+        final @NotNull String filename = SERVER_FILE;
         try
         {
-            loadAllServers(SERVER_FILE);
+            loadAllServers(filename);
         }
         catch (final @NotNull InvalidPathException e)
         {
