@@ -99,34 +99,41 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void loadAllServers(final @NotNull String filename)
+    public void loadAllServers(final @NotNull String filename) throws IOException, QiServerFileException
     {
         servers.clear();
+        final @NotNull Path path = Paths.get(filename);
+        final @NotNull List<String> lines = Files.readAllLines(path);
+        for(int i = 0; i < lines.size(); i++)
+        {
+            final @NotNull String line = lines.get(i);
+            // Ignore comment lines
+            if (!line.startsWith("#"))
+            {
+                final @NotNull List<String> items = splitter.splitToList(line);
+
+                if (items.size() != 3)
+                {
+                    throw new QiServerFileException(filename, i, line);
+                }
+                final @NotNull Server server = serverFactory.create(items.get(0), items.get(1), items.get(2));
+                addServer(server);
+            }
+        }
+
+        if (!servers.isEmpty())
+        {
+            defaultServer = servers.get(0);
+        }
+    }
+
+    @Override
+    public void loadAllServers()
+    {
+        final String filename = SERVER_FILE;
         try
         {
-            final @NotNull Path path = Paths.get(filename);
-            final @NotNull List<String> lines = Files.readAllLines(path);
-            for(int i = 0; i < lines.size(); i++)
-            {
-                final @NotNull String line = lines.get(i);
-                // Ignore comment lines
-                if (!line.startsWith("#"))
-                {
-                    final @NotNull List<String> items = splitter.splitToList(line);
-
-                    if (items.size() != 3)
-                    {
-                        throw new QiServerFileException(filename, i, line);
-                    }
-                    final @NotNull Server server = serverFactory.create(items.get(0), items.get(1), items.get(2));
-                    addServer(server);
-                }
-            }
-
-            if (!servers.isEmpty())
-            {
-                defaultServer = servers.get(0);
-            }
+            loadAllServers(SERVER_FILE);
         }
         catch (final @NotNull QiServerFileException e)
         {
@@ -147,12 +154,6 @@ public final class QiServerManager implements ServerManager
             logger.log(String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_READ_FILE_S, filename));
             logger.printStackTrace(e);
         }
-    }
-
-    @Override
-    public void loadAllServers()
-    {
-        loadAllServers(SERVER_FILE);
     }
 
     @Override

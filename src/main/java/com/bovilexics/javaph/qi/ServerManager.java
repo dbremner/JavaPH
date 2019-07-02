@@ -16,7 +16,7 @@ public interface ServerManager
     @SuppressWarnings("UseOfObsoleteCollectionType")
     @NotNull Vector<Server> getServers();
 
-    void loadAllServers(@NotNull String filename);
+    void loadAllServers(@NotNull String filename) throws IOException, QiServerFileException;
 
     void loadAllServers();
 
