@@ -19,7 +19,6 @@ package com.bovilexics.javaph.ui;
 import com.apple.laf.AquaLookAndFeel;
 import com.bovilexics.javaph.JavaPH;
 import com.bovilexics.javaph.JavaPHConstants;
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -45,12 +44,10 @@ final class LookAndFeelMenu extends JMenu
 {
 	private static final @NotNull String MAC_LOOK_AND_FEEL = "com.apple.laf.AquaLookAndFeel";
 	private static final @NotNull String METAL_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-	private static final @NotNull String MOTIF_LOOK_AND_FEEL = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
 	private static final @NotNull String WINDOWS_LOOK_AND_FEEL = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 
 	private final boolean macSupported = new AquaLookAndFeel().isSupportedLookAndFeel();
 	private final boolean metalSupported = new MetalLookAndFeel().isSupportedLookAndFeel();
-	private final boolean motifSupported = new MotifLookAndFeel().isSupportedLookAndFeel();
 	private final boolean windowsSupported = new WindowsLookAndFeel().isSupportedLookAndFeel();
 
 	private final @Nullable JMenuItem restoreDefaultItem;
@@ -58,7 +55,6 @@ final class LookAndFeelMenu extends JMenu
 
 	private @Nullable JRadioButtonMenuItem macItem = null;
 	private @Nullable JRadioButtonMenuItem metalItem = null;
-	private @Nullable JRadioButtonMenuItem motifItem = null;
 	private @Nullable JRadioButtonMenuItem windowsItem = null;
 
 	private final @NotNull JavaPH parent;
@@ -107,10 +103,6 @@ final class LookAndFeelMenu extends JMenu
 			{
 				parent.restoreLookAndFeel(METAL_LOOK_AND_FEEL);
 			}
-			else if (motifSupported && src == motifItem)
-			{
-				parent.restoreLookAndFeel(MOTIF_LOOK_AND_FEEL);
-			}
 			else if (windowsSupported && src == windowsItem)
 			{
 				parent.restoreLookAndFeel(WINDOWS_LOOK_AND_FEEL);
@@ -155,16 +147,6 @@ final class LookAndFeelMenu extends JMenu
 			add(metalItem);
 		}
 
-		if (motifSupported)
-		{
-			motifItem = new JRadioButtonMenuItem(JavaPHConstants.MOTIF);
-			group.add(motifItem);
-			motifItem.addActionListener(lookAndFeelRadioListener);
-			motifItem.addMouseListener(mouseListener);
-			motifItem.setActionCommand(String.format(JavaPHConstants.CHANGE_TO_S_LOOK_AND_FEEL, JavaPHConstants.MOTIF));
-			add(motifItem);
-		}
-
 		if (windowsSupported)
 		{
 			windowsItem = new JRadioButtonMenuItem(JavaPHConstants.WINDOWS);
@@ -205,10 +187,6 @@ final class LookAndFeelMenu extends JMenu
 		if (metalSupported) {
 			assert metalItem != null;
 			metalItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(METAL_LOOK_AND_FEEL));
-		}
-		if (motifSupported) {
-			assert motifItem != null;
-			motifItem.setSelected(UIManager.getLookAndFeel().getClass().getName().equals(MOTIF_LOOK_AND_FEEL));
 		}
 		if (windowsSupported) {
 			assert windowsItem != null;
