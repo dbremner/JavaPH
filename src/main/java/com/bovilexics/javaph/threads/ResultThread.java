@@ -393,20 +393,21 @@ public final class ResultThread extends Thread
 	@Override
 	public synchronized void interrupt()
 	{
-		if (isAlive())
+		if (!isAlive())
 		{
-			halted = true;
-			try
-			{
-				cleanup();
-			}
-			catch (@NotNull IOException | QiProtocolException e)
-			{
-				error = true;
-				logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
-			}
-			super.interrupt();
+			return;
 		}
+		halted = true;
+		try
+		{
+			cleanup();
+		}
+		catch (@NotNull IOException | QiProtocolException e)
+		{
+			error = true;
+			logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
+		}
+		super.interrupt();
 	}
 
 	private synchronized boolean isValidQiResponse()
