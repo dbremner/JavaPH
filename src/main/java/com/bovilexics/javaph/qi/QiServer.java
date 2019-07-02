@@ -166,8 +166,8 @@ public final class QiServer implements Server
 	@Override
 	public void loadFields()
 	{
-
-		@Nullable ResultThread resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, new QiConnection(getExpandedName(), getServer(), getPort(), lineFactory));
+		final @NotNull Connection connection = new QiConnection(expandedName, server, port, lineFactory);
+		@Nullable ResultThread resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, connection);
 		resultThread.start();
 
 		int seconds = 0;
