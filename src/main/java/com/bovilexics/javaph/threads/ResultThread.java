@@ -395,7 +395,15 @@ public final class ResultThread extends Thread
 		if (isAlive())
 		{
 			halted = true;
-			cleanup();
+			try
+			{
+				cleanup();
+			}
+			catch (@NotNull IOException | QiProtocolException e)
+			{
+				error = true;
+				logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
+			}
 			super.interrupt();
 		}
 	}
@@ -774,34 +782,26 @@ public final class ResultThread extends Thread
 		return results;
 	}
 
-	private void cleanup()
+	private void cleanup() throws IOException, QiProtocolException
 	{
 		state = ResultThreadState.Stopped;
 		prologue = "Stopped!";
 
 		// Read the remainder of the response from Qi (and dispose).
-		try
+		if (qiLine != null && qiLine.getCode() < QiAPI.LR_OK)
 		{
-			if (qiLine != null && qiLine.getCode() < QiAPI.LR_OK)
+			@Nullable String buffer;
+			while ((buffer = connection.readQI()) != null)
 			{
-				@Nullable String buffer;
-				while ((buffer = connection.readQI()) != null)
-				{
-					final @NotNull Line line = lineFactory.create(buffer);
-					if (line.getCode() >= QiAPI.LR_OK) {
-						break;
-					}
+				final @NotNull Line line = lineFactory.create(buffer);
+				if (line.getCode() >= QiAPI.LR_OK) {
+					break;
 				}
 			}
-
-			if (!connection.authenticated()) {
-				connection.disconnect();
-			}
 		}
-		catch (@NotNull IOException | QiProtocolException e)
-		{
-			error = true;
-			logger.showStatus(String.format(JavaPHConstants.ERROR_S, e));
+
+		if (!connection.authenticated()) {
+			connection.disconnect();
 		}
 	}
 
