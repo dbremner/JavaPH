@@ -4,6 +4,7 @@ import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("HardCodedStringLiteral")
 public enum Tab
 {
     ResultText(0, JavaPHConstants.TEXT_RESULTS, "javaph-result.txt"),
