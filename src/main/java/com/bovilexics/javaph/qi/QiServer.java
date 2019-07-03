@@ -165,9 +165,15 @@ public final class QiServer implements Server
 	}
 
 	@Override
+	public @NotNull Connection open()
+	{
+		return new QiConnection(getExpandedName(), getServer(), getPort(), lineFactory);
+	}
+
+	@Override
 	public void loadFields()
 	{
-		final @NotNull Connection connection = new QiConnection(expandedName, server, port, lineFactory);
+		final @NotNull Connection connection = this.open();
 		@Nullable ResultThread resultThread;
 		try
 		{

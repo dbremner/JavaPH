@@ -1,6 +1,5 @@
 package com.bovilexics.javaph.qi;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -26,7 +25,4 @@ public interface ServerManager
     void setDefaultServer(@NotNull String server);
 
     void loadAllFields();
-
-    @Contract(pure = true)
-    @NotNull ConnectionFactory getConnectionFactory();
 }

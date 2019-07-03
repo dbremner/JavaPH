@@ -25,7 +25,6 @@ import com.bovilexics.javaph.models.QueryComboBoxModel;
 import com.bovilexics.javaph.models.ResultTableModel;
 import com.bovilexics.javaph.qi.Command;
 import com.bovilexics.javaph.qi.Connection;
-import com.bovilexics.javaph.qi.ConnectionFactory;
 import com.bovilexics.javaph.qi.Field;
 import com.bovilexics.javaph.qi.FieldState;
 import com.bovilexics.javaph.qi.QiServerFileException;
@@ -284,8 +283,6 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 	{
 		private @Nullable ProgressMonitor queryProgressMonitor;
 
-		private final @NotNull ConnectionFactory connectionFactory;
-
 		private final @NotNull JavaPH parent;
 		private final @NotNull JButton fieldListMoveDnButton = new JButton(JavaPHConstants.MOVE_DOWN);
 		private final @NotNull JButton fieldListMoveUpButton;
@@ -301,10 +298,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		private final @NotNull CustomButtonGroup fieldRadioGroup = new CustomButtonGroup();
 
 		@SuppressWarnings("WeakerAccess")
-		QueryPanel(final @NotNull JavaPH javaph, final @NotNull ConnectionFactory connectionFactory)
+		QueryPanel(final @NotNull JavaPH javaph)
 		{
 			parent = javaph;
-			this.connectionFactory = connectionFactory;
 
 			fieldCustomOff = getImageIcon("img/field-custom-off.gif");
 			fieldCustomOn = getImageIcon("img/field-custom-on.gif");
@@ -436,7 +432,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull String command = getCommand();
 				final @Nullable Server server = getServer();
 				assert server != null;
-				final @NotNull Connection connection = connectionFactory.create(server);
+				final @NotNull Connection connection = server.open();
 				final @NotNull Runnable runnable = new QueryThreadRunnable(parent, runtime, command, connection);
 				final @NotNull Thread qt = new Thread(runnable);
 				qt.start();
@@ -600,7 +596,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull String portText = String.valueOf(portInt);
 				portStatusLabel.setText(String.format(JavaPHConstants.PORT_S, portText));
 
-				connection = connectionFactory.create(server);
+				connection = server.open();
 
 				if (getLoadFields() == LoadFields.Selected && server.getFieldState() != FieldState.FIELD_LOAD_ERROR && server.getFieldState() != FieldState.FIELD_LOAD_TRUE)
 				{
@@ -1071,7 +1067,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		// can have access to the status labels
 		contentPane.add(new StatusPanel(), BorderLayout.SOUTH);
 		contentPane.add(queryToolBar, BorderLayout.NORTH);
-		queryPanel = new QueryPanel(this, serverManager.getConnectionFactory());
+		queryPanel = new QueryPanel(this);
 		contentPane.add(new ContentPanel(queryPanel, resultPanel), BorderLayout.CENTER);
 
 		showToolBar(propertyEquals(PROP_DISPLAY_TOOLBAR, true, true));

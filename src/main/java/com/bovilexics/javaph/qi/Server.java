@@ -27,5 +27,7 @@ public interface Server
     @Contract(pure = true)
     @NotNull String getServer();
 
+    @NotNull Connection open();
+
     void loadFields();
 }
