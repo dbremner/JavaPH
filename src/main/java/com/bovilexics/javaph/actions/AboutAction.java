@@ -31,6 +31,6 @@ public final class AboutAction extends RunnableAction
 
 	public AboutAction(final @NotNull IconProvider provider, final @NotNull Runnable runnable)
 	{
-		super(JavaPHConstants.ABOUT_JAVA_PH, runnable, provider.getImageIcon(FilePaths.IMG_PH_ICON_SMALLER_GIF_FILEPATH));
+		super(JavaPHConstants.ABOUT_JAVA_PH, runnable, provider.getImageIcon(FilePaths.PH_ICON_SMALLER_GIF));
 	}
 }

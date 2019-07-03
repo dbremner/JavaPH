@@ -1086,7 +1086,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		showDefaultStatus();
 		frame.setContentPane(getContentPane());
-		frame.setIconImage(getImageIcon(FilePaths.IMG_PH_ICON_SMALLER_GIF_FILEPATH).getImage());
+		frame.setIconImage(getImageIcon(FilePaths.PH_ICON_SMALLER_GIF).getImage());
 
 		frame.setSize(frameWidth, frameHeight);
 		frame.setTitle(JavaPHConstants.INFO_NAME);

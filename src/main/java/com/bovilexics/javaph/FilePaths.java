@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 public enum FilePaths
 {
     ;
-    public static final @NotNull String HELP_FILE_PATH = "help/index.html";
-    public static final @NotNull String IMG_PH_ICON_SMALLER_GIF_FILEPATH = "img/ph-icon-smaller.gif";
-    public static final @NotNull String IMG_CUT_GIF_FILEPATH = "img/cut.gif";
-    public static final @NotNull String IMG_COPY_GIF_FILEPATH = "img/copy.gif";
-    public static final @NotNull String IMG_PASTE_GIF_FILEPATH = "img/paste.gif";
+    public static final @NotNull String INDEX_HTML = "help/index.html";
+    public static final @NotNull String PH_ICON_SMALLER_GIF = "img/ph-icon-smaller.gif";
+    public static final @NotNull String CUT_GIF = "img/cut.gif";
+    public static final @NotNull String COPY_GIF = "img/copy.gif";
+    public static final @NotNull String PASTE_GIF = "img/paste.gif";
 }

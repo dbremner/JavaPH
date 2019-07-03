@@ -92,7 +92,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem cutItem = getNewMenuItem();
 		cutItem.setAction(new CutAction());
-		cutItem.setIcon(parent.getImageIcon(FilePaths.IMG_CUT_GIF_FILEPATH));
+		cutItem.setIcon(parent.getImageIcon(FilePaths.CUT_GIF));
 		cutItem.setText(JavaPHConstants.CUT);
 		cutItem.setActionCommand(JavaPHConstants.CUTS_THE_SELECTION_AND_PUTS_IT_ON_THE_CLIPBOARD);
 		cutItem.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
@@ -101,7 +101,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem copyItem = new JMenuItem(JavaPHConstants.COPY);
 		copyItem.setAction(new CopyAction());
-		copyItem.setIcon(parent.getImageIcon(FilePaths.IMG_COPY_GIF_FILEPATH));
+		copyItem.setIcon(parent.getImageIcon(FilePaths.COPY_GIF));
 		copyItem.setText(JavaPHConstants.COPY);
 		copyItem.setActionCommand(JavaPHConstants.COPIES_THE_SELECTION_AND_PUTS_IT_ON_THE_CLIPBOARD);
 		copyItem.setAccelerator(KeyStroke.getKeyStroke("ctrl C"));
@@ -110,7 +110,7 @@ public final class MainMenu extends JMenuBar
 
 		final @NotNull JMenuItem pasteItem = getNewMenuItem();
 		pasteItem.setAction(new PasteAction());
-		pasteItem.setIcon(parent.getImageIcon(FilePaths.IMG_PASTE_GIF_FILEPATH));
+		pasteItem.setIcon(parent.getImageIcon(FilePaths.PASTE_GIF));
 		pasteItem.setText(JavaPHConstants.PASTE);
 		pasteItem.setActionCommand(JavaPHConstants.INSERTS_CLIPBOARD_CONTENTS);
 		pasteItem.setAccelerator(KeyStroke.getKeyStroke("ctrl V"));

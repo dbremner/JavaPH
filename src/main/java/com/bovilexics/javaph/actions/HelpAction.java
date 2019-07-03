@@ -49,11 +49,11 @@ public final class HelpAction extends AbstractAction
 	{
 		try
 		{
-			Browser.displayURL(parent.getURL(FilePaths.HELP_FILE_PATH).toString(), JavaPHConstants.INFO_NAME_HELP);
+			Browser.displayURL(parent.getURL(FilePaths.INDEX_HTML).toString(), JavaPHConstants.INFO_NAME_HELP);
 		}
 		catch (final @NotNull IOException ex)
 		{
-			final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_OPEN_S, parent.getURL(FilePaths.HELP_FILE_PATH).toString());
+			final @NotNull String message = String.format(JavaPHConstants.ERROR_IOEXCEPTION_RECEIVED_WHEN_TRYING_TO_OPEN_S, parent.getURL(FilePaths.INDEX_HTML).toString());
 			parent.log(message);
 			parent.showExceptionDialog(message);
 		}

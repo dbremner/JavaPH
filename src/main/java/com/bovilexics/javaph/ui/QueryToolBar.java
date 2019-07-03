@@ -61,9 +61,9 @@ public final class QueryToolBar extends JToolBar
 
 		addFixedSeparator();
 			
-		addToolBarButton(new CutAction(), javaph.getImageIcon(FilePaths.IMG_CUT_GIF_FILEPATH));
-		addToolBarButton(new CopyAction(), javaph.getImageIcon(FilePaths.IMG_COPY_GIF_FILEPATH));
-		addToolBarButton(new PasteAction(), javaph.getImageIcon(FilePaths.IMG_PASTE_GIF_FILEPATH));
+		addToolBarButton(new CutAction(), javaph.getImageIcon(FilePaths.CUT_GIF));
+		addToolBarButton(new CopyAction(), javaph.getImageIcon(FilePaths.COPY_GIF));
+		addToolBarButton(new PasteAction(), javaph.getImageIcon(FilePaths.PASTE_GIF));
 
 		addFixedSeparator();
 			
