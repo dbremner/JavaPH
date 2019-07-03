@@ -201,7 +201,7 @@ public final class QiConnection implements Connection
 
 			// Read server's response.
 			// Expecting: "301:"B`":X8Z;9)!CH0/"H\^GQWD-P7TEAD3".G['%W20:"
-			@NonNls @NotNull String blurb = "";
+			@NonNls final @NotNull StringBuilder blurb = new StringBuilder();
 			while (true)
 			{
 				final @Nullable String buffer = readLine();
@@ -214,15 +214,16 @@ public final class QiConnection implements Connection
 				if (qiQiLine.getCode() == QiAPI.LR_LOGIN) {
 					break;
 				} else if (qiQiLine.getCode() < QiAPI.LR_OK) {
-					blurb += qiQiLine.getResponse() + " ";
+					blurb.append(qiQiLine.getResponse());
+					blurb.append(" ");
 				} else {
 					throw new QiProtocolException(qiQiLine.getResponse());
 				}
 			}
 
 			// "No Hostname found for IP address" maybe.
-			if (!blurb.isEmpty()) {
-				ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGIN_S, blurb));
+			if (blurb.length() > 0) {
+				ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGIN_S, blurb.toString()));
 			}
 
 			// Send password.
@@ -230,7 +231,7 @@ public final class QiConnection implements Connection
 
 			// Read server's response.
 			// Expecting: "200:myname:Hi how are you?"
-			@NonNls @NotNull String blurb2 = "";
+			@NonNls final StringBuilder blurb2 = new StringBuilder();
 			while (true)
 			{
 				final @Nullable String buffer = readLine();
@@ -242,9 +243,9 @@ public final class QiConnection implements Connection
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb2.isEmpty())
+					if (blurb2.length() > 0)
 					{
-						ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGIN_S, blurb2));
+						ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGIN_S, blurb2.toString()));
 					}
 						
 					authenticated = true;
@@ -252,7 +253,8 @@ public final class QiConnection implements Connection
 				}
 				else if (qiQiLine.getCode() < QiAPI.LR_OK)
 				{
-					blurb2 += qiQiLine.getResponse() + " ";
+					blurb2.append(qiQiLine.getResponse());
+					blurb2.append(" ");
 				}
 				else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
 				{
@@ -293,7 +295,7 @@ public final class QiConnection implements Connection
 
 			// Read server's response.
 			// Expecting: "200:Ok."
-			@NotNull String blurb = "";
+			final StringBuilder blurb = new StringBuilder();
 			while (true)
 			{
 				final @Nullable String buffer = readLine();
@@ -305,15 +307,16 @@ public final class QiConnection implements Connection
 				if (qiQiLine.getCode() == QiAPI.LR_OK)
 				{
 					// "No Hostname found for IP address" maybe.
-					if (!blurb.isEmpty()) {
-						ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGOUT_S, blurb));
+					if (blurb.length() > 0) {
+						ErrLoggerImpl.instance.log(String.format(JavaPHConstants.ERROR_ON_QI_LOGOUT_S, blurb.toString()));
 					}
 						
 					authenticated = false;
 					break;
 				}
 				else if (qiQiLine.getCode() < QiAPI.LR_OK) {
-					blurb += qiQiLine.getResponse() + " ";
+					blurb.append(qiQiLine.getResponse());
+					blurb.append(" ");
 				} else if (qiQiLine.getCode() == QiAPI.LR_ERROR) // "500:Login failed."
 				{
 					throw new QiProtocolException(qiQiLine.getResponse());
