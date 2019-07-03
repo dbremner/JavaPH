@@ -610,7 +610,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 				populateFieldList(server);
 			});
-			serverManager.setDefaultServer(properties.getProperty(PROP_DEFAULT_SERVER));
+			final @NotNull Optional<String> optional = properties.getProperty(PROP_DEFAULT_SERVER);
+			optional.ifPresent(serverManager::setDefaultServer);
 
 			queryServerPanel.add(serverComboBox, BorderLayout.CENTER);
 

@@ -4,7 +4,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.Optional;
 import java.util.Vector;
 
 public interface ServerManager
@@ -25,8 +24,6 @@ public interface ServerManager
     void save() throws IOException;
 
     void setDefaultServer(@NotNull String server);
-
-    void setDefaultServer(@NotNull Optional<String> server);
 
     void loadAllFields();
 

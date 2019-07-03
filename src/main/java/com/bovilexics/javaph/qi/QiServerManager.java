@@ -209,16 +209,6 @@ public final class QiServerManager implements ServerManager
     }
 
     @Override
-    public void setDefaultServer(final @NotNull Optional<String> server)
-    {
-        if (!server.isPresent())
-        {
-            return;
-        }
-        setDefaultServer(server.get());
-    }
-
-    @Override
     public void loadAllFields()
     {
         for (final @NotNull Server server : servers) {
