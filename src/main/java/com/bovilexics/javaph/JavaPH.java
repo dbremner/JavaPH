@@ -600,7 +600,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @NotNull String portText = String.valueOf(portInt);
 				portStatusLabel.setText(String.format(JavaPHConstants.PORT_S, portText));
 
-				connection = connectionFactory.create(serverText, portInt);
+				connection = connectionFactory.create(server);
 
 				if (getLoadFields() == LoadFields.Selected && server.getFieldState() != FieldState.FIELD_LOAD_ERROR && server.getFieldState() != FieldState.FIELD_LOAD_TRUE)
 				{
