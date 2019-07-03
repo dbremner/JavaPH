@@ -24,9 +24,9 @@ import javax.swing.JComboBox;
 /**
  *
  * @author Robert Fernandes robert@bovilexics.com
- * 
+ * TODO tighten types
  */
-public final class QueryComboBox extends JComboBox
+public final class QueryComboBox extends JComboBox<Object>
 {
 	public QueryComboBox()
 	{
