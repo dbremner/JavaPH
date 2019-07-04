@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.JavaPHConstants;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,5 +34,12 @@ final class NullConnectionHelper implements ConnectionHelper
     @Override
     public void close()
     {
+    }
+
+    @NonNls
+    @Override
+    public String toString()
+    {
+        return "NullConnectionHelper";
     }
 }

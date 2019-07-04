@@ -1,6 +1,7 @@
 package com.bovilexics.javaph.qi;
 
 import com.bovilexics.javaph.JavaPHConstants;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -75,4 +76,10 @@ final class LiveConnectionHelper implements ConnectionHelper
         return !closed;
     }
 
+    @NonNls
+    @Override
+    public @NotNull String toString()
+    {
+        return String.format("LiveConnectionHelper{socket=%s, fromServer=%s, toServer=%s, closed=%s}", socket, fromServer, toServer, closed);
+    }
 }
