@@ -1,5 +1,11 @@
 package com.bovilexics.javaph.qi
 
+object LineFactoryImpl
+{
+  private def fromIndex(index : Int) : Option[Int] =
+    if (index != -1) Some(index) else None()
+}
+
 final class LineFactoryImpl extends LineFactory
 {
   @throws[QiProtocolException]
@@ -32,10 +38,10 @@ final class LineFactoryImpl extends LineFactory
         */
     // Get the result code.
     // Index of first colon --> -200:
-    val colon1Index = verbatim.indexOf(':')
-    if (colon1Index == -1)
+    val colon1Index = LineFactoryImpl.fromIndex(verbatim.indexOf(':')) match
     {
-      throw new QiProtocolException(verbatim)
+      case Some(i) => i
+      case None => throw new QiProtocolException(verbatim)
     }
     val code = getCode(verbatim, colon1Index)
     // Get the index count, if there is one.
@@ -63,10 +69,10 @@ final class LineFactoryImpl extends LineFactory
     // This should be a field:value response.
     // Get field, value and return.
     // Index of third colon --> -200:1:    email:
-    val colon3Index = verbatim.indexOf(':', colon2Index + 1)
-    if (colon3Index == -1)
+    val colon3Index = LineFactoryImpl.fromIndex(verbatim.indexOf(':', colon2Index + 1)) match
     {
-      throw new QiProtocolException(verbatim)
+      case Some(i) => i
+      case None => throw new QiProtocolException(verbatim)
     }
     val field = verbatim.substring(colon2Index + 1, colon3Index)
     val value = verbatim.substring(colon3Index + 1)
