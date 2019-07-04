@@ -78,12 +78,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.ProgressMonitor;
 import javax.swing.RootPaneContainer;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.awt.BorderLayout;
@@ -823,29 +825,29 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					colList.setSelectedIndices(prevSelections);
 					return;
 				}
-				for (int i = 0; i < colList.getModel().getSize(); i++)
+				final ListModel<String> colListModel = colList.getModel();
+				for (int i = 0; i < colListModel.getSize(); i++)
 				{
-					if (colList.isSelectedIndex(i))
-					{
-						resultTable.getColumn(colList.getModel().getElementAt(i)).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i)).getMaxWidth());
-					}
-					else
-					{
-						resultTable.getColumn(colList.getModel().getElementAt(i)).setPreferredWidth(0);
-					}
+					final @NotNull String element = colListModel.getElementAt(i);
+					final @NotNull TableColumn column = resultTable.getColumn(element);
+					final int width = colList.isSelectedIndex(i) ? column.getMaxWidth() : 0;
+					column.setPreferredWidth(width);
 				}
 			});
 
 			resultTableColWidthButton.setEnabled(false);
 			resultTableColWidthButton.addActionListener(ae ->
 			{
-				for (int i = 0; i < colList.getModel().getSize(); i++)
+				final ListModel<String> colListModel = colList.getModel();
+				for (int i = 0; i < colListModel.getSize(); i++)
 				{
 					// If it is a shown column and not hidden (selected in list)
 					// then reset its preferred width to its maximum width
+					final @NotNull String element = colListModel.getElementAt(i);
+					final @NotNull TableColumn column = resultTable.getColumn(element);
 					if (colList.isSelectedIndex(i))
 					{
-						resultTable.getColumn(colList.getModel().getElementAt(i)).setPreferredWidth(resultTable.getColumn(colList.getModel().getElementAt(i)).getMaxWidth());
+						column.setPreferredWidth(column.getMaxWidth());
 					}
 				}
 			});
