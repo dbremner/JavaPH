@@ -13,12 +13,12 @@ object CommandImpl
     new CommandImpl(HELP, "Help", true, false))
 }
 
-final class CommandImpl(
-                   val command : String,
-                   val name : String,
-                   val description: String,
-                   val canEditList : Boolean,
-                   val canEditText: Boolean)
+final case class CommandImpl(
+                              command : String,
+                              name : String,
+                              description: String,
+                              canEditList : Boolean,
+                              canEditText: Boolean)
   extends Command
 {
   def this(name: String, description: String, canEditText: Boolean, canEditList: Boolean)
