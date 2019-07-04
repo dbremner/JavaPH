@@ -433,7 +433,8 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 				final @Nullable Server server = getServer();
 				assert server != null;
 				final @NotNull Connection connection = server.open();
-				final @NotNull Runnable runnable = new QueryThreadRunnable(parent, runtime, command, connection);
+				final @NotNull Runnable runnable = new QueryThreadRunnable(parent, runtime, command, connection,
+						connection.getLineFactory());
 				final @NotNull Thread qt = new Thread(runnable);
 				qt.start();
 			});

@@ -177,7 +177,7 @@ public final class QiServer implements Server
 		@Nullable ResultThread resultThread;
 		try
 		{
-			resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, connection);
+			resultThread = new ResultThread(new StatusErrorLogger(), QiCommand.FIELDS, connection, lineFactory);
 		}
 		catch (final @NotNull IOException e)
 		{

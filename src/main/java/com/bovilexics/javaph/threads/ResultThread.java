@@ -94,11 +94,11 @@ public final class ResultThread extends Thread
 	private @NotNull List<Line> record = new ArrayList<>();
 
 	public ResultThread(final @NotNull StatusLogger logger, final @NotNull String command,
-						final @NotNull Connection connection) throws IOException
+						final @NotNull Connection connection, final @NotNull LineFactory lineFactory) throws IOException
 	{
 		this.logger = logger;
 		this.connection = connection;
-		lineFactory = connection.getLineFactory();
+		this.lineFactory = lineFactory;
 		commandLine = command;
 		this.command = new StringTokenizer(commandLine).nextToken();
 

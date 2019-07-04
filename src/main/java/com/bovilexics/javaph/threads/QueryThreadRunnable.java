@@ -5,6 +5,7 @@ import com.bovilexics.javaph.JavaPHConstants;
 import com.bovilexics.javaph.logging.ErrLoggerImpl;
 import com.bovilexics.javaph.logging.StatusErrorLogger;
 import com.bovilexics.javaph.qi.Connection;
+import com.bovilexics.javaph.qi.LineFactory;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.SwingUtilities;
@@ -14,6 +15,7 @@ import java.util.Collection;
 public final class QueryThreadRunnable implements Runnable
 {
     private final @NotNull Connection connection;
+    private final @NotNull LineFactory lineFactory;
     private int seconds = 0;
 
     private final @NotNull JavaPH parent;
@@ -24,12 +26,14 @@ public final class QueryThreadRunnable implements Runnable
             final @NotNull JavaPH parent,
             final int runtime,
             final @NotNull String command,
-            final @NotNull Connection connection)
+            final @NotNull Connection connection,
+            final @NotNull LineFactory lineFactory)
     {
         this.parent = parent;
         this.runtime = runtime;
         this.command = command;
         this.connection = connection;
+        this.lineFactory = lineFactory;
     }
 
     @Override
@@ -41,7 +45,7 @@ public final class QueryThreadRunnable implements Runnable
         final @NotNull ResultThread resultThread;
         try
         {
-            resultThread = new ResultThread(new StatusErrorLogger(), command, connection);
+            resultThread = new ResultThread(new StatusErrorLogger(), command, connection, lineFactory);
         }
         catch (final @NotNull IOException e)
         {
