@@ -758,7 +758,7 @@ public final class ResultThread extends Thread
 			JavaPHConstants.PROPERTIES});
 	}
 
-	private static @NotNull Object[][] buildValuesForFields(final @NotNull ImmutableList<Object> headersList,
+	private static @NotNull Object[][] buildValuesForFields(final @NotNull List<Object> headersList,
 													 final @NotNull List<List<Line>> lists)
 	{
 		final @NotNull Object[][] results = new Object[lists.size()][headersList.size()];
