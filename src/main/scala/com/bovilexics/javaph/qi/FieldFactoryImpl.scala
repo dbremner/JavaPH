@@ -33,8 +33,8 @@ object FieldFactoryImpl
         }
         catch
         {
-          case _: NumberFormatException =>
-          throw new IllegalArgumentException("Invalid value for max length property: " + someProperties)
+          case e: NumberFormatException =>
+          throw new java.lang.IllegalArgumentException("Invalid value for max length property: " + someProperties, e)
         }
       }
       else
