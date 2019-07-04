@@ -1,8 +1,9 @@
 package com.bovilexics.javaph.qi
 
-import com.bovilexics.javaph.qi.ServerFactoryImpl.{PORT_ERROR, isValidPort}
+import com.bovilexics.javaph.qi.ServerFactoryImpl.PORT_ERROR
 import org.jetbrains.annotations.Contract
 
+import scala.util.Try
 
 object ServerFactoryImpl
 {
@@ -12,22 +13,11 @@ object ServerFactoryImpl
   private def isValidPort(port: Int): Boolean =
     port >= 0 && port <= 65535
 
-  @throws[IllegalArgumentException]
-  private def convertToPort(aPort: String) =
-    try
-    {
-      val aPortInteger = aPort.toInt
-      if (!isValidPort(aPortInteger))
-      {
-        throw new IllegalArgumentException(PORT_ERROR)
-      }
-      aPortInteger
-    }
-    catch
-    {
-      case _: NumberFormatException =>
-        throw new IllegalArgumentException(PORT_ERROR)
-    }
+  private def toPort(port: String): Option[Int] =
+    Try(port.toInt).toOption.flatMap(toPort)
+
+  private def toPort(port: Int): Option[Int] =
+    Some(port).filter(isValidPort)
 }
 
 final class ServerFactoryImpl(val fieldFactory: FieldFactory, val lineFactory: LineFactory) extends ServerFactory
@@ -35,12 +25,20 @@ final class ServerFactoryImpl(val fieldFactory: FieldFactory, val lineFactory: L
   @throws[IllegalArgumentException]
   override def create(name: String, server: String, port: Int): Server =
   {
-    if (!isValidPort(port))
-      throw new IllegalArgumentException(PORT_ERROR)
-    new QiServer(fieldFactory, lineFactory, name, server, port)
+    ServerFactoryImpl.toPort(port) match
+    {
+      case Some(value) => new QiServer(fieldFactory, lineFactory, name, server, value)
+      case None => throw new IllegalArgumentException(PORT_ERROR)
+    }
   }
 
   @throws[IllegalArgumentException]
   override def create(name: String, server: String, port: String) : Server =
-    new QiServer(fieldFactory, lineFactory, name, server, ServerFactoryImpl.convertToPort(port))
+  {
+    ServerFactoryImpl.toPort(port) match
+    {
+      case Some(value) => new QiServer(fieldFactory, lineFactory, name, server, value)
+      case None => throw new IllegalArgumentException(PORT_ERROR)
+    }
+  }
 }
