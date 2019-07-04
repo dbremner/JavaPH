@@ -27,10 +27,10 @@ public enum ReplyCode
 	6XX - phquery specific codes
 */
 
-    LR_PROGRESS	(100, Status), // in progress
-    LR_ECHO		(101, Status), // echoing cmd
-    LR_NUMRET	(102, Status), // how many entries are being returned
-    LR_NONAME	(103, Status), // no hostname found for IP address
+    LR_PROGRESS	(100, "Nameserver search in progress", Status), // in progress
+    LR_ECHO		(101, "Echoing nameserver cmd", Status), // echoing cmd
+    LR_NUMRET	(102, "How many entries are being returned", Status), // how many entries are being returned
+    LR_NONAME	(103, "No hostname found for IP address", Status), // no hostname found for IP address
 
     LR_OK		(200, Info), // success
     LR_RONLY	(201, Info), // database ready in read only mode
@@ -119,10 +119,6 @@ public enum ReplyCode
 
     static
     {
-        QiCodes.put(LR_PROGRESS,	"Nameserver search in progress");
-        QiCodes.put(LR_ECHO,		"Echoing nameserver cmd");
-        QiCodes.put(LR_NUMRET,	"How many entries are being returned");
-        QiCodes.put(LR_NONAME,	"No hostname found for IP address");
         QiCodes.put(LR_OK,		"Success");
         QiCodes.put(LR_RONLY,		"Nameserver database ready in read only mode");
         QiCodes.put(LR_MORE,		"More info needed to process nameserver query");
