@@ -49,9 +49,9 @@ final class LineFactoryImpl extends LineFactory
     }
     var index = 0
     try
-      {
-        index = verbatim.substring(colon1Index + 1, colon2Index).toInt
-      }
+    {
+      index = verbatim.substring(colon1Index + 1, colon2Index).toInt
+    }
     catch
     {
       case _: NumberFormatException =>
