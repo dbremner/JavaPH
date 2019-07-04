@@ -22,14 +22,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 
 /** 
  * This class represents a connection to Qi. Use this class instead of
@@ -41,22 +34,23 @@ import java.net.SocketAddress;
  */
 public final class QiConnection implements Connection
 {
-
 	// TODO does this support authentication?
 	// TODO should these fields be volatile?
 	private volatile boolean authenticated = false;
-	private volatile boolean connected = false;
 	private volatile boolean locked = false;
 
 	private final int port;
 	private final @NotNull String expandedName;
 	private final @NotNull String host;
 	private final @NotNull LineFactory lineFactory;
-	private @Nullable Socket socket;
+
+	//This is a null object.
+	@SuppressWarnings("resource")
+	private final @NotNull ConnectionHelper nullHelper = new NullConnectionHelper();
+
+	private @NotNull ConnectionHelper helper = nullHelper;
+
 	private @Nullable Thread locker;
-		
-	private @Nullable BufferedReader fromServer;
-	private @Nullable BufferedWriter toServer;
 
 	/**
 	 * Creates a QiConnection from a QiServer object which must then be initialized using
@@ -87,21 +81,16 @@ public final class QiConnection implements Connection
 	@Override
 	public synchronized void connect() throws IOException
 	{
-		socket = new Socket();
-		// Timeout after 10 seconds
-		final @NotNull SocketAddress socketAddress = new InetSocketAddress(host, port);
-		final int TIMEOUT = 10000;
-		socket.connect(socketAddress, TIMEOUT);
-		
-		fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		toServer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-		connected = true;
+		helper = new LiveConnectionHelper(host, port);
 	}
 
 	@Override
 	public boolean connected()
 	{
-		return connected;
+		synchronized (this)
+		{
+			return helper.connected();
+		}
 	}
 
 	/**
@@ -111,7 +100,7 @@ public final class QiConnection implements Connection
 	@Override
 	public synchronized void disconnect() throws IOException
 	{
-		if (!connected) {
+		if (!connected()) {
 			return;
 		}
 
@@ -123,16 +112,11 @@ public final class QiConnection implements Connection
 		{
 			try
 			{
-				assert fromServer != null;
-				fromServer.close();
-				assert toServer != null;
-				toServer.close();
-				assert socket != null;
-				socket.close();
+				helper.close();
 			}
 			finally
 			{
-				connected = false;
+				helper = new NullConnectionHelper();
 			}
 		}
 	}
@@ -339,11 +323,7 @@ public final class QiConnection implements Connection
 
 	private @Nullable String readLine() throws IOException
 	{
-		if (fromServer == null)
-		{
-			throw new IOException(JavaPHConstants.QI_SOCKET_UNINITIALIZED);
-		}
-		return fromServer.readLine();
+		return helper.readLine();
 	}
 
 	@Override
@@ -355,7 +335,7 @@ public final class QiConnection implements Connection
 		out.append(":");
 		out.append(port);
 		out.append(" {connected=");
-		out.append(connected);
+		out.append(connected());
 		out.append(", authenticated=");
 		out.append(authenticated);
 		out.append(", locked=");
@@ -400,12 +380,6 @@ public final class QiConnection implements Connection
 
 	private void writeLine(final @NotNull String string) throws IOException
 	{
-		if (toServer == null)
-		{
-			throw new IOException(JavaPHConstants.QI_SOCKET_UNINITIALIZED);
-		}
-
-		toServer.write(string);
-		toServer.flush();
+		helper.writeLine(string);
 	}
 }
