@@ -251,4 +251,5 @@ public enum JavaPHConstants
 	public static final @NotNull String NAME_LABEL = "Name :";
 	public static final @NotNull String FIND_TEXT_LABEL = " Find Text : ";
 	public static final @NotNull String ERROR_INVALID_PATH_EXCEPTION_THROWN_WHEN_CREATING_FILE_PATH_S = "Error: InvalidPathException thrown when creating file path - %s";
+    public static final @NotNull String CONNECTION_HAS_BEEN_CLOSED = "Connection has been closed.";
 }

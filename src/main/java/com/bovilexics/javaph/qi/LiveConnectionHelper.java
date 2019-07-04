@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.qi;
 
+import com.bovilexics.javaph.JavaPHConstants;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,6 +18,7 @@ final class LiveConnectionHelper implements ConnectionHelper
     private final @NotNull Socket socket;
     private final @NotNull BufferedReader fromServer;
     private final @NotNull BufferedWriter toServer;
+    private boolean closed = false;
 
     LiveConnectionHelper(final @NotNull String host, final int port) throws IOException
     {
@@ -33,20 +35,36 @@ final class LiveConnectionHelper implements ConnectionHelper
     @Override
     public void close() throws IOException
     {
+        if (closed)
+        {
+            return;
+        }
+
         fromServer.close();
         toServer.close();
         socket.close();
+        closed = true;
     }
 
     @Override
     public @Nullable String readLine() throws IOException
     {
+        if (closed)
+        {
+            throw new IOException(JavaPHConstants.CONNECTION_HAS_BEEN_CLOSED);
+        }
+
         return fromServer.readLine();
     }
 
     @Override
     public void writeLine(final @NotNull String string) throws IOException
     {
+        if (closed)
+        {
+            throw new IOException(JavaPHConstants.CONNECTION_HAS_BEEN_CLOSED);
+        }
+
         toServer.write(string);
         toServer.flush();
     }
@@ -54,7 +72,7 @@ final class LiveConnectionHelper implements ConnectionHelper
     @Override
     public boolean connected()
     {
-        return true;
+        return !closed;
     }
 
 }
