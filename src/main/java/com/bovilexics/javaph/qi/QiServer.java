@@ -167,7 +167,7 @@ public final class QiServer implements Server
 	@Override
 	public @NotNull Connection open()
 	{
-		return new QiConnection(getExpandedName(), getServer(), getPort(), lineFactory);
+		return new QiConnection(getServer(), getPort(), lineFactory);
 	}
 
 	@Override

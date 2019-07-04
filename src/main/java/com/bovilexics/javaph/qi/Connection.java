@@ -32,9 +32,6 @@ public interface Connection
     int getPort();
 
     @Contract(pure = true)
-    @NotNull String getExpandedName();
-
-    @Contract(pure = true)
     @NotNull LineFactory getLineFactory();
 
     /**

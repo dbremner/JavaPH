@@ -40,7 +40,6 @@ public final class QiConnection implements Connection
 	private volatile boolean locked = false;
 
 	private final int port;
-	private final @NotNull String expandedName;
 	private final @NotNull String host;
 	private final @NotNull LineFactory lineFactory;
 
@@ -57,12 +56,10 @@ public final class QiConnection implements Connection
 	 * <b>connect(host, port)</b>
 	 */
 	public QiConnection(
-			final @NotNull String expandedName,
 			final @NotNull String host,
 			final int port,
 			final @NotNull LineFactory lineFactory)
 	{
-		this.expandedName = expandedName;
 		if (host.isEmpty())
 		{
 			throw new IllegalArgumentException(JavaPHConstants.BLANK_HOST_IS_NOT_PERMITTED);
@@ -131,12 +128,6 @@ public final class QiConnection implements Connection
 	public int getPort()
 	{
 		return port;
-	}
-
-	@Override
-	public @NotNull String getExpandedName()
-	{
-		return expandedName;
 	}
 
 	@Override
