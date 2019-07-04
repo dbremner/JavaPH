@@ -689,8 +689,10 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 			});
 			fieldList.getModel().addListDataListener(new ListDataAdapter( () ->
 			{
-				fieldListSelectAllButton.setEnabled(fieldList.getModel().getSize() > 0);
-				fieldListSelectNoneButton.setEnabled(fieldList.getModel().getSize() > 0);
+				final int size = fieldList.getModel().getSize();
+				final boolean hasValues = size > 0;
+				fieldListSelectAllButton.setEnabled(hasValues);
+				fieldListSelectNoneButton.setEnabled(hasValues);
 			}));
 
 			fieldListControlPanel.add(new JScrollPane(fieldList), BorderLayout.CENTER);
