@@ -1,5 +1,6 @@
 package com.bovilexics.javaph.ui;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.ListModel;
@@ -24,12 +25,13 @@ public enum ListModels
         }
 
         @Override
-        public E get(final int index)
+        public @NotNull E get(final int index)
         {
             return model.getElementAt(index);
         }
 
         @Override
+        @Contract(pure = true)
         public int size()
         {
             return model.getSize();
