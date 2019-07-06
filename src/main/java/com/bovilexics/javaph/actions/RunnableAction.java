@@ -33,7 +33,7 @@ abstract class RunnableAction extends AbstractAction
     }
 
     @Override
-    public @NotNull String toString()
+    public final @NotNull String toString()
     {
         return title;
     }
