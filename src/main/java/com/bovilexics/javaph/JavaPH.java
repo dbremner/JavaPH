@@ -1348,9 +1348,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return result.map(Integer::valueOf).orElse(minValue);
 	}
 
-	public @NotNull QueryComboBox getQueryComboBox()
+	public void setFocus()
 	{
-		return queryComboBox;
+		queryComboBox.getEditor().getEditorComponent().requestFocus();
 	}
 
 	@Contract(pure = true)
@@ -1433,7 +1433,7 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 
 		// Clear the previous query
 		resetCommandComboBoxIndex();
-		getQueryComboBox().setSelectedItem("");
+		queryComboBox.setSelectedItem("");
 	}
 
 	@Override

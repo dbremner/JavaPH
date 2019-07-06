@@ -24,7 +24,7 @@ object Main
     try
     {
       val javaPh = new JavaPH(commands, iconProvider, serverManager, defaultProperties, properties)
-      javaPh.getQueryComboBox.getEditor.getEditorComponent.requestFocus()
+      javaPh.setFocus()
     }
     catch
     {
