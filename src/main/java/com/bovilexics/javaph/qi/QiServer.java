@@ -79,10 +79,10 @@ public final class QiServer implements Server
 
 	private @NotNull ImmutableList<Field> convertRecordsToFields(final @NotNull List<List<Line>> records) throws QiProtocolException
 	{
-		assert records.size() % 2 == 0;
 		final @NotNull ImmutableList.Builder<Field> builder = new ImmutableList.Builder<>();
 		for (final @NotNull List<Line> record : records)
 		{
+			assert record.size() % 2 == 0;
 			// record should contain pairs of field property/description lines
 			for (int j = 0; j < record.size() - 1; j += 2)
 			{
