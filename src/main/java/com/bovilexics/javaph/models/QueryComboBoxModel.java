@@ -180,14 +180,14 @@ public final class QueryComboBoxModel extends AbstractListModel<Object> implemen
 	 */
 	private void removeAllElements()
 	{
-		if (!objects.isEmpty())
+		if (objects.isEmpty())
 		{
-            final int lastIndex = objects.size() - 1;
-			objects.clear();
-			selectedObject = null;
-            final int firstIndex = 0;
-            fireIntervalRemoved(this, firstIndex, lastIndex);
+			return;
 		}
+		final int lastIndex = objects.size() - 1;
+		objects.clear();
+		selectedObject = null;
+		fireIntervalRemoved(this, 0, lastIndex);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
@@ -196,9 +196,11 @@ public final class QueryComboBoxModel extends AbstractListModel<Object> implemen
 	{
 		final int index = objects.indexOf(obj);
 
-		if (index != -1) {
-            removeElementAt(index);
-        }
+		if (index == -1)
+		{
+			return;
+		}
+		removeElementAt(index);
 	}
 
 	// implements javax.swing.MutableComboBoxModel
