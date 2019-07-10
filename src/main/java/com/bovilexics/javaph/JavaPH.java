@@ -1176,12 +1176,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					{
 						continue;
 					}
-					else if (caseSensitive && anObject.toString().contains(text))
+					if (caseSensitive && anObject.toString().contains(text))
 					{
 						table.changeSelection(row, col, false, false);
 						return;
 					}
-					else if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
+					if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
 					{
 						table.changeSelection(row, col, false, false);
 						return;
@@ -1211,12 +1211,12 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 					{
 						continue;
 					}
-					else if (caseSensitive && anObject.toString().contains(text))
+					if (caseSensitive && anObject.toString().contains(text))
 					{
 						table.changeSelection(row, col, false, false);
 						return;
 					}
-					else if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
+					if (!caseSensitive && anObject.toString().toUpperCase().contains(text.toUpperCase()))
 					{
 						table.changeSelection(row, col, false, false);
 						return;
