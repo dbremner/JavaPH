@@ -78,4 +78,9 @@ public final class QiServerFileException extends Exception
                 lineNumber,
                 contents);
     }
+
+    public @Nullable Exception getException()
+    {
+        return exception;
+    }
 }
