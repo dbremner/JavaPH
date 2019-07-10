@@ -3,7 +3,7 @@ package com.bovilexics.javaph.qi
 object LineFactoryImpl
 {
   private def fromIndex(index : Int) : Option[Int] =
-    if (index != -1) Some(index) else None()
+    if (index != -1) Some(index) else None
 }
 
 final class LineFactoryImpl extends LineFactory
