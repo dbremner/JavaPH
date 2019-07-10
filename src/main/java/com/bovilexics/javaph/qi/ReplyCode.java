@@ -32,8 +32,8 @@ public enum ReplyCode
     LR_NUMRET	(102, "How many entries are being returned", Status), // how many entries are being returned
     LR_NONAME	(103, "No hostname found for IP address", Status), // no hostname found for IP address
 
-    LR_OK		(200, Info), // success
-    LR_RONLY	(201, Info), // database ready in read only mode
+    LR_OK		(200, "Success", Info), // success
+    LR_RONLY	(201, "Nameserver database ready in read only mode", Info), // database ready in read only mode
 
     LR_MORE		(300, InfoOrAction), // need more info
     LR_LOGIN	(301, InfoOrAction), // encrypt this string
@@ -119,8 +119,6 @@ public enum ReplyCode
 
     static
     {
-        QiCodes.put(LR_OK,		"Success");
-        QiCodes.put(LR_RONLY,		"Nameserver database ready in read only mode");
         QiCodes.put(LR_MORE,		"More info needed to process nameserver query");
         QiCodes.put(LR_LOGIN,		"Encrypt this string");
         QiCodes.put(LR_XLOGIN,	"Prompt for password with enclosed challenge");
