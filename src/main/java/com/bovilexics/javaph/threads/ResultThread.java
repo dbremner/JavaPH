@@ -100,7 +100,7 @@ public final class ResultThread extends Thread
 		this.connection = connection;
 		this.lineFactory = lineFactory;
 		commandLine = command;
-		this.command = new StringTokenizer(commandLine).nextToken();
+		this.command = new StringTokenizer(commandLine, " \t\n\r\f").nextToken();
 
 		connect();
 	}

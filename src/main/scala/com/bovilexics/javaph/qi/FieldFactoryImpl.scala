@@ -21,7 +21,7 @@ object FieldFactoryImpl
     @throws[IllegalArgumentException]
     def parseProperties(someProperties: String): (Int, ImmutableList[String]) =
     {
-      val tokenizer = new StringTokenizer(someProperties)
+      val tokenizer = new StringTokenizer(someProperties, " \t\n\r\f")
       val token = tokenizer.nextToken
       var length = 0
       if (token.startsWith("max"))
