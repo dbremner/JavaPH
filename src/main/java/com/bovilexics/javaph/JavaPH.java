@@ -1320,9 +1320,9 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return loadFields;
 	}
 
-	public @NotNull JTextArea getLogText()
+	public @NotNull String getLogTextValue()
 	{
-		return logText;
+		return logText.getText();
 	}
 
 	public @NotNull ServerManager getServerManager()
@@ -1410,26 +1410,21 @@ public final class JavaPH extends JApplet implements IconProvider, WindowListene
 		return tab;
 	}
 
-	private @NotNull ResultTable getResultTable()
-	{
-		return resultTable;
-	}
-
 	public @NotNull TableModel getResultTableModel()
 	{
-		return getResultTable().getModel();
+		return resultTable.getModel();
 	}
 
-	public @NotNull JTextArea getResultText()
+	public @NotNull String getResultTextValue()
 	{
-		return resultText;
+		return resultText.getText();
 	}
 
 	public void clearPreviousQuery()
 	{
 		// Clear the results
-		getResultText().setText("");
-		getResultTable().getTableSorter().getModel().resetModel();
+		resultText.setText("");
+		resultTable.getTableSorter().getModel().resetModel();
 
 		// Clear the previous query
 		resetCommandComboBoxIndex();

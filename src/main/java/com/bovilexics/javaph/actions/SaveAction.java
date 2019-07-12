@@ -176,10 +176,10 @@ public final class SaveAction extends AbstractAction
 		switch (tab)
 		{
 			case ResultText:
-				toWrite = parent.getResultText().getText();
+				toWrite = parent.getResultTextValue();
 				break;
 			case SystemLog:
-				toWrite = parent.getLogText().getText();
+				toWrite = parent.getLogTextValue();
 				break;
 			case ResultTable:
 				toWrite = "";
