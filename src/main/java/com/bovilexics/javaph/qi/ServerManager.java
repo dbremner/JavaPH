@@ -23,6 +23,4 @@ public interface ServerManager
     void save() throws IOException;
 
     void setDefaultServer(@NotNull String server);
-
-    void loadAllFields();
 }
