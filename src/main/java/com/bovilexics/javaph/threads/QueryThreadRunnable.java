@@ -73,18 +73,13 @@ public final class QueryThreadRunnable implements Runnable
             });
         }
 
-        // TODO add helper method to reduce boilerplate?
         if (parent.isQueryCanceled())
         {
-            resultThread.interrupt();
-            SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery(JavaPHConstants.QUERY_CANCELED, JavaPHConstants.CANCELED));
+            failQuery(resultThread, JavaPHConstants.QUERY_CANCELED, JavaPHConstants.CANCELED);
         }
         else if (seconds == runtime)
         {
-            resultThread.interrupt();
-            SwingUtilities.invokeLater(() ->
-                    parent.endFailedQuery(JavaPHConstants.QUERY_TIMED_OUT, JavaPHConstants.TIMEOUT));
+            failQuery(resultThread, JavaPHConstants.QUERY_TIMED_OUT, JavaPHConstants.TIMEOUT);
         }
         else
         {
@@ -95,5 +90,11 @@ public final class QueryThreadRunnable implements Runnable
             SwingUtilities.invokeLater(() ->
                     parent.endQuery(rawResult, headers, values));
         }
+    }
+
+    private void failQuery(final @NotNull ResultThread resultThread, final @NotNull String message, final @NotNull String title)
+    {
+        resultThread.interrupt();
+        SwingUtilities.invokeLater(() -> parent.endFailedQuery(message, title));
     }
 }
